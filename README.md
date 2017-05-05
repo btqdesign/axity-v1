@@ -1,2 +1,4 @@
-# intellego
-Sitio web de Intellego
+# Axity
+Sitio web de Axity
+
+WordPress 4.7.4
