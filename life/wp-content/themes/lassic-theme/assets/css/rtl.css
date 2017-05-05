@@ -1,0 +1,165 @@
+body, .widget {
+	direction: rtl;
+}
+
+.flexslider, .owl-carousel, .page-sidebar {
+	direction: ltr !important;
+}
+
+/*============  FLOAT SECTION STYLE ============ */
+.left-side, .navigation, .navigation .navbar, .navigation ul li, .page-sidebar .widget ul li a, .widget_latest_post figure, .widget_latest_post article, #footer-sec .widget_archive ul li a, #footer-sec .cs-widget-contact ul li i, .cs-widget-contact ul li,/*Subheader Style */.pageinfo, .breadcrumb ul li, .page-title-align-left,
+/*Blog Style */ .cs-blog-medium .cs-media, .cs-post-options li, .cs-post-options li i, .liststyle ul li i, .cs-tags ul li, .cs-tags i, .socialmedia ul li, .cs-post-pagination article figure, .cs-section-title h2, .thumblist figure, .comment-respond p input[type="text"], .comment-respond p textarea,
+/*Typography Style */.main-section .dropcap-one, .main-section .dropcap-two, .dropcap-one:first-letter, .dropcap-one p:first-letter, .dropcap-two:first-letter, .dropcap-two p:first-letter, .simple .panel span,
+/*COmmon Style */.cs-promobox .top-left i, .cs-tabs .tab-content, .cs-tabs .nav-tabs li, .cs-tabs .nav-tabs li a i, .cs-tabs.vertical .nav-tabs, .button_style a i, .skillbar-bar, .skills-v2 span, .features li i, .cs-partner ul li figure img, .cs-services.classic.left > figure, .widget_pages ul li a,
+.user-signup form label, .team-detail .cs-socialmedia, .suggestions ul li, .cs-status, .messagebox-v1 i, .skillbar, .cs_counter.classic figure img {
+	float: right !important;
+}
+.cs-right-side, .cs-category li i, .skills-sec small, .cs-price-table.pr-simple .sigun_up, .messagebox button.close, .messagebox-v1 button.close, .cs-filter-menu li, .cs-social-share .socialmedia {
+	float: left !important;
+}
+
+/*============  Text Center ============ */
+ {
+ 	text-align:center !important;
+ }
+
+/*============  Text Right ============ */
+.table > thead > tr > th, .testimonial .cs-author, .top-left, .left, .features, .cs-post-pagination a.cs-post-next, .call-actions .cell.text-area, .call-actions.ac-classic {
+	text-align: right !important;
+}
+/*============  Text Left ============ */
+.top-right, .right, .widget_categories ul li, .widget_archive ul li, .cs-call-to-btn{
+	text-align: left!important;
+}
+.features li i, .button_style a i {
+	float: none !important; 
+}
+.cs-widget-contact ul li{clear: right;}
+/*============  Header Style ============ */
+#main-header .navigation ul > li > a:before{ left: auto!important; right: -24px!important; }
+#main-header .search-sec form label{right: auto; left: 0px;}
+#main-header .sub-dropdown{right: 0px; left: auto; width: 188px;}
+#main-header .navigation ul .sub-dropdown li:before{left: auto; right: 14px;}
+#main-header .navigation ul .sub-dropdown li a{padding: 14px 30px 14px 18px}
+#main-header .navigation ul .sub-dropdown ul{right: 102%; left: auto;}
+.pageinfo h1 {margin: 0 0px 8px 30px;}
+/*============  Typography Style ============ */
+.main-section .dropcap-one:first-letter, .main-section .dropcap-one p:first-letter {margin: 0 0 0 20px;}
+.main-section .dropcap-two:first-letter, .main-section .dropcap-two p:first-letter {margin: 0 0 0 15px;}
+.main-section .cs-qoute.has-qoute {padding: 0 55px 0 0;}
+.main-section .cs-qoute.has-qoute:before {left: auto; right: 0;}
+.main-section .cs-classic-form .form-style label i {right: 20px; left: auto;}
+.main-section .cs-classic-form .form-style input[type="text"], .main-section .cs-classic-form .form-style input[type="email"] {padding: 0 50px 0 0;}
+.main-section .cs-plain-form.cs_form_styling form label {margin-bottom: 3px; padding: 0 20px 2px 0;}
+.main-section .cs-plain-form.cs_form_styling .form-style input[type="text"], .main-section .cs-plain-form.cs_form_styling .form-style input[type="email"] {padding: 0 15px 0 0;}
+.main-section .cs-plain-form.cs_form_styling form {margin: 0;}
+.main-section .messagebox span a {display: inline-block; margin: 0 5px 0 0;}
+.main-section .messagebox .icon-check:before {margin: 0 0 0 6px;}
+.main-section .messagebox i {margin: 0 0 0 10px;}
+.main-section .messagebox-v1 span {margin: 0 16px 0 0;}
+.main-section .messagebox-v1 i ~ p {padding: 0 48px 0 0;}
+.main-section .testimonial .question-mark:before {left: -8px; right: auto;}
+.main-section .testimonial figure ~ .cs-author {padding: 0 75px 0 0;}
+.main-section .flexslider.testimonial.right .cs-author {text-align: right; padding: 0 0 0 75px;}
+.main-section .flexslider.testimonial .flex-direction-nav {right: 65px;}
+.main-section .testimonial .question-mark:after {border-left: 18px solid transparent; border-right: none; left: 10px; right: auto;}
+.cs-plain-form.cs_form_styling form label.submit-sec i {left: auto; right: 0px;}
+.cs-plain-form.cs_form_styling form label input[type="submit"] {padding: 12px 70px 12px 40px}
+.testimonial.left.italic-style .flex-direction-nav, .flexslider.testimonial.center .flex-direction-nav { right: auto; left: 0px;}
+.cs-classic-form form .textaera-sec textarea{padding-left: 0px; padding-right: 50px;}
+.cs-plain-form .form-style .textaera-sec{right:auto;left: 0px;}
+.cs_form_styling{position: relative;}
+.cs_form_styling textarea {padding: 20px 15px 0 0px}
+.main-section .flexslider.testimonial .flex-direction-nav{right: auto;left: 0px;}
+blockquote:before{right: -20px; left: auto;}
+/*============  Common Style ============ */
+.csdefault .panel-heading .collapsed:before, .csdefault .panel-heading a:before {left: 0px; right: auto;}
+.panel-group.csdefault .panel-heading a {padding: 12px 0 12px 30px;}
+.cs-promobox .top-left i ~ .text {padding: 0 75px 0 0px;}
+.cs-services.classic.left > figure ~ .text {padding: 0 90px 0 0px;}
+.cs-services.right figure ~ .text {padding: 0 0 0 80px;}
+.cs-services .read-more i {margin: 3px 0 0 6px; transform:scale(-1);}
+.cs-tabs.modren-view .nav-tabs {padding: 0 30px 0 0;}
+.cs-tabs .nav-tabs li a i  {margin: 2px 0 0 5px;}
+.cs-tabs.vertical .nav-tabs li.active a:before {left: -15px; right: auto;  transform: rotate(90deg);}
+.skills-sec small {margin: -3px 6px 0 0;}
+.plain .skills-sec small {margin: -8px 6px 0 0;}
+.skills-v3 .skillbar small {left: 5px; right: auto;}
+.small-btn.has_icon i {line-height: 30px;}
+.skills-v3 .skillbar span {padding: 0 20px 0 0;}
+.box .panel-heading a:before{left: auto;right: 10px;}
+.box .panel-heading a{padding: 0 30px 0 0;}
+.box .panel-default > .panel-heading + .panel-collapse > .panel-body p{padding: 0 15px 0 0; border-left: none; border-right: 1px solid #e9edeb;}
+.simple .panel-title a{padding: 0 27px 0 0;}
+.simple .panel span {margin: 0 -27px 0 0;}
+.cs-tabs.modren-view .nav-tabs{padding: 0 0 0 30px;}
+.button_style a i{display: inline-block;}
+.skills-v2 .skills-sec small{margin: -6px 10px 0 0px}
+.cs-price-table.pr-simple .sigun_up{margin: -10% 0 0 0;}
+.cs-price-table.pr-simple .sigun_up:before {left: auto; right: 0px;border-bottom: 16px solid transparent; border-right: 10px solid #fff; border-top: 15px solid transparent; border-left: none;}
+.features li i {display: inline-block; margin: 10px 0 0 6px;}
+.button_style a i {margin: 0 0 0 6px;}
+/*============  Widgets Style ============ */
+.widget-section-title:before, .widget-section-title:after {right: 100%; left: auto; margin: 0 10px 0 0;}
+.main-section .widget-section-title:after {right: auto;}
+.main-section .widget.widget_recent_comments .comment-author-link {margin: 0 0 0 7px;}
+.main-section .widget_search form input {padding: 0 25px 0 0;}
+.main-section .widget_search form label:before {right: 0; left: auto;}
+.main-section .widget.widget_text img.wp-smiley {margin: 6px 0 0 10px;}
+.main-section .tagcloud a {margin: 0 0 5px 5px;}
+.main-section .widget_nav_menu ul li i {display: inline-block; margin: 0 0 0 7px;}
+.main-section .widget_contact {padding: 38px 25px 20px 20px;}
+.main-section .widget_contact i {display: inline-block; margin: 0 0 0 10px;}
+.widget-recent-blog figure ~ .infotext, .widget_latest_post figure ~ .infotext {padding: 0 85px 0 0;}
+.cs-class-timing span {display: inline-block; padding: 0 5px 0 0;}
+.main-section .widget_text ul li i, #footer-sec .widget_text ul li i {margin: 0 0 14px 10px;}
+.main-section .widget_blog figure ~ .infotext {padding: 0 100px 0 0; text-align: right;}
+.main-section .widget_blog .cs-comment {margin: 0 0 0 8px;}
+.main-section .widget.element-size-100.twitter_widget .text a:before {right: 24%; left: auto;} 
+.widget_categories ul li, .widget_pages ul li a, .widget_meta ul li, .widget_recent_entries ul li, .widget_archive ul li, .widget_nav_menu ul li a, .widget_archive ul li{padding: 0 20px 0 0;}
+.widget_categories ul li:before, .widget_pages ul li a:before, .widget_meta ul li:before, .widget_recent_entries ul li:before, .widget_archive ul li:before, .widget_nav_menu ul li a:before, .widget_archive ul li:before {left: auto; right: 0px;}
+.page-sidebar .widget_search .cs-search-area form label{left: 42px; right: auto;}
+footer#footer-sec .widget_search .cs-search-area form label{left: 42px; right: auto;}
+.widget-form form ul li .cs-for-user:before, .widget-form form ul li .cs-for-mail:before{left: 0px; right: auto;}
+.twitter_widget article:before{right: 0px; left: auto;}
+.twitter_widget article {padding: 0 35px 0 0;}
+.twitter_widget article:after{left: auto; right: 10px;}
+#footer-sec .cs-widget-contact ul li i{margin: 0 0 0 10px;}
+.cs-widget-contact ul li{padding: 0 0 0 10px;}
+.widget.widget_search .cs-search-area form label:before {right: 0; left: auto;}
+#footer-sec .footer-content .cs-social-media li:before {right: -17px; left: auto;}
+
+/*============  Blog Style ============ */
+.cs-blog-medium .cs-media ~ .cs-bloginfo-sec{ padding: 0 350px 0 0px; }
+.cs-post-options li:before{left: auto; right: -19px;}
+.cs-post-options li i { margin: 5px 0 0 6px;}
+.cs-post-options li:first-child{margin-right: 0px; margin-left: 16px;}
+.cs-category li i{margin: 0 6px 0 0;}
+.cs-category li a {padding: 0 8px 0 0;}
+.cs-read-more{display: inline-block;}
+.cs-category li {margin: 0 0 0 15px;}
+
+/*============  Blog Detail Style ============ */
+.liststyle ul li i{margin: 3px 0 0 10px}
+.cs-post-pagination article figure ~ .text{padding: 0 85px 0 0;}
+.cs-blog.cs-blog-grid .cs-blog-text:before{left: auto; right: 0px;}
+.thumblist .cs-text-box h4{margin: 0 0 8px 10px;}
+.thumblist figure:before{right: auto;left: -20px;}
+.thumblist figure {margin: 0 0 0 20px;}
+.children {padding: 0 55px 0 0;}
+.comment-respond p input[type="text"], .comment-respond p textarea{padding: 0 15px 0 0}
+.comment-respond p.comment-form-comment{left: 0px; right: auto;}
+.comment-respond p.comment-form-comment {padding: 0 20px 0 0;}
+
+/*============  Subheader Style ============ */
+.breadcrumb{right: 20%; left: auto;}
+.breadcrumb ul li:before{right: -18px; left: auto;}
+.pageinfo p{border-left: none; border-right: 1px solid #fff; padding: 0 30px 0 0px}
+
+/*============  Owl carousel Style ============ */
+.blog-carousel.cs-prv-next .owl-controls{left: 0px; right: auto;}
+/*============  NO found page Style ============ */
+.suggestions ul li{padding: 0 26px 0 0; transform:scale(-1);}
+.search-no-results .cs-search-area input[type="text"]{padding: 0 60px 0 0;}
+.cs-search-area i{right: 0px; left:auto; border-left: 1px solid #ccc; border-right: none;padding: 0 0 0 10px;}
+.time_circles {direction: ltr;}

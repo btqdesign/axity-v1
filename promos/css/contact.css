@@ -1,0 +1,46 @@
+#contact { display: block; width: auto; margin: 0; padding: 0px; border: none;  overflow:visible }
+
+/* Form style */
+
+#contact label { display: none; float: none; height:0px; }
+
+button::-moz-focus-inner,
+input[type="reset"]::-moz-focus-inner,
+input[type="button"]::-moz-focus-inner,
+input[type="submit"]::-moz-focus-inner,
+input[type="file"] > input[type="button"]::-moz-focus-inner {border:0;padding:0;margin:0;}
+
+input, textarea, select {  border:0; float:none; display:block; -webkit-appearance: none; margin-bottom:31px; color:#555;}
+article input, article textarea, article select { width:620px; }
+#contact textarea { resize: none;}
+input:focus, textarea:focus, select:focus {  }
+input.submit { border:2px solid #ff4000; color:#ff4000; font-style: italic; font-size:15px; font-weight:normal; padding:13px 25px 16px 25px; line-height:1.4; letter-spacing:0px; background:transparent; display:inline-block; width:100%; font-family:'Open Sans', Arial, Helvetica, sans-serif; cursor:pointer; margin-bottom:13px; vertical-align:middle; float:left}
+
+.hide {float:right; }
+
+#contact fieldset { padding-left:0px;}
+
+#contact span.required { padding-left:28px; background:url(../images/bg-bullet.png) no-repeat 12px 5px; margin-left:-28px; }
+
+#message { margin: 0; padding: 0px; z-index:200; height:auto; width:230px; margin:15px 0 0 0; display:inline-block !important; font-size:14px; font-family:"Open Sans", Arial, Helvetica, sans-serif; font-style:italic }
+#success_page { /*width:230px; margin-left:70px;*/  }
+#success_page h4 {font-family: 'Open Sans', Arial, Helvetica, sans-serif; margin-top:-4px; font-style:normal; letter-spacing:3px; font-size:16px; }
+
+.error_message { display: block; height:auto; width:auto; color:#8a1f11; }
+
+.loader { display:none; }
+
+#comments {height: 145px; }
+
+input, textarea {
+    -webkit-appearance: none;
+    border-radius: 0;
+}
+textarea, select, input:not([type="radio"]):not([type="checkbox"]):not([type="hidden"]):not([type="button"]):not([type="submit"]):not([type="image"]){
+  background-color: #fff;
+  border-bottom: 1px solid #d4d4d4;  
+  margin-right: 0;
+  width: 100%;
+  font: 15px "Open Sans",Arial,Helvetica,sans-serif;
+  padding: 14px 20px 15px 20px;
+}

@@ -1,0 +1,471 @@
+# Copyright (C) 2017 WP Image Zoom
+# This file is distributed under the same license as the WP Image Zoom package.
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Image Zoom 1.4\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-image-zoooom\n"
+"POT-Creation-Date: 2017-01-10 14:48:44+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: image-zoooom.php:52 image-zoooom.php:59 includes/image-zoom.php:36
+#: includes/image-zoom.php:43
+msgid "Cheatin&#8217; huh?"
+msgstr ""
+
+#: image-zoooom.php:134
+msgid "WP Image Zoooom"
+msgstr ""
+
+#: image-zoooom.php:430
+msgid "Settings"
+msgstr ""
+
+#: includes/image-zoom-admin-general.php:34
+#: includes/image-zoom-admin-template.php:23
+msgid "WP Image Zoom by %1$s"
+msgstr ""
+
+#: includes/image-zoom-admin-general.php:41
+#: includes/image-zoom-admin-template.php:30
+msgid "General Settings"
+msgstr ""
+
+#: includes/image-zoom-admin-general.php:43
+#: includes/image-zoom-admin-template.php:32
+msgid "Zoom Settings"
+msgstr ""
+
+#: includes/image-zoom-admin-general.php:81
+#: includes/image-zoom-admin-template.php:199
+msgid "Save changes"
+msgstr ""
+
+#: includes/image-zoom-admin-template.php:48
+msgid "Step 1"
+msgstr ""
+
+#: includes/image-zoom-admin-template.php:48
+msgid "Choose the Lens Shape"
+msgstr ""
+
+#: includes/image-zoom-admin-template.php:76
+msgid "Step 2"
+msgstr ""
+
+#: includes/image-zoom-admin-template.php:76
+msgid "Check your configuration changes on the image"
+msgstr ""
+
+#: includes/image-zoom-admin-template.php:82
+msgid "Step 3"
+msgstr ""
+
+#: includes/image-zoom-admin-template.php:82
+msgid "Make more fine-grained configurations on the zoom"
+msgstr ""
+
+#: includes/image-zoom-admin-template.php:86
+msgid "General"
+msgstr ""
+
+#: includes/image-zoom-admin-template.php:89
+msgid "Lens"
+msgstr ""
+
+#: includes/image-zoom-admin-template.php:92
+msgid "Zoom Window"
+msgstr ""
+
+#: includes/image-zoom-admin-template.php:95
+msgid "Custom Text"
+msgstr ""
+
+#: includes/image-zoom-admin-template.php:196
+msgid "Step 4"
+msgstr ""
+
+#: includes/image-zoom-admin-template.php:196
+msgid "Don't forget to save the changes in order to apply them on the website"
+msgstr ""
+
+#. #-#-#-#-#  wp-image-zoooom.pot (WP Image Zoom 1.4)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
+#: includes/image-zoom-admin.php:29 includes/image-zoom-admin.php:30
+msgid "WP Image Zoom"
+msgstr ""
+
+#: includes/image-zoom-admin.php:90
+msgid "Lens Shape"
+msgstr ""
+
+#: includes/image-zoom-admin.php:92
+msgid "No Lens"
+msgstr ""
+
+#: includes/image-zoom-admin.php:93
+msgid "Circle Lens"
+msgstr ""
+
+#: includes/image-zoom-admin.php:94
+msgid "Square Lens"
+msgstr ""
+
+#: includes/image-zoom-admin.php:95
+msgid "With Zoom Window"
+msgstr ""
+
+#: includes/image-zoom-admin.php:101
+msgid "Cursor Type"
+msgstr ""
+
+#: includes/image-zoom-admin.php:103 includes/image-zoom-admin.php:306
+msgid "Default"
+msgstr ""
+
+#: includes/image-zoom-admin.php:104
+msgid "Pointer"
+msgstr ""
+
+#: includes/image-zoom-admin.php:105
+msgid "Crosshair"
+msgstr ""
+
+#: includes/image-zoom-admin.php:106
+msgid "Move"
+msgstr ""
+
+#: includes/image-zoom-admin.php:112
+msgid "Animation Easing Effect"
+msgstr ""
+
+#: includes/image-zoom-admin.php:114
+msgid ""
+"A number between 0 and 200 to represent the degree of the Animation Easing "
+"Effect"
+msgstr ""
+
+#: includes/image-zoom-admin.php:119
+msgid "Lens Size"
+msgstr ""
+
+#: includes/image-zoom-admin.php:122
+msgid ""
+"For Circle Lens it means the diameters, for Square Lens it means the width"
+msgstr ""
+
+#: includes/image-zoom-admin.php:126 includes/image-zoom-admin.php:179
+msgid "Border Thickness"
+msgstr ""
+
+#: includes/image-zoom-admin.php:132 includes/image-zoom-admin.php:192
+msgid "Border Color"
+msgstr ""
+
+#: includes/image-zoom-admin.php:137 includes/image-zoom-admin.php:203
+msgid "Fade Time"
+msgstr ""
+
+#: includes/image-zoom-admin.php:140
+msgid "The amount of time it takes for the Lens to slowly appear or dissapear"
+msgstr ""
+
+#: includes/image-zoom-admin.php:144
+msgid "Tint"
+msgstr ""
+
+#: includes/image-zoom-admin.php:146
+msgid ""
+"A color that will layed on top the of non-magnified image in order to "
+"emphasize the lens"
+msgstr ""
+
+#: includes/image-zoom-admin.php:150
+msgid "Tint Color"
+msgstr ""
+
+#: includes/image-zoom-admin.php:155
+msgid "Tint Opacity"
+msgstr ""
+
+#: includes/image-zoom-admin.php:161
+msgid "Zoom Window Width"
+msgstr ""
+
+#: includes/image-zoom-admin.php:167
+msgid "Zoom Window Height"
+msgstr ""
+
+#: includes/image-zoom-admin.php:173
+msgid "Distance from the Main Image"
+msgstr ""
+
+#: includes/image-zoom-admin.php:185
+msgid "Shadow Thickness"
+msgstr ""
+
+#: includes/image-zoom-admin.php:189
+msgid "Use 0px to remove the shadow"
+msgstr ""
+
+#: includes/image-zoom-admin.php:197
+msgid "Rounded Corners"
+msgstr ""
+
+#: includes/image-zoom-admin.php:206
+msgid ""
+"The amount of time it takes for the Zoom Window to slowly appear or disappear"
+msgstr ""
+
+#: includes/image-zoom-admin.php:210
+msgid "Enable the zoom on WooCommerce products"
+msgstr ""
+
+#: includes/image-zoom-admin.php:215
+msgid "Exchange the thumbnail with main image on WooCommerce products"
+msgstr ""
+
+#: includes/image-zoom-admin.php:218
+msgid ""
+"On a WooCommerce gallery, when clicking on a thumbnail, not only the main "
+"image will be replaced with the thumbnail's image, but also the thumbnail "
+"will be replaced with the main image"
+msgstr ""
+
+#: includes/image-zoom-admin.php:221
+msgid "Enable the zoom on mobile devices"
+msgstr ""
+
+#: includes/image-zoom-admin.php:226
+msgid "Enable the zoom on WooCommerce category pages"
+msgstr ""
+
+#: includes/image-zoom-admin.php:232
+msgid "Force it to work on WooCommerce"
+msgstr ""
+
+#: includes/image-zoom-admin.php:237
+msgid "Compatible with LazyLoad (unveil.js)"
+msgstr ""
+
+#: includes/image-zoom-admin.php:245
+msgid "Remove the Lightbox on thumbnail images"
+msgstr ""
+
+#: includes/image-zoom-admin.php:251
+msgid "Remove the Lightbox"
+msgstr ""
+
+#: includes/image-zoom-admin.php:257
+msgid "Enable on WooCommerce variation products"
+msgstr ""
+
+#: includes/image-zoom-admin.php:263
+msgid "Enable on attachments pages"
+msgstr ""
+
+#: includes/image-zoom-admin.php:269
+msgid "FlexSlider container class"
+msgstr ""
+
+#: includes/image-zoom-admin.php:275
+msgid ""
+"Enable inside <a href=\"http://fancyapps.com/fancybox/\" target=\"_blank"
+"\">fancyBox</a> lightbox"
+msgstr ""
+
+#: includes/image-zoom-admin.php:281
+msgid ""
+"Enable inside <a href=\"https://jetpack.com/ support/carousel/\" target="
+"\"_blank\">Jetpack Carousel</a> lightbox"
+msgstr ""
+
+#: includes/image-zoom-admin.php:288
+msgid "Huge IT Gallery id"
+msgstr ""
+
+#: includes/image-zoom-admin.php:294
+msgid "Enable the zoom on ..."
+msgstr ""
+
+#: includes/image-zoom-admin.php:304
+msgid "Zoom Level"
+msgstr ""
+
+#: includes/image-zoom-admin.php:307
+msgid "1,5 times"
+msgstr ""
+
+#: includes/image-zoom-admin.php:308
+msgid "2 times"
+msgstr ""
+
+#: includes/image-zoom-admin.php:309
+msgid "2,5 times"
+msgstr ""
+
+#: includes/image-zoom-admin.php:310
+msgid "3 times"
+msgstr ""
+
+#: includes/image-zoom-admin.php:317
+msgid "Lens Color"
+msgstr ""
+
+#: includes/image-zoom-admin.php:323
+msgid "Show as Grid"
+msgstr ""
+
+#: includes/image-zoom-admin.php:329
+msgid "Responsive"
+msgstr ""
+
+#: includes/image-zoom-admin.php:335
+msgid "Responsive Threshold"
+msgstr ""
+
+#: includes/image-zoom-admin.php:342
+msgid "Positioning"
+msgstr ""
+
+#: includes/image-zoom-admin.php:344
+msgid "Right Top"
+msgstr ""
+
+#: includes/image-zoom-admin.php:345
+msgid "Right Bottom"
+msgstr ""
+
+#: includes/image-zoom-admin.php:346
+msgid "Right Center"
+msgstr ""
+
+#: includes/image-zoom-admin.php:347
+msgid "Left Top"
+msgstr ""
+
+#: includes/image-zoom-admin.php:348
+msgid "Left Bottom"
+msgstr ""
+
+#: includes/image-zoom-admin.php:349
+msgid "Left Center"
+msgstr ""
+
+#: includes/image-zoom-admin.php:357
+msgid "Mousewheel Zoom"
+msgstr ""
+
+#: includes/image-zoom-admin.php:363
+msgid "Text on the image"
+msgstr ""
+
+#: includes/image-zoom-admin.php:369
+msgid "Text Size"
+msgstr ""
+
+#: includes/image-zoom-admin.php:376
+msgid "Text Color"
+msgstr ""
+
+#: includes/image-zoom-admin.php:382
+msgid "Text Align"
+msgstr ""
+
+#: includes/image-zoom-admin.php:385
+msgid "Center Top"
+msgstr ""
+
+#: includes/image-zoom-admin.php:388
+msgid "Center Bottom"
+msgstr ""
+
+#: includes/image-zoom-admin.php:421 includes/image-zoom-admin.php:438
+msgid "Your settings have been saved."
+msgstr ""
+
+#: includes/image-zoom-admin.php:614 includes/image-zoom-admin.php:631
+msgid "Unrecognized <b>%1$s</b>. The value was reset to <b>%2$s</b>"
+msgstr ""
+
+#: includes/image-zoom-admin.php:651
+msgid ""
+"<b>%1$s</b> accepts values between %2$s and %3$s. Your value was reset to <b>"
+"%4$s</b>"
+msgstr ""
+
+#: includes/image-zoom-notices.php:173
+msgid "Dismiss this notice"
+msgstr ""
+
+#: includes/image-zoom-warnings.php:57
+msgid ""
+"<b>If the zoom does not show up</b> on your website, it could be because you "
+"need to add the “image_zoooom-init” and the “image_zoooom” to the “Scripts "
+"to NOT minify” option in the BWP Minify settings, as shown in <a href=\"%1$s"
+"\" target=\"_blank\">this screenshot</a>."
+msgstr ""
+
+#: includes/image-zoom-warnings.php:97
+msgid ""
+"The WP Image Zoom plugin <b>will not work</b> on the WooCommerce products "
+"gallery with the Avada theme. The Avada theme changes entirely the default "
+"WooCommerce gallery with the <a href=\"%1$s\" target=\"_blank\">Flexslider "
+"gallery</a> and the zoom plugin does not support the Flexslider gallery. "
+"Please check the <a href=\"%2$s\" target=\"_blank\">PRO version</a> of the "
+"plugin for compatibility with the Flexslider gallery."
+msgstr ""
+
+#: includes/image-zoom-warnings.php:133
+msgid ""
+"WP Image Zoom plugin is not compatible with the <a href=\"admin.php?"
+"page=jetpack\">Jetpack Photon</a> module. If you find that the zoom is not "
+"working, try to deactivate the Photon module and see if that solves it."
+msgstr ""
+
+#: includes/premium-tooltips.php:3
+msgid "Only available in <a href=\"%1$s\" target=\"_blank\">PRO version</a>"
+msgstr ""
+
+#: includes/right_columns.php:47
+msgid "WP Image Zoooom Pro"
+msgstr ""
+
+#: includes/right_columns.php:60
+msgid "Upgrade to PRO"
+msgstr ""
+
+#: includes/right_columns.php:68
+msgid "Like this Plugin?"
+msgstr ""
+
+#: includes/right_columns.php:71
+msgid ""
+"Share your opinion with the world on the WordPress.org Plugin Repository."
+msgstr ""
+
+#: includes/right_columns.php:72
+msgid "Rate it on WordPress.org"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://wordpress.org/plugins/wp-image-zoooom/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Add zoom effect over the an image, whether it is an image in a post/page or "
+"the featured image of a product in a WooCommerce shop"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "SilkyPress"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://www.silkypress.com"
+msgstr ""

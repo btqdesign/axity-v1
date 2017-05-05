@@ -1,0 +1,959 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Awaken v1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2014-11-28 14:29:33+0000\n"
+"Last-Translator: lms-admin <dum1@chimpgroup.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: CSL v1.x\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Country: UNITED KINGDOM\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-Bookmarks: \n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Textdomain-Support: yes"
+
+msgid "Posted On "
+msgstr ""
+
+msgid "BY "
+msgstr ""
+
+msgid "0"
+msgstr ""
+
+msgid "1"
+msgstr ""
+
+msgid "%"
+msgstr ""
+
+msgid "No Comments"
+msgstr ""
+
+msgid "1 Comment"
+msgstr ""
+
+msgid "% Comments"
+msgstr ""
+
+msgid "<span class=\"meta-nav\">&larr;</span> Older Comments"
+msgstr ""
+
+msgid "Newer Comments <span class=\"meta-nav\">&rarr;</span>"
+msgstr ""
+
+#, php-format
+msgid "You may use these <abbr title=\"HyperText Markup Language\">HTML</abbr> tags and attributes: %s"
+msgstr ""
+
+#, php-format
+msgid "You must be <a href=\"%s\">logged in</a> to post a comment."
+msgstr ""
+
+#, php-format
+msgid "Logged in as <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\" title=\"Log out of this account\">Log out?</a>"
+msgstr ""
+
+#, php-format
+msgid "Required fields are marked %s"
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Email"
+msgstr ""
+
+msgid "Website"
+msgstr ""
+
+msgid "Message"
+msgstr ""
+
+msgid "Cancel reply"
+msgstr ""
+
+msgid "Submit"
+msgstr ""
+
+msgid "Tags"
+msgstr ""
+
+#, php-format
+msgid "%1$s"
+msgstr ""
+
+msgid "Date Published"
+msgstr ""
+
+msgid "Alphabetical"
+msgstr ""
+
+msgid "Categories"
+msgstr ""
+
+msgid "All Categories"
+msgstr ""
+
+msgid "Events"
+msgstr ""
+
+msgid "Pages:"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "Related Posts"
+msgstr ""
+
+msgid "Event Speakers"
+msgstr ""
+
+msgid "Description"
+msgstr ""
+
+msgid "Primary Sidebar"
+msgstr ""
+
+msgid "Main sidebar that appears on the right."
+msgstr ""
+
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+msgid "(Edit)"
+msgstr ""
+
+msgid "Sorry, We are down for maintenance"
+msgstr ""
+
+msgid "ERROR 404"
+msgstr ""
+
+msgid "Current Page"
+msgstr ""
+
+msgid "Install Required Plugins"
+msgstr ""
+
+msgid "Install Plugins"
+msgstr ""
+
+#, php-format
+msgid "Installing Plugin: %s"
+msgstr ""
+
+msgid "Something went wrong with the plugin API."
+msgstr ""
+
+#, php-format
+msgid "This theme requires the following plugin: %1$s."
+msgid_plural "This theme requires the following plugins: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "This theme recommends the following plugin: %1$s."
+msgid_plural "This theme recommends the following plugins: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "Sorry, but you do not have the correct permissions to install the %s plugin. Contact the administrator of this site for help on getting the plugin installed."
+msgid_plural "Sorry, but you do not have the correct permissions to install the %s plugins. Contact the administrator of this site for help on getting the plugins installed."
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "The following required plugin is currently inactive: %1$s."
+msgid_plural "The following required plugins are currently inactive: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "The following recommended plugin is currently inactive: %1$s."
+msgid_plural "The following recommended plugins are currently inactive: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "Sorry, but you do not have the correct permissions to activate the %s plugin. Contact the administrator of this site for help on getting the plugin activated."
+msgid_plural "Sorry, but you do not have the correct permissions to activate the %s plugins. Contact the administrator of this site for help on getting the plugins activated."
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "The following plugin needs to be updated to its latest version to ensure maximum compatibility with this theme: %1$s."
+msgid_plural "The following plugins need to be updated to their latest version to ensure maximum compatibility with this theme: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "Sorry, but you do not have the correct permissions to update the %s plugin. Contact the administrator of this site for help on getting the plugin updated."
+msgid_plural "Sorry, but you do not have the correct permissions to update the %s plugins. Contact the administrator of this site for help on getting the plugins updated."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Begin installing plugin"
+msgid_plural "Begin installing plugins"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Activate installed plugin"
+msgid_plural "Activate installed plugins"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Return to Required Plugins Installer"
+msgstr ""
+
+msgid "Plugin activated successfully."
+msgstr ""
+
+#, php-format
+msgid "All plugins installed and activated successfully. %s"
+msgstr ""
+
+msgid "0 Comment"
+msgstr ""
+
+msgid "This post is password protected. To view it please enter your password below:"
+msgstr ""
+
+msgid "Featured"
+msgstr ""
+
+msgid "Author"
+msgstr ""
+
+msgid "Archives"
+msgstr ""
+
+#, php-format
+msgid "Search Results %1$s %2$s"
+msgstr ""
+
+#, php-format
+msgid "Daily Archives: %s"
+msgstr ""
+
+#, php-format
+msgid "Monthly Archives: %s"
+msgstr ""
+
+msgctxt "monthly archives date format"
+msgid "F Y"
+msgstr ""
+
+#, php-format
+msgid "Yearly Archives: %s"
+msgstr ""
+
+msgctxt "yearly archives date format"
+msgid "Y"
+msgstr ""
+
+msgid "Error 404"
+msgstr ""
+
+msgid "No results found."
+msgstr ""
+
+msgid "Main Menu"
+msgstr ""
+
+msgid "Footer Menu"
+msgstr ""
+
+msgid "Top Menu"
+msgstr ""
+
+msgid "Filter By"
+msgstr ""
+
+msgid "Organizers"
+msgstr ""
+
+msgid "Show All"
+msgstr ""
+
+msgid "No Organizer Found."
+msgstr ""
+
+msgid "User name should not be empty."
+msgstr ""
+
+msgid "Password should not be empty."
+msgstr ""
+
+msgid "Wrong username or password."
+msgstr ""
+
+msgid "Like This"
+msgstr ""
+
+msgid "Yes"
+msgstr ""
+
+msgid "No"
+msgstr ""
+
+msgid "Filterable"
+msgstr ""
+
+msgid "http://fortawesome.github.io/Font-Awesome/icons/"
+msgstr ""
+
+msgid "Error."
+msgstr ""
+
+msgid "Sorry, there has been an error."
+msgstr ""
+
+msgid "The file does not exist, please try again."
+msgstr ""
+
+msgid "Projects"
+msgstr ""
+
+msgid "http://codecanyon.net/"
+msgstr ""
+
+msgid "Likes"
+msgstr ""
+
+msgid " Posted On "
+msgstr ""
+
+msgid "Read More"
+msgstr ""
+
+#, php-format
+msgid "%d seconds ago"
+msgstr ""
+
+#, php-format
+msgid "About a Minute Ago"
+msgid_plural "%d Minutes Ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "About an Hour Ago"
+msgid_plural "%d Hours Ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "About a Day Ago"
+msgid_plural "%d Days Ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "About a Week Ago"
+msgid_plural "%d Weeks Ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "About a Month Ago"
+msgid_plural "%d Months Ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "About a year Ago"
+msgid_plural "%d years Ago"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "About"
+msgstr ""
+
+#, php-format
+msgid "%s"
+msgstr ""
+
+msgid "No Event Found"
+msgstr ""
+
+msgid "Toggle navigation"
+msgstr ""
+
+msgid "Login successful"
+msgstr ""
+
+msgid "There was an error when reading this WXR file"
+msgstr ""
+
+msgid "Details are shown above. The importer will now try again with a different parser..."
+msgstr ""
+
+msgid "This does not appear to be a WXR file, missing/invalid WXR version number"
+msgstr ""
+
+msgid "Please Wait!! We are fetching dummy data for you. It can take 2 to 10 minutes depending upon data speed.."
+msgstr ""
+
+msgid "All done."
+msgstr ""
+
+msgid "Have fun!"
+msgstr ""
+
+msgid "Remember to update the passwords and roles of imported users."
+msgstr ""
+
+#, php-format
+msgid "The export file could not be found at <code>%s</code>. It is likely that this was caused by a permissions problem."
+msgstr ""
+
+#, php-format
+msgid "This WXR file (version %s) may not be supported by this version of the importer. Please consider updating."
+msgstr ""
+
+#, php-format
+msgid "Failed to import author %s. Their posts will be attributed to the current user."
+msgstr ""
+
+msgid "Assign Authors"
+msgstr ""
+
+msgid "To make it easier for you to edit and save the imported content, you may want to reassign the author of the imported item to an existing user of this site. For example, you may want to import all the entries as <code>admin</code>s entries."
+msgstr ""
+
+#, php-format
+msgid "If a new user is created by WordPress, a new password will be randomly generated and the new user&#8217;s role will be set as %s. Manually changing the new user&#8217;s details will be necessary."
+msgstr ""
+
+msgid "Import Attachments"
+msgstr ""
+
+msgid "Download and import file attachments"
+msgstr ""
+
+msgid "Import author:"
+msgstr ""
+
+msgid "or create new user with login name:"
+msgstr ""
+
+msgid "as a new user:"
+msgstr ""
+
+msgid "assign posts to an existing user:"
+msgstr ""
+
+msgid "or assign posts to an existing user:"
+msgstr ""
+
+msgid "- Select -"
+msgstr ""
+
+#, php-format
+msgid "Failed to create new user for %s. Their posts will be attributed to the current user."
+msgstr ""
+
+#, php-format
+msgid "Failed to import category %s"
+msgstr ""
+
+#, php-format
+msgid "Failed to import post tag %s"
+msgstr ""
+
+#, php-format
+msgid "Failed to import %s %s"
+msgstr ""
+
+#, php-format
+msgid "Failed to import &#8220;%s&#8221;: Invalid post type %s"
+msgstr ""
+
+#, php-format
+msgid "%s &#8220;%s&#8221; already exists."
+msgstr ""
+
+#, php-format
+msgid "Failed to import %s &#8220;%s&#8221;"
+msgstr ""
+
+msgid "Menu item skipped due to missing menu slug"
+msgstr ""
+
+#, php-format
+msgid "Menu item skipped due to invalid menu slug: %s"
+msgstr ""
+
+msgid "Fetching attachments is not enabled"
+msgstr ""
+
+msgid "Invalid file type"
+msgstr ""
+
+msgid "Remote server did not respond"
+msgstr ""
+
+#, php-format
+msgid "Remote server returned error response %1$d %2$s"
+msgstr ""
+
+msgid "Remote file is incorrect size"
+msgstr ""
+
+msgid "Zero size file downloaded"
+msgstr ""
+
+#, php-format
+msgid "Remote file is too large, limit is %s"
+msgstr ""
+
+msgid "Import WordPress"
+msgstr ""
+
+#, php-format
+msgid "A new version of this importer is available. Please update to version %s to ensure compatibility with newer export files."
+msgstr ""
+
+msgid "Howdy! Upload your WordPress eXtended RSS (WXR) file and we&#8217;ll import the posts, pages, comments, custom fields, categories, and tags into this site."
+msgstr ""
+
+msgid "Choose a WXR (.xml) file to upload, then click Upload file and import."
+msgstr ""
+
+#, php-format
+msgid "%s (Invalid)"
+msgstr ""
+
+#, php-format
+msgid "%s (Pending)"
+msgstr ""
+
+msgid "Move up"
+msgstr ""
+
+msgid "Move down"
+msgstr ""
+
+msgid "Edit Menu Item"
+msgstr ""
+
+msgid "URL"
+msgstr ""
+
+msgid "Navigation Label"
+msgstr ""
+
+msgid "Title Attribute"
+msgstr ""
+
+msgid "Open link in a new window/tab"
+msgstr ""
+
+msgid "CSS Classes (optional)"
+msgstr ""
+
+msgid "Link Relationship (XFN)"
+msgstr ""
+
+msgid "The description will be displayed in the menu if the current theme supports it."
+msgstr ""
+
+msgid "Active Mega Menu"
+msgstr ""
+
+msgid "hide text"
+msgstr ""
+
+msgid "disable link"
+msgstr ""
+
+#, php-format
+msgid "Original: %s"
+msgstr ""
+
+msgid "Remove"
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "<strong>ERROR</strong>: Registration is disabled."
+msgstr ""
+
+#, php-format
+msgid "Something went wrong: %s"
+msgstr ""
+
+msgid "This Google profile is already linked with other account. Linking process failed!"
+msgstr ""
+
+msgid "Something went wrong."
+msgstr ""
+
+#, php-format
+msgid "All plugins installed and activated successfully. %1$s"
+msgstr ""
+
+msgid "Return to the Dashboard"
+msgstr ""
+
+msgid "Dismiss this notice"
+msgstr ""
+
+msgid "Private Repository"
+msgstr ""
+
+msgid "Pre-Packaged"
+msgstr ""
+
+msgid "WordPress Repository"
+msgstr ""
+
+msgid "Required"
+msgstr ""
+
+msgid "Recommended"
+msgstr ""
+
+msgid "Not Installed"
+msgstr ""
+
+msgid "Installed But Not Activated"
+msgstr ""
+
+#, php-format
+msgid "No plugins to install or activate. <a href=\"%1$s\" title=\"Return to the Dashboard\">Return to the Dashboard</a>"
+msgstr ""
+
+msgid "Plugin"
+msgstr ""
+
+msgid "Source"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "Status"
+msgstr ""
+
+msgid "Install"
+msgstr ""
+
+msgid "Activate"
+msgstr ""
+
+msgid "The following plugin was activated successfully:"
+msgid_plural "The following plugins were activated successfully:"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Install package not available."
+msgstr ""
+
+#, php-format
+msgid "Downloading install package from <span class=\"code\">%s</span>&#8230;"
+msgstr ""
+
+msgid "Unpacking the package&#8230;"
+msgstr ""
+
+msgid "Installing the plugin&#8230;"
+msgstr ""
+
+msgid "Plugin install failed."
+msgstr ""
+
+msgid "Plugin installed successfully."
+msgstr ""
+
+msgid "Plugin activation failed."
+msgstr ""
+
+msgid "The installation and activation process is starting. This process may take a while on some hosts, so please be patient."
+msgstr ""
+
+#, php-format
+msgid "%1$s installed and activated successfully."
+msgstr ""
+
+msgid "Show Details"
+msgstr ""
+
+msgid "Hide Details"
+msgstr ""
+
+msgid "All installations and activations have been completed."
+msgstr ""
+
+#, php-format
+msgid "Installing and Activating Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+msgid "The installation process is starting. This process may take a while on some hosts, so please be patient."
+msgstr ""
+
+#, php-format
+msgid "An error occurred while installing %1$s: <strong>%2$s</strong>."
+msgstr ""
+
+#, php-format
+msgid "The installation of %1$s failed."
+msgstr ""
+
+#, php-format
+msgid "%1$s installed successfully."
+msgstr ""
+
+msgid "All installations have been completed."
+msgstr ""
+
+#, php-format
+msgid "Installing Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+msgid "No result found."
+msgstr ""
+
+msgid "Saving changes..."
+msgstr ""
+
+msgid "Share"
+msgstr ""
+
+msgid "Project Detail"
+msgstr ""
+
+msgid "View All"
+msgstr ""
+
+msgid "Continue Reading"
+msgstr ""
+
+msgid "<h2 class=\"cs-section-title\">Leave us a reply</h2>"
+msgstr ""
+
+#, php-format
+msgid "<h2 class=\"cs-section-title\">Leave a Reply to %s </h2>"
+msgstr ""
+
+msgid "Comments 0"
+msgstr ""
+
+msgid "Comments 1"
+msgstr ""
+
+msgid "Comments %"
+msgstr ""
+
+msgid "Posted by"
+msgstr ""
+
+msgid "TO"
+msgstr ""
+
+msgid "Event Location"
+msgstr ""
+
+msgid "-"
+msgstr ""
+
+msgid "PHONE"
+msgstr ""
+
+msgid "EMAIL"
+msgstr ""
+
+msgid "Event Time"
+msgstr ""
+
+msgid "Event Start Date"
+msgstr ""
+
+msgid "Started Date"
+msgstr ""
+
+msgid "Complition Date"
+msgstr ""
+
+msgid "Attachments"
+msgstr ""
+
+msgid "Share Now"
+msgstr ""
+
+msgid "Related Post"
+msgstr ""
+
+msgid "Latest Sermon"
+msgstr ""
+
+msgid "Play Now"
+msgstr ""
+
+msgid "Download Audio"
+msgstr ""
+
+msgid "Notes"
+msgstr ""
+
+msgid "Listen Now"
+msgstr ""
+
+msgid "Summery:"
+msgstr ""
+
+msgid "Related Sermons"
+msgstr ""
+
+msgid "<i class=\"fa fa-long-arrow-left\"></i>"
+msgstr ""
+
+msgid "<i class=\"fa fa-long-arrow-right\"></i>"
+msgstr ""
+
+#, php-format
+msgid "<span>%1$s</span>"
+msgstr ""
+
+msgid "We're currently under maintenance, if all goas as planned we'll be back in"
+msgstr ""
+
+msgid "The Page you Were Looking for Could not be found."
+msgstr ""
+
+#, php-format
+msgid "Page %s"
+msgstr ""
+
+msgid "View All Posts"
+msgstr ""
+
+#, php-format
+msgid "<p>Ready to publish your first post? <a href=\"%1$s\">Get Started Here</a>.</p>"
+msgstr ""
+
+msgid "Suggestions:"
+msgstr ""
+
+msgid "Make sure all words are spelled correctly"
+msgstr ""
+
+msgid "Wildcard searches (using the asterisk *) are not supported"
+msgstr ""
+
+msgid "Try more general keywords, especially if you are attempting a name"
+msgstr ""
+
+msgid "<p>It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.</p>"
+msgstr ""
+
+msgid "<a>No Tags Found.</a>"
+msgstr ""
+
+msgid "Page Options"
+msgstr ""
+
+msgid "Begin activating plugin"
+msgid_plural "Begin activating plugins"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Return to the dashboard"
+msgstr ""
+
+msgid "Enter your search"
+msgstr ""
+
+msgid "Contribute Now"
+msgstr ""
+
+msgid "Signup weekly newsletter"
+msgstr ""
+
+msgid "Speakers"
+msgstr ""
+
+msgid "Event Options"
+msgstr ""
+
+msgid "General"
+msgstr ""
+
+msgid "Sub Header"
+msgstr ""
+
+msgid "Header Absolute"
+msgstr ""
+
+msgid "SEO Options"
+msgstr ""
+
+msgid "Location"
+msgstr ""
+
+msgid "Project Options"
+msgstr ""
+
+msgid "Start Date"
+msgstr ""
+
+msgid "Completion Date"
+msgstr ""
+
+msgid "Link"
+msgstr ""
+
+msgid "Title"
+msgstr ""
+
+msgid "Url"
+msgstr ""
+
+msgid "Color"
+msgstr ""
+
+msgid "Listing Color"
+msgstr ""
+
+msgid "This color will apply only in Projet Listing (Classic View)"
+msgstr ""
+
+msgid "Sermons"
+msgstr ""
+
+msgid "Sermons Options"
+msgstr ""
+
+msgid "Please Enter Flickr API key from Theme Options."
+msgstr ""
+
+msgid "Leave a comment"
+msgstr ""
+
+msgid " Raised"
+msgstr ""
+
+msgid "Goal "
+msgstr ""
+
+msgid "An error Occured, please try again later."
+msgstr ""
+
+msgid "Donate Now"
+msgstr ""
+
+msgid "Other Amount"
+msgstr ""
+

@@ -1,0 +1,24 @@
+﻿/* ThemeColor Setup */
+
+.cscolor,.cs-hovercolor:hover, .pagination ul li a.active, blockquote, .comment-reply, .question-mark p:before, .simple .panel-title a span,
+/* Blog Setup */.cs-blog  article:hover h2 a, .blog-grid article:hover h4 a, .pagination ul li:hover a,
+/* Widget Setup */.widget_categories ul li:hover a, .widget.twitter_widget ul li:before, .widget_pages ul li a:hover, .widget_meta ul li:hover a, .widget_recent_entries ul li:hover a, .widget_nav_menu ul li a:hover,
+.widget_nav_menu ul li a:hover i, .widget_archive ul li:hover a, .cs-section-title h2 span, .widget_recent_comments ul li a:hover, .recentblog_post article:hover h6 a, .cs-post-sharebtn article h5 a:hover, .simple .panel-title a.collapsed span,
+#copyright p a, .breadcrumb ul li.active, .cssearch form span, .cs-section-title h2 span, .cs-portfoliolist ul li:hover h2 a, .cs-portfoliolist .caption-inner a i,
+.cs-team article:hover .text h2 a,.page-not-found h2, .heading-description span, .modern .panel-title a, .top-bar .social-media ul li a:hover, .top-bar #lang_sel ul li a:hover, .navigation ul > li > a:hover{
+	color: #fd4e33 !important;
+}
+
+.csbg-color,.csbg-hovercolor:hover, .cs-tags ul li a:hover, .cs-blog figure figcaption a, .cs-services.modren figure i, .cs-prv-next .owl-controls .owl-nav .owl-prev:hover, .cs-prv-next .owl-controls .owl-nav .owl-next:hover,
+/* Widget Setup */.widget_search form label input[type="submit"], #wp-calendar caption, .widget_tag_cloud .tagcloud a:hover, .default-btn,
+.cs-filter-menu li.active, .cs-portfoliolist .caption-inner:hover , .cs-filter-menu li:hover, .user-signup form input[type="button"],.cs-status,.cs-planbtn {
+	background-color: #fd4e33 !important;
+}
+
+.csborder-color,.csborder-hovercolor:hover, .pagination ul li a.active:before, .fancy .panel-title a span, .widget_categories ul li:hover:before,
+.widget_pages ul li a:hover:before, .widget_meta ul li:hover:before, .widget_nav_menu ul li a:hover:before, .widget_archive ul li:hover:before {
+	border-color: #fd4e33 !important;
+}
+.cs-portfoliolist ul li .caption-inner:hover a i {
+	color: #fff !important;
+}

@@ -1,0 +1,52 @@
+array(0) {
+}
+array(0) {
+}
+array(9) {
+  ["_icl_current_language"]=>
+  string(2) "es"
+  ["expires"]=>
+  string(29) "Wed, 11-Nov-2015 03:51:25 GMT"
+  ["path"]=>
+  string(1) "/"
+  ["PHPSESSID"]=>
+  string(26) "jq2lve3ak4n3qor7u46bfm0070"
+  ["wordpress_test_cookie"]=>
+  string(15) "WP Cookie check"
+  ["wordpress_cc8d4120f11e55e745c97d7c102bca0d"]=>
+  string(128) "griselda|1447300286|HSrYtfKy8Y1pA5uTS9pL1CVTmJU9VWHQg6uU7fDJ6Yn|cee678f090d32f691026b0178a858cac2312b3fe3379c3d993683fe155f911b1"
+  ["httponly"]=>
+  string(0) ""
+  ["wordpress_logged_in_cc8d4120f11e55e745c97d7c102bca0d"]=>
+  string(128) "griselda|1447300286|HSrYtfKy8Y1pA5uTS9pL1CVTmJU9VWHQg6uU7fDJ6Yn|eddad9f6175aadafa02d543f368ddeb52e12efcf20b85e205f329afb3a0eca37"
+  ["_icl_current_admin_language"]=>
+  string(2) "es"
+}
+array(0) {
+}
+array(0) {
+}
+array(0) {
+}
+array(9) {
+  ["_icl_current_language"]=>
+  string(2) "es"
+  ["expires"]=>
+  string(29) "Wed, 11-Nov-2015 07:35:45 GMT"
+  ["path"]=>
+  string(1) "/"
+  ["PHPSESSID"]=>
+  string(26) "jqfkan9ob5rrh62sp58ibcte23"
+  ["wordpress_test_cookie"]=>
+  string(15) "WP Cookie check"
+  ["wordpress_cc8d4120f11e55e745c97d7c102bca0d"]=>
+  string(128) "griselda|1447313746|npjcsiu9fb62fbs49kSWHy2ITEfT74VnKTlrxhNlB6P|cdd9a5cbdfc924d5016ecf3faef02a020a7c861d4a1ccfbb960b9764252aeca3"
+  ["httponly"]=>
+  string(0) ""
+  ["wordpress_logged_in_cc8d4120f11e55e745c97d7c102bca0d"]=>
+  string(128) "griselda|1447313746|npjcsiu9fb62fbs49kSWHy2ITEfT74VnKTlrxhNlB6P|7213b474e0a46084dfe223c0542a9b05d2d8e67e1477c1e1ccfa89e9743732aa"
+  ["_icl_current_admin_language"]=>
+  string(2) "es"
+}
+array(0) {
+}

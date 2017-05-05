@@ -1,0 +1,1484 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Lassic v1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2015-02-26 08:04:16+0000\n"
+"Last-Translator: lms-admin <dum1@chimpgroup.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"X-Generator: CSL v1.x\n"
+"X-Poedit-Language: Arabic\n"
+"X-Poedit-Country: U.A.E.\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-Bookmarks: \n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Textdomain-Support: yes"
+
+#: archive.php:193
+#: cs-templates/blog-styles/blog_templates.php:65
+#: cs-templates/blog-styles/blog_templates.php:125
+#: index.php:91
+#: single.php:183
+#@ lassic
+msgid "0"
+msgstr ""
+
+#: archive.php:193
+#: cs-templates/blog-styles/blog_templates.php:65
+#: cs-templates/blog-styles/blog_templates.php:125
+#: index.php:91
+#: single.php:183
+#@ lassic
+msgid "1"
+msgstr ""
+
+#: archive.php:193
+#: cs-templates/blog-styles/blog_templates.php:65
+#: cs-templates/blog-styles/blog_templates.php:125
+#: index.php:91
+#: single.php:183
+#@ lassic
+msgid "%"
+msgstr ""
+
+#: comments.php:14
+#@ lassic
+msgid "No Comments"
+msgstr ""
+
+#: comments.php:14
+#@ lassic
+msgid "1 Comment"
+msgstr ""
+
+#: comments.php:14
+#@ lassic
+msgid "% Comments"
+msgstr ""
+
+#: comments.php:20
+#: comments.php:27
+#@ lassic
+msgid "<span class=\"meta-nav\">&larr;</span> Older Comments"
+msgstr ""
+
+#: comments.php:21
+#: comments.php:28
+#@ lassic
+msgid "Newer Comments <span class=\"meta-nav\">&rarr;</span>"
+msgstr ""
+
+#: comments.php:37
+#, php-format
+#@ lassic
+msgid "You may use these <abbr title=\"HyperText Markup Language\">HTML</abbr> tags and attributes: %s"
+msgstr ""
+
+#: comments.php:38
+#, php-format
+#@ lassic
+msgid "You must be <a href=\"%s\">logged in</a> to post a comment."
+msgstr ""
+
+#: comments.php:39
+#, php-format
+#@ lassic
+msgid "Logged in as <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\" title=\"Log out of this account\">Log out?</a>"
+msgstr ""
+
+#: comments.php:40
+#, php-format
+#@ lassic
+msgid "Required fields are marked %s"
+msgstr ""
+
+#: comments.php:80
+#, php-format
+#@ lassic
+msgid "Leave a Reply to %s"
+msgstr ""
+
+#: comments.php:82
+#: functions.php:3292
+#: include/theme-components/cs-importer/wordpress-importer.php:299
+#@ lassic
+#@ pc
+msgid "Submit"
+msgstr ""
+
+#: functions.php:3384
+#@ lassic
+msgid "Tags"
+msgstr ""
+
+#: archive.php:180
+#: cs-templates/blog-styles/blog_templates.php:53
+#: cs-templates/blog-styles/blog_templates.php:114
+#: cs-templates/project-styles/single_templates.php:125
+#: cs-templates/project-styles/single_templates.php:248
+#: cs-templates/project-styles/single_templates.php:315
+#: cs-templates/project-styles/single_templates.php:485
+#: cs-templates/project-styles/single_templates.php:609
+#: include/shortcodes/shortcode_functions.php:241
+#: include/shortcodes/shortcode_functions.php:281
+#: index.php:80
+#: single.php:172
+#: single.php:196
+#, php-format
+#@ lassic
+msgid "%1$s"
+msgstr ""
+
+#: cs-templates/project-styles/project_templates.php:79
+#: cs-templates/project-styles/project_templates.php:239
+#@ lassic
+msgid "All"
+msgstr ""
+
+#: cs-templates/team-styles/single_member.php:86
+#: include/shortcodes/shortcode_functions.php:299
+#: page-blank.php:21
+#: page.php:74
+#: page.php:336
+#: single.php:190
+#@ lassic
+msgid "Pages:"
+msgstr ""
+
+#: include/shortcodes/shortcode_functions.php:407
+#@ lassic
+msgid "Edit"
+msgstr ""
+
+#: include/page_options.php:59
+#: single.php:257
+#@ lassic
+msgid "Related Posts"
+msgstr ""
+
+#: include/theme-components/cs-mega-menu/edit_custom_walker.php:159
+#@ lassic
+msgid "Description"
+msgstr ""
+
+#: functions.php:4319
+#@ lassic
+msgid "Primary Sidebar"
+msgstr ""
+
+#: functions.php:4321
+#@ lassic
+msgid "Main sidebar that appears on the right."
+msgstr ""
+
+#: functions.php:4360
+#@ lassic
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: functions.php:4374
+#@ lassic
+msgid "(Edit)"
+msgstr ""
+
+#: functions.php:4519
+#@ lassic
+msgid "Current Page"
+msgstr ""
+
+#: functions.php:2758
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:113
+#@ lassic
+msgid "Install Required Plugins"
+msgstr ""
+
+#: functions.php:2759
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:114
+#@ lassic
+msgid "Install Plugins"
+msgstr ""
+
+#: functions.php:2760
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:115
+#, php-format
+#@ lassic
+msgid "Installing Plugin: %s"
+msgstr ""
+
+#: functions.php:2761
+#@ lassic
+msgid "Something went wrong with the plugin API."
+msgstr ""
+
+#: functions.php:2762
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:117
+#, php-format
+#@ lassic
+msgid "This theme requires the following plugin: %1$s."
+msgid_plural "This theme requires the following plugins: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: functions.php:2763
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:118
+#, php-format
+#@ lassic
+msgid "This theme recommends the following plugin: %1$s."
+msgid_plural "This theme recommends the following plugins: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: functions.php:2764
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:119
+#, php-format
+#@ lassic
+msgid "Sorry, but you do not have the correct permissions to install the %s plugin. Contact the administrator of this site for help on getting the plugin installed."
+msgid_plural "Sorry, but you do not have the correct permissions to install the %s plugins. Contact the administrator of this site for help on getting the plugins installed."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: functions.php:2765
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:120
+#, php-format
+#@ lassic
+msgid "The following required plugin is currently inactive: %1$s."
+msgid_plural "The following required plugins are currently inactive: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: functions.php:2766
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:121
+#, php-format
+#@ lassic
+msgid "The following recommended plugin is currently inactive: %1$s."
+msgid_plural "The following recommended plugins are currently inactive: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: functions.php:2767
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:122
+#, php-format
+#@ lassic
+msgid "Sorry, but you do not have the correct permissions to activate the %s plugin. Contact the administrator of this site for help on getting the plugin activated."
+msgid_plural "Sorry, but you do not have the correct permissions to activate the %s plugins. Contact the administrator of this site for help on getting the plugins activated."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: functions.php:2768
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:123
+#, php-format
+#@ lassic
+msgid "The following plugin needs to be updated to its latest version to ensure maximum compatibility with this theme: %1$s."
+msgid_plural "The following plugins need to be updated to their latest version to ensure maximum compatibility with this theme: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: functions.php:2769
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:124
+#, php-format
+#@ lassic
+msgid "Sorry, but you do not have the correct permissions to update the %s plugin. Contact the administrator of this site for help on getting the plugin updated."
+msgid_plural "Sorry, but you do not have the correct permissions to update the %s plugins. Contact the administrator of this site for help on getting the plugins updated."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: functions.php:2770
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:125
+#@ lassic
+msgid "Begin installing plugin"
+msgid_plural "Begin installing plugins"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: functions.php:2771
+#@ lassic
+msgid "Activate installed plugin"
+msgid_plural "Activate installed plugins"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: functions.php:2772
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:127
+#@ lassic
+msgid "Return to Required Plugins Installer"
+msgstr ""
+
+#: functions.php:2773
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:129
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:1505
+#@ lassic
+msgid "Plugin activated successfully."
+msgstr ""
+
+#: functions.php:2774
+#, php-format
+#@ lassic
+msgid "All plugins installed and activated successfully. %s"
+msgstr ""
+
+#: functions.php:3286
+#@ lassic
+msgid "This post is password protected. To view it please enter your password below:"
+msgstr ""
+
+#: functions.php:3362
+#@ lassic
+msgid "Featured"
+msgstr ""
+
+#: functions.php:3380
+#@ lassic
+msgid "Author"
+msgstr ""
+
+#: functions.php:3380
+#: functions.php:3384
+#: functions.php:3412
+#@ lassic
+msgid "Archives"
+msgstr ""
+
+#: functions.php:3388
+#, php-format
+#@ lassic
+msgid "Search Results %1$s %2$s"
+msgstr ""
+
+#: functions.php:3392
+#, php-format
+#@ lassic
+msgid "Daily Archives: %s"
+msgstr ""
+
+#: functions.php:3396
+#, php-format
+#@ lassic
+msgid "Monthly Archives: %s"
+msgstr ""
+
+#: functions.php:3396
+#@ lassic
+msgctxt "monthly archives date format"
+msgid "F Y"
+msgstr ""
+
+#: functions.php:3400
+#, php-format
+#@ lassic
+msgid "Yearly Archives: %s"
+msgstr ""
+
+#: functions.php:3400
+#@ lassic
+msgctxt "yearly archives date format"
+msgid "Y"
+msgstr ""
+
+#: functions.php:3404
+#@ lassic
+msgid "Error 404"
+msgstr ""
+
+#: functions.php:3427
+#@ lassic
+msgid "No results found."
+msgstr ""
+
+#: functions.php:3544
+#@ lassic
+msgid "Main Menu"
+msgstr ""
+
+#: include/shortcodes/loops_elements.php:555
+#@ lassic
+msgid "Yes"
+msgstr ""
+
+#: include/shortcodes/loops_elements.php:558
+#@ lassic
+msgid "No"
+msgstr ""
+
+#: include/shortcodes/loops_elements.php:547
+#@ lassic
+msgid "Filterable"
+msgstr ""
+
+#: include/page_options.php:340
+#: include/page_options.php:602
+#@ lassic
+msgid "http://codecanyon.net/"
+msgstr ""
+
+#: include/shortcodes/common_function.php:601
+#@ lassic
+msgid "Read More"
+msgstr ""
+
+#: include/shortcodes/loops_function.php:718
+#: include/theme-components/cs-widgets/widgets.php:730
+#, php-format
+#@ lassic
+msgid "%d seconds ago"
+msgstr ""
+
+#: include/shortcodes/loops_function.php:719
+#: include/theme-components/cs-widgets/widgets.php:731
+#, php-format
+#@ lassic
+msgid "About a Minute Ago"
+msgid_plural "%d Minutes Ago"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: include/shortcodes/loops_function.php:720
+#: include/shortcodes/loops_function.php:721
+#: include/theme-components/cs-widgets/widgets.php:732
+#: include/theme-components/cs-widgets/widgets.php:733
+#, php-format
+#@ lassic
+msgid "About an Hour Ago"
+msgid_plural "%d Hours Ago"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: include/shortcodes/loops_function.php:722
+#: include/theme-components/cs-widgets/widgets.php:734
+#, php-format
+#@ lassic
+msgid "About a Day Ago"
+msgid_plural "%d Days Ago"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: include/shortcodes/loops_function.php:723
+#: include/theme-components/cs-widgets/widgets.php:735
+#, php-format
+#@ lassic
+msgid "About a Week Ago"
+msgid_plural "%d Weeks Ago"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: include/shortcodes/loops_function.php:724
+#: include/theme-components/cs-widgets/widgets.php:736
+#, php-format
+#@ lassic
+msgid "About a Month Ago"
+msgid_plural "%d Months Ago"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: include/shortcodes/loops_function.php:725
+#: include/theme-components/cs-widgets/widgets.php:737
+#, php-format
+#@ lassic
+msgid "About a year Ago"
+msgid_plural "%d years Ago"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: include/shortcodes/shortcode_functions.php:552
+#, php-format
+#@ lassic
+msgid "%s"
+msgstr ""
+
+#: include/theme-components/cs-importer/parsers.php:41
+#: include/theme-components/cs-importer/parsers.php:62
+#@ lassic
+msgid "There was an error when reading this WXR file"
+msgstr ""
+
+#: include/theme-components/cs-importer/parsers.php:42
+#@ lassic
+msgid "Details are shown above. The importer will now try again with a different parser..."
+msgstr ""
+
+#: include/theme-components/cs-importer/parsers.php:66
+#: include/theme-components/cs-importer/parsers.php:71
+#: include/theme-components/cs-importer/parsers.php:261
+#: include/theme-components/cs-importer/parsers.php:450
+#@ lassic
+msgid "This does not appear to be a WXR file, missing/invalid WXR version number"
+msgstr ""
+
+#: include/theme-components/cs-importer/theme_importer.php:60
+#@ lassic
+msgid "Error."
+msgstr ""
+
+#: include/theme-components/cs-importer/theme_importer.php:68
+#: include/theme-components/cs-importer/wordpress-importer.php:134
+#: include/theme-components/cs-importer/wordpress-importer.php:148
+#: include/theme-components/cs-importer/wordpress-importer.php:209
+#: include/theme-components/cs-importer/wordpress-importer.php:213
+#: include/theme-components/cs-importer/wordpress-importer.php:222
+#@ lassic
+msgid "Sorry, there has been an error."
+msgstr ""
+
+#: include/theme-components/cs-importer/theme_importer.php:70
+#: include/theme-components/cs-importer/wordpress-importer.php:135
+#@ lassic
+msgid "The file does not exist, please try again."
+msgstr ""
+
+#: include/theme-components/cs-importer/wordpress-importer.php:188
+#@ lassic
+msgid "All done."
+msgstr ""
+
+#: include/theme-components/cs-importer/wordpress-importer.php:188
+#@ lassic
+msgid "Have fun!"
+msgstr ""
+
+#: include/theme-components/cs-importer/wordpress-importer.php:189
+#@ lassic
+msgid "Remember to update the passwords and roles of imported users."
+msgstr ""
+
+#: include/theme-components/cs-importer/wordpress-importer.php:214
+#, php-format
+#@ lassic
+msgid "The export file could not be found at <code>%s</code>. It is likely that this was caused by a permissions problem."
+msgstr ""
+
+#: include/theme-components/cs-importer/wordpress-importer.php:230
+#, php-format
+#@ lassic
+msgid "This WXR file (version %s) may not be supported by this version of the importer. Please consider updating."
+msgstr ""
+
+#: include/theme-components/cs-importer/wordpress-importer.php:253
+#, php-format
+#@ lassic
+msgid "Failed to import author %s. Their posts will be attributed to the current user."
+msgstr ""
+
+#: include/theme-components/cs-importer/wordpress-importer.php:279
+#@ lassic
+msgid "Assign Authors"
+msgstr ""
+
+#: include/theme-components/cs-importer/wordpress-importer.php:280
+#@ lassic
+msgid "To make it easier for you to edit and save the imported content, you may want to reassign the author of the imported item to an existing user of this site. For example, you may want to import all the entries as <code>admin</code>s entries."
+msgstr ""
+
+#: include/theme-components/cs-importer/wordpress-importer.php:282
+#, php-format
+#@ lassic
+msgid "If a new user is created by WordPress, a new password will be randomly generated and the new user&#8217;s role will be set as %s. Manually changing the new user&#8217;s details will be necessary."
+msgstr ""
+
+#: include/theme-components/cs-importer/wordpress-importer.php:292
+#@ lassic
+msgid "Import Attachments"
+msgstr ""
+
+#: include/theme-components/cs-importer/wordpress-importer.php:295
+#@ lassic
+msgid "Download and import file attachments"
+msgstr ""
+
+#: include/theme-components/cs-importer/wordpress-importer.php:311
+#@ lassic
+msgid "Import author:"
+msgstr ""
+
+#: include/theme-components/cs-importer/wordpress-importer.php:322
+#@ lassic
+msgid "or create new user with login name:"
+msgstr ""
+
+#: include/theme-components/cs-importer/wordpress-importer.php:325
+#@ lassic
+msgid "as a new user:"
+msgstr ""
+
+#: include/theme-components/cs-importer/wordpress-importer.php:333
+#@ lassic
+msgid "assign posts to an existing user:"
+msgstr ""
+
+#: include/theme-components/cs-importer/wordpress-importer.php:335
+#@ lassic
+msgid "or assign posts to an existing user:"
+msgstr ""
+
+#: include/theme-components/cs-importer/wordpress-importer.php:336
+#@ lassic
+msgid "- Select -"
+msgstr ""
+
+#: include/theme-components/cs-importer/wordpress-importer.php:386
+#, php-format
+#@ lassic
+msgid "Failed to create new user for %s. Their posts will be attributed to the current user."
+msgstr ""
+
+#: include/theme-components/cs-importer/wordpress-importer.php:434
+#, php-format
+#@ lassic
+msgid "Failed to import category %s"
+msgstr ""
+
+#: include/theme-components/cs-importer/wordpress-importer.php:471
+#, php-format
+#@ lassic
+msgid "Failed to import post tag %s"
+msgstr ""
+
+#: include/theme-components/cs-importer/wordpress-importer.php:514
+#: include/theme-components/cs-importer/wordpress-importer.php:639
+#, php-format
+#@ lassic
+msgid "Failed to import %s %s"
+msgstr ""
+
+#: include/theme-components/cs-importer/wordpress-importer.php:535
+#, php-format
+#@ lassic
+msgid "Failed to import &#8220;%s&#8221;: Invalid post type %s"
+msgstr ""
+
+#: include/theme-components/cs-importer/wordpress-importer.php:556
+#, php-format
+#@ lassic
+msgid "%s &#8220;%s&#8221; already exists."
+msgstr ""
+
+#: include/theme-components/cs-importer/wordpress-importer.php:611
+#, php-format
+#@ lassic
+msgid "Failed to import %s &#8220;%s&#8221;"
+msgstr ""
+
+#: include/theme-components/cs-importer/wordpress-importer.php:754
+#@ lassic
+msgid "Menu item skipped due to missing menu slug"
+msgstr ""
+
+#: include/theme-components/cs-importer/wordpress-importer.php:761
+#, php-format
+#@ lassic
+msgid "Menu item skipped due to invalid menu slug: %s"
+msgstr ""
+
+#: include/theme-components/cs-importer/wordpress-importer.php:847
+#@ lassic
+msgid "Fetching attachments is not enabled"
+msgstr ""
+
+#: include/theme-components/cs-importer/wordpress-importer.php:860
+#@ lassic
+msgid "Invalid file type"
+msgstr ""
+
+#: include/theme-components/cs-importer/wordpress-importer.php:903
+#@ lassic
+msgid "Remote server did not respond"
+msgstr ""
+
+#: include/theme-components/cs-importer/wordpress-importer.php:909
+#, php-format
+#@ lassic
+msgid "Remote server returned error response %1$d %2$s"
+msgstr ""
+
+#: include/theme-components/cs-importer/wordpress-importer.php:916
+#@ lassic
+msgid "Remote file is incorrect size"
+msgstr ""
+
+#: include/theme-components/cs-importer/wordpress-importer.php:921
+#@ lassic
+msgid "Zero size file downloaded"
+msgstr ""
+
+#: include/theme-components/cs-importer/wordpress-importer.php:927
+#, php-format
+#@ lassic
+msgid "Remote file is too large, limit is %s"
+msgstr ""
+
+#: include/theme-components/cs-importer/wordpress-importer.php:1024
+#@ lassic
+msgid "Import WordPress"
+msgstr ""
+
+#: include/theme-components/cs-importer/wordpress-importer.php:1031
+#, php-format
+#@ lassic
+msgid "A new version of this importer is available. Please update to version %s to ensure compatibility with newer export files."
+msgstr ""
+
+#: include/theme-components/cs-importer/wordpress-importer.php:1046
+#@ lassic
+msgid "Howdy! Upload your WordPress eXtended RSS (WXR) file and we&#8217;ll import the posts, pages, comments, custom fields, categories, and tags into this site."
+msgstr ""
+
+#: include/theme-components/cs-importer/wordpress-importer.php:1047
+#@ lassic
+msgid "Choose a WXR (.xml) file to upload, then click Upload file and import."
+msgstr ""
+
+#. translators: %s: title of menu item which is invalid
+#: include/theme-components/cs-mega-menu/edit_custom_walker.php:68
+#, php-format
+#@ lassic
+msgid "%s (Invalid)"
+msgstr ""
+
+#. translators: %s: title of menu item in draft status
+#: include/theme-components/cs-mega-menu/edit_custom_walker.php:72
+#, php-format
+#@ lassic
+msgid "%s (Pending)"
+msgstr ""
+
+#: include/theme-components/cs-mega-menu/edit_custom_walker.php:96
+#@ lassic
+msgid "Move up"
+msgstr ""
+
+#: include/theme-components/cs-mega-menu/edit_custom_walker.php:109
+#@ lassic
+msgid "Move down"
+msgstr ""
+
+#: include/theme-components/cs-mega-menu/edit_custom_walker.php:111
+#: include/theme-components/cs-mega-menu/edit_custom_walker.php:113
+#@ lassic
+msgid "Edit Menu Item"
+msgstr ""
+
+#: include/theme-components/cs-mega-menu/edit_custom_walker.php:122
+#: include/theme-components/cs-posttypes/pt_portfolios.php:254
+#@ lassic
+msgid "URL"
+msgstr ""
+
+#: include/theme-components/cs-mega-menu/edit_custom_walker.php:129
+#@ lassic
+msgid "Navigation Label"
+msgstr ""
+
+#: include/theme-components/cs-mega-menu/edit_custom_walker.php:135
+#@ lassic
+msgid "Title Attribute"
+msgstr ""
+
+#: include/theme-components/cs-mega-menu/edit_custom_walker.php:142
+#@ lassic
+msgid "Open link in a new window/tab"
+msgstr ""
+
+#: include/theme-components/cs-mega-menu/edit_custom_walker.php:147
+#@ lassic
+msgid "CSS Classes (optional)"
+msgstr ""
+
+#: include/theme-components/cs-mega-menu/edit_custom_walker.php:153
+#@ lassic
+msgid "Link Relationship (XFN)"
+msgstr ""
+
+#: include/theme-components/cs-mega-menu/edit_custom_walker.php:161
+#@ lassic
+msgid "The description will be displayed in the menu if the current theme supports it."
+msgstr ""
+
+#: include/theme-components/cs-mega-menu/edit_custom_walker.php:169
+#@ lassic
+msgid "Active Mega Menu"
+msgstr ""
+
+#: include/theme-components/cs-mega-menu/edit_custom_walker.php:177
+#@ lassic
+msgid "hide text"
+msgstr ""
+
+#: include/theme-components/cs-mega-menu/edit_custom_walker.php:185
+#@ lassic
+msgid "disable link"
+msgstr ""
+
+#: include/theme-components/cs-mega-menu/edit_custom_walker.php:204
+#, php-format
+#@ lassic
+msgid "Original: %s"
+msgstr ""
+
+#: include/theme-components/cs-mega-menu/edit_custom_walker.php:217
+#@ lassic
+msgid "Remove"
+msgstr ""
+
+#: include/theme-components/cs-mega-menu/edit_custom_walker.php:218
+#@ lassic
+msgid "Cancel"
+msgstr ""
+
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:116
+#@ lassic
+msgid "Something went wrong."
+msgstr ""
+
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:131
+#, php-format
+#@ lassic
+msgid "All plugins installed and activated successfully. %1$s"
+msgstr ""
+
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:404
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:1665
+#@ lassic
+msgid "Return to the Dashboard"
+msgstr ""
+
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:132
+#@ lassic
+msgid "Dismiss this notice"
+msgstr ""
+
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:891
+#@ lassic
+msgid "Private Repository"
+msgstr ""
+
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:894
+#@ lassic
+msgid "Pre-Packaged"
+msgstr ""
+
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:899
+#@ lassic
+msgid "WordPress Repository"
+msgstr ""
+
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:901
+#@ lassic
+msgid "Required"
+msgstr ""
+
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:901
+#@ lassic
+msgid "Recommended"
+msgstr ""
+
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:903
+#@ lassic
+msgid "Not Installed"
+msgstr ""
+
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:905
+#@ lassic
+msgid "Installed But Not Activated"
+msgstr ""
+
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:1043
+#, php-format
+#@ lassic
+msgid "No plugins to install or activate. <a href=\"%1$s\" title=\"Return to the Dashboard\">Return to the Dashboard</a>"
+msgstr ""
+
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:1054
+#@ lassic
+msgid "Plugin"
+msgstr ""
+
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:1055
+#@ lassic
+msgid "Source"
+msgstr ""
+
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:1056
+#@ lassic
+msgid "Type"
+msgstr ""
+
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:1057
+#@ lassic
+msgid "Status"
+msgstr ""
+
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:984
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:1069
+#@ lassic
+msgid "Install"
+msgstr ""
+
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:1006
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:1070
+#@ lassic
+msgid "Activate"
+msgstr ""
+
+#. gettext fix: identical singular and plural forms found, that may be ambiguous! Please check the code!
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:1267
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:130
+#@ lassic
+msgid "The following plugin was activated successfully:"
+msgid_plural "The following plugins were activated successfully:"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:1492
+#@ lassic
+msgid "Install package not available."
+msgstr ""
+
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:1493
+#, php-format
+#@ lassic
+msgid "Downloading install package from <span class=\"code\">%s</span>&#8230;"
+msgstr ""
+
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:1494
+#@ lassic
+msgid "Unpacking the package&#8230;"
+msgstr ""
+
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:1495
+#@ lassic
+msgid "Installing the plugin&#8230;"
+msgstr ""
+
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:1496
+#@ lassic
+msgid "Plugin install failed."
+msgstr ""
+
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:1497
+#@ lassic
+msgid "Plugin installed successfully."
+msgstr ""
+
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:1504
+#@ lassic
+msgid "Plugin activation failed."
+msgstr ""
+
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:1583
+#@ lassic
+msgid "The installation and activation process is starting. This process may take a while on some hosts, so please be patient."
+msgstr ""
+
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:1584
+#, php-format
+#@ lassic
+msgid "%1$s installed and activated successfully."
+msgstr ""
+
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:1584
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:1593
+#@ lassic
+msgid "Show Details"
+msgstr ""
+
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:1584
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:1593
+#@ lassic
+msgid "Hide Details"
+msgstr ""
+
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:1585
+#@ lassic
+msgid "All installations and activations have been completed."
+msgstr ""
+
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:1586
+#, php-format
+#@ lassic
+msgid "Installing and Activating Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:1590
+#@ lassic
+msgid "The installation process is starting. This process may take a while on some hosts, so please be patient."
+msgstr ""
+
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:1591
+#, php-format
+#@ lassic
+msgid "An error occurred while installing %1$s: <strong>%2$s</strong>."
+msgstr ""
+
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:1592
+#, php-format
+#@ lassic
+msgid "The installation of %1$s failed."
+msgstr ""
+
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:1593
+#, php-format
+#@ lassic
+msgid "%1$s installed successfully."
+msgstr ""
+
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:1594
+#@ lassic
+msgid "All installations have been completed."
+msgstr ""
+
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:1595
+#, php-format
+#@ lassic
+msgid "Installing Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: include/theme-components/cs-widgets/widgets.php:337
+#: include/theme-components/cs-widgets/widgets.php:369
+#@ lassic
+msgid "No result found."
+msgstr ""
+
+#: include/theme-options/theme_options.php:14
+#@ lassic
+msgid "Saving changes..."
+msgstr ""
+
+#: include/theme-components/cs-posttypes/pt_team.php:110
+#@ lassic
+msgid "Social Media"
+msgstr ""
+
+#: archive.php:194
+#: cs-templates/blog-styles/blog_templates.php:66
+#: cs-templates/blog-styles/blog_templates.php:126
+#: index.php:92
+#: single.php:184
+#@ lassic
+msgid "Comments"
+msgstr ""
+
+#: comments.php:79
+#@ lassic
+msgid "Leave us a Reply"
+msgstr ""
+
+#: comments.php:81
+#@ lassic
+msgid "Cancel Reply"
+msgstr ""
+
+#: cs-templates/team-styles/single_member.php:121
+#: include/theme-components/cs-posttypes/pt_team.php:137
+#@ lassic
+msgid "Designation"
+msgstr ""
+
+#: include/theme-components/cs-posttypes/pt_team.php:112
+#@ lassic
+msgid "Questions and Answers"
+msgstr ""
+
+#: functions.php:3972
+#: functions.php:3974
+#@ lassic
+msgid "Previous"
+msgstr ""
+
+#: functions.php:4008
+#: functions.php:4010
+#@ lassic
+msgid "Next"
+msgstr ""
+
+#: functions.php:4430
+#@ lassic
+msgid "<span style=\"color:#f26f29;\">Sorry,</span> We are down for maintenance"
+msgstr ""
+
+#: 404.php:15
+#@ lassic
+msgid "Oops, This Page Could Not Be Found!"
+msgstr ""
+
+#: functions.php:2808
+#, php-format
+#@ lassic
+msgid "Page %s"
+msgstr ""
+
+#: functions.php:3408
+#@ lassic
+msgid "Home"
+msgstr ""
+
+#: functions.php:3435
+#, php-format
+#@ lassic
+msgid "<p>Ready to publish your first post? <a href=\"%1$s\">Get Started Here</a>.</p>"
+msgstr ""
+
+#: functions.php:3441
+#@ lassic
+msgid "Suggestions:"
+msgstr ""
+
+#: functions.php:3443
+#@ lassic
+msgid "Make sure all words are spelled correctly"
+msgstr ""
+
+#: functions.php:3444
+#@ lassic
+msgid "Wildcard searches (using the asterisk *) are not supported"
+msgstr ""
+
+#: functions.php:3445
+#@ lassic
+msgid "Try more general keywords, especially if you are attempting a name"
+msgstr ""
+
+#: functions.php:3450
+#@ lassic
+msgid "<p>It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.</p>"
+msgstr ""
+
+#: include/page_options.php:131
+#@ lassic
+msgid "Choose Sub-header"
+msgstr ""
+
+#: include/page_options.php:138
+#@ lassic
+msgid "Default Subheader"
+msgstr ""
+
+#: include/page_options.php:139
+#@ lassic
+msgid "Custom Subheader"
+msgstr ""
+
+#: include/page_options.php:140
+#@ lassic
+msgid "Revolution Slider"
+msgstr ""
+
+#: include/page_options.php:141
+#@ lassic
+msgid "Map"
+msgstr ""
+
+#: include/page_options.php:142
+#@ lassic
+msgid "No Subheader"
+msgstr ""
+
+#: include/page_options.php:159
+#@ lassic
+msgid "Text Align"
+msgstr ""
+
+#: include/page_options.php:828
+#@ lassic
+msgid "Page Options"
+msgstr ""
+
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:126
+#@ lassic
+msgid "Begin activating plugin"
+msgid_plural "Begin activating plugins"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: include/theme-components/cs-activation-plugins/tgm_plugin_activation.php:128
+#@ lassic
+msgid "Return to the dashboard"
+msgstr ""
+
+#: include/theme-components/cs-header/header_functions.php:278
+#@ lassic
+msgid "Enter your search"
+msgstr ""
+
+#: include/theme-components/cs-header/header_functions.php:299
+#@ lassic
+msgid "Contribute Now"
+msgstr ""
+
+#: include/theme-components/cs-importer/wordpress-importer.php:106
+#@ lassic
+msgid "Attention Please Wait"
+msgstr ""
+
+#: include/theme-components/cs-importer/wordpress-importer.php:107
+#@ lassic
+msgid "Dont Refresh Page"
+msgstr ""
+
+#: include/theme-components/cs-importer/wordpress-importer.php:107
+#@ lassic
+msgid "We are fetching dummy data for you. It can take 2 to 10 minutes depending upon data speed."
+msgstr ""
+
+#: include/theme-components/cs-posttypes/pt_portfolios.php:164
+#: include/theme-components/cs-posttypes/pt_team.php:103
+#@ lassic
+msgid "Sub Header"
+msgstr ""
+
+#: include/theme-components/cs-posttypes/pt_portfolios.php:166
+#: include/theme-components/cs-posttypes/pt_team.php:105
+#@ lassic
+msgid "Header Absolute"
+msgstr ""
+
+#: include/theme-components/cs-posttypes/pt_portfolios.php:169
+#: include/theme-components/cs-posttypes/pt_team.php:108
+#@ lassic
+msgid "SEO Options"
+msgstr ""
+
+#: include/theme-components/cs-widgets/widgets.php:375
+#@ lassic
+msgid "Please Enter Flickr API key from Theme Options."
+msgstr ""
+
+#: include/theme-components/cs-widgets/widgets.php:1020
+#@ lassic
+msgid "An error Occured, please try again later."
+msgstr ""
+
+#: search.php:44
+#@ lassic
+msgid "Featured : "
+msgstr ""
+
+#: 404.php:14
+#@ lassic
+msgid "404"
+msgstr ""
+
+#: 404.php:18
+#@ lassic
+msgid "Unfortunately the page you were looking for could not be found. It may be temporarily unavailable, moved or no longer exist. <br> Check the URL you entered for any mistakes and try again."
+msgstr ""
+
+#: 404.php:20
+#@ lassic
+msgid "Go Home"
+msgstr ""
+
+#: cs-templates/project-styles/single_templates.php:850
+#@ lassic
+msgid "Project Plan"
+msgstr ""
+
+#: cs-templates/team-styles/single_member.php:114
+#@ lassic
+msgid "Employee information"
+msgstr ""
+
+#: functions.php:2896
+#@ lassic
+msgid "Prevois Post"
+msgstr ""
+
+#: functions.php:2910
+#@ lassic
+msgid "Next Post"
+msgstr ""
+
+#: functions.php:4358
+#, php-format
+#@ lassic
+msgid "<time datetime=\"2020-01-01\">%1$s</time>"
+msgstr ""
+
+#: include/shortcodes/typography_function.php:553
+#: include/shortcodes/typography_function.php:556
+#@ lassic
+msgid "Message"
+msgstr ""
+
+#: include/theme-components/cs-mailchimp/mailchimp_functions.php:34
+#@ lassic
+msgid "Subscribe"
+msgstr ""
+
+#: include/theme-components/cs-posttypes/pt_portfolios.php:38
+#@ lassic
+msgid "Projects"
+msgstr ""
+
+#: include/theme-components/cs-posttypes/pt_portfolios.php:163
+#@ lassic
+msgid "General"
+msgstr ""
+
+#: include/theme-components/cs-posttypes/pt_portfolios.php:171
+#@ lassic
+msgid "Location"
+msgstr ""
+
+#: include/theme-components/cs-posttypes/pt_portfolios.php:172
+#@ lassic
+msgid "Project Options"
+msgstr ""
+
+#: include/theme-components/cs-posttypes/pt_portfolios.php:211
+#@ lassic
+msgid "Project Detail View"
+msgstr ""
+
+#: include/theme-components/cs-posttypes/pt_portfolios.php:229
+#@ lassic
+msgid "Project Thumbnail View"
+msgstr ""
+
+#: include/theme-components/cs-posttypes/pt_portfolios.php:245
+#@ lassic
+msgid "Button"
+msgstr ""
+
+#: include/theme-components/cs-posttypes/pt_portfolios.php:250
+#@ lassic
+msgid "Title"
+msgstr ""
+
+#: include/theme-components/cs-posttypes/pt_portfolios.php:258
+#@ lassic
+msgid "Color"
+msgstr ""
+
+#: include/theme-components/cs-posttypes/pt_portfolios.php:264
+#@ lassic
+msgid "Construction Date"
+msgstr ""
+
+#: include/theme-components/cs-posttypes/pt_portfolios.php:272
+#@ lassic
+msgid "Surface Aera"
+msgstr ""
+
+#: include/theme-components/cs-posttypes/pt_portfolios.php:280
+#@ lassic
+msgid "Contacting Investor"
+msgstr ""
+
+#: include/theme-components/cs-posttypes/pt_portfolios.php:288
+#@ lassic
+msgid "Value"
+msgstr ""
+
+#: include/theme-components/cs-posttypes/pt_portfolios.php:314
+#@ lassic
+msgid "Shortcode"
+msgstr ""
+
+#: include/theme-components/cs-posttypes/pt_team.php:24
+#@ lassic
+msgid "Teams"
+msgstr ""
+
+#: include/theme-components/cs-posttypes/pt_team.php:111
+#@ lassic
+msgid "Team Custom Fields"
+msgstr ""
+
+#: include/theme-options/theme_options_functions.php:10
+#: include/theme-options/theme_options_functions.php:19
+#: include/theme-options/theme_options_functions.php:32
+#@ lassic
+msgid "All Settings Saved"
+msgstr ""
+
+#: include/theme-options/theme_options_functions.php:14
+#@ lassic
+msgid "Data is Not Valid"
+msgstr ""
+
+#: searchform.php:10
+#@ lassic
+msgid "Enter Title, Keyword, Company"
+msgstr ""
+
+#: single.php:211
+#@ lassic
+msgid "Attachments"
+msgstr ""
+

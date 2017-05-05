@@ -1,2 +1,2 @@
-# axity
-Sitio web de Axity
+# intellego
+Sitio web de Intellego

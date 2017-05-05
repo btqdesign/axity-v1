@@ -1,0 +1,3 @@
+User-Agent: *
+Disallow: /comunicacion/
+Disallow: /wp-admin/

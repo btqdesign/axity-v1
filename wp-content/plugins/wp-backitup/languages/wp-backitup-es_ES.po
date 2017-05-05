@@ -1,0 +1,2225 @@
+#
+# Translators:
+# Germán Suárez <germansc.upwork@gmail.com>, 2015-2017
+msgid ""
+msgstr ""
+"Project-Id-Version: WPBackItUp\n"
+"POT-Creation-Date: 2017-02-06 12:04-0500\n"
+"PO-Revision-Date: 2017-02-16 09:39-0500\n"
+"Last-Translator: Germán Suárez <germansc.upwork@gmail.com>\n"
+"Language-Team: Spanish (Spain) (http://www.transifex.com/wp-translations/wp-backitup/language/es_ES/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: es_ES\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.11\n"
+"X-Poedit-Basepath: ../..\n"
+"X-Poedit-KeywordsList: _;__;_e\n"
+"X-Poedit-SearchPath-0: trunk\n"
+"X-Poedit-SearchPath-1: AddOns/WPBackItUp-Premium/wp-backitup-premium\n"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/class-wpbackitup-premium-admin.php:128 AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:136 trunk/lib/includes/class-wpbackitup-admin.php:205 trunk/views/about.php:191 trunk/wp-backitup.php:172
+msgid "Restore"
+msgstr "Restaurar"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-license-registration-display.php:21 AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-license-status-display.php:19
+msgid "License Info"
+msgstr "Información de la licencia"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-license-registration-display.php:38 AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-license-status-display.php:41 trunk/vendor/WordPress/class-wp-list-table.php:1768
+msgid "Name"
+msgstr "Nombre"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-license-registration-display.php:39 AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-license-status-display.php:42 trunk/vendor/WordPress/class-wp-list-table.php:1773
+msgid "Email"
+msgstr "Correo"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-license-registration-display.php:40 AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-license-status-display.php:43
+msgid "License Type"
+msgstr "Tipo de licencia"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-license-registration-display.php:41 AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-license-status-display.php:44
+msgid "Expires"
+msgstr "Expira"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-license-registration-display.php:44 AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-license-status-display.php:47
+msgid "Enter license key to activate on this site."
+msgstr "Introduzca la clave de la licencia para activarlo en este sitio web."
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-license-registration-display.php:52 AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-license-status-display.php:54
+msgid "License Active"
+msgstr "Licencia activa"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-license-registration-display.php:58 AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-license-registration-display.php:64 AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-license-registration-display.php:100 AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-license-status-display.php:58 AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-license-status-display.php:62
+#, php-format
+msgid "%s"
+msgstr "%s"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-license-registration-display.php:64 AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-license-status-display.php:62
+msgid "License expired"
+msgstr "Licencia caducada"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-license-registration-display.php:69 AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-license-status-display.php:66 trunk/vendor/WordPress/class-wp-list-table.php:1920
+msgid "Update"
+msgstr "Actualizar"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-license-registration-display.php:73 AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-license-status-display.php:70
+msgid "Activate"
+msgstr "Activar"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-license-registration-display.php:77 AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-license-status-display.php:74
+#, php-format
+msgid "Purchase a %s license using the purchase link above."
+msgstr "Compre una licencia %s usando el enlace superior de compra."
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-license-registration-display.php:77 AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-license-status-display.php:74
+msgid "no-risk"
+msgstr "sin riesgo"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-license-registration-display.php:83 AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-license-status-display.php:80
+#, php-format
+msgid "Please <a href=\"%s\" target=\"blank\">renew</a> now for another year of <strong>product updates</strong> and access to our <strong>world class support</strong> team."
+msgstr "Por favor, <a href=\"%s\" target=\"blank\">renueve</a> ahora para otro año de <strong> actualizaciones</strong> y acceso a nuestro equipo de <strong>soporte de talla mundial</strong>."
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-license-registration-display.php:93
+msgid "Activate WPBackItUp"
+msgstr "Activar WPBackItUp"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-license-registration-display.php:96
+msgid "Enter your license key below to activate WPBackitUP Premium .  <br />"
+msgstr "Introduzca debajo la clave de su licencia para activar WPBackItUp Premium. <br />"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-license-registration-display.php:97 trunk/views/backup.php:485
+msgid "name"
+msgstr "nombre"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-license-registration-display.php:98 trunk/views/backup.php:486
+msgid "email address"
+msgstr "dirección de correo electrónico"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-license-registration-display.php:99
+msgid "license key"
+msgstr "clave de licencia"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-license-registration-display.php:101 trunk/views/backup.php:487
+msgid "Register"
+msgstr "Registrarse"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:12
+#, php-format
+msgid "%s Restore"
+msgstr "%s Restaurar"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:60
+msgid "Zip Files"
+msgstr "Archivos zip"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:75
+#, php-format
+msgid "Error: Backup folder does not exist. Please contact %s for assistance."
+msgstr "Error: La carpeta de las copias de seguridad no existe. Contacte con %s para asistencia."
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:75 AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:82 trunk/views/backup.php:249
+msgid "support"
+msgstr "soporte"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:82
+#, php-format
+msgid "Error: Restore folder does not exist. Please contact %s for assistance."
+msgstr "Error: La carpeta de restauración no existe. Contacte con %s para asistencia."
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:95 trunk/views/backup.php:303
+msgid "Available Backups"
+msgstr "Copias de seguridad disponibles"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:99 trunk/lib/includes/class-wpbackitup-admin.php:167 trunk/views/backup.php:272 trunk/views/backup.php:278 trunk/views/backup.php:322 trunk/views/backup.php:359 trunk/wp-backitup.php:158
+msgid "Backup"
+msgstr "Copia de seguridad"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:100 trunk/views/backup.php:324 trunk/views/backup.php:374
+msgid "Date"
+msgstr "Fecha"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:129 trunk/lib/includes/class-download-log.php:94 trunk/lib/includes/class-wpbackitup-admin.php:204 trunk/vendor/WordPress/class-wp-list-table.php:1918 trunk/views/backup.php:381
+msgid "Delete"
+msgstr "Borrar"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:149 trunk/views/backup.php:390
+msgid "No backup archives found."
+msgstr "No se han encontrado archivos de copia de seguridad."
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:165
+#, php-format
+msgid "<p>* The automated restore feature is only available to licensed customers.  Please visit <a href=\"%s\" target=\"_blank\">%s</a> to get license WPBackItUp risk free for 30 days.</p>"
+msgstr "<p>* La función de restauración automática está disponible sólo para clientes con licencia. Visite <a href=\"%s\" target=\"_blank\">%s</a> para conseguir una licencia de WPBackItUp sin riesgo de 30 días.</p>"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:177
+msgid "Upload"
+msgstr "Subir"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:180
+msgid "Upload WPBackItUp archive(zip) files to add to your list of available backups."
+msgstr "Suba archivos(zip) de WPBackItUp para añadirlos a su lista de copias de seguridad disponibles."
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:197
+msgid "WPBackItUp - Upload backup files"
+msgstr "WPBackItUp - Subir archivos de copia de seguridad"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:198
+msgid "Backup files may be uploaded into WPBackItUp with this form."
+msgstr "Las copias de seguridad se pueden subir a WPBackItUp con este formulario."
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:198
+msgid "They may also be uploaded manually into the WPBackItUp directory (wp-content/wpbackitup_backups) using FTP. When done uploading all backup files refresh this page."
+msgstr "También se pueden subir manualmente al directorio de WPBackItUp (wp-content/wpbackitup_backups) usando FTP. Cuando termine con la subida de todas las copias de seguridad actualice esta página."
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:202
+#, php-format
+msgid "This feature requires %s version %s or later"
+msgstr "Esta función requiere %s versión %s o superior"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:208
+msgid "Drop backup files here"
+msgstr "Coloque las copias de seguridad aquí"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:214
+msgid "* When done uploading click the import uploads button below to see new backups appear in the Available Backups section above. "
+msgstr "* Cuando termine la subida, pulse el botón de importar subidas en la parte de abajo para ver las nuevas copias de seguridad en la sección Copias de seguridad disponibles en la parte superior."
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:230 trunk/lib/includes/class-wpbackitup-admin.php:202 trunk/views/backup.php:326 trunk/views/backup.php:378 trunk/views/backup.php:405
+msgid "Status"
+msgstr "Estado"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:234 trunk/views/backup.php:409
+msgid "Nothing to report"
+msgstr "Nada que informar"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:244
+msgid "Preparing for restore"
+msgstr "Preparándose para restaurar"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:244 AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:245 AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:246 AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:247 AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:248 AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:250 AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:251
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:253 AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:254 AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:256 AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:257 trunk/views/backup.php:414 trunk/views/backup.php:415 trunk/views/backup.php:416 trunk/views/backup.php:417 trunk/views/backup.php:418 trunk/views/backup.php:419 trunk/views/backup.php:420 trunk/views/backup.php:421 trunk/views/backup.php:422 trunk/views/backup.php:424 trunk/views/backup.php:426
+msgid "Done"
+msgstr "Hecho"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:244 AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:245 AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:246 AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:247 AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:248 AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:250 AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:251
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:253 AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:254 AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:256 AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:257 trunk/views/backup.php:414 trunk/views/backup.php:415 trunk/views/backup.php:416 trunk/views/backup.php:417 trunk/views/backup.php:418 trunk/views/backup.php:419 trunk/views/backup.php:420 trunk/views/backup.php:421 trunk/views/backup.php:422 trunk/views/backup.php:424 trunk/views/backup.php:426
+msgid "Failed"
+msgstr "Fallido"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:245
+msgid "Unpacking backup set"
+msgstr "Desempaquetar copia de seguridad"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:246
+msgid "Unzipping backup files"
+msgstr "Descomprimir archivos de copia de seguridad"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:247
+msgid "Validating backup files"
+msgstr "Validando los archivos de copia de seguridad"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:248
+msgid "Deactivating plugins"
+msgstr "Desactivando plugins"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:250
+msgid "Importing database"
+msgstr "Importando base de datos"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:251
+msgid "Updating imported database"
+msgstr "Actualizando la base de datos importada"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:253
+msgid "Staging content files"
+msgstr "Archivos de contenidos provisional"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:254
+msgid "Restoring content files"
+msgstr "Restaurando archivos de contenidos"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:256
+msgid "Restoring database"
+msgstr "Resturando base de datos"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:257
+msgid "Updating permalinks"
+msgstr "Actualizando enlaces permanentes"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:263
+msgid "Error 201: No file selected"
+msgstr "Error 201: No se ha seleccionado ningún archivo"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:264
+msgid "Error 202: Your file could not be uploaded"
+msgstr "Error 202: No se ha podido subir el archivo"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:265
+msgid "Error 203: Your backup could not be unzipped"
+msgstr "Error 203: No se puede descomprimir su copia de seguridad"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:266
+msgid "Error 204: Your backup appears to be invalid. Please ensure you selected a valid backup"
+msgstr "Error 204: Su copia de seguridad parece no válida. Asegúrese de seleccionar una copia de seguridad válida"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:267
+msgid "Error 205: Cannot create restore point"
+msgstr "Error 205: No se puede crear un punto de restauración"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:268
+msgid "Error 206: Unable to connect to your database"
+msgstr "Error 206: No se puede conectar a su base de datos"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:269
+msgid "Error 207: Unable to get current site URL from database. Please try again"
+msgstr "Error 207: No se puede conseguir la URL actual desde la base de datos. Inténtelo de nuevo"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:270
+msgid "Error 208: Unable to get current home URL from database. Please try again"
+msgstr "Error 208: No se puede conseguir la URL de la página de inicio actual desde la base de datos. Inténtelo de nuevo"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:271
+msgid "Error 209: Unable to get current user ID from database. Please try again"
+msgstr "Error 209: No se puede conseguir la ID actual de usuario desde la base de datos. Inténtelo de nuevo"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:272
+msgid "Error 210: Unable to get current user password from database. Please try again"
+msgstr "Error 210: No se puede conseguir la contraseña actual de usuario desde la base de datos. Inténtelo de nuevo"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:273
+msgid "Error 211: Unable to get current user email from database. Please try again"
+msgstr "Error 211: No se puede conseguir la dirección de correo electrónico actual del usuario desde la base de datos. Inténtelo de nuevo"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:275
+msgid "Error 212: Unable to import your database. This may require importing the file manually"
+msgstr "Error 212: No se puede importar su base de datos. Esto puede requerir la importación manual del archivo"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:276
+msgid "Error 212: Unable to restore your database. This may require importing the file manually"
+msgstr "Error 212: No se puede restaurar su base de datos. Esto puede requerir la importación manual del archivo"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:279
+msgid "Warning 213: Unable to update your site URL value. Please check your WordPress general settings to make sure your Site and WordPress URLs are correct"
+msgstr "Advertencia 213: No se puede actualizar el valor de la URL de su sitio web. Compruebe los ajustes generales de su WordPress para asegurarse de que las URL de su sitio y de WordPress son correctas"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:280
+msgid "Warning 214: Unable to update your home URL value. Please check your WordPress general settings to make sure your Site and WordPress URLs are correct"
+msgstr "Advertencia 214: No se puede actualizar la URL de su página de inicio. Compruebe los ajustes generales de su WordPress para asegurarse de que las URL de su sitio y de WordPress son correctas"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:281
+msgid "Warning 215: Unable to update your user information. This may require you to login with the admin username and password that was used when the backup was created"
+msgstr "Advertencia 215: No se puede actualizar su información de usuario. Esto puede requerir que inicie sesión con el nombre de usuario y contraseña que usó cuando se creó la copia de seguridad"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:282
+msgid "Error 216: Database not found in backup"
+msgstr "Error 216: No se encuentra la base de datos en la copia de seguridad"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:283
+msgid "Warning 217: Unable to remove existing wp-content directory"
+msgstr "Advertencia 217: No se puede eliminar el directorio wp-content existente"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:284
+msgid "Error 218: Unable to create new wp-content directory. Please check your CHMOD settings in /wp-content/"
+msgstr "Error 218: No se puede crear un nuevo directorio wp-content. Revise su configuración CHMOD en /wp-content/"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:285
+msgid "Error 219: Unable to import wp-content. Please try again"
+msgstr "Error 219: No se puede importat wp-content. Inténtelo de nuevo"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:286
+msgid "Warning 220: Unable to cleanup import directory. No action is required"
+msgstr "Advertencia 220: No se puede limpiar el directorio importado. No se requiere ninguna acción"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:287
+#, php-format
+msgid "Error 221: Table prefix value in wp-config.php is different from backup. This MUST be changed in your wp-config.php file before you will be able to restore your site.  See www.wpbackitup.com <a href =\"%s\" target=\"_blank\" > FAQs</a> for more info."
+msgstr "Error 221: El prefijo de la tabla en wp-config.php es distinto del de la copia de seguridad. Este DEBE ser cambiado en su archivo wp-config.php antes de poder restaurar su sitio web. Vea en www.wpbackitup.com las <a href =\"%s\" target=\"_blank\" > Preguntas frecuentes</a> para más información."
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:288
+msgid "Error 222: Unable to create restore folder"
+msgstr "Error 222: No se puede crear la carpeta de restauración"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:289
+msgid "Error 223: An error occurred during the restore.  WPBackItUp attempted to restore the database to its previous state but were unsuccessful.  Please contact WPBackItUp customer support and do not attempt to perform any further restores"
+msgstr "Error 223: Ha ocurrido un error durante la restauración. WPBackItUp intentará restaurar la base de datos a su estado previo pero puede no tener éxito. Por favor, contacte con el soporte al cliente de WPBackItUp y no intente realizar más restauraciones"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:290
+msgid "Error 224: An error occurred during the restore, however, we have successfully restored your database to the previous state"
+msgstr "Error 224: Ha ocurrido un error durante la restauración, de todas formas, hemos restaurado su base de datos a su estado previo con éxito"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:291
+msgid "Error 225: Restore option is only available to licensed WPBackItUp users"
+msgstr "Error 225: La opción de restaurar está disponible sólo para los usuarios con licencia de WPBackItUp"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:292
+msgid "Error 226: Restore cannot proceed because your backup was created using a different version of WordPress"
+msgstr "Error 226: No se procederá a la restauración porqué su copia de seguridad se creó con una versión distinta de WordPress"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:293
+msgid "Error 227: Restore cannot proceed because your backup was created using a different version of WPBackItUp.  Please contact WPBackItUp support to help convert this backup to the current version"
+msgstr "Error 227: No se procederá a la restauración porqué su copia de seguridad se creó con una versión distinta de WPBackItUp. Contacte con el soporte de WPBackItUp para encontrar ayuda de como convertir su copia de seguridad a la versión actual"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:294
+msgid "Error 230: WPBackItUp ran into unexpected errors during the database restore.  However, we were able to successfully revert the database back to its original state . This error may require importing the database manually"
+msgstr "Error 230: WPBackItUp tuvo errores inesperados durante la restauración de la base de datos. De todas formas, se ha podido revertir la base de datos a su estado original. Este error puede requerir la importación de la base de datos de forma manual"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:295
+msgid "Error 235: WPBackItUp is not able to proceed because there is no zip utility available.  Please contact support"
+msgstr "Error 235: WPBackItUp no puede proceder porqué no hay ninguna utilidad zip disponible. Por favor, contacte con el soporte"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:296
+msgid "Error 250: WPBackItUp is unable to begin the restore because a backup is running.  Please wait for the backup to complete and then try again"
+msgstr "Error 250: WPBackItUp no puede empezar la restauración porqué se esta creando una copia de seguridad. Espere que la copia de seguridad se complete y entonces inténtelo de nuevo"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:298
+msgid "Error 260: WPBackItUp is unable to extract archives from backup set.  Please try again and contact support if this issue continues"
+msgstr "Error 260: WPBackItUp no puede extraer los archivos de la copia de seguridad. Por favor, inténtelo de nuevo y contacte con el soporte si el problema persiste"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:299
+msgid "Error 261: WPBackItUp is unable to extract archives from backup set.  Please try again and contact support if this issue continues"
+msgstr "Error 261: WPBackItUp no puede extraer los archivos de la copia de seguridad. Por favor, inténtelo de nuevo y contacte con el soporte si el problema persiste"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:300
+msgid "Error 262: There were no backup files found in the backup folder.  Please try again and contact support if this issue continues"
+msgstr "Error 262: No se han encontrado archivos de copia de seguridad en la carpeta de las copias de seguridad. Por favor, inténtelo de nuevo y contacte con el soporte si el problema persiste"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:302
+msgid "Error 251: WPBackItUp is unable to begin the restore because the backup manifest is empty"
+msgstr "Error 251: WPBackItUp no puede empezar la restauración porqué el manifiesto de la copia de seguridad está vacío"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:303
+msgid "Error 252: At least one zip file is missing from your backup set.  Please make sure to upload all zip files that were part of this backup"
+msgstr "Error 252: Por lo menos se ha perdido un archivo zip de su copia de seguridad. Por favor, esté seguro de subir todos los ficheros zip que forman parte de esta copia de seguridad"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:304
+msgid "Error 253: Backup set contains a zip file that is not in the manifest.  Please make sure to upload only zip files that were part of this backup"
+msgstr "Error 253: La copia de seguridad contiene un archivo zip que no está en el manifiesto. Asegúrese de subir sólo los archivos zip que forman parte de esta copia de seguridad"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:305
+msgid "Error 254: The size of one the zip files in this backup set does not match the manifest so is most likely corrupt.  Upload all zip files in this backup set again and attempt the restore one more time. "
+msgstr "Error 254: El tamaño de uno de los archivos zip de esta copia de seguridad no concuerda con el manifiesto por lo que probablemente esté corrupto. Suba otra vez todos los archivos zip de esta copia de seguridad e intente la restauración otra vez."
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:306
+msgid "Error 255: Backup set does not contain a manifest.  Please make sure to upload all zip files that were part of this backup"
+msgstr "Error 255: La copia de seguridad no contiene un manifiesto. Por favor, asegúrese de subir todos los archivos zip que forman parte de esta copia de seguridad"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:308
+msgid "Warning 300: Unable to restore all WordPress content. Please review your restore logs to see what WPBackItUp was unable to restore"
+msgstr "Advertencia 300: No se puede restaurar todo el contenido de WordPress. Revise los registros de restauración para ver que no puede restaurar WPBackItUp"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:309
+msgid "Warning 305: Unable to restore all plugins. Please review your restore logs to see what WPBackItUp was unable to restore"
+msgstr "Advertencia 305: No se pueden restaurar todos los plugins. Revise los registros de restauración para ver que no puede restaurar WPBackItUp"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:311
+msgid "Error 2001: Unable to prepare site for restore"
+msgstr "Error 2001: No se puede preparar el sitio para su restauración"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:312
+msgid "Error 2002: Unable to unzip backup"
+msgstr "Error 2002: No se puede descomprimir la copia de seguridad"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:313
+msgid "Error 2003: Unable to validate backup"
+msgstr "Error 2003: No se puede validar la copia de seguridad"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:314
+msgid "Error 2004: Unable to create restore point"
+msgstr "Error 2004: No se puede crear un punto de restauración"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:315
+msgid "Error 2005: Unable to stage wp-content"
+msgstr "Error 2005: No se puede realizar una copia intermedia de wp-content"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:316
+msgid "Error 2006: Unable to restore content files"
+msgstr "Error 2006: No se pueden restaurar los archivos de contenidos"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:317
+msgid "Error 2007: Unable to restore database"
+msgstr "Error 2007: No se puede restaurar la base de datos"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:318
+msgid "Error 2009: Unable to import database"
+msgstr "Error 2009: No se puede importar la base de datos"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:319
+msgid "Error 2999: Unexpected error encountered"
+msgstr "Error 2999: Se ha encontrado un error inesperado"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:321
+msgid "Error 9999: WPBackItUp Premium is not installed"
+msgstr "Error 9999: WPBackItUp Premium no está instalado"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:322
+msgid "Error 9999: WPBackItUp Premium License is not active"
+msgstr "Error 9999: La licencia de WPBackItUp Premium no está activa"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-restore-display.php:329
+msgid "Restore completed successfully. If you are prompted to login please do so with your current username and password"
+msgstr "Restauración completada con éxito. Si se le solicita que inicie sesión por favor hágalo con su nombre de usuario y contraseña actuales"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-scheduler-display.php:31
+msgid "Backup Schedule"
+msgstr "Copia de seguridad programada"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-scheduler-display.php:33
+msgid "Select the days of the week you would like your backup to run."
+msgstr "Seleccione los días de la semana que le gustaria que se realizara su copia de seguridad."
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-scheduler-display.php:35
+msgid "Backup your site once per week or every day, it's up to you.  If you have email notifications turned on we'll even send you an email when it's done.  Once your backup file has been created it will appear in the available backups section below. This file may remain on your hosting providers server but we recommend that you download and save it somewhere safe."
+msgstr "Haga una copia de seguridad una vez por semana o todos los días, depende de usted. Si tiene las notificaciones por correo electrónico activadas recibirá un correo cuando esté hecha. Una vez se ha creado su archivo de copia de seguridad aparecerá en la sección inferior de copias de seguridad disponibles. El archivo permanecerá en su proveedor de hosting pero se recomienda que descargue y guarde la copia en algún lugar seguro."
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-scheduler-display.php:37
+msgid "Please make sure to schedule your backup for at least once per week."
+msgstr "Por favor, asegúrese de programar su copia de seguridad por lo menos una vez a la semana."
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-scheduler-display.php:41
+msgid "Monday"
+msgstr "Lunes"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-scheduler-display.php:43
+msgid "Tuesday"
+msgstr "Martes"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-scheduler-display.php:45
+msgid "Wednesday"
+msgstr "Miércoles"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-scheduler-display.php:47
+msgid "Thursday"
+msgstr "Jueves"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-scheduler-display.php:49
+msgid "Friday"
+msgstr "Viernes"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-scheduler-display.php:51
+msgid "Saturday"
+msgstr "Sábado"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-scheduler-display.php:53
+msgid "Sunday"
+msgstr "Domingo"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-scheduler-display.php:57
+msgid "Save Schedule"
+msgstr "Guardar programación"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-settings.php:17
+msgid "Disable restore version compare?"
+msgstr "¿Desactivar la comparación de versiones restauradas?"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-settings.php:19
+msgid "Check this box if you would like WPBackItUp not to check major version issue. This could be dangerous, you can disable it with your own risk."
+msgstr "Seleccione esta casilla si quiere que WPBackItUp no compruebe problemas importantes de la versión. Esto puede ser peligroso, desactívelo bajo su responsabilidad."
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-settings.php:20 AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-settings.php:33 trunk/views/settings.php:61 trunk/views/settings.php:80 trunk/views/settings.php:103 trunk/views/settings.php:113 trunk/views/settings.php:129 trunk/views/settings.php:145 trunk/views/settings.php:176 trunk/views/settings.php:210 trunk/views/settings.php:250 trunk/views/settings.php:259
+msgid "Save"
+msgstr "Guardar"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-settings.php:24
+msgid "Single File Backup Set"
+msgstr "Grupo de copias de seguridad de un solo archivo"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-settings.php:26
+msgid "Check this box if you would like WPBackItUp to create a single zip file that contains your entire backup."
+msgstr "Seleccione esta casilla si quiere que WPBackItUp cree un único archivo zip que contenga su copia de seguridad entera."
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-settings.php:27
+msgid "When this setting is turned on WPBackItUp will attempt to create a single zip file that contains your entire backup.  This option may may not be possible with some hosting providers.  This setting will be turned off automatically if WPBackItUp is unable to complete this step for any reason."
+msgstr "Cuando este ajuste está activo, WPBackItUp intentará crear un único archivo zip que contenga toda su copia de seguridad. Esta opción puede no ser posible usarla en algunos proveedores de alojamiento web. Este ajuste se desconectará automáticamente si por cualquier razón WPBackItUp no puede completar este paso."
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-settings.php:30
+msgid "Check this box if you would like WPBackItUp to cleanup supporting zip files."
+msgstr "Seleccione esta casilla si quiere que WPBackItUp limpie los archivos zip de apoyo."
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/admin/partials/wpbackitup-premium-settings.php:31
+msgid "When this setting is turned on WPBackItUp will remove the supporting zip files(plugins, themes, uploads) that were used to create your backup set.  These supporting files will be contained in the backup set and are no longer needed to restore your site. Selecting this option will allow you to reduce the amount of space utilized on your host used for backups.   Please note that if this option is selected, supporting zip files will no longer be available for download separate from the backup set."
+msgstr "Cuando esta opción está activada, WPBackItUp elimina los archivos zip de apoyo (plugins, temas, subidas) que hemos usado para crear su grupo de copia de seguridad. Estos archivos de apoyo estarán contenidos en el grupo de copia de seguridad y ya no los necesitará para restaurar su web. Seleccionando esta opción permitirá que se reduzca la cantidad de espacio usado para copias de seguridad en su alojamiento web. Tenga en cuenta que si esta opción está seleccionada, los archivos zip de apoyo ya no estarán disponibles para ser descargados de forma separada de su grupo de copia de seguridad."
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/vendor/edd/wpbackitup-premium_EDD_SL_Plugin_Updater.php:209
+#, php-format
+msgid "There is a new version of %1$s available. %2$sView version %3$s details%4$s."
+msgstr "Hay una nueva versión de %1$s disponible. %2$sVer los detalles%4$s de la versión %3$s."
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/vendor/edd/wpbackitup-premium_EDD_SL_Plugin_Updater.php:217
+#, php-format
+msgid "There is a new version of %1$s available. %2$sView version %3$s details%4$s or %5$supdate now%6$s."
+msgstr "Hay una nueva versión de %1$s disponible. %2$sVer los %3$s detalles%4$s de la versión o %5$s actualizar ahora%6$s."
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/vendor/edd/wpbackitup-premium_EDD_SL_Plugin_Updater.php:377
+msgid "You do not have permission to install plugin updates"
+msgstr "No tiene permisos para instalar las actualizaciones del plugin"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/vendor/edd/wpbackitup-premium_EDD_SL_Plugin_Updater.php:377 trunk/lib/includes/class-wpbackitup-admin.php:200 trunk/views/backup.php:248 trunk/views/backup.php:350
+msgid "Error"
+msgstr "Error"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/wp-backitup-premium.php:64
+#, php-format
+msgid "%s WPBackItUp Community Edition(CE) %s 1.14 or greater must be installed and activated to use WPBackItUp Premium"
+msgstr "%s WPBackItUp Community Edition(CE) %s 1.14 o superior debe de estar instalado y activado para usar WPBackItUp Premium"
+
+#: AddOns/WPBackItUp-Premium/wp-backitup-premium/wp-backitup-premium.php:68
+msgid "WPBackItUp Premium requires PHP Version 5.2 or later"
+msgstr "WPBackItUp Premium necesita la version 5.2 o superior de PHP"
+
+#: trunk/lib/background-processing/class-background-process.php:430
+#, php-format
+msgid "Every %d Minutes"
+msgstr "Cada %d minutos"
+
+#: trunk/lib/includes/class-download-log.php:94
+msgid "Are you sure?"
+msgstr "¿Está seguro?"
+
+#: trunk/lib/includes/class-download-log.php:95 trunk/lib/includes/class-wpbackitup-admin.php:203
+msgid "Download"
+msgstr "Descargar"
+
+#: trunk/lib/includes/class-download-log.php:130
+msgid "Time"
+msgstr "Hora"
+
+#: trunk/lib/includes/class-download-log.php:131
+msgid "Log File"
+msgstr "Archivo de Registro"
+
+#: trunk/lib/includes/class-download-log.php:132
+msgid "Size"
+msgstr "Tamaño"
+
+#: trunk/lib/includes/class-license.php:441 trunk/lib/includes/class-license.php:461
+msgid "License could not be activated. Please try again in a few hours and contact support if this error continues."
+msgstr "Puede que la licencia no se haya activado. Por favor, inténtelo de nuevo en unas pocas horas y contacte con el soporte técnico si el error continua."
+
+#: trunk/lib/includes/class-license.php:510
+msgid "License is invalid."
+msgstr "Licencia no válida"
+
+#: trunk/lib/includes/class-license.php:515
+msgid "License has expired."
+msgstr "La licencia ha caducado."
+
+#: trunk/lib/includes/class-license.php:518
+#, php-format
+msgid "Your license has expired. Please <a href=\"%s\" target=\"blank\">renew</a> now for another year of <strong>product updates</strong> and access to our <strong>world class support</strong> team."
+msgstr "La licencia ha caducado. Por favor <a href=\"%s\" target=\"blank\">renueve</a> ahora para otro año de <strong>actualizaciones</strong> y acceso a nuestro equipo de <strong>soporte de talla mundial</strong>."
+
+#: trunk/lib/includes/class-license.php:532
+msgid "License Expired: Scheduled backups are no longer active."
+msgstr "La licencia ha caducado. Las copias de seguridad programadas ya no están activas."
+
+#: trunk/lib/includes/class-license.php:540
+msgid "Activation limit has been reached."
+msgstr "Se ha llegado al límite de activaciones."
+
+#: trunk/lib/includes/class-license.php:546
+msgid "Your Activation limit has been reached"
+msgstr "Se ha llegado a su límite de activaciones"
+
+#: trunk/lib/includes/class-wpbackitup-admin.php:170 trunk/views/support.php:70
+msgid "Support"
+msgstr "Soporte"
+
+#: trunk/lib/includes/class-wpbackitup-admin.php:173
+msgid "Settings"
+msgstr "Configuración"
+
+#: trunk/lib/includes/class-wpbackitup-admin.php:176
+msgid "About"
+msgstr "Sobre"
+
+#: trunk/lib/includes/class-wpbackitup-admin.php:198
+msgid "The backup you have selected exceeds what your host allows you to upload."
+msgstr "La copia de seguridad que ha seleccionado excede lo que su servidor le permite subir."
+
+#: trunk/lib/includes/class-wpbackitup-admin.php:199 trunk/views/backup.php:414 trunk/views/backup.php:415 trunk/views/backup.php:416 trunk/views/backup.php:417 trunk/views/backup.php:418 trunk/views/backup.php:419 trunk/views/backup.php:420 trunk/views/backup.php:421 trunk/views/backup.php:422 trunk/views/backup.php:424 trunk/views/backup.php:426
+msgid "Warning"
+msgstr "Advertencia"
+
+#: trunk/lib/includes/class-wpbackitup-admin.php:201
+msgid "Response"
+msgstr "Respuesta"
+
+#: trunk/lib/includes/class-wpbackitup-admin.php:206
+msgid "(JS997) Unexpected error"
+msgstr "(JS997) Error inesperado"
+
+#: trunk/lib/includes/class-wpbackitup-admin.php:207
+msgid "(JS998) Unexpected error"
+msgstr "(JS998) Error inesperado"
+
+#: trunk/lib/includes/class-wpbackitup-admin.php:208
+msgid "(JS999) An unexpected error has occurred"
+msgstr "(JS999) Ocurrió un error inesperado"
+
+#: trunk/lib/includes/class-wpbackitup-admin.php:209
+msgid "Scheduled has been saved."
+msgstr "Se ha guardado la programación."
+
+#: trunk/lib/includes/class-wpbackitup-admin.php:210
+msgid "Scheduled was not saved."
+msgstr "La programación no se ha guardado."
+
+#: trunk/lib/includes/class-wpbackitup-admin.php:211
+msgid "Are you sure you want to restore your site?"
+msgstr "¿Está seguro de que quiere restaurar su sitio web?"
+
+#: trunk/lib/includes/class-wpbackitup-admin.php:212
+msgid "Are you sure ?"
+msgstr "¿Está seguro?"
+
+#: trunk/lib/includes/class-wpbackitup-admin.php:213
+msgid "This file cannot be delete!"
+msgstr "¡Este archivo no se puede borrar!"
+
+#: trunk/lib/includes/class-wpbackitup-admin.php:214
+msgid "View Log"
+msgstr "Ver registro"
+
+#: trunk/lib/includes/class-wpbackitup-admin.php:215
+msgid "New Backup!"
+msgstr "¡Nueva copia de seguridad!"
+
+#: trunk/lib/includes/class-wpbackitup-admin.php:216
+msgid "Uploaded Backup"
+msgstr "Copia de seguridad subida"
+
+#: trunk/lib/includes/class-wpbackitup-admin.php:565
+msgid "Backup Queued"
+msgstr "Copia de seguridad puesta en la cola"
+
+#: trunk/lib/includes/class-wpbackitup-admin.php:574
+msgid "Backup could not be queued"
+msgstr "No se puede poner en la cola la copia de seguridad"
+
+#: trunk/lib/includes/class-wpbackitup-admin.php:586
+msgid "Job is already in queue."
+msgstr "La tarea ya está en la cola."
+
+#: trunk/lib/includes/class-wpbackitup-admin.php:624
+msgid "No backup file selected."
+msgstr "No se ha seleccionado ningún archivo de copia de seguridad."
+
+#: trunk/lib/includes/class-wpbackitup-admin.php:631
+msgid "No user id found."
+msgstr "No se ha encontrado la id de usuario."
+
+#: trunk/lib/includes/class-wpbackitup-admin.php:669
+msgid "Restore Queued"
+msgstr "Restauración en la cola"
+
+#: trunk/lib/includes/class-wpbackitup-admin.php:678
+msgid "Restore could not be queued"
+msgstr "La restauración no se ha podido poner en cola"
+
+#: trunk/lib/includes/class-wpbackitup-admin.php:684
+msgid "Restore already in queue"
+msgstr "La restauración ya está en la cola"
+
+#: trunk/lib/includes/class-wpbackitup-admin.php:716
+msgid "No job id posted"
+msgstr "Id de la tarea no publicado"
+
+#: trunk/lib/includes/class-wpbackitup-admin.php:724 trunk/views/backup.php:445
+msgid "Backup Cancelled"
+msgstr "Copia de seguridad cancelada"
+
+#: trunk/lib/includes/class-wpbackitup-admin.php:726
+msgid "Backup job not found"
+msgstr "No se ha encontrado la tarea de copia de seguridad"
+
+#: trunk/lib/includes/class-wpbackitup-admin.php:935
+msgid "No response log found."
+msgstr "No se ha enontrado ningún registro."
+
+#: trunk/lib/includes/class-wpbackitup-admin.php:1036 trunk/lib/includes/class-wpbackitup-admin.php:1044 trunk/lib/includes/class-wpbackitup-admin.php:1112 trunk/lib/includes/class-wpbackitup-admin.php:1119 trunk/lib/includes/class-wpbackitup-admin.php:1126 trunk/lib/includes/class-wpbackitup-admin.php:1133 trunk/lib/includes/class-wpbackitup-admin.php:1140
+msgid "Please enter a number"
+msgstr "Por favor, introduzca un número"
+
+#: trunk/lib/includes/class-wpbackitup-admin.php:1060
+msgid "Please enter valid email"
+msgstr "Por favor, introduzca una dirección de correo electrónico válida"
+
+#: trunk/lib/includes/class-wpbackitup-admin.php:1219
+msgid "Please enter a valid email"
+msgstr "Por favor, introduzca una dirección de correo electrónico válida"
+
+#: trunk/lib/includes/class-wpbackitup-admin.php:1226
+msgid "Please enter your support ticket id"
+msgstr "Por favor, introduzca el id de la incidencia"
+
+#: trunk/lib/includes/class-wpbackitup-admin.php:1231
+msgid "Please only enter numbers in this field"
+msgstr "Por favor, sólo introduzca números en este campo"
+
+#: trunk/lib/includes/handler_upload.php:29
+msgid "Invalid Nonce"
+msgstr "Nonce no válido"
+
+#: trunk/lib/includes/handler_upload.php:39 trunk/lib/includes/handler_upload.php:156
+msgid "Upload directory is not writable, or does not exist."
+msgstr "El directorio de subida no tiene permisos de escritura, o no existe."
+
+#: trunk/lib/includes/handler_upload.php:80
+#, php-format
+msgid "Error: %s"
+msgstr "Error: %s"
+
+#: trunk/lib/includes/handler_upload.php:80
+msgid "File could not be uploaded"
+msgstr "No se ha podido subir el archivo"
+
+#: trunk/lib/includes/handler_upload.php:146
+msgid "Upload does not appear to be a WPBackItUp backup archive file."
+msgstr "El archivo subido no parece ser un archivo de copia de seguridad de WPBackItUp."
+
+#: trunk/lib/includes/handler_upload.php:166
+msgid "Could not import file into WPBackItUp backup set."
+msgstr "No se ha podido importar el archivo dentro del conjunto de copias de seguridad de WPBackItUp."
+
+#: trunk/lib/includes/job_backup.php:1285
+#, php-format
+msgid "%s - Backup completed successfully."
+msgstr "%s - de la copia de seguridad completada con éxito."
+
+#: trunk/lib/includes/job_backup.php:1286
+msgid "Your backup completed successfully."
+msgstr "Su copia de seguridad se ha completado con éxito."
+
+#: trunk/lib/includes/job_backup.php:1289
+#, php-format
+msgid "%s - Backup did not complete successfully."
+msgstr "%s - de la copia de seguridad no se ha completado con éxito."
+
+#: trunk/lib/includes/job_backup.php:1290
+msgid "Your backup did not complete successfully."
+msgstr "Su copia de seguridad no se ha completado con éxito."
+
+#: trunk/lib/includes/job_backup.php:1297
+#, php-format
+msgid "WordPress Site: <a href=\"%s\" target=\"_blank\"> %s </a><br/>"
+msgstr "Web de WordPress: <a href=\"%s\" target=\"_blank\"> %s </a><br/>"
+
+#: trunk/lib/includes/job_backup.php:1298
+msgid "Backup date:"
+msgstr "Fecha de la copia de seguridad:"
+
+#: trunk/lib/includes/job_backup.php:1299
+msgid "Number of backups completed with WPBackItUp:"
+msgstr "Número de copias de seguridad realizadas con WPBackItUp:"
+
+#: trunk/lib/includes/job_backup.php:1301
+msgid "Completion Code:"
+msgstr "Código de finalización:"
+
+#: trunk/lib/includes/job_backup.php:1302
+msgid "WPBackItUp Version:"
+msgstr "Versión de WPBackItUp:"
+
+#: trunk/lib/includes/job_backup.php:1314
+#, php-format
+msgid "Checkout %s for info about WPBackItUp and our other products."
+msgstr "Comprueba %s para información sobre WPBackItUp y nuestros otros productos."
+
+#: trunk/lib/includes/job_backup.php:1480
+msgid "(101) Unable to create a new directory for backup. Please check your CHMOD settings of your wp-backitup backup directory"
+msgstr "(101) No se puede crear un nuevo directorio para las copias de seguridad. Compruebe la configuración CHMOD del directorio de wp-backitup"
+
+#: trunk/lib/includes/job_backup.php:1481
+msgid "(102) Cannot create backup directory. Please check the CHMOD settings of your wp-backitup plugin directory"
+msgstr "(102) No se ha podido crear el directorio para las copias de seguridad. Compruebe la configuración CHMOD del directorio de wp-backitup"
+
+#: trunk/lib/includes/job_backup.php:1482
+msgid "(103) Unable to backup your files. Please try again"
+msgstr "(103) No se pueden hacer copias de seguridad de sus archivos. Inténtelo de nuevo"
+
+#: trunk/lib/includes/job_backup.php:1483
+msgid "(104) Unable to export your database. Please try again"
+msgstr "(104) No se puede exportar su base de datos. Inténtelo de nuevo"
+
+#: trunk/lib/includes/job_backup.php:1484
+msgid "(105) Unable to export site information file. Please try again"
+msgstr "(105) No se puede exportar el archivo de información del sitio web. Inténtelo de nuevo"
+
+#: trunk/lib/includes/job_backup.php:1485
+msgid "(106) Unable to cleanup your backup directory"
+msgstr "(106) No se puede limpiar su directorio de copias de seguridad"
+
+#: trunk/lib/includes/job_backup.php:1486
+msgid "(107) Unable to compress(zip) your backup. Please try again"
+msgstr "(107) No se puede comprimir(zip) su copia de seguridad. Inténtelo de nuevo"
+
+#: trunk/lib/includes/job_backup.php:1487
+msgid "(108) Unable to backup your site data files. Please try again"
+msgstr "(108) No se puede realizar la copia de seguridad de los archivos de datos de su sitio web. Inténtelo de nuevo"
+
+#: trunk/lib/includes/job_backup.php:1488
+msgid "(109) Unable to finalize backup. Please try again"
+msgstr "(109) No se puede terminar la copia de seguridad. Inténtelo de nuevo"
+
+#: trunk/lib/includes/job_backup.php:1489
+msgid "(110) Unable to create backup manifest. Please try again"
+msgstr "(110) No se puede crear el manifiesto de la copia de seguridad. Por favor, inténtelo de nuevo."
+
+#: trunk/lib/includes/job_backup.php:1490
+msgid "(114) Your database was accessible but an export could not be created. Please contact support by clicking the get support link on the right. Please let us know who your host is when you submit the request"
+msgstr ""
+"(114) Su base de datos era accesible pero no se ha podido exportar. Por favor contacte con el soporte técnico haciendo clic en el enlace conseguir soporte de la derecha.\n"
+"Por favor díganos cual es su proveedor de hosting cuando nos envie la petición"
+
+#: trunk/lib/includes/job_backup.php:1491
+msgid "(120) Unable to backup your themes. Please try again"
+msgstr "(120) No se puede realizar la copia de seguridad de sus temas. Inténtelo de nuevo"
+
+#: trunk/lib/includes/job_backup.php:1492
+msgid "(121) Unable to backup your plugins. Please try again"
+msgstr "(121) No se puede realizar la copia de seguridad de sus plugins. Inténtelo de nuevo"
+
+#: trunk/lib/includes/job_backup.php:1493
+msgid "(122) Unable to backup your uploads. Please try again"
+msgstr "(122) No se puede realizar la copia de seguridad de sus subidas. Inténtelo de nuevo"
+
+#: trunk/lib/includes/job_backup.php:1494
+msgid "(123) Unable to backup your miscellaneous files. Please try again"
+msgstr "(123) No se puede realizar la copia de seguridad de archivos diversos. Inténtelo de nuevo"
+
+#: trunk/lib/includes/job_backup.php:1495
+msgid "(125) Unable to compress your backup because there is no zip utility available.  Please contact support"
+msgstr "(125) No se puede comprimir su copia de seguridad debido a que no está disponible la utilidad zip. Por favor contacte con el soporte técnico"
+
+#: trunk/lib/includes/job_backup.php:1496
+msgid "(126) Unable to validate your backup. Please try again"
+msgstr "(126) No se puede validar su copia de seguridad. Inténtelo de nuevo."
+
+#: trunk/lib/includes/job_backup.php:1497
+msgid "(127) Unable to create inventory of files to backup. Please try again"
+msgstr "(127) No se puede crear el inventario de archivos que se deben añadir a la copia de seguridad. Inténtelo de nuevo"
+
+#: trunk/lib/includes/job_backup.php:1498
+msgid "(128) Unable to create job control record. Please try again"
+msgstr "(128) No se puede crear el registro de control de tareas. Inténtelo de nuevo"
+
+#: trunk/lib/includes/job_backup.php:1499
+msgid "(130) Unable to encrypt sensitive files. Please try again and contact support if this issue continues."
+msgstr "(130) No ha sido posible cifrar los archivos sensibles. Por favor, inténtelo de nuevo y contacte con el soporte si el problema persiste."
+
+#: trunk/lib/includes/job_backup.php:1500
+msgid "(135) Unable to backup your database. Please try again"
+msgstr "(135) No ha sido posible realizar la copia de seguridad de su base de datos. Por favor, inténtelo de nuevo."
+
+#: trunk/lib/includes/job_backup.php:1502
+msgid "(2101) Unable to create a new directory for backup. Please check your CHMOD settings of your wp-backitup backup directory"
+msgstr "(2101) No se puede crear un nuevo directorio para las copias de seguridad. Compruebe la configuración CHMOD del directorio de wp-backitup"
+
+#: trunk/lib/includes/job_backup.php:1503
+msgid "(2102) Cannot create backup directory. Please check the CHMOD settings of your wp-backitup plugin directory"
+msgstr "(2102) No se ha podido crear el directorio para las copias de seguridad. Compruebe la configuración CHMOD del directorio de wp-backitup"
+
+#: trunk/lib/includes/job_backup.php:1504
+msgid "(2103) Unable to backup your files. Please try again"
+msgstr "(2103) No se pueden hacer copias de seguridad de sus archivos. Inténtelo de nuevo"
+
+#: trunk/lib/includes/job_backup.php:1505
+msgid "(2104) Unable to export your database. Please try again"
+msgstr "(2104) No se puede exportar su base de datos. Inténtelo de nuevo"
+
+#: trunk/lib/includes/job_backup.php:1506
+msgid "(2105) Unable to export site information file. Please try again"
+msgstr "(2105) No se puede exportar el archivo de información del sitio web. Inténtelo de nuevo"
+
+#: trunk/lib/includes/job_backup.php:1507
+msgid "(2106) Unable to cleanup your backup directory"
+msgstr "(2106) No se puede limpiar su directorio de copias de seguridad"
+
+#: trunk/lib/includes/job_backup.php:1508
+msgid "(2107) Unable to compress(zip) your backup. Please try again"
+msgstr "(2107) No se puede comprimir(zip) su copia de seguridad. Inténtelo de nuevo"
+
+#: trunk/lib/includes/job_backup.php:1509
+msgid "(2108) Unable to backup your site data files. Please try again"
+msgstr "(2108) No se puede realizar la copia de seguridad de los archivos de datos de su sitio web. Inténtelo de nuevo"
+
+#: trunk/lib/includes/job_backup.php:1510
+msgid "(2109) Unable to finalize backup. Please try again"
+msgstr "(2109) No se puede terminar la copia de seguridad. Inténtelo de nuevo"
+
+#: trunk/lib/includes/job_backup.php:1511
+msgid "(2110) Unable to create backup manifest. Please try again"
+msgstr "(2110) No se puede crear el manifiesto de la copia de seguridad. Por favor, inténtelo de nuevo."
+
+#: trunk/lib/includes/job_backup.php:1512
+msgid "(2114) Your database was accessible but an export could not be created. Please contact support by clicking the get support link on the right. Please let us know who your host is when you submit the request"
+msgstr ""
+"(2114) Su base de datos era accesible pero no se ha podido exportar. Por favor contacte con el soporte técnico haciendo clic en el enlace conseguir soporte de la derecha.\n"
+"Por favor díganos cual es su proveedor de hosting cuando nos envie la petición"
+
+#: trunk/lib/includes/job_backup.php:1513
+msgid "(2120) Unable to backup your themes. Please try again"
+msgstr "(2120) No se puede realizar la copia de seguridad de sus temas. Inténtelo de nuevo"
+
+#: trunk/lib/includes/job_backup.php:1514
+msgid "(2121) Unable to backup your plugins. Please try again"
+msgstr "(2121) No se puede realizar la copia de seguridad de sus plugins. Inténtelo de nuevo"
+
+#: trunk/lib/includes/job_backup.php:1515
+msgid "(2122) Unable to backup your uploads. Please try again"
+msgstr "(2122) No se puede realizar la copia de seguridad de sus subidas. Inténtelo de nuevo."
+
+#: trunk/lib/includes/job_backup.php:1516
+msgid "(2123) Unable to backup your miscellaneous files. Please try again"
+msgstr "(2123) No se puede realizar la copia de seguridad de archivos diversos. Inténtelo de nuevo"
+
+#: trunk/lib/includes/job_backup.php:1517
+msgid "(2125) Unable to compress your backup because there is no zip utility available.  Please contact support"
+msgstr "(2125) No se puede comprimir su copia de seguridad debido a que no está disponible la utilidad zip. Por favor contacte con el soporte técnico"
+
+#: trunk/lib/includes/job_backup.php:1518
+msgid "(2126) Unable to validate your backup. Please try again"
+msgstr "(2126) No se puede validar su copia de seguridad. Inténtelo de nuevo"
+
+#: trunk/lib/includes/job_backup.php:1519
+msgid "(2127) Unable to create inventory of files to backup. Please try again"
+msgstr "(2127) No se puede crear el inventario de archivos que se deben añadir a la copia de seguridad. Inténtelo de nuevo"
+
+#: trunk/lib/includes/job_backup.php:1520
+msgid "(2128) Unable to create job control record. Please try again"
+msgstr "(2128) No se puede crear el registro de control de tareas. Inténtelo de nuevo"
+
+#: trunk/lib/includes/job_backup.php:1521
+msgid "(2130) Unable to encrypt sensitive files. Please try again and contact support if this issue continues."
+msgstr "(2130) No ha sido posible cifrar los archivos sensibles. Por favor, inténtelo de nuevo y contacte con el soporte si el problema persiste."
+
+#: trunk/lib/includes/job_backup.php:1522
+msgid "(2135) Unable to backup your database. Please try again"
+msgstr "(2135) No ha sido posible realizar la copia de seguridad de su base de datos. Por favor, inténtelo de nuevo."
+
+#: trunk/lib/includes/job_backup.php:1525
+msgid "(999) Unexpected error"
+msgstr "(999) Error inesperado"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:162
+msgid "List View"
+msgstr "Vista de lista"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:163
+msgid "Excerpt View"
+msgstr "Vista de Extracto"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:334
+msgid "No items found."
+msgstr "No hay artículos encontrados."
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:461
+msgid "Select bulk action"
+msgstr "Selecciona acción en lote"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:463
+msgid "Bulk Actions"
+msgstr "Acciones en Bloque"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:473
+msgid "Apply"
+msgstr "Aplicar"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:523 trunk/vendor/WordPress/class-wp-list-table.php:1324
+msgid "Show more details"
+msgstr "Mostrar más detalles"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:586
+msgid "Filter by date"
+msgstr "Filtrar por fecha"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:588
+msgid "All dates"
+msgstr "Todas las fechas"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:601
+#, php-format
+msgid "%1$s %2$d"
+msgstr "%1$s %2$d"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:660 trunk/vendor/WordPress/class-wp-list-table.php:672 trunk/vendor/WordPress/class-wp-list-table.php:685
+msgid "No comments"
+msgstr "No hay comentarios"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:672
+msgid "No approved comments"
+msgstr "No hay comentarios aprovados"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:685
+msgid "No pending comments"
+msgstr "No hay comentarios pendientes"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:798
+msgid "First page"
+msgstr "Primera página"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:808
+msgid "Previous page"
+msgstr "Página anterior"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:815 trunk/vendor/WordPress/class-wp-list-table.php:818
+msgid "Current Page"
+msgstr "Página actual"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:831
+msgid "Next page"
+msgstr "Página siguiente"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:841
+msgid "Last page"
+msgstr "Última página"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:1069
+msgid "Select All"
+msgstr "Seleccionar todos"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:1753
+msgid "Edit Comment"
+msgstr "Editar Comentario"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:1754
+msgid "Reply to Comment"
+msgstr "Responder al comentarío"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:1755
+msgid "Add new Comment"
+msgstr "Añadir nuevo comentario"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:1759
+msgid "Comment"
+msgstr "Comentario"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:1778
+msgid "URL"
+msgstr "URL"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:1785
+msgid "Add Comment"
+msgstr "Añadir Comentario"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:1786
+msgid "Update Comment"
+msgstr "Actualizar comentario"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:1787
+msgid "Submit Reply"
+msgstr "Enviar respuesta"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:1788 trunk/vendor/WordPress/class-wp-list-table.php:2008 trunk/vendor/WordPress/class-wp-list-table.php:2113 trunk/views/backup.php:279
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:1823
+#, php-format
+msgid "Comment by %s moved to the trash."
+msgstr "Comentario de %s movido a la papelera."
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:1823 trunk/vendor/WordPress/class-wp-list-table.php:1826
+msgid "Undo"
+msgstr "Deshacer"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:1826
+#, php-format
+msgid "Comment by %s marked as spam."
+msgstr "El comentario de %s se ha marcado como spam."
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:1846 trunk/vendor/WordPress/class-wp-list-table.php:1861 trunk/vendor/WordPress/class-wp-list-table.php:1925 trunk/vendor/WordPress/class-wp-list-table.php:1986
+msgid "Value"
+msgstr "Valor"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:1915
+msgid "Key"
+msgstr "Clave"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:1981
+msgid "Add New Custom Field:"
+msgstr "Añadir nuevo campo personalizado:"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:1995
+msgid "&mdash; Select &mdash;"
+msgstr "&mdash; Elegir &mdash;"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:2007
+msgid "Enter new"
+msgstr "Nuevo"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:2018
+msgid "Add Custom Field"
+msgstr "Añadir un campo personalizado"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:2071
+msgid "Month"
+msgstr "Mes"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:2077
+#, php-format
+msgid "%1$s-%2$s"
+msgstr "%1$s - %2$s"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:2081
+msgid "Day"
+msgstr "Día"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:2082
+msgid "Year"
+msgstr "Año"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:2083
+msgid "Hour"
+msgstr "Hora"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:2084
+msgid "Minute"
+msgstr "Minuto"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:2088
+#, php-format
+msgid "%1$s %2$s, %3$s @ %4$s:%5$s"
+msgstr "%2$s %1$s %3$s a las %4$s:%5$s"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:2112
+msgid "OK"
+msgstr "OK"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:2218
+msgid "Before you can upload your import file, you will need to fix the following error:"
+msgstr "Antes de poder subir el fichero de importación, debes resolver el siguiente error:"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:2224
+msgid "Choose a file from your computer:"
+msgstr "Elige un archivo de tu ordenador:"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:2224
+#, php-format
+msgid "Maximum size: %s"
+msgstr "Tamaño máximo: %s"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:2229
+msgid "Upload file and import"
+msgstr "Subir archivo e importar"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:2399
+#, php-format
+msgid "Toggle panel: %s"
+msgstr "Activar panel: %s"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:2521
+msgid "Press return or enter to open this section"
+msgstr "Pulsa retorno o enter para abrir esta sección"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:2567 trunk/vendor/WordPress/class-wp-list-table.php:2572
+#, php-format
+msgid "The \"%s\" options group has been removed. Use another settings group."
+msgstr "El grupo de opciones \"%s\" ha sido eliminado. Utiliza otro grupo de ajustes."
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:2618
+msgid "The miscellaneous options group has been removed. Use another settings group."
+msgstr "Las opciones misceláneas de grupo se han eliminado. Usa otros ajustes de grupo."
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:2623
+msgid "The privacy options group has been removed. Use another settings group."
+msgstr "El grupo de opciones de privacidad se ha eliminado. Utiliza otro grupo de ajustes."
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:2857
+msgid "Attach to existing content"
+msgstr "Adjuntar al contenido ya existente"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:2858
+msgid "Close media attachment panel"
+msgstr "Cerrar el panel de adjunción de archivos multimedia"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:2867
+msgid "Search"
+msgstr "Buscar"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:2876
+msgid "Select"
+msgstr "Seleccione"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:2910
+msgid "(no title)"
+msgstr "(sin título)"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:2948
+msgid "WordPress"
+msgstr "WordPress"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:3058
+msgid "Password protected"
+msgstr "Protegida con contraseña"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:3060
+msgid "Private"
+msgstr "Privado"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:3062
+msgid "Draft"
+msgstr "Borrador"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:3066
+msgid "Sticky"
+msgstr "Destacada"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:3069
+msgid "Scheduled"
+msgstr "Programado"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:3074
+msgid "Front Page"
+msgstr "Página Principal"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:3078
+msgid "Posts Page"
+msgstr "Página de entradas"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:3120 trunk/vendor/WordPress/class-wp-list-table.php:3127
+msgid "Header Image"
+msgstr "Imagen de cabecera"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:3132
+msgid "Current Header Image"
+msgstr "Imagen de cabecera actual"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:3141
+msgid "Background Image"
+msgstr "Imagen de fondo"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:3145
+msgid "Current Background Image"
+msgstr "Imagen de fondo actual"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:3151
+msgid "Site Icon"
+msgstr "Ícono de la web"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:3155
+msgid "Logo"
+msgstr "Logotipo"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:3305
+msgid "Save Changes"
+msgstr "Guardar cambios"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:3382
+msgid "Likely direct inclusion of wp-admin/includes/template.php in order to use add_meta_box(). This is very wrong. Hook the add_meta_box() call into the add_meta_boxes action instead."
+msgstr "Es común la inclusión directa de wp-admin/includes/template.php en el tema para utilizar add_meta_box(). En vez de hacer esto, y por seguridad, debes utilizar la llamada al gancho  add_meta_box() de la acción add_meta_boxes."
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:3399
+msgid "The backup of this post in your browser is different from the version below."
+msgstr "La copia de seguridad de esta entrada de tu navegador es diferente de la versión que hay en la parte inferior."
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:3400
+msgid "Restore the backup"
+msgstr "Restaurar la copia de seguridad"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:3403
+msgid "This will replace the current editor content with the last backup version. You can use undo and redo in the editor to get the old content back or to return to the restored version."
+msgstr "Esto reemplazará el editor de contenidos actual por la última versión de la copia de seguridad. Puede usar Deshacer y Rehacer en el editor para recuperar el contenido antiguo o volver a la versión restaurada"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:3459
+#, php-format
+msgid "%s rating"
+msgstr "valoración %s"
+
+#: trunk/vendor/WordPress/class-wp-list-table.php:3483
+msgid "You are currently editing the page that shows your latest posts."
+msgstr "Está editando la página que muestra sus últimas entradas."
+
+#: trunk/views/about.php:59
+msgid "Getting Started"
+msgstr "Comenzar"
+
+#: trunk/views/about.php:62
+msgid "What's New"
+msgstr "¿Qué hay de nuevo?"
+
+#: trunk/views/about.php:65
+msgid "Premium Plugin"
+msgstr "Plugin Premium"
+
+#: trunk/views/about.php:117 trunk/views/support.php:104
+msgid "WPBackItUp"
+msgstr "WPBackItUp"
+
+#: trunk/views/about.php:118
+#, php-format
+msgid "Welcome to WPBackItUp %s"
+msgstr "Bienvenido a WPBackItUp %s"
+
+#: trunk/views/about.php:120
+#, php-format
+msgid "Thank you for updating to the latest version! WPBackItUp %s is ready to make sure your site is backed up quickly, securely, and completely!"
+msgstr "¡Gracias por actualizar a la última versión! ¡WPBackItUp %s está listo para asegurar que en su web se realizan copias de seguridad de forma rápida, seguras, y completas!"
+
+#: trunk/views/about.php:136
+msgid "Use the tips below to get started using WPBackItUp and you will be <em>backing it up</em> in no time!"
+msgstr "¡Utilice los siguientes consejos para empezar a usar WPBackItUp y estará <em>realizando copias de seguridad</em> enseguida!"
+
+#: trunk/views/about.php:139 trunk/views/backup.php:457
+msgid "Backups"
+msgstr "Copias de seguridad"
+
+#: trunk/views/about.php:140
+msgid "Creating Your First Backup"
+msgstr "Creando su primera copia de seguridad"
+
+#: trunk/views/about.php:146
+msgid "One Click &rarr; Backup"
+msgstr "Copia de seguridad en un clic &rarr;"
+
+#: trunk/views/about.php:147
+msgid "The backup menu option is the starting point for all things related to backups. To create your first backup, simply click the <em>Backup</em> button and WPBackItUp will backup your entire site. This includes your database, plugins, themes, and even all your media files."
+msgstr "La opción del menú de Copia de seguridad es el punto de partida donde encontrar todo lo relacionado con ellas. Para crear su primera copia de seguridad, simplemente pulse el botón <em>Copia de seguridad</em> y WPBackItUp realizará una copia de seguridad de toda su web. Esto incluye su base de datos, sus plugins, temas, e incluso todos sus archivos multimedia."
+
+#: trunk/views/about.php:150 trunk/views/about.php:384
+msgid "Download Backups"
+msgstr "Descargar copias de seguridad"
+
+#: trunk/views/about.php:151
+msgid "Downloading your backups is simple too. Click the backup you want to download from the <em>Available backups</em> listing. Then click the part of the backup you want to download (database, plugins, themes, media files).  Or download the entire backup in just one click."
+msgstr "Descargar sus copias de seguridad es también muy simple. Pulse sobre la copia de seguridad que quiera descargar en el listado de <em>Copias de seguridad disponibles</em>. A continuación, haga clic sobre la parte de la copia de seguridad que quiera descargar (base de datos, plugins, temas, archivos multimedia). O descargue la copia de seguridad entera en un solo clic."
+
+#: trunk/views/about.php:162
+msgid "Automatic  Backups"
+msgstr "Copias de seguridad automáticas"
+
+#: trunk/views/about.php:168
+msgid "Schedule your Backups (Premium Only)"
+msgstr "Programe sus copias de seguridad (solo Premium)"
+
+#: trunk/views/about.php:169
+msgid "Schedule your backups to run any day of the week, or all of them. With our flexible backup scheduler just select the days of the week you want your backup to run and WPBackItUp will handle the rest."
+msgstr "Programe sus copias de seguridad para que se realicen cualquier día de la semana, o todos los días. Con nuestro programador flexible de copias de seguridad solo debe seleccionar los días de la semana que desea realizar una copia de seguridad y WPBackItUp se encargará del resto."
+
+#: trunk/views/about.php:171
+msgid "Backup Notifications"
+msgstr "Notificaciones de copia de seguridad"
+
+#: trunk/views/about.php:172
+msgid "Want to get notified every time a backup finishes? Just add your email address to the notification section in backup settings. WPBackItUp even supports multiple email addresses so add as many as you like."
+msgstr "¿Quiere que se le notifique cada vez que se realiza una copia de seguridad? Solo debe añadir su dirección de correo electrónico en la sección de notificaciones en la configuración de la copia de seguridad. Con WPBackItUp puede incluso añadir múltiples direcciones de correo electrónico, así que añada tantas como desee."
+
+#: trunk/views/about.php:177 trunk/views/settings.php:76
+msgid "Backup Retention"
+msgstr "Retención de la copia de seguridad"
+
+#: trunk/views/about.php:178
+msgid "Concerned about the amount of storage space used for backups? Use the <em>backup retention</em> setting to tell WPBackItUp how many backups you want to keep. WPBackItUp will make sure only the newest backups are saved."
+msgstr "¿Preocupado por la cantidad de espacio usado por sus copias de seguridad? Use el ajuste de <em>retención de copias de seguridad</em> para indicarle a WPBackItUp cuantas copias de seguridad desea guardar. WPBackItUp se asegurará de que solo se guarden las copias de seguridad recientes."
+
+#: trunk/views/about.php:197
+msgid "One Click &rarr; Restore (Premium Only)"
+msgstr "Restauración en un clic &rarr; (solo Premium)"
+
+#: trunk/views/about.php:198
+msgid "We hope you never need to restore your site but if you do then WPBackItUp has you covered.  And with our one-click restore feature, restoring your site is just as easy as backing it up."
+msgstr "Esperamos que nunca tenga que restaurar su web, pero si lo hace entonces WPBackItUp lo tiene cubierto. Y con nuestra característica de restauración en un clic, restaurar su web es tan sencillo como realizar copias de seguridad."
+
+#: trunk/views/about.php:200
+msgid "Migration &amp; Cloning (Premium Only)"
+msgstr "Migración y clonación (solo Premium)"
+
+#: trunk/views/about.php:201
+msgid "Need to migrate your site to a new host or want to clone a copy to your staging server?  WPBackItUp does that too!  Just upload your backups to your new WordPress install and restore it using the one-click restore feature."
+msgstr "¿Necesita migrar su web a un nuevo host o desea clonar una copia a su servidor de pruebas? ¡WPBackItUp también lo hace! Solo suba sus copias de seguridad a su nueva instalación de WordPress y restaurelo usando la característica de restauración en un solo clic."
+
+#: trunk/views/about.php:212
+msgid "Need Help?"
+msgstr "¿Necesitas ayuda?"
+
+#: trunk/views/about.php:219
+msgid "Phenomenal Support"
+msgstr "Soporte fenomenal"
+
+#: trunk/views/about.php:220
+msgid "Get support"
+msgstr "Obtener soporte"
+
+#: trunk/views/about.php:222
+#, php-format
+msgid "We do our best to provide the best product possible but if you run into trouble then support is just a few clicks away. To get help or if you have a question, simply open a ticket using our %s."
+msgstr "Ponemos nuestros mejores esfuerzos para proporcionarle el mejor producto posible pero si tiene problemas, nuestro soporte técnico está a unos pocos clics. Para conseguir ayuda o si tiene alguna pregunta, simplemente abra un ticket usando nuestro %s."
+
+#: trunk/views/about.php:222
+msgid "support portal"
+msgstr "portal de soporte"
+
+#: trunk/views/about.php:224
+msgid "Need Even Faster Support?"
+msgstr "¿Necesitas una ayuda aún más rápida?"
+
+#: trunk/views/about.php:225
+#, php-format
+msgid "Our %s system is there for customers that need faster or more in-depth assistance."
+msgstr "Nuestro sistema %s está para los clientes que necesitan una asistencia más rápida o detallada."
+
+#: trunk/views/about.php:225
+msgid "Priority Support"
+msgstr "Soporte prioritario"
+
+#: trunk/views/about.php:227
+msgid "Need Help Migrating Your Site to a New Host?"
+msgstr "¿Necesita ayuda migrando su web a un nuevo host?"
+
+#: trunk/views/about.php:228
+#, php-format
+msgid "Our Site Migration experts have helped hundreds of WPBackItUp customers migrate their sites and now you can take advantage of that experience with our WordPress %s. Let our experts save you time and headaches by doing it for you!"
+msgstr "Nuestros expertos en migración web han ayudado a centenares de clientes de WPBackItUp a migrar sus webs y ahora puede utilizar esa experiencia con su WordPress %s. ¡Deje que nuestros expertos le ahorren tiempo y dolores de cabeza haciéndolo por usted!"
+
+#: trunk/views/about.php:228
+msgid "Site Migration Service"
+msgstr "Servicio de migración de webs"
+
+#: trunk/views/about.php:230
+msgid "Tools Tools Tools..."
+msgstr "Herramientas herramientas herramientas..."
+
+#: trunk/views/about.php:231
+#, php-format
+msgid "Great web sites and businesses are built with great tools and products that help you achieve your goals as efficiently as possible.  My team and I  have spent a tremendous amount of time and effort evaluating tools to help run our WordPress powered website and business. And now you can leverage all our hard work and my 20+ years experience in the software industry with a simple mouse click.  The %s is a growing list of tools and products we use at WPBackItUp to enhance our websites and businesses.  Please feel free to use our experience to empower, enhance and accelerate your sites and businesses."
+msgstr "Las mejores webs y los mejores negocios están construidos con las mejores herramientas y productos que le ayudan a conseguir sus objetivos de la forma más eficiente. Mi equipo y yo mismo hemos gastado una gigantesca cantidad de tiempo y esfuerzo evaluando herramientas para ayudarnos a hacer funcionar nuestra web y negocio en WordPress. Y ahora puede sacar provecho de nuestro duro trabajo y de nuestros más de 20 años de experiencia en la industria del software con un simple clic de su ratón. La %s es una lista en desarrollo de herramientas y productos que usamos en WPBackItUp para mejorar nuestras webs y negocios. Por favor, no dude en usar nuestra experiencia para fortalecer, mejorar y acelerar sus webs y negocios."
+
+#: trunk/views/about.php:231
+msgid "WPBackItUp Tools List"
+msgstr "Lista de herramientas de WPBackItUp"
+
+#: trunk/views/about.php:238
+msgid "Stay Up to Date"
+msgstr "Mantente al día"
+
+#: trunk/views/about.php:243
+msgid "Get Notified of New Releases"
+msgstr "Reciba notificaciones de nuevos lanzamientos"
+
+#: trunk/views/about.php:244
+#, php-format
+msgid "New features that make WPBackItUp even more powerful are released often. Subscribe to our newsletter to stay up to date with our latest releases. %s to ensure you do not miss a release!"
+msgstr "Frecuentemente se publican nuevas características que hacen que WPBackItUp sea incluso más potente. Suscríbase a nuestra newsletter para estar al día con nuestros últimos lanzamientos. ¡ %s para asegurarse de que no se pierde ningún lanzamiento!"
+
+#: trunk/views/about.php:244 trunk/views/about.php:248
+msgid "Sign up now"
+msgstr "Inscribirse"
+
+#: trunk/views/about.php:247
+msgid "Get Alerted About New Tutorials"
+msgstr "Recibe alertas acerca de nuevos tutoriales"
+
+#: trunk/views/about.php:248
+#, php-format
+msgid "%s to hear about the latest tutorials that explain how to take WPBackItUp further."
+msgstr "%s para conocer los últimos tutoriales que explican como llevar WPBackItUp un poco más allá."
+
+#: trunk/views/about.php:267
+#, php-format
+msgid "Below are just a few highlights for version %s. "
+msgstr "A continuación, encontrará lo más destacado de la versión %s."
+
+#: trunk/views/about.php:270
+msgid "New Features"
+msgstr "Nuevas características"
+
+#: trunk/views/about.php:276
+msgid "WPBackItUp Community Edition"
+msgstr "WPBackItUp Community Edition"
+
+#: trunk/views/about.php:277
+msgid "In version 1.14 we decided to do some important housekeeping we have wanted to do for quite some time now.  This housekeeping does not include any new features but it does lay the necessary groundwork for major improvements in the future."
+msgstr "En la versión 1.14 hemos decidido hacer una limpieza general que teniamos pendiente desde hace tiempo. Esta limpieza no incluye ninguna nueva característica pero será la base necesaria para importantes mejoras que haremos en el futuro."
+
+#: trunk/views/about.php:278
+msgid "The most important and noticeable change to you is that we decided to split the WPBackItUp plugin into two plugins: WPBackItUp Community Edition(CE) and WPBackItUp Premium.   The Community Edition or CE plugin, is the version we offer for free via the WordPress.org repository.  The premium plugin is the one you must purchase via www.wpbackitup.com that provides additional features. If you are receiving this email, you have purchased the premium plugin."
+msgstr "El cambio más importante y notorio es que hemos decidido dividir el plugin WPBackItUp en dos: WPBackItUp Community Edition(CE) y WPBackItUp Premium. El plugin Community Edition, o CE, es la versión que ofrecemos de forma gratuita a través del repositorio de WordPress.org. El plugin premium es el que deberá comprar a través de www.wpbackitup.com proporcionandole características adicionales. Si recibe este correo electrónico, es que ha comprado el plugin premium."
+
+#: trunk/views/about.php:279
+msgid "We decided to make this split for a number of technical reasons but the most important to you is that we want to be able to release Premium features separate from the CE updates.  With the two versions bundled into a single plugin we were forced to release updates to both sets of customers on the same schedule.  With this split we are now able to release updates to the CE  plugin much more frequently and with less impact to our premium customers."
+msgstr "Hemos decidido realizar esta separación por diversos motivos técnicos, pero el más importante para usted es que queremos poder lanzar características Premium de forma separada a las actualizaciones de la versión CE. Con las dos versiones juntas en un mismo plugin estábamos forzados a publicar actualizaciones a los dos grupos de clientes al mismo tiempo. Separándolos somos ahora capaces de publicar actualizaciones para el plugin CE de forma mucho más frecuente y con menos impacto para nuestros clientes premium."
+
+#: trunk/views/about.php:286
+msgid "Previous Release Highlights"
+msgstr "Lo más destacado en los anteriores lanzamientos"
+
+#: trunk/views/about.php:289
+msgid "Support Center Enhancements"
+msgstr "Mejoras en el centro de soporte"
+
+#: trunk/views/about.php:290
+msgid "We have made major enhancements to the support center that will allow us to make our world class support even better.  You are now able to <em>view, download</em> and <em>delete</em> the log files we use to help troubleshoot problems with your site. This is an important addition because sometimes customer sites are so crippled by hosting issues, hackers or bad plugins, that they are unable to send us their logs files.  Now if that ever happens to you, they can easily be downloaded and emailed to support. "
+msgstr "Hemos realizado grandes mejoras en nuestro centro de soporte que nos permitirán que nuestro ya gran soporte sea aún mejor. Ahora podrá <em> ver, descargar</em> y <em>borrar</em> los archivos de registro que usamos para ayudarle a solucionar problemas en su web. Este es un importante añadido porqué, a veces, las webs de nuestros clientes están tan dañadas por problemas del hosting, hackers o plugins de baja calidad, que no pueden enviarnos sus archivos de registro. Ahora, si alguna vez ocurre esto, podrán de forma sencilla descargarlos y enviarlos al soporte."
+
+#: trunk/views/about.php:293
+msgid "Cleanup Supporting Zip Files"
+msgstr "Limpieza de archivos Zip de apoyo"
+
+#: trunk/views/about.php:294
+msgid "WPBackItUp now does an even better job of conserving space used on your host.  When you select the <em>Cleanup Supporting Zip Files</em>  setting, WPBackItUp will remove the supporting zip files that were used to create your backup."
+msgstr "Ahora WPBackItUp conserva aún mejor el espacio que usa en su hosting. Cuando activa <em>Limpieza de archivos Zip de apoyo</em>, WPBackItUp eliminará los archivos zip de apoyo que hemos usado para crear su copia de seguridad."
+
+#: trunk/views/about.php:297
+msgid "Email  Notifications"
+msgstr "Notificaciones por correo electrónico"
+
+#: trunk/views/about.php:298
+msgid "WPBackItUp now supports multiple email addresses for backup notifications. Using the WPBackItUp Settings page add multiple email addresses to the <em>Email Notifications</em> setting and all will receive notification emails when your backups complete."
+msgstr "Ahora WPBackItUp soporta múltiples direcciones de correo electrónico para las notificaciones de copias de seguridad. Usando la página de Configuración de WPBackItUp puede añadir múltiples direcciones de correo electrónico en el ajuste <em>Notificaciones de correo electrónico</em> y recibirá correos de notificación cuando se completen sus copias de seguridad."
+
+#: trunk/views/about.php:302 trunk/views/settings.php:117
+msgid "Maximum Zip File Size"
+msgstr "Tamaño máximo de archivo Zip"
+
+#: trunk/views/about.php:303
+msgid "Over the years we have found that some hosting providers enforce strict limitations on the size of your backup archives.  When this happens you might see backup errors, or more commonly backup jobs appear to never finish.  To combat this challenge we have added the <em>Maximum Zip File Size</em> setting.  This setting tells WPBackItUp when to stop adding files to a backup archive and create a new one.  Don't worry WPBackItUp won't miss any files, it will just add them to a new backup archive."
+msgstr "A lo largo de los años hemos visto que algunos proveedores de alojamiento tienen estrictas limitaciones sobre el tamaño de los archivos de copia de seguridad. Cuando esto ocurre puede que vea errores de copia de seguridad, o más comúnmente tareas de copia de seguridad que parece que nunca terminan. Para solucionar este problema hemos añadido el ajuste <em>Tamaño máximo de archivo Zip</em>. Este ajuste le dice a WPBackItUp cuando parar de añadir archivos al archivo de copia de seguridad y crear uno nuevo. No se preocupe, WPBackItUp no perderá ningún archivo, solo los añadirá en un nuevo archivo de copia de seguridad."
+
+#: trunk/views/about.php:309
+msgid "Want to see the entire changelog?"
+msgstr "¿Quiere ver todo el registro de cambios?"
+
+#: trunk/views/about.php:310
+msgid "View the Full Changelog"
+msgstr "Mostrar el Registro Completo"
+
+#: trunk/views/about.php:339
+msgid "Full Changelog"
+msgstr "Registro Completo"
+
+#: trunk/views/about.php:359
+msgid "Take a look at what you are missing!"
+msgstr "¡Heche un vistazo a lo que se está perdiendo!"
+
+#: trunk/views/about.php:367
+msgid "FEATURES"
+msgstr "CARACTERÍSTICAS"
+
+#: trunk/views/about.php:368
+msgid "LITE"
+msgstr "LITE"
+
+#: trunk/views/about.php:369
+msgid "PREMIUM"
+msgstr "PREMIUM"
+
+#: trunk/views/about.php:374
+msgid "Complete Backup (Database, Themes, Plugins &amp; Media Files)"
+msgstr "Copia de seguridad completa (bases de datos, temas, plugins y archivos multimedia)"
+
+#: trunk/views/about.php:379
+msgid "Compressed Backups (Zip Format)"
+msgstr "Copias de seguridad comprimidas (formato Zip)"
+
+#: trunk/views/about.php:389
+msgid "Directory Filters"
+msgstr "Filtros por directorio"
+
+#: trunk/views/about.php:394
+msgid "Database Table Filters"
+msgstr "Filtros por tabla de la base de datos"
+
+#: trunk/views/about.php:399
+msgid "Single File Database Export"
+msgstr "Exportación de la base de datos en un único archivo"
+
+#: trunk/views/about.php:404
+msgid "Purge Old Backups"
+msgstr "Purgar antiguas copias de seguridad"
+
+#: trunk/views/about.php:409
+msgid "Cleanup Work Files &amp; Logs"
+msgstr "Limpiar archivos de trabajo y registros"
+
+#: trunk/views/about.php:414
+msgid "Backup Notifications via Email"
+msgstr "Notificaciones de copia de seguridad por correo electrónico"
+
+#: trunk/views/about.php:419
+msgid "One Click Restore</strong>"
+msgstr "Restauración en un clic</strong>"
+
+#: trunk/views/about.php:424
+msgid "Single File Backup"
+msgstr "Copia de seguridad en un único archivo"
+
+#: trunk/views/about.php:429
+msgid "Scheduled Backups"
+msgstr "Copias de seguridad programadas"
+
+#: trunk/views/about.php:434
+msgid "Import Backups"
+msgstr "Importar copias de seguridad"
+
+#: trunk/views/about.php:444
+msgid "Premium Support"
+msgstr "Soporte premium"
+
+#: trunk/views/about.php:449
+msgid "Product Updates"
+msgstr "Actualizaciones del producto"
+
+#: trunk/views/about.php:456
+msgid "GET PREMIUM"
+msgstr "HÁGASE PREMIUM"
+
+#: trunk/views/about.php:479
+msgid "No valid changelog was found."
+msgstr "No se encontró un registro válido."
+
+#. TRANSLATORS: %s = plugin name.
+#. This string is in the header of one of my pages and looks like this: WP
+#. BackItUp Dashboard
+#. Similar to how WordPress uses the word dashboard at the in the left
+#. navigation.
+#: trunk/views/backup.php:17
+#, php-format
+msgid "%s Dashboard"
+msgstr "Escritorio de %s"
+
+#: trunk/views/backup.php:225
+msgid "Dismiss"
+msgstr "Descartar"
+
+#: trunk/views/backup.php:234
+#, php-format
+msgid "WPBackItUp Premium must be reinstalled with this release.  Please use this %s link %s to download WPBackItUp Premium."
+msgstr "WPBackItUp Premium debe reinstalarse con este lanzamiento. Por favor, use este %s enlace %s para descargar WPBackItUp Premium."
+
+#: trunk/views/backup.php:235
+#, php-format
+msgid "See our knowledge base %s article %s to find out why you are seeing this message."
+msgstr "Visite nuestro %s artículo %s en la base de conocimiento para saber porqué está viendo este mensaje."
+
+#: trunk/views/backup.php:249
+#, php-format
+msgid "Backup folder does not exist. Please contact %s for assistance."
+msgstr "La carpeta para las copias de seguridad no existe. Por favor contacte con %s para conseguir ayuda."
+
+#: trunk/views/backup.php:252 trunk/views/backup.php:258
+msgid "Close"
+msgstr "Cerrar"
+
+#: trunk/views/backup.php:273
+msgid "Click the backup button to create a zipped backup file of this site's database, plugins, themes and settings."
+msgstr "Haga clic en el botón de copia de seguridad para crear una copia de seguridad de la base de datos, plugins, temas y configuración de este sitio web en un archivo zip."
+
+#: trunk/views/backup.php:274
+msgid "Once your backup file has been created it will appear in the available backups section below. This file may remain on your hosting providers server but we recommend that you download and save it somewhere safe."
+msgstr "Una vez se ha creado su archivo de copia de seguridad aparecerá en la sección inferior de copias de seguridad disponibles. Este archivo permanecerá en su proveedor de hosting pero se recomienda que lo descargue y guarde en algún lugar seguro."
+
+#: trunk/views/backup.php:275
+msgid "WPBackItUp premium customers can use these backup files to perform an automated restore of their site."
+msgstr "Los clientes premium de WPBackItUp pueden utilizar estos archivos de copia de seguridad para restaurar automáticamente su sitio web."
+
+#: trunk/views/backup.php:286
+#, php-format
+msgid "WPBackItUp lite customers may use these backup files to manually restore their site.  Please visit %s for manual restore instructions."
+msgstr "Los clientes lite de WPBackItUp pueden utilizar estos archivos de copia de seguridad para restaurar de forma manual su sitio web. Visite %s para saber como realizar la restauración manual."
+
+#: trunk/views/backup.php:291
+#, php-format
+msgid "Want to schedule your backups? Upgrade to %s and automate your backups today!"
+msgstr "¿Quiere programar sus copias de seguridad? ¡Actualice a %s y automatice sus copias de seguridad hoy!"
+
+#: trunk/views/backup.php:291
+msgid "premium"
+msgstr "premium"
+
+#: trunk/views/backup.php:323 trunk/views/backup.php:372
+msgid "Type"
+msgstr "Tipo"
+
+#: trunk/views/backup.php:325 trunk/views/backup.php:376
+msgid "Duration"
+msgstr "Duración"
+
+#: trunk/views/backup.php:344
+msgid "Success"
+msgstr "Éxito"
+
+#: trunk/views/backup.php:347
+msgid "Active"
+msgstr "Activo"
+
+#: trunk/views/backup.php:398
+#, php-format
+msgid "The automated restore feature is only available to WPBackItUp premium customers.  Please visit %s to get WPBackItUp risk free for 30 days."
+msgstr "La función de restauración automática sólo está disponible para clientes premium de WPBackItUp. Visite %s para conseguir WP BackItUp sin riesgos por 30 días."
+
+#: trunk/views/backup.php:414
+msgid "Preparing for backup"
+msgstr "Preparándose para la copia de seguridad"
+
+#: trunk/views/backup.php:415
+msgid "Creating inventory of files to backup"
+msgstr "Creando el inventario de archivos a guardar en la copia de seguridad"
+
+#: trunk/views/backup.php:416
+msgid "Exporting database"
+msgstr "Exportando base de datos"
+
+#: trunk/views/backup.php:417
+msgid "Backing up database"
+msgstr "Realizando copia de seguridad de la base de datos"
+
+#: trunk/views/backup.php:418
+msgid "Backing up themes"
+msgstr "Realizando copia de seguridad de los temas"
+
+#: trunk/views/backup.php:419
+msgid "Backing up plugins"
+msgstr "Realizando copia de seguridad de los plugins"
+
+#: trunk/views/backup.php:420
+msgid "Backing up uploads"
+msgstr "Realizando copia de seguridad de las subidas"
+
+#: trunk/views/backup.php:421
+msgid "Backing up everything else"
+msgstr "Realizando copia de seguridad del resto"
+
+#: trunk/views/backup.php:422
+msgid "Validating backup"
+msgstr "Validando copia de seguridad"
+
+#: trunk/views/backup.php:424
+msgid "Encrypting sensitive files"
+msgstr "Cifrando archivos sensibles"
+
+#: trunk/views/backup.php:426
+msgid "Finalizing backup"
+msgstr "Acabando la copia de seguridad"
+
+#: trunk/views/backup.php:436
+msgid "Backup completed successfully"
+msgstr "Copia de seguridad completada con éxito."
+
+#: trunk/views/backup.php:457
+msgid "Version "
+msgstr "Versión"
+
+#: trunk/views/backup.php:459
+msgid "Welcome to WPBackItUp!"
+msgstr "Bienvenido a WPBackItUp!"
+
+#: trunk/views/backup.php:459
+msgid "The simplest way to backup your WordPress site."
+msgstr "La forma más simple de realizar copias de seguridad de su sitio Wordpress."
+
+#: trunk/views/backup.php:460
+msgid "Getting started is easy, just click the backup button on the left side of this page."
+msgstr "Empezar es sencillo, sólo haga clic en el botón de copia de seguridad en el lado izquierdo de esta página."
+
+#: trunk/views/backup.php:464
+#, php-format
+msgid "Congratulations! You have performed <span style=\"font-weight:bold;font-size:medium;color: green\">%s</span> successful backups."
+msgstr "¡Enhorabuena! Ha realizado <span style=\"font-weight:bold;font-size:medium;color: green\">%s</span> copias de seguridad con éxito."
+
+#: trunk/views/backup.php:465
+msgid "Tips"
+msgstr "Consejos"
+
+#: trunk/views/backup.php:466
+msgid "Backup your site at least once per week"
+msgstr "Haga una copia de seguridad al menos un vez por semana"
+
+#: trunk/views/backup.php:467
+msgid "Download all your backups and store them somewhere safe"
+msgstr "Descargue sus copias de seguridad y guárdelas en algún lugar seguro"
+
+#: trunk/views/backup.php:468
+msgid "Verify your backup files are good by taking a look at what's inside"
+msgstr "Verifique que sus archivos de copia de seguridad estén bien mirando lo que contienen"
+
+#: trunk/views/backup.php:481
+msgid "Register WPBackItUp"
+msgstr "Registrar WPBackItUp"
+
+#: trunk/views/backup.php:484
+msgid "Enter your name and email address below to receive <b>special offers</b> and access to our world class <b>support</b> team.  <br />"
+msgstr "Introduzca su nombre y correo electrónico debajo para recibir <b>ofertas especiales</b> y acceso a nuestro equipo de <b>soporte</b> de talla mundial. <br />"
+
+#: trunk/views/backup.php:495
+msgid "Useful Links"
+msgstr "Enlaces útiles"
+
+#: trunk/views/backup.php:497
+msgid "Getting Started Video"
+msgstr "Vídeo de cómo empezar"
+
+#: trunk/views/backup.php:501
+msgid "Your account"
+msgstr "Su cuenta"
+
+#: trunk/views/backup.php:506
+msgid "Website Migration Service"
+msgstr "Servicio de migraciones de páginas web"
+
+#: trunk/views/backup.php:508
+msgid "Documentation"
+msgstr "Documentación"
+
+#: trunk/views/backup.php:510
+msgid "Feature request"
+msgstr "Solicite función"
+
+#: trunk/views/backup.php:512
+msgid "Language Translations"
+msgstr "Traducciones"
+
+#: trunk/views/backup.php:514
+msgid "Contact"
+msgstr "Contacto"
+
+#: trunk/views/settings.php:13
+#, php-format
+msgid "%s Settings"
+msgstr "%s Ajustes"
+
+#: trunk/views/settings.php:44
+msgid "Settings updated successfully!"
+msgstr "¡La configuración se ha actualizado con éxito!"
+
+#: trunk/views/settings.php:57
+msgid "Email Notifications"
+msgstr "Notificaciones por correo electrónico"
+
+#: trunk/views/settings.php:58
+msgid "Please enter your email address if you would like to receive backup email notifications."
+msgstr "Por favor, introduzca su dirección de correo electrónico si quiere recibir notificacions por correo de sus copias de seguridad"
+
+#: trunk/views/settings.php:59
+msgid "Backup email notifications will be sent for every backup and will contain status information related to the backup."
+msgstr "Las notificaciones por correo electrónico de las copias de seguridad se enviaran por cada copia de seguridad y contendrán información relacionada con el estado de la copia de seguridad"
+
+#: trunk/views/settings.php:77
+msgid "Enter the number of backup archives that you would like to remain on the server."
+msgstr "Introduzca el número de copias de seguridad que quiere que permanezcan en su servidor."
+
+#: trunk/views/settings.php:78
+msgid "Many hosts limit the amount of space that you can take up on their servers. This option tells WPBackItUp the maximum number of backup archives that should remain on your hosts server.  Don't worry, we will always remove the oldest backup archives first."
+msgstr "Muchos proveedores de hosting limitan la cantidad de espacio que puede usar en sus servidores. Esta opción le dice a WPBackItUp el número máximo de copias de seguridad que pueden permanecer en los servidores. No se preocupe, siempre eliminaremos primero las copias de seguridad más antiguas."
+
+#: trunk/views/settings.php:97
+msgid "Logging?"
+msgstr "Registrarse?"
+
+#: trunk/views/settings.php:98
+msgid "Turn on WPBackItUp logging."
+msgstr "Activar el registro de WPBackItUp."
+
+#: trunk/views/settings.php:99
+msgid "This option should only be turned on by advanced users or when troubleshooting issues with WPBackItUp support."
+msgstr "Esta opción solo debería activarse por usuarios avanzados o durante la solución de problemas con el soporte de WPBackItUp."
+
+#: trunk/views/settings.php:100
+msgid "Yes"
+msgstr "Sí"
+
+#: trunk/views/settings.php:101
+msgid "No"
+msgstr "No"
+
+#: trunk/views/settings.php:109
+msgid "Single File Database Export (db)"
+msgstr "Exportación de la base de datos en un único archivo (db)"
+
+#: trunk/views/settings.php:111
+msgid "Check this box if you would like WPBackItUp to export your database into a single db file."
+msgstr "Seleccione esta casilla si quiere que WPBackItUp exporte su base de datos en un único archivo db."
+
+#: trunk/views/settings.php:112
+msgid "When this setting is turned on WPBackItUp will attempt to create a single file that contains your entire database.  This option may not be possible with some hosting providers.  This setting will be turned off automatically if WPBackItUp is unable to complete this step for any reason."
+msgstr "Cuando este ajuste está activo, WPBackItUp intentará crear un único archivo que contenga toda su base de datos. Esta opción puede no ser posible usarla en algunos proveedores de alojamiento web. Este ajuste se desconectará automáticamente si por cualquier razón WPBackItUp no puede completar este paso."
+
+#: trunk/views/settings.php:119
+msgid "Select your maximum zip file size."
+msgstr "Seleccione el tamaño máximo de su archivo zip."
+
+#: trunk/views/settings.php:120
+msgid "Some hosting providers do not allow large zip files so if you are encountering backup errors then reducing this setting may help. Please note that this setting will impact performance so we recommend it is set as high as possible."
+msgstr "Algunos proveedores de alojamiento web no permiten grandes archivos zip, así que si usted se está encontrando con errores de copia de seguridad, entonces, reduciendo este ajuste le puede resultar de ayuda. Por favor, tenga en cuenta que este ajuste impactará en el rendimiento, así que le recomendamos que lo establezca lo más alto posible."
+
+#: trunk/views/settings.php:122
+msgid "100MB"
+msgstr "100 MB"
+
+#: trunk/views/settings.php:123
+msgid "200MB"
+msgstr "200 MB"
+
+#: trunk/views/settings.php:124
+msgid "300MB"
+msgstr "300 MB"
+
+#: trunk/views/settings.php:125
+msgid "400MB"
+msgstr "400 MB"
+
+#: trunk/views/settings.php:126
+msgid "500MB"
+msgstr "500 MB"
+
+#: trunk/views/settings.php:133
+msgid "Task Timeout"
+msgstr "Tiempo de expiración de la tarea"
+
+#: trunk/views/settings.php:135
+msgid "Select how long WPBackItUp should wait for tasks to complete."
+msgstr "Seleccione cuanto tiempo debe esperar WPBackItUp para completar las tareas."
+
+#: trunk/views/settings.php:136
+msgid "On some hosts background tasks are allowed to run for a very limited amount of time before they timeout. This setting will tell WPBackItUp how long to wait for each background task to complete.  This setting should only be used when working with WPBackItUp support."
+msgstr "En algunos hosts, las tareas en segundo plano solo se permiten durante un tiempo muy limitado antes de que expiren. Este ajuste le dirá a WPBackItUp cuanto tiempo debe esperar para cada tarea en segundo plano para completarla. Este ajuste solo debería usarse cuando esté trabajando junto al soporte de WPBackItUp."
+
+#: trunk/views/settings.php:138
+msgid "1 Minute"
+msgstr "1 minuto"
+
+#: trunk/views/settings.php:139
+msgid "2 Minute"
+msgstr "2 minutos"
+
+#: trunk/views/settings.php:140
+msgid "3 Minute"
+msgstr "3 minutos"
+
+#: trunk/views/settings.php:141
+msgid "4 Minute"
+msgstr "4 minutos"
+
+#: trunk/views/settings.php:142
+msgid "5 Minute"
+msgstr "5 minutos"
+
+#: trunk/views/settings.php:149
+msgid "Batch Size"
+msgstr "Tamaño del lote"
+
+#: trunk/views/settings.php:150
+msgid "Enter the batch size for each of your content items."
+msgstr "Introduzca el tamaño del lote de cada uno de sus elementos de contenido."
+
+#: trunk/views/settings.php:151
+msgid "These settings tell WPBackItUp how many items that should be added to the backup at a time.  If you experience timeouts while running a backup then these settings can be used to help reduce the amount of time it takes WPBackItUp to complete each backup task ."
+msgstr "Esta configuración le cuenta a WPBackItUp cuantos elementos deben añadirse a la copia de seguridad en cada momento. Si experimenta tiempos de espera mientras se realiza la copia de seguridad, entonces esta configuración se puede usar para reducir la cantidad de tiempo que tarda WPBackItUp en completar cada copia de seguridad."
+
+#: trunk/views/settings.php:154
+msgid "DB Tables Batch Size"
+msgstr "Tamaño del lote de las tablas de la base de datos"
+
+#: trunk/views/settings.php:159
+msgid "Plugins Batch Size"
+msgstr "Tamaño del lote de plugins"
+
+#: trunk/views/settings.php:164
+msgid "Themes Batch Size"
+msgstr "Tamaño del lote de temas"
+
+#: trunk/views/settings.php:169
+msgid "Uploads Batch Size"
+msgstr "Tamaño del lote de subidas"
+
+#: trunk/views/settings.php:174
+msgid "Others Batch Size"
+msgstr "Tamaño del lote de otros"
+
+#: trunk/views/settings.php:177 trunk/views/settings.php:211 trunk/views/settings.php:251
+msgid "* These settings should only be modified by advanced users or when when working with WPBackItUp support."
+msgstr "* Esta configuración solo se debería modificar por usuarios avanzados o cuando trabaje con el soporte de WPBackItUp."
+
+#: trunk/views/settings.php:189
+msgid "Filter Your Folders"
+msgstr "Filtrar sus carpetas"
+
+#: trunk/views/settings.php:190
+msgid "Enter a comma separated list of folders that should be excluded from your backups."
+msgstr "Introduzca una lista de las carpetas, separadas por comas, que deben ser excluidas de sus copias de seguridad."
+
+#: trunk/views/settings.php:191
+msgid "It is important to note that when a folder name is present in this list any occurrence of that folder, and all its contents, will be excluded from the backup."
+msgstr "Es importante que tenga en cuenta que cuando el nombre de una carpeta se encuentra en esta lista, todo lo que ocurra en ella y a su contenido será excluido de la copia de seguridad."
+
+#: trunk/views/settings.php:193
+msgid "Plugin Folders Filter"
+msgstr "Filtro de la carpeta de plugins"
+
+#: trunk/views/settings.php:198
+msgid "Theme Folders Filter"
+msgstr "Filtro de la carpeta de temas"
+
+#: trunk/views/settings.php:203
+msgid "Upload Folders Filter"
+msgstr "Filtro de la carpeta de subidas"
+
+#: trunk/views/settings.php:207
+msgid "Other Folders Filter"
+msgstr "Filtro de otras carpetas"
+
+#: trunk/views/settings.php:216
+msgid "Filter Your Database Tables"
+msgstr "Filtrar sus tablas de la base de datos"
+
+#: trunk/views/settings.php:217
+msgid "Exclude custom database tables from the backup."
+msgstr "Excluir de su copia de seguridad tablas personalizadas de la base de datos."
+
+#: trunk/views/settings.php:218
+msgid "If you would like to exclude a custom table from the backup then simply drag it to the list on the right.  WordPress core tables may not be excluded from the backup. "
+msgstr "Si desea excluir una tabla personalizada de su copia de seguridad, simplemente arrástrela a la lista de la derecha. Las tablas propias de WordPress no se pueden excluir."
+
+#: trunk/views/settings.php:256
+msgid "Remove Data on Uninstall?"
+msgstr "¿Borrar datos al desinstalar?"
+
+#: trunk/views/settings.php:258
+msgid "Check this box if you would like WPBackItUp to completely remove all of its data when the plugin is deleted."
+msgstr "Active esta casilla si desea que WPBackItUp elimine por completo todos los datos asociados al plugin cuando este sea borrado."
+
+#: trunk/views/support.php:73 trunk/views/support.php:228
+msgid "Send Logs"
+msgstr "Enviar registros"
+
+#: trunk/views/support.php:77
+msgid "Download Logs"
+msgstr "Registros de descarga"
+
+#: trunk/views/support.php:83
+msgid "Advanced"
+msgstr "Avanzado"
+
+#: trunk/views/support.php:105
+msgid "Support Center"
+msgstr "Centro de soporte"
+
+#: trunk/views/support.php:107
+msgid "Welcome to the WPBackItUp support center. If you have any questions or run into any trouble with WPBackItUp then you've come to the right place."
+msgstr "Bienvenido al centro de soporte de WPBackItUp. Si tiene cualquier pregunta o tiene algún problema con WPBackItUp, entonces ha venido al lugar correcto."
+
+#: trunk/views/support.php:124
+msgid "To streamline support requests and better serve you, we utilize a support ticket system. Every support request is assigned a unique ticket number which you can use to track progress and responses via our support portal. For your convenience we provide a complete archive and history of all your support requests. All correspondence is via email so a valid email address is required to submit a ticket. "
+msgstr "Para simplificar las peticiones de ayuda y servirle mejor, utilizamos un sistema de soporte con tickets. Cada petición de soporte se le asigna un número único de ticket que puede usar para seguir el progreso y las respuestas a través de nuestro portal de soporte. Para su comodidad le damos un completo historial y registro de todas sus peticiones de ayuda. Toda la correspondencia es a través de correo electrónico, así que se requiere una dirección de correo electrónico válida para enviar un ticket."
+
+#: trunk/views/support.php:132
+msgid "Search &rarr; Knowledge base"
+msgstr "Buscar &rarr; Base del conocimiento"
+
+#: trunk/views/support.php:133
+msgid "Want to search our entire documentation library, all our how to articles and even our faq's in one shot?  Just type your question into the knowledge base search bar and we'll show you everything we have for that topic."
+msgstr "¿Quiere buscar en toda nuestra biblioteca de documentación, en todos nuestros artículos \"Cómo hacer\" e incluso en nuestras preguntas más frecuentes de una sola vez? Solo debe escribir su pregunta en la barra de búsquedas de la base de conocimiento y le mostraremos todo lo que tengamos sobre ese tema."
+
+#: trunk/views/support.php:135
+msgid "New &rarr; Ticket"
+msgstr "Nuevo &rarr; Ticket"
+
+#: trunk/views/support.php:136
+msgid "Need to open a new support ticket? Just click the link above.  Please provide as much detail as possible so we can best assist you."
+msgstr "¿Necesita abrir un nuevo ticket de soporte? Haga clic en el enlace de arriba. Por favor, proporcione tantos detalles como sea posible para que podamos asistirle de la mejor manera posible."
+
+#: trunk/views/support.php:138
+msgid "Check &rarr; Status"
+msgstr "Comprobar &rarr; estado"
+
+#: trunk/views/support.php:139
+msgid "To check ticket status or update a previously submitted ticket you will first need to login. Our support portal provides a history of your current and past support requests complete with responses."
+msgstr "Para comprobar el estado o actualizar un ticket enviado anteriormente deberá primero iniciar sesión. Nuestro portal de soporte provee un historial de sus peticiones de soporte actuales y antiguas completas con sus respuestas."
+
+#: trunk/views/support.php:141
+msgid "Send &rarr; Logs"
+msgstr "Enviar &rarr; registros"
+
+#: trunk/views/support.php:142
+msgid "Sometimes it may be necessary for you to send your log files to support. If that ever happens, just click the link above and we will show you what to do."
+msgstr "A veces puede ser necesario que deba enviar al soporte sus archivos de registro. Si eso ocurre, haga clic en el enlace superior y le mostraremos que tiene que hacer."
+
+#: trunk/views/support.php:176
+msgid "If you have been asked by support to send your log files then you are in the right spot."
+msgstr "Si desde el soporte le han pedido que envié sus archivos de registro, entonces está en el sitio correcto."
+
+#: trunk/views/support.php:188
+msgid "Send Logs to Support"
+msgstr "Enviar registros al soporte"
+
+#: trunk/views/support.php:189
+msgid "This form should only be used when working with support."
+msgstr "Este formulario solo debería usarse cuando se trabaja con el soporte."
+
+#: trunk/views/support.php:190
+#, php-format
+msgid "Please make sure to open a support ticket via WPBackItUp <a href=\"%s\" target=\"_blank\"> support portal.</a> before using this form."
+msgstr "Por favor, asegúrese de crear una incidencia de soporte técnico a través del <a href=\"%s\" target=\"_blank\">portal de soporte</a> de WPBackItUp antes de usar este formulario."
+
+#: trunk/views/support.php:191
+msgid "The ticket id you receive from your support request should be entered in the ticket id field below."
+msgstr "El id del ticket de la incidencia que reciba de nuestro soporte técnico debe introducirse en el campo inferior del id del ticket."
+
+#: trunk/views/support.php:192
+msgid "your email address"
+msgstr "su dirección de correo electrónico"
+
+#: trunk/views/support.php:203
+msgid "support ticket id"
+msgstr "id del ticket del soporte técnico"
+
+#: trunk/views/support.php:214
+msgid "problem description or additional information"
+msgstr "descripción del problema o información adicional"
+
+#: trunk/views/support.php:232
+msgid "Premium customers receive priority support."
+msgstr "Los clientes premium reciben soporte técnico prioritario."
+
+#: trunk/views/support.php:242
+msgid "Support email could not be sent!"
+msgstr "¡El correo electrónico de soporte no se pudo enviar!"
+
+#: trunk/views/support.php:249
+msgid "Support email sent successfully!"
+msgstr "¡Correo para el soporte enviado con éxito!"
+
+#: trunk/views/support.php:280
+msgid "Download logs file manually."
+msgstr "Descargar archivos de registro manualmente."
+
+#: trunk/views/support.php:308
+msgid "Content goes here"
+msgstr "El contenido va aquí"
+
+#: trunk/wp-backitup.php:109 trunk/wp-backitup.php:110
+#, php-format
+msgid "Every %s hours"
+msgstr "Cada %s horas"
+
+#: trunk/wp-backitup.php:111 trunk/wp-backitup.php:112 trunk/wp-backitup.php:113 trunk/wp-backitup.php:114 trunk/wp-backitup.php:115
+#, php-format
+msgid "WPBUP - Every %s minutes"
+msgstr "WPBUP - Cada %s minutos"
+
+#: trunk/wp-backitup.php:117
+msgid "WPBUP - Once Weekly"
+msgstr "WPBUP - Semanalmente"
+
+#: trunk/wp-backitup.php:118
+msgid "WPBUP - Once Monthly"
+msgstr "WPBUP - Mensualmente"
+
+#: trunk/wp-backitup.php:119 trunk/wp-backitup.php:120
+#, php-format
+msgid "WPBUP - Every %s hours"
+msgstr "WPBUP - Cada %s horas"
+
+#: trunk/wp-backitup.php:129
+msgid "Local File"
+msgstr "Archivo Local"
+
+#: trunk/wp-backitup.php:186
+msgid "Cleanup"
+msgstr "Limpiar"
+
+#: trunk/wp-backitup.php:262
+msgid "WPBackItUp requires PHP Version 5.2 or later"
+msgstr "WPBackItUp necesita la version 5.2 o superior de PHP"

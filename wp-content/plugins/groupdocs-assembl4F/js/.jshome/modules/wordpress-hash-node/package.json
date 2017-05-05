@@ -1,0 +1,89 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "wordpress-hash-node",
+        "scope": null,
+        "escapedName": "wordpress-hash-node",
+        "name": "wordpress-hash-node",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/home/user/nodebots/server/home"
+    ]
+  ],
+  "_from": "wordpress-hash-node@latest",
+  "_id": "wordpress-hash-node@1.0.0",
+  "_inCache": true,
+  "_location": "/wordpress-hash-node",
+  "_nodeVersion": "4.4.3",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/wordpress-hash-node-1.0.0.tgz_1464768321639_0.3074958249926567"
+  },
+  "_npmUser": {
+    "name": "alexalbala",
+    "email": "alexalbala88@gmail.com"
+  },
+  "_npmVersion": "2.15.3",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "wordpress-hash-node",
+    "scope": null,
+    "escapedName": "wordpress-hash-node",
+    "name": "wordpress-hash-node",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/wordpress-hash-node/-/wordpress-hash-node-1.0.0.tgz",
+  "_shasum": "f409fb68e6201a52a171fb626144bd3a6ed2f888",
+  "_shrinkwrap": null,
+  "_spec": "wordpress-hash-node",
+  "_where": "/home/user/nodebots/server/home",
+  "author": {
+    "name": "Alex Albalà",
+    "email": "alexalbala88@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/AlexAlbala/wordpress-hash-node/issues"
+  },
+  "dependencies": {},
+  "description": "A phpass portable hashing function compatible with wordpress passwords",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "f409fb68e6201a52a171fb626144bd3a6ed2f888",
+    "tarball": "https://registry.npmjs.org/wordpress-hash-node/-/wordpress-hash-node-1.0.0.tgz"
+  },
+  "gitHead": "bcd1ea2c2ba23afb90e1b963e5b32b7cd4779bdf",
+  "homepage": "https://github.com/AlexAlbala/wordpress-hash-node",
+  "keywords": [
+    "wordpress",
+    "phpass",
+    "hash"
+  ],
+  "license": "GLP",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "alexalbala",
+      "email": "alexalbala88@gmail.com"
+    }
+  ],
+  "name": "wordpress-hash-node",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexAlbala/wordpress-hash-node.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.0"
+}

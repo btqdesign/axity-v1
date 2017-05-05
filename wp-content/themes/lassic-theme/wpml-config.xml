@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<wpml-config>
+	<custom-types>
+		<custom-type translate="1">class</custom-type>
+ 		<custom-type translate="1">member</custom-type>
+ 		<custom-type translate="1">timetable</custom-type>
+	</custom-types>
+	
+	<taxonomies>
+		<taxonomy translate="1">class-category</taxonomy>
+  		<taxonomy translate="1">member-category</taxonomy>
+ 	</taxonomies>
+</wpml-config>
