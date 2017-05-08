@@ -1,6 +1,6 @@
 @charset "utf-8";
 /*
-ModularBits v1.20
+ModularBits v1.22
 Theme Name: Lassic
 Theme URI: http://www.ChimpStudio.co.uk/
 Author: ChimpStudio
@@ -119,6 +119,9 @@ strong {color: #333333;}
 iframe { border: none; float: left; width: 100% !important; }
 .container.fullwidth {width: 100%;}
 	.container.fullwidth .col-md-12 {padding: 0px;}
+	/*cambio título soluciones IT*/
+	#titleSoluciones h2, h2 span{ color:#fff!important;}
+	#titleSoluciones h2 span{color:#fff!important;}
 /* Wordpress Defult Clasess */
 .sticky, .wp-caption, .wp-caption-text, .gallery-caption, .bypostauthor {}
 .wp-caption img,img.alignnone {height: auto;}
@@ -485,6 +488,8 @@ blockquote span { position: relative; z-index: 1; }
 .devider2 { position: relative; width: 100%; height: 5px; background: url(assets/images/devider-bg2.png) repeat-x; }
 .blog-editor .rich_editor_text P {margin-bottom: 35px;}
 .blog-editor .cs-seprator {margin-bottom: 35px;}
+/*Cambio - Se agrega la clase para img Conexion*/
+#imgConexion{margin:0px 0px -6px 0px!important}
 .image-frame { float: left; width: 100%; margin: 0px 0px 25px 0px; }
 	.image-frame figure { float: left; width: 100%; }
 		.image-frame figure:after { display: block; content: ''; clear: both; }
