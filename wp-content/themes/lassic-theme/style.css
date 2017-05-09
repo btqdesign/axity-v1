@@ -1,6 +1,6 @@
 @charset "utf-8";
 /*
-ModularBits v1.22
+ModularBits v1.26
 Theme Name: Lassic
 Theme URI: http://www.ChimpStudio.co.uk/
 Author: ChimpStudio
@@ -101,6 +101,7 @@ body { color: #666666; font-family: 'Source Sans Pro', sans-serif; font-size: 16
 body h1, body h2, body h3, body h4, body h5, body h6 { color: #000; font-family: 'Source Sans Pro', sans-serif; font-style: normal; font-weight: 700; line-height: 1.5 !important; margin: 0px 0px 8px 0px }
 h1 {font-size: 28px;}
 h2 {font-size: 24px;}
+.main-section h2, .main-section h2 a{ font-size:40px!important;}
 h3 {font-size: 22px;}
 h4 {font-size: 20px;}
 h5 {font-size: 16px;}
@@ -490,7 +491,73 @@ blockquote span { position: relative; z-index: 1; }
 .blog-editor .cs-seprator {margin-bottom: 35px;}
 /*Cambio - Se agrega la clase para img Conexion*/
 #imgConexion{margin:0px 0px -6px 0px!important}
-.image-frame { float: left; width: 100%; margin: 0px 0px 25px 0px; }
+.image-frame { float: left; width: 100%; /*margin: 0px 0px 25px 0px;*/ margin:0px; }
+
+/*Mobile*/
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+.image-frame {background:url(http://axity.idevol.net/wp-content/uploads/2017/05/bg_mobile_conexiones.png); }
+#secSoluciones{background:url(http://axity.idevol.net/wp-content/uploads/2015/03/axity_soluciones2.png)!important;}
+}
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+.image-frame {background:url(http://axity.idevol.net/wp-content/uploads/2017/05/bg_mobile_conexiones.png); }
+#secSoluciones{background:url(http://axity.idevol.net/wp-content/uploads/2015/03/axity_soluciones2.png)!important;}
+}
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2) { 
+.image-frame {background:url(http://axity.idevol.net/wp-content/uploads/2017/05/bg_mobile_conexiones.png); }
+#secSoluciones{background:url(http://axity.idevol.net/wp-content/uploads/2015/03/axity_soluciones2.png)!important;}
+}
+/* Portrait */
+@media only screen 
+  and (min-device-width: 414px) 
+  and (max-device-width: 736px) 
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: portrait) { 
+.image-frame {background:url(http://axity.idevol.net/wp-content/uploads/2017/05/bg_mobile_conexiones.png); }
+#secSoluciones{background:url(http://axity.idevol.net/wp-content/uploads/2015/03/axity_soluciones2.png)!important;}
+}
+/*tablets*/
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+.image-frame {background:url(http://axity.idevol.net/wp-content/uploads/2017/05/bg_mobile_conexiones.png); }
+#secSoluciones{background:url(http://axity.idevol.net/wp-content/uploads/2015/03/axity_soluciones2.png)!important;}
+}
+/* ----------- iPad 1 and 2 ----------- */
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+.image-frame {background:url(http://axity.idevol.net/wp-content/uploads/2017/05/bg_mobile_conexiones.png); }
+#secSoluciones{background:url(http://axity.idevol.net/wp-content/uploads/2015/03/axity_soluciones2.png)!important;}
+}
+/* ----------- iPad 3 and 4 ----------- */
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+.image-frame {background:url(http://axity.idevol.net/wp-content/uploads/2017/05/bg_mobile_conexiones.png); }
+#secSoluciones{background:url(http://axity.idevol.net/wp-content/uploads/2015/03/axity_soluciones2.png)!important;}
+}
+
+
+
+
+	
+	
 	.image-frame figure { float: left; width: 100%; }
 		.image-frame figure:after { display: block; content: ''; clear: both; }
 /* Cs Tags Style */
@@ -548,7 +615,7 @@ blockquote span { position: relative; z-index: 1; }
 #cs-comments, #cs-comments ul li { width: 100%; float: left; }
 #cs-comments ul {margin: 0px;}
 	#cs-comments ul li {list-style: none;}
-#cs-comments .cs-section-title {margin-bottom: 20px;}
+#cs-comments .cs-section-title {/*margin-bottom: 20px;*/}
 #cs-comments .thumblist li {margin-bottom: 20px;}
 .thumblist figure { float: left; width: 57px; border-radius: 100%; margin-right: 20px; position: relative; margin-top: 3px; }
 	.thumblist figure:before { content: ""; position: absolute; right: -20px; top: 29px; width: 20px; height: 5px; background-color: #ebebeb; }
@@ -756,9 +823,9 @@ span.cs-color {margin-left: 6px;}
 .caption-inner .post-options li a {color: #fff !important;}
 .cs-portfoliolist .post-options li a { color: #999; text-transform: uppercase; }
 .cs-portfoliolist .post-options li a,.cs-portfoliolist .post-options li { float: none; display: inline-block; }
-.cs-top-center.cs-portfoliolist article:hover figure .caption-inner,
+/*Cambio Se elimina el background morado*/.cs-top-center.cs-portfoliolist article:hover figure .caption-inner,
 .cs-gutterstyle.cs-portfoliolist article:hover figure .caption-inner,
-.mas-isotope.cs-portfoliolist article:hover figure .caption-inner {opacity: 1;}
+.mas-isotope.cs-portfoliolist article:hover figure .caption-inner {opacity: 1; background:transparent!important;}
 .cs-portfoliolist article:hover figure figcaption {opacity: 1;}
 .cs-top-center.cs-portfoliolist article:hover figure figcaption:after,
 .cs-gutterstyle.cs-portfoliolist article:hover figure figcaption:after,
@@ -786,10 +853,10 @@ span.cs-color {margin-left: 6px;}
 .cs-gutterstyle.cs-portfoliolist figure h3 a,
 .mas-isotope.cs-portfoliolist article:hover figure h3 a,
 .mas-isotope.cs-portfoliolist figure h3 a {color: #fff !important;}
-.cs-portfoliolist .caption-inner { display: inline-block; margin: -50px 0 0 -50px; min-height: 113px; min-width: 113px; position: absolute; top: 40%; padding: 15px; text-align: left; left: 50%; }
+.cs-portfoliolist .caption-inner { display: inline-block; margin: -50px 0 0 -50px; min-height: 113px; min-width: 113px; position: absolute; top: 40%; padding: 15px; text-align: left; left: 50%; background:trasparent!important }
 .cs-portfoliolist article:hover figcaption .caption-inner {top: 50%;}
 .cs-portfoliolist article:hover .caption-inner a i {color: #fff !important;}
-.cs-portfoliolist .caption-inner a { display: block; font-size: 16px; color: #fff; text-transform: uppercase; }
+.cs-portfoliolist .caption-inner a { display: block; font-size: 0; color: #fff; text-transform: uppercase; }
 	.cs-portfoliolist .caption-inner a img {margin: 0 0 15px;}
 .cs-portfoliolist h2 { font-size: 20px; font-weight: 400; margin: 0; text-transform: uppercase; }
 .cs-portfoliolist .mix { opacity: 0; display: none; }
@@ -982,7 +1049,8 @@ a.defaultbtn { font-size: 16px; color: #fff; font-weight: 400; text-transform: u
 /* Extra Large Btn Style */
 /* Strock Buttons Style */
 /* 3D Buttons Style */
-.three-d { background-color: #ec2b3a; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4), 0 -3px 0px rgba(0, 0, 0, 0.4) inset; }
+/*cambio  - se crea un nuevo estilo .three-d { background-color: #ec2b3a; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4), 0 -3px 0px rgba(0, 0, 0, 0.4) inset; } */
+.three-d { background-color: #fff; color:#3e1151!important; border-radius:30px; }
 /* 3D Buttons Style */
 /* Dropcap Style */
 .dropcap-one,
@@ -1307,19 +1375,21 @@ blockquote { position: relative; border: none; float: left; font-size: 20px; fon
 /* FAQ Start */
 .csdefault { margin-bottom: 30px; padding: 0px; float: left; width: 100%; }
 	.csdefault .panel-heading { background: none; border-bottom: none; }
-	.csdefault .panel-default { border-radius: 4px; margin-bottom: 0; position: relative; box-shadow: 0 0 2px 0px rgba(0, 0, 0, 0.2); border: 1px solid #d8d8d8; }
-	.csdefault .panel-title { color: #333333; text-transform: uppercase; font-weight: 400; }
+	/*Cambio Se agrega el estilo de paragragh*/
+	.csdefault .panel-default p{ color:#fff!important; }
+	.csdefault .panel-default { border-radius: 4px; margin-bottom: 0; position: relative; box-shadow: 0 0 2px 0px rgba(0, 0, 0, 0.2); /*border: 1px solid #d8d8d8;*/ }
+	.csdefault .panel-title { /*color: #333333;*/color: #333333; text-transform: uppercase; font-weight: 400; }
 		.csdefault .panel-title:hover {color: #fd4e33;}
-		.csdefault .panel-title a.collapsed {color: #333!important;}
-	.csdefault .panel-body { margin: 0px; padding: 0px 25px 20px 45px; }
+		.csdefault .panel-title a.collapsed {/*color: #333!important;*/color: #fff!important;}
+	.csdefault .panel-body { margin: 0px; padding: 0px 25px 20px 20px; }
 	.csdefault .text p { font-size: 16px; color: #444444; line-height: 1.5em; }
 	.csdefault .text ul { margin: 0px; padding: 0px; }
 		.csdefault .text ul li { list-style: none; margin: 0px; padding: 0px; font-size: 16px; color: #444444; line-height: 1.5em; }
 	.csdefault .panel-heading {padding: 16px;}
 	.csdefault .panel-default > .panel-heading + .panel-collapse > .panel-body {border-top: none;}
 
-.csdefault .panel-heading a {color: #fd4e33 !important;}
-		.csdefault .panel-heading a::before { top: 0; right: 0; color: #fff; background: #fd4e33; border: 1px solid #fd4e33; border-radius: 100%; width: 20px; height: 20px; line-height: 18px; font-size: 15px; padding: 0 0 0 1px; content: '\ea5c'; font-family: 'icomoon'; position: absolute; text-align: center; }
+.csdefault .panel-heading a {color: #fb3449 !important;}
+		.csdefault .panel-heading a::before { top: 0; right: 0; color: #fff; background: #fb3449; border: 1px solid #fb3449; border-radius: 100%; width: 20px; height: 20px; line-height: 18px; font-size: 15px; padding: 0 0 0 1px; content: '\ea5c'; font-family: 'icomoon'; position: absolute; text-align: center; }
 	.csdefault .panel-heading .collapsed {color: #333 !important;}
 		.csdefault .panel-heading .collapsed::before { color: #ccc; background: #fff; border: 1px solid #ccc; content: '\ea5d'; }
 /* Simple FAQ*/
