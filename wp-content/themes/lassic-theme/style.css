@@ -13,32 +13,7 @@ Tags: dark, black, gray, one-column, two-columns, left-sidebar, right-sidebar, f
 */.navigation ul > li > a:before
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,700,900,200&subset=latin,vietnamese,latin-ext);
 
-@font-face {
-	font-family: 'Vita Std Reg';
-	src: url('assets/fonts/VitaStd-RegIta.eot');
-	src: url('assets/fonts/VitaStd-RegIta.eot?#iefix') format('embedded-opentype'),
-		url('assets/fonts/VitaStd-RegIta.woff2') format('woff2'),
-		url('assets/fonts/VitaStd-RegIta.woff') format('woff'),
-		url('assets/fonts/VitaStd-RegIta.ttf') format('truetype'),
-		url('assets/fonts/VitaStd-RegIta.svg#VitaStd-RegIta') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'Vita Std';
-	src: url('assets/fonts/VitaStd-ThinIta.eot');
-	src: url('assets/fonts/VitaStd-ThinIta.eot?#iefix') format('embedded-opentype'),
-		url('assets/fonts/VitaStd-ThinIta.woff2') format('woff2'),
-		url('assets/fonts/VitaStd-ThinIta.woff') format('woff'),
-		url('assets/fonts/VitaStd-ThinIta.ttf') format('truetype'),
-		url('assets/fonts/VitaStd-ThinIta.svg#VitaStd-ThinIta') format('svg');
-	font-weight: 100;
-	font-style: normal;
-}
-
 /*
-
 01. Theme Typo
 02. Header
 	02.1 Top Strip
@@ -116,6 +91,29 @@ Tags: dark, black, gray, one-column, two-columns, left-sidebar, right-sidebar, f
 	05.2 Social Network
 	05.3 CopyRight
 */
+
+@font-face {
+	font-family: 'Vita Std Reg';
+	src: url('assets/fonts/VitaStd-RegIta.eot');
+	src: url('assets/fonts/VitaStd-RegIta.eot?#iefix') format('embedded-opentype'),
+		url('assets/fonts/VitaStd-RegIta.woff2') format('woff2'),
+		url('assets/fonts/VitaStd-RegIta.woff') format('woff'),
+		url('assets/fonts/VitaStd-RegIta.ttf') format('truetype'),
+		url('assets/fonts/VitaStd-RegIta.svg#VitaStd-RegIta') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Vita Std';
+	src: url('assets/fonts/VitaStd-ThinIta.eot');
+	src: url('assets/fonts/VitaStd-ThinIta.eot?#iefix') format('embedded-opentype'),
+		url('assets/fonts/VitaStd-ThinIta.woff2') format('woff2'),
+		url('assets/fonts/VitaStd-ThinIta.woff') format('woff'),
+		url('assets/fonts/VitaStd-ThinIta.ttf') format('truetype'),
+		url('assets/fonts/VitaStd-ThinIta.svg#VitaStd-ThinIta') format('svg');
+	font-weight: 100;
+	font-style: normal;
+}
  
 iframe {width: 100%;}
 * { margin: 0px; padding: 0px; }
