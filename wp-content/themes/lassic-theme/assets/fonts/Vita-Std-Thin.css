@@ -2,11 +2,11 @@
 
 @font-face {
     font-family:'Vita Std Thin';
-    src: url('Vita-Std-Thin.eot');
-	src: url('Vita-Std-Thin.eot?#iefix') format('embedded-opentype'),
-		url('Vita-Std-Thin.woff2') format('woff2'),
-		url('Vita-Std-Thin.woff') format('woff'),
-		url('Vita-Std-Thin.svg#Vita Std Thin') format('svg');
+    src: url('assets/fonts/Vita-Std-Thin.eot');
+	src: url('assets/fonts/Vita-Std-Thin.eot?#iefix') format('embedded-opentype'),
+		url('assets/fonts/Vita-Std-Thin.woff2') format('woff2'),
+		url('assets/fonts/Vita-Std-Thin.woff') format('woff'),
+		url('assets/fonts/Vita-Std-Thin.svg#Vita Std Thin') format('svg');
     font-weight: 250;
     font-style: normal;
     font-stretch: normal;

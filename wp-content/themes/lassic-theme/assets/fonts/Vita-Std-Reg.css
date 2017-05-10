@@ -2,11 +2,11 @@
 
 @font-face {
     font-family:'Vita Std Reg';
-    src: url('Vita-Std-Reg.eot');
-	src: url('Vita-Std-Reg.eot?#iefix') format('embedded-opentype'),
-		url('Vita-Std-Reg.woff2') format('woff2'),
-		url('Vita-Std-Reg.woff') format('woff'),
-		url('Vita-Std-Reg.svg#Vita Std Reg') format('svg');
+    src: url('assets/fonts/Vita-Std-Reg.eot');
+	src: url('assets/fonts/Vita-Std-Reg.eot?#iefix') format('embedded-opentype'),
+		url('assets/fonts/Vita-Std-Reg.woff2') format('woff2'),
+		url('assets/fonts/Vita-Std-Reg.woff') format('woff'),
+		url('assets/fonts/Vita-Std-Reg.svg#Vita Std Reg') format('svg');
     font-weight: 400;
     font-style: normal;
     font-stretch: normal;
