@@ -93,7 +93,7 @@ Tags: dark, black, gray, one-column, two-columns, left-sidebar, right-sidebar, f
 */
 
 @import url('assets/fonts/Vita-Std-Reg.css');
-@import url('assets/fonts/Vita-Std-Thin');
+@import url('assets/fonts/Vita-Std-Thin.css');
  
 iframe {width: 100%;}
 * { margin: 0px; padding: 0px; }
