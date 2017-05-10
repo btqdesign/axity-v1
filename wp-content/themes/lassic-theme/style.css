@@ -126,7 +126,7 @@ Tags: dark, black, gray, one-column, two-columns, left-sidebar, right-sidebar, f
 */
 
 @font-face {
-    font-family:'Vita Std';
+    font-family:'VitaStd-Thin';
     src: url('assets/fonts/Vita-Std-Thin.eot');
 	src: url('assets/fonts/Vita-Std-Thin.eot?#iefix') format('embedded-opentype'),
 		url('assets/fonts/Vita-Std-Thin.woff2') format('woff2'),
@@ -139,7 +139,7 @@ Tags: dark, black, gray, one-column, two-columns, left-sidebar, right-sidebar, f
 }
 
 @font-face {
-    font-family:'Vita Std';
+    font-family:'VitaStd-Reg';
     src: url('assets/fonts/Vita-Std-Reg.eot');
 	src: url('assets/fonts/Vita-Std-Reg.eot?#iefix') format('embedded-opentype'),
 		url('assets/fonts/Vita-Std-Reg.woff2') format('woff2'),
