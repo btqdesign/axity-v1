@@ -92,8 +92,36 @@ Tags: dark, black, gray, one-column, two-columns, left-sidebar, right-sidebar, f
 	05.3 CopyRight
 */
 
+/*
 @import url('assets/fonts/Vita-Std-Reg.css');
 @import url('assets/fonts/Vita-Std-Thin.css');
+*/
+
+@font-face {
+    font-family:'Vita Std Reg';
+    src: url('assets/fonts/Vita-Std-Reg.eot');
+	src: url('assets/fonts/Vita-Std-Reg.eot?#iefix') format('embedded-opentype'),
+		url('assets/fonts/Vita-Std-Reg.woff2') format('woff2'),
+		url('assets/fonts/Vita-Std-Reg.woff') format('woff'),
+		url('assets/fonts/Vita-Std-Reg.svg#Vita Std Reg') format('svg');
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    unicode-range: U+0020-FB04;
+}
+
+@font-face {
+    font-family:'Vita Std Thin';
+    src: url('assets/fonts/Vita-Std-Thin.eot');
+	src: url('assets/fonts/Vita-Std-Thin.eot?#iefix') format('embedded-opentype'),
+		url('assets/fonts/Vita-Std-Thin.woff2') format('woff2'),
+		url('assets/fonts/Vita-Std-Thin.woff') format('woff'),
+		url('assets/fonts/Vita-Std-Thin.svg#Vita Std Thin') format('svg');
+    font-weight: 250;
+    font-style: normal;
+    font-stretch: normal;
+    unicode-range: U+0020-FB04;
+}
  
 iframe {width: 100%;}
 * { margin: 0px; padding: 0px; }
