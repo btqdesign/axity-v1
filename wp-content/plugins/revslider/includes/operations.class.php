@@ -766,7 +766,7 @@ class RevSliderOperations extends RevSliderElementsBase{
 			
 			// Vita Std Reg Vita Std
 			array('type' => 'websafe', 'version' => __('Sans-Serif Fonts', 'revslider'), 'label' => '"Vita Std Reg"'),
-			array('type' => 'websafe', 'version' => __('Sans-Serif Fonts', 'revslider'), 'label' => '"Vita Std"'),
+			array('type' => 'websafe', 'version' => __('Sans-Serif Fonts', 'revslider'), 'label' => '"Vita Std Thin"'),
 
 			//Monospace Fonts
 			array('type' => 'websafe', 'version' => __('Monospace Fonts', 'revslider'), 'label' => '"Courier New", Courier, monospace'),
