@@ -933,7 +933,7 @@ span.cs-color {margin-left: 6px;}
 /* FAQ Start */
 /* Contact Us */
 .cs_form_styling { width: 100%; float: left; }
-	.cs_form_styling input[type="email"],.cs_form_styling  input[type="text"] { font-size: 16px; color: #cccccc; height: 48px; border: 1px solid #cecece; border-radius: 3px; padding-left: 20px; margin-left: 10px; width: 48%; margin-bottom: 20px; display: block; }
+	.cs_form_styling input[type="email"],.cs_form_styling  input[type="text"] { font-size: 16px; color: #cccccc; height: 48px; border: 1px solid #cecece; border-radius: 9px; padding-left: 20px; margin-left: 10px; width: 48%; margin-bottom: 20px; display: block; }
 	.cs_form_styling textarea { width: 50%; height: 264px !important; float: right; font-size: 16px; margin: 0px; color: #3e1151; padding: 20px 0 0 15px; }
 	.cs_form_styling .default-btn { border: medium none; color: #fff; display: block; font-size: 16px; letter-spacing: 2px; line-height: 46px; margin: 35px auto 0; min-width: 280px; text-transform: uppercase; }
 .cs-contact-info p { font-size: 16px; margin: 0px; padding: 0px 15px 30px 0; color: #666666; }
@@ -1461,7 +1461,7 @@ blockquote { position: relative; border: none; float: left; font-size: 20px; fon
 .cs-plain-form .form-style input[type="email"],
 .cs-plain-form .form-style input[type="text"] { margin-left: 0; background: #fff; }
 .cs-classic-form .form-style textarea,
-.cs-plain-form .form-style textarea { width: 100%; border-radius: 2px; }
+.cs-plain-form .form-style textarea { width: 100%; border-radius: 9px; }
 .cs-classic-form .form-style input[type="submit"],
 .cs-plain-form .form-style input[type="submit"] { border: medium none; border-radius: 30px !important; box-shadow: none; font-size: 16px; font-weight: 400; height: 46px !important; color: #fff; min-width: 280px; padding: 0 18px; text-transform: uppercase; }
 .submit-sec span { display: inline-block; }
