@@ -117,8 +117,8 @@ Tags: dark, black, gray, one-column, two-columns, left-sidebar, right-sidebar, f
 	05.3 CopyRight
 */
 iframe {width: 100%;}
-* { margin: 0px; padding: 0px; }
-body { color: #666666; font-family: 'Vita Std Reg', sans-serif; font-size: 16px; font-weight: 400; background-color: #fff; }
+* { margin: 0px; padding: 0px;}
+body { color: #666666; font-family: 'Vita Std Reg', Verdana,sans-serif; font-size: 16px; font-weight: 400; background-color: #fff; }
 	/* Global Typography */
 /*---Heading Typo---*/
 body h1, body h2, body h3, body h4, body h5, body h6 { color: #000; font-family: 'Vita Std Reg', sans-serif; font-style: normal; font-weight: 700; line-height: 1.5 !important; margin: 0px 0px 8px 0px }
