@@ -63,7 +63,7 @@
 .cs-bg-color,.csbg-color,.csbg-hovercolor:hover, .cs-tags ul li a:hover, .cs-blog figure figcaption a span, .cs-services.modren figure i, .cs-prv-next .owl-controls .owl-nav .owl-prev:hover, .cs-prv-next .owl-controls .owl-nav .owl-next:hover,.comment-respond form p input[type='submit'],.cs-attachments ul li i,.nav-tabs > li> a:hover
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover,
 /* Widget Setup */.widget_search form label input[type='submit'], #wp-calendar caption, .widget_tag_cloud .tagcloud a:hover, .default-btn, .cs-category li,
-.cs-filter-menu li.active, .cs-portfoliolist .caption-inner, .cs-filter-menu li:hover, .user-signup form input[type='button'],.cs-status,.cs-planbtn {
+.cs-filter-menu li.active, /*.cs-portfoliolist .caption-inner,*/ .cs-filter-menu li:hover, .user-signup form input[type='button'],.cs-status,.cs-planbtn {
 	background-color:<?php echo cs_allow_special_char($cs_theme_color); ?> !important;
 }
 
