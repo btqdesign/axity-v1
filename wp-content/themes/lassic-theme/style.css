@@ -1268,7 +1268,7 @@ label { color: #333; display: block; font-family: "Roboto Condensed", sans-serif
 .flexslider.testimonial.testimonial-slider .flex-direction-nav {bottom: 28px;}
 .center {text-align: center;}
 .top-right {text-align: right;}
-.cs-promobox { float: left; padding: 25px; width: 100%; }
+.cs-promobox { float: left; padding: 100px 25px 25px 0; width: 100%; }
 	.cs-promobox article img {margin-bottom: 10px;}
 	.cs-promobox article .text .three-d { color: #fff; display: inline-block; padding: 4px 15px; font-size:12px; }
 	.cs-promobox .top-left i {float: left;}
