@@ -190,7 +190,7 @@
 	.main-section .widget.widget_text img {width: auto;}
 	.main-section .gallery {margin: 0 6px 0 -30px;}
 	.pr-classic {margin-left:-4px;}
-	.main-section {padding-right: 6px;}
+	.main-section {/*padding-right: 6px;*/}
 
 	.wrapper #footer-sec {padding: 60px 2px;}
 	
