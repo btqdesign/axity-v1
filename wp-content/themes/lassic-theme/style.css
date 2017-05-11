@@ -1201,7 +1201,7 @@ label { color: #333; display: block; font-family: "Roboto Condensed", sans-serif
 .cs_form_styling input[type="submit"] { border-radius: 2px; border: medium none; box-shadow: none; font-size: 16px; font-weight: 400; height: auto; padding: 8px 18px; }
 .cs-classic-form input.cs-bg-color,
 .cs_form_styling input[type="submit"],
-.cs-plain-form .custom-btn {background: #4b3854;}
+.cs-plain-form .custom-btn {background: #fb3449; border-radius:30px;}
 .cs-classic-form { background-color: #fff; float: left; width: 100%; }
 .tooltip-info { float: left; margin: 0 0 25px; width: 100%; }
 .tolbtn,
