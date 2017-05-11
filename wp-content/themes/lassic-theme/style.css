@@ -1185,7 +1185,7 @@ label { color: #333; display: block; font-family: "Roboto Condensed", sans-serif
 .cs_form_styling .custom-btn { border-radius: 2px; border: 0; box-shadow: none; padding: 8px 18px; }
 .cs-plain-form form input:focus { background: #fff; border-color: #c3cfd5; box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); }
 .cs_form_styling .form-style input[type="text"],
-.cs_form_styling .form-style input[type="email"] { border-color: #cecece; color: #999999; font-size: 14px; font-weight: 300; font-weight: 400; height: 55px; margin-bottom: 10px; padding-left: 15px; width: 100%; }
+.cs_form_styling .form-style input[type="email"] { border-color: #3e1151; color: #3e1151; font-size: 14px; font-weight: 300; font-weight: 400; height: 55px; margin-bottom: 10px; padding-left: 15px; width: 100%; }
 .cs-classic-form .form-style input[type="text"],
 .cs-classic-form .form-style input[type="email"] {padding-left: 50px;}
 .cs-classic-form form .textaera-sec textarea { margin-left: 0px; padding-left: 50px; }
