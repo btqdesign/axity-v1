@@ -36,8 +36,8 @@ Tags: dark, black, gray, one-column, two-columns, left-sidebar, right-sidebar, f
     unicode-range: U+0020-FB04;
 }
 .navigation ul > li > a:before
-@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,700,900,200&subset=latin,vietnamese,latin-ext);
-
+/*@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,700,900,200&subset=latin,vietnamese,latin-ext);
+*/
 /*
 01. Theme Typo
 02. Header
@@ -118,10 +118,10 @@ Tags: dark, black, gray, one-column, two-columns, left-sidebar, right-sidebar, f
 */
 iframe {width: 100%;}
 * { margin: 0px; padding: 0px; }
-body { color: #666666; font-family: 'Source Sans Pro', sans-serif; font-size: 16px; font-weight: 400; background-color: #fff; }
+body { color: #666666; font-family: 'Vita Std Reg', sans-serif; font-size: 16px; font-weight: 400; background-color: #fff; }
 	/* Global Typography */
 /*---Heading Typo---*/
-body h1, body h2, body h3, body h4, body h5, body h6 { color: #000; font-family: 'Source Sans Pro', sans-serif; font-style: normal; font-weight: 700; line-height: 1.5 !important; margin: 0px 0px 8px 0px }
+body h1, body h2, body h3, body h4, body h5, body h6 { color: #000; font-family: 'Vita Std Reg', sans-serif; font-style: normal; font-weight: 700; line-height: 1.5 !important; margin: 0px 0px 8px 0px }
 h1 {font-size: 28px;}
 h2 {font-size: 24px;}
 .main-section h2, .main-section h2 a{ font-size:40px!important;}
@@ -932,7 +932,7 @@ span.cs-color {margin-left: 6px;}
 .cs-map-section { float: left; margin: 0 0 20px; width: 100%; }
 input[type=text]:focus, input[type=email]:focus, textarea:focus {box-shadow: none;}
 .form-control:focus { border-color: #cccccc; -webkit-box-shadow: none; box-shadow: none; }
-.default-btn { line-height: 46px; display: inline-block; font-family: 'Source Sans Pro', sans-serif; text-transform: uppercase; text-align: center; padding: 0 20px 0 20px; color: #fff; min-width: 280px; text-decoration: none; }
+.default-btn { line-height: 46px; display: inline-block; font-family: 'Vita Std Reg', sans-serif; text-transform: uppercase; text-align: center; padding: 0 20px 0 20px; color: #fff; min-width: 280px; text-decoration: none; }
 	.default-btn:hover { text-decoration: none; color: #fff; }
 /* About pages Style */
 .heading-description span { font-size: 12px; text-transform: uppercase; font-weight: 600; margin-bottom: 10px; display: block; }
@@ -1391,7 +1391,7 @@ blockquote { position: relative; border: none; float: left; font-size: 20px; fon
 /*Accordion Start*/
 .panel-group .panel-heading + .panel-collapse > .list-group, .panel-group .panel-heading + .panel-collapse > .panel-body {border-top: none;}
 .panel-group .panel { width: 100%; float: left; box-shadow: none; border: none; border-color: #fff; }
-.panel-group .panel-title {font: 16px/19px "Source Sans Pro",sans-serif !important;}
+.panel-group .panel-title {font: 16px/19px "Vita Std Reg",sans-serif !important;}
 	.panel-group .panel-title a { position: relative; display: block; }
 .panel-default > .panel-heading { background: none; padding: 0; border: none; }
 /*Accordion Ends*/
