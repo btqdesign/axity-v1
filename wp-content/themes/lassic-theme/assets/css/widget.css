@@ -1,3 +1,4 @@
+
 /*ModularBits v1.7*/
 .page-sidebar .widget{
 	float: left;
@@ -336,7 +337,7 @@ widget.widget-gallery .gallery-list {
 }
 .twitter_widget article:before {
     color: #FF2959;
-    content: "";
+    content: "";
     font-family: "icomoon";
     font-size: 20px;
     left: 0;
@@ -375,7 +376,7 @@ widget.widget-gallery .gallery-list {
 .twitter_widget{
 	background-image:url(http://axity.idevol.net/wp-content/uploads/2017/05/bg_twitter-2.png); background-repeat: no-repeat;background-size: 100%; background-position-y:20px;
 	}
-footer#footer-sec .widget p{color:#4A0D66 !important;} /*cambio*/
+footer#footer-sec .widget p{color:#4A0D66 !important; font-size:14px; line-height:18px;} /*cambio*/
 /*  Widget Calender */
 footer#footer-sec .widget a{color:#4A0D66 !important;} /*cambio*/
 footer#footer-sec .widget .sub-dropdown a{color:#4A0D66 !important;} /*cambio*/
