@@ -1,4 +1,4 @@
-
+/*ModularBits v1.1*/
 /* ============	Media 768Px Start ============ */ 
 @media (min-width: 768px) and (max-width: 990px) {
 	.content-rt.col-md-3 {width: 100% !important;}
@@ -23,11 +23,13 @@
 	
 	/*============ Header Style ============ */
 	header .logo { margin: 22px 0px !important; min-height: 20px !important; line-height: 20px !important; }
-	header .cs-click-menu { display: block; border: 1px solid #ccc; color: #ccc; line-height: 1.2; padding: 5px 15px 0 12px; }
+	header .cs-click-menu { display: block; border: 1px solid #ccc; color: #ccc; line-height: 1.2; padding: 5px 15px 0 7px; } /*Cambio*/
+	.icon-list8:hover{ background:transparent!important;} /*Cambio*/
+	.navigation ul > li > a{ color:#3e1151;}
 	header .logo a, header .btn-sec, header.navigation ul li a { min-height: inherit !important; line-height: inherit !important; }
 	/* Navigation Setup  */
 	#main-header .navigation { margin: 0 20px 0 0; position: relative; line-height: 20px!important; min-height: 20px !important; float: none; display: inline-block;}
-	#main-header .navigation > ul {text-align: left; width: 300px; padding: 15px 10px 5px 15px; background-color: #f3f3f1; position: absolute; float: left; margin: 0; right:0; top: 130%; display: none;}
+	#main-header .navigation > ul {text-align: left; width: 300px; padding: 15px 10px 5px 15px; /*background-color: #f3f3f1;*/background:#fff; position: absolute; float: left; margin: 0; right:0; top: 130%; display: none;}
 	#main-header .navigation ul li { float: left; width: 100%;  padding: 0 0 10px;}
 	#main-header .navigation > ul > li { margin: 0px 0px 10px 0px; border-bottom: 1px solid #e8e8e8; }
 	#main-header .navigation ul > li > a:before, #main-header .navigation ul > li:hover a:after { display: none; }
