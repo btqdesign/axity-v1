@@ -1423,7 +1423,7 @@ blockquote { position: relative; border: none; float: left; font-size: 20px; fon
 	.csdefault .panel-heading {padding: 16px;}
 	.csdefault .panel-default > .panel-heading + .panel-collapse > .panel-body {border-top: none;}
 
-.csdefault .panel-heading a {color: #fb3449 !important;}
+.csdefault .panel-heading a {color: #fb3449 !important; font-weight:200;}/*cambio*/
 		.csdefault .panel-heading a::before { top: 0; right: 0; color: #fff; background: #fb3449; border: 1px solid #fb3449; border-radius: 100%; width: 20px; height: 20px; line-height: 18px; font-size: 15px; padding: 0 0 0 1px; content: '\ea5c'; font-family: 'icomoon'; position: absolute; text-align: center; }
 	.csdefault .panel-heading .collapsed {color: #333 !important;}
 		.csdefault .panel-heading .collapsed::before { color: #ccc; background: #fff; border: 1px solid #ccc; content: '\ea5d'; }
