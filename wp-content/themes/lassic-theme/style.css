@@ -12,28 +12,38 @@ License URI: license.txt
 Tags: dark, black, gray, one-column, two-columns, left-sidebar, right-sidebar, fluid-layout, custom-colors, custom-menu, editor-style, featured-image-header, featured-images, post-formats, rtl-language-support, theme-options, translation-ready
 */
 @font-face {
-    font-family:'Vita Std Reg';
-    src: url('assets/fonts/Vita Std Reg.eot');
-	src: url('assets/fonts/Vita Std Reg.eot?#iefix') format('embedded-opentype'),
-		url('assets/fonts/Vita Std Reg.woff2') format('woff2'),
-		url('assets/fonts/Vita Std Reg.woff') format('woff'),
-		url('assets/fonts/Vita Std Reg.svg#Vita Std Reg') format('svg');
-    font-weight: 400;
-    font-style: normal;
-    font-stretch: normal;
-    unicode-range: U+0020-FB04;
+	font-family: VitaStd;
+	src: url('assets/fonts/Vita-Std-Reg.eot');
+	src: url('assets/fonts/Vita-Std-Reg.eot?#iefix') format('embedded-opentype'),
+		url('assets/fonts/Vita-Std-Reg.woff2') format('woff2'),
+		url('assets/fonts/Vita-Std-Reg.woff') format('woff'),
+		url('assets/fonts/Vita-Std-Reg.svg') format('svg');
+	/*
+	font-weight: 400;
+	font-style: normal;
+	font-stretch: normal;
+	*/
+	font-weight: normal;
+	font-style: normal;
+	font-stretch: normal;
+	unicode-range: U+0020-FB04;
 }
 @font-face {
-    font-family:'Vita Std Thin';
-    src: url('assets/fonts/Vita Std Thin.eot');
-	src: url('assets/fonts/Vita Std Thin.eot?#iefix') format('embedded-opentype'),
-		url('assets/fonts/Vita Std Thin.woff2') format('woff2'),
-		url('assets/fonts/Vita Std Thin.woff') format('woff'),
-		url('assets/fonts/Vita Std Thin.svg#Vita Std Thin') format('svg');
-    font-weight: 250;
-    font-style: normal;
-    font-stretch: normal;
-    unicode-range: U+0020-FB04;
+	font-family: VitaStd;
+	src: url('assets/fonts/Vita-Std-Thin.eot');
+	src: url('assets/fonts/Vita-Std-Thin.eot?#iefix') format('embedded-opentype'),
+		url('assets/fonts/Vita-Std-Thin.woff2') format('woff2'),
+		url('assets/fonts/Vita-Std-Thin.woff') format('woff'),
+		url('assets/fonts/Vita-Std-Thin.svg') format('svg');
+	/*
+	font-weight: 200;
+	font-style: normal;
+	font-stretch: condensed;
+	*/
+	font-weight: lighter;
+	font-style: normal;
+	font-stretch: condensed;
+	unicode-range: U+0020-FB04;
 }
 .navigation ul > li > a:before
 /*@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,700,900,200&subset=latin,vietnamese,latin-ext);
