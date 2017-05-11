@@ -1463,7 +1463,7 @@ blockquote { position: relative; border: none; float: left; font-size: 20px; fon
 .cs-classic-form .form-style textarea,
 .cs-plain-form .form-style textarea { width: 100%; border-radius: 2px; }
 .cs-classic-form .form-style input[type="submit"],
-.cs-plain-form .form-style input[type="submit"] { border: medium none; border-radius: 0 !important; box-shadow: none; font-size: 16px; font-weight: 400; height: 46px !important; color: #fff; min-width: 280px; padding: 0 18px; text-transform: uppercase; }
+.cs-plain-form .form-style input[type="submit"] { border: medium none; border-radius: 30px !important; box-shadow: none; font-size: 16px; font-weight: 400; height: 46px !important; color: #fff; min-width: 280px; padding: 0 18px; text-transform: uppercase; }
 .submit-sec span { display: inline-block; }
 /*Plain Form End*/
 /* ShortCodes End */
