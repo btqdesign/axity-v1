@@ -126,7 +126,9 @@ if ( !class_exists('ProjectTemplates') ) {
                                   <div class="caption-inner">
                                       <div class="text">
                                           <a href="<?php esc_url(the_permalink()); ?>">
-                                              <i class="icon-plus8"></i>
+                                              <!--<i class="icon-plus8"></i>-->
+                                              <?php $image_url_plus_icon = get_template_directory_uri().'/assets/images/plus.png'; ?>
+                                              <span><img alt="plus-icon" src="<?php echo $image_url_plus_icon; ?>"></span>
                                           </a>
                                           <a href="<?php esc_url(the_permalink()); ?>"><?php echo esc_attr(__('View','lassic'),'lassic');?><br> <?php echo esc_attr(__('Project','lassic'),'lassic');?></a>
                                       </div>
