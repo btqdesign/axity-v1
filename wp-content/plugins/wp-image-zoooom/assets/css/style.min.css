@@ -70,4 +70,4 @@ h2 a:hover,h3 a.nav-tab:hover{text-decoration:none}@font-face{font-family:Ralewa
 .icon-zoom_level_default:before { content: '\e81e'; } /* '' */
 .icon-cursor_type_pointer:before { content: '\e81f'; } /* '' */
 .icon-lens_shape_none:before { content: '\e820'; } /* '' */
-.icon-zoom-in:before { content: '\e821'; } /* '' */
+.icon-zoom-in:before { content: '\e821' !important; } /* '' */

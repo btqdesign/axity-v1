@@ -27,6 +27,7 @@ class ImageZoooom_Warnings {
 
         $this->check_jetpack();
         $this->check_avada();
+        $this->check_shopkeeper();
         $this->check_bwf_minify();
     }
 
@@ -86,6 +87,28 @@ class ImageZoooom_Warnings {
     }
 
 
+
+    /**
+     * Check if for the Shopkeeper theme 
+     */
+    function check_shopkeeper() {
+        if ( get_template() != 'twentysixteen' ) return false;
+
+
+        if ( ! is_plugin_active( 'woocommerce/woocommerce.php' ) ) return false;
+
+        $option = get_option( 'iz_dismiss_shopkeeper', '' );
+
+        if ( !empty( $option ) ) {
+            return;
+        }
+
+        add_action( 'admin_notices', array( $this, 'check_shopkeeper_notice' ) );
+
+    }
+
+
+
     /**
      * Show a warning about the Avada theme 
      */
@@ -95,6 +118,23 @@ class ImageZoooom_Warnings {
         $flexslider_url = 'https://woocommerce.com/flexslider/';
         $pro_url = 'https://www.silkypress.com/wp-image-zoom-plugin/?utm_source=wordpress&utm_campaign=iz_free&utm_medium=banner';
         $message = sprintf( __( 'The WP Image Zoom plugin <b>will not work</b> on the WooCommerce products gallery with the Avada theme. The Avada theme changes entirely the default WooCommerce gallery with the <a href="%1$s" target="_blank">Flexslider gallery</a> and the zoom plugin does not support the Flexslider gallery. Please check the <a href="%2$s" target="_blank">PRO version</a> of the plugin for compatibility with the Flexslider gallery.', 'wp-image-zoooom' ), $flexslider_url, $pro_url );
+
+        printf( '<div class="%1$s" id="%2$s"><p>%3$s</p></div>', $class, $id, $message );
+
+        $this->dismiss_js( $id );
+
+    }
+
+
+    /**
+     * Show a warning about the Shopkeeper theme 
+     */
+    function check_shopkeeper_notice() {
+        $id = 'iz_dismiss_shopkeeper';
+        $class = 'notice notice-warning is-dismissible';
+        $class = 'updated settings-error notice is-dismissible';
+        $pro_url = 'https://www.silkypress.com/wp-image-zoom-plugin/?utm_source=wordpress&utm_campaign=iz_free&utm_medium=banner';
+        $message = sprintf( __( 'The WP Image Zoom plugin <b>will not work</b> on the WooCommerce products gallery with the Shopkeeper theme. The Shopkeeper theme changes entirely the default WooCommerce gallery with a custom made gallery not supported by the free version of the WP Image Zoom plugin. Please check the <a href="%1$s" target="_blank">PRO version</a> of the plugin for compatibility with the Shopkeeper\'s gallery.', 'wp-image-zoooom' ), $pro_url );
 
         printf( '<div class="%1$s" id="%2$s"><p>%3$s</p></div>', $class, $id, $message );
 

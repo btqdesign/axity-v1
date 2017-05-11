@@ -135,8 +135,13 @@ jQuery(document).ready(function( $ ){
     // Show zoom on the WooCommerce 3.0.+ gallery with slider
     if ( IZ.with_woocommerce == '1' && (IZ.woo_slider == '1' || $('.woo_product_slider_enabled').length > 0 )) {
         if ( $(".woocommerce-product-gallery img").length > 0 ) {
+
+            var first_img = ".woocommerce-product-gallery__wrapper img";
             setTimeout( function() {
-                $(".flex-viewport img").first().image_zoom( options );
+                if ( $(".flex-viewport").length > 0 ) {
+                    first_img = ".woocommerce-product-gallery__wrapper .flex-active-slide img";
+                } 
+                $(first_img).first().image_zoom( options );
             }, 500 );
 
             var flexslider_counter = 0;
@@ -147,8 +152,8 @@ jQuery(document).ready(function( $ ){
                     if ( event.newValue != old_value ) {
                         $(".zoomContainer").remove();
                         setTimeout( function() {
-                            $(".woocommerce-product-gallery__wrapper .flex-active-slide img").image_zoom( options );
-                        }, 400);
+                            $(first_img).first().image_zoom(options);
+                        }, 550);
                     }
                     old_value = event.newValue;
                 }
@@ -161,7 +166,7 @@ jQuery(document).ready(function( $ ){
                     clearTimeout(window.resizeEvt);
                     window.resizeEvt = setTimeout(function() {
                         $(".zoomContainer").remove();
-                        $( ".woocommerce-product-gallery__wrapper .flex-active-slide img").image_zoom( options );
+                        $(first_img).first().image_zoom(options);
                     }, 300);
                 });
             });
@@ -258,8 +263,4 @@ jQuery(document).ready(function( $ ){
             });
         });
     }
-
-
-
 });
-

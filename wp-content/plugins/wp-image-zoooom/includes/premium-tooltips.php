@@ -31,7 +31,10 @@ $message = sprintf( $message, 'https://www.silkypress.com/wp-image-zoom-plugin/?
                     left += $(child).width(); 
                 });
 
-                $("#wpfc-premium-tooltip").css({"margin-left" : left + "px", "margin-top" : ($(e.currentTarget).offset().top - 38) + "px"});
+                var offsetTop = $(e.currentTarget).offset().top - 38;
+                offsetTop -= $('h2').offset().top - 52;
+
+                $("#wpfc-premium-tooltip").css({"margin-left" : left + "px", "margin-top" : offsetTop + "px"});
                 $("#wpfc-premium-tooltip").fadeIn( "slow", function() {
                     window.tooltip = setTimeout(function(){ $("#wpfc-premium-tooltip").hide(); }, 1000);
                 });
@@ -44,8 +47,10 @@ $message = sprintf( $message, 'https://www.silkypress.com/wp-image-zoom-plugin/?
                 }
 
                 var left = $(e.currentTarget).width();
+                var offsetTop = $(e.currentTarget).offset().top - 38;
+                offsetTop -= $('h2').offset().top - 52;
 
-                $("#wpfc-premium-tooltip").css({"margin-left" : left + "px", "margin-top" : ($(e.currentTarget).offset().top - 38) + "px"});
+                $("#wpfc-premium-tooltip").css({"margin-left" : left + "px", "margin-top" : offsetTop + "px"});
                 $("#wpfc-premium-tooltip").fadeIn( "slow", function() {
                     window.tooltip = setTimeout(function(){ $("#wpfc-premium-tooltip").hide(); }, 1000);
                 });

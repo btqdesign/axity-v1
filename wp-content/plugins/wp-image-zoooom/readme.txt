@@ -6,7 +6,7 @@ Email: diana@burduja.eu
 Tags: e-commerce, featured image, hover over image zoom, image, image zoom, image zoom plugin, image magnification, image magnifier, jquery picture zoom, magnifier, magnify image, magnifying glass, mouse over image zoom, panorama, picture zoom, product image, product zoom, product magnification, product magnifier, responsive, woocommerce product zoom, woocommerce zoom, woocommerce  magnifying glass, zoom, zoom image, zoom plugin, woocommerce image zoom, woocommerce product image zoom, woocommerce zoom magnifier
 Requires at least: 3.0.1
 Tested up to: 4.7
-Stable tag: 1.9 
+Stable tag: 1.10 
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -79,7 +79,7 @@ OR...
 Yes
 
 = If I have Visual Composer installed, how do I apply the zoom? =
-You can apply the zoom on the Single Image element from Visual Composer. See the following [screenshot](https://s.w.org/plugins/wp-image-zoooom/screenshot-7.jpg).
+You can apply the zoom on the Single Image element from Visual Composer. See the following [screenshot](https://ps.w.org/wp-image-zoooom/trunk/screenshot-7.jpg).
 
 = It display the zoom lens, but the picture is not enlarged =
 In order for the zoom to work you have to upload a bigger picture than the one presented on the website. For more control over the zoom level you can try upgrading to the PRO version. There you can set the zoom level to 2x or 3x the size of the presented picture.
@@ -99,6 +99,11 @@ When you add a CSS class called 'zoooom' to any image, the zoom will be applied 
 = If I want to use a "lazy load" plugin will it work? =
 We can ensure compatibility with [Unveil Lazy Load](https://wordpress.org/plugins/unveil-lazy-load/), [WP images lazy loading](https://wordpress.org/plugins/wp-images-lazy-loading/) and [Lazy Load](https://wordpress.org/plugins/lazy-load/) plugins. 
 
+
+= My image is within a tab =
+The zoom lens is built on page load relative to the image and it will be shown in mouse hover no matter if the image is hidden in another tab. I cannot do anything about this, the zoom is not built to work with images within tabs. 
+
+Alternatively you can upgrade to the Pro version, as there the zoom lens is built on mouse hover and not on page load, which means that the zoom will work also with images within tabs. 
 
 = Known Incompatibilities =
 
@@ -132,6 +137,10 @@ We can ensure compatibility with [Unveil Lazy Load](https://wordpress.org/plugin
 7. Apply the zoom from Visual Composer, the Single Image element
 
 == Changelog ==
+
+= 1.10 =
+* Fix: warning for the Shopkeeper theme
+* Fix: don't add/remove theme support for the gallery if is not enabled for WooCommerce 
 
 = 1.9 =
 * Fix: if the image has data-large_image attribute, then use that for the zoom
