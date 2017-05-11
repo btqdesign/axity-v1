@@ -172,7 +172,7 @@ iframe { border: none; float: left; width: 100% !important; }
 select { border: 1px solid #d2d2d2; color: #2c3239; ; cursor: pointer; display: inline-block; font-size: 14px; font-weight: 400; height: 40px; padding: 8px 12px; width: 100%; }
 label { color: #333333; display: block; font-weight: 400; margin-bottom: 10px; }
 button {border: none;}
-textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; border: 1px solid #d2d2d2; box-sizing: border-box; color: #3d3d3d; display: inline-block; font-size: 12px; font-weight: 400; height: 35px; line-height: 20px; outline: none; padding: 4px 6px; vertical-align: middle; }
+textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; border: 1px solid #3e1151; box-sizing: border-box; color: #3d3d3d; display: inline-block; font-size: 12px; font-weight: 400; height: 35px; line-height: 20px; outline: none; padding: 4px 6px; vertical-align: middle; }
 form p { float: left; position: relative; width: 100%; }
 	form p span i { color: #474747; left: 16px; position: absolute; top: 13px; }
 .element-size-25 {width: 25%;}
@@ -934,7 +934,7 @@ span.cs-color {margin-left: 6px;}
 /* Contact Us */
 .cs_form_styling { width: 100%; float: left; }
 	.cs_form_styling input[type="email"],.cs_form_styling  input[type="text"] { font-size: 16px; color: #cccccc; height: 48px; border: 1px solid #cecece; border-radius: 3px; padding-left: 20px; margin-left: 10px; width: 48%; margin-bottom: 20px; display: block; }
-	.cs_form_styling textarea { width: 50%; height: 264px !important; float: right; font-size: 16px; margin: 0px; color: #cccccc; padding: 20px 0 0 15px; }
+	.cs_form_styling textarea { width: 50%; height: 264px !important; float: right; font-size: 16px; margin: 0px; color: #3e1151; padding: 20px 0 0 15px; }
 	.cs_form_styling .default-btn { border: medium none; color: #fff; display: block; font-size: 16px; letter-spacing: 2px; line-height: 46px; margin: 35px auto 0; min-width: 280px; text-transform: uppercase; }
 .cs-contact-info p { font-size: 16px; margin: 0px; padding: 0px 15px 30px 0; color: #666666; }
 .cs-contact-info ul { margin: 0px; padding: 0px; }
