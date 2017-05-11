@@ -1270,7 +1270,7 @@ label { color: #333; display: block; font-family: "Roboto Condensed", sans-serif
 .top-right {text-align: right;}
 .cs-promobox { float: left; padding: 25px; width: 100%; }
 	.cs-promobox article img {margin-bottom: 10px;}
-	.cs-promobox article .text .three-d { color: #fff; display: inline-block; padding: 4px 15px; }
+	.cs-promobox article .text .three-d { color: #fff; display: inline-block; padding: 4px 15px; font-size:12px; }
 	.cs-promobox .top-left i {float: left;}
 	.cs-promobox i { color: #fff; font-size: 4em; }
 	.cs-promobox .top-left i ~ .text {padding: 0 0 0 75px;}
