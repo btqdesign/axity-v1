@@ -126,9 +126,10 @@ if ( !class_exists('ProjectTemplates') ) {
                                   <div class="caption-inner">
                                       <div class="text">
                                           <a href="<?php esc_url(the_permalink()); ?>">
-                                              <!--<i class="icon-plus8"></i>-->
-                                              <?php $image_url_plus_icon = get_template_directory_uri().'/assets/images/plus.png'; ?>
-                                              <span><img alt="plus-icon" src="<?php echo $image_url_plus_icon; ?>"></span>
+                                              <i class="icon-plus8">
+                                                  <?php $image_url_plus_icon = get_template_directory_uri().'/assets/images/plus.png'; ?>
+                                                  <img alt="plus-icon" src="<?php echo $image_url_plus_icon; ?>" style="margin: 0 0 18px;">
+                                              </i>
                                           </a>
                                           <a href="<?php esc_url(the_permalink()); ?>"><?php echo esc_attr(__('View','lassic'),'lassic');?><br> <?php echo esc_attr(__('Project','lassic'),'lassic');?></a>
                                       </div>
@@ -293,7 +294,10 @@ if ( !class_exists('ProjectTemplates') ) {
                         <div class="caption-inner cs-large">
                             <div class="text">
                                 <a href="<?php esc_url(the_permalink()); ?>">
-                                    <i class="icon-plus8"></i>
+                                    <i class="icon-plus8">
+                                        <?php $image_url_plus_icon = get_template_directory_uri().'/assets/images/plus.png'; ?>
+                                        <img alt="plus-icon" src="<?php echo $image_url_plus_icon; ?>" style="margin: 0 0 18px;">
+                                    </i>
                                 </a>
                                 <a href="<?php esc_url(the_permalink()); ?>"><?php echo esc_attr('View Project','lassic');?></a>
                                 <?php $cs_term_list	= get_the_term_list ( $post->ID, 'project-category', '<span><i class="fa fa-plus"></i>', ', ', '</span>' ); ?>
@@ -442,7 +446,10 @@ if ( !class_exists('ProjectTemplates') ) {
                     <div class="caption-inner">
                         <div class="text">
                             <a href="<?php esc_url(the_permalink()); ?>">
-                                <i class="icon-plus8"></i>
+                                <i class="icon-plus8">
+                                    <?php $image_url_plus_icon = get_template_directory_uri().'/assets/images/plus.png'; ?>
+                                    <img alt="plus-icon" src="<?php echo $image_url_plus_icon; ?>" style="margin: 0 0 18px;">
+                                </i>
                             </a>
                             <a href="<?php esc_url(the_permalink()); ?>"><?php echo esc_attr('View','lassic');?><br> <?php echo esc_attr('Project','lassic');?></a>
                         </div>
@@ -583,7 +590,10 @@ if ( !class_exists('ProjectTemplates') ) {
                                 <div class="caption-inner cs-large">
                                     <div class="text">
                                         <a href="<?php esc_url(the_permalink()); ?>">
-                                            <i class="icon-plus8"></i>
+                                            <i class="icon-plus8">
+                                                <?php $image_url_plus_icon = get_template_directory_uri().'/assets/images/plus.png'; ?>
+                                                <img alt="plus-icon" src="<?php echo $image_url_plus_icon; ?>" style="margin: 0 0 18px;">
+                                            </i>
                                         </a>
                                         <a href="<?php esc_url(the_permalink()); ?>"><?php echo esc_attr('View Project','lassic');?></a>
                                         <?php 

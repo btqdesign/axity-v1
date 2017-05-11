@@ -45,6 +45,14 @@ Tags: dark, black, gray, one-column, two-columns, left-sidebar, right-sidebar, f
 	/*font-stretch: normal;*/
 	unicode-range: U+0020-FB04;
 }
+.icon-plus8 {
+	width: 50px !important;
+    height: 51px !important;
+    display: inline-block !important;
+}
+.icon-plus8:before{
+	content:none !important;
+}
 .navigation ul > li > a:before
 /*@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,700,900,200&subset=latin,vietnamese,latin-ext);
 */
