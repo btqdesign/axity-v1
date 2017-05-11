@@ -1168,7 +1168,7 @@ a.defaultbtn { font-size: 16px; color: #fff; font-weight: 400; text-transform: u
 .cs-plain-form .form-style textarea,
  
 .cs-plain-form .form-style select { float: left; width: 100%; }
-.cs-plain-form .form-style label { float: left; position: relative; width: 100%; text-align: center; }
+.cs-plain-form .form-style label { float: left; position: relative; width: 100%; /*text-align: center;*/ }
 	.cs-plain-form .form-style label input[type="email"],
 .cs-plain-form .form-style label input[type="text"] {width: 50% !important;}
 .cs-plain-form .form-style .textaera-sec { padding-left: 20px; position: absolute; right: 0; top: 0; width: 50%; }
