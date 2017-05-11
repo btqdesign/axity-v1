@@ -859,6 +859,7 @@ span.cs-color {margin-left: 6px;}
 /*Cambio Se elimina el background morado*/.cs-top-center.cs-portfoliolist article:hover figure .caption-inner,
 .cs-gutterstyle.cs-portfoliolist article:hover figure .caption-inner,
 .mas-isotope.cs-portfoliolist article:hover figure .caption-inner {opacity: 1; background:transparent!important;}
+/*Sin fondo en portafolio*/.mas-isotope.cs-portfoliolist article figure .caption-inner {background:transparent!important;}
 .cs-portfoliolist article:hover figure figcaption {opacity: 1;}
 .cs-top-center.cs-portfoliolist article:hover figure figcaption:after,
 .cs-gutterstyle.cs-portfoliolist article:hover figure figcaption:after,
