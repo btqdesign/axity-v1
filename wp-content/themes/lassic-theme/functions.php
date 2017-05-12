@@ -3742,8 +3742,8 @@ if ( ! function_exists( 'cs_contact_form_submit' ) ) :
             }
             
             $resp = $reCaptcha->verifyResponse(
-                $connecting_ip,
-                $_POST['g-recaptcha-response']
+                $_POST['g-recaptcha-response'],
+                $connecting_ip
             );
         }
 		
