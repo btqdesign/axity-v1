@@ -3731,9 +3731,18 @@ if ( ! function_exists( 'cs_contact_form_submit' ) ) :
         /* Verificamos el reCAPTCHA*/
         $resp = null;
         if (isset($_POST['g-recaptcha-response'])) {
-                $reCaptcha = new ReCaptcha('6Le7lgYTAAAAAGocKBoAewkGkElJE2Hsp6qjM2xH');
+            $reCaptcha = new ReCaptcha('6Le7lgYTAAAAAGocKBoAewkGkElJE2Hsp6qjM2xH');
+            
+            if ($_SERVER['REMOTE_ADDR'] != '127.0.0.1' || $_SERVER['REMOTE_ADDR'] != '::1') {
+	            $connecting_ip = $_SERVER['REMOTE_ADDR'];
+            }
+            else {
+	            // Compatibilidad con CloudFlare
+	            $connecting_ip = $_SERVER['HTTP_CF_CONNECTING_IP']
+            }
+            
             $resp = $reCaptcha->verifyResponse(
-                $_SERVER['REMOTE_ADDR'],
+                $connecting_ip,
                 $_POST['g-recaptcha-response']
             );
         }
@@ -3854,7 +3863,7 @@ if ( ! function_exists( 'cs_contact_form_submit' ) ) :
 				$json['message'] = '<p>'.cs_textarea_filter($cs_contact_succ_msg).'</p>';
 			} else {
 				$json['type']    = "error";
-				$json['message'] = '<p>'.cs_textarea_filter($cs_contact_error_msg).' *</p>';
+				$json['message'] = '<p>'.cs_textarea_filter($cs_contact_error_msg).' <!-- MSG1 --></p>';
 				// Debug Mail Send
 				//$json['message'] = '<p>'.cs_textarea_filter($cs_contact_error_msg).'</p><p> Send email: '.var_export($send_mail, true).'</p><p>'.'Email: '.sanitize_email($cs_contact_email).'</p><p>'.'Subject: '.$subjecteEmail.'</p><p>'.'Message: '.$message.'</p><p>'.'Headers: '.$headers.'</p>';
 			};
@@ -3862,7 +3871,7 @@ if ( ! function_exists( 'cs_contact_form_submit' ) ) :
 		}
 		else {
 			$json['type']    = "error";
-			$json['message'] = '<p>Invalid ReCAPCHA #</p>';
+			$json['message'] = '<p>Invalid ReCAPCHA <!-- MSG2 --></p>';
 		}
 			
 		echo json_encode( $json );
