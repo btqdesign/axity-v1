@@ -3726,29 +3726,28 @@ if ( ! function_exists( 'cs_contact_form_submit' ) ) :
 		}
 		
 		/* Carga de reCAPTCHA */
-        require_once( 'recaptchalib.php' );
+        require('include/recaptcha/src/autoload.php');
         
         /* Verificamos el reCAPTCHA*/
         $resp = null;
         if (isset($_POST['g-recaptcha-response'])) {
-            $reCaptcha = new ReCaptcha('6Le7lgYTAAAAAGocKBoAewkGkElJE2Hsp6qjM2xH');
+            $recaptcha = new \ReCaptcha\ReCaptcha('6Le7lgYTAAAAAGocKBoAewkGkElJE2Hsp6qjM2xH');
             
-            if ($_SERVER['REMOTE_ADDR'] != '127.0.0.1' && $_SERVER['REMOTE_ADDR'] != '::1') {
-	            $connecting_ip = $_SERVER['REMOTE_ADDR'];
+            if ($_SERVER['REMOTE_ADDR'] != '127.0.0.1' || $_SERVER['REMOTE_ADDR'] != '::1') {
+	            
+	            // Compatibilidad con CloudFlare
+	            $remoteIp = $_SERVER['HTTP_CF_CONNECTING_IP'];
             }
             else {
-	            // Compatibilidad con CloudFlare
-	            $connecting_ip = $_SERVER['HTTP_CF_CONNECTING_IP'];
+	            $remoteIp = $_SERVER['REMOTE_ADDR'];
             }
             
-            $resp = $reCaptcha->verifyResponse(
-                $_POST['g-recaptcha-response'],
-                $connecting_ip
-            );
+            $gRecaptchaResponse = $_POST['g-recaptcha-response'];
+            $resp = $recaptcha->verify($gRecaptchaResponse, $remoteIp);
         }
 		
 		/* Verificamos el reCAPTCHA */
-        if ($resp != null && $resp->success) {
+        if ($resp != null && $resp->isSuccess()) {
 	        
 			if(isset($phone) && $phone <> ''){
 				$subject_name = 'Phone';
@@ -3863,7 +3862,7 @@ if ( ! function_exists( 'cs_contact_form_submit' ) ) :
 				$json['message'] = '<p>'.cs_textarea_filter($cs_contact_succ_msg).'</p>';
 			} else {
 				$json['type']    = "error";
-				$json['message'] = '<p>'.cs_textarea_filter($cs_contact_error_msg).' '.$connecting_ip.'</p>';
+				$json['message'] = '<p>'.cs_textarea_filter($cs_contact_error_msg).' '.$remoteIp.'</p>';
 				// Debug Mail Send
 				//$json['message'] = '<p>'.cs_textarea_filter($cs_contact_error_msg).'</p><p> Send email: '.var_export($send_mail, true).'</p><p>'.'Email: '.sanitize_email($cs_contact_email).'</p><p>'.'Subject: '.$subjecteEmail.'</p><p>'.'Message: '.$message.'</p><p>'.'Headers: '.$headers.'</p>';
 			};
@@ -3871,7 +3870,13 @@ if ( ! function_exists( 'cs_contact_form_submit' ) ) :
 		}
 		else {
 			$json['type']    = "error";
-			$json['message'] = '<p>Invalid ReCAPCHA '.$connecting_ip.'</p>';
+			//$json['message'] = '<p>Invalid ReCAPCHA '.$connecting_ip.'</p>';
+			$json['message'] = '<p>';
+			foreach ($resp->getErrorCodes() as $code) {
+                $json['message'] .=  $code . '<br>';
+            }
+            $json['message'] = $remoteIp;
+            $json['message'] = '</p>';
 		}
 			
 		echo json_encode( $json );
