@@ -3733,7 +3733,7 @@ if ( ! function_exists( 'cs_contact_form_submit' ) ) :
         if (isset($_POST['g-recaptcha-response'])) {
             $reCaptcha = new ReCaptcha('6Le7lgYTAAAAAGocKBoAewkGkElJE2Hsp6qjM2xH');
             
-            if ($_SERVER['REMOTE_ADDR'] != '127.0.0.1' || $_SERVER['REMOTE_ADDR'] != '::1') {
+            if ($_SERVER['REMOTE_ADDR'] != '127.0.0.1' && $_SERVER['REMOTE_ADDR'] != '::1') {
 	            $connecting_ip = $_SERVER['REMOTE_ADDR'];
             }
             else {
