@@ -3738,7 +3738,7 @@ if ( ! function_exists( 'cs_contact_form_submit' ) ) :
             }
             else {
 	            // Compatibilidad con CloudFlare
-	            $connecting_ip = $_SERVER['HTTP_CF_CONNECTING_IP']
+	            $connecting_ip = $_SERVER['HTTP_CF_CONNECTING_IP'];
             }
             
             $resp = $reCaptcha->verifyResponse(
