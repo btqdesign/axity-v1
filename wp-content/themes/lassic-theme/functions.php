@@ -3854,7 +3854,7 @@ if ( ! function_exists( 'cs_contact_form_submit' ) ) :
 				$json['message'] = '<p>'.cs_textarea_filter($cs_contact_succ_msg).'</p>';
 			} else {
 				$json['type']    = "error";
-				$json['message'] = '<p>'.cs_textarea_filter($cs_contact_error_msg).'</p>';
+				$json['message'] = '<p>'.cs_textarea_filter($cs_contact_error_msg).' *</p>';
 				// Debug Mail Send
 				//$json['message'] = '<p>'.cs_textarea_filter($cs_contact_error_msg).'</p><p> Send email: '.var_export($send_mail, true).'</p><p>'.'Email: '.sanitize_email($cs_contact_email).'</p><p>'.'Subject: '.$subjecteEmail.'</p><p>'.'Message: '.$message.'</p><p>'.'Headers: '.$headers.'</p>';
 			};
@@ -3862,7 +3862,7 @@ if ( ! function_exists( 'cs_contact_form_submit' ) ) :
 		}
 		else {
 			$json['type']    = "error";
-			$json['message'] = '<p>Invalid ReCAPCHA</p>';
+			$json['message'] = '<p>Invalid ReCAPCHA #</p>';
 		}
 			
 		echo json_encode( $json );
