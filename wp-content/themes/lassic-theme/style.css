@@ -446,7 +446,7 @@ Based on Hybrid theme
 .breadcrumb-sec.text-center-align .pageinfo { display: inline-block; float: none; }
 .pageinfo.page-title-align-center h1 {margin: 0 0 8px;}
 .pageinfo.page-title-align-center p {padding: 0;}
-.pageinfo h1 { font-weight: bold; margin: 0px 30px 8px 0px; text-transform: uppercase; display: inline-block; vertical-align: middle; color: #ffffff; }
+.pageinfo h1 { font-weight: bold; margin: 0px 30px 8px 0px; /*text-transform: uppercase;*/ display: inline-block; vertical-align: middle; color: #ffffff; }
 .page-title-align-left { text-align: left; position: relative; z-index: 1; }
 .page-title-align-center p { width: 100%; border-left: none !important; }
 .pageinfo p { display: inline-block; border-left: 1px solid #fff; padding: 0 0 0 30px; vertical-align: middle; }
