@@ -544,7 +544,7 @@ blockquote span { position: relative; z-index: 1; }
 /*.image-frame {background:url(http://axity.idevol.net/wp-content/uploads/2017/05/bg_mobile_conexiones.png); }*/
 #secSoluciones{background:url(http://axity.idevol.net/wp-content/uploads/2015/03/axity_soluciones2.png)!important;}
 #secc6taImg{ background:#fff!important;}
-.seccIntServicios{ border:none}
+.seccIntServicios{ border:none!important;}
 }
 /* Portrait and Landscape */
 @media only screen 
