@@ -1283,10 +1283,16 @@ label { color: #333; display: block; font-family: "Roboto Condensed", sans-serif
 #secc_Servicios2nd h2{ font-size:16px !important;}
 #secc_Servicios2nd .three-d { background:#FB3449!important; color:#fff!important; padding:3px 30px;}
 #secc_Servicios2nd .seccIntServicios{ border-right:#fff 2px solid;}
+
 #secc_Servicios3th h2{ font-size:16px !important; color:#3E1151!important;}
 #secc_Servicios3th .seccIntServicios{ border-right:#fff 2px solid;}
 #secc_Servicios3th p{ color:#3E1151!important;}
 #secc_Servicios3th .three-d { background:#FB3449!important; color:#fff!important; padding:3px 30px;}
+
+#secc_Servicios4th h2{ font-size:16px !important; color:#3E1151!important;}
+#secc_Servicios4th .seccIntServicios{ border-right:#fff 2px solid;}
+#secc_Servicios4th p{ color:#3E1151!important;}
+#secc_Servicios4th .three-d { background:#FB3449!important; color:#fff!important; padding:3px 30px;}
 
 .btn_Conexiones { float: left; padding: 100px 25px 25px 0; width: 100%; }
 	.cs-promobox article img {margin-bottom: 10px;}
