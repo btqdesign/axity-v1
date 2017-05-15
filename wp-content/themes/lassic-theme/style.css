@@ -142,7 +142,7 @@ body { color: #666666; font-family: 'VitaStd', Verdana,sans-serif; font-size: 16
 /*---Heading Typo---*/
 body h1, body h2, body h3, body h4, body h5, body h6 { color: #000; font-family: 'VitaStd', sans-serif!important; font-style: normal; font-weight: 700; line-height: 1.5 !important; margin: 0px 0px 8px 0px }
 h1 {font-size: 28px;}
-h2 {font-size: 24px;}
+h2 {font-size: 24px !important;}
 .btn_Conexiones h2{ font-size:40px!important;}
 /*.main-section h2, .main-section h2 a{ font-size:40px!important;}*/
 h3 {font-size: 22px;}
@@ -543,6 +543,7 @@ blockquote span { position: relative; z-index: 1; }
   and (-webkit-min-device-pixel-ratio: 2) {
 .image-frame {background:url(http://axity.idevol.net/wp-content/uploads/2017/05/bg_mobile_conexiones.png); }
 #secSoluciones{background:url(http://axity.idevol.net/wp-content/uploads/2015/03/axity_soluciones2.png)!important;}
+#secc6taImg{ background:#fff!important}
 }
 /* Portrait and Landscape */
 @media only screen 
