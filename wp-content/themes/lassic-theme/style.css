@@ -140,7 +140,7 @@ iframe {width: 100%;}
 body { color: #666666; font-family: 'VitaStd', Verdana,sans-serif; font-size: 16px; font-weight: 400; background-color: #fff; }
 	/* Global Typography */
 /*---Heading Typo---*/
-body h1, body h2, body h3, body h4, body h5, body h6 { color: #000; font-family: 'VitaStd', sans-serif; font-style: normal; font-weight: 700; line-height: 1.5 !important; margin: 0px 0px 8px 0px }
+body h1, body h2, body h3, body h4, body h5, body h6 { color: #000; font-family: 'VitaStd', sans-serif!important; font-style: normal; font-weight: 700; line-height: 1.5 !important; margin: 0px 0px 8px 0px }
 h1 {font-size: 28px;}
 h2 {font-size: 24px;}
 .btn_Conexiones h2{ font-size:40px!important;}
