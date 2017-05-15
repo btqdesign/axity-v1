@@ -1278,9 +1278,9 @@ label { color: #333; display: block; font-family: "Roboto Condensed", sans-serif
 .center {text-align: center;}
 .top-right {text-align: right;}
 .secc_TopServicios{float: left; padding: 60px 25px 25px 0; width: 100%; font-family:'VitaStd'; font-weight:400; }
-.secc_TopServicios.btn_Conexiones.three-d { border:#fff solid 1px; color:#fff!important; background:#8547AD!important; }
+.secc_TopServicios .three-d { border:#fff solid 1px; color:#fff!important; background:#8547AD!important; }
 
-.cs-promobox .btn_Conexiones { float: left; padding: 100px 25px 25px 0; width: 100%; }
+.btn_Conexiones { float: left; padding: 100px 25px 25px 0; width: 100%; }
 	.cs-promobox article img {margin-bottom: 10px;}
 	.cs-promobox article .text .three-d { color: #fff; display: inline-block; padding: 4px 15px; font-size:12px; }
 	.cs-promobox .top-left i {float: left;}
