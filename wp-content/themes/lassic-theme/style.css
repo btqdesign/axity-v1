@@ -1090,7 +1090,7 @@ a.defaultbtn { font-size: 16px; color: #fff; font-weight: 400; text-transform: u
 	.cs-price-table.pr-classic h3 {background: none;}
 /* Buttons Style */
 .button_style { display: inline-block; margin: 0 5px 5px 0; vertical-align: bottom; }
-	.button_style .default { background-color: #ffffff!important; border-radius: 30px; border:1px solid #4A0D66; color: #4A0D66!important; display: inline-block; font-size: 12px; font-weight: 400; padding: 0px 10px; text-align: center; text-transform: uppercase; margin:0 0 0 20px; }
+	.button_style .default { background-color: #ffffff!important; border-radius: 30px; /*border:1px solid #4A0D66;*/ color: #4A0D66!important; display: inline-block; font-size: 12px; font-weight: 400; padding: 0px 10px; text-align: center; text-transform: uppercase; margin:0 0 0 20px; }
 /* Extra Large Btn Style */
 .default.circle {border-radius: 100px;}
 .extra-large-btn { line-height: 45px; min-width: 180px; }
