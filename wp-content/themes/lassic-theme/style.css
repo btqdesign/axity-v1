@@ -1293,6 +1293,10 @@ label { color: #333; display: block; font-family: "Roboto Condensed", sans-serif
 #seccServicios2ndIco {padding: 3px 0 3px 80px; background: url(http://axity.idevol.net/wp-content/uploads/2017/05/ico_download-1.png) no-repeat; background-position: 30px;}
 #secc2ndServicios3ra .three-d { background:#F4364C!important; color:#fff!important; padding:3px 30px;}
 
+
+#seccServicios2ndVideo { background: url(http://axity.idevol.net/wp-content/uploads/2017/05/axity_ptt.png); background-size: container;}
+
+
 #secc_Servicios3th h2{ font-size:16px !important; color:#3c1053!important;}
 #secc_Servicios3th .seccIntServicios{ border-right:#fff 2px solid;}
 #secc_Servicios3th p{ color:#3c1053!important;}
