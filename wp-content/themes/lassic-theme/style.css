@@ -555,6 +555,10 @@ blockquote span { position: relative; z-index: 1; }
   and (-webkit-min-device-pixel-ratio: 2) {
 /*.image-frame {background:url(http://axity.idevol.net/wp-content/uploads/2017/05/bg_mobile_conexiones.png); }*/
 #secSoluciones{background:url(http://axity.idevol.net/wp-content/uploads/2015/03/axity_soluciones2.png)!important;}
+#secc6taImg{ background:#fff!important;}
+.seccIntServicios{ border:none!important;}
+#secc2ndServicios1er{ background: #fff!important}
+#seccServicios2ndVideo .section-fullwidth{padding:  0 0 0 0 !important}
 }
 @media only screen 
   and (min-device-width: 375px) 
@@ -562,6 +566,10 @@ blockquote span { position: relative; z-index: 1; }
   and (-webkit-min-device-pixel-ratio: 2) { 
 /*.image-frame {background:url(http://axity.idevol.net/wp-content/uploads/2017/05/bg_mobile_conexiones.png); }*/
 #secSoluciones{background:url(http://axity.idevol.net/wp-content/uploads/2015/03/axity_soluciones2.png)!important;}
+#secc6taImg{ background:#fff!important;}
+.seccIntServicios{ border:none!important;}
+#secc2ndServicios1er{ background: #fff!important}
+#seccServicios2ndVideo .section-fullwidth{padding:  0 0 0 0 !important}
 }
 /* Portrait */
 @media only screen 
@@ -571,6 +579,10 @@ blockquote span { position: relative; z-index: 1; }
   and (orientation: portrait) { 
 /*.image-frame {background:url(http://axity.idevol.net/wp-content/uploads/2017/05/bg_mobile_conexiones.png); }*/
 #secSoluciones{background:url(http://axity.idevol.net/wp-content/uploads/2015/03/axity_soluciones2.png)!important;}
+#secc6taImg{ background:#fff!important;}
+.seccIntServicios{ border:none!important;}
+#secc2ndServicios1er{ background: #fff!important}
+#seccServicios2ndVideo .section-fullwidth{padding:  0 0 0 0 !important}
 }
 /*tablets*/
 /* Portrait and Landscape */
@@ -580,6 +592,10 @@ blockquote span { position: relative; z-index: 1; }
   and (-webkit-min-device-pixel-ratio: 1) {
 /*.image-frame {background:url(http://axity.idevol.net/wp-content/uploads/2017/05/bg_mobile_conexiones.png); }*/
 #secSoluciones{background:url(http://axity.idevol.net/wp-content/uploads/2015/03/axity_soluciones2.png)!important;}
+#secc6taImg{ background:#fff!important;}
+.seccIntServicios{ border:none!important;}
+#secc2ndServicios1er{ background: #fff!important}
+#seccServicios2ndVideo .section-fullwidth{padding:  0 0 0 0 !important}
 }
 /* ----------- iPad 1 and 2 ----------- */
 /* Portrait and Landscape */
@@ -589,6 +605,10 @@ blockquote span { position: relative; z-index: 1; }
   and (-webkit-min-device-pixel-ratio: 1) {
 /*.image-frame {background:url(http://axity.idevol.net/wp-content/uploads/2017/05/bg_mobile_conexiones.png); }*/
 #secSoluciones{background:url(http://axity.idevol.net/wp-content/uploads/2015/03/axity_soluciones2.png)!important;}
+#secc6taImg{ background:#fff!important;}
+.seccIntServicios{ border:none!important;}
+#secc2ndServicios1er{ background: #fff!important}
+#seccServicios2ndVideo .section-fullwidth{padding:  0 0 0 0 !important}
 }
 /* ----------- iPad 3 and 4 ----------- */
 /* Portrait and Landscape */
@@ -598,6 +618,10 @@ blockquote span { position: relative; z-index: 1; }
   and (-webkit-min-device-pixel-ratio: 2) {
 /*.image-frame {background:url(http://axity.idevol.net/wp-content/uploads/2017/05/bg_mobile_conexiones.png); }*/
 #secSoluciones{background:url(http://axity.idevol.net/wp-content/uploads/2015/03/axity_soluciones2.png)!important;}
+#secc6taImg{ background:#fff!important;}
+.seccIntServicios{ border:none!important;}
+#secc2ndServicios1er{ background: #fff!important}
+#seccServicios2ndVideo .section-fullwidth{padding:  0 0 0 0 !important}
 }
 
 
