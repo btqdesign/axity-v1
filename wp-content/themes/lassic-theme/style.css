@@ -1280,7 +1280,7 @@ label { color: #333; display: block; font-family: "Roboto Condensed", sans-serif
 .center {text-align: center;}
 .top-right {text-align: right;}
 .secc_TopServicios{float: left; padding: 60px 25px 25px 0; width: 100%; font-family:'VitaStd'; font-weight:400; }
-.secc_TopServicios .three-d { border:#fff solid 1px; color:#fff!important; background:#C1A0DA!important; }
+.secc_TopServicios .three-d { border:#fff solid 1px; color:#fff!important; background:#8446ac!important; }
 
 #secc_Servicios2nd h2{ font-size:16px !important;}
 #secc_Servicios2nd .three-d { background:#F4364C!important; color:#fff!important; padding:3px 30px;}
