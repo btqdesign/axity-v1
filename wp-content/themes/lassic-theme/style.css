@@ -1332,7 +1332,7 @@ label { color: #333; display: block; font-family: "Roboto Condensed", sans-serif
 #secc_Servicios4th p{ color:#3c1053!important;}
 #secc_Servicios4th .three-d { background:#F4364C!important; color:#fff!important; padding:3px 30px;}
 
-#seccTecnologia .cs-promobox article .text .three-d{ border: none!important; background: #fff!important; color: #f4364c!important}
+#seccTecnologia .cs-promobox article .text .three-d{ border: none!important; background: #fff!important; color: #f4364c!important; padding: 0!important;}
 #seccTecnologia .cs-promobox article .text .three-d a{color: #f4364c!important}
 
 .btn_Conexiones { float: left; padding: 100px 25px 25px 0; width: 100%; }
