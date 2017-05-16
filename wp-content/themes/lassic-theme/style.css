@@ -546,7 +546,7 @@ blockquote span { position: relative; z-index: 1; }
 #secc6taImg{ background:#fff!important;}
 .seccIntServicios{ border:none!important;}
 #secc2ndServicios1er{ background: #fff!important}
-#seccServicios2ndVideo .section-fullwidth{padding:  0 0 0 0 !important}
+#seccServicios2ndVideo .section-fullwidth{padding:  0 !important;}
 }
 /* Portrait and Landscape */
 @media only screen 
@@ -558,7 +558,7 @@ blockquote span { position: relative; z-index: 1; }
 #secc6taImg{ background:#fff!important;}
 .seccIntServicios{ border:none!important;}
 #secc2ndServicios1er{ background: #fff!important}
-#seccServicios2ndVideo .section-fullwidth{padding:  0 0 0 0 !important}
+#seccServicios2ndVideo .section-fullwidth{padding:  0 !important;}
 }
 @media only screen 
   and (min-device-width: 375px) 
@@ -569,7 +569,7 @@ blockquote span { position: relative; z-index: 1; }
 #secc6taImg{ background:#fff!important;}
 .seccIntServicios{ border:none!important;}
 #secc2ndServicios1er{ background: #fff!important}
-#seccServicios2ndVideo .section-fullwidth{padding:  0 0 0 0 !important}
+#seccServicios2ndVideo .section-fullwidth{padding:  0 !important;}
 }
 /* Portrait */
 @media only screen 
@@ -582,7 +582,7 @@ blockquote span { position: relative; z-index: 1; }
 #secc6taImg{ background:#fff!important;}
 .seccIntServicios{ border:none!important;}
 #secc2ndServicios1er{ background: #fff!important}
-#seccServicios2ndVideo .section-fullwidth{padding:  0 0 0 0 !important}
+#seccServicios2ndVideo .section-fullwidth{padding:  0 !important;}
 }
 /*tablets*/
 /* Portrait and Landscape */
@@ -595,7 +595,7 @@ blockquote span { position: relative; z-index: 1; }
 #secc6taImg{ background:#fff!important;}
 .seccIntServicios{ border:none!important;}
 #secc2ndServicios1er{ background: #fff!important}
-#seccServicios2ndVideo .section-fullwidth{padding:  0 0 0 0 !important}
+#seccServicios2ndVideo .section-fullwidth{padding:  0 !important;}
 }
 /* ----------- iPad 1 and 2 ----------- */
 /* Portrait and Landscape */
@@ -608,7 +608,7 @@ blockquote span { position: relative; z-index: 1; }
 #secc6taImg{ background:#fff!important;}
 .seccIntServicios{ border:none!important;}
 #secc2ndServicios1er{ background: #fff!important}
-#seccServicios2ndVideo .section-fullwidth{padding:  0 0 0 0 !important}
+#seccServicios2ndVideo .section-fullwidth{padding:  0 !important;}
 }
 /* ----------- iPad 3 and 4 ----------- */
 /* Portrait and Landscape */
@@ -621,7 +621,7 @@ blockquote span { position: relative; z-index: 1; }
 #secc6taImg{ background:#fff!important;}
 .seccIntServicios{ border:none!important;}
 #secc2ndServicios1er{ background: #fff!important}
-#seccServicios2ndVideo .section-fullwidth{padding:  0 0 0 0 !important}
+#seccServicios2ndVideo .section-fullwidth{padding:  0 !important;}
 }
 
 
@@ -1320,7 +1320,7 @@ label { color: #333; display: block; font-family: "Roboto Condensed", sans-serif
 
 
 #seccServicios2ndVideo { background: url(http://axity.idevol.net/wp-content/uploads/2017/05/axity_ptt.png); background-size: contain!important;}
-#seccServicios2ndVideo .section-fullwidth{padding:  0 0 0 180px !important}
+#seccServicios2ndVideo .section-fullwidth{padding:  0 0 0 20% !important}
 
 #secc_Servicios3th h2{ font-size:16px !important; color:#3c1053!important;}
 #secc_Servicios3th .seccIntServicios{ border-right:#fff 2px solid;}
