@@ -546,6 +546,7 @@ blockquote span { position: relative; z-index: 1; }
 #secc6taImg{ background:#fff!important;}
 .seccIntServicios{ border:none!important;}
 #secc2ndServicios1er{ background: #fff!important}
+#seccServicios2ndVideo .section-fullwidth{padding:  0 0 0 0 !important}
 }
 /* Portrait and Landscape */
 @media only screen 
