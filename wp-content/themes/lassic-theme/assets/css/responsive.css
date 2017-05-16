@@ -25,7 +25,7 @@
 	header .logo { margin: 22px 0px !important; min-height: 20px !important; line-height: 20px !important; }
 	header .cs-click-menu { display: block; border: 1px solid #ccc; color: #ccc; line-height: 1.2; 5px 15px 0 7px; } /*Cambio*/
 	.icon-list8:hover{ background:transparent!important;} /*Cambio*/
-	.navigation ul > li > a{ color:#3e1151 !important;}/*Cambio*/
+	.navigation ul > li > a{ color:#3c1053 !important;}/*Cambio*/
 	header .logo a, header .btn-sec, header.navigation ul li a { min-height: inherit !important; line-height: inherit !important; }
 	/* Navigation Setup  */
 	#main-header .navigation { margin: 0 20px 0 0; position: relative; line-height: 20px!important; min-height: 20px !important; float: none; display: inline-block;}
@@ -122,7 +122,7 @@
 	header .logo { margin: 22px 0px !important; min-height: 20px !important; line-height: 20px !important; }
 	header .cs-click-menu { display: block; border: 1px solid #ccc; color: #ccc; line-height: 1.2; padding: 5px 15px 0 7px; } /*Cambio*/
 	.icon-list8:hover{ background:transparent!important;} /*Cambio*/
-	.navigation ul > li > a{ color:#3e1151 !important;}/*Cambio*/
+	.navigation ul > li > a{ color:#3c1053 !important;}/*Cambio*/
 	header .logo a, header .btn-sec, header.navigation ul li a { min-height: inherit !important; line-height: inherit !important; }
 	/* Navigation Setup  */
 	#main-header .navigation { padding: 0; position: relative; line-height: 20px!important; min-height: 20px !important; float: none; display: inline-block;}

@@ -327,10 +327,10 @@ widget.widget-gallery .gallery-list {
 	/*background-color:#fff;*/
 }
 .twitter_widget article p{
-	color:#3E1151!important;
+	color:#3c1053!important;
 }
 .twitter_widget article p{
-	color:#3E1151!important;
+	color:#3c1053!important;
 }
 .page-sidebar .twitter_widget article:after, .content-rt .twitter_widget article:after {
 	background-color: rgba(0,0,0,0.2);
@@ -559,8 +559,8 @@ footer#footer-sec .widget_calendar thead tr th {color: #fff;}
 footer#footer-sec table > thead > tr > th, footer#footer-sec table > tbody > tr > th, footer#footer-sec table > tfoot > tr > th, footer#footer-sec table > thead > tr > td, footer#footer-sec table > tbody > tr > td, footer#footer-sec table > tfoot > tr > td{
 	background-color:rgba(0,0,0,0.3);
 }
-footer#footer-sec .widget sub-dropdown ul li {color:#3E1151!important} /*cambio*/
-footer#footer-sec .widget sub-dropdown ul li a{color:#3E1151!important} /*cambio*/
+footer#footer-sec .widget sub-dropdown ul li {color:#3c1053!important} /*cambio*/
+footer#footer-sec .widget sub-dropdown ul li a{color:#3c1053!important} /*cambio*/
 footer#footer-sec .widget sub-dropdown ul li a:hover{color:#fff!important} /*cambio*/
 
 /* Defoult Pages Setup  */
