@@ -536,6 +536,7 @@ blockquote span { position: relative; z-index: 1; }
 #imgConexion{margin:0px 0px -6px 0px!important}
 .image-frame { float: left; width: 100%; /*margin: 0px 0px 25px 0px;*/ margin:0px; }
 
+
 /*Mobile*/
 @media only screen 
   and (min-device-width: 320px) 
@@ -1309,6 +1310,12 @@ label { color: #333; display: block; font-family: "Roboto Condensed", sans-serif
 .secc_TopServicios .three-d { border:#fff solid 1px; color:#fff!important; background:#8446ac!important; }
 
 
+.secc_TopProductos{float: left; padding: 60px 25px 25px 0; width: 100%; font-family:'VitaStd'; font-weight:400; }
+.secc_TopProductos .three-d { border:#fff solid 1px; color:#fff!important; background:#f4364c!important; }
+
+.secc_TopServicios{float: left; padding: 60px 25px 25px 0; width: 100%; font-family:'VitaStd'; font-weight:400; }
+.secc_TopServicios .three-d { border:#fff solid 1px; color:#fff!important; background:#8446ac!important; }
+
 #secc2ndServicios1er .cs-services .read-more { background:#F4364C!important; color:#fff!important; padding:3px 30px; border-radius: 30px}
 
 
@@ -1334,6 +1341,10 @@ label { color: #333; display: block; font-family: "Roboto Condensed", sans-serif
 
 #seccTecnologia .cs-promobox article .text .three-d{ border: none!important; background: #fff!important; color: #f4364c!important; padding: 0!important;}
 #seccTecnologia .cs-promobox article .text .three-d a{color: #f4364c!important}
+
+
+.secc_TopServicios{float: left; padding: 60px 25px 25px 0; width: 100%; font-family:'VitaStd'; font-weight:400; }
+.secc_TopServicios .three-d { border:#fff solid 1px; color:#fff!important; background:#8446ac!important; }
 
 .btn_Conexiones { float: left; padding: 100px 25px 25px 0; width: 100%; }
 	.cs-promobox article img {margin-bottom: 10px;}
