@@ -1312,7 +1312,7 @@ label { color: #333; display: block; font-family: "Roboto Condensed", sans-serif
 #secc_TopProductos2nd{ background:url(http://axity.idevol.net/wp-content/uploads/2017/05/axity_ptt_2.png)}
 
 #subSeccProductos{ background:#fff!important; padding:30px 20px; }
-
+#detailProduct h2{padding:20px;}
 .detailProduct{ padding:20px;}
 .detailProduct strong{color:#f4364c!important;}
 
