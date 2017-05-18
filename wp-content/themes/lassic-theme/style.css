@@ -1321,7 +1321,7 @@ label { color: #333; display: block; font-family: "Roboto Condensed", sans-serif
 
 
 #sec2ndComp  .cs-section-title { padding:20px;}
-#sec2ndComp  .cs-section-title .cs-contact-info .has_border  { padding:20px;}
+#sec2ndComp  .cs-section-title .cs-contact-info { padding:20px;}
 
 #subSeccProductos .read-more{ background:#f4364c!important;border-radius:30px;}
 #subSeccProductos .read-more .icon-angle-right{ background:#f4364c!important; border:#f4364c solid 1px; color:#f4364c!important;}
