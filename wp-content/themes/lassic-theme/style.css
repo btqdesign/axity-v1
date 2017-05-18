@@ -1319,6 +1319,9 @@ label { color: #333; display: block; font-family: "Roboto Condensed", sans-serif
 #subSeccProductos .read-more{ background:#f4364c!important;border-radius:30px;}
 #subSeccProductos .read-more .icon-angle-right{ background:#f4364c!important; border:#f4364c solid 1px; color:#f4364c!important;}
 
+#detailsBenefits{ color:#3c1053!important; }
+.detailBenefit{ border-right:#3c1053 solid 1px;}
+
 .secc_TopProductos{float: left; padding: 60px 25px 25px 0; width: 100%; font-family:'VitaStd'; font-weight:400; }
 .secc_TopProductos .three-d { border:#fff solid 1px; color:#fff!important; background:#f4364c!important; }
 
