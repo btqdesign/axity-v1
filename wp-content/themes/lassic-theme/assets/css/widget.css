@@ -344,7 +344,7 @@ widget.widget-gallery .gallery-list {
     left: 0;
     position: absolute;
     top: 0;
-	padding:15px;
+	padding:13px;
 }
 .twitter_widget article:after {
     background: rgba(255, 255, 255, 0.1);
