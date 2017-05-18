@@ -1310,7 +1310,8 @@ label { color: #333; display: block; font-family: "Roboto Condensed", sans-serif
 .secc_TopServicios .three-d { border:#fff solid 1px; color:#fff!important; background:#8446ac!important; }
 .secc_TopServicios2nd{ background:url(http://axity.idevol.net/wp-content/uploads/2017/05/axity_ptt.png);}
 #secc_TopProductos2nd{ background:url(http://axity.idevol.net/wp-content/uploads/2017/05/axity_ptt_2.png)}
-#subSeccProductos{ background:#fff!important;  }
+
+#subSeccProductos{ background:#fff!important; padding:20px 0 0 0; }
 
 #subSeccProductos .read-more{ background:#f4364c!important;border-radius:30px;}
 #subSeccProductos .read-more .icon-angle-right{ background:#f4364c!important; border:#f4364c solid 1px; color:#f4364c!important;}
