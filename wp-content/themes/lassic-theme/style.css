@@ -1313,6 +1313,9 @@ label { color: #333; display: block; font-family: "Roboto Condensed", sans-serif
 
 #subSeccProductos{ background:#fff!important; padding:30px 20px; }
 
+#detailProduct{ padding:20px;}
+#detailProduct strong{color:#f4364c!important;}
+
 #subSeccProductos .read-more{ background:#f4364c!important;border-radius:30px;}
 #subSeccProductos .read-more .icon-angle-right{ background:#f4364c!important; border:#f4364c solid 1px; color:#f4364c!important;}
 
