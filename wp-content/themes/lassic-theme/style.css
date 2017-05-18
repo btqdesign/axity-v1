@@ -1318,7 +1318,7 @@ label { color: #333; display: block; font-family: "Roboto Condensed", sans-serif
 
 
 #secCompanya .element-size-50{ background:#f4364c!important; padding:20px;}
-#secCompanya .element-size-50 .image-frame{background:transparent!important;}
+#secCompanya .element-size-50 .image-frame{background:transparent!important; padding:0!important;}
 
 
 #subSeccProductos .read-more{ background:#f4364c!important;border-radius:30px;}
