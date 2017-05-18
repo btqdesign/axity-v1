@@ -1047,7 +1047,7 @@ a.defaultbtn { font-size: 16px; color: #fff; font-weight: 400; text-transform: u
 		.cs-tabs.vertical .nav-tabs li.active a:before { transform: rotate(-90deg); -moz-transform: rotate(-90deg); -ms-transform: rotate(-90deg); -o-transform: rotate(-90deg); -webkit-transform: rotate(-90deg); border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 10px solid #f26f29; content: ''; position: absolute; right: -15px; top: 16px; bottom: auto; margin: 0; }
 .cs-tabs.vertical .tab-content { border: 1px solid #d7d7d7; box-shadow: none; float: left; padding: 20px 30px; width: 80%; }
 /* Counter Style */
-.cs_counter.classic { border-right: 1px solid #ccc; float: left; width: 100%; }
+.cs_counter.classic { /*border-right: 1px solid #ccc;*/ float: left; width: 100%; }
 [class*="element-size-"]:last-child .cs_counter.classic {border-right: none;}
 .cs_counter.classic figure img {width: auto;}
 .cs_counter.classic figure figcaption { float: left; padding: 0 20px 0 0; width: 100%; }
@@ -1317,7 +1317,7 @@ label { color: #333; display: block; font-family: "Roboto Condensed", sans-serif
 .detailProduct strong{color:#f4364c!important;}
 
 
-#secCompanya .element-size-50{ background:#f4364c!important;}
+#secCompanya .element-size-50{ background:#f4364c!important; padding:20px;}
 
 
 #subSeccProductos .read-more{ background:#f4364c!important;border-radius:30px;}
