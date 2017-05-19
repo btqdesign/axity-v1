@@ -1501,7 +1501,7 @@ blockquote { position: relative; border: none; float: left; font-size: 20px; fon
 /*Accordion Start*/
 #box .panel-group .panel{background:#fff!important}
 #box h2{ color:#f4364c!important;}
-#box .panel-heading{ color:#3c1053!important;}
+#box .panel-heading h4{ color:#3c1053!important;}
 .panel-group .panel-heading + .panel-collapse > .list-group, .panel-group .panel-heading + .panel-collapse > .panel-body {border-top: none;}
 .panel-group .panel { width: 100%; float: left; box-shadow: none; border: none; border-color: #fff; }
 .panel-group .panel-title {font: 16px/19px "VitaStd",sans-serif !important;}
