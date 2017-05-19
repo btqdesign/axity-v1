@@ -1499,6 +1499,7 @@ blockquote { position: relative; border: none; float: left; font-size: 20px; fon
 .question-mark p::before { content: ",,"; font-size: 50px; font-weight: 400; left: -18px !important; letter-spacing: -3px; position: absolute; top: -10px !important; }
 .flex-direction-nav .flex-next {left: 44px !important;}
 /*Accordion Start*/
+.box.panel{background:#fff!important}
 .panel-group .panel-heading + .panel-collapse > .list-group, .panel-group .panel-heading + .panel-collapse > .panel-body {border-top: none;}
 .panel-group .panel { width: 100%; float: left; box-shadow: none; border: none; border-color: #fff; }
 .panel-group .panel-title {font: 16px/19px "VitaStd",sans-serif !important;}
