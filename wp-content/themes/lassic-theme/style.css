@@ -55,7 +55,7 @@ Tags: dark, black, gray, one-column, two-columns, left-sidebar, right-sidebar, f
 	content:none !important;
 }
 .infoBeneficios{ border-right: 1px solid #c8c9c7}
-#infoRelevante{ padding:40px 0 0 40px;}
+#infoRelevante{ padding:40px 0 0 60px;}
 .navigation ul > li > a:before
 /*@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,700,900,200&subset=latin,vietnamese,latin-ext);
 */
