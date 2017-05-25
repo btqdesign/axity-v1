@@ -539,6 +539,7 @@ blockquote span { position: relative; z-index: 1; }
 .image-frame { float: left; width: 100%; /*margin: 0px 0px 25px 0px;*/ margin:0px; }
 
 
+#seccTopDigital .element-size-50 .lightbox{padding: 10px 70px;}
 /*Mobile*/
 @media only screen 
   and (min-device-width: 320px) 
