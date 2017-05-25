@@ -560,14 +560,14 @@ if ( !class_exists('ProjectTemplates') ) {
 			</script>
         	<div class="cs-portfoliolist cs-top-center mas-isotope">
          	<?php 
-				$cs_title_limit = 30;
+				$cs_title_limit = 120;
 		 		while ( $query->have_posts() ) : $query->the_post();
 					global $post;
 					$image_id = get_post_thumbnail_id($post->ID);
 					if($image_id <> ''){
 						$image_url = cs_attachment_image_src(get_post_thumbnail_id($post->ID), 0, 0);
 					}else{
-						$image_url 		= get_template_directory_uri().'/assets/images/no-image4x3.jpg';
+						$image_url = get_template_directory_uri().'/assets/images/no-image4x3.jpg';
 					}
 					
 					$post_cats = wp_get_object_terms( $post->ID, 'project-category' );
