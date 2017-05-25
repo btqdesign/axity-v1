@@ -560,7 +560,7 @@ if ( !class_exists('ProjectTemplates') ) {
 			</script>
         	<div class="cs-portfoliolist cs-top-center mas-isotope">
          	<?php 
-				$cs_title_limit = 120;
+				$cs_title_limit = 160;
 		 		while ( $query->have_posts() ) : $query->the_post();
 					global $post;
 					$image_id = get_post_thumbnail_id($post->ID);
