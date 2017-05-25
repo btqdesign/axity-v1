@@ -582,7 +582,7 @@ if ( !class_exists('ProjectTemplates') ) {
                                 <a href="<?php esc_url(the_permalink()); ?>"><img src="<?php echo esc_url($image_url); ?>" alt=""></a>
                             <?php } ?>
                             <h3>
-	                            <a href="<?php esc_url(the_permalink()); ?>">
+	                            <a href="<?php esc_url(the_permalink()); ?>" style="font-weight: 200 !important;">
     		                        <?php cs_get_title($cs_title_limit); ?>
             	                </a>
                             </h3>
