@@ -1660,7 +1660,7 @@ if ( ! class_exists( 'footer_main_menu' ) ) {
 				echo cs_allow_special_char($after_title);
 			}
 			
-			cs_main_navigation('header2-nav','');
+			cs_main_navigation('footer-menu','');
 			?><?php echo cs_allow_special_char($after_widget);
 	
 			}
