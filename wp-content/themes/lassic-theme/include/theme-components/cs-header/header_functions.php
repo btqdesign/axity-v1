@@ -387,7 +387,7 @@ function cs_header_main_navigation($nav=''){
 		if($page_custom_menu != '' && $page_custom_menu != 'default'){
 			cs_navigation("$page_custom_menu",'navbar-nav');
 		} else {
-			cs_navigation('main-menu','navbar-nav');	
+			cs_navigation('footer-menu','navbar-nav');	
 		}
 	}
 }
