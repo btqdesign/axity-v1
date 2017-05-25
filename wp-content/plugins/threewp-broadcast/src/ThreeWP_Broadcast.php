@@ -101,7 +101,7 @@ class ThreeWP_Broadcast
 	public function _construct()
 	{
 		if ( ! $this->is_network )
-			wp_die( $this->_( 'Broadcast requires a Wordpress network to function.' ) );
+			return;
 
 		$this->add_action( 'add_meta_boxes' );
 		$this->add_action( 'admin_menu' );
@@ -692,7 +692,12 @@ class ThreeWP_Broadcast
 			foreach( $plugins as $plugin_filename )
 			{
 				$s = [];
-				$plugin_data = get_plugin_data( WP_PLUGIN_DIR . '/' . $plugin_filename );
+
+				$plugin_filepath = WP_PLUGIN_DIR . '/' . $plugin_filename;
+				if ( !file_exists($plugin_filepath) )
+					continue;
+				$plugin_data = get_plugin_data( $plugin_filepath );
+
 				$plugin_data = (object)$plugin_data;
 				$s []= $plugin_filename;
 				$s []= $plugin_data->Name;
