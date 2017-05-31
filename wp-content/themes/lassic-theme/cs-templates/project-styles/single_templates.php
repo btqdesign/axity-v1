@@ -510,7 +510,7 @@ if ( !class_exists('cs_single_templates') ) {
 					 
 					 if(isset($cs_project_members) &&  $cs_project_members != ''){
 						
-						echo '<div class="col-md-12"><div class="cs-section-title"><h2>Project Team</h2></div>';
+						echo '<div class="col-md-12"><div class="cs-section-title"><!--<h2>Project Team</h2>--></div>';
 						$args = array('posts_per_page' => "-1", 'post_type' => 'member', 'order' => 'ID', 'orderby' => 'DESC', 'post_status' => 'publish', 'post__in' => $cs_project_members);
 						$args = new WP_Query( $args );
 						$this->cs_member_view('grid-4-column',255,$args);
