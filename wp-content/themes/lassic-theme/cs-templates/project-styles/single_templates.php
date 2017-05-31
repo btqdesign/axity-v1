@@ -91,12 +91,12 @@ if ( !class_exists('cs_single_templates') ) {
                 </div>
                 <div class="cs-box-seprator col-md-12">
                     <div class="cs-seprator">
-                      <div class="cs-seprator-holder">
+                     <!-- <div class="cs-seprator-holder">
                         <span></span>
                         <span></span>
                         <span></span>
                         <span></span>
-                      </div>
+                      </div>-->
                     </div>
                 </div>
                 <div class="col-md-12">
@@ -140,12 +140,12 @@ if ( !class_exists('cs_single_templates') ) {
 					
 					echo '<div class="cs-box-seprator col-md-12">
                     <div class="cs-seprator">
-                      <div class="cs-seprator-holder">
+                      <!--<div class="cs-seprator-holder">
                         <span></span>
                         <span></span>
                         <span></span>
                         <span></span>
-                      </div>
+                      </div>-->
                     </div>
                   </div>';
 					
@@ -262,12 +262,12 @@ if ( !class_exists('cs_single_templates') ) {
 					}
 					echo '<div class="cs-box-seprator col-md-12">
                     <div class="cs-seprator">
-                      <div class="cs-seprator-holder">
+                     <!-- <div class="cs-seprator-holder">
                         <span></span>
                         <span></span>
                         <span></span>
                         <span></span>
-                      </div>
+                      </div>-->
                     </div>
                   </div>';
 					
@@ -330,12 +330,12 @@ if ( !class_exists('cs_single_templates') ) {
 					}
 					echo '<div class="cs-box-seprator col-md-12">
                     <div class="cs-seprator">
-                      <div class="cs-seprator-holder">
+                      <!--<div class="cs-seprator-holder">
                         <span></span>
                         <span></span>
                         <span></span>
                         <span></span>
-                      </div>
+                      </div>-->
                     </div>
                   </div>';
                     if(isset($post_pagination_show) &&  $post_pagination_show == 'on'){
@@ -491,12 +491,12 @@ if ( !class_exists('cs_single_templates') ) {
                <?php }?>
 					<div class="cs-box-seprator col-md-12">
                     <div class="cs-seprator">
-                      <div class="cs-seprator-holder">
+                     <!-- <div class="cs-seprator-holder">
                         <span></span>
                         <span></span>
                         <span></span>
                         <span></span>
-                      </div>
+                      </div>-->
                     </div>
                   </div>
                    <?php 
