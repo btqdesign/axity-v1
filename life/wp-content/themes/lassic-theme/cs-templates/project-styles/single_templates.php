@@ -70,19 +70,19 @@ if ( !class_exists('cs_single_templates') ) {
                                 
                                 <?php if(isset( $cs_area ) && $cs_area !='' ){?>
                                 <li>
-                                  <span><?php echo esc_attr('Surface Area','lassic')?></span>
+                                  <span><?php echo esc_attr('Autor','lassic')?></span>
                                   <?php echo cs_allow_special_char($cs_area);?>
                                 </li>
                                 <?php }?>
                                 <?php if(isset( $cs_investor ) && $cs_investor !='' ){?>
                                 <li>
-                                  <span><?php echo esc_attr('Contracting Investor','lassic')?></span>
+                                  <span><?php echo esc_attr('Puesto','lassic')?></span>
                                   <?php echo cs_allow_special_char($cs_investor);?>
                                 </li>
                                 <?php }?>
                                 <?php if(isset( $cs_value ) && $cs_value !='' ){?>
                                 <li>
-                                  <span><?php echo esc_attr('Value','lassic')?></span>
+                                  <span><?php echo esc_attr('Correo','lassic')?></span>
                                   <?php echo cs_allow_special_char($cs_value);?>
                                 </li>
                           <?php }?>
@@ -198,19 +198,19 @@ if ( !class_exists('cs_single_templates') ) {
                                     <?php }?>
                                     <?php if(isset( $cs_area ) && $cs_area !='' ){?>
                                     <li>
-                                        <span><?php echo esc_attr('Surface Area','lassic')?></span>
+                                        <span><?php echo esc_attr('Autor','lassic')?></span>
                                         <?php echo cs_allow_special_char($cs_area);?>
                                     </li>
                                     <?php }?>
                                     <?php if(isset( $cs_investor ) && $cs_investor !='' ){?>
                                     <li>
-                                      <span><?php echo esc_attr('Contracting Investor','lassic')?></span>
+                                      <span><?php echo esc_attr('Puesto','lassic')?></span>
                                       <?php echo cs_allow_special_char($cs_investor);?>
                                     </li>
                                     <?php }?>
                                     <?php if(isset( $cs_value ) && $cs_value !='' ){?>
                                     <li>
-                                      <span><?php echo esc_attr('Value','lassic')?></span>
+                                      <span><?php echo esc_attr('Correo','lassic')?></span>
                                       <?php echo cs_allow_special_char($cs_value);?>
                                     </li>
                              	    <?php }?>
@@ -359,19 +359,19 @@ if ( !class_exists('cs_single_templates') ) {
                                 <?php }?>
                                 <?php if(isset( $cs_area ) && $cs_area !='' ){?>
                                 <li>
-                                    <span><?php echo esc_attr('Surface Area','lassic')?></span>
+                                    <span><?php echo esc_attr('Autor','lassic')?></span>
                                     <?php echo cs_allow_special_char($cs_area);?>
                                 </li>
                                 <?php }?>
                                 <?php if(isset( $cs_investor ) && $cs_investor !='' ){?>
                                 <li>
-                                  <span><?php echo esc_attr('Contracting Investor','lassic')?></span>
+                                  <span><?php echo esc_attr('Puesto','lassic')?></span>
                                   <?php echo cs_allow_special_char($cs_investor);?>
                                 </li>
                                 <?php }?>
                                 <?php if(isset( $cs_value ) && $cs_value !='' ){?>
                                 <li>
-                                  <span><?php echo esc_attr('Value','lassic')?></span>
+                                  <span><?php echo esc_attr('Correo','lassic')?></span>
                                   <?php echo cs_allow_special_char($cs_value);?>
                                 </li>
                          		<?php }?>
@@ -433,19 +433,19 @@ if ( !class_exists('cs_single_templates') ) {
                                 <?php }?>
                                 <?php if(isset( $cs_area ) && $cs_area !='' ){?>
                                 <li>
-                                    <span><?php echo esc_attr('Surface Area','lassic')?></span>
+                                    <span><?php echo esc_attr('Autor','lassic')?></span>
                                     <?php echo cs_allow_special_char($cs_area);?>
                                 </li>
                                 <?php }?>
                                 <?php if(isset( $cs_investor ) && $cs_investor !='' ){?>
                                 <li>
-                                  <span><?php echo esc_attr('Contracting Investor','lassic')?></span>
+                                  <span><?php echo esc_attr('Puesto','lassic')?></span>
                                   <?php echo cs_allow_special_char($cs_investor);?>
                                 </li>
                                 <?php }?>
                                 <?php if(isset( $cs_value ) && $cs_value !='' ){?>
                                 <li>
-                                  <span><?php echo esc_attr('Value','lassic')?></span>
+                                  <span><?php echo esc_attr('Correo','lassic')?></span>
                                   <?php echo cs_allow_special_char($cs_value);?>
                                 </li>
                           		<?php }?>
@@ -578,19 +578,19 @@ if ( !class_exists('cs_single_templates') ) {
                                 
                                     <?php if(isset( $cs_area ) && $cs_area !='' ){?>
                                     <li>
-                                      <span><?php echo esc_attr('Surface Area','lassic')?></span>
+                                      <span><?php echo esc_attr('Autor','lassic')?></span>
                                       <?php echo get_post_meta($post->ID, "cs_area", true );?>
                                     </li>
                                     <?php }?>
                                     <?php if(isset( $cs_investor ) && $cs_investor !='' ){?>
                                     <li>
-                                      <span><?php echo esc_attr('Contracting Investor','lassic')?></span>
+                                      <span><?php echo esc_attr('Puesto','lassic')?></span>
                                       <?php echo get_post_meta($post->ID, "cs_investor", true );?>
                                     </li>
                                     <?php }?>
                                     <?php if(isset( $cs_value ) && $cs_value !='' ){?>
                                     <li>
-                                      <span><?php echo esc_attr('Value','lassic')?></span>
+                                      <span><?php echo esc_attr('Correo','lassic')?></span>
                                       <?php echo get_post_meta($post->ID, "cs_value", true );?>
                                     </li>
                             <?php }?>
