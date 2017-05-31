@@ -269,7 +269,7 @@
                                 </ul>
                                 <ul class="form-elements">
                                   <li class="to-label">
-                                    <label><?php _e('Surface Aera', 'lassic'); ?></label>
+                                    <label><?php _e('Autor', 'lassic'); ?></label>
                                   </li>
                                   <li class="to-field short-field">
                                     <input type="text" id="cs_area" name="cs_area" value="<?php if(isset($cs_area ) && $cs_area  <> '') echo cs_allow_special_char($cs_area )?>" />
@@ -277,7 +277,7 @@
                                 </ul>
                                 <ul class="form-elements">
                                   <li class="to-label">
-                                    <label><?php _e('Contacting Investor', 'lassic'); ?></label>
+                                    <label><?php _e('Puesto', 'lassic'); ?></label>
                                   </li>
                                   <li class="to-field short-field">
                                     <input type="text" id="cs_investor" name="cs_investor" value="<?php if(isset($cs_investor ) && $cs_investor  <> '') echo cs_allow_special_char($cs_investor )?>" />
@@ -285,7 +285,7 @@
                                 </ul>
                                 <ul class="form-elements">
                                   <li class="to-label">
-                                    <label><?php _e('Value', 'lassic'); ?></label>
+                                    <label><?php _e('Correo', 'lassic'); ?></label>
                                   </li>
                                   <li class="to-field short-field">
                                     <input type="text" id="cs_value" name="cs_value" value="<?php if(isset($cs_value ) && $cs_value  <> '') echo cs_allow_special_char($cs_value )?>" />
