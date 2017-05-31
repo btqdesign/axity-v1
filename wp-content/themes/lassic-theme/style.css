@@ -666,17 +666,17 @@ blockquote span { position: relative; z-index: 1; }
 .at_PinItButton:before { content: "\ead8"; font-family: icomoon; display: inline-block; margin: 0px 0px 0px -4px; }
 .socialmedia ul li { list-style: none; float: left; margin: 0 0 6px 6px; }
 	.socialmedia ul li a { float: left; width: 36px; height: 36px; color: #ffffff; font-size: 14px; padding: 5px 0px 0px 0px; text-align: center; background-color: #0082ce; border-radius: 3px; }
-	.socialmedia ul li a[data-original-title="Facebook"] {background-color: #4161a2;}
-	.socialmedia ul li a[data-original-title="twitter"] {background-color: #09aeec;}
-	.socialmedia ul li a[data-original-title="google-plus"] {background-color: #d1432f;}
-	.socialmedia ul li a[data-original-title="Linkedin"] {background-color: #0279b3;}
-	.socialmedia ul li a[data-original-title="Pinterest"] {background-color: #f44647;}
-	.socialmedia ul li a[data-original-title="Tumblr"] {background-color: #2C4762;}
-	.socialmedia ul li a[data-original-title="Dribbble"] {background-color: #F26798;}
-	.socialmedia ul li a[data-original-title="Instagram"] {background-color: #AC7E64;}
-	.socialmedia ul li a[data-original-title="stumbleupon"] {background-color: #EA4822;}
-	.socialmedia ul li a[data-original-title="Youtube"] {background-color: #ED4C46;}
-	.socialmedia ul li a.cs-btnsharenow {background-color: #FF835F;}
+	.socialmedia ul li a[data-original-title="Facebook"] {/*background-color: #4161a2;*/}
+	.socialmedia ul li a[data-original-title="twitter"] {/*background-color: #09aeec;*/}
+	.socialmedia ul li a[data-original-title="google-plus"] {/*background-color: #d1432f;*/}
+	.socialmedia ul li a[data-original-title="Linkedin"] {/*background-color: #0279b3;*/}
+	.socialmedia ul li a[data-original-title="Pinterest"] {/*background-color: #f44647;*/}
+	.socialmedia ul li a[data-original-title="Tumblr"] {/*background-color: #2C4762;*/}
+	.socialmedia ul li a[data-original-title="Dribbble"] {/*background-color: #F26798;*/}
+	.socialmedia ul li a[data-original-title="Instagram"] {/*background-color: #AC7E64;*/}
+	.socialmedia ul li a[data-original-title="stumbleupon"] {/*background-color: #EA4822;*/}
+	.socialmedia ul li a[data-original-title="Youtube"] {/*background-color: #ED4C46;*/}
+	.socialmedia ul li a.cs-btnsharenow {/*background-color: #FF835F;*/}
 /* Cs post Sharebtn Style */
 .cs-post-pagination { float: left; width: 100%; margin-bottom: 35px; padding-bottom: 30px; position: relative; }
 	.cs-post-pagination:before { content: ''; background: url(assets/images/devider-bg1.png); position: absolute; left: 0px; bottom: 0px; width: 100%; height: 3px; }
