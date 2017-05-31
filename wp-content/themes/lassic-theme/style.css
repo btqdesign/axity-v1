@@ -665,7 +665,7 @@ blockquote span { position: relative; z-index: 1; }
 .cs-social-share .socialmedia a span {background: none;}
 .at_PinItButton:before { content: "\ead8"; font-family: icomoon; display: inline-block; margin: 0px 0px 0px -4px; }
 .socialmedia ul li { list-style: none; float: left; margin: 0 0 6px 6px; }
-	.socialmedia ul li a { float: left; width: 36px; height: 36px; color: #ffffff; font-size: 14px; padding: 5px 0px 0px 0px; text-align: center; background-color: #0082ce; border-radius: 3px; }
+	.socialmedia ul li a { float: left; width: 36px; height: 36px; color: #ffffff; font-size: 14px; padding: 5px 0px 0px 0px; text-align: center; /*background-color: #0082ce;*/ border-radius: 3px; }
 	.socialmedia ul li a[data-original-title="Facebook"] {/*background-color: #4161a2;*/}
 	.socialmedia ul li a[data-original-title="twitter"] {/*background-color: #09aeec;*/}
 	.socialmedia ul li a[data-original-title="google-plus"] {/*background-color: #d1432f;*/}
