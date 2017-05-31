@@ -261,7 +261,7 @@
                                 </ul>
                                 <ul class="form-elements">
                                   <li class="to-label">
-                                    <label><?php _e('Construction Date', 'lassic'); ?></label>
+                                    <label><?php _e('Fecha', 'lassic'); ?></label>
                                   </li>
                                   <li class="to-field short-field">
                                     <input type="text" id="cs_construction_date" name="cs_construction_date" value="<?php if(isset($cs_construction_date ) && $cs_construction_date  <> '') echo cs_allow_special_char($cs_construction_date )?>" />
