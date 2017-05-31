@@ -70,7 +70,7 @@ if ( !class_exists('cs_single_templates') ) {
                                 
                                 <?php if(isset( $cs_area ) && $cs_area !='' ){?>
                                 <li>
-                                  <span><?php echo esc_attr('Surface Area','lassic')?></span>
+                                  <span><?php echo esc_attr('Autor','lassic')?></span>
                                   <?php echo cs_allow_special_char($cs_area);?>
                                 </li>
                                 <?php }?>
@@ -433,7 +433,7 @@ if ( !class_exists('cs_single_templates') ) {
                                 <?php }?>
                                 <?php if(isset( $cs_area ) && $cs_area !='' ){?>
                                 <li>
-                                    <span><?php echo esc_attr('Surface Area','lassic')?></span>
+                                    <span><?php echo esc_attr('Autor','lassic')?></span>
                                     <?php echo cs_allow_special_char($cs_area);?>
                                 </li>
                                 <?php }?>
@@ -578,7 +578,7 @@ if ( !class_exists('cs_single_templates') ) {
                                 
                                     <?php if(isset( $cs_area ) && $cs_area !='' ){?>
                                     <li>
-                                      <span><?php echo esc_attr('Surface Area','lassic')?></span>
+                                      <span><?php echo esc_attr('Autor','lassic')?></span>
                                       <?php echo get_post_meta($post->ID, "cs_area", true );?>
                                     </li>
                                     <?php }?>
