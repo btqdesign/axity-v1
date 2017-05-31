@@ -831,7 +831,7 @@ blockquote span { position: relative; z-index: 1; }
 .cs-post-pagination a.cs-post-prev { color: #ffffff; font-size: 14px; text-align: left; /*display: inline-block;
     font-size: 14px;
     min-width: 48%;
-    text-align: left !important;*/border-radius:30px; background:8547ad!important; }
+    text-align: left !important;*/border-radius:30px; background:#8547ad!important; }
 .cs-portfolio .cs-post-pagination {text-align: center;}
 	.cs-portfolio .cs-post-pagination a.cs-post-prev,.cs-portfolio .cs-post-pagination a.cs-post-next {width: 25%;}
 	.cs-portfolio .cs-post-pagination a.cs-post-prev { float: left; color: #666666; }
