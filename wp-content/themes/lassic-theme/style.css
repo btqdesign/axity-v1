@@ -162,7 +162,8 @@ ul {margin-bottom: 0px;}
 figure { /*margin-bottom: 6px;*/ position: relative; }
 .clear { clear: both; font-size: 0; line-height: 0; }
 img {max-width: 100%;}
-strong {color: #333333;}
+strong {color: #ff2959;}
+/*strong {color: #333333;}*/
 iframe { border: none; float: left; width: 100% !important; }
 .container.fullwidth {width: 100%;}
 	.container.fullwidth .col-md-12 {padding: 0px;}
