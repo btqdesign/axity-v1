@@ -48,7 +48,7 @@ if ( !class_exists('MemberTemplates') ) {
 			?>
             <article class="col-md-3">
                 <figure>
-                <a href="<?php the_permalink();?>" target="_self" class="three-d">VER +</a>
+                
                    <!-- <a href="<?php the_permalink();?>"><img src="<?php echo esc_url($cs_image_url); ?>" alt="<?php the_title();?>"></a>-->
                     <figcaption>
                         <div class="cs-social-media">
@@ -68,6 +68,7 @@ if ( !class_exists('MemberTemplates') ) {
                                 }
                                 ?>
                             </ul>
+                            <a href="<?php the_permalink();?>" target="_self" class="three-d">VER +</a>
                         </div>
                     </figcaption>
                 </figure>
