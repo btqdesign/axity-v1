@@ -80,8 +80,9 @@ if ( !class_exists('MemberTemplates') ) {
                         echo '<span>'.$cs_team_designation.'</span>';
                     }
                     ?>
-                    
+                    <div class="seccIntServicios">
                      <a href="<?php the_permalink();?>" target="_self" class="three-d">VER +</a>
+                     </div>
                 </div>
             </article>
 			<?php 
