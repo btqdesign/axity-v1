@@ -68,17 +68,20 @@ if ( !class_exists('MemberTemplates') ) {
                                 }
                                 ?>
                             </ul>
-                            <a href="<?php the_permalink();?>" target="_self" class="three-d">VER +</a>
+                           
                         </div>
                     </figcaption>
                 </figure>
                 <div class="cs-text">
                     <h2 class="cs-post-title"><a href="<?php the_permalink();?>"><?php the_title(); ?></a></h2>
+                   
                     <?php 
                     if ( isset( $cs_team_designation ) && $cs_team_designation !='' ) {
                         echo '<span>'.$cs_team_designation.'</span>';
                     }
                     ?>
+                    
+                     <a href="<?php the_permalink();?>" target="_self" class="three-d">VER +</a>
                 </div>
             </article>
 			<?php 
