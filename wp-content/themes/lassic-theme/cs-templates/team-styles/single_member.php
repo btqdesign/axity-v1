@@ -68,15 +68,17 @@
 		$image_url = cs_get_post_img_src($post->ID, $width, $height);
 		$cs_content_section	= 'element-size-100';
 		
-		if ( $image_url == '') {
+		/*if ( $image_url == '') {
 			$image_url = get_template_directory_uri().'/assets/images/no-image.jpg';
 		}
-		
+		*/
 		$cs_is_designation = false;
 		?>
      	 <!-- Team Detail Start -->
         <div class=" col-md-3"> 
-	        <figure class="cs-team-featured"><img src="<?php echo esc_attr( $image_url );?>" alt="" ></figure>
+	        <figure class="cs-team-featured">
+            <!--<img src="<?php echo esc_attr( $image_url );?>" alt="" >-->
+            </figure>
         </div>
         <div class="col-md-9">
           <div class="cs-team-detail">
