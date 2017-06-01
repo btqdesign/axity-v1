@@ -48,6 +48,7 @@ if ( !class_exists('MemberTemplates') ) {
 			?>
             <article class="col-md-3">
                 <figure>
+                <a href="<?php the_permalink();?>" target="_self" class="three-d">VER +</a>
                    <!-- <a href="<?php the_permalink();?>"><img src="<?php echo esc_url($cs_image_url); ?>" alt="<?php the_title();?>"></a>-->
                     <figcaption>
                         <div class="cs-social-media">
@@ -61,7 +62,7 @@ if ( !class_exists('MemberTemplates') ) {
                                     ?>
                                         <li><a data-original-title="<?php echo esc_attr( $cs_social_title );?>" href="<?php echo esc_url( $cs_url );?>"><i class="<?php echo esc_attr( $cs_social_icon );?>"></i></a></li>
                                         
-                                        <a href="<?php the_permalink();?>" target="_self" class="three-d">VER +</a>
+                                        
                                     <?php 
                                     }
                                 }
