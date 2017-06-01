@@ -120,7 +120,7 @@
                        	 $cs_is_designation	= true;
                    		?>
                        <article>
-                          <span><?php _e('Designation','lassic');?></span>
+                          <span><?php _e('Vacante','lassic');?></span>
                           <h3><?php echo esc_attr( $cs_team_designation );?></h3>
                        </article>
                    <?php }
