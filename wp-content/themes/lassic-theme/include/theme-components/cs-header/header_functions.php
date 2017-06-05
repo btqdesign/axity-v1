@@ -166,7 +166,7 @@ if (!class_exists('cs_mega_menu_walker')) {
 			$class_names = join( " $mega_menu ", apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item ) );
 			$class_names = ' class="'. esc_attr( sanitize_html_class($class_names) ) . '"'; /* current-menu-item */
 			
-			error_log('+++ item: '.var_export($item,TRUE) ,0)
+			error_log('+++ item: '.var_export($item,TRUE) ,0);
 			
 			$output .= $indent . '<li id="menu-item-'. $item->ID . '"' . $value . $class_names .'>';
 			$attributes  = ! empty( $item->attr_title ) ? ' title="'  . esc_attr( $item->attr_title ) .'"' : '';
