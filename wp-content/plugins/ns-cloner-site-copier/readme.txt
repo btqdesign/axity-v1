@@ -3,16 +3,16 @@ Contributors: neversettle
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=53JXD4ENC8MM2&rm=2
 Tags: automate, duplicate, copy, copy site, copier, clone, clone site, cloner, multisite, network, subdomain, subdirectory, subfolder, template
 Requires at least: 3.0.1
-Tested up to: 4.7
+Tested up to: 4.7.5
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-NS Cloner saves multisite admins and developers TONS of time by cloning existing sites to new sites in the same network within a few seconds.
+The NS Cloner saves multisite admins and developers TONS of time by cloning existing sites in a multisite network to a completely new site in a few seconds.
 
 == Description ==
 
-This plugin ONLY works with WordPress Multisite, will NOT work in single site mode, and MUST be Network Activated. You will find it's menu in your network administration dashboard (wp-content/network)
+This plugin ONLY works with WordPress Multisite, will NOT work in single site mode, and MUST be Network Activated. You will find its menu in your network administration dashboard (wp-content/network)
 
 This is by far the easiest, fastest, and most user-friendly way you will ever create fully configured sites on your multisite networks. As with everything we do, Never Settle is fanatical about simplifying user tasks to an absolute bare and joyful minimum without sacrificing the complex functionality going on behind the scenes. You will not find another site cloner that comes anywhere close to how easy this is to use.
 
@@ -28,7 +28,7 @@ The NS Cloner will take any existing site on your WordPress multisite network an
 If you want even more functionality, [check out our Add-ons and Bundles](http://neversettle.it/ns-cloner-add-ons-features)!
 
 = Standard Precautions and Notes =
-* Unlike other similar tools, the NS Cloner supports cloning the main root site at ID=1! But please be especially careful with this feature. Multisite plugins like BuddyPress add tables at the main (wp_) level of the database. There are also several global tables that apply to the network and NOT to the core site. The Cloner automatically excludes these global tables out of the gate so that they don't get cloned to all your new sites which will have wp_ID_ as a prefix instead of wp_. But tables for other network level plugins that don't apply to the clone could still get coppied by the Cloner due to its automation and inability to be aware of the table structure of every plugin out there. Our Table Manager add-on is perfect for unique scenarios where you need total table-level cloning control.
+* Unlike other similar tools, the NS Cloner supports cloning the main root site at ID=1! But please be especially careful with this feature. Multisite plugins like BuddyPress add tables at the main (wp_) level of the database. There are also several global tables that apply to the network and NOT to the core site. The Cloner automatically excludes these global tables out of the gate so that they don't get cloned to all your new sites which will have wp_ID_ as a prefix instead of wp_. But tables for other network level plugins that don't apply to the clone could still get copied by the Cloner due to its automation and inability to be aware of the table structure of every plugin out there. Our Table Manager add-on is perfect for unique scenarios where you need total table-level cloning control.
 * We always try to help, but we cannot promise support to users for this Free version, especially related to cloning the root site do to the potential complexities involved from environment to environment.
 * We have used the NS Cloner on production systems for years without issues. That doesn't mean your scenario won't find some new condition that could cause you some headaches. Unlikely, but always possible. We recommend getting familiar with it on a test system before you deploy it to a critical network.
 * And for the love - backup your data. This plugin operates at the database level to work its magic. We've run it hundreds of times on our own sites and client sites, and tested it thoroughly. It's safe. But don't take our word for it.
@@ -36,7 +36,7 @@ If you want even more functionality, [check out our Add-ons and Bundles](http://
 = Typical Workflow for using the NS Cloner =
 1. Set up 1 or more "template" sites exactly the way you want your clones to start out
 1. Go to your Network Dashboard > NS Cloner
-1. Select the "template" site you that want to clone, type the name of the new site, and put in it's Title
+1. Select the "template" site you that want to clone, type the name of the new site, and put in its Title
 1. Clone Away!
 
 Yes, it really is that easy.
@@ -67,7 +67,7 @@ If you want even more functionality, [check out our Add-ons and Bundles](http://
 == Installation ==
 
 1. Log in to your WordPress network as a multisite super admin and go to /wp-admin/network
-1. Use the Dashboard > Plugins > Add New tools to install NS Cloner from the WP.org repository or install by uploading the zip file
+1. Use the Dashboard > Plugins > Add New tools to install NS Cloner from the WordPress.org repository or install by uploading the zip file
 1. Network Activate the NS Cloner through the 'Plugins' menu in WordPress
 1. Access the NS Cloner from its main menu on the Network Dashboard (/wp-admin/network)
 
@@ -80,10 +80,10 @@ You can browse our Knowledge Base, add or vote on Feature Requests, or contact u
 YES!
 
 = Why do I get a white screen after cloning a site? = 
-Usually this means that the clone operation did not complete successfully. The most common cause for this is a script timeout. By default, PHP script execution for a single script is set to 30 seconds. This might not be enough time for larger sites with numerous posts, pages, and users to complete cloning - especially since the Cloner runs advanced search and replace operations against every table cloned to the new site to make sure that it reflects the new site url and title throughout all its data. Try increasing the max_execution_time in php.ini or wherever your host supports updating PHP configuration settings. You can <a title="Cloning White Screen Issue" href="http://support.neversettle.it/knowledgebase/articles/379601-white-screen-or-404-and-blank-site-after-cloning" target="_blank">read more detailed troubleshooting tips for this issue</a> on our support site.
+Usually this means that the clone operation did not complete successfully. The most common cause for this is a script timeout. By default, PHP script execution for a single script is set to 30 seconds. This might not be enough time for larger sites with numerous posts, pages, and users to complete cloning - especially since the Cloner runs advanced search and replace operations against every table cloned to the new site to make sure that it reflects the new site url and title throughout all its data. Try increasing the max_execution_time in php.ini or wherever your host supports updating PHP configuration settings. You can <a title="Cloning White Screen Issue" href="https://neversettle.it/documentation/ns-cloner/white-screen-404-blank-site-cloning/" target="_blank">read more detailed troubleshooting tips for this issue</a> on our support site.
 
 = Are there other troubleshooting guides? =
-[See these articles](http://support.neversettle.it/knowledgebase/topics/56303-ns-cloner-troubleshooting) for additional help on cloning issues.
+[See these articles](https://neversettle.it/documentation/ns-cloner/) for additional help on cloning issues.
 
 == Screenshots ==
 
@@ -92,7 +92,11 @@ Usually this means that the clone operation did not complete successfully. The m
 
 == Changelog ==
 
+= 3.0.7 =
+* Replaced deprecated wp_get_sites() with get_sites()
+
 = 3.0.6.0 =
+* Fixed an issue where some serial arrays get treated as objects instead of arrays and search/replace was getting missed
 * Updated Kint library to resolve issues on some rare environments running OPCache and XCache
 
 = 3.0.5.9 =

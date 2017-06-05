@@ -181,12 +181,26 @@ function ns_recursive_dir_copy( $src, $dst, $num=0 ) {
  */
 function ns_get_multisite_upload_paths( $args=array('limit'=>9999) ){
 	$upload_paths = array();
-	$sites = function_exists('wp_get_sites')? wp_get_sites($args) : get_blog_list(0,'all');
-	foreach( $sites as $site ){
-		switch_to_blog($site['blog_id']);
-		$wp_upload_dir = wp_upload_dir();
-		$upload_paths[ $site['blog_id'] ] = $wp_upload_dir['basedir'];
-		restore_current_blog();
+	// update for WP 4.6+ and deprecated wp_get_sites() use get_sites() instead
+	if ( function_exists( 'get_sites' ) && class_exists( 'WP_Site_Query' ) ) {
+		$args['number'] = 9999;
+		$sites = get_sites();
+		foreach ( $sites as $site ) {
+			switch_to_blog( $site->blog_id );
+			$wp_upload_dir = wp_upload_dir();
+			$upload_paths[ $site->blog_id ] = $wp_upload_dir['basedir'];
+			restore_current_blog();
+		}
+	} else {
+	// handle WP 4.5 and earlier
+		$args['limit'] = 9999;
+		$sites = function_exists('wp_get_sites')? wp_get_sites($args) : get_blog_list(0,'all');
+		foreach( $sites as $site ){
+			switch_to_blog($site['blog_id']);
+			$wp_upload_dir = wp_upload_dir();
+			$upload_paths[ $site['blog_id'] ] = $wp_upload_dir['basedir'];
+			restore_current_blog();
+		}
 	}
 	return $upload_paths;
 }
