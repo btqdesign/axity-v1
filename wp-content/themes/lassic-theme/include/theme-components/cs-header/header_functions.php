@@ -166,10 +166,10 @@ if (!class_exists('cs_mega_menu_walker')) {
 			
 			//error_log('+++ item: ' . var_export($item, TRUE) ,0);
 			
-			error_log('+++ item->ID: ' . var_export($item->ID, TRUE) ,0);
+			error_log('+++ item->object_id: ' . var_export($item->object_id, TRUE) ,0);
 			error_log('--- get_the_ID: ' . var_export(get_the_ID(), TRUE) ,0);
 			
-			if ($item->ID == get_the_ID()) {
+			if ($item->object_id == get_the_ID()) {
 				$classCurrentItem = ' current-menu-item';
 			}
 			else {
