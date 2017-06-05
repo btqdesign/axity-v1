@@ -407,8 +407,8 @@ if ( ! function_exists( 'cs_header_color' ) ) {
 	{border-bottom-color:<?php echo cs_allow_special_char($cs_menu_active_color);?> !important;}
 	.navigation .navbar-nav > li.current-menu-item > a
 	{border-bottom-color:<?php echo cs_allow_special_char($cs_menu_active_color);?> !important;}
-	.navigation ul > li.current-menu-item > a 
-	{background-color:<?php echo cs_allow_special_char($cs_menu_active_color);?> !important; position: absolute !important; left: 0 !important; bottom: 0px !important; width: 100% !important; height: 3px !important; content: "" !important; /*opacity: 0 !important;*/ }
+	.navigation ul > li.current-menu-item > a:after
+	{background-color:<?php echo cs_allow_special_char($cs_menu_active_color);?> !important; position: absolute !important; left: 0 !important; bottom: 0px !important; width: 100% !important; height: 3px !important; content: "" !important; opacity: 1 !important; }
 	
 	.cs-user,.cs-user-login { border-color:<?php echo cs_allow_special_char($cs_menu_active_color);?> !important; }
 	
