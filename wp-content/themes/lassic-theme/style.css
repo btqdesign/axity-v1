@@ -1322,7 +1322,7 @@ label { color: #333; display: block; font-family: "Roboto Condensed", sans-serif
 .detailProduct strong{color:#f4364c!important;}
 
 
-.secCompanya{ background:#f4364c!important; padding:20px;}
+.secCompanya{ /*background:#f4364c!important;*/ padding:20px 20px 20px 55px;}
 
 
 #sec2ndComp .cs-section-title { padding:20px;}
