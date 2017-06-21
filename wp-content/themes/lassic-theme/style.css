@@ -838,7 +838,7 @@ blockquote span { position: relative; z-index: 1; }
     min-width: 48%;
     text-align: left !important;*/border-radius:30px; background:#8547ad!important; }
 .cs-portfolio .cs-post-pagination {text-align: center;}
-	.cs-portfolio .cs-post-pagination a.cs-post-prev,.cs-portfolio .cs-post-pagination a.cs-post-next {width: 25%;}
+	.cs-portfolio .cs-post-pagination a.cs-post-prev,.cs-portfolio .cs-post-pagination a.cs-post-next {/*width: 25%;*/width: 40%;}
 	.cs-portfolio .cs-post-pagination a.cs-post-prev { float: left; color: #666666; }
 	.cs-portfolio .cs-post-pagination a.cs-post-next { float: right; color: #666666; }
 .cs-post-pagination a i { font-size: 32px; float: left; line-height: 27px; /*margin: -2px 0px 0px 0px;*/ color: #a6a6a6; }
