@@ -2886,7 +2886,7 @@ if ( ! function_exists( 'cs_next_prev_custom_links' ) ) {
                 </a>
 				<?php
 			}
-			echo '<a href="javascript:;" onclick="window.history.back();return false;"><!--<span><i class="icon-th-large"></i></span>--></a>';
+			echo '<a href="javascript:;" onclick="window.history.back();return false;">.</a>';
 			if (isset($nextid) && !empty($nextid) ) {
 			?>
 				<a class="cs-post-next" href="<?php echo esc_url(get_permalink($nextid)); ?>">
