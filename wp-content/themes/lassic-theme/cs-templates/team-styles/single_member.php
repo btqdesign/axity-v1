@@ -82,7 +82,7 @@
         </div>
         <div class="col-md-9">
           <div class="cs-team-detail">
-          <div style="width:100%; display:block; height:30px;"></div>
+          <div style="width:100%; display:block; height:40px;"></div>
               <div class="rich_editor_text lightbox">
                  <?php 
                       the_content();
