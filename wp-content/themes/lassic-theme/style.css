@@ -553,6 +553,7 @@ blockquote span { position: relative; z-index: 1; }
 .seccIntServicios{ border:none!important;}
 #secc2ndServicios1er{ background: #fff!important}
 #seccServicios2ndVideo .section-fullwidth{padding:  0 !important;}
+#secCompanya{ background:#f4364c!important;}
 }
 /* Portrait and Landscape */
 @media only screen 
@@ -565,6 +566,7 @@ blockquote span { position: relative; z-index: 1; }
 .seccIntServicios{ border:none!important;}
 #secc2ndServicios1er{ background: #fff!important}
 #seccServicios2ndVideo .section-fullwidth{padding:  0 !important;}
+#secCompanya{ background:#f4364c!important;}
 }
 @media only screen 
   and (min-device-width: 375px) 
@@ -576,6 +578,7 @@ blockquote span { position: relative; z-index: 1; }
 .seccIntServicios{ border:none!important;}
 #secc2ndServicios1er{ background: #fff!important}
 #seccServicios2ndVideo .section-fullwidth{padding:  0 !important;}
+#secCompanya{ background:#f4364c!important;}
 }
 /* Portrait */
 @media only screen 
@@ -589,6 +592,7 @@ blockquote span { position: relative; z-index: 1; }
 .seccIntServicios{ border:none!important;}
 #secc2ndServicios1er{ background: #fff!important}
 #seccServicios2ndVideo .section-fullwidth{padding:  0 !important;}
+#secCompanya{ background:#f4364c!important;}
 }
 /*tablets*/
 /* Portrait and Landscape */
@@ -602,6 +606,7 @@ blockquote span { position: relative; z-index: 1; }
 .seccIntServicios{ border:none!important;}
 #secc2ndServicios1er{ background: #fff!important}
 #seccServicios2ndVideo .section-fullwidth{padding:  0 !important;}
+
 }
 /* ----------- iPad 1 and 2 ----------- */
 /* Portrait and Landscape */
