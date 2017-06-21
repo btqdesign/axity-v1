@@ -831,8 +831,8 @@ blockquote span { position: relative; z-index: 1; }
 .cs-postthumb { float: left; width: 100%; margin: 0px 0px 10px 0px; }
 .cs-post-pagination { float: left; width: 100%; }
 .single-project .cs-post-pagination {text-align: center;}
-	.single-project .cs-post-pagination a.cs-post-prev { float: left; color: #333; border-radius:30px; background:#8547ad!important;}
-	.single-project .cs-post-pagination a.cs-post-next { float: right; color: #333; border-radius:30px;background:#8547ad!important;}
+	.single-project .cs-post-pagination a.cs-post-prev { float: left; color: #333; border-radius:30px; background:#fff!important;}
+	.single-project .cs-post-pagination a.cs-post-next { float: right; color: #333; border-radius:30px;background:#fff!important;}
 .cs-post-pagination a.cs-post-prev { color: #ffffff; font-size: 14px; text-align: left; /*display: inline-block;
     font-size: 14px;
     min-width: 48%;
