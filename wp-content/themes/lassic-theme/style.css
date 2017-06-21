@@ -557,6 +557,7 @@ blockquote span { position: relative; z-index: 1; }
 #seccServicios2ndVideo .section-fullwidth{padding:  0 !important;}
 #secCompanya{ background:#f4364c!important;}
 #seccTopDigital{ background:#3e1151!important;}
+.heading-description{ height:0!important;}
 }
 /* Portrait and Landscape */
 @media only screen 
@@ -571,6 +572,7 @@ blockquote span { position: relative; z-index: 1; }
 #seccServicios2ndVideo .section-fullwidth{padding:  0 !important;}
 #secCompanya{ background:#f4364c!important;}
 #seccTopDigital{ background:#3e1151!important;}
+.heading-description{ height:0!important;}
 }
 @media only screen 
   and (min-device-width: 375px) 
@@ -584,6 +586,7 @@ blockquote span { position: relative; z-index: 1; }
 #seccServicios2ndVideo .section-fullwidth{padding:  0 !important;}
 #secCompanya{ background:#f4364c!important;}
 #seccTopDigital{ background:#3e1151!important;}
+.heading-description{ height:0!important;}
 }
 /* Portrait */
 @media only screen 
@@ -599,6 +602,7 @@ blockquote span { position: relative; z-index: 1; }
 #seccServicios2ndVideo .section-fullwidth{padding:  0 !important;}
 #secCompanya{ background:#f4364c!important;}
 #seccTopDigital{ background:#3e1151!important;}
+.heading-description{ height:0!important;}
 }
 /*tablets*/
 /* Portrait and Landscape */
