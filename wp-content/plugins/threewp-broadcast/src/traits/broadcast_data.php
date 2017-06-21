@@ -199,4 +199,52 @@ trait broadcast_data
 			$bcd->id = $this->query_insert_id( $query );
 		}
 	}
+
+	/**
+		@brief		Switch the broadcast data of two posts.
+		@details	Broadcast will automatically figure out with which post to switch the data.
+		@since		2017-05-27 20:40:32
+	**/
+	public function switch_broadcast_data( $blog_or_post_id, $post_id = null )
+	{
+		if ( ! $post_id )
+		{
+			$post_id = $blog_or_post_id;
+			$blog_or_post_id = get_current_blog_id();
+		}
+		$blog_id = $blog_or_post_id;
+
+		// Retrieve the bcd.
+		$bcd = $this->get_post_broadcast_data( $blog_id, $post_id );
+
+		// Is this a parent bcd?
+		$parent = $bcd->get_linked_parent();
+		if ( ! $parent )
+		{
+			$old_parent = [ $bcd->blog_id, $bcd->post_id ];
+			// Use the first child.
+			$old_child = [ key( $bcd->get_linked_children() ), reset( $bcd->get_linked_children() ) ];
+
+		}
+		else
+		{
+			$old_parent = [ $parent[ 'blog_id' ], $parent[ 'post_id' ] ];
+			$old_child = [ $blog_id, $post_id ];
+		}
+
+		$this->debug( 'Switching broadcast data: %s with %s', $old_parent, $old_child );
+
+		$this->delete_post_broadcast_data( $old_parent[ 0 ], $old_parent[ 1 ] );
+		$this->delete_post_broadcast_data( $old_child[ 0 ], $old_child[ 1 ] );
+
+		// Make the parent BCD.
+		$new_bcd = $this->get_post_broadcast_data( $old_child[ 0 ], $old_child[ 1 ] );
+		$new_bcd->add_linked_child( $old_parent[ 0 ], $old_parent[ 1 ] );
+		$this->set_post_broadcast_data( $old_child[ 0 ], $old_child[ 1 ], $new_bcd );
+
+		// And the child BCD.
+		$new_bcd = $this->get_post_broadcast_data( $old_parent[ 0 ], $old_parent[ 1 ] );
+		$new_bcd->set_linked_parent( $old_child[ 0 ], $old_child[ 1 ] );
+		$this->set_post_broadcast_data( $old_parent[ 0 ], $old_parent[ 1 ], $new_bcd );
+	}
 }

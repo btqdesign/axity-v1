@@ -11,9 +11,10 @@
 		require_once( WPBACKITUP__PLUGIN_PATH .'/lib/includes/class-filesystem.php' );
 
         $namespace = $this->namespace;
-		///TRANSLATORS: %s = plugin name.
-		/// This string is in the header of one of my pages and looks like this: WP BackItUp Dashboard
-		/// Similar to how WordPress uses the word dashboard at the in the left navigation.
+		/* translators: %s = plugin name.
+		   This string is in the header of one of my pages and looks like this: WP BackItUp Dashboard
+		   Similar to how WordPress uses the word dashboard at the in the left navigation.
+		*/
         $page_title = sprintf( __("%s Dashboard",'wp-backitup'), $this->friendly_name );
 
         //Path Variables
@@ -204,10 +205,12 @@ function scan_import_backups($backup_dir){
     </a>
     <h2>WPBackItUp Backup &amp; Restore </h2>
     <?php // Show the review button only when user has more than two successfull backup or restore 
+    /*
         if( $this->successful_backup_count() > 2 || $this->successful_restore_count() > 2 ) {
     ?>
             <a target="_blank" href="https://wordpress.org/support/plugin/wp-backitup/reviews/?filter=5" class="button button-hero button-primary wpbiu-button">Review Plugin</a>
     <?php  } 
+    */
     ?>
 </div>
 

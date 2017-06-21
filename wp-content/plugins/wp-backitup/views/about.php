@@ -356,7 +356,7 @@ class WPBackItUp_Welcome {
 	private function premium_screen() {
 		global $WPBackitup;
 		?>
-			<h2><?php _e( 'Take a look at what you are missing!', 'wp-backitup' );?></h2>
+			<h2><?php _e( 'Take a look at what you get with premium!', 'wp-backitup' );?></h2>
 
 			<!-- TABLE -->
 			<section class="wpbackitup-features-table">
@@ -365,7 +365,7 @@ class WPBackItUp_Welcome {
 						<thead>
 						<tr>
 							<td><?php _e( 'FEATURES', 'wp-backitup' ); ?></td>
-							<td><?php _e('LITE', 'wp-backitup' ); ?></td>
+							<td><?php _e('FREE', 'wp-backitup' ); ?></td>
 							<td><?php _e('PREMIUM', 'wp-backitup' ); ?></td>
 						</tr>
 						</thead>

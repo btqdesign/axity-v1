@@ -358,7 +358,6 @@ trait attachments
 
 			foreach( $guids as $old_guid => $new_guid )
 			{
-				$this->debug( 'Beginning to replace attachment %s with %s', $old_guid, $new_guid );
 				$count = 0;
 
 				// We are going to be pregging things in order to ensure that as an exact, local match as possible is replaced with new values
@@ -413,7 +412,6 @@ trait attachments
 
 				// Replace whatever is left.
 				$content = str_replace( $old_guid, $new_guid, $content, $count );
-				$this->debug( 'Replaced %s misc occurrences.', $count, $old_guid, $new_guid );
 			}
 		}
 		return $content;

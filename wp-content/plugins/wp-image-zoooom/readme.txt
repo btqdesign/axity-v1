@@ -5,8 +5,8 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=diana
 Email: diana@burduja.eu
 Tags: e-commerce, featured image, hover over image zoom, image, image zoom, image zoom plugin, image magnification, image magnifier, jquery picture zoom, magnifier, magnify image, magnifying glass, mouse over image zoom, panorama, picture zoom, product image, product zoom, product magnification, product magnifier, responsive, woocommerce product zoom, woocommerce zoom, woocommerce  magnifying glass, zoom, zoom image, zoom plugin, woocommerce image zoom, woocommerce product image zoom, woocommerce zoom magnifier
 Requires at least: 3.0.1
-Tested up to: 4.7
-Stable tag: 1.10 
+Tested up to: 4.8
+Stable tag: 1.12 
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -137,6 +137,14 @@ Alternatively you can upgrade to the Pro version, as there the zoom lens is buil
 7. Apply the zoom from Visual Composer, the Single Image element
 
 == Changelog ==
+
+= 1.12 = 
+* Feature: support for custom post type
+
+= 1.11 =
+* Fix: when a caching plugin is present, a tablet is still considered a mobile device 
+* Fix: remove woocommerce slider support for the Kiddy theme
+* Fix: with jQuery v<1.11 the mobile browser needs to be checked with $. instead of jQuery.
 
 = 1.10 =
 * Fix: warning for the Shopkeeper theme

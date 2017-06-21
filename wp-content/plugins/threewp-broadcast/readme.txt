@@ -5,7 +5,7 @@ License: GPLv3
 Requires at least: 4.6
 Stable tag: trunk
 Tags: multipost, sharing, duplicate, franchise, syndication, marketing, news, hub
-Tested up to: 4.7.4
+Tested up to: 4.8
 
 Network content syndication made easy! Automatically share content by multiposting between multisite blogs.
 
@@ -86,6 +86,7 @@ There are several <a href="https://broadcast.plainviewplugins.com/"><em>Broadcas
 * <a href="https://broadcast.plainviewplugins.com/addon/tao-schedule-update/">Tao Schedule Update</a> adds support for <a href="https://wordpress.org/plugins/tao-schedule-update/">Tao Schedule Update</a> plugin.
 * <a href="https://broadcast.plainviewplugins.com/addon/the-events-calendar/">The Events Calendar</a> adds venue and organiser support for Modern Tribe’s <a href="https://wordpress.org/plugins/the-events-calendar/">The Events Calendar </a> plugin.
 * <a href="https://broadcast.plainviewplugins.com/addon/toolset/">Toolset</a> adds support for <a href="https://wp-types.com/">OnTheGoSystems&#8217; Toolset</a> plugins: CRED, Types and Views.
+* <a href="https://broadcast.plainviewplugins.com/addon/ultimate-member/">Ultimate Member</a> adds support for the <a href="https://wordpress.org/plugins/ultimate-member/">Ultimate Member</a> plugin.
 * <a href="https://broadcast.plainviewplugins.com/addon/woocommerce/">WooCommerce</a> allows attribute taxonomies and product variations to be broadcasted.
 * <a href="https://broadcast.plainviewplugins.com/addon/wp-all-import/">WP All Import</a> adds support for post updates from Soffly's <a href="http://www.wpallimport.com/">WP All Import Pro</a>.
 * <a href="https://broadcast.plainviewplugins.com/addon/wpml/">WPML</a> adds support for <a href="http://wpml.org/">ICanLocalize’s WPML</a> translation plugin.
@@ -287,6 +288,22 @@ Xcache v2 does not support PHP namespaces, which is a PHP 5.3 feature. Trying to
 Xcache v3, which does support namespaces, has not yet been tested. Anyone with Xcache v3 experience is welcome to contact me with info.
 
 == Changelog ==
+
+= 38.5 20170614 =
+
+* Fix: Broadcasted column not properly displaying linked posts for page post type.
+
+= 38.4 20170605 =
+
+* Tested with Wordpress v4.8
+* Fix: Show "Broadcasted" column on ALL post types that are in the custom post type settings. Action has prio 100, which should ensure the columns are shown even for those badly coded plugins that reset the visible columns.
+* New add-on: <a href="https://broadcast.plainviewplugins.com/addon/ultimate-member/">Ultimate Member</a>: adds support for the <a href="https://wordpress.org/plugins/ultimate-member/">Ultimate Member</a> plugin.
+* New snippet: <a href="https://broadcast.plainviewplugins.com/snippet/change-post-status-during-broadcast/">Change post status during broadcast</a>
+* New: Added override_child_permalink action, and a <a href="https://broadcast.plainviewplugins.com/snippet/override-child-permalink/">snippet showing how to use the action to selectively override child permalinks</a>.
+* Code: Added more debug info during BC, this time about the parent post broadcast data (link data).
+* Code: Cut down a little on the attachment debug info.
+* Code: Added switch_broadcast_data() method.
+* Code: Check for blog existence during each_linked_post.
 
 = 38.3 20170523 =
 

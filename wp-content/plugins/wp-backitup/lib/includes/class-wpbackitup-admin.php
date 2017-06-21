@@ -24,6 +24,25 @@ class WPBackitup_Admin {
 
 	public $backup_type;
 
+    /**
+     * @var WPBackItUp_Cleanup_Processor
+     */
+    protected $cleanup_processor;
+
+    /**
+     * @var WPBackItUp_File_Cleanup_Processor
+     */
+    protected $file_cleanup_processor;
+
+    /**
+     * @var WPBackItUp_Directory_Cleanup_Processor
+     */
+    protected $dir_cleanup_processor;
+
+    /**
+     * @var WPBackItUp_DB_Cleanup_Processor
+     */
+    protected $db_cleanup_processor;
     
     // Default plugin options
     public $defaults = array(
@@ -162,8 +181,7 @@ class WPBackitup_Admin {
      */
     public  function admin_menu() {
 
-       // add_menu_page( $page_title, $menu_title, $capability, $menu_slug, $function, $icon_url, $position );
-        add_menu_page( $this->friendly_name, $this->friendly_name, 'administrator', $this->namespace, array( &$this, 'admin_backup_page' ), WPBACKITUP__PLUGIN_URL .'/images/icon.png', 77);
+	    add_menu_page( $this->friendly_name, $this->friendly_name, 'administrator', $this->namespace, array( &$this, 'admin_backup_page' ), 'dashicons-backup', 77);
 
         //Add Backup Menu Nav
         add_submenu_page( $this->namespace, __('Backup', 'wp-backitup'), __('Backup','wp-backitup'), 'administrator', $this->namespace.'-backup', array( &$this, 'admin_backup_page' ) );
@@ -177,6 +195,13 @@ class WPBackitup_Admin {
         // Add about Nav
         add_submenu_page( $this->namespace, __('About', 'wp-backitup'), __('About','wp-backitup'), 'administrator', $this->namespace.'-about', array( &$this, 'admin_about_page' ) );
 
+	    // Add Get Premium
+	    $wpb_license = new WPBackItUp_License();
+	    if (! $wpb_license->is_license_active()) {
+		  //add_submenu_page( $this->namespace, __('Premium', 'wp-backitup'), __('Get Premium <span class=\'dashicons dashicons-admin-network wpbackitup-get-premium\'></span>','wp-backitup'), 'administrator', $this->namespace.'-about&tab=premium', array( &$this, 'admin_about_page' ) );
+	        add_submenu_page( $this->namespace, __('Premium', 'wp-backitup'), sprintf("%s <span class='dashicons dashicons-admin-network wpbackitup-get-premium'></span>",__('Get Premium','wp-backitup')), 'administrator', $this->namespace.'-about&tab=premium', array( &$this, 'admin_about_page' ) );
+        }
+
 	    //show test page when true AND localhost
         if (WPBACKITUP__DEBUG===true && ($_SERVER['HTTP_HOST']=='localhost' || '.dev'==substr($_SERVER['HTTP_HOST'],-4))){
             add_submenu_page( $this->namespace, 'Test', 'Test', 'administrator', $this->namespace.'-test', array( &$this, 'admin_test_page' ) );
@@ -188,6 +213,16 @@ class WPBackitup_Admin {
     }
 
     public  function load_resources() {
+
+	    // Admin Stylesheet
+	    if (WPBACKITUP__DEBUG===true && ($_SERVER['HTTP_HOST']=='localhost' || '.dev'==substr($_SERVER['HTTP_HOST'],-4))){
+		    //DEV ONLY
+		    wp_register_style( "{$this->namespace}-admin", WPBACKITUP__PLUGIN_URL . "css/wp-backitup-admin.css", array(), $this->version, 'screen' );
+	    } else {
+		    wp_register_style( "{$this->namespace}-admin", WPBACKITUP__PLUGIN_URL . "css/wp-backitup-admin.min.css", array(), $this->version, 'screen' );
+	    }
+
+	    wp_enqueue_style( "{$this->namespace}-admin" );
 
 	    //Only load the JS and CSS when plugin is active
 	    if( !empty($_REQUEST['page']) && substr($_REQUEST['page'], 0, 11) === 'wp-backitup') {
@@ -216,11 +251,9 @@ class WPBackitup_Admin {
                 'view_log' => __('View Log', $this->namespace),
                 'new_backup' => __('New Backup!', $this->namespace),
                 'uploaded_backup' => __('Uploaded Backup', $this->namespace),
-
-
-
             ) );
-            
+
+		    wp_register_style( "{$this->namespace}-jquery-ui-css", WPBACKITUP__PLUGIN_URL . "css/jquery-ui.min.css", array(), $this->version, 'screen' );
 
             // Included all Jquery UI files. 
             wp_enqueue_script( 'jquery-ui-core' );
@@ -241,10 +274,6 @@ class WPBackitup_Admin {
             wp_enqueue_script("{$this->namespace}-jquery-tagit");
             wp_enqueue_script( "{$this->namespace}-admin" );
 
-		    // Admin Stylesheet
-            wp_register_style( "{$this->namespace}-jquery-ui-css", WPBACKITUP__PLUGIN_URL . "css/jquery-ui.min.css", array(), $this->version, 'screen' );
-		    wp_register_style( "{$this->namespace}-admin", WPBACKITUP__PLUGIN_URL . "css/wp-backitup-admin.min.css", array(), $this->version, 'screen' );
-		    wp_enqueue_style( "{$this->namespace}-admin" );
             wp_enqueue_style( "{$this->namespace}-jquery-ui-css" );
 
 			//Admin fonts
@@ -256,6 +285,7 @@ class WPBackitup_Admin {
                 wp_enqueue_media();
             }
 	    }
+
     }
 
     /**
@@ -407,8 +437,12 @@ class WPBackitup_Admin {
 
         require_once(WPBACKITUP__PLUGIN_PATH . '/lib/background-processing/class-async-request.php');
         require_once(WPBACKITUP__PLUGIN_PATH . '/lib/background-processing/class-background-process.php');
+        require_once(WPBACKITUP__PLUGIN_PATH . '/lib/background-processing/class-processors.php');
         require_once(WPBACKITUP__PLUGIN_PATH . '/lib/background-processing/class-task-processor.php');
 	    require_once(WPBACKITUP__PLUGIN_PATH . '/lib/background-processing/class-cleanup-processor.php');
+        require_once(WPBACKITUP__PLUGIN_PATH . '/lib/background-processing/class-file-cleanup-processor.php');
+        require_once(WPBACKITUP__PLUGIN_PATH . '/lib/background-processing/class-db-cleanup-processor.php');
+        require_once(WPBACKITUP__PLUGIN_PATH . '/lib/background-processing/class-directory-cleanup-processor.php');
 
 		require_once( WPBACKITUP__PLUGIN_PATH . '/lib/includes/class-logger.php' );
 		require_once( WPBACKITUP__PLUGIN_PATH . '/lib/includes/class-loggerV2.php' );
@@ -417,11 +451,11 @@ class WPBackitup_Admin {
         require_once( WPBACKITUP__PLUGIN_PATH . '/lib/includes/class-job-item.php' );
 
 	    require_once( WPBACKITUP__PLUGIN_PATH . '/lib/includes/class-license.php' );
+        require_once( WPBACKITUP__PLUGIN_PATH . '/lib/includes/class-cleanup.php' );
 
 
         // This class is used for showing a review nag
         require_once( WPBACKITUP__PLUGIN_PATH . '/lib/includes/class-admin-notice.php' );
-        //new WPBackitup_Admin_Notice( array('id' => 'wpbu-review-me','days_after' => 10,'type' => 'updated') );
 
 		$languages_path = dirname(dirname(dirname( plugin_basename( __FILE__ )))) . '/languages/';
 
@@ -431,14 +465,74 @@ class WPBackitup_Admin {
 		    $languages_path
 	    );
 
-        //admin activation hook does NOT get called on plugin update to this needs to stay here
+	    //admin activation hook does NOT get called on plugin update to this needs to stay here
         $this->maybe_update(); //Check version and update database if needed
+
+	    //if they had more than 10 successful backups then show the message in 1 day
+	    $days_after = 10;
+	    if ($this->successful_backup_count()>=10) $days_after = 1;
+	    new WPBackitup_Admin_Notice( array('id' => 'wpbu-review-me','days_after' => $days_after,'type' => 'updated') );
 
         //Create instance to service background tasks(ajax requests)
         $task_processor = new WPBackItUp_Task_Processor();
-	    $cleanup_processor = new WPBackItUp_Cleanup_Processor();
+
+        // new refactor
+        $this->cleanup_processor = new WPBackItUp_Cleanup_Processor();
+        $this->file_cleanup_processor = new WPBackItUp_File_Cleanup_Processor();
+        $this->dir_cleanup_processor = new WPBackItUp_Directory_Cleanup_Processor();
+        $this->db_cleanup_processor = new WPBackItUp_DB_Cleanup_Processor();
+
+        $cleanup = new WPBackItUp_Cleanup();
+        $cleanup->init();
 
     }
+
+    /**
+     *  Handle task queue.
+     *
+     * @param $task_type
+     * @param @task_list
+     */
+    public function handle_async_task_queue($task_type, $task_list){
+        $processor = $this->get_async_task_processor($task_type);
+
+        if( !is_null($processor) ){
+            foreach ( $task_list as $item ) {
+                $processor->push_to_queue( $item );
+            }
+            $processor->save()->dispatch();
+        }
+    }
+
+
+    /**
+     * Get task processor object.
+     *
+     * @param $task_type
+     * @return object| null
+     */
+    private function get_async_task_processor($task_type){
+
+        switch ($task_type){
+            case Processors::CLEANUP:
+                return $this->cleanup_processor;
+                break;
+            case Processors::FILE_CLEANUP:
+                return $this->file_cleanup_processor;
+                break;
+            case Processors::DIRECTORY_CLEANUP:
+                return $this->dir_cleanup_processor;
+                break;
+            case Processors::DB_CLEANUP:
+                return $this->db_cleanup_processor;
+                break;
+            default:
+                WPBackItUp_Logger::log_info('sync_task_processor',__METHOD__,'No task processor found.');
+                return null;
+                break;
+        }
+    }
+
 
 	/**
 	 * Queue scheduled jobs
@@ -508,10 +602,8 @@ class WPBackitup_Admin {
         if ( ! WPBackItUp_Job::is_job_queued_active(WPBackItUp_Job::CLEANUP) &&
              $scheduler->isJobScheduled(WPBackItUp_Job::CLEANUP)){
 
-            //add job to list
-            $job_type=WPBackItUp_Job::CLEANUP;
-            $job_tasks = WPBackItUp_Job::get_job_tasks($job_type);
-            $scheduled_jobs[$job_type]=$job_tasks;
+            //add cleanup tasks to list
+            $this->handle_async_task_queue(Processors::CLEANUP, WPBackItUp_Cleanup::$TASK_ITEMS);
 
         }
 
@@ -2116,7 +2208,6 @@ class WPBackitup_Admin {
      *  -  tasks are handled by include file like:
      *
      *  job_backup.php
-     *  job_cleanup.php
      *  job_restore.php
      *
      * @param $job_id Job id

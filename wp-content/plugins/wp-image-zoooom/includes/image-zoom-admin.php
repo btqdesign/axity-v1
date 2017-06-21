@@ -223,6 +223,7 @@ class ImageZoooom_Admin {
                 'label' => __('Enable the zoom on mobile devices', 'wp-image-zoooom'),
                 'value' => false,
                 'input_form' => 'checkbox',
+                'description' => __('Tablets are also considered mobile devices'),
             ),
             'woo_cat' => array(
                 'label' => __('Enable the zoom on WooCommerce category pages', 'wp-image-zoooom'),
@@ -701,8 +702,10 @@ class ImageZoooom_Admin {
             $allowed_types = array_merge( $allowed_types, $learndash_types );
 
         }
+        /*
         if( ! in_array( $typenow, $allowed_types ) )
             return;
+         */
 
         if ( isset( $_GET['page'] ) && $_GET['page'] == 'wplister-templates' ) 
             return;

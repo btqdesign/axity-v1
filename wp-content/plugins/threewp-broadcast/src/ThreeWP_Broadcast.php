@@ -109,6 +109,7 @@ class ThreeWP_Broadcast
 
 		if ( $this->get_site_option( 'override_child_permalinks' ) )
 		{
+			$this->add_filter( 'page_link', 'post_link', 10, 3 );
 			$this->add_filter( 'post_link', 10, 3 );
 			$this->add_filter( 'post_type_link', 'post_link', 10, 3 );
 		}
@@ -155,7 +156,7 @@ class ThreeWP_Broadcast
 	public function activate()
 	{
 		if ( !$this->is_network )
-			wp_die("This plugin requires a Wordpress Network installation.");
+			return;
 
 		$db_ver = $this->get_site_option( 'database_version', 0 );
 
@@ -295,6 +296,10 @@ class ThreeWP_Broadcast
 
 		$blog_id = get_current_blog_id();
 
+		// Pages return just the ID. Posts return a proper page object.
+		if ( ! is_object( $post ) )
+			$post = get_post( $post );
+
 		// Have we already checked this post ID for a link?
 		$key = 'b' . $blog_id . '_p' . $post->ID;
 		if ( property_exists( $this->permalink_cache, $key ) )
@@ -316,13 +321,21 @@ class ThreeWP_Broadcast
 
 		switch_to_blog( $linked_parent[ 'blog_id' ] );
 		$post = get_post( $linked_parent[ 'post_id' ] );
-		$permalink = get_permalink( $post );
+		$parent_permalink = get_permalink( $post );
 		restore_current_blog();
 
-		$this->permalink_cache->$key = $permalink;
-
 		unset( $this->_is_getting_permalink );
-		return $permalink;
+
+		$action = new actions\override_child_permalink();
+		$action->child_permalink = $link;
+		$action->parent_permalink = $parent_permalink;
+		$action->post = $post;
+		$action->returned_permalink = $parent_permalink;
+		$action->execute();
+
+		$this->permalink_cache->$key = $action->returned_permalink;
+
+		return $action->returned_permalink;
 	}
 
 	/**
@@ -348,14 +361,17 @@ class ThreeWP_Broadcast
 			if ( $action->on_parent )
 			{
 				$this->debug( $prefix . 'Executing callbacks on parent post %s on blog %s.', $parent[ 'post_id' ], $parent[ 'blog_id' ] );
-				switch_to_blog( $parent[ 'blog_id' ] );
-				$o = (object)[];
-				$o->post_id = $parent[ 'post_id' ];
-				$o->post = get_post( $o->post_id );
-				$this->debug( $prefix . '' );
-				foreach( $action->callbacks as $callback )
-					$callback( $o );
-				restore_current_blog();
+				if ( $this->blog_exists( $parent[ 'blog_id' ] ) )
+				{
+					switch_to_blog( $parent[ 'blog_id' ] );
+					$o = (object)[];
+					$o->post_id = $parent[ 'post_id' ];
+					$o->post = get_post( $o->post_id );
+					$this->debug( $prefix . '' );
+					foreach( $action->callbacks as $callback )
+						$callback( $o );
+					restore_current_blog();
+				}
 			}
 			else
 				$this->debug( $prefix . 'Not executing on parent.' );
@@ -371,6 +387,8 @@ class ThreeWP_Broadcast
 			{
 				// Do not bother eaching this child if we started here.
 				if ( $blog_id == $action->blog_id )
+					continue;
+				if ( ! $this->blog_exists( $blog_id ) )
 					continue;
 				switch_to_blog( $blog_id );
 				$o = (object)[];

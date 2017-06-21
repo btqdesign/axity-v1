@@ -66,14 +66,21 @@ trait broadcasting
 				$bcd->broadcast_data = $this->get_post_broadcast_data( $bcd->parent_blog_id, $bcd->post->ID );
 
 				// Does this post type have parent support, so that we can link to a parent?
-				if ( $bcd->post->post_parent > 0)
+				if ( $bcd->post->post_parent > 0 )
 				{
 					// Load the parent's bcd
 					$bcd->parent_broadcast_data = $this->get_post_broadcast_data( $bcd->parent_blog_id, $bcd->post->post_parent );
 					// And, if necessary, load the bcd of the parent post.
 					$parent_bcd = $bcd->parent_broadcast_data->get_linked_parent();
 					if ( $parent_bcd )
+					{
 						$bcd->parent_broadcast_data = $this->get_post_broadcast_data( $parent_bcd[ 'blog_id' ], $parent_bcd[ 'post_id' ] );
+						$this->debug( 'Broadcast data of parent post: %s', $bcd->parent_broadcast_data );
+					}
+					else
+					{
+						$this->debug( 'Parent post has no broadcast data.' );
+					}
 				}
 				$this->debug( 'Post type is hierarchical: %s', $this->yes_no( $bcd->post_type_is_hierarchical ) );
 			}

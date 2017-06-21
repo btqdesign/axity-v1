@@ -231,7 +231,7 @@ if ('task_preparing'==$current_task->getTaskName()) {
 	}
 
 	WPBackItUp_Logger::log($restore_logname,'*DELETE RESTORE FOLDER*');
-	if ( ! $wp_restore->delete_restore_folder()){
+	if ( ! $wp_restore->delete_restore_folder_async()){
 		$current_task->setStatus(WPBackItUp_Job_Task::ERROR,222);
 		fatal_error($task,'222','Restore folder could not be deleted.');
 		return false;

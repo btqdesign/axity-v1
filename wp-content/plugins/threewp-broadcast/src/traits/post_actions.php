@@ -46,13 +46,20 @@ trait post_actions
 		{
 			if (  $this->display_broadcast_columns )
 			{
-				$this->add_filter( 'manage_posts_columns' );
-				$this->add_filter( 'manage_pages_columns', 'manage_posts_columns' );
+				// Add the broadcasted column to each post type we support.
 
-				$this->add_action( 'manage_posts_custom_column', 10, 2 );
-				$this->add_action( 'manage_pages_custom_column', 'manage_posts_custom_column', 10, 2 );
+				$action = new actions\get_post_types;
+				$action->execute();
+
+				foreach( $action->post_types as $post_type )
+				{
+					$key = sprintf( 'manage_%s_posts_columns', $post_type );
+					$this->add_filter( $key, 'manage_posts_columns', 100 );
+
+					$key = sprintf( 'manage_%s_posts_custom_column', $post_type );
+					$this->add_action( $key, 'manage_posts_custom_column', 100, 2 );
+				}
 			}
-
 		}
 	}
 
@@ -63,6 +70,14 @@ trait post_actions
 
 	public function manage_posts_columns( $defaults )
 	{
+		if ( isset( $_GET[ 'post_type' ] ) )
+		{
+			$action = new actions\get_post_types;
+			$action->execute();
+			if ( ! in_array( $_GET[ 'post_type' ], $action->post_types ) )
+				return;
+		}
+
 		$action = new actions\get_post_bulk_actions();
 		$action->execute();
 		$this->add_admin_script( 'post_bulk_actions', $action->get_js() );

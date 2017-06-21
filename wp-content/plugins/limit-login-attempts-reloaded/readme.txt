@@ -2,8 +2,8 @@
 Contributors: wpchefgadget
 Tags: login, security, authentication, Limit Login Attempts, Limit Login Attempts Reloaded, Limit Login Attempts Revamped, Limit Login Attempts Renovated, Limit Login Attempts Updated, Better Limit Login Attempts, Limit Login Attempts Renewed, Limit Login Attempts Upgraded
 Requires at least: 3.0
-Tested up to: 4.7.2
-Stable tag: 2.5.0
+Tested up to: 4.8
+Stable tag: 2.6.1
 
 Reloaded version of the original Limit Login Attempts plugin for Login Protection by a team of WordPress developers.
 
@@ -48,6 +48,15 @@ Based on the original code from Limit Login Attemps plugin by Johan Eenfeldt.
 3. Administration interface in WordPress 4.5.3
 
 == Changelog ==
+
+= 2.6.1 =
+Plugin returns the 403 Forbidden header after the limit of login attempts via XMLRPC is reached.
+
+Added support of IP ranges in white/black lists.
+
+Lockouts now can be released selectively.
+
+Fixed the issue with encoding of special symbols in email notifications.
 
 = 2.5.0 =
 * Added Multi-site Compatibility and additional MU settings. https://wordpress.org/support/topic/multisite-compatibility-47/

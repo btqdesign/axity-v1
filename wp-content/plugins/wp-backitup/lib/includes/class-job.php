@@ -590,7 +590,7 @@ class WPBackItUp_Job {
 	 *
 	 * @param $job_id
 	 */
-	private static function delete_job_records($job_id){
+	public static function delete_job_records($job_id){
 		$log_name='debug_purge_jobs';
 		$db= new WPBackItUp_DataAccess();
 
@@ -621,7 +621,7 @@ class WPBackItUp_Job {
 	 *
 	 * @return int
 	 */
-	public static function purge_jobs($job_type,$dont_purge=5) {
+	public static function purge_jobs_async($job_type,$dont_purge=5) {
 		$log_name='debug_purge_jobs';
 		WPBackItUp_Logger::log_info($log_name,__METHOD__,'Begin - Purge Jobs:'.$job_type );
 
@@ -631,6 +631,9 @@ class WPBackItUp_Job {
 		// Purge jobs with status: cancelled, error, deleted
 		/*------------------------------------------------------*/
 
+        //Initiate background processor
+        $cleanup_processor  = new WPBackItUp_DB_Cleanup_Processor();
+
 		$jobs = self::get_jobs_by_status($job_type,array(WPBackItUp_Job::DELETED,WPBackItUp_Job::ERROR,WPBackItUp_Job::CANCELLED));
 		WPBackItUp_Logger::log_info($log_name,__METHOD__,'Total finished jobs found:' .count($jobs));
 
@@ -638,12 +641,11 @@ class WPBackItUp_Job {
 		if (is_array($jobs) && count($jobs)>0) {
 
 			foreach ($jobs  as $key=>$job){
+                $cleanup_processor->push_to_queue($job->getJobId());
+                $jobs_purged+=1;
 
-				self::delete_job_records($job->getJobId());
-				$jobs_purged+=1;
-
-				WPBackItUp_Logger::log_info($log_name,__METHOD__,'Deleted Job:');
-				WPBackItUp_Logger::log_info($log_name,__METHOD__,var_export($job,true));
+                WPBackItUp_Logger::log_info($log_name,__METHOD__,'Queued the Job for delete:');
+                WPBackItUp_Logger::log_info($log_name,__METHOD__,var_export($job,true));
 			}
 		}
 
@@ -679,10 +681,10 @@ class WPBackItUp_Job {
 					if (false===$backups_exist) {
 						WPBackItUp_Logger::log_info($log_name,__METHOD__,'No backups found for job:'. $job->getJobId());
 
-						self::delete_job_records($job->getJobId());
+                        $cleanup_processor->push_to_queue($job->getJobId());
 						$jobs_purged+=1;
 
-						WPBackItUp_Logger::log_info($log_name,__METHOD__,'Backups Missing - Deleted Job:');
+						WPBackItUp_Logger::log_info($log_name,__METHOD__,'Backups Missing - Queued the job for delete:');
 						WPBackItUp_Logger::log_info($log_name,__METHOD__,var_export($job,true));
 					}
 				}
@@ -711,17 +713,19 @@ class WPBackItUp_Job {
 				WPBackItUp_Logger::log_info($log_name,__METHOD__,var_export($jobs,true));
 				foreach ($purge_jobs  as $key=>$job){
 
-					self::delete_job_records($job->getJobId());
+                    $cleanup_processor->push_to_queue($job->getJobId());
 					$jobs_purged+=1;
 
-					WPBackItUp_Logger::log_info($log_name,__METHOD__,'Deleted Job:');
+					WPBackItUp_Logger::log_info($log_name,__METHOD__,'Queued the Job for delete:');
 					WPBackItUp_Logger::log_info($log_name,__METHOD__,var_export($job,true));
 				}
 			}
 
 		}
 
-		WPBackItUp_Logger::log_info($log_name,__METHOD__,'End - job purge complete.  Jobs Purged:' .$jobs_purged);
+        $cleanup_processor->save()->dispatch();
+        WPBackItUp_Logger::log_info($log_name,__METHOD__,'Job purge queue dispatched.');
+		WPBackItUp_Logger::log_info($log_name,__METHOD__,'End - No of job will be  Purged:' .$jobs_purged);
 
 		return $jobs_purged;
 	}

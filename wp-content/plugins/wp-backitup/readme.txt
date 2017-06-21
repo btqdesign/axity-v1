@@ -1,8 +1,8 @@
 === WordPress Backup & Restore Plugin - WPBackItUp ===
-Contributors: wpbackitup, cssimmon, alaminopu, imranshuvo, backup
+Contributors: wpbackitup, cssimmon, alaminopu, imranshuvo
 Tags: backup, backups, back up, backup plugin, database backup, multisite backup, full backup, database, restore, migrate, clone, malware
 Requires at least: 3.8.0
-Tested up to: 4.7.4
+Tested up to: 4.8
 Stable tag: 1.14.4
 Author URI: https://www.wpbackitup.com
 Donate link: https://www.wpbackitup.com
@@ -98,13 +98,14 @@ Please review our [FAQ’s](http://wordpress.org/plugins/wp-backitup/faq/) or as
 
 WPBackItUp has been translated into the following languages:
 
-* Español (Spanish (Spain))
-* Français (French (France))
-* Deutsch (German),
-* Italiano (Italian),
-* Tagalog (Philippines)
+* Arabic
+* Español
+* Français
+* Deutsch
+* Italiano
+* Tagalog
+* Russian
 * বাংলা (Bengali)
-* Russian (Russia)
 
 == Installation ==
 
@@ -196,6 +197,16 @@ Our online documentation and full list of FAQs can be found at [support.wpbackit
 
 
 == Changelog ==
+= 1.14.5 =
+*Release Date -  June 7, 2017
+
+* UPDATE:   Updates to support WordPress 4.8 release
+* UPDATE:   Enhancements to cleanup processor and job engine
+* UPDATE:   Enhancements to Review notices
+* UPDATE:   Add Russian & Arabic translations
+* UPDATE:   Minor UI improvements to admin menu
+* FIX:      Fix minor issue with logger
+
 = 1.14.4 =
 *Release Date -  April 6,2017
 

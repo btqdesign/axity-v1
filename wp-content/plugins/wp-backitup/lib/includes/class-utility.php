@@ -256,6 +256,19 @@ class WPBackItUp_Utility {
 		return update_option($option_name,$value);
 	}
 
+	/**
+	 *  Delete option value
+	 *    -- Prefix with namespace
+	 *
+	 * @param $option_name
+	 *
+	 * @return bool True on succes/False on Failure
+	 */
+	public static function delete_option($option_name) {
+		$option_name = WPBACKITUP__NAMESPACE .'_' .$option_name;
+		return delete_option($option_name);
+	}
+
 	//Pretty= Pretty version of anchor
 	//Page = page to link to
 	//content = Widget Name(where)
