@@ -859,7 +859,7 @@ trait broadcasting
 			$allowed_post_status[] = 'future';
 
 		if ( ! in_array( $bcd->post->post_status, $allowed_post_status ) )
-			return;
+			return $this->debug( 'Post status %s is not allowed.', $bcd->post->post_status );
 
 		$form = $bcd->meta_box_data->form;
 

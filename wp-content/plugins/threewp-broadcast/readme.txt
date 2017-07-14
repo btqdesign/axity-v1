@@ -13,7 +13,7 @@ Network content syndication made easy! Automatically share content by multiposti
 
 = Network Content Syndication Made Easy! =
 
-Automatically share content by multiposting between multisite blogs. Syndicate posts to other blogs, update posts between blogs, sync posts, share content templates, etc. Broadcasted posts can be linked to their parents, which updates child posts when the parent post is updated. This includes all data: title, slug, content, custom fields, attachments, etc.
+Single source content on Wordpress is now as easy as pie! Syndicate posts to other blogs, update posts between blogs, sync posts, share content templates, etc. Broadcasted posts can be linked to their parents, which updates child posts when the parent post is updated. This includes all data: title, slug, content, custom fields, attachments, etc.
 
 Broadcast, formerly ThreeWP Broadcast, is great for:
 
@@ -27,6 +27,7 @@ Here are some use cases for Broadcast:
 
 * <a href="https://broadcast.plainviewplugins.com/2017/04/02/broadcast-in-the-school-classroom/">Broadcast in the school classroom</a>
 * <a href="https://broadcast.plainviewplugins.com/2017/04/02/franchising-with-wordpress-and-broadcast/">Franchising with WordPress and Broadcast</a>
+* <a href="https://broadcast.plainviewplugins.com/2017/06/28/sharing-forms-on-a-wordpress-network/">Sharing forms on a Wordpress network</a>
 * <a href="https://broadcast.plainviewplugins.com/2017/03/28/wholesale-with-woocommerce-and-broadcast/">Wholesale with WooCommerce and Broadcast</a>
 
 Requires PHP version 5.4 or higher.
@@ -66,21 +67,27 @@ There are several <a href="https://broadcast.plainviewplugins.com/"><em>Broadcas
 * <a href="https://broadcast.plainviewplugins.com/addon/contact-form-7/">Contact Form 7</a> adds support for <a href="https://wordpress.org/plugins/contact-form-7/">Takayuki Miyoshi's Contact Form 7</a> plugin.
 * <a href="https://broadcast.plainviewplugins.com/addon/divi-builder/">Divi Builder</a> adds support for <a href="https://www.elegantthemes.com/plugins/divi-builder/">Divi Builder</a> and themes using it.
 * <a href="https://broadcast.plainviewplugins.com/addon/download-monitor/">Download Monitor</a> adds support for downloads and shortcodes from <a href="https://wordpress.org/plugins/download-monitor/">Never5's Download Monitor</a> plugin.
+* <a href="https://broadcast.plainviewplugins.com/addon/elementor/">Elementor</a> adds support for the <a href="https://wordpress.org/plugins/elementor/">Elementor Page Builder plugin</a>.
 * <a href="https://broadcast.plainviewplugins.com/addon/eventon/">EventOn</a> adds support for Ashan Jay's <a href="http://www.myeventon.com/">EventON</a> plugin with tickets.
 * <a href="https://broadcast.plainviewplugins.com/addon/event-organiser/">Event Organiser</a> adds support for Stephen Harris’ <a href="http://wordpress.org/plugins/event-organiser/">Event Organiser plugin</a>, with events and venues.
 * <a href="https://broadcast.plainviewplugins.com/addon/events-manager/">Events Manager</a> adds support for the <a href="https://wordpress.org/plugins/events-manager/">Events Manager</a> plugin.
 * <a href="https://broadcast.plainviewplugins.com/addon/foogallery/">FooGallery</a> adds support for <a href="https://wordpress.org/plugins/foogallery/">FooPlugins&#8217; FooGallery</a> plugin.
 * <a href="https://broadcast.plainviewplugins.com/addon/geo-my-wp/">GEO my WordPress</a> adds support for Eyal Fitoussi&#8217;s <a href="https://wordpress.org/plugins/geo-my-wp/">GEO my WordPress</a> geolocation plugin.
 * <a href="https://broadcast.plainviewplugins.com/addon/geodirectory/">Geodirectory</a> adds support for <a href="https://wordpress.org/plugins/geodirectory/">Geodirectory</a> places.
+* <a href="https://broadcast.plainviewplugins.com/addon/global-blocks-for-cornerstone/">Global Blocks For Cornerstone</a> adds support for the <a href="https://wordpress.org/plugins/global-blocks-for-cornerstone/">Global Blocks for Cornerstone</a> plugin.
 * <a href="https://broadcast.plainviewplugins.com/addon/global-content-blocks/">Global Content Blocks</a> adds support for shortcodes from <a href="https://wordpress.org/plugins/global-content-blocks/">WP Xpert&#8217;s Global Content Blocks</a> plugin.
+* <a href="https://broadcast.plainviewplugins.com/addon/gravity-forms/">Gravity Forms</a> adds support for the <a href="http://www.gravityforms.com/">Gravity Forms</a> plugin.
 * <a href="https://broadcast.plainviewplugins.com/addon/jetpack/">Jetpack</a> adds support for <a href="https://wordpress.org/plugins/jetpack/">Automattic's Jetpack plugin</a>.
 * <a href="https://broadcast.plainviewplugins.com/addon/learndash">LearnDash</a>: New add-on. Adds support for the <a href="https://www.learndash.com/">LearnDash LMS</a> plugin.
+* <a href="https://broadcast.plainviewplugins.com/addon/mailster/">Mailster</a> adds support for the <a href="https://codecanyon.net/item/mailster-email-newsletter-plugin-for-wordpress/3078294">Mailster</a> plugin.
 * <a href="https://broadcast.plainviewplugins.com/addon/metaslider/">Metaslider</a> adds support for <a href="https://www.metaslider.com/">Metaslider</a> shortcodes.
 * <a href="https://broadcast.plainviewplugins.com/addon/ninja-forms/">Ninja Forms</a> adds support for the <a href="https://wordpress.org/plugins/ninja-forms/">Ninja Forms</a> plugin.
+* <a href="https://broadcast.plainviewplugins.com/addon/ns-cloner/">NS Cloner</a> adds support for the <a href="https://wordpress.org/plugins/ns-cloner-site-copier/">NS Cloner</a> plugin.
 * <a href="https://broadcast.plainviewplugins.com/addon/polylang/">Polylang</a> adds support for Broadcasting posts in different languages using Frédéric Demarle’s <a href="https://wordpress.org/plugins/polylang/">Polylang</a> translation plugin.
 * <a href="https://broadcast.plainviewplugins.com/addon/post-expirator/">Post Expirator</a> adds support for Aaron Axelsen's <a href="https://wordpress.org/plugins/post-expirator/">Post Expirator</a> plugin.
 * <a href="https://broadcast.plainviewplugins.com/addon/siteorigin-page-builder/">SiteOrigin Page Builder</a> adds support for <a href="https://wordpress.org/plugins/siteorigin-panels/">SiteOrigin's Page Builder plugin</a>.
 * <a href="https://broadcast.plainviewplugins.com/addon/slider-revolution/">Slider Revolution</a> adds support for the <a href="https://revolution.themepunch.com/">Slider Revolution</a> plugin.
+* <a href="https://broadcast.plainviewplugins.com/addon/smart-slider-3/">Smart Slider 3</a> adds support for the <a href="https://wordpress.org/plugins/smart-slider-3/">Smart Slider 3</a> plugin.
 * <a href="https://broadcast.plainviewplugins.com/addon/social-networks-auto-poster/">Social Networks Auto Poster</a> tells <a href="https://wordpress.org/plugins/social-networks-auto-poster-facebook-twitter-g/">NextScripts’ Social Networks Auto Poster</a> (SNAP) to use the different social settings on each blog.
 * <a href="https://broadcast.plainviewplugins.com/addon/tablepress/">TablePress</a> adds support for broadcasting <a href="https://wordpress.org/plugins/tablepress/">TablePress</a> shortcodes.
 * <a href="https://broadcast.plainviewplugins.com/addon/tao-schedule-update/">Tao Schedule Update</a> adds support for <a href="https://wordpress.org/plugins/tao-schedule-update/">Tao Schedule Update</a> plugin.
@@ -288,6 +295,16 @@ Xcache v2 does not support PHP namespaces, which is a PHP 5.3 feature. Trying to
 Xcache v3, which does support namespaces, has not yet been tested. Anyone with Xcache v3 experience is welcome to contact me with info.
 
 == Changelog ==
+
+= 38.6 20170703 =
+
+* Fix: Simplify the maintenance check page autoloading. Will now just click the link automatically instead of trying to ajax load the next page.
+* New add-on: <a href="https://broadcast.plainviewplugins.com/addon/elementor/">Elementor</a> adds support for the <a href="https://wordpress.org/plugins/elementor/">Elementor Page Builder plugin</a>.
+* New add-on: <a href="https://broadcast.plainviewplugins.com/addon/gravity-forms/">Gravity Forms</a> adds support for the <a href="http://www.gravityforms.com/">Gravity Forms</a> plugin.
+* New add-on: <a href="https://broadcast.plainviewplugins.com/addon/global-blocks-for-cornerstone/">Global Blocks For Cornerstone</a> adds support for the <a href="https://wordpress.org/plugins/global-blocks-for-cornerstone/">Global Blocks for Cornerstone</a> plugin.
+* New add-on: <a href="https://broadcast.plainviewplugins.com/addon/mailster/">Mailster</a> adds support for the <a href="https://codecanyon.net/item/mailster-email-newsletter-plugin-for-wordpress/3078294">Mailster</a> plugin.
+* New add-on: <a href="https://broadcast.plainviewplugins.com/addon/ns-cloner/">NS Cloner</a> adds support for the <a href="https://wordpress.org/plugins/ns-cloner-site-copier/">NS Cloner</a> plugin.
+* New add-on: <a href="https://broadcast.plainviewplugins.com/addon/smart-slider-3/">Smart Slider 3</a> adds support for the <a href="https://wordpress.org/plugins/smart-slider-3/">Smart Slider 3</a> plugin.
 
 = 38.5 20170614 =
 

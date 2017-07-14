@@ -275,6 +275,13 @@ trait post_actions
 			break;
 			case 'find_unlinked':
 				$post = get_post( $post_id );
+
+				if ( ! $post )
+				{
+					$this->debug( 'Post action: post %d is invalid!', $post_id );
+					break;
+				}
+
 				$broadcast_data = $this->get_post_broadcast_data( $blog_id, $post_id );
 				// Get a list of blogs that this user can link to.
 				$filter = new actions\get_user_writable_blogs( $this->user_id() );
