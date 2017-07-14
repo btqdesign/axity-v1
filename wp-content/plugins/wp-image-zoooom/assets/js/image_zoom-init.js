@@ -47,17 +47,31 @@ jQuery(document).ready(function( $ ){
             clearTimeout(window.resizeEvt);
             window.resizeEvt = setTimeout(function() {
                 $(".zoomContainer").remove();
-                $(".zoooom, .zoooom img, .attachment-shop_single").image_zoom(options);
+                $(".zoooom, .zoooom img, .attachment-shop_single, .attachment-shop_thumbnail.flex-active-slide img").image_zoom(options);
                 $(".tax-product_cat .products img").image_zoom(options);
             }, 500);
         });
     });
 
+
+    // Remove the zoom when hovering on the submenu
+    function restart_on_hover( elem ) {
+        elem.hover(function(){
+            if ( $('.zoomContainer').length === 0 ) {
+                $(this).image_zoom(IZ.options);
+            }
+        });
+    };
+    $('.sub-menu li').hover(function(){
+        $('.zoomContainer').remove();
+    });
+    restart_on_hover($('.zoooom, .zoooom img'));
     
 
     // Show zoom on the WooCommerce gallery
     if ( IZ.with_woocommerce == '1' ) { 
     $(".attachment-shop_single").image_zoom(options);
+    restart_on_hover($('.attachment-shop_single'));
 
     $("a[data-rel^='zoomImage']").each(function(index){
         $(this).click(function(event){
@@ -125,6 +139,7 @@ jQuery(document).ready(function( $ ){
                 // Remove the old zoom and reactive the new zoom
                 $(".zoomContainer").remove();
                 $(".attachment-shop_single").image_zoom(options);
+                restart_on_hover($('.attachment-shop_single'));
             }
 
             });
@@ -142,6 +157,7 @@ jQuery(document).ready(function( $ ){
                     first_img = ".woocommerce-product-gallery__wrapper .flex-active-slide img";
                 } 
                 $(first_img).first().image_zoom( options );
+                restart_on_hover($(first_img).first());
             }, 500 );
 
             var flexslider_counter = 0;
@@ -153,6 +169,7 @@ jQuery(document).ready(function( $ ){
                         $(".zoomContainer").remove();
                         setTimeout( function() {
                             $(first_img).first().image_zoom(options);
+                            restart_on_hover($(first_img).first());
                         }, 550);
                     }
                     old_value = event.newValue;
@@ -166,7 +183,7 @@ jQuery(document).ready(function( $ ){
                     clearTimeout(window.resizeEvt);
                     window.resizeEvt = setTimeout(function() {
                         $(".zoomContainer").remove();
-                        $(first_img).first().image_zoom(options);
+                        restart_on_hover($(first_img).first());
                     }, 300);
                 });
             });
@@ -188,6 +205,7 @@ jQuery(document).ready(function( $ ){
 
         // Zoom on the first image
         first_img.image_zoom(options);
+        restart_on_hover(first_img);
 
         // Remove the click action on the images
         $('.woocommerce-product-gallery__image img').click(function(e){
@@ -259,6 +277,7 @@ jQuery(document).ready(function( $ ){
                 // Remove the old zoom and reactive the new zoom
                 $(".zoomContainer").remove();
                 first_img.image_zoom(options);
+                restart_on_hover(first_img);
 
             });
         });

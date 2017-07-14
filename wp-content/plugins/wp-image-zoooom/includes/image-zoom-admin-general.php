@@ -2,13 +2,12 @@
 
 require_once 'image-zoom-forms-helper.php';
 
-$iz = ImageZoooom();
 $iz_admin = new ImageZoooom_Admin;
 $iz_forms_helper = new ImageZoooom_FormsHelper;
 
-$assets_url = $iz->plugins_url() . '/assets';
+$assets_url = IMAGE_ZOOM_URL . '/assets'; 
 
-$settings = $iz->get_option_general();
+$settings = get_option('zoooom_general');
 if ( $settings == false ) {
     $settings = $iz_admin->validate_general( null );
 }

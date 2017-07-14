@@ -30,7 +30,7 @@ class ImageZoooom_FormsHelper {
 
         $output .= "\t\t" . '<label class="'. $this->label_class .'">'. $args['label'] . PHP_EOL;
         if ( $disabled ) {
-            $output .= "\t\t" . '<img src="'.$this->assets_url().'/images/question_mark.svg" />' . PHP_EOL;
+            $output .= "\t\t" . '<img src="'.IMAGE_ZOOM_URL.'assets/images/question_mark.svg" />' . PHP_EOL;
         }
         if ( isset($args['description']) && !$disabled ) {
             $output .= "\t\t" . $this->tooltip( $args['description'] ); 
@@ -114,7 +114,7 @@ class ImageZoooom_FormsHelper {
             <div class="icon-in-label ndd-spot-icon icon-style-1" <?php echo $toggle; ?>>
               <div class="ndd-icon-main-element">
                 <?php if($args['buttons'] == 'image') : ?>
-                    <img src="<?php echo $this->assets_url() . $_value[0] ?>"<?php echo $toggle; ?> />
+                    <img src="<?php echo IMAGE_ZOOM_URL.'assets/' . $_value[0] ?>"<?php echo $toggle; ?> />
                 <?php else : ?>
                     <i class="<?php echo $_value[0]; ?>"></i>
                 <?php endif; ?>
@@ -129,12 +129,7 @@ class ImageZoooom_FormsHelper {
 
     public function tooltip( $description = '' ) {
         if ( empty($description) ) return '';
-        return '<img src="'.$this->assets_url().'/images/question_mark.svg" data-toggle="tooltip" data-placement="top" title="" data-original-title="'.$description.'" />';
-    }
-
-    public function assets_url() {
-       $assets_url = ImageZoooom()->plugins_url() . '/assets'; 
-       return $assets_url;
+        return '<img src="'.IMAGE_ZOOM_URL.'assets/images/question_mark.svg" data-toggle="tooltip" data-placement="top" title="" data-original-title="'.$description.'" />';
     }
 
 }

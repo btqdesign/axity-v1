@@ -2,11 +2,10 @@
 
 require_once 'image-zoom-forms-helper.php';
 
-$iz = ImageZoooom();
 $iz_admin = new ImageZoooom_Admin;
 $iz_forms_helper = new ImageZoooom_FormsHelper;
 
-$assets_url = $iz->plugins_url() . '/assets';
+$assets_url = IMAGE_ZOOM_URL . '/assets';
 
 $settings = get_option( 'zoooom_settings' );
 if ( $settings == false ) {
@@ -19,7 +18,7 @@ include_once( 'premium-tooltips.php' );
 
 ?>
 
-<?php $brand = '<img src="'. site_url() .'/wp-content/plugins/wp-image-zoooom/assets/images/silkypress_logo.png" /> <a href="https://www.silkypress.com/?utm_source=wordpress&utm_campaign=iz_free&utm_medium=banner" target="_blank">SilkyPress.com</a>';?>
+<?php $brand = '<img src="'. IMAGE_ZOOM_URL .'assets/images/silkypress_logo.png" /> <a href="https://www.silkypress.com/?utm_source=wordpress&utm_campaign=iz_free&utm_medium=banner" target="_blank">SilkyPress.com</a>';?>
 <h2><?php printf(esc_html__('WP Image Zoom by %1$s', 'wp-image-zoooom'), $brand); ?></h2>
 
 <div class="wrap">
