@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WordPress - 4.8.x package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2017-06-21 17:11:58+0000\n"
+"PO-Revision-Date: 2017-07-13 23:57:05+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2519,7 +2519,7 @@ msgstr "Controle de volume"
 msgid "Inexistent terms."
 msgstr "Termos inexistentes."
 
-#: wp-includes/taxonomy.php:1967 wp-includes/taxonomy.php:2593
+#: wp-includes/taxonomy.php:1970 wp-includes/taxonomy.php:2596
 msgid "A name is required for this term."
 msgstr "Um nome é necessário para esse termo."
 
@@ -3581,10 +3581,6 @@ msgctxt "playlist item title"
 msgid "&#8220;%s&#8221;"
 msgstr "&#8220;%s&#8221;"
 
-#: wp-includes/ms-functions.php:420
-msgid "Usernames can only contain lowercase letters (a-z) and numbers."
-msgstr "Nomes de usuário podem apenas contar letras minúsculas (a-z) e números."
-
 #. translators: three-letter abbreviation of the month
 #: wp-includes/class-wp-locale.php:196
 msgctxt "November abbreviation"
@@ -3596,6 +3592,10 @@ msgstr "nov"
 msgctxt "December abbreviation"
 msgid "Dec"
 msgstr "dez"
+
+#: wp-includes/ms-functions.php:420
+msgid "Usernames can only contain lowercase letters (a-z) and numbers."
+msgstr "Nomes de usuário podem conter apenas letras minúsculas (a-z) e números."
 
 #. translators: three-letter abbreviation of the month
 #: wp-includes/class-wp-locale.php:192
@@ -4555,7 +4555,7 @@ msgstr "Imagem sugerida #%d"
 msgid "Taxonomy names must be between 1 and 32 characters in length."
 msgstr "Os nomes das taxonomias devem ter entre 1 e 32 caracteres no máximo."
 
-#: wp-includes/taxonomy.php:3486
+#: wp-includes/taxonomy.php:3489
 msgid "Could not split shared term."
 msgstr "Não foi possível quebrar o termo compartilhado."
 
@@ -4822,7 +4822,7 @@ msgstr "Você precisa passar um array de tipos."
 msgid "%s must set a database connection for use with escaping."
 msgstr "%s deve configurar uma conexão com a base de dados para uso com escaping."
 
-#: wp-includes/taxonomy.php:2056
+#: wp-includes/taxonomy.php:2059
 msgid "A term with the name provided already exists in this taxonomy."
 msgstr "Um termo com este nome e slug já existe nesta taxonomia."
 
@@ -5143,7 +5143,7 @@ msgstr "(nenhum rótulo)"
 
 #. translators: %s: taxonomy label, %l: list of terms formatted as per
 #. $term_template
-#: wp-includes/taxonomy.php:3971
+#: wp-includes/taxonomy.php:3974
 msgid "%s: %l."
 msgstr "%s: %l."
 
@@ -6885,7 +6885,7 @@ msgstr "Limpar"
 msgid "Current Color"
 msgstr "Cor atual"
 
-#: wp-includes/taxonomy.php:2301
+#: wp-includes/taxonomy.php:2304
 msgid "Could not insert term relationship into the database"
 msgstr "Não foi possível inserir a relação do termo no banco de dados"
 
@@ -7107,15 +7107,15 @@ msgstr "Arquivos permitidos"
 #: wp-includes/taxonomy.php:419 wp-includes/taxonomy.php:639
 #: wp-includes/taxonomy.php:730 wp-includes/taxonomy.php:910
 #: wp-includes/taxonomy.php:1074 wp-includes/taxonomy.php:1835
-#: wp-includes/taxonomy.php:1949 wp-includes/taxonomy.php:2212
-#: wp-includes/taxonomy.php:2355 wp-includes/taxonomy.php:2556
+#: wp-includes/taxonomy.php:1952 wp-includes/taxonomy.php:2215
+#: wp-includes/taxonomy.php:2358 wp-includes/taxonomy.php:2559
 msgid "Invalid taxonomy."
 msgstr "Taxonomia inválida."
 
 #: wp-includes/class-wp-xmlrpc-server.php:1455
 #: wp-includes/class-wp-xmlrpc-server.php:2002
 #: wp-includes/class-wp-xmlrpc-server.php:2093
-#: wp-includes/class-wp-xmlrpc-server.php:2165 wp-includes/taxonomy.php:1964
+#: wp-includes/class-wp-xmlrpc-server.php:2165 wp-includes/taxonomy.php:1967
 msgid "Invalid term ID."
 msgstr "ID do termo está inválido."
 
@@ -7140,7 +7140,7 @@ msgstr "Esta taxonomia não é hierárquica."
 #: wp-includes/class-wp-xmlrpc-server.php:2026
 #: wp-includes/rest-api/endpoints/class-wp-rest-terms-controller.php:405
 #: wp-includes/rest-api/endpoints/class-wp-rest-terms-controller.php:511
-#: wp-includes/taxonomy.php:1973 wp-includes/taxonomy.php:2597
+#: wp-includes/taxonomy.php:1976 wp-includes/taxonomy.php:2600
 msgid "Parent term does not exist."
 msgstr "Termo pai não existe."
 
@@ -8264,7 +8264,7 @@ msgstr "Aparentemente, o endereço do WordPress que você digitou não é um URL
 msgid "The email address entered did not appear to be a valid email address. Please enter a valid email address."
 msgstr "O endereço de e-mail inserido não parece ser um endereço de e-mail válido. Digite um endereço de e-mail válido."
 
-#: wp-includes/taxonomy.php:2053
+#: wp-includes/taxonomy.php:2056
 msgid "A term with the name provided already exists with this parent."
 msgstr "Um termo com o nome fornecido já existe com este pai."
 
@@ -9647,21 +9647,21 @@ msgstr "Salvando..."
 msgid "Saving Draft&#8230;"
 msgstr "Salvando rascunho&hellip;"
 
-#: wp-includes/taxonomy.php:726 wp-includes/taxonomy.php:2569
-#: wp-includes/taxonomy.php:3840
+#: wp-includes/taxonomy.php:726 wp-includes/taxonomy.php:2572
+#: wp-includes/taxonomy.php:3843
 msgid "Empty Term"
 msgstr "Termo em branco"
 
-#: wp-includes/taxonomy.php:2077
+#: wp-includes/taxonomy.php:2080
 msgid "Could not insert term into the database"
 msgstr "Não foi possível inserir o termo no banco de dados"
 
 #. translators: 1: Taxonomy term slug
-#: wp-includes/taxonomy.php:2655
+#: wp-includes/taxonomy.php:2658
 msgid "The slug &#8220;%s&#8221; is already in use by another term"
 msgstr "O slug &#8220;%s&#8221; já está sendo utilizado por outro termo"
 
-#: wp-includes/taxonomy.php:4042
+#: wp-includes/taxonomy.php:4045
 msgid "Invalid object ID"
 msgstr "ID do objeto inválida."
 
