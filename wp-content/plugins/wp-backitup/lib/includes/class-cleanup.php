@@ -25,211 +25,345 @@ if( !class_exists( 'WPBackItUp_Backup' ) ) {
 }
 
 
+
 class WPBackItUp_Cleanup {
 
-    /**
-     * @var array
-     */
-    public static $TASK_ITEMS = array(
-        'init',
-        'purge_job_control',
-        'purge_prefixed_folder_and_files',
-        'purge_orphan_folder_and_files',
-        'purge_old_files',
-        'secure_folders',
-        'end'
-    );
 
-    /**
-     * @var string
-     */
-    private $cleanup_logname;
+	public static $CLEANUP_TASKS = array(
+		'task_begin',
+		'task_purge_job_control',
+		'task_purge_prefixed_folder_and_files',
+		'task_purge_orphan_folder_and_files',
+		'task_purge_old_files',
+		'task_secure_folders',
+		'task_end'
+	);
 
-    /**
-     * @var mixed
-     */
-    private $job;
+	const DEFAULT_LOG_NAME ='debug_cleanup';
+	private $log_name = self::DEFAULT_LOG_NAME;
 
-    /**
-     * @var string
-     */
-    private $job_name;
+	/**
+	 * WPBackItUp_Cleanup constructor.
+	 */
+	function __construct() {
 
-    /**
-     * @var string
-     */
-    private $job_id;
+		try{
 
-    /**
-     * @var string
-     */
-    private $job_type;
 
-    /**
-     * action init
-     */
-    public function init(){
-        add_action( 'wpbackitup_cleanup_init', array( $this, 'wpbackitup_cleanup_init' ) );
-        add_action( 'wpbackitup_cleanup_purge_job_control', array( $this, 'wpbackitup_cleanup_purge_job_control' ) );
-        add_action( 'wpbackitup_cleanup_purge_prefixed_folder_and_files', array( $this, 'wpbackitup_cleanup_purge_prefixed_folder_and_files' ) );
-        add_action( 'wpbackitup_cleanup_purge_orphan_folder_and_files', array( $this, 'wpbackitup_cleanup_purge_orphan_folder_and_files' ) );
-        add_action( 'wpbackitup_cleanup_purge_old_files', array( $this, 'wpbackitup_cleanup_purge_old_files' ) );
-        add_action( 'wpbackitup_cleanup_secure_folders', array( $this, 'wpbackitup_cleanup_secure_folders' ) );
-        add_action( 'wpbackitup_cleanup_end', array( $this, 'wpbackitup_cleanup_end' ) );
+		} catch(Exception $e) {
+			error_log(var_export($e,true));
+			WPBackItUp_Logger::log_error($this->log_name,__METHOD__,'Constructor Exception: ' .var_export($e,true));
+		}
+
+	}
+
+	/**
+	 * action init
+	 */
+	public function init(){
+		add_action( 'wpbackitup_cleanup_begin', array( $this, 'begin_job' ));
+		add_action( 'wpbackitup_cleanup_purge_job_control', array( $this, 'purge_job_control'));
+		add_action( 'wpbackitup_cleanup_purge_prefixed_folder_and_files', array( $this,'purge_prefixed_folder_and_files'));
+		add_action( 'wpbackitup_cleanup_purge_orphan_folder_and_files', array( $this, 'purge_orphan_folder_and_files'));
+		add_action( 'wpbackitup_cleanup_purge_old_files', array( $this, 'purge_old_files' ) );
+		add_action( 'wpbackitup_cleanup_secure_folders', array( $this, 'secure_folders' ) );
+		add_action( 'wpbackitup_cleanup_end', array( $this, 'end' ) );
+	}
+
+	/**
+	 * Queue Cleanup Job
+	 *
+	 * @return bool|WPBackItUp_Job
+	 */
+	public static function queue_job(){
+
+		try {
+			$job_type= WPBackItUp_Job::CLEANUP;
+			$job_id= current_time('timestamp');
+			$job_name = sprintf('%s_%s',$job_type, $job_id);
+
+			$job_tasks = WPBackItUp_Job::get_job_tasks($job_type);
+			return WPBackItUp_Job::queue_job($job_name,$job_id, $job_type, WPBackItUp_Job::SCHEDULED,$job_tasks);
+
+		} catch(Exception $e) {
+			WPBackItUp_Logger::log_error(self::DEFAULT_LOG_NAME,__METHOD__,'Constructor Exception: ' .var_export($e,true));
+		}
+	}
+
+	/**
+	 * Get log name
+	 *
+	 * @param WPBackItUp_Job_Task $task
+	 *
+	 * @return string
+	 */
+	private function set_job_log($task){
+
+		try {
+
+			//default logname is set already
+			if (is_object($task)) {
+				$this->log_name = sprintf( 'JobLog_%s_%s', WPBackItUp_Job::CLEANUP, $task->getJobId() );
+			}
+
+		} catch(Exception $e) {
+			WPBackItUp_Logger::log_error($this->log_name,__METHOD__,'Exception: ' .var_export($e,true));
+		}
+	}
+
+
+	/**
+	 * Cleanup init
+	 *
+	 * @param WPBackItUp_Job_Task $task
+	 *
+	 */
+    public function begin_job($task){
+
+	    try{
+
+		    $this->set_job_log($task);
+
+	        WPBackItUp_Logger::log($this->log_name,'***BEGIN JOB***');
+		    $job_id = $task->getJobId();
+		    $job = WPBackItUp_Job::get_job_by_id($job_id);
+		    $job->setStatus(WPBackItUp_Job::ACTIVE);
+
+	        WPBackItUp_Logger::log_sysinfo($this->log_name);
+
+	        //Check License
+	        WPBackItUp_Logger::log($this->log_name,'**CHECK LICENSE**');
+	        do_action( 'wpbackitup_check_license');
+	        WPBackItUp_Logger::log($this->log_name,'**END CHECK LICENSE**');
+
+		    $task->setStatus(WPBackItUp_Job_Task::COMPLETE);
+
+	    }catch(Exception $e) {
+		    WPBackItUp_Logger::log_error($this->log_name,__METHOD__,'Exception: ' .var_export($e,true));
+		    $task->setStatus(WPBackItUp_Job_Task::ERROR);
+	    }
     }
 
-    /**
-     * Cleanup init
-     */
-    public function wpbackitup_cleanup_init(){
+
+	/**
+	 * purge job control
+	 *
+	 * @param WPBackItUp_Job_Task $task
+	 */
+    public function purge_job_control($task){
         global $WPBackitup;
 
-        $this->job_type= WPBackItUp_Job::CLEANUP;
-        $this->job_id= current_time('timestamp');
-        $this->job_name = sprintf('%s_%s',$this->job_type, $this->job_id);
-        $this->cleanup_logname = sprintf('JobLog_%s', $this->job_name);
-        $backup_retention = $WPBackitup->backup_retained_number();
-        $job_tasks = WPBackItUp_Job::get_job_tasks($this->job_type);
+		try {
 
-        $this->job = WPBackItUp_Job::queue_job($this->job_name,$this->job_id, $this->job_type, WPBackItUp_Job::SCHEDULED,$job_tasks);
+			$this->set_job_log($task);
 
-        WPBackItUp_Logger::log($this->cleanup_logname,'***BEGIN JOB***');
-        WPBackItUp_Logger::log_sysinfo($this->cleanup_logname);
+	        $backup_retention = $WPBackitup->backup_retained_number();
+			WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Backup Retention:' .$WPBackitup->backup_retained_number());
 
-        WPBackItUp_Logger::log($this->cleanup_logname,'Backup Retention:' .$backup_retention);
+	        // Purge post and post meta
+	        WPBackItUp_Logger::log($this->log_name,'**CLEANUP JOB CONTROL RECORDS**' );
 
-        //Check License
-        WPBackItUp_Logger::log($this->cleanup_logname,'**CHECK LICENSE**');
-        do_action( 'wpbackitup_check_license');
-        WPBackItUp_Logger::log($this->cleanup_logname,'**END CHECK LICENSE**');
+	        $backup_job_purge_count = WPBackItUp_Job::purge_jobs( WPBackItUp_Job::BACKUP,$backup_retention);
+	        WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Backup job control records purged:' .$backup_job_purge_count );
+
+	        $cleanup_job_purge_count = WPBackItUp_Job::purge_jobs( WPBackItUp_Job::CLEANUP,2);
+	        WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Cleanup job control records purged:' .$cleanup_job_purge_count );
+
+	        WPBackItUp_Logger::log($this->log_name,'**END CLEANUP JOB CONTROL RECORDS**' );
+
+			$task->setStatus(WPBackItUp_Job_Task::COMPLETE);
+
+		}catch(Exception $e) {
+			WPBackItUp_Logger::log_error($this->log_name,__METHOD__,'Exception: ' .var_export($e,true));
+			$task->setStatus(WPBackItUp_Job_Task::ERROR);
+		}
     }
 
-
-    /**
-     * purge job control
-     */
-    public function wpbackitup_cleanup_purge_job_control(){
-        global $WPBackitup;
-        $backup_retention = $WPBackitup->backup_retained_number();
-
-        // Purge post and post meta
-        WPBackItUp_Logger::log($this->cleanup_logname,'**CLEANUP JOB CONTROL RECORDS**' );
-
-        $backup_job_purge_count = WPBackItUp_Job::purge_jobs_async( WPBackItUp_Job::BACKUP,$backup_retention);
-        WPBackItUp_Logger::log($this->cleanup_logname,'Backup job control records purged:' .$backup_job_purge_count );
-
-        $cleanup_job_purge_count = WPBackItUp_Job::purge_jobs_async( WPBackItUp_Job::CLEANUP,2);
-        WPBackItUp_Logger::log_info($this->cleanup_logname,__METHOD__,'Cleanup job control records purged:' .$cleanup_job_purge_count );
-
-        WPBackItUp_Logger::log($this->cleanup_logname,'**END CLEANUP JOB CONTROL RECORDS**' );
-    }
-
-    /**
-     * purge prefixed folders and files.
-     */
-    public function wpbackitup_cleanup_purge_prefixed_folder_and_files(){
-        global $WPBackitup;
+	/**
+	 * purge prefixed folders and files.
+	 *
+	 * @param WPBackItUp_Job_Task $task
+	 */
+    public function purge_prefixed_folder_and_files($task){
         global $wp_backup;
-        $wp_backup = new WPBackItUp_Backup($this->cleanup_logname,$this->job_name,$WPBackitup->backup_type);
 
-        WPBackItUp_Logger::log($this->cleanup_logname,'**CLEAN UNFINISHED BACKUPS**' );
+        try {
 
-        //cleanup any folders that have the TMP_ prefix
-        $wp_backup->cleanup_backups_by_prefix_async('TMP_');
-        WPBackItUp_Logger::log($this->cleanup_logname,'**END CLEAN UNFINISHED BACKUPS**' );
+	        $this->set_job_log($task);
 
-        WPBackItUp_Logger::log($this->cleanup_logname,'**CLEAN DELETED BACKUPS**' );
-        //cleanup any folders that have the DLT_ prefix
-        $wp_backup->cleanup_backups_by_prefix_async('DLT_');
+	        $wp_backup = new WPBackItUp_Backup($this->log_name,'not_used',WPBackItUp_Job::SCHEDULED);
 
-        WPBackItUp_Logger::log($this->cleanup_logname,'**END CLEAN DELETED BACKUPS**' );
+	        WPBackItUp_Logger::log($this->log_name,'**CLEAN UNFINISHED BACKUPS**' );
+
+	        //cleanup any folders that have the TMP_ prefix
+		    $wp_backup->cleanup_backups_by_prefix('TMP_');
+	        WPBackItUp_Logger::log($this->log_name,'**END CLEAN UNFINISHED BACKUPS**' );
+
+	        WPBackItUp_Logger::log($this->log_name,'**CLEAN DELETED BACKUPS**' );
+	        //cleanup any folders that have the DLT_ prefix
+	        $wp_backup->cleanup_backups_by_prefix('DLT_');
+
+	        WPBackItUp_Logger::log($this->log_name,'**END CLEAN DELETED BACKUPS**' );
+	        $task->setStatus(WPBackItUp_Job_Task::COMPLETE);
+
+        } catch(Exception $e) {
+	        WPBackItUp_Logger::log_error($this->log_name,__METHOD__,'Exception: ' .var_export($e,true));
+	        $task->setStatus(WPBackItUp_Job_Task::ERROR);
+        }
     }
 
     /**
      * purge orphan folder and files.
+     *
+     * @param WPBackItUp_Job_Task $task
      */
-    public function wpbackitup_cleanup_purge_orphan_folder_and_files(){
-        global $WPBackitup;
+    public function purge_orphan_folder_and_files($task){
         global $wp_backup;
-        $wp_backup = new WPBackItUp_Backup($this->cleanup_logname,$this->job_name,$WPBackitup->backup_type);
 
-        //Purge orphaned backup folders - folders with no job control record
-        WPBackItUp_Logger::log($this->cleanup_logname,'**CLEAN OLD BACKUPS**' );
-        $wp_backup->purge_orphaned_backups_async();
-        WPBackItUp_Logger::log($this->cleanup_logname,'**END CLEAN OLD BACKUPS**' );
+        try {
+	        $this->set_job_log($task);
+
+	        $wp_backup = new WPBackItUp_Backup($this->log_name,'not_used',WPBackItUp_Job::SCHEDULED);
+
+	        //Purge orphaned backup folders - folders with no job control record
+	        WPBackItUp_Logger::log($this->log_name,'**CLEAN OLD BACKUPS**' );
+	        $wp_backup->purge_orphaned_backups();
+	        WPBackItUp_Logger::log($this->log_name,'**END CLEAN OLD BACKUPS**' );
 
 
-        //remove all the old restore folders
-        if( class_exists( 'WPBackItUp_Premium_Restore' ) ) {
-            WPBackItUp_Logger::log($this->cleanup_logname,'**CLEAN OLD RESTORES**' );
-            $wp_restore = new WPBackItUp_Premium_Restore($this->cleanup_logname,$this->job_name,null);
-            $wp_restore->delete_restore_folder_async();
-            WPBackItUp_Logger::log($this->cleanup_logname,'**END CLEAN OLD RESTORES**' );
+	        //remove all the old restore folders
+	        if( class_exists( 'WPBackItUp_Premium_Restore' ) ) {
+	            WPBackItUp_Logger::log($this->log_name,'**CLEAN OLD RESTORES**' );
+		        $wp_restore = new WPBackItUp_Premium_Restore($this->log_name,'not_used',null);
+
+		        //Only available premium 1.14.6+
+	            if (method_exists($wp_restore,'delete_restore_folders')) {
+		            $wp_restore->delete_restore_folders();
+		            WPBackItUp_Logger::log($this->log_name,'**END CLEAN OLD RESTORES**' );
+	            }
+	        }
+
+	        $task->setStatus(WPBackItUp_Job_Task::COMPLETE);
+
+        }catch(Exception $e) {
+	        WPBackItUp_Logger::log_error($this->log_name,__METHOD__,'Exception: ' .var_export($e,true));
+	        $task->setStatus(WPBackItUp_Job_Task::ERROR);
         }
     }
 
     /**
      * purge old files
+     * @param WPBackItUp_Job_Task $task
      */
-    public function wpbackitup_cleanup_purge_old_files(){
+    public function purge_old_files($task){
         global $wp_backup;
 
-        WPBackItUp_Logger::log($this->cleanup_logname,'**PURGE OLD FILES**' );
+        try {
+	        $this->set_job_log($task);
 
-        // purge old files from the backup and logs folders - this is NOT for backups
-        $wp_backup->purge_old_files_async();
+	        WPBackItUp_Logger::log($this->log_name,'**PURGE OLD FILES**' );
 
-        WPBackItUp_Logger::log($this->cleanup_logname,'**END PURGE OLD FILES**' );
+	        // purge old files from the backup and logs folders - this is NOT for backups
+	        $wp_backup->purge_old_files();
+
+	        //check debug.log
+	        //TODO: Add UI for setting to purge debug.log when gets too big - use MB in UI - 104857600(100mb)
+	        $max_size_bytes = WPBackItUp_Utility::get_option('max_log_size',false);
+	        $debug_log_path = WPBACKITUP__CONTENT_PATH . '/debug.log';
+	        if (false!== $max_size_bytes && file_exists($debug_log_path)){
+		        $debug_log_size = filesize($debug_log_path);
+		        WPBackItUp_Logger::log($this->log_name,'Checking debug.log file size:'. $debug_log_size );
+		        if ($debug_log_size>$max_size_bytes){
+			        @unlink($debug_log_path);
+			        WPBackItUp_Logger::log($this->log_name,'debug.log purged.' );
+		        }
+	        }
+
+	        WPBackItUp_Logger::log($this->log_name,'**END PURGE OLD FILES**' );
+
+	        $task->setStatus(WPBackItUp_Job_Task::COMPLETE);
+
+        }catch(Exception $e) {
+	        WPBackItUp_Logger::log_error($this->log_name,__METHOD__,'Exception: ' .var_export($e,true));
+	        $task->setStatus(WPBackItUp_Job_Task::ERROR);
+        }
     }
 
     /**
      * Secure folders
+     *
+     * @param WPBackItUp_Job_Task $task
      */
-    public function wpbackitup_cleanup_secure_folders(){
-        WPBackItUp_Logger::log($this->cleanup_logname,'**SECURE FOLDERS**' );
-        $file_system = new WPBackItUp_FileSystem($this->cleanup_logname);
+    public function secure_folders($task){
 
-        //Make sure backup folder is secured
-        $backup_dir = WPBACKITUP__CONTENT_PATH . '/' . WPBACKITUP__BACKUP_FOLDER;
-        $file_system->secure_folder( $backup_dir);
+    	try {
+		    $this->set_job_log($task);
 
-        //--Check restore folder folders
-        $restore_dir = WPBACKITUP__CONTENT_PATH . '/' . WPBACKITUP__RESTORE_FOLDER;
-        $file_system->secure_folder( $restore_dir);
+	        WPBackItUp_Logger::log($this->log_name,'**SECURE FOLDERS**' );
+	        $file_system = new WPBackItUp_FileSystem($this->log_name);
 
-        //Make sure logs folder is secured
-        $logs_dir = WPBACKITUP__PLUGIN_PATH .'/logs/';
-        $file_system->secure_folder( $logs_dir);
+	        //Make sure backup folder is secured
+	        $backup_dir = WPBACKITUP__CONTENT_PATH . '/' . WPBACKITUP__BACKUP_FOLDER;
+	        $file_system->secure_folder( $backup_dir);
 
-        WPBackItUp_Logger::log($this->cleanup_logname,'**END SECURE FOLDERS**' );
+	        //--Check restore folder folders
+	        $restore_dir = WPBACKITUP__CONTENT_PATH . '/' . WPBACKITUP__RESTORE_FOLDER;
+	        $file_system->secure_folder( $restore_dir);
+
+	        //Make sure logs folder is secured
+	        $logs_dir = WPBACKITUP__PLUGIN_PATH .'/logs/';
+	        $file_system->secure_folder( $logs_dir);
+
+	        WPBackItUp_Logger::log($this->log_name,'**END SECURE FOLDERS**' );
+		    $task->setStatus(WPBackItUp_Job_Task::COMPLETE);
+
+	    }catch(Exception $e) {
+		    WPBackItUp_Logger::log_error($this->log_name,__METHOD__,'Exception: ' .var_export($e,true));
+		    $task->setStatus(WPBackItUp_Job_Task::ERROR);
+	    }
     }
 
     /**
-     * end
+     * Finish & update job
+     *
+     * @param WPBackItUp_Job_Task $task
      */
-    public function wpbackitup_cleanup_end(){
+    public function end($task){
         global $WPBackitup;
-        $success=99;
 
-        $this->job->setStatus(WPBackItUp_Job::COMPLETE);
+        try {
+	        $this->set_job_log($task);
 
-        WPBackItUp_Logger::log_info($this->cleanup_logname,__METHOD__,'Begin');
+	        WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Begin');
 
-        $current_datetime = current_time( 'timestamp' );
-        $WPBackitup->set_cleanup_lastrun_date($current_datetime);
+	        //upadate the last run datetime
+	        $current_datetime = current_time( 'timestamp' );
+	        $WPBackitup->set_cleanup_lastrun_date($current_datetime);
 
-        $util = new WPBackItUp_Utility($this->cleanup_logname);
-        $seconds = $util->timestamp_diff_seconds($this->job->getJobStartTimeTimeStamp(),$this->job->getJobEndTimeTimeStamp());
+	        $job_id = $task->getJobId();
+	        $job = WPBackItUp_Job::get_job_by_id($job_id);
 
-        $processing_minutes = round($seconds / 60);
-        $processing_seconds = $seconds % 60;
+	        $task->setStatus(WPBackItUp_Job_Task::COMPLETE);
+	        $job->setStatus(WPBackItUp_Job::COMPLETE);
 
-        WPBackItUp_Logger::log_info($this->cleanup_logname,__METHOD__,'Script Processing Time:' .$processing_minutes .' Minutes ' .$processing_seconds .' Seconds');
+	        $util = new WPBackItUp_Utility($this->log_name);
+	        $seconds = $util->timestamp_diff_seconds($job->getJobStartTimeTimeStamp(),$job->getJobEndTimeTimeStamp());
 
-        if (true===$success) WPBackItUp_Logger::log($this->cleanup_logname,'Cleanup completed: SUCCESS');
-        if (false===$success) WPBackItUp_Logger::log($this->cleanup_logname,'Cleanup completed: ERROR');
-        WPBackItUp_Logger::log($this->cleanup_logname,'*** END JOB ***');
+	        $processing_minutes = round($seconds / 60);
+	        $processing_seconds = $seconds % 60;
+
+	        WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Script Processing Time:' .$processing_minutes .' Minutes ' .$processing_seconds .' Seconds');
+
+	        WPBackItUp_Logger::log($this->log_name,'*** END JOB ***');
+
+        }catch(Exception $e) {
+	        WPBackItUp_Logger::log_error($this->log_name,__METHOD__,'Exception: ' .var_export($e,true));
+	        $task->setStatus(WPBackItUp_Job_Task::ERROR);
+        }
     }
+
+
+
 
 
 }

@@ -3433,6 +3433,7 @@ module.exports = Backbone.Model.extend( {
 			cloneValues.builder_id = Math.random().toString( 36 ).substr( 2 );
 		}
 
+		clone.set( 'widget_id', '' );
 		clone.set( 'values', cloneValues, {silent: true} );
 		clone.set( 'collection', cell.get('widgets'), {silent: true} );
 		clone.cell = cell;
@@ -3841,8 +3842,7 @@ module.exports = Backbone.View.extend( {
 		'click .so-tool-button.so-row-add': 'displayAddRowDialog',
 		'click .so-tool-button.so-prebuilt-add': 'displayAddPrebuiltDialog',
 		'click .so-tool-button.so-history': 'displayHistoryDialog',
-		'click .so-tool-button.so-live-editor': 'displayLiveEditor',
-		'click .so-learn-wrapper .show-tutorials': 'loadTutorials'
+		'click .so-tool-button.so-live-editor': 'displayLiveEditor'
 	},
 
 	/* A row collection */
@@ -3943,10 +3943,6 @@ module.exports = Backbone.View.extend( {
 		this.$el
 			.attr( 'id', 'siteorigin-panels-builder-' + this.cid )
 			.addClass( 'so-builder-container' );
-
-		if( panelsOptions.tutorials_enabled ) {
-			this.loadTutorials();
-		}
 
 		this.trigger( 'builder_rendered' );
 
@@ -4744,52 +4740,6 @@ module.exports = Backbone.View.extend( {
 			);
 		}
 	},
-
-	loadTutorials: function( event ){
-		if( ! _.isUndefined( event ) ) {
-			event.preventDefault();
-		}
-
-		var $dd = this.$('.so-learn-wrapper .so-tool-button-dropdown');
-		$dd.addClass( 'so-loading' ).find( '.view-message' ).hide();
-
-		var loadResponse = function( response ){
-			if( ! _.isUndefined( response.error ) ) {
-				$dd.find( '.view-message' ).show().find('p').html(response.error);
-			}
-			else if( response.length ) {
-				panelsOptions.cache.tutorials = response;
-
-				for( var i in response.slice( 0,4 ) ) {
-					$dd.find( '.view-tutorials ul' ).append(
-						$('<li></li>')
-							.append(
-								$('<a target="_blank"></a>')
-									.text( response[i].title )
-									.attr( 'href', response[i].url )
-							)
-							.append(
-								$('<small></small>').text( response[i].excerpt )
-							)
-					);
-				}
-
-				$dd.find('.view-tutorials').show();
-			}
-			$dd.removeClass( 'so-loading' );
-		};
-
-		if( typeof panelsOptions.cache.tutorials === 'undefined' ) {
-			$.get(
-				panelsOptions.ajaxurl,
-				{ action: 'so_panels_get_tutorials' },
-				loadResponse
-			);
-		}
-		else {
-			loadResponse( panelsOptions.cache.tutorials );
-		}
-	},
 } );
 
 },{}],24:[function(require,module,exports){
@@ -5479,6 +5429,7 @@ module.exports = Backbone.View.extend( {
 			// This triggers once everything is visible
 			this.trigger( 'open_dialog_complete' );
 			this.builder.trigger( 'open_dialog', this );
+			$( document ).trigger( 'open_dialog', this );
 		}
 	},
 
@@ -7138,12 +7089,12 @@ var mediaWidget = {
 		}
 
 		var ModelConstructor = component.modelConstructors[ idBase ] || component.MediaWidgetModel;
-		var widgetContent = widgetContainer.find( '> .widget-content' );
+		var syncContainer = widgetContainer.find( '> .widget-content' );
 		var controlContainer = $( '<div class="media-widget-control"></div>' );
-		widgetContent.before( controlContainer );
+		syncContainer.before( controlContainer );
 
 		var modelAttributes = {};
-		widgetContent.find( '.media-widget-instance-property' ).each( function() {
+		syncContainer.find( '.media-widget-instance-property' ).each( function() {
 			var input = $( this );
 			modelAttributes[ input.data( 'property' ) ] = input.val();
 		});
@@ -7153,7 +7104,8 @@ var mediaWidget = {
 
 		var widgetControl = new ControlConstructor({
 			el: controlContainer,
-			model: widgetModel
+			syncContainer: syncContainer,
+			model: widgetModel,
 		});
 
 		widgetControl.render();
@@ -7171,9 +7123,28 @@ var textWidget = {
 	addWidget: function( idBase, widgetContainer, widgetId ) {
 		var component = wp.textWidgets;
 
-		var widgetControl = new component.TextWidgetControl({
-			el: widgetContainer
-		});
+		var options = {};
+		var visualField = widgetContainer.find( '.visual' );
+		// 'visual' field and syncContainer were introduced together in 4.8.1
+		if ( visualField.length > 0 ) {
+			// If 'visual' field has no value it's a legacy text widget.
+			if ( ! visualField.val() ) {
+				return null;
+			}
+
+			var fieldContainer = $( '<div></div>' );
+			var syncContainer = widgetContainer.find( '.widget-content:first' );
+			syncContainer.before( fieldContainer );
+
+			options = {
+				el: fieldContainer,
+				syncContainer: syncContainer,
+			};
+		} else {
+			options = { el: widgetContainer };
+		}
+
+		var widgetControl = new component.TextWidgetControl( options );
 
 		widgetControl.initializeEditor();
 

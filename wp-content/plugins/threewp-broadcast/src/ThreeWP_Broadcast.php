@@ -978,6 +978,16 @@ class ThreeWP_Broadcast
 			'role_taxonomies' => [ 'super_admin' ],					// Role required to broadcast the taxonomies
 			'role_custom_fields' => [ 'super_admin' ],				// Role required to broadcast the custom fields
 			'savings_calculator_data' => '',						// Data for the savings calculator.
+			/**
+				@brief		List of taxonomy + term slugs to not broadcast.
+				@since		2017-07-10 16:16:28
+			**/
+			'taxonomy_term_blacklist' => '',
+			/**
+				@brief		List of taxonomy + term slugs to be protected during broadcast.
+				@since		2017-07-10 16:16:28
+			**/
+			'taxonomy_term_protectlist' => '',
 		], parent::site_options() );
 	}
 

@@ -375,7 +375,20 @@ trait terms_and_taxonomies
 					$meta = [];
 				// We store the meta array as a collection for easier handling later.
 				$meta = ThreeWP_Broadcast()->collection( $meta );
-				$bcd->taxonomy_term_meta->collection( $bcd->parent_blog_id )->collection( 'terms' )->set( $term->term_id, $meta );
+
+				// Cull blacklisted meta keys.
+				foreach( $meta as $key => $value )
+				{
+					if ( $bcd->taxonomies()->blacklist_has( $taxonomy->name, $term->slug, $key ) )
+					{
+						$this->debug( 'Taxonomy term meta key %s / %s / %s is blacklisted. Not storing.', $taxonomy->name, $term->slug, $key );
+						unset( $meta[ $key ] );
+					}
+				}
+				$bcd->taxonomy_term_meta
+					->collection( $bcd->parent_blog_id )
+					->collection( 'terms' )
+					->set( $term->term_id, $meta );
 			}
 		}
 	}
@@ -437,6 +450,7 @@ trait terms_and_taxonomies
 	**/
 	public function threewp_broadcast_wp_update_term( $action )
 	{
+		$bcd = $action->broadcasting_data;
 		$this->debug( 'wp_update_term: %s', $action->new_term );
 		$update = true;
 
@@ -466,20 +480,35 @@ trait terms_and_taxonomies
 		else
 			$this->debug( 'Will not update the term %s.', $action->new_term->name );
 
-		if ( isset( $action->broadcasting_data->taxonomy_term_meta ) )
+		if ( isset( $bcd->taxonomy_term_meta ) )
 		{
 			$old_term_id = $action->old_term->term_id;
 			$new_term_id = $action->new_term->term_id;
 
-			$old_meta = $action->broadcasting_data->taxonomy_term_meta
-				->collection( $action->broadcasting_data->parent_blog_id )		// Extract the data from the parent blog
-				->collection( 'terms' )											// And extract the data from the terms subcollection
-				->get( $old_term_id );											// And get the collection for this old term ID.
-			foreach( $old_meta as $key => $values )
+			$old_meta = $bcd->taxonomy_term_meta
+				->collection( $bcd->parent_blog_id )				// Extract the data from the parent blog
+				->collection( 'terms' )								// And extract the data from the terms subcollection
+				->get( $old_term_id );								// And get the collection for this old term ID.
+			if ( is_object( $old_meta ) )
 			{
-				$value = reset( $values );		// Wordpress likes reporting back values in an array, even though I've never seen anyone store several values under one key.
-				$this->debug( 'Updating term %s with key %s and value %s', $new_term_id, $key, $value );
-				update_term_meta( $new_term_id, $key, $value );
+				foreach( $old_meta as $key => $values )
+				{
+					$value = reset( $values );		// Wordpress likes reporting back values in an array, even though I've never seen anyone store several values under one key.
+
+					// Is this term protected?
+					if ( $bcd->taxonomies()->protectlist_has( $action->taxonomy, $action->new_term->slug, $key ) )
+					{
+						$current_value = get_term_meta( $new_term_id, $key, true);
+						if ( count( $current_value ) > 0 )
+						{
+							$this->debug( 'Taxonomy term %s (%s) already has a %s term meta value. Skipping.', $action->new_term->slug, $action->new_term->term_id, $key );
+							continue;
+						}
+					}
+
+					$this->debug( 'Updating taxonomy term %s with key %s and value %s', $new_term_id, $key, $value );
+					update_term_meta( $new_term_id, $key, $value );
+				}
 			}
 		}
 	}

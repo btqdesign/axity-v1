@@ -47,6 +47,15 @@ class WPBackItUp_Backup {
 
 	//-------------END STATIC FUNCTIONS-------------------//
 
+	/**
+	 * WPBackItUp_Backup constructor.
+	 *
+	 * @param        $log_name
+	 * @param string $backup_name
+	 * @param string $backup_type
+	 *
+	 * @throws Exception
+	 */
 	function __construct($log_name,$backup_name, $backup_type) {
 		global $WPBackitup;
 		try {
@@ -72,6 +81,7 @@ class WPBackItUp_Backup {
 
 			$this->backup_project_path=$backup_project_path;
 			$this->backup_folder_root=$backup_folder_root;
+
 			$this->restore_folder_root=$restore_folder_root;
 
 			$this->backup_retained_number = $WPBackitup->backup_retained_number();
@@ -131,21 +141,25 @@ class WPBackItUp_Backup {
 	 * Delete backup folders by prefix
 	 * @param $prefix
 	 */
-	public function cleanup_backups_by_prefix_async($prefix) {
+	public function cleanup_backups_by_prefix($prefix) {
 	    WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Begin' );
-        $backup_root_path=$this->backup_folder_root;
+	    $backup_root_path=$this->backup_folder_root;
 
         //get a list of all the temps
         $work_folder_list = glob($backup_root_path. $prefix .'*', GLOB_ONLYDIR);
 
-        //If any folder were found
-        if (count( $work_folder_list )>1){
+        //If any folders were found
+        if (count( $work_folder_list )>=1){
 
-            // push items to background processor
-            global $WPBackitup;
-            $WPBackitup->handle_async_task_queue(Processors::DIRECTORY_CLEANUP, $work_folder_list);
-            WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Directory Cleanup job dispatched.');
-
+        	foreach ($work_folder_list as $folder){
+		        $file_system = new WPBackItUp_FileSystem($this->log_name);
+		        if(file_exists($folder)) {
+			        $file_system->recursive_delete($folder);
+			        WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Directory Cleanup completed:' . $folder);
+		        }else{
+			        WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Folder was not found:' . $folder);
+		        }
+            }
         }
 
 	    WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'End' );
@@ -156,10 +170,8 @@ class WPBackItUp_Backup {
 	 *  - job control records are purged first so orphaned folders should be deleted.
 	 *
 	 */
-	public function purge_orphaned_backups_async() {
+	public function purge_orphaned_backups() {
 
-        //initiate background processor
-        $cleanup_processor  = new WPBackItUp_Directory_Cleanup_Processor();
 
         //  --PURGE BACKUP FOLDER
 		$folder_list = glob($this->backup_folder_root . '*', GLOB_ONLYDIR);
@@ -168,23 +180,25 @@ class WPBackItUp_Backup {
 
 			//Check for job control record
 			$folder_name = basename($folder);
-			$folder_name_parts = explode('_',$folder_name);
-			$job_id = end($folder_name_parts);
 			$job = WPBackItUp_Job::get_jobs_by_job_name(WPBackItUp_Job::BACKUP,$folder_name);
-			//$job = WPBackItUp_Job::get_job_by_id($job_id);
 
 			//If no jobs found then purge
 			if(false===$job){
 				if (file_exists($folder)) {
-                    $cleanup_processor->push_to_queue( $folder );
+
+					WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Directory to be deleted: ' . $folder);
+
+					$file_system = new WPBackItUp_FileSystem($this->log_name);
+					if(file_exists($folder)) {
+						$file_system->recursive_delete($folder);
+					}else{
+						WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Folder was not found:' . $folder);
+					}
 				}
 			}
 		}
 
-        $cleanup_processor->save()->dispatch();
-        WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Directory Cleanup job dispatched.');
-
-		return true;
+        WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Directory Cleanup job completed.');
     }
 
 	/**
@@ -208,7 +222,7 @@ class WPBackItUp_Backup {
 			if (count( $file_list )>1){
 
                 global $WPBackitup;
-                $WPBackitup->handle_async_task_queue(Processors::FILE_CLEANUP, $file_list);
+                $WPBackitup->dispatch_async_tasks(Processors::FILE_CLEANUP, $file_list);
 				WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Cleanup job dispatched.');
 	
 			}
@@ -225,8 +239,7 @@ class WPBackItUp_Backup {
 	/**
 	 * Purge old backup files
 	 */
-	public function purge_old_files_async(){
-	    // Todo:: convert purge_files to return a list of files to push in background cleanup queue.
+	public function purge_old_files(){
 
 	    WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Begin');
         $fileSystem = new WPBackItUp_FileSystem( $this->log_name);
@@ -1169,7 +1182,7 @@ class WPBackItUp_Backup {
 			if (true===$backupset_found) {
 
                 global $WPBackitup;
-                $WPBackitup->handle_async_task_queue(Processors::FILE_CLEANUP, $file_list);
+                $WPBackitup->dispatch_async_tasks(Processors::FILE_CLEANUP, $file_list);
 
 				WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Cleanup support zips job dispatched.');
 			}

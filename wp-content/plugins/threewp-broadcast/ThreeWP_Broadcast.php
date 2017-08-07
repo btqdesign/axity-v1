@@ -8,10 +8,10 @@ Domain Path:	/lang
 Plugin Name:	Broadcast
 Plugin URI:		https://broadcast.plainviewplugins.com/
 Text Domain:	threewp_broadcast
-Version:		38.6
+Version:		39
 */
 
-DEFINE( 'THREEWP_BROADCAST_VERSION', 38.6 );
+DEFINE( 'THREEWP_BROADCAST_VERSION', 39 );
 
 require_once( __DIR__ . '/vendor/autoload.php' );
 

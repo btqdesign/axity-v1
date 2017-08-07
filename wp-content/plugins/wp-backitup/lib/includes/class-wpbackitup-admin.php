@@ -39,11 +39,6 @@ class WPBackitup_Admin {
      */
     protected $dir_cleanup_processor;
 
-    /**
-     * @var WPBackItUp_DB_Cleanup_Processor
-     */
-    protected $db_cleanup_processor;
-    
     // Default plugin options
     public $defaults = array(
         'logging' => false,
@@ -226,6 +221,15 @@ class WPBackitup_Admin {
 
 	    //Only load the JS and CSS when plugin is active
 	    if( !empty($_REQUEST['page']) && substr($_REQUEST['page'], 0, 11) === 'wp-backitup') {
+
+            // update body class
+            // Added inline function to support PHP 5.2 
+            function add_admin_body_class( $classes ) {
+                $classes .= ' wpb-main';
+                return $classes;
+            }
+
+            add_filter( 'admin_body_class', 'add_admin_body_class');
 
    		    // Admin JavaScript
             wp_register_script("{$this->namespace}-jquery-tagit", WPBACKITUP__PLUGIN_URL."js/tag-it.min.js", array('jquery'), $this->version, true);
@@ -441,7 +445,6 @@ class WPBackitup_Admin {
         require_once(WPBACKITUP__PLUGIN_PATH . '/lib/background-processing/class-task-processor.php');
 	    require_once(WPBACKITUP__PLUGIN_PATH . '/lib/background-processing/class-cleanup-processor.php');
         require_once(WPBACKITUP__PLUGIN_PATH . '/lib/background-processing/class-file-cleanup-processor.php');
-        require_once(WPBACKITUP__PLUGIN_PATH . '/lib/background-processing/class-db-cleanup-processor.php');
         require_once(WPBACKITUP__PLUGIN_PATH . '/lib/background-processing/class-directory-cleanup-processor.php');
 
 		require_once( WPBACKITUP__PLUGIN_PATH . '/lib/includes/class-logger.php' );
@@ -480,7 +483,6 @@ class WPBackitup_Admin {
         $this->cleanup_processor = new WPBackItUp_Cleanup_Processor();
         $this->file_cleanup_processor = new WPBackItUp_File_Cleanup_Processor();
         $this->dir_cleanup_processor = new WPBackItUp_Directory_Cleanup_Processor();
-        $this->db_cleanup_processor = new WPBackItUp_DB_Cleanup_Processor();
 
         $cleanup = new WPBackItUp_Cleanup();
         $cleanup->init();
@@ -488,12 +490,12 @@ class WPBackitup_Admin {
     }
 
     /**
-     *  Handle task queue.
+     *  Dispatch Async tasks
      *
      * @param $task_type
      * @param @task_list
      */
-    public function handle_async_task_queue($task_type, $task_list){
+    public function dispatch_async_tasks($task_type, $task_list){
         $processor = $this->get_async_task_processor($task_type);
 
         if( !is_null($processor) ){
@@ -597,14 +599,37 @@ class WPBackitup_Admin {
 
         }
 
+        //if backup job is queued or active then exit
+		$backup_job = WPBackItUp_Job::is_job_queued_active(WPBackItUp_Job::BACKUP);
+		if (false!==$backup_job){
+			WPBackItUp_Logger::log_info($scheduled_jobs_logname,__METHOD__,'Backup Job Queued:'. $backup_job->getJobId());
+			exit;
+		}
+
         //CLEANUP
-        //If no cleanup queued or active & its time to run on then kick it off
-        if ( ! WPBackItUp_Job::is_job_queued_active(WPBackItUp_Job::CLEANUP) &&
-             $scheduler->isJobScheduled(WPBackItUp_Job::CLEANUP)){
+        //Run Cleanup every hour
+        if ( $scheduler->isJobScheduled(WPBackItUp_Job::CLEANUP) ) {
 
-            //add cleanup tasks to list
-            $this->handle_async_task_queue(Processors::CLEANUP, WPBackItUp_Cleanup::$TASK_ITEMS);
-
+        	//queue job
+	        $cleanup_job = WPBackItUp_Cleanup::queue_job();
+	        if (false===$cleanup_job) {
+		        WPBackItUp_Logger::log_error( $scheduled_jobs_logname, __METHOD__, 'Cleanup could not be queued.' );
+	        } else {
+		        //dispatch tasks
+		        $cleanup_tasks = WPBackItUp_Job_Task::get_job_tasks($cleanup_job->getJobId(),WPBackItUp_Job_Task::QUEUED);
+		        if (false===$cleanup_tasks) {
+			        WPBackItUp_Logger::log_error( $scheduled_jobs_logname, __METHOD__, 'Cleanup tasks could not dispatched.' );
+		        }else {
+			        $processor = $this->get_async_task_processor(Processors::CLEANUP);
+			        if( !is_null($processor) ){
+				        foreach ( $cleanup_tasks as $task ) {
+				        	//add tasks queue
+					        $processor->push_to_queue( $task->getTaskId());
+				        }
+				        $processor->save()->dispatch();
+			        }
+		        }
+	        }
         }
 
         //Are there any wpbackitup add ons that need to be kicked off?

@@ -52,7 +52,7 @@ Requires PHP version 5.4 or higher.
 
 = Add-on Packs =
 
-There are several <a href="https://broadcast.plainviewplugins.com/"><em>Broadcast add-on packs</em></a> that expand the capabilities of Broadcast.
+There are several <a href="https://broadcast.plainviewplugins.com/">Broadcast add-on packs</a> that expand the capabilities of Broadcast.
 
 3rd party pack
 --------------
@@ -77,6 +77,7 @@ There are several <a href="https://broadcast.plainviewplugins.com/"><em>Broadcas
 * <a href="https://broadcast.plainviewplugins.com/addon/global-blocks-for-cornerstone/">Global Blocks For Cornerstone</a> adds support for the <a href="https://wordpress.org/plugins/global-blocks-for-cornerstone/">Global Blocks for Cornerstone</a> plugin.
 * <a href="https://broadcast.plainviewplugins.com/addon/global-content-blocks/">Global Content Blocks</a> adds support for shortcodes from <a href="https://wordpress.org/plugins/global-content-blocks/">WP Xpert&#8217;s Global Content Blocks</a> plugin.
 * <a href="https://broadcast.plainviewplugins.com/addon/gravity-forms/">Gravity Forms</a> adds support for the <a href="http://www.gravityforms.com/">Gravity Forms</a> plugin.
+* <a href="https://broadcast.plainviewplugins.com/addon/intagrate/">Intagrate</a> adds support for the <a href="https://intagrate.io/">Intagrate</a> plugin.
 * <a href="https://broadcast.plainviewplugins.com/addon/jetpack/">Jetpack</a> adds support for <a href="https://wordpress.org/plugins/jetpack/">Automattic's Jetpack plugin</a>.
 * <a href="https://broadcast.plainviewplugins.com/addon/learndash">LearnDash</a>: New add-on. Adds support for the <a href="https://www.learndash.com/">LearnDash LMS</a> plugin.
 * <a href="https://broadcast.plainviewplugins.com/addon/mailster/">Mailster</a> adds support for the <a href="https://codecanyon.net/item/mailster-email-newsletter-plugin-for-wordpress/3078294">Mailster</a> plugin.
@@ -96,6 +97,7 @@ There are several <a href="https://broadcast.plainviewplugins.com/"><em>Broadcas
 * <a href="https://broadcast.plainviewplugins.com/addon/ultimate-member/">Ultimate Member</a> adds support for the <a href="https://wordpress.org/plugins/ultimate-member/">Ultimate Member</a> plugin.
 * <a href="https://broadcast.plainviewplugins.com/addon/woocommerce/">WooCommerce</a> allows attribute taxonomies and product variations to be broadcasted.
 * <a href="https://broadcast.plainviewplugins.com/addon/wp-all-import/">WP All Import</a> adds support for post updates from Soffly's <a href="http://www.wpallimport.com/">WP All Import Pro</a>.
+* <a href="https://broadcast.plainviewplugins.com/addon/wplms/">WPLMS</a> adds support for Vibethemes' <a href="https://themeforest.net/item/wplms-learning-management-system/6780226">WPLMS theme</a>.
 * <a href="https://broadcast.plainviewplugins.com/addon/wpml/">WPML</a> adds support for <a href="http://wpml.org/">ICanLocalize’s WPML</a> translation plugin.
 * <a href="https://broadcast.plainviewplugins.com/addon/wp-ultimate-recipe/">WP Ultimate Recipe</a> adds support for recipes and ingredients from <a href="http://bootstrapped.ventures">Bootstrapped Ventures’</a> <a href="http://bootstrapped.ventures">WP Ultimate Recipe</a> plugin.
 * <a href="https://broadcast.plainviewplugins.com/addon/yoast-seo/">Yoast SEO</a> adds support for the <a href="https://wordpress.org/plugins/wordpress-seo/">Yoast SEO</a> plugin.
@@ -119,6 +121,7 @@ Control pack
 * <a href="https://broadcast.plainviewplugins.com/addon/permalinks/">Permalinks</a> provides more precise control of permalinks for both parents and children.
 * <a href="https://broadcast.plainviewplugins.com/addon/protect-child-properties/">Protect Child Properties</a> prevents various properties of child posts from being overwritten.
 * <a href="https://broadcast.plainviewplugins.com/addon/redirect-all-children/">Redirect All Children</a> redirects single post views from visitors of child posts to the parent post.
+* <a href="https://broadcast.plainviewplugins.com/addon/search-and-replace/">Search And Replace</a> finds and replaces texts in posts during broadcast.
 * <a href="https://broadcast.plainviewplugins.com/addon/shortcode-attachments/">Shortcode Attachments</a> modifies attachment IDs found in shortcodes to match their equivalent attachments on each blog.
 * <a href="https://broadcast.plainviewplugins.com/addon/shortcode-menus/">Shortcode Menus</a> modifies menu IDs found in shortcodes to match their equivalent menus on each blog.
 * <a href="https://broadcast.plainviewplugins.com/addon/shortcode-terms/">Shortcode Terms</a> automatically translates taxonomy term IDs found in shortcodes when broadcasting.
@@ -167,14 +170,14 @@ For developers: the code should be well-commented and easily legible for the mos
 
 = Misc =
 
-Requires PHP v5.4, since 5.3 is no longer officially supported.
+Requires PHP v5.4. PHP 7 works just fine also.
 
 The git repository can be found at: https://bitbucket.org/edward_electric/broadcast
 
 == Installation ==
 
 1. Check that your web host has PHP v5.4.
-1. Activate the plugin sitewide. The latter option is more common (and useful).
+1. Activate the plugin sitewide.
 
 == Screenshots ==
 
@@ -196,7 +199,7 @@ The git repository can be found at: https://bitbucket.org/edward_electric/broadc
 
 Broadcast is sporadically supported in my spare time on the Wordpress support forum.
 
-For users of the premium add-on pack, support is available via e-mail.
+For users of the add-on packs, support is available via e-mail.
 
 = Debug dumps =
 
@@ -206,11 +209,11 @@ To switch on debug mode, see the admin settings. If your site is live it would b
 
 = Blacklist, whitelisting, force broadcast =
 
-Broadcasting to specific blogs, hiding blogs and forcing blogs can be acheived with the <em>User & Blog Settings</em> plugin in the <a href="https://broadcast.plainviewplugins.com/"><em>control add-on pack</em></a>.
+Broadcasting to specific blogs, hiding blogs and forcing blogs can be acheived with the <a href="https://broadcast.plainviewplugins.com/addon/user-blog-settings/">User & Blog Settings add-on</a>.
 
 = Bulk broadcast existing pages =
 
-To broadcast many posts at once, see the <em>Send To Many</em> plugin in the <a href="https://broadcast.plainviewplugins.com/"><em>efficiency add-on pack</em></a>.
+To broadcast many posts at once, see the <a href="https://broadcast.plainviewplugins.com/addon/send-to-many/">Send To Many</a> add-on.
 
 = Galleries and attachments =
 
@@ -224,7 +227,7 @@ Do you have a lot of attachments that you don't want duplicated to hundreds of c
 
 = Hide broadcast from the users =
 
-The broadcast meta box, menu and columns in the post view can be hidden from users / roles / blogs using <em>User & Blog Settings</em> plugin in the <a href="https://broadcast.plainviewplugins.com/"><em>control add-on pack</em></a>.
+The broadcast meta box, menu and columns in the post view can be hidden from users / roles / blogs using the <a href="https://broadcast.plainviewplugins.com/addon/user-blog-settings/">User & Blog Settings add-on</a>.
 
 = Is PHP v5.4 really necessary? =
 
@@ -242,9 +245,11 @@ Below is a list of plugins that just will not work properly with Broadcast and /
 
 If you have already created posts on other blogs that are supposed to be children of a specific post, you can use the "find unlinked" bulk action to find and link them.
 
+If the existing posts are not linked, broadcasting a post can result in duplicates.
+
 To be considered an orphan the orphaned posts must have the exact same title (name) as the soon-to-be parent and be of the same post type.
 
-You can also use the <a href="https://broadcast.plainviewplugins.com/addon/delete-before-broadcast/">Delete Before Broadcast add-on</a> from the pack to delete any similar posts on the child blog before broadcasting.
+You can also use the <a href="https://broadcast.plainviewplugins.com/addon/delete-before-broadcast/">Delete Before Broadcast add-on</a> to delete any similar posts on the child blog before broadcasting.
 
 = Timeout problems =
 
@@ -264,9 +269,9 @@ Make sure that:
 
 1. The plugin is network enabled
 2. Your user level has broadcast access (Broadcast access role)
-3. Your user has write access to more than this blog (see Admin settings > Maintenenace > View blog access). Or use the All Blogs control plugin to access all blogs.
-4. The correct post type(s) have been selected
-5. <em>User & Blog Settings</em> is not set to hide the meta box from the user / role / blog
+3. Your user has write access to more than this blog (see Admin settings > Maintenenace > View blog access). You can also use the <a href="https://broadcast.plainviewplugins.com/addon/all-blogs/">All Blogs add-on</a> to give yourself access to all blogs.
+4. The correct post type(s) have been selected in the Broadcast settings
+5. The <a href="https://broadcast.plainviewplugins.com/addon/user-blog-settings/">User & Blog Settings add-on</a> is not set to hide the meta box from the user / role / blog
 
 = WooCommerce =
 
@@ -278,7 +283,7 @@ Broadcast is capable of handling simple WooCommerce products.
 
 This will broadcast all normal product settings: SKU, price, etc.
 
-If your products have variations, a product image gallery, want to sync stock, want to sync orders, need the attribute taxonomies to be synced, you'll be wanting the <a href="https://broadcast.plainviewplugins.com/addon/woocommerce/">WooCommerce add-on</a>.
+If your products have variations, a product image gallery, you want to sync stock, you want to sync orders, need the attribute taxonomies to be synced, you'll be wanting the <a href="https://broadcast.plainviewplugins.com/addon/woocommerce/">WooCommerce add-on</a>.
 
 = WPML Sitepress =
 
@@ -295,6 +300,16 @@ Xcache v2 does not support PHP namespaces, which is a PHP 5.3 feature. Trying to
 Xcache v3, which does support namespaces, has not yet been tested. Anyone with Xcache v3 experience is welcome to contact me with info.
 
 == Changelog ==
+
+= 39 20170802 =
+
+* New: Taxonomy Term handling options. Similar to the custom field lists, allows taxonomy term meta to be blacklisted or protected. See <a href="https://broadcast.plainviewplugins.com/doc/taxonomy-handling/">Broadcast Taxonomy Term documentation page</a>.
+* Fix: Modify the child post dates to match the GMT offset. Previously the dates were copied directly from the parent post.
+* Fix: When the link table contains dupes, prevent even more post duping by using the first available link data.
+* New add-on: <a href="https://broadcast.plainviewplugins.com/addon/intagrate/">Intagrate</a> adds support for the <a href="https://intagrate.io/">Intagrate</a> plugin.
+* New add-on: <a href="https://broadcast.plainviewplugins.com/addon/wplms/">WPLMS</a> adds support for Vibethemes' <a href="https://themeforest.net/item/wplms-learning-management-system/6780226">WPLMS theme</a>.
+* New add-on: <a href="https://broadcast.plainviewplugins.com/addon/search-and-replace/">Search And Replace</a> finds and replaces texts in posts during broadcast.
+* Code: debug dumps report timestamps in GMT now. Less confusion due to the different blog timezones.
 
 = 38.6 20170703 =
 

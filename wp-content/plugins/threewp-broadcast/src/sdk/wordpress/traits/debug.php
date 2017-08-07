@@ -119,7 +119,7 @@ trait debug
 		$class_name = preg_replace( '/.*\\\/', '', $class_name );
 
 		// Date class: string
-		$text = sprintf( '%s.%s <em>%s</em>: %s<br/>', $this->now(), microtime( true ), $class_name, $text, "\n" );
+		$text = sprintf( '%s.%s <em>%s</em>: %s<br/>', date( 'Y-m-d H:i:s' ), microtime( true ), $class_name, $text, "\n" );
 
 		$plugin = self::instance();
 

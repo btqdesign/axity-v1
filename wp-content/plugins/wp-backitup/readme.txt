@@ -3,7 +3,7 @@ Contributors: wpbackitup, cssimmon, alaminopu, imranshuvo
 Tags: backup, backups, back up, backup plugin, database backup, multisite backup, full backup, database, restore, migrate, clone, malware
 Requires at least: 3.8.0
 Tested up to: 4.8
-Stable tag: 1.14.4
+Stable tag: 1.14.6
 Author URI: https://www.wpbackitup.com
 Donate link: https://www.wpbackitup.com
 License: GPLv2 or later
@@ -197,8 +197,19 @@ Our online documentation and full list of FAQs can be found at [support.wpbackit
 
 
 == Changelog ==
+= 1.14.7 =
+*Release Date -  July 19, 2017
+
+* FIX:  Fix issues with CSS filter on PHP 5.2
+
+= 1.14.6 =
+*Release Date -  July 15, 2017
+
+* FIX:  Fix issues with cleanup processor causing jobs fail
+* FIX:  Fix CSS causing UI issues for certain themes
+
 = 1.14.5 =
-*Release Date -  June 7, 2017
+*Release Date -  June 8, 2017
 
 * UPDATE:   Updates to support WordPress 4.8 release
 * UPDATE:   Enhancements to cleanup processor and job engine

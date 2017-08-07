@@ -138,7 +138,7 @@ trait broadcast_data
 		if ( ! is_array( $post_ids ) )
 			$post_ids = [ $post_ids ];
 
-		$query = sprintf( "SELECT * FROM `%s` WHERE `blog_id` = '%s' AND `post_id` IN ('%s')",
+		$query = sprintf( "SELECT * FROM `%s` WHERE `blog_id` = '%s' AND `post_id` IN ('%s') ORDER BY `id`",
 			$this->broadcast_data_table(),
 			$blog_id,
 			implode( "', '", $post_ids )

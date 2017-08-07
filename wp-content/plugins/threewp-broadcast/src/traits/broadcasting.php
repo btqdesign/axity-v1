@@ -91,7 +91,9 @@ trait broadcasting
 		if ( $bcd->taxonomies )
 		{
 			$this->debug( 'Will broadcast taxonomies.' );
+			$bcd->taxonomies();
 			$this->collect_post_type_taxonomies( $bcd );
+			$this->debug( 'Taxonomy data dump: %s', $bcd->taxonomy_data );
 			$this->debug( 'Parent taxonomies dump: %s', $bcd->parent_post_taxonomies );
 		}
 		else
@@ -394,9 +396,22 @@ trait broadcasting
 
 			$bcd->new_post = get_post( $bcd->new_post( 'ID' ) );
 
-			// Force setting of the correct post dates.
 			$dated_post = clone( $bcd->post );
 			$dated_post->ID = $bcd->new_post->ID;
+
+			$gmt_offset = current_time( 'timestamp' ) - current_time( 'timestamp', true );
+
+			// Correct the dates according to timezone.
+			foreach( [ 'post_date', 'post_modified' ] as $column )
+			{
+				$gmt_column = $column . '_gmt';
+				$time = strtotime( $dated_post->$gmt_column );
+				$time += $gmt_offset;
+				$dated_post->$column = date( 'Y-m-d H:i:s', $time );
+				$this->debug( 'Setting %s date column to %s', $column, $dated_post->$column );
+			}
+
+			// Force setting of the correct post dates.
 			$this->set_post_date( $dated_post );
 
 			$bcd->equivalent_posts()->set( $bcd->parent_blog_id, $bcd->post->ID, $bcd->current_child_blog_id, $bcd->new_post( 'ID' ) );

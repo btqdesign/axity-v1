@@ -102,10 +102,10 @@ trait admin_menu
 		// Legend for custom field handling fieldset
 		$fs->legend->label( __( 'Custom field handling', 'threewp_broadcast' ) );
 
-		$fs->markup( 'custom_field_listing' )
+		$fs->markup( 'm_custom_field_handling1' )
 			->p( __( 'All custom fields are passed through the blacklist and then the whitelist. If the field exists in the blacklist, it will not be broadcast - unless it is specified in the whitelist.', 'threewp_broadcast' ) );
 
-		$fs->markup( 'custom_field_wildcards' )
+		$fs->markup( 'm_custom_field_handling2' )
 			->p( sprintf(
 				__( 'You can use wildcards: %s will match all fields that start with %s and end with %s. If you wish to match all fields except a few, use %s in the blacklist and then the exceptions in the whitelist.', 'threewp_broadcast' ),
 				'<code>field_*123</code>',
@@ -115,35 +115,42 @@ trait admin_menu
 				)
 			);
 
-		$blacklist = $this->get_site_option( 'custom_field_blacklist' );
-		$blacklist = str_replace( ' ', "\n", $blacklist );
+		$fs->markup( 'm_custom_field_handling3' )
+			->markup(
+				sprintf( __( 'For more detailed documentation, see the %scustom field documentation page%s', 'threewp_broadcast' ),
+				'<a href="https://broadcast.plainviewplugins.com/doc/custom-fields/">',
+				'</a>'
+			) );
+
+		$custom_field_blacklist = $this->get_site_option( 'custom_field_blacklist' );
+		$custom_field_blacklist = str_replace( ' ', "\n", $custom_field_blacklist );
 		$custom_field_blacklist = $fs->textarea( 'custom_field_blacklist' )
 			->cols( 40, 10 )
 			// Custom field blacklist.
 			->description( __( 'Do not broadcast these custom fields.', 'threewp_broadcast' ) )
 			->label( __( 'Custom field blacklist', 'threewp_broadcast' ) )
 			->trim()
-			->value( $blacklist );
+			->value( $custom_field_blacklist );
 
-		$whitelist = $this->get_site_option( 'custom_field_whitelist' );
-		$whitelist = str_replace( ' ', "\n", $whitelist );
+		$custom_field_whitelist = $this->get_site_option( 'custom_field_whitelist' );
+		$custom_field_whitelist = str_replace( ' ', "\n", $custom_field_whitelist );
 		$custom_field_whitelist = $fs->textarea( 'custom_field_whitelist' )
 			->cols( 40, 10 )
 			// Custom field whitelist.
 			->description( __( 'Exceptions to the blacklist.', 'threewp_broadcast' ) )
 			->label( __( 'Custom field whitelist', 'threewp_broadcast' ) )
 			->trim()
-			->value( $whitelist );
+			->value( $custom_field_whitelist );
 
-		$protectlist = $this->get_site_option( 'custom_field_protectlist' );
-		$protectlist = str_replace( ' ', "\n", $protectlist );
+		$custom_field_protectlist = $this->get_site_option( 'custom_field_protectlist' );
+		$custom_field_protectlist = str_replace( ' ', "\n", $custom_field_protectlist );
 		$custom_field_protectlist = $fs->textarea( 'custom_field_protectlist' )
 			->cols( 40, 10 )
 			// Custom field protectlist.
 			->description( __( 'Do not overwrite the following fields on the child blogs if they exist.', 'threewp_broadcast' ) )
 			->label( __( 'Custom field protectlist', 'threewp_broadcast' ) )
 			->trim()
-			->value( $protectlist );
+			->value( $custom_field_protectlist );
 
 		// --CUSTOM POST TYPES--------------------------------------------------------------------------------------
 
@@ -312,6 +319,48 @@ trait admin_menu
 			// SEO setting
 			->label( __( 'Canonical URL', 'threewp_broadcast' ) );
 
+		// --TAXONOMIES------------------------------------------------------------------------------------------
+
+		$fs = $form->fieldset( 'taxonomy_handling' );
+		// Legend for taxonomy handling fieldset
+		$fs->legend->label( __( 'Taxonomy handling', 'threewp_broadcast' ) );
+
+		$fs->markup( 'm_taxonomy_handling' )
+			->markup( __( 'Taxonomy term meta is passed through the two lists below. If the meta key exists in the blacklist, it will not be broadcast. If a term has an existing meta key set, the value will not be overwritten if specified in the protect list.', 'threewp_broadcast' ) );
+
+		$fs->markup( 'm_taxonomy_handling2' )
+			->markup( __( 'The format for both lists is the same: Each line must contain TAXONOMYSLUG TERMSLUG METAKEY', 'threewp_broadcast' ) );
+
+		$fs->markup( 'm_taxonomy_handling3' )
+			->markup( __( 'More than one METAKEY can be specified per line. Wildcards can be used for all columns.', 'threewp_broadcast' ) );
+
+		$fs->markup( 'm_taxonomy_handling4' )
+			->markup(
+				sprintf( __( 'For more detailed documentation, see the %staxonomy handling documentation page%s', 'threewp_broadcast' ),
+				'<a href="https://broadcast.plainviewplugins.com/doc/taxonomy-handling/">',
+				'</a>'
+			) );
+
+		$taxonomy_term_blacklist = $this->get_site_option( 'taxonomy_term_blacklist' );
+		$taxonomy_term_blacklist = $fs->textarea( 'taxonomy_term_blacklist' )
+			->cols( 40, 10 )
+			// Taxonomy term blacklist.
+			->description( __( 'Do not broadcast these taxonomy term meta keys.', 'threewp_broadcast' ) )
+			->label( __( 'Taxonomy term blacklist', 'threewp_broadcast' ) )
+			->placeholder( 'category great_cars term_icon term_name' )
+			->trim()
+			->value( $taxonomy_term_blacklist );
+
+		$taxonomy_term_protectlist = $this->get_site_option( 'taxonomy_term_protectlist' );
+		$taxonomy_term_protectlist = $fs->textarea( 'taxonomy_term_protectlist' )
+			->cols( 40, 10 )
+			// Taxonomy term protectlist.
+			->description( __( 'Do not overwrite the following term meta keys on the child blogs if they exist.', 'threewp_broadcast' ) )
+			->label( __( 'Taxonomy term protectlist', 'threewp_broadcast' ) )
+			->placeholder( 'post_* camera-rev* icon*' )
+			->trim()
+			->value( $taxonomy_term_protectlist );
+
 		// ---------------------------------------------------------------------------------------------------------
 
 		$save = $form->primary_button( 'save' )
@@ -337,17 +386,17 @@ trait admin_menu
 			$this->update_site_option( 'override_child_permalinks', $override_child_permalinks->is_checked() );
 			$this->update_site_option( 'canonical_url', $canonical_url->is_checked() );
 
-			$blacklist = $custom_field_blacklist->get_post_value();
-			$blacklist = $this->lines_to_string( $blacklist );
-			$this->update_site_option( 'custom_field_blacklist', $blacklist );
+			$custom_field_blacklist = $custom_field_blacklist->get_post_value();
+			$custom_field_blacklist = $this->lines_to_string( $custom_field_blacklist );
+			$this->update_site_option( 'custom_field_blacklist', $custom_field_blacklist );
 
-			$whitelist = $custom_field_whitelist->get_post_value();
-			$whitelist = $this->lines_to_string( $whitelist );
-			$this->update_site_option( 'custom_field_whitelist', $whitelist );
+			$custom_field_whitelist = $custom_field_whitelist->get_post_value();
+			$custom_field_whitelist = $this->lines_to_string( $custom_field_whitelist );
+			$this->update_site_option( 'custom_field_whitelist', $custom_field_whitelist );
 
-			$protectlist = $custom_field_protectlist->get_post_value();
-			$protectlist = $this->lines_to_string( $protectlist );
-			$this->update_site_option( 'custom_field_protectlist', $protectlist );
+			$custom_field_protectlist = $custom_field_protectlist->get_post_value();
+			$custom_field_protectlist = $this->lines_to_string( $custom_field_protectlist );
+			$this->update_site_option( 'custom_field_protectlist', $custom_field_protectlist );
 
 			$this->update_site_option( 'clear_post', $clear_post->is_checked() );
 			$this->update_site_option( 'save_post_priority', $save_post_priority->get_post_value() );
@@ -355,6 +404,12 @@ trait admin_menu
 			$this->update_site_option( 'blogs_to_hide', $blogs_to_hide->get_post_value() );
 			$this->update_site_option( 'blogs_hide_overview', $blogs_hide_overview->get_post_value() );
 			$this->update_site_option( 'existing_attachments', $existing_attachments->get_post_value() );
+
+			$taxonomy_term_blacklist = $taxonomy_term_blacklist->get_post_value();
+			$this->update_site_option( 'taxonomy_term_blacklist', $taxonomy_term_blacklist );
+
+			$taxonomy_term_protectlist = $taxonomy_term_protectlist->get_post_value();
+			$this->update_site_option( 'taxonomy_term_protectlist', $taxonomy_term_protectlist );
 
 			$this->save_debug_settings_from_form( $form );
 

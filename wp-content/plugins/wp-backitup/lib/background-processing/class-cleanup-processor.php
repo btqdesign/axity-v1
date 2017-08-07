@@ -33,21 +33,28 @@ class WPBackItUp_Cleanup_Processor extends WPBackItUp_Background_Process {
 	 * Cleanup tasks are handled here.
 	 * Each item is a different task. This handler will handle all cleanup tasks.
 	 *
-	 * @param mixed $item Queue item to iterate over
+	 * @param mixed $task_id Queue item to iterate over
 	 *
 	 * @return mixed  False when task is complete|return updated item for further processing
 	 */
-	protected function task( $item ) {
+	protected function task( $task_id ) {
+
+		//get task by id
+		$task = WPBackItUp_Job_Task::get_task_by_id($task_id);
+		if (false===$task) {
+			WPBackItUp_Logger::log_error(self::CLEANUP_LOG_NAME, __METHOD__, 'Task not found:'. var_export($task,true));
+			return false;
+		}
 
 	    // method need to be triggered.
-        $hook_name = sprintf('wpbackitup_cleanup_%s', $item);
+        $hook_name = str_replace ('task','wpbackitup_cleanup', $task->getTaskName());
         WPBackItUp_Logger::log_info(self::CLEANUP_LOG_NAME,__METHOD__, 'Cleanup task - method to be triggered: '. $hook_name);
 
         if(has_action($hook_name)) {
-            do_action($hook_name);
+            do_action($hook_name,$task);
             WPBackItUp_Logger::log_info(self::CLEANUP_LOG_NAME, __METHOD__, 'Hook should be triggered');
         }else{
-            WPBackItUp_Logger::log_info(self::CLEANUP_LOG_NAME, __METHOD__, 'Hook is not available');
+            WPBackItUp_Logger::log_error(self::CLEANUP_LOG_NAME, __METHOD__, 'Hook is not available');
         }
 
         return false;
