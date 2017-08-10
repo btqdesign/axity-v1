@@ -1367,7 +1367,7 @@ label { color: #333; display: block; font-family: "Roboto Condensed", sans-serif
 #seccServicios2ndVideo .section-fullwidth{padding:  0 0 0 20% !important}
 
 #secc_Servicios3th h2{ font-size:16px !important; color:#3c1053!important;}
-#secc_Servicios3th .seccIntServicios{ border-right:#fff 2px solid;}
+#secc_Servicios3th .seccIntServicios{ border-right:#fff 2px solid; padding-right:30px;}
 #secc_Servicios3th p{ color:#3c1053!important;}
 #secc_Servicios3th .three-d { background:#F4364C!important; color:#fff!important; padding:3px 30px;}
 
