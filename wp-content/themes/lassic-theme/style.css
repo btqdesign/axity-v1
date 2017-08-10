@@ -1333,7 +1333,7 @@ label { color: #333; display: block; font-family: "Roboto Condensed", sans-serif
 .detailProduct strong{color:#f4364c!important;}
 
 
-.secCompanya{ /*background:#f4364c!important;*/ padding:20px 20px 20px 55px;}
+.secCompanya{ /*background:#f4364c!important;*/ padding:20px 20px 20px 70px;}
 
 
 #sec2ndComp .cs-section-title { padding:20px;}
@@ -1518,10 +1518,10 @@ blockquote { position: relative; border: none; float: left; font-size: 20px; fon
 .question-mark p::before { content: ",,"; font-size: 50px; font-weight: 400; left: -18px !important; letter-spacing: -3px; position: absolute; top: -10px !important; }
 .flex-direction-nav .flex-next {left: 44px !important;}
 
-.infoBoxCompanyLeft{ padding-left:110px}
-#infoBoxCompanyLeft h2{ padding-left:110px}
-.infoBoxCompanyRight{ padding-right:110px}
-#infoBoxCompanyRight h2{ padding-right:110px}
+.infoBoxCompanyLeft{ padding-left:50px}
+#infoBoxCompanyLeft h2{ padding-left:50px}
+.infoBoxCompanyRight{ padding-right:50px}
+#infoBoxCompanyRight h2{ padding-right:50px}
 /*Accordion Start*/
 #box{padding-left:110px;}
 #box .panel-group .panel{background:#fff!important}
