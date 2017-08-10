@@ -16,21 +16,21 @@
 		margin:15px 0px !important;
    	}
 	.nav li a,header .btn-style1,.footer-nav ul li a {
-		font:500 Normal  12px 'Raleway', sans-serif !important;	}
+		font:500 Normal  12px 'VitaStd', sans-serif !important;	}
 	.cs-section-title h2{
-		font:500 Normal  24px 'Raleway', sans-serif !important;	}
+		font:500 Normal  24px 'VitaStd', sans-serif !important;	}
  	h1{
-	font:600 Normal  60px 'Raleway', sans-serif !important;}
+	font:600 Normal  60px 'VitaStd', sans-serif !important;}
 	h2{
-	font:600 Normal  20px 'Raleway', sans-serif !important;}
+	font:600 Normal  20px 'VitaStd', sans-serif !important;}
 	h3{
-	font:600 Normal  18px 'Raleway', sans-serif !important;}
+	font:600 Normal  18px 'VitaStd', sans-serif !important;}
 	h4{
-	font:600 Normal  16px 'Raleway', sans-serif !important;}
+	font:600 Normal  16px 'VitaStd', sans-serif !important;}
 	h5{
-	font:600 Normal  14px 'Raleway', sans-serif !important;}
+	font:600 Normal  14px 'VitaStd', sans-serif !important;}
 	h6{
-	font:600 Normal  12px 'Raleway', sans-serif !important;}
+	font:600 Normal  12px 'VitaStd', sans-serif !important;}
 	
 	.main-section h1, .main-section h1 a {color: #262626 !important;}
 	.main-section h2, .main-section h2 a{color: #ff4000 !important;}
@@ -39,7 +39,7 @@
 	.main-section h5, .main-section h5 a{color: #262626 !important;}
 	.main-section h6, .main-section h6 a{color: #262626 !important;}
 	.widget .widget-section-title h2{
-		font:600 Normal  15px 'Raleway', sans-serif !important;	}
+		font:600 Normal  15px 'VitaStd', sans-serif !important;	}
 	.top-bar,#lang_sel ul ul {background-color:#4c545a;}
 	#lang_sel ul ul:before { border-bottom-color: #4c545a; }
 	.top-bar p {color:#fff !important;}
