@@ -1372,7 +1372,7 @@ label { color: #333; display: block; font-family: "Roboto Condensed", sans-serif
 #secc_Servicios3th .three-d { background:#F4364C!important; color:#fff!important; padding:3px 30px;}
 
 #secc_Servicios4th h2{ font-size:16px !important; color:#3c1053!important;}
-#secc_Servicios4th .seccIntServicios{ border-right:#fff 2px solid;}
+#secc_Servicios4th .seccIntServicios{ border-right:#fff 2px solid; padding-right:30px;}
 #secc_Servicios4th p{ color:#3c1053!important;}
 #secc_Servicios4th .three-d { background:#F4364C!important; color:#fff!important; padding:3px 30px;}
 
