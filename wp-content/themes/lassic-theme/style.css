@@ -347,7 +347,7 @@ Based on Hybrid theme
 .navigation ul > li:first-child {margin-left: 0px;}
 .navigation ul > li {padding: 0 0 0 40px;}
 .navigation ul li { float: left; line-height: 1; list-style: none; position: relative; }
-.navigation ul > li > a { color: #666666; float: left; font-size: 14px; font-weight: 200; position: relative; text-transform: uppercase; }
+.navigation ul > li > a { color: #666666; float: left; font-size: 14px; font-weight: 400; position: relative; text-transform: uppercase; }
 .navigation > ul > li > a { min-height: 97px; line-height: 64px; }
 .navigation ul > li:first-child > a:before {display: none;}
 .right-side .navigation ul > li > a:before { left: -23px; top: 50%; border: 1px solid #ebebeb; }
