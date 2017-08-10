@@ -793,7 +793,7 @@ blockquote span { position: relative; z-index: 1; }
 	.cs-prv-next .owl-controls .owl-nav .owl-next:hover, .cs-prv-next .owl-controls .owl-nav .owl-prev:hover{ background:#fff!important}
 /* Section Title Style */
 .cs-section-title { width: 100%; float: left; margin-bottom: 20px; }
-	.cs-section-title h2 { color: #000; margin: 0; float: left; text-transform: uppercase; }
+	.cs-section-title h2 { color: #000; margin: 0; float: left; text-transform: uppercase; font-family:'VitaStd', sans-serif!important;}
 	.cs-section-title.col-md-12 {margin: 0 0 20px 0;}
 /* Team Setup  */
 .cs-team,.cs-team figure,.cs-team figure img,.cs-team .cs-text { float: left; width: 100%; }
