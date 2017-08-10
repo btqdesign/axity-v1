@@ -1518,6 +1518,7 @@ blockquote { position: relative; border: none; float: left; font-size: 20px; fon
 .question-mark p::before { content: ",,"; font-size: 50px; font-weight: 400; left: -18px !important; letter-spacing: -3px; position: absolute; top: -10px !important; }
 .flex-direction-nav .flex-next {left: 44px !important;}
 /*Accordion Start*/
+#box{padding-left:110px;}
 #box .panel-group .panel{background:#fff!important}
 #box h2{ color:#f4364c!important;}
 #box .panel-heading h4.panel-title{ color:#3c1053!important;}
