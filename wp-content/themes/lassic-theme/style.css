@@ -1519,7 +1519,9 @@ blockquote { position: relative; border: none; float: left; font-size: 20px; fon
 .flex-direction-nav .flex-next {left: 44px !important;}
 
 .infoBoxCompanyLeft{ padding-left:110px}
+.infoBoxCompanyLeft h2{ padding-left:110px}
 .infoBoxCompanyRight{ padding-right:110px}
+.infoBoxCompanyRight h2{ padding-right:110px}
 /*Accordion Start*/
 #box{padding-left:110px;}
 #box .panel-group .panel{background:#fff!important}
