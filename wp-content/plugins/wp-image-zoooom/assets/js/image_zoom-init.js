@@ -23,11 +23,12 @@ jQuery(document).ready(function( $ ){
 
 
     // Start the zoom for the normal images
+    options.zIndex = 112400;
     $(".zoooom, .zoooom img").image_zoom(options);
 
     // WooCommerce category pages
     if ( IZ.woo_categories == '1' ) {
-        $(".tax-product_cat .products img").image_zoom(options);
+        $(".tax-product_cat .products img, .post-type-archive-product .products img").image_zoom(options);
     }
 
     // Fix for the LazyLoad (unveil.js) plugins 

@@ -192,7 +192,7 @@ include_once( 'premium-tooltips.php' );
     <?php echo load_steps(__('Step 4', 'wp-image-zoooom'), __('Don\'t forget to save the changes in order to apply them on the website', 'wp-image-zoooom')); ?>
     <div class="form-group">
       <div class="col-lg-6">
-      <button type="submit" class="btn btn-primary"><?php echo __('Save changes', 'wp-image-zoooom'); ?></button>
+      <button type="submit" class="btn btn-primary"><?php _e('Save changes', 'wp-image-zoooom'); ?></button>
       </div>
     </div>
 

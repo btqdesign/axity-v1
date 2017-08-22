@@ -6,7 +6,7 @@ Email: diana@burduja.eu
 Tags: e-commerce, featured image, hover over image zoom, image, image zoom, image zoom plugin, image magnification, image magnifier, jquery picture zoom, magnifier, magnify image, magnifying glass, mouse over image zoom, panorama, picture zoom, product image, product zoom, product magnification, product magnifier, responsive, woocommerce product zoom, woocommerce zoom, woocommerce  magnifying glass, zoom, zoom image, zoom plugin, woocommerce image zoom, woocommerce product image zoom, woocommerce zoom magnifier
 Requires at least: 3.0.1
 Tested up to: 4.8
-Stable tag: 1.13 
+Stable tag: 1.15 
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -137,6 +137,13 @@ Alternatively you can upgrade to the Pro version, as there the zoom lens is buil
 7. Apply the zoom from Visual Composer, the Single Image element
 
 == Changelog ==
+
+= 1.15 =
+* Feature: support zoom for images within Courses and Quizzes for LearnPress
+* Fix: the "Enable zoom on WooCommerce category pages" works also on archive pages 
+
+= 1.14 =
+* Add French and Romanian translations
 
 = 1.13 =
 * Fix: https://wordpress.org/support/topic/conflict-with-black-studio-tinymce-widget-3/ 

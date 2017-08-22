@@ -29,7 +29,7 @@ include_once( 'premium-tooltips.php' );
     });
 </script>
 
-    <?php $brand = '<img src="'. site_url() .'/wp-content/plugins/wp-image-zoooom/assets/images/silkypress_logo.png" /> <a href="https://www.silkypress.com/?utm_source=wordpress&utm_campaign=iz_free&utm_medium=banner" target="_blank">SilkyPress.com</a>';?>
+    <?php $brand = '<img src="'. $assets_url.'/images/silkypress_logo.png" /> <a href="https://www.silkypress.com/?utm_source=wordpress&utm_campaign=iz_free&utm_medium=banner" target="_blank">SilkyPress.com</a>';?>
 <h2><?php printf(esc_html__('WP Image Zoom by %1$s', 'wp-image-zoooom'), $brand); ?></h2>
 
 <div class="wrap">
