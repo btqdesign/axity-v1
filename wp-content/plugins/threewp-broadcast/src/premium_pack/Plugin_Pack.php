@@ -26,7 +26,6 @@ abstract class Plugin_Pack
 		$this->add_action( 'threewp_broadcast_plugin_pack_uninstall' );
 		$this->add_action( 'threewp_broadcast_plugin_pack_tabs' );
 		$this->edd_init();
-		$this->load_language();
 	}
 
 	// --------------------------------------------------------------------------------------------

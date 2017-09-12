@@ -3,6 +3,7 @@ Contributors: edward_plainview
 Donate link: https://broadcast.plainviewplugins.com
 License: GPLv3
 Requires at least: 4.6
+Requires PHP: 5.4
 Stable tag: trunk
 Tags: multipost, sharing, duplicate, franchise, syndication, marketing, news, hub
 Tested up to: 4.8
@@ -23,14 +24,14 @@ Broadcast, formerly ThreeWP Broadcast, is great for:
 * Schools
 * Anything else with distributed content!
 
+[vimeo https://vimeo.com/229186032]
+
 Here are some use cases for Broadcast:
 
 * <a href="https://broadcast.plainviewplugins.com/2017/04/02/broadcast-in-the-school-classroom/">Broadcast in the school classroom</a>
 * <a href="https://broadcast.plainviewplugins.com/2017/04/02/franchising-with-wordpress-and-broadcast/">Franchising with WordPress and Broadcast</a>
 * <a href="https://broadcast.plainviewplugins.com/2017/06/28/sharing-forms-on-a-wordpress-network/">Sharing forms on a Wordpress network</a>
 * <a href="https://broadcast.plainviewplugins.com/2017/03/28/wholesale-with-woocommerce-and-broadcast/">Wholesale with WooCommerce and Broadcast</a>
-
-Requires PHP version 5.4 or higher.
 
 = Broadcast =
 * Posts, pages, custom post types
@@ -161,6 +162,7 @@ Although Broadcast is relatively easy to understand by itself, for extra documen
 * <a href="https://broadcast.plainviewplugins.com/doc/custom-fields/">Custom fields</a>
 * <a href="https://broadcast.plainviewplugins.com/doc/linking/">Linking</a>
 * <a href="https://broadcast.plainviewplugins.com/doc/post-actions/">Post actions and the bulk action dropdown</a>
+* <a href="https://broadcast.plainviewplugins.com/doc/taxonomy-handling/">Taxonomy handling</a>
 
 For developers: the code should be well-commented and easily legible for the most part. Extra developer documentation covers:
 
@@ -170,13 +172,10 @@ For developers: the code should be well-commented and easily legible for the mos
 
 = Misc =
 
-Requires PHP v5.4. PHP 7 works just fine also.
-
 The git repository can be found at: https://bitbucket.org/edward_electric/broadcast
 
 == Installation ==
 
-1. Check that your web host has PHP v5.4.
 1. Activate the plugin sitewide.
 
 == Screenshots ==
@@ -197,15 +196,13 @@ The git repository can be found at: https://bitbucket.org/edward_electric/broadc
 
 = I need support! =
 
-Broadcast is sporadically supported in my spare time on the Wordpress support forum.
-
-For users of the add-on packs, support is available via e-mail.
+Broadcast is supported in the forum. For users of the add-on packs, support is available via e-mail.
 
 = Debug dumps =
 
 A debug dump is the long text that is displayed when broadcasting a post with debug mode on. This dump can then be read to see what Broadcast is or isn't doing.
 
-To switch on debug mode, see the admin settings. If your site is live it would be wise to input your IP in the associated textarea, so that only you see the debug dump.
+To switch on debug mode, <a href="https://broadcast.plainviewplugins.com/doc/debug-mode/">see the admin settings</a>. If your site is live it would be wise to input your IP in the associated textarea, so that only you see the debug dump.
 
 = Blacklist, whitelisting, force broadcast =
 
@@ -217,11 +214,15 @@ To broadcast many posts at once, see the <a href="https://broadcast.plainviewplu
 
 = Galleries and attachments =
 
-Attachments are force-broadcasted: the child posts have all their attachments deleted and then copied again.
+How broadcast handles attachments:
 
-If you have a gallery shortcode in the post ( [gallery columns="2" ids="427,433,430,429,428"] ) then Broadcast will first check that the image does not already exist on the child blog. It does this by searching for the post name (the filename minus the extension). If no image is found, it is copied.
-
-If you have manually modified the thumbnails on the parent blog, you might want to use the <em>Duplicate Attachments</em> plugin in an add-on pack, otherwise Wordpress will generate new thumbnails on each child blog.
+1. Attachments directly attached are stored.
+1. Attachments found in [gallery] shortcodes are stored.
+1. On the child blog, the existing attachments to the post, if any, are automatically deleted to keep attachments clean. This behavior can be configured using custom code or add-ons: <a href="https://broadcast.plainviewplugins.com/addon/duplicate-attachments/">Duplicate Attachments</a>, <a href="https://broadcast.plainviewplugins.com/addon/update-attachments/">Update Attachments</a>.
+1. The stored attachments are copied.
+1. The thumbnail ID is replaced.
+1. The image URLs in the post content are replaced.
+1. The image IDs in [gallery] shortcodes are replaced.
 
 Do you have a lot of attachments that you don't want duplicated to hundreds of child blogs, in order to save space? You'll have to find a way to refer to the images statically instead of using their media IDs. The reason for this is that when Wordpress is referred to an attachment, it can only read the media IDs from the current blog. It cannot switch blogs in order to load the image.
 
@@ -229,17 +230,12 @@ Do you have a lot of attachments that you don't want duplicated to hundreds of c
 
 The broadcast meta box, menu and columns in the post view can be hidden from users / roles / blogs using the <a href="https://broadcast.plainviewplugins.com/addon/user-blog-settings/">User & Blog Settings add-on</a>.
 
-= Is PHP v5.4 really necessary? =
-
-Yes. PHP v5.3 has been officially unsupported since the 14th of August, 2014. In fact, even 5.4 is no longer officially supported since September 2015.
-
-If your web host refuses to upgrade to a supported version, go find a new host.
-
 = Incompatible plugins =
 
 Below is a list of plugins that just will not work properly with Broadcast and / or its addons:
 
-* Post Type Switcher
+* Post Type Switcher - Turns post types into attachments and vice versa.
+* Taxonomy Terms Order - prevents terms from being seen.
 
 = Orphans? =
 
@@ -285,21 +281,15 @@ This will broadcast all normal product settings: SKU, price, etc.
 
 If your products have variations, a product image gallery, you want to sync stock, you want to sync orders, need the attribute taxonomies to be synced, you'll be wanting the <a href="https://broadcast.plainviewplugins.com/addon/woocommerce/">WooCommerce add-on</a>.
 
-= WPML Sitepress =
-
-WPML is supported via the <a href="https://broadcast.plainviewplugins.com/addon/wpml/">WPML add-on in the 3rd party pack</a>. For more information, see WPML discussion here: http://wordpress.org/support/topic/wmpl-integration-not-working
-
-The author suggests using PolyLang instead due to far superior support.
-
-= XCache vs APC opcode cache =
-
-APC works flawlessly.
-
-Xcache v2 does not support PHP namespaces, which is a PHP 5.3 feature. Trying to enable Broadcast with Xcache v2 enabled will result in a PHP crash.
-
-Xcache v3, which does support namespaces, has not yet been tested. Anyone with Xcache v3 experience is welcome to contact me with info.
-
 == Changelog ==
+
+= 39.1 20170903 =
+
+* Fix: Unnecessary warning when more than one IP is enabled in debug mode.
+* Fix: Only show blogs from the current network, if you're using a multinetwork plugin.
+* Fix: Fix tab URLs not working in proxied environments.
+* Fix: Add warning for incompatible Taxonomy Terms Order plugin.
+* New add-on: <a href="https://broadcast.plainviewplugins.com/addon/attachment-control/">Attachment Control</a> allows better control of how attachments are handled during broadcasting.
 
 = 39 20170802 =
 

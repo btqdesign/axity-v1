@@ -109,7 +109,7 @@ trait debug
 		}
 
 		// Put all of the arguments into one string.
-		$text = call_user_func_array( 'sprintf', $args );
+		$text = @ call_user_func_array( 'sprintf', $args );
 		if ( $text == '' )
 			$text = $string;
 

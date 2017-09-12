@@ -27,7 +27,7 @@ class ThreeWP_Broadcast
 
 		@since		20131120
 	**/
-	private $broadcasting = [];
+	public $broadcasting = [];
 
 	/**
 		@brief	Public property used during the broadcast process.
@@ -81,6 +81,7 @@ class ThreeWP_Broadcast
 	**/
 	public static $incompatible_plugins = [
 		'post-type-switcher/post-type-switcher.php',
+		'taxonomy-terms-order/taxonomy-terms-order.php',
 	];
 
 	/**
@@ -414,9 +415,13 @@ class ThreeWP_Broadcast
 		if ( $action->is_finished() )
 			return;
 
+		$network_id = get_network()->id;
 		$blogs = get_blogs_of_user( $action->user_id );
 		foreach( $blogs as $blog)
 		{
+			// Filter out those blogs thare are not in our network.
+			if ( $blog->site_id != $network_id )
+				continue;
 			$blog = blog::make( $blog );
 			$blog->id = $blog->userblog_id;
 			if ( ! $this->is_blog_user_writable( $action->user_id, $blog ) )

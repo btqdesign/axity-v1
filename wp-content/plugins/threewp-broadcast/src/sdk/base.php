@@ -26,7 +26,7 @@ class base
 		@since		20130630
 		@var		$sdk_version
 	**/
-	protected $sdk_version = 20170704;
+	protected $sdk_version = 20170901;
 
 	/**
 		@brief		Constructor.
@@ -153,13 +153,19 @@ class base
 				&&
 				( $value != 'off' )
 			);
-		}
+		} elseif( isset( $SERVER[ 'HTTP_X_FORWARDED_PROTO' ])
+            && $SERVER[ 'HTTP_X_FORWARDED_PROTO' ] =='https' ) {
+            $ssl = true;
+        }
 
 		$port = $SERVER[ 'SERVER_PORT' ];
 		if ( $ssl && $port == 443 )
 			$port = '';
 		if ( ! $ssl && $port == 80 )
 			$port = '';
+		if ( $ssl && isset($SERVER[ 'HTTP_X_FORWARDED_PORT' ])
+                && $SERVER[ 'HTTP_X_FORWARDED_PORT' ] == '443' )
+            $port = '';
 		if ( $port != '' )
 			$port = ':' . $port;
 

@@ -1,3 +1,6 @@
+20170901		Wordpress debug trait: Ignore sprintf errors.
+20170829		Make current_url() proxy aware.
+20170810		Wordpress EDD updater 1.6.14
 20170704		Wordpress: Use legend OR label when displaying forms.
 20170602		Wordpress: Added javascripting of plugin pack.
 20170421		Wordpress: Force loading of PHPmailer class from WPINC.
