@@ -141,7 +141,7 @@ Alternatively you can upgrade to the Pro version, as there the zoom lens is buil
 == Changelog ==
 
 = 1.16 =
-* 12/09/2017
+* 09/14/2017
 * Feature: support select-themes.com which add a wrapper on top of the page
 
 = 1.15 =
