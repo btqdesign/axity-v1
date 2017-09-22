@@ -85,6 +85,7 @@ There are several <a href="https://broadcast.plainviewplugins.com/">Broadcast ad
 * <a href="https://broadcast.plainviewplugins.com/addon/metaslider/">Metaslider</a> adds support for <a href="https://www.metaslider.com/">Metaslider</a> shortcodes.
 * <a href="https://broadcast.plainviewplugins.com/addon/ninja-forms/">Ninja Forms</a> adds support for the <a href="https://wordpress.org/plugins/ninja-forms/">Ninja Forms</a> plugin.
 * <a href="https://broadcast.plainviewplugins.com/addon/ns-cloner/">NS Cloner</a> adds support for the <a href="https://wordpress.org/plugins/ns-cloner-site-copier/">NS Cloner</a> plugin.
+* <a href="https://broadcast.plainviewplugins.com/addon/pods/">Pods</a> adds support for the <a href="https://www.pods.io/">Pods - Custom Content Types and Fields</a> plugin.
 * <a href="https://broadcast.plainviewplugins.com/addon/polylang/">Polylang</a> adds support for Broadcasting posts in different languages using Frédéric Demarle’s <a href="https://wordpress.org/plugins/polylang/">Polylang</a> translation plugin.
 * <a href="https://broadcast.plainviewplugins.com/addon/post-expirator/">Post Expirator</a> adds support for Aaron Axelsen's <a href="https://wordpress.org/plugins/post-expirator/">Post Expirator</a> plugin.
 * <a href="https://broadcast.plainviewplugins.com/addon/siteorigin-page-builder/">SiteOrigin Page Builder</a> adds support for <a href="https://wordpress.org/plugins/siteorigin-panels/">SiteOrigin's Page Builder plugin</a>.
@@ -282,6 +283,12 @@ This will broadcast all normal product settings: SKU, price, etc.
 If your products have variations, a product image gallery, you want to sync stock, you want to sync orders, need the attribute taxonomies to be synced, you'll be wanting the <a href="https://broadcast.plainviewplugins.com/addon/woocommerce/">WooCommerce add-on</a>.
 
 == Changelog ==
+
+= 40.0 20170922 =
+
+* Fix: Incorrect maintenance check URL on some server setups (misdirecting to port 80 on SSL setups).
+* Fix: If an error occurs when inserting the post on the child blog, save the error message to the debug dump.
+* New add-on. <a href="https://broadcast.plainviewplugins.com/addon/pods/">Pods</a> adds support for the <a href="https://www.pods.io/">Pods - Custom Content Types and Fields</a> plugin.
 
 = 39.1 20170903 =
 

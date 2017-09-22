@@ -38,11 +38,12 @@ class cache
 			$results = $this->lookup( $blog_id, $post_id );
 			if ( count( $results ) > 0 )
 			{
+				// We keep the first result. The rest have to go.
 				$result = array_shift( $results );
 				$bcd = $result[ 'data' ];
-				
+
 				$bc = ThreeWP_Broadcast();
-				
+
 				foreach( $results as $result )
 				{
 					$bc->debug( 'Deleting duplicate BCD %d for blog %d post %d', $result[ 'id' ], $blog_id, $post_id );

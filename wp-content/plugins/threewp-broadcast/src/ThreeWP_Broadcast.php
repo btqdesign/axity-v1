@@ -123,6 +123,11 @@ class ThreeWP_Broadcast
 		$this->add_action( 'network_admin_menu', 'admin_menu' );
 		$this->add_action( 'plugins_loaded' );
 
+		// In the plugin table.
+		$this->add_filter( 'network_admin_plugin_action_links', 'plugin_action_links', 10, 4 );
+		$this->add_filter( 'plugin_action_links', 'plugin_action_links', 10, 4 );
+		$this->add_filter( 'plugin_row_meta' );
+
 		$this->add_filter( 'threewp_broadcast_add_meta_box' );
 		$this->add_filter( 'threewp_broadcast_admin_menu', 'add_post_row_actions_and_hooks', 100 );
 
@@ -141,6 +146,7 @@ class ThreeWP_Broadcast
 		$this->add_filter( 'threewp_broadcast_prepare_meta_box', 5 );
 		$this->add_filter( 'threewp_broadcast_prepare_meta_box', 'threewp_broadcast_prepared_meta_box', 100 );
 		$this->add_filter( 'threewp_broadcast_preparse_content' );
+
 
 		if ( $this->get_site_option( 'canonical_url' ) )
 			$this->add_action( 'wp_head', 1 );
@@ -271,6 +277,48 @@ class ThreeWP_Broadcast
 	// --------------------------------------------------------------------------------------------
 	// ----------------------------------------- Callbacks
 	// --------------------------------------------------------------------------------------------
+
+	/**
+		@brief		Modify the plugin links in the plugins table.
+		@since		2017-09-22 01:30:45
+	**/
+	public function plugin_action_links( $links, $plugin_name )
+	{
+		if ( $plugin_name != 'threewp-broadcast/ThreeWP_Broadcast.php' )
+			return $links;
+		if ( is_network_admin() )
+			$url = network_admin_url( 'admin.php?page=threewp_broadcast' );
+		else
+			$url = admin_url( 'admin.php?page=threewp_broadcast' );
+		$links []= sprintf( '<a href="%s">%s</a>',
+			$url,
+			__( 'Settings', 'threewp_broadcast' )
+		);
+		return $links;
+	}
+
+	/**
+		@brief		Modify the plugin meta in the plugins table.
+		@since		2017-09-22 01:50:49
+	**/
+	public function plugin_row_meta( $meta, $plugin_name )
+	{
+		if ( $plugin_name != 'threewp-broadcast/ThreeWP_Broadcast.php' )
+			return $meta;
+		if ( ! isset( $this->__plugin_pack ) )
+		{
+			if ( is_network_admin() )
+				$url = network_admin_url( 'admin.php?page=threewp_broadcast_premium_pack_info' );
+			else
+				$url = admin_url( 'admin.php?page=threewp_broadcast_premium_pack_info' );
+			$meta []= sprintf( '<a href="%s" title="%s">%s</a>',
+				$url,
+				__( 'View the add-ons available for Broadcast', 'threewp_broadcast' ),
+				__( 'Add-ons', 'threewp_broadcast' )
+			);
+		}
+		return $meta;
+	}
 
 	/**
 		@brief		Broadcast is ready for broadcasting.

@@ -374,10 +374,18 @@ trait broadcasting
 				$this->debug( 'Running wp_insert_post with %s', $temp_post_data );
 				$result = wp_insert_post( $temp_post_data, true );
 
+				if ( is_a( $result, 'WP_Error' ) )
+				{
+					$this->debug( 'Error occured! Continuing on next blog. %s', $result );
+					restore_current_blog();
+					continue;
+				}
+
 				// Did we manage to insert the post properly?
 				if ( intval( $result ) < 1 )
 				{
 					$this->debug( 'Unable to insert the child post.' );
+					restore_current_blog();
 					continue;
 				}
 				// Yes we did.
@@ -395,6 +403,10 @@ trait broadcasting
 			}
 
 			$bcd->new_post = get_post( $bcd->new_post( 'ID' ) );
+
+			$action = new actions\broadcasting_after_update_post;
+			$action->broadcasting_data = $bcd;
+			$action->execute();
 
 			$dated_post = clone( $bcd->post );
 			$dated_post->ID = $bcd->new_post->ID;

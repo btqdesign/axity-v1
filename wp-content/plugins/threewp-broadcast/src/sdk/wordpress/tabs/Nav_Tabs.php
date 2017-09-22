@@ -14,7 +14,7 @@ class Nav_Tabs
 	public function _construct()
 	{
 		$this->css_class( 'nav-tab-wrapper' );
-		$this->css_class( 'nav-tab-small' );
+		$this->css_class( 'nav-tab-large' );
 	}
 
 	/**
