@@ -500,7 +500,13 @@ if (!function_exists('cs_button_shortcode')) {
 		$html  = '';
 		$html .= '<div '.$cs_CustomId.' class="button_style">';
 		
-		$html .= '<a href="' . $cs_button_link. '" class="default '.$cs_button_type_class. ' ' . $cs_button_size. ' bg-color ' . $cs_button_class. ' ' . $cs_button_animation. ' '.$cs_has_icon.'" style="'.$cs_border.'  background-color: ' . $cs_button_bg_color . '; color:' . $cs_button_color . ';">';
+		$link_target = '';
+		$link_parts = pathinfo($cs_button_link);
+		if ($link_parts['extension'] == 'pdf' || $link_parts['extension'] == 'PDF'){
+			$link_target = ' target="_blank"';
+		}
+		
+		$html .= '<a href="' . $cs_button_link. '"'.$link_target.' class="default '.$cs_button_type_class. ' ' . $cs_button_size. ' bg-color ' . $cs_button_class. ' ' . $cs_button_animation. ' '.$cs_has_icon.'" style="'.$cs_border.'  background-color: ' . $cs_button_bg_color . '; color:' . $cs_button_color . ';">';
 		if(isset($cs_button_icon) && $cs_button_icon <> ''){
 			$html .= '<i class="'.$cs_button_icon.' button-icon-'. $cs_button_icon_position.'"></i>';
 		}
