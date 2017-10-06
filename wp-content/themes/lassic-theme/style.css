@@ -205,7 +205,7 @@ form p { float: left; position: relative; width: 100%; }
 .page-content.blog-editor {padding: 0;}
 /*contenidos*/
 /*.main-section .page-section{ background:#f0efef;}*/
-/*.main-section .page-section.page-section{ background:url(http://axity.idevol.net/wp-content/uploads/2017/05/bg_contenidos.png) !important; background-repeat:repeat-x;margin:0 0 -30px 0!important;}*/
+/*.main-section .page-section.page-section{ background:url(/wp-content/uploads/2017/05/bg_contenidos.png) !important; background-repeat:repeat-x;margin:0 0 -30px 0!important;}*/
 /*HACK FOR GRID*/
 [class*="element-size"] { display: inline-block; margin: 0 -4px 0 0; vertical-align: top; }
 [class*="col-md"] { display: inline-block; margin: 0 -4px 35px 0; vertical-align: top; }
@@ -549,8 +549,8 @@ blockquote span { position: relative; z-index: 1; }
   and (min-device-width: 320px) 
   and (max-device-width: 480px)
   and (-webkit-min-device-pixel-ratio: 2) {
-/*.image-frame {background:url(http://axity.idevol.net/wp-content/uploads/2017/05/bg_mobile_conexiones.png); }*/
-#secSoluciones{background:url(http://axity.idevol.net/wp-content/uploads/2015/03/axity_soluciones2.png)!important;}
+/*.image-frame {background:url(/wp-content/uploads/2017/05/bg_mobile_conexiones.png); }*/
+#secSoluciones{background:url(/wp-content/uploads/2015/03/axity_soluciones2.png)!important;}
 #secc6taImg{ background:#fff!important;}
 .seccIntServicios{ border:none!important;}
 #secc2ndServicios1er{ background: #fff!important}
@@ -563,8 +563,8 @@ blockquote span { position: relative; z-index: 1; }
   and (min-device-width: 320px) 
   and (max-device-width: 568px)
   and (-webkit-min-device-pixel-ratio: 2) {
-/*.image-frame {background:url(http://axity.idevol.net/wp-content/uploads/2017/05/bg_mobile_conexiones.png); }*/
-#secSoluciones{background:url(http://axity.idevol.net/wp-content/uploads/2015/03/axity_soluciones2.png)!important;}
+/*.image-frame {background:url(/wp-content/uploads/2017/05/bg_mobile_conexiones.png); }*/
+#secSoluciones{background:url(/wp-content/uploads/2015/03/axity_soluciones2.png)!important;}
 #secc6taImg{ background:#fff!important;}
 .seccIntServicios{ border:none!important;}
 #secc2ndServicios1er{ background: #fff!important}
@@ -576,8 +576,8 @@ blockquote span { position: relative; z-index: 1; }
   and (min-device-width: 375px) 
   and (max-device-width: 667px) 
   and (-webkit-min-device-pixel-ratio: 2) { 
-/*.image-frame {background:url(http://axity.idevol.net/wp-content/uploads/2017/05/bg_mobile_conexiones.png); }*/
-#secSoluciones{background:url(http://axity.idevol.net/wp-content/uploads/2015/03/axity_soluciones2.png)!important;}
+/*.image-frame {background:url(/wp-content/uploads/2017/05/bg_mobile_conexiones.png); }*/
+#secSoluciones{background:url(/wp-content/uploads/2015/03/axity_soluciones2.png)!important;}
 #secc6taImg{ background:#fff!important;}
 .seccIntServicios{ border:none!important;}
 #secc2ndServicios1er{ background: #fff!important}
@@ -591,8 +591,8 @@ blockquote span { position: relative; z-index: 1; }
   and (max-device-width: 736px) 
   and (-webkit-min-device-pixel-ratio: 3)
   and (orientation: portrait) { 
-/*.image-frame {background:url(http://axity.idevol.net/wp-content/uploads/2017/05/bg_mobile_conexiones.png); }*/
-#secSoluciones{background:url(http://axity.idevol.net/wp-content/uploads/2015/03/axity_soluciones2.png)!important;}
+/*.image-frame {background:url(/wp-content/uploads/2017/05/bg_mobile_conexiones.png); }*/
+#secSoluciones{background:url(/wp-content/uploads/2015/03/axity_soluciones2.png)!important;}
 #secc6taImg{ background:#fff!important;}
 .seccIntServicios{ border:none!important;}
 #secc2ndServicios1er{ background: #fff!important}
@@ -606,8 +606,8 @@ blockquote span { position: relative; z-index: 1; }
   and (min-device-width: 768px) 
   and (max-device-width: 1024px) 
   and (-webkit-min-device-pixel-ratio: 1) {
-/*.image-frame {background:url(http://axity.idevol.net/wp-content/uploads/2017/05/bg_mobile_conexiones.png); }*/
-#secSoluciones{background:url(http://axity.idevol.net/wp-content/uploads/2015/03/axity_soluciones2.png)!important;}
+/*.image-frame {background:url(/wp-content/uploads/2017/05/bg_mobile_conexiones.png); }*/
+#secSoluciones{background:url(/wp-content/uploads/2015/03/axity_soluciones2.png)!important;}
 #secc6taImg{ background:#fff!important;}
 .seccIntServicios{ border:none!important;}
 #secc2ndServicios1er{ background: #fff!important}
@@ -620,8 +620,8 @@ blockquote span { position: relative; z-index: 1; }
   and (min-device-width: 768px) 
   and (max-device-width: 1024px) 
   and (-webkit-min-device-pixel-ratio: 1) {
-/*.image-frame {background:url(http://axity.idevol.net/wp-content/uploads/2017/05/bg_mobile_conexiones.png); }*/
-#secSoluciones{background:url(http://axity.idevol.net/wp-content/uploads/2015/03/axity_soluciones2.png)!important;}
+/*.image-frame {background:url(/wp-content/uploads/2017/05/bg_mobile_conexiones.png); }*/
+#secSoluciones{background:url(/wp-content/uploads/2015/03/axity_soluciones2.png)!important;}
 #secc6taImg{ background:#fff!important;}
 .seccIntServicios{ border:none!important;}
 #secc2ndServicios1er{ background: #fff!important}
@@ -633,8 +633,8 @@ blockquote span { position: relative; z-index: 1; }
   and (min-device-width: 768px) 
   and (max-device-width: 1024px) 
   and (-webkit-min-device-pixel-ratio: 2) {
-/*.image-frame {background:url(http://axity.idevol.net/wp-content/uploads/2017/05/bg_mobile_conexiones.png); }*/
-#secSoluciones{background:url(http://axity.idevol.net/wp-content/uploads/2015/03/axity_soluciones2.png)!important;}
+/*.image-frame {background:url(/wp-content/uploads/2017/05/bg_mobile_conexiones.png); }*/
+#secSoluciones{background:url(/wp-content/uploads/2015/03/axity_soluciones2.png)!important;}
 #secc6taImg{ background:#fff!important;}
 .seccIntServicios{ border:none!important;}
 #secc2ndServicios1er{ background: #fff!important}
@@ -1324,8 +1324,8 @@ label { color: #333; display: block; font-family: "Roboto Condensed", sans-serif
 .top-right {text-align: right;}
 .secc_TopServicios{float: left; padding: 60px 25px 25px 0; width: 100%; font-family:'VitaStd'; font-weight:400; }
 .secc_TopServicios .three-d { border:#fff solid 1px; color:#fff!important; background:#8446ac!important; }
-.secc_TopServicios2nd{ background:url(http://axity.idevol.net/wp-content/uploads/2017/05/axity_ptt.png);}
-#secc_TopProductos2nd{ background:url(http://axity.idevol.net/wp-content/uploads/2017/05/axity_ptt_2.png)}
+.secc_TopServicios2nd{ background:url(/wp-content/uploads/2017/05/axity_ptt.png);}
+#secc_TopProductos2nd{ background:url(/wp-content/uploads/2017/05/axity_ptt_2.png)}
 
 #subSeccProductos{ background:#fff!important; padding:30px 20px; }
 #detailProduct h2{padding:20px 0 0 20px; margin:0 0 -20px 0;}
@@ -1358,12 +1358,12 @@ label { color: #333; display: block; font-family: "Roboto Condensed", sans-serif
 #secc_Servicios2nd h2{ font-size:16px !important;}
 #secc_Servicios2nd .three-d { background:#F4364C!important; color:#fff!important; padding:3px 30px;}
 #secc_Servicios2nd .seccIntServicios{ border-right:#fff 2px solid; padding-right:30px}
-#seccServicios2ndIco {margin:0 0 0 0; padding: 3px 0 3px 80px; background: url(http://axity.idevol.net/wp-content/uploads/2017/05/ico_download-1.png) no-repeat; background-position: 30px;}
-/*#seccServicios2ndIco {margin:20px 0 0 0; padding: 3px 0 3px 80px; background: url(http://axity.idevol.net/wp-content/uploads/2017/05/ico_download-1.png) no-repeat; background-position: 30px;}*/
+#seccServicios2ndIco {margin:0 0 0 0; padding: 3px 0 3px 80px; background: url(/wp-content/uploads/2017/05/ico_download-1.png) no-repeat; background-position: 30px;}
+/*#seccServicios2ndIco {margin:20px 0 0 0; padding: 3px 0 3px 80px; background: url(/wp-content/uploads/2017/05/ico_download-1.png) no-repeat; background-position: 30px;}*/
 #secc2ndServicios3ra .three-d { background:#F4364C!important; color:#fff!important; padding:3px 30px;}
 
 
-#seccServicios2ndVideo { background: url(http://axity.idevol.net/wp-content/uploads/2017/05/axity_ptt.png); background-size: contain!important;}
+#seccServicios2ndVideo { background: url(/wp-content/uploads/2017/05/axity_ptt.png); background-size: contain!important;}
 #seccServicios2ndVideo .section-fullwidth{padding:  0 0 0 20% !important}
 
 #secc_Servicios3th h2{ font-size:16px !important; color:#3c1053!important;}

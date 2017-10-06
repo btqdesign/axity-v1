@@ -336,7 +336,7 @@ widget.widget-gallery .gallery-list {
 	background-color: rgba(0,0,0,0.2);
 }
 .twitter_widget article:before {
-	background:url(http://axity.idevol.net/wp-content/uploads/2017/05/ico_twitter-3.png);
+	background:url(/wp-content/uploads/2017/05/ico_twitter-3.png);
     color: #FF2959;
     content: "";
     font-family: "icomoon";
@@ -375,7 +375,7 @@ widget.widget-gallery .gallery-list {
 }
 /*cambio*/
 .twitter_widget{
-	/*background-image:url(http://axity.idevol.net/wp-content/uploads/2017/05/bg_twitter-10.png); background-repeat: no-repeat;background-size: 100%; background-position-y:20px;*/
+	/*background-image:url(/wp-content/uploads/2017/05/bg_twitter-10.png); background-repeat: no-repeat;background-size: 100%; background-position-y:20px;*/
 	}
 footer#footer-sec .widget p{color:#fff !important; font-size:14px; line-height:18px;} /*cambio*/
 /*  Widget Calender */
