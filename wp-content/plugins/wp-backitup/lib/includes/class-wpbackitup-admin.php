@@ -41,7 +41,7 @@ class WPBackitup_Admin {
 
     // Default plugin options
     public $defaults = array(
-        'logging' => false,
+        'logging' => 0,
         'notification_email' => "",
         'backup_retained_number' => "3",
         'lite_backup_retained_number' => "1",
@@ -151,12 +151,19 @@ class WPBackitup_Admin {
         //Delete File Action
         add_action('wp_ajax_wp-backitup_delete_file', array( &$this,'ajax_delete_backup'));
 
+	    //Safe Upload Action
+	    add_action('wp_ajax_wp-backitup_safe_upload', array( &$this,'ajax_safe_upload'));
+
         //Single backup zip file list
         add_action('wp_ajax_wp-backitup_backup_zip_filelist', array( &$this,'ajax_get_backup_zip_filelist'));
 
         //Get and Add note to backup
         add_action('wp_ajax_wp-backitup_backup_get_note', array( &$this,'ajax_backup_get_note'));
         add_action('wp_ajax_wp-backitup_backup_add_note', array( &$this,'ajax_backup_add_note'));
+
+        // Get and Set all settings via Ajax
+        add_action('wp_ajax_wp-backitup_get_settings', array( &$this,'ajax_backup_get_settings'));
+        add_action('wp_ajax_wp-backitup_set_settings', array( &$this,'ajax_backup_set_settings'));
 
         //View Log Action
         add_action('admin_post_viewlog', array( &$this,'admin_viewlog'));
@@ -210,12 +217,8 @@ class WPBackitup_Admin {
     public  function load_resources() {
 
 	    // Admin Stylesheet
-	    if (WPBACKITUP__DEBUG===true && ($_SERVER['HTTP_HOST']=='localhost' || '.dev'==substr($_SERVER['HTTP_HOST'],-4))){
-		    //DEV ONLY
-		    wp_register_style( "{$this->namespace}-admin", WPBACKITUP__PLUGIN_URL . "css/wp-backitup-admin.css", array(), $this->version, 'screen' );
-	    } else {
-		    wp_register_style( "{$this->namespace}-admin", WPBACKITUP__PLUGIN_URL . "css/wp-backitup-admin.min.css", array(), $this->version, 'screen' );
-	    }
+	    wp_register_style( "{$this->namespace}-admin", WPBACKITUP__PLUGIN_URL . "css/wp-backitup-admin.min.css", array(), $this->version, 'screen' );
+        wp_register_script( "{$this->namespace}-admin", WPBACKITUP__PLUGIN_URL . "js/wp-backitup-admin.min.js", array( 'jquery' ), $this->version, true );
 
 	    wp_enqueue_style( "{$this->namespace}-admin" );
 
@@ -231,58 +234,71 @@ class WPBackitup_Admin {
 
             add_filter( 'admin_body_class', 'add_admin_body_class');
 
-   		    // Admin JavaScript
-            wp_register_script("{$this->namespace}-jquery-tagit", WPBACKITUP__PLUGIN_URL."js/tag-it.min.js", array('jquery'), $this->version, true);
-		    wp_register_script( "{$this->namespace}-admin", WPBACKITUP__PLUGIN_URL . "js/wp-backitup-admin.min.js", array( 'jquery' ), $this->version, true );
+			//JavaScript Messages
+            $translation_array = array(
+                'upload_file_size_exceed'  => __( 'The backup you have selected exceeds what your host allows you to upload.', 'wp-backitup' ),
+                'warning' => __('Warning', 'wp-backitup'),
+                'error' => __('Error', 'wp-backitup'),
+                'response' => __('Response', 'wp-backitup'),
+                'status' => __('Status', 'wp-backitup'),
+                'download' => __('Download', 'wp-backitup'),
+                'delete' => __('Delete', 'wp-backitup'),
+                'restore' => __('Restore', 'wp-backitup'),
+                'unexpected_err' => __('(JS997) Unexpected error', 'wp-backitup'),
+                'unexpected_err2' => __('(JS998) Unexpected error', 'wp-backitup'),
+                'unexpected_err3' => __('(JS999) An unexpected error has occurred', 'wp-backitup'),
+                'scheduled_saved' => __('Scheduled has been saved.', 'wp-backitup'),
+                'scheduled_not_saved' => __('Scheduled was not saved.', 'wp-backitup'),
+                'confirm_restore' => __('Are you sure you want to restore your site?', 'wp-backitup'),
+                'sure' => __('Are you sure ?', 'wp-backitup'),
+                'file_not_del' => __('This file cannot be delete!', 'wp-backitup'),
+                'view_log' => __('View Log', 'wp-backitup'),
+                'new_backup' => __('New Backup!', 'wp-backitup'),
+                'uploaded_backup' => __('Uploaded Backup', 'wp-backitup'),
 
-            wp_localize_script( "{$this->namespace}-admin", 'wpbackitup_local', array(
-                'upload_file_size_exceed'  => __( 'The backup you have selected exceeds what your host allows you to upload.', $this->namespace ),
-                'warning' => __('Warning', $this->namespace),
-                'error' => __('Error', $this->namespace),
-                'response' => __('Response', $this->namespace),
-                'status' => __('Status', $this->namespace),
-                'download' => __('Download', $this->namespace),
-                'delete' => __('Delete', $this->namespace),
-                'restore' => __('Restore', $this->namespace),
-                'unexpected_err' => __('(JS997) Unexpected error', $this->namespace),
-                'unexpected_err2' => __('(JS998) Unexpected error', $this->namespace),
-                'unexpected_err3' => __('(JS999) An unexpected error has occurred', $this->namespace),
-                'scheduled_saved' => __('Scheduled has been saved.', $this->namespace),
-                'scheduled_not_saved' => __('Scheduled was not saved.', $this->namespace),
-                'confirm_restore' => __('Are you sure you want to restore your site?', $this->namespace),
-                'sure' => __('Are you sure ?', $this->namespace),
-                'file_not_del' => __('This file cannot be delete!', $this->namespace),
-                'view_log' => __('View Log', $this->namespace),
-                'new_backup' => __('New Backup!', $this->namespace),
-                'uploaded_backup' => __('Uploaded Backup', $this->namespace),
-            ) );
+                //Settings View
+                'settings_save_awesome' => __('Awesome!', 'wp-backitup'),
+                'settings_save_success_message' => __('Your settings has been successfully saved', 'wp-backitup'),
+                'settings_save_oops' => __('Oops...', 'wp-backitup'),
+                'settings_save_error_message' => __('Something went wrong', 'wp-backitup'),
+            );
 
-		    wp_register_style( "{$this->namespace}-jquery-ui-css", WPBACKITUP__PLUGIN_URL . "css/jquery-ui.min.css", array(), $this->version, 'screen' );
+		    wp_localize_script( "{$this->namespace}-admin", 'wpbackitup_local',$translation_array);
+
+            //Admin fonts
+            wp_register_style( 'google-fonts', '//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css' );
+            wp_enqueue_style( 'google-fonts' );
+
+            // Jquery UI
+            /// wp_register_style( "{$this->namespace}-jquery-ui-css", WPBACKITUP__PLUGIN_URL . "css/jquery-ui.min.css", array(), $this->version, 'screen' );
+            // wp_enqueue_style( "{$this->namespace}-jquery-ui-css" );
+
+            // Enqueue Style for Settings page
+            // Todo:: Maybe Removes these file loadings from wpbackitup-safe
+            wp_enqueue_style( $this->namespace . '_vue_tab', WPBACKITUP__PLUGIN_URL . 'css/vue-tabs.min.css', array(), $this->version, false );
+            wp_enqueue_style( $this->namespace . '_sweetalert', WPBACKITUP__PLUGIN_URL . 'css/sweetalert.css', array(), $this->version, false);
+            wp_enqueue_style( $this->namespace . '_vue_keen_ui', WPBACKITUP__PLUGIN_URL . 'css/keen-ui.min.css', array(), $this->version, false);
+
 
             // Included all Jquery UI files. 
             wp_enqueue_script( 'jquery-ui-core' );
             wp_enqueue_script( 'jquery-ui-widget' );
-            //wp_enqueue_script( 'jquery-ui-mouse' );
-            //wp_enqueue_script( 'jquery-ui-accordion' );
             wp_enqueue_script( 'jquery-ui-autocomplete' );
-            //wp_enqueue_script( 'jquery-ui-slider' );
             wp_enqueue_script( 'jquery-ui-tabs' );
             wp_enqueue_script( 'jquery-ui-sortable' );
             wp_enqueue_script( 'jquery-ui-draggable' );
             wp_enqueue_script( 'jquery-ui-droppable' );
-            //wp_enqueue_script( 'jquery-ui-datepicker' );
-            //wp_enqueue_script( 'jquery-ui-resize' );
-            //wp_enqueue_script( 'jquery-ui-dialog' );
-            //wp_enqueue_script( 'jquery-ui-button' );
 
-            wp_enqueue_script("{$this->namespace}-jquery-tagit");
+            // Loading new JS files for VueJS
+            // Todo:: Maybe Removes these file loadings from wpbackitup-safe
+            wp_enqueue_script($this->namespace . '_vue', WPBACKITUP__PLUGIN_URL . 'js/vue.min.js', array(), $this->version, false);
+            wp_enqueue_script($this->namespace . '_vue_tabs', WPBACKITUP__PLUGIN_URL . 'js/vue-tabs.js', array(), $this->version, false);
+            wp_enqueue_script($this->namespace . '_jquery_sweetalert', WPBACKITUP__PLUGIN_URL . 'js/sweetalert.min.js', array('jquery'), $this->version, false);
+            wp_enqueue_script($this->namespace . '_vue_keen_ui', WPBACKITUP__PLUGIN_URL . 'js/keen-ui.min.js', array(), $this->version, false);
+
+            // Loading tagit and core JS
             wp_enqueue_script( "{$this->namespace}-admin" );
 
-            wp_enqueue_style( "{$this->namespace}-jquery-ui-css" );
-
-			//Admin fonts
-		    wp_register_style( 'google-fonts', '//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css' );
-		    wp_enqueue_style( 'google-fonts' );
 
             //UPLOADS only
             if ($_REQUEST['page']=='wp-backitup-restore') {
@@ -1105,6 +1121,30 @@ class WPBackitup_Admin {
         exit('deleted successfully');
     }
 
+	public  function ajax_safe_upload()
+	{
+		// Check permissions
+		if (! self::is_authorized()) exit('Access denied.');
+
+		$delete_logname='debug_upload';
+
+		$job_id = isset($_POST['post_id']) ? intval($_POST['post_id']) : 0;
+		$job = WPBackItUp_Job::get_job_by_id($job_id);
+		if (false!==$job){
+
+			do_action( 'wpbackitup-safe_queue_job_sync', $job_id );
+			//job meta will be set in sync task
+
+			exit('success');
+			
+		} else{
+			WPBackItUp_Logger::log_error($delete_logname,__METHOD__, 'Job not found:'. $job_id);
+			$job->setCloudStatus(WPBackItUp_Job::CLOUD_ERROR);
+
+			exit('error: Job not found.');
+		}
+	}
+
     function admin_viewlog(){
 	    if (! self::is_authorized()) exit('Access denied.');
 
@@ -1145,171 +1185,11 @@ class WPBackitup_Admin {
                 }
                 else {
                     $data[$key] =$posted_value;
-                    }
+                }
             }
 
             //Could have just been a license update
             if(!empty($data)) {
-
-
-	            //** VALIDATE backup_retained_number **//
-                //Set back to original settings if value not changed
-                if(!empty($data['backup_retained_number']) && !is_numeric($data['backup_retained_number']))
-                {
-                  $data['backup_retained_number'] = $this->defaults['backup_retained_number'];
-                  set_transient('settings-error-number', __('Please enter a number', $this->namespace), 60);
-
-                }
-                else{ //Empty OR not NUMERIC
-
-                    //Empty
-                    if ( empty($data['backup_retained_number']) ){
-	                    $data['backup_retained_number'] = $this->defaults['backup_retained_number'];
-                        set_transient('settings-error-number', __('Please enter a number', $this->namespace), 60);
-                    }
-
-                }
-
-	            //** VALIDATE notification_email **//
-                if(!empty($data['notification_email']))
-                {
-                  $notification_emails = explode(",",$data['notification_email']);
-                  $is_all_email_valid = true;
-                  foreach ($notification_emails as $email) {
-                      $is_all_email_valid = $is_all_email_valid && is_email($email);
-                  }
-
-                  if(!$is_all_email_valid){
-                    $data['notification_email'] = $this->defaults['notification_email'];
-                    set_transient('settings-error-email', __('Please enter valid email', $this->namespace), 60);
-                    wp_safe_redirect( $_REQUEST['_wp_http_referer']);
-                    exit;
-                  }
-                }
-
-                // Todo: Refactor all common validation into a method. Make it more readable.
-
-                //** VALIDATE single file backupset **//
-                if(empty($data['single_file_backupset']))
-                {
-                    $data['single_file_backupset'] = 0;
-                }
-
-	            //** VALIDATE remove_supporting_zip_files **//
-	            if(empty($data['remove_supporting_zip_files']))
-	            {
-		            $data['remove_supporting_zip_files'] = 0;
-	            }
-
-                //** VALIDATE single file db **//
-                if(empty($data['single_file_db']))
-                {
-                    $data['single_file_db'] = 0;
-                }
-
-                //** VALIDATE rversion_compare **//
-                if(empty($data['rversion_compare']))
-                {
-                   $data['rversion_compare'] = $this->defaults['rversion_compare'];
-                }
-
-                //** VALIDATE zip max size **//
-                if(empty($data['backup_zip_max_size']))
-                {
-                   $data['backup_zip_max_size'] = $this->defaults['backup_zip_max_size'];
-                }
-
-                //** VALIDATE max timeout **//
-                if(empty($data['backup_max_timeout']))
-                {
-                   $data['backup_max_timeout'] = $this->defaults['backup_max_timeout'];
-                }
-
-                //** VALIDATE delete_all  on uninstall **//
-                if(empty($data['delete_all']))
-                {
-                   $data['delete_all'] = $this->defaults['delete_all'];
-                }
-
-                //** VALIDATE backup_dbtables_batch_size **//
-                if(empty($data['backup_dbtables_batch_size']) || !is_numeric($data['backup_dbtables_batch_size']))
-                {
-                    $data['backup_dbtables_batch_size'] = $this->defaults['backup_dbtables_batch_size'];
-                    set_transient('batch_size_settings-error-number', __('Please enter a number', $this->namespace), 60);
-                }
-
-                //** Validate backup_sql_merge_batch_size *//
-                if(empty($data['backup_sql_merge_batch_size']) || !is_numeric($data['backup_sql_merge_batch_size']))
-                {
-                    $data['backup_sql_merge_batch_size'] = $this->defaults['backup_sql_merge_batch_size'];
-                    set_transient('batch_size_settings-error-number', __('Please enter a number', $this->namespace), 60);
-                }
-
-                //** Validate backup_sql_batch_size *//
-                if(empty($data['backup_sql_batch_size']) || !is_numeric($data['backup_sql_batch_size']))
-                {
-                    $data['backup_sql_batch_size'] = $this->defaults['backup_sql_batch_size'];
-                    set_transient('batch_size_settings-error-number', __('Please enter a number', $this->namespace), 60);
-                }
-
-	            //** VALIDATE backup_plugins_batch_size **//
-	            if(empty($data['backup_plugins_batch_size']) || !is_numeric($data['backup_plugins_batch_size']))
-	            {
-		            $data['backup_plugins_batch_size'] = $this->defaults['backup_plugins_batch_size'];
-		            set_transient('batch_size_settings-error-number', __('Please enter a number', $this->namespace), 60);
-	            }
-
-                //** VALIDATE backup_themes_batch_size **//
-                if(empty($data['backup_themes_batch_size']) || !is_numeric($data['backup_themes_batch_size']))
-                {
-                    $data['backup_themes_batch_size'] = $this->defaults['backup_themes_batch_size'];
-                    set_transient('batch_size_settings-error-number', __('Please enter a number', $this->namespace), 60);
-                }
-
-                //** VALIDATE backup_uploads_batch_size **//
-                if(empty($data['backup_uploads_batch_size']) || !is_numeric($data['backup_uploads_batch_size']))
-                {
-                    $data['backup_uploads_batch_size'] = $this->defaults['backup_uploads_batch_size'];
-                    set_transient('batch_size_settings-error-number', __('Please enter a number', $this->namespace), 60);
-                }
-
-                //** VALIDATE backup_others_batch_size **//
-                if(empty($data['backup_others_batch_size']) || !is_numeric($data['backup_others_batch_size']))
-                {
-                    $data['backup_others_batch_size'] = $this->defaults['backup_others_batch_size'];
-                    set_transient('batch_size_settings-error-number', __('Please enter a number', $this->namespace), 60);
-                }
-
-                //** VALIDATE backup_plugins_filter **//
-                if(empty($data['backup_plugins_filter']))
-                {
-                   $data['backup_plugins_filter'] = $this->defaults['backup_plugins_filter'];
-                }
-
-                //** VALIDATE backup_themes_filter **//
-                if(empty($data['backup_themes_filter']))
-                {
-                   $data['backup_themes_filter'] = $this->defaults['backup_themes_filter'];
-                }
-
-                //** VALIDATE backup_uploads_filter **//
-                if(empty($data['backup_uploads_filter']))
-                {
-                   $data['backup_uploads_filter'] = $this->defaults['backup_uploads_filter'];
-                }
-
-                //** VALIDATE backup_others_filter **//
-                if(empty($data['backup_others_filter']))
-                {
-                   $data['backup_others_filter'] = $this->defaults['backup_others_filter'];
-                }
-
-                //** VALIDATE backup_dbtables_filter_list **//
-                if(empty($data['backup_dbtables_filter_list']))
-                {
-                   $data['backup_dbtables_filter_list'] = $this->defaults['backup_dbtables_filter_list'];
-                }
-
 
                 // Update the options value with the data submitted
                 foreach( $data as $key => $val ) {
@@ -1324,6 +1204,220 @@ class WPBackitup_Admin {
         }
     }
 
+
+    /***
+     * Get all settings value
+     */
+    public function ajax_backup_get_settings(){
+        $settings = array(
+            'logging' => $this->get_option('logging'),
+            'notification_email' => $this->get_option('notification_email'),
+            'backup_retained_number' => $this->get_option('backup_retained_number'),
+            'delete_all' => $this->get_option('delete_all'),
+            'rversion_compare' => $this->get_option('rversion_compare'),
+            'backup_dbtables_batch_size'=> $this->get_option('backup_dbtables_batch_size', WPBACKITUP__DATABASE_BATCH_SIZE),
+            'backup_sql_merge_batch_size' => $this->get_option('backup_sql_merge_batch_size', WPBACKITUP__SQL_MERGE_BATCH_SIZE),
+            'backup_sql_batch_size' => $this->get_option('backup_sql_batch_size', WPBACKITUP__SQL_BATCH_SIZE),
+            'backup_plugins_batch_size'=> $this->get_option('backup_plugins_batch_size', WPBACKITUP__PLUGINS_BATCH_SIZE),
+            'backup_themes_batch_size'=> $this->get_option('backup_themes_batch_size', WPBACKITUP__THEMES_BATCH_SIZE),
+            'backup_uploads_batch_size'=> $this->get_option('backup_uploads_batch_size', WPBACKITUP__UPLOADS_BATCH_SIZE),
+            'backup_others_batch_size'=> $this->get_option('backup_others_batch_size', WPBACKITUP__OTHERS_BATCH_SIZE),
+            'backup_zip_max_size'=> $this->get_option('backup_zip_max_size', WPBACKITUP__ZIP_MAX_FILE_SIZE),
+            'backup_max_timeout'=> $this->get_option('backup_max_timeout', WPBACKITUP__TASK_TIMEOUT_SECONDS),
+            'backup_plugins_filter'=> $this->get_option('backup_plugins_filter'),
+            'backup_themes_filter' => $this->get_option('backup_themes_filter'),
+            'backup_uploads_filter' => $this->get_option('backup_uploads_filter'),
+            'backup_others_filter' => $this->get_option('backup_others_filter'),
+            'backup_dbtables_filter_list'=> $this->get_option('backup_dbtables_filter_list'),
+            'backup_dbtables_filterable' => $this->backup_dbtables_filterable(),
+            'support_email' => $this->get_option('support_email'),
+            'single_file_backupset'=> $this->get_option('single_file_backupset'),
+            'single_file_db'=> $this->get_option('single_file_db'),
+            'remove_supporting_zip_files'=> $this->get_option('remove_supporting_zip_files'),
+        );
+
+        wp_send_json_success($settings);
+    }
+
+    /**
+     * Set all settings
+     */
+    public function ajax_backup_set_settings(){
+        check_ajax_referer( 'wpbackitup-core-ajax-nonce', 'security' );
+
+        $debug_logname='wpb_debug';
+        WPBackItUp_Logger::log_info($debug_logname,__METHOD__, 'Posted Fields');
+        WPBackItUp_Logger::log($debug_logname, $_POST['data']);
+
+        $data = array();
+        $errors = array();
+        /**
+         * Loop through each POSTed value and sanitize it to protect against malicious code. Please
+         * note that rich text (or full HTML fields) should not be processed by this function and
+         * dealt with directly.
+         */
+        foreach( $_POST['data'] as $key => $val ) {
+            $posted_value = $this->_sanitize($val);
+            $data[$key] =$posted_value;
+        }
+
+        //** VALIDATE notification_email **//
+        if(!empty($data['notification_email'])){
+            $notification_emails = explode(",",$data['notification_email']);
+            $is_all_email_valid = true;
+            foreach ($notification_emails as $email) {
+                $is_all_email_valid = $is_all_email_valid && is_email($email);
+            }
+
+            if(!$is_all_email_valid){
+                $data['notification_email'] = $this->defaults['notification_email'];
+                $errors['notification_email'] = __('Please enter valid email', $this->namespace);
+                wp_send_json_error($errors);
+            }
+        }
+
+
+        //** VALIDATE backup_retained_number **//
+        if(!empty($data['backup_retained_number']) && !is_numeric($data['backup_retained_number'])) {
+            $data['backup_retained_number'] = $this->defaults['backup_retained_number'];
+            $errors['backup_retained_number'] = __('Please enter a number', $this->namespace);
+            wp_send_json_error($errors);
+        } else{ //Empty OR not NUMERIC
+            if ( empty($data['backup_retained_number']) ){
+                $data['backup_retained_number'] = $this->defaults['backup_retained_number'];
+                $errors['backup_retained_number'] = __('Please enter a number', $this->namespace);
+                wp_send_json_error($errors);
+            }
+        }
+
+
+        //** VALIDATE backup_plugins_filter **//
+        if(empty($data['backup_plugins_filter'])) {
+            $data['backup_plugins_filter'] = $this->defaults['backup_plugins_filter'];
+        }
+
+        //** VALIDATE backup_themes_filter **//
+        if(empty($data['backup_themes_filter'])){
+            $data['backup_themes_filter'] = $this->defaults['backup_themes_filter'];
+        }
+
+        //** VALIDATE backup_uploads_filter **//
+        if(empty($data['backup_uploads_filter'])){
+            $data['backup_uploads_filter'] = $this->defaults['backup_uploads_filter'];
+        }
+
+        //** VALIDATE backup_others_filter **//
+        if(empty($data['backup_others_filter'])){
+            $data['backup_others_filter'] = $this->defaults['backup_others_filter'];
+        }
+
+        //** VALIDATE db_table_filter **//
+        if(empty($data['backup_dbtables_filter_list'])){
+            $data['backup_dbtables_filter_list'] = $this->defaults['backup_dbtables_filter_list'];
+        }
+
+        //** VALIDATE backup_dbtables_batch_size **//
+        if(empty($data['backup_dbtables_batch_size']) || !is_numeric($data['backup_dbtables_batch_size']))
+        {
+            $data['backup_dbtables_batch_size'] = $this->defaults['backup_dbtables_batch_size'];
+            $errors['backup_dbtables_batch_size'] = __('Please enter a number', $this->namespace);
+            wp_send_json_error($errors);
+        }
+
+        //** Validate backup_sql_merge_batch_size *//
+        if(empty($data['backup_sql_merge_batch_size']) || !is_numeric($data['backup_sql_merge_batch_size']))
+        {
+            $data['backup_sql_merge_batch_size'] = $this->defaults['backup_sql_merge_batch_size'];
+            $errors['backup_sql_merge_batch_size'] = __('Please enter a number', $this->namespace);
+            wp_send_json_error($errors);
+        }
+
+        //** Validate backup_sql_batch_size *//
+        if(empty($data['backup_sql_batch_size']) || !is_numeric($data['backup_sql_batch_size']))
+        {
+            $data['backup_sql_batch_size'] = $this->defaults['backup_sql_batch_size'];
+            $errors['backup_sql_batch_size'] = __('Please enter a number', $this->namespace);
+            wp_send_json_error($errors);
+        }
+
+        //** VALIDATE backup_plugins_batch_size **//
+        if(empty($data['backup_plugins_batch_size']) || !is_numeric($data['backup_plugins_batch_size']))
+        {
+            $data['backup_plugins_batch_size'] = $this->defaults['backup_plugins_batch_size'];
+            $errors['backup_plugins_batch_size'] = __('Please enter a number', $this->namespace);
+            wp_send_json_error($errors);
+        }
+
+        //** VALIDATE backup_themes_batch_size **//
+        if(empty($data['backup_themes_batch_size']) || !is_numeric($data['backup_themes_batch_size']))
+        {
+            $data['backup_themes_batch_size'] = $this->defaults['backup_themes_batch_size'];
+            $errors['backup_themes_batch_size'] = __('Please enter a number', $this->namespace);
+            wp_send_json_error($errors);
+        }
+
+        //** VALIDATE backup_uploads_batch_size **//
+        if(empty($data['backup_uploads_batch_size']) || !is_numeric($data['backup_uploads_batch_size']))
+        {
+            $data['backup_uploads_batch_size'] = $this->defaults['backup_uploads_batch_size'];
+            $errors['backup_uploads_batch_size'] = __('Please enter a number', $this->namespace);
+            wp_send_json_error($errors);
+        }
+
+        //** VALIDATE backup_others_batch_size **//
+        if(empty($data['backup_others_batch_size']) || !is_numeric($data['backup_others_batch_size']))
+        {
+            $data['backup_others_batch_size'] = $this->defaults['backup_others_batch_size'];
+            $errors['backup_others_batch_size'] = __('Please enter a number', $this->namespace);
+            wp_send_json_error($errors);
+        }
+
+        //** VALIDATE backup_dbtables_filter_list **//
+        if(empty($data['backup_dbtables_filter_list']))
+        {
+            $data['backup_dbtables_filter_list'] = $this->defaults['backup_dbtables_filter_list'];
+        }
+
+        //** VALIDATE zip max size **//
+        if(empty($data['backup_zip_max_size']))
+        {
+            $data['backup_zip_max_size'] = $this->defaults['backup_zip_max_size'];
+        }
+
+        //** VALIDATE max timeout **//
+        if(empty($data['backup_max_timeout']))
+        {
+            $data['backup_max_timeout'] = $this->defaults['backup_max_timeout'];
+        }
+
+        //** VALIDATE logging setting **//
+        $data['logging'] = $data['logging'] === 'true'? 1: 0;
+
+        //** VALIDATE single file db **//
+        $data['single_file_db'] = $data['single_file_db'] === 'true' ? 1: 0;
+
+        //** VALIDATE single file backupset **//
+        $data['single_file_backupset'] = $data['single_file_backupset'] === 'true' ? 1: 0;
+
+        //** VALIDATE remove_supporting_zip_files **//
+        $data['remove_supporting_zip_files'] = $data['remove_supporting_zip_files'] === 'true' ? 1: 0;
+
+        //** VALIDATE rversion_compare **//
+        $data['rversion_compare'] = $data['rversion_compare'] === 'true' ? 1: 0;
+
+        //** VALIDATE delete_all  on uninstall **//
+        $data['delete_all'] = $data['delete_all'] === 'true' ? 1: 0;
+
+
+        // Update the options value with the data submitted
+        foreach( $data as $key => $val ) {
+            $this->set_option($key, $val);
+            WPBackItUp_Logger::log_info($debug_logname,__METHOD__, 'Updated Option: ' .$key .':' .$val);
+        }
+
+        wp_send_json_success();
+
+    }
 
 	/**
 	 * Send support request Schedule
@@ -1401,6 +1495,11 @@ class WPBackitup_Admin {
 					include_once 'class-utility.php';
 				}
 
+				$premium_installed=false;
+                if( class_exists('WPBackitup_Premium') ) {
+	                $premium_installed=true;
+                }
+
 				$support_request_id=current_time('timestamp');
 				$logs_attachment = array(); //default to no logs
 				if ($include_logs){
@@ -1439,6 +1538,12 @@ class WPBackitup_Admin {
 				$site_info .="WPBackItUp License Type: " . $wpbackitup_license->get_license_type_description() .' <br />';
 				$site_info .="WPBackItUp Version: " . $this->version .' <br />';
 
+				if ($premium_installed) {
+					$site_info .="Premium Installed: yes  <br />";
+	                if(defined('WPBACKITUP_PREMIUM__VERSION')){
+	                    $site_info .= "WPBackItUp Premium Version: " . WPBACKITUP_PREMIUM__VERSION . '<br />';
+	                }
+				}
 
                 $support_body=$site_info . '<br/><br/><b>Customer Comments:</b><br/><br/>' . $_POST['support_body'];
 
@@ -1555,22 +1660,10 @@ class WPBackitup_Admin {
     }
 
     /**
-    * Getter - notification email
-    */
+     * @deprecated From version 1.14.8
+     */
     public function notification_email(){
       return $this->get('notification_email');
-    }
-
-    /**
-    * Getter - logging
-    */
-    public function logging(){
-      $logging = $this->get('logging');
-      return $logging === 'true'? true: false;
-    }
-
-    public function delete_all(){
-        return $this->get('delete_all');
     }
 
     public function cleanup_lastrun_date(){
@@ -1703,21 +1796,21 @@ class WPBackitup_Admin {
         return $this->get('successful_restore_count');
     }
 
-
+    /**
+     * @deprecated From version 1.14.8
+     */
 	public function support_email(){
 		return $this->get('support_email');
 	}
 
     //getter
     public function single_file_backupset(){
-
-        return $this->get_option('single_file_backupset') == 1 ? true: false;
+        return (bool) $this->get_option('single_file_backupset');
     }
 
 	//getter
 	public function is_remove_supporting_zip_files(){
-
-		return $this->get_option('remove_supporting_zip_files') == 1 ? true: false;
+		return (bool) $this->get_option('remove_supporting_zip_files');
 	}
 
     //setter
@@ -1741,8 +1834,7 @@ class WPBackitup_Admin {
 
 	//getter
 	public function single_file_db(){
-
-		return $this->get_option('single_file_db') == 1 ? true: false;
+		return (bool) $this->get_option('single_file_db');
 	}
 
 	//setter
@@ -1809,8 +1901,7 @@ class WPBackitup_Admin {
 
     //getter
     public function rversion_compare(){
-
-        return $this->get('rversion_compare');
+        return (bool) $this->get('rversion_compare');
     }
 
     //setter
@@ -2169,8 +2260,6 @@ class WPBackitup_Admin {
      */
     public static function maybe_update() {
 
-        $logging = get_option( 'wp-backitup_logging','false' );
-
 		//if the plugin version is less than current, run the update
         $current_plugin_major_version = get_option( 'wp-backitup_major_version',0 );
         $current_plugin_minor_version = get_option( 'wp-backitup_minor_version',0 );
@@ -2193,25 +2282,25 @@ class WPBackitup_Admin {
 
         //run the plugin update for major + minor release updates
         if ($update_plugin) {
-            update_option( 'wp-backitup_logging','true' );
+            update_option( 'wp-backitup_logging',1 );
 
             require_once( WPBACKITUP__PLUGIN_PATH .'/lib/includes/update_plugin.php' );
             wpbackitup_update_plugin();
 
-            //set back to original value
-            update_option( 'wp-backitup_logging',$logging );
+            //turn off again
+            update_option( 'wp-backitup_logging',0 );
 		}
 
 		//if the DB version is less than current, run the update
         $current_database_version = get_option( 'wp-backitup_db_version',0 );
 		if ($current_database_version < self::DB_VERSION ) {
-            update_option( 'wp-backitup_logging','true' );
+            update_option( 'wp-backitup_logging',1 );
 
 			require_once(WPBACKITUP__PLUGIN_PATH .'/lib/includes/update_database.php' );
 			wpbackitup_update_database();
 
-            //set back to original value
-            update_option( 'wp-backitup_logging',$logging );
+            //turn off again
+            update_option( 'wp-backitup_logging',0 );
 		}
 
 

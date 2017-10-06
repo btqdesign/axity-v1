@@ -234,7 +234,7 @@ function scan_import_backups($backup_dir){
 		ob_start(); ?>
 		<div class="notice notice-error is-dismissible">
 			<p>
-				<?php printf(__('WPBackItUp Premium must be reinstalled with this release.  Please use this %s link %s to download WPBackItUp Premium.','wp-backitup'),"<a href='https://s3.amazonaws.com/wpbackitup-software/wpbackitup-plugin/wp-backitup-premium1.14.0.zip' target='_blank'>","</a>"); ?>
+				<?php printf(__("WPBackItUp Premium must be installed with this release.  Please contact <a href='%s' target='_blank'>support</a> for instructions on how to download and install WPBackItUp Premium.",'wp-backitup'),"http://support.wpbackitup.com/support/tickets/new'"); ?>
 				<br/><?php printf(__('See our knowledge base %s article %s to find out why you are seeing this message.','wp-backitup'),"<a href='https://wpbackitup.freshdesk.com/support/solutions/articles/12000023567-wpbackitup-premium-must-be-reinstalled-with-this-release' target='_blank'>","</a>"); ?>
 			</p>
 		</div>
@@ -328,6 +328,7 @@ if (!$backup_folder_exists) {
                 <th><?php _e('Duration', 'wp-backitup') ?></th>
                 <th><?php _e('Status', 'wp-backitup') ?></th>
                 <th>&nbsp;</th>
+	            <th>&nbsp;</th>
             </tr>
           </thead>
           <tbody>
@@ -338,9 +339,10 @@ if (!$backup_folder_exists) {
           $i = 0;
           foreach ($backup_job_list as $job)
           {
-	        $backup_name = $job->getJobName();
-	        $file_datetime= $job->getJobDate();
-          $backup_run_type = $job->getJobRunType();
+	        $backup_name     = $job->getJobName();
+	        $file_datetime   = $job->getJobDate();
+            $backup_run_type = $job->getJobRunType();
+            $cloud_status    = $job->getCloudStatus();
           
               switch ($job->getJobStatus()) {
                   case WPBackItUp_Job::COMPLETE:
@@ -381,7 +383,32 @@ if (!$backup_folder_exists) {
               <td data-th="<?php _e('Status', 'wp-backitup') ?>"><?php echo $status ?></td>
 
                <td>
-               <a href="#" title="Delete Backup" data-id="<?php echo $job->getJobId() ?>" class="deleteRow" id="deleteRow<?php echo $i; ?>"><i class="fa fa-trash-o"></i> <?php _e('Delete', 'wp-backitup') ?></a></td>
+	            <?php // WPBACKITUP__SAFE_SYNC_ON is temporary flag used to turn on sync functionality
+	                if (true==WPBACKITUP__SAFE_SYNC_ON) : ?>
+			             <?php  if ( WPBackItUp_Job::CLOUD_UPLOADED == $cloud_status) : ?>
+			               <span class="fa-stack" title="Backup safely stored in cloud" >
+							    <i class="fa fa fa-cloud fa-stack-2x" style="color:dodgerblue;"></i>
+				                <i class="fa fa-check fa-stack-1x fa-inverse"></i>
+							</span>
+		                <?php  elseif ( WPBackItUp_Job::CLOUD_UPLOADING== $cloud_status) : ?>
+			                <span class="fa-stack" title="Sending backup to cloud" >
+							  <i class="fa fa-refresh fa-spin fa-2x fa-fw" style="color:dodgerblue;"></i>
+							</span>
+		                <?php  elseif ( WPBackItUp_Job::CLOUD_ERROR == $cloud_status) : ?>
+			                <span class="fa-stack" title="Error sending backup to cloud" >
+							    <i class="fa fa-exclamation-circle fa-2x" style="color:#d9534f;"></i>
+							</span>
+			             <?php else: //Send to Cloud?>
+			               <span class="fa-stack">
+			                <i class="fa fa-refresh fa-spin fa-2x fa-fw" style="color:dodgerblue;display: none"></i>
+			                <a href="#" title="Send to Cloud" data-id="<?php echo $job->getJobId() ?>" class="safeUploadRow" id="safeUploadRow<?php echo $i; ?>"><i class="fa fa-cloud-upload fa-2x" style="color:grey;" aria-hidden="true"></i></a>
+			               </span>
+	                    <?php endif ?>
+                    <?php endif ?>
+               </td>
+	            <td>
+		            <a href="#" title="Delete Backup" data-id="<?php echo $job->getJobId() ?>" class="deleteRow" id="deleteRow<?php echo $i; ?>"><i class="fa fa-trash-o fa-2x"></i></a>
+	            </td>
             </tr>
 
             <?php

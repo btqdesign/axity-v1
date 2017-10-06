@@ -1149,6 +1149,58 @@ class WPBackItUp_Backup {
 	}
 
 	/**
+	 * Kick off Safe Sync
+	 *
+	 * This method will dispatch a Safe Sync Job
+	 *
+	 * @param      $zip_files
+	 *
+	 * @param bool $backup_set_only
+	 *
+	 * @return bool
+	 */
+	public function queue_safe_sync($zip_files, $sync_backup_set_only=false){
+
+		if (!is_array($zip_files) || count($zip_files)<=0) {
+			WPBackItUp_Logger::log_error($this->log_name,__METHOD__,'Zip file list was not array ' .var_export( $zip_files,true));
+			return false;
+		}
+
+		try {
+
+			//zip files created above
+			$backupset_found=false;
+			$file_list = array();
+			$backup_set_only = array();
+
+			//Build the list of files and look for the backup set zip
+			foreach ($zip_files as $file_path => $file_size){
+				$file_list[] =$file_path; //entire list
+				if (false!== strpos(basename( $file_path ),'-backupset-')){
+					$backupset_found=true;
+					$backup_set_only[]= $file_path;
+				}
+			}
+
+
+			//If backup set found and sync backup set only
+			if ($backupset_found && $sync_backup_set_only ) {
+				do_action( 'wpbackitup-safe_queue_file_sync', $backup_set_only );
+
+				WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Backup Set found - Sync backup set only:'. var_export($backup_set_only,true));
+			} else{
+				do_action( 'wpbackitup-safe_queue_file_sync', $file_list );
+				WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Sync all files:'. var_export($file_list,true));
+			}
+
+			return true;
+
+		} catch(Exception $e) {
+			WPBackItUp_Logger::log_error($this->log_name,__METHOD__,'Error Occurred: ' .$e);
+			return false;
+		}
+	}
+	/**
 	 * Remove supporting zip files(async)
 	 * This method will dispatch a cleanup task
 	 *
@@ -1156,7 +1208,7 @@ class WPBackItUp_Backup {
 	 *
 	 * @return bool
 	 */
-	public function remove_supporting_zips($zip_files){
+	public function remove_supporting_zips_async($zip_files){
 
 		if (!is_array($zip_files) || count($zip_files)<=0) {
 			WPBackItUp_Logger::log_error($this->log_name,__METHOD__,'Zip file list was not array ' .var_export( $zip_files,true));

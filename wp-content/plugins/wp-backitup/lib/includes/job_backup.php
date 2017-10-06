@@ -1176,14 +1176,20 @@ if ('task_finalize_backup'==$current_task->getTaskName()) {
 
 
 		//Remove supporting zip files if backup set successful
-		if (true===$WPBackitup->is_remove_supporting_zip_files()){
+		$remove_supporting_zip_files = $WPBackitup->is_remove_supporting_zip_files();
+		if ( true === $remove_supporting_zip_files){
 			WPBackItUp_Logger::log_info($backup_logname,$log_function,'Cleanup supporting zips.');
 			
 			//do not fail on error.
-			if(false===$wp_backup->remove_supporting_zips($zip_files)){
+			if(false===$wp_backup->remove_supporting_zips_async($zip_files)){
 				WPBackItUp_Logger::log_warning($backup_logname,$log_function,'Supporting zip files NOT deleted.');
            }
 
+		}
+
+		//Send the files over to safe sync to be uploaded.
+		if (false===$wp_backup->queue_safe_sync($zip_files,$remove_supporting_zip_files)){
+			WPBackItUp_Logger::log_warning($backup_logname,$log_function,'Error with queue safe sync job.');
 		}
 
 		end_backup( null, true );

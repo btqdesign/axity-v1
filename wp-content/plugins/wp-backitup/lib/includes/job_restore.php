@@ -563,7 +563,7 @@ if ('task_validate_backup'==$current_task->getTaskName()) {
 	}
 
 	//Check wordpress version
-	if($WPBackitup->rversion_compare() === 0){
+	if( $WPBackitup->rversion_compare()===false ){
 		$site_wordpress_version =  get_bloginfo('version');
 		$backup_wordpress_version = $site_info['wp_version'];
 		WPBackItUp_Logger::log_info($restore_logname,$log_function,'Site Wordpress Version:' . $site_wordpress_version);

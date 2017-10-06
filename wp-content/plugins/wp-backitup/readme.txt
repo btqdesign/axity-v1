@@ -3,7 +3,8 @@ Contributors: wpbackitup, cssimmon, alaminopu, imranshuvo
 Tags: backup, backups, back up, backup plugin, database backup, multisite backup, full backup, database, restore, migrate, clone, malware
 Requires at least: 3.8.0
 Tested up to: 4.8
-Stable tag: 1.14.6
+Requires PHP: 5.2.4
+Stable tag: 1.15
 Author URI: https://www.wpbackitup.com
 Donate link: https://www.wpbackitup.com
 License: GPLv2 or later
@@ -197,6 +198,13 @@ Our online documentation and full list of FAQs can be found at [support.wpbackit
 
 
 == Changelog ==
+= 1.15 =
+*Release Date -  September 29, 2017
+
+* UPDATE:  Enhancements to settings user interface
+* UPDATE:  Enhancements to backup engine to support Cloud Storage
+* UPDATE:  Extend maximum zip file size to 2GB
+
 = 1.14.7 =
 *Release Date -  July 19, 2017
 

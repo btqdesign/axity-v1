@@ -6,7 +6,7 @@
  * Description: Backup your content, settings, themes, plugins and media in just a few simple clicks.
  * Author: WPBackItUp
  * Author URI: https://www.wpbackitup.com
- * Version: 1.14.7
+ * Version: 1.15
  * Text Domain: wp-backitup
  * Domain Path: /languages
  *
@@ -33,32 +33,27 @@ define( 'WPBACKITUP__NAMESPACE', 'wp-backitup' );
 define( 'WPBACKITUP__CLASSNAMESPACE', 'WPBackItUp' );
 
 define( 'WPBACKITUP__MAJOR_VERSION', 1);
-define( 'WPBACKITUP__MINOR_VERSION', 14);
-define( 'WPBACKITUP__MAINTENANCE_VERSION', 7); //Dont forget to update version in header on WP release
+define( 'WPBACKITUP__MINOR_VERSION', 15);
+define( 'WPBACKITUP__MAINTENANCE_VERSION', 0); //Dont forget to update version in header on WP release
 define( 'WPBACKITUP__BUILD_VERSION', 0); //Used for hotfix releases
 
 define( 'WPBACKITUP__VERSION',sprintf("%d.%d.%d.%d", WPBACKITUP__MAJOR_VERSION, WPBACKITUP__MINOR_VERSION,WPBACKITUP__MAINTENANCE_VERSION,WPBACKITUP__BUILD_VERSION));
-
 define( 'WPBACKITUP__DB_VERSION', 4); //DATABASE VERSION
 
+define( 'WPBACKITUP__SAFE_SYNC_ON', false);
 define( 'WPBACKITUP__DEBUG', false );
 
 //define( 'WPBACKITUP__TEST_RUN_HOURLY', true );
 define( 'WPBACKITUP__MINIMUM_WP_VERSION', '3.0' );
 //define( 'WPBACKITUP__ITEM_NAME', 'WP Backitup' );
 define( 'WPBACKITUP__ITEM_NAME', 'WP BackItUp Premium' );
-
 define( 'WPBACKITUP__FRIENDLY_NAME', 'WPBackItUp' );
-
 define( 'WPBACKITUP__CONTENT_PATH', WP_CONTENT_DIR  );
-
 define( 'WPBACKITUP__SITE_URL', 'http://www.wpbackitup.com');
 define( 'WPBACKITUP__SECURESITE_URL', 'https://www.wpbackitup.com' );
 define( 'WPBACKITUP__SUPPORTSITE_URL', 'http://support.wpbackitup.com' );
 define( 'WPBACKITUP__API_URL', 'https://7aj6amlu38.execute-api.us-east-1.amazonaws.com/prod/v1' );
-
 define( 'WPBACKITUP__PLUGIN_FILE_PATH', __FILE__ );//path to main plugin file
-
 define( 'WPBACKITUP__PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'WPBACKITUP__PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'WPBACKITUP__PLUGIN_FOLDER',basename(dirname(__FILE__)));
@@ -128,7 +123,7 @@ add_filter('cron_schedules', 'wpbackitup_modify_cron_schedules', 30);
 function wpbackitup_register_post_types() {
 
 	$backup_args = array(
-		'labels'              => array( 'name' => __( 'Local File', 'wp-backitup' ) ),
+		'labels'              => array( 'name' => __( 'Safe File', 'wp-backitup' ) ),
 		'public'              => false,
 		'exclude_from_search' => true,
 		'publicly_queryable'  => false,
@@ -139,21 +134,21 @@ function wpbackitup_register_post_types() {
 		'supports'            => array( 'title', 'editor' ),
 		'can_export'          => true
 	);
-	register_post_type( 'wpb_local-file', $backup_args );
+	register_post_type( 'wpb_safe-file', $backup_args );
 
-//	$backup_args = array(
-//		'labels'              => array( 'name' => __( 'AWS-S3 File', 'wp-backitup' ) ),
-//		'public'              => false,
-//		'exclude_from_search' => true,
-//		'publicly_queryable'  => false,
-//		'show_ui'             => false,
-//		'query_var'           => false,
-//		'rewrite'             => false,
-//		'capability_type'     => 'post',
-//		'supports'            => array( 'title', 'editor' ),
-//		'can_export'          => true
-//	);
-//	register_post_type( 'wpb_S3-file', $backup_args );
+	$backup_args = array(
+		'labels'              => array( 'name' => __( 'Safe Metrics', 'wp-backitup' ) ),
+		'public'              => false,
+		'exclude_from_search' => true,
+		'publicly_queryable'  => false,
+		'show_ui'             => false,
+		'query_var'           => false,
+		'rewrite'             => false,
+		'capability_type'     => 'post',
+		'supports'            => array( 'title', 'editor' ),
+		'can_export'          => true
+	);
+	register_post_type( 'wpb_safe-metrics', $backup_args );
 
 
 	$backup_args = array(

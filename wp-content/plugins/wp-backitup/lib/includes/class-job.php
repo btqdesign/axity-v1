@@ -38,14 +38,23 @@ class WPBackItUp_Job {
 	const DELETED = 'deleted';
 
 	//Job types
-	const BACKUP =  'backup';
-	const RESTORE = 'restore';
-	const CLEANUP = 'cleanup';
+	const BACKUP    =  'backup';
+	const RESTORE   = 'restore';
+	const CLEANUP   = 'cleanup';
+	const SAFESYNC = 'safe-sync';
+
 
 	//Job run type
-	const SCHEDULED = 'scheduled';
-	const MANUAL = 'manual';
-	const IMPORTED = 'imported';
+	const SCHEDULED   = 'scheduled';
+	const MANUAL      = 'manual';
+	const IMPORTED    = 'imported';
+	const BACKGROUND  = 'background';
+
+	//Cloud Status
+	const CLOUD_UPLOADED    = 'uploaded';
+	const CLOUD_UPLOADING   = 'uploading';
+	const CLOUD_ERROR       = 'error';
+
 
 	//Properties
 	private $job_id;
@@ -366,6 +375,35 @@ class WPBackItUp_Job {
 		WPBackItUp_Logger::log_info( $this->log_name, __METHOD__, 'End - Backup Job status set to:' . $this->job_id . '-' . $status );
 		return true;
 
+	}
+
+	/**
+	 * Set cloud status
+	 *
+	 * @param $status
+	 *
+	 * @return bool true on success/false on error
+	 */
+	public function setCloudStatus( $status ) {
+		return $this->setJobMetaValue('cloud_status',$status);
+	}
+
+	/**
+	 * Get cloud status
+	 *
+	 * @return string/false on missing
+	 */
+	public function getCloudStatus() {
+		return $this->getJobMetaValue('cloud_status',false);
+	}
+
+	/**
+	 * Get backup Zip Files
+	 *
+	 * @return array/false on missing
+	 */
+	public function getBackupZipFiles() {
+		return $this->getJobMetaValue('backup_zip_files',false);
 	}
 
 
