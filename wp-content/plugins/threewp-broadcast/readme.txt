@@ -99,6 +99,7 @@ There are several <a href="https://broadcast.plainviewplugins.com/">Broadcast ad
 * <a href="https://broadcast.plainviewplugins.com/addon/ultimate-member/">Ultimate Member</a> adds support for the <a href="https://wordpress.org/plugins/ultimate-member/">Ultimate Member</a> plugin.
 * <a href="https://broadcast.plainviewplugins.com/addon/woocommerce/">WooCommerce</a> allows attribute taxonomies and product variations to be broadcasted.
 * <a href="https://broadcast.plainviewplugins.com/addon/wp-all-import/">WP All Import</a> adds support for post updates from Soffly's <a href="http://www.wpallimport.com/">WP All Import Pro</a>.
+* <a href="https://broadcast.plainviewplugins.com/addon/wpcustom-category-image/">WPCustom Category Image</a> adds support for the <a href="https://wordpress.org/plugins/wpcustom-category-image/">WPCustom Category Image</a> plugin.
 * <a href="https://broadcast.plainviewplugins.com/addon/wplms/">WPLMS</a> adds support for Vibethemes' <a href="https://themeforest.net/item/wplms-learning-management-system/6780226">WPLMS theme</a>.
 * <a href="https://broadcast.plainviewplugins.com/addon/wpml/">WPML</a> adds support for <a href="http://wpml.org/">ICanLocalize’s WPML</a> translation plugin.
 * <a href="https://broadcast.plainviewplugins.com/addon/wp-ultimate-recipe/">WP Ultimate Recipe</a> adds support for recipes and ingredients from <a href="http://bootstrapped.ventures">Bootstrapped Ventures’</a> <a href="http://bootstrapped.ventures">WP Ultimate Recipe</a> plugin.
@@ -123,6 +124,7 @@ Control pack
 * <a href="https://broadcast.plainviewplugins.com/addon/permalinks/">Permalinks</a> provides more precise control of permalinks for both parents and children.
 * <a href="https://broadcast.plainviewplugins.com/addon/protect-child-properties/">Protect Child Properties</a> prevents various properties of child posts from being overwritten.
 * <a href="https://broadcast.plainviewplugins.com/addon/redirect-all-children/">Redirect All Children</a> redirects single post views from visitors of child posts to the parent post.
+* <a href="https://broadcast.plainviewplugins.com/addon/redirect-parent/">Redirect Parent</a> redirect all views of a parent post to the first child post.
 * <a href="https://broadcast.plainviewplugins.com/addon/search-and-replace/">Search And Replace</a> finds and replaces texts in posts during broadcast.
 * <a href="https://broadcast.plainviewplugins.com/addon/shortcode-attachments/">Shortcode Attachments</a> modifies attachment IDs found in shortcodes to match their equivalent attachments on each blog.
 * <a href="https://broadcast.plainviewplugins.com/addon/shortcode-menus/">Shortcode Menus</a> modifies menu IDs found in shortcodes to match their equivalent menus on each blog.
@@ -154,6 +156,7 @@ Utilities pack
 * <a href="https://broadcast.plainviewplugins.com/addon/php-code/">PHP Code</a> runs custom PHP code on selected blogs. Easily switch themes for all blogs, for example.
 * <a href="https://broadcast.plainviewplugins.com/addon/sync-taxonomies/">Sync Taxonomies</a> synchronizes the taxonomies of target blogs with those from a source blog.
 * <a href="https://broadcast.plainviewplugins.com/addon/user-role-sync/">User Role Sync</a> copies user roles between blogs.
+* <a href="https://broadcast.plainviewplugins.com/addon/widgets/">Widgets</a> copies widget and sidebar settings between blogs.
 
 = Documentation =
 
@@ -283,6 +286,13 @@ This will broadcast all normal product settings: SKU, price, etc.
 If your products have variations, a product image gallery, you want to sync stock, you want to sync orders, need the attribute taxonomies to be synced, you'll be wanting the <a href="https://broadcast.plainviewplugins.com/addon/woocommerce/">WooCommerce add-on</a>.
 
 == Changelog ==
+
+= 40.1 20171004 =
+
+* Fix: Remove fatal $blogs->input() error when using just publishing posts (not broadcasting) together with an incompatible plugin.
+* New add-on. <a href="https://broadcast.plainviewplugins.com/addon/redirect-parent/">Redirect Parent</a> redirect all views of a parent post to the first child post.
+* New add-on. <a href="https://broadcast.plainviewplugins.com/addon/wpcustom-category-image/">WPCustom Category Image</a> adds support for the <a href="https://wordpress.org/plugins/wpcustom-category-image/">WPCustom Category Image</a> plugin.
+* New add-on. <a href="https://broadcast.plainviewplugins.com/addon/widgets/">Widgets</a> copies widget and sidebar settings between blogs.
 
 = 40.0 20170922 =
 

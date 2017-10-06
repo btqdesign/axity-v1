@@ -13,8 +13,6 @@ trait admin_menu
 {
 	public function admin_menu()
 	{
-		$this->load_language();
-
 		$action = new actions\admin_menu;
 		$action->execute();
 
@@ -439,8 +437,6 @@ trait admin_menu
 
 	public function admin_menu_tabs()
 	{
-		$this->load_language();
-
 		$tabs = $this->tabs();
 
 		$tabs->tab( 'settings' )
@@ -476,7 +472,17 @@ trait admin_menu
 	**/
 	public function admin_menu_trait_init()
 	{
+		$this->add_action( 'admin_menu' );
+		$this->add_action( 'admin_print_styles' );
+		$this->add_action( 'network_admin_menu', 'admin_menu' );
+
+		// The plugin table.
+		$this->add_filter( 'network_admin_plugin_action_links', 'plugin_action_links', 10, 4 );
+		$this->add_filter( 'plugin_action_links', 'plugin_action_links', 10, 4 );
 		$this->add_filter( 'plugin_row_meta', 10, 2 );
+
+		$this->add_action( 'threewp_broadcast_menu', 5 );
+		$this->add_action( 'threewp_broadcast_menu', 'threewp_broadcast_menu_final', 100 );
 	}
 
 	/**
@@ -485,8 +491,6 @@ trait admin_menu
 	**/
 	public function broadcast_menu_tabs()
 	{
-		$this->load_language();
-
 		$tabs = $this->tabs()
 			->default_tab( 'admin_menu_broadcast_info' )
 			->get_key( 'action' );

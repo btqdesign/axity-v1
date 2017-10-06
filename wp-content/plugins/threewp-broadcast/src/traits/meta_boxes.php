@@ -121,7 +121,6 @@ trait meta_boxes
 				$incompatible_plugins[ $index ] = $string;
 			}
 			$meta_box_data->html->put( 'incompatible_plugins2', implode( "<br>\n", $incompatible_plugins ) );
-			return;
 		}
 
 		// Add translation strings

@@ -1,3 +1,15 @@
+20171002		Removed yes_no()
+				Removed download()
+				Removed check_plain()
+				Removed human_bytes()
+				Removed human_time()
+				Removed human_time_span()
+				Removed is_private_ip()
+				Removed mime_type()
+				Removed stacktrace()
+				Removed strip_post_slashes()
+				Split out Wordpress actions to their own trait.
+				Added wordpress remove_action() and remove_filter().
 20170901		Wordpress debug trait: Ignore sprintf errors.
 20170829		Make current_url() proxy aware.
 20170810		Wordpress EDD updater 1.6.14

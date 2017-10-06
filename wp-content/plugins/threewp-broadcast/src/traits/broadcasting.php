@@ -82,7 +82,7 @@ trait broadcasting
 						$this->debug( 'Parent post has no broadcast data.' );
 					}
 				}
-				$this->debug( 'Post type is hierarchical: %s', $this->yes_no( $bcd->post_type_is_hierarchical ) );
+				$this->debug( 'Post type is hierarchical: %d', $bcd->post_type_is_hierarchical );
 			}
 		}
 		else
@@ -708,8 +708,6 @@ trait broadcasting
 				$this->debug( 'Still broadcasting.' );
 			}
 		}
-
-		$this->load_language();
 
 		return $bcd;
 	}

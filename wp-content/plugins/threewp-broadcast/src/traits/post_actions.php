@@ -508,8 +508,6 @@ trait post_actions
 
 		// Everything is good to go.
 
-		$this->load_language();
-
 		$blog_id = get_current_blog_id();
 		$broadcast_data = $this->get_post_broadcast_data( $blog_id, $post_id );
 		$form = $this->form2();

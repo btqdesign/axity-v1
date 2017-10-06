@@ -81,8 +81,16 @@ class blog
 	public static function make( $data )
 	{
 		$r = new blog;
-		foreach( (array)$data as $key=>$value )
-			$r->$key = $value;
+		foreach( [
+			'blog_id',
+			'blogname',
+			'userblog_id',
+		] as $key )
+		{
+			if ( ! property_exists( $data, $key ) )
+				continue;
+			$r->$key = $data->$key;
+		}
 		if ( property_exists( $r, 'blog_id' ) )
 			$r->id = intval( $r->blog_id );
 		return $r;

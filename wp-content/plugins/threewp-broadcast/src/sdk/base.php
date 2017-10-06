@@ -116,20 +116,6 @@ class base
 	}
 
 	/**
-		@brief		Check that the supplied text is plaintext.
-		@details	Strips out HTML. Inspired by Drupal's check_plain.
-		@param		string		$text		String to check for plaintext.
-		@return		string					Cleaned up string.
-		@since		20130416
-	**/
-	public static function check_plain( $text )
-	{
-		$text = strip_tags( $text );
-		$text = stripslashes( $text );
-		return $text;
-	}
-
-	/**
 		@brief		Build the complete current URL.
 		@param		array		$SERVER		Optional _SERVER array to use, instead of the normal _SERVER array.
 		@return		string		The complete URL, with http / https, port, etc.
@@ -243,113 +229,6 @@ class base
 	}
 
 	/**
-		@brief		Returns a hash value of a string. The standard hash type is sha512 (64 chars).
-
-		@param		string		$string			String to hash.
-		@param		string		$type			Hash to use. Default is sha512.
-		@return									Hashed string.
-		@since		20130416
-	**/
-	public static function hash( $string, $type = 'sha512' )
-	{
-		return hash($type, $string);
-	}
-
-	/**
-		@brief		Return the human-readable byte amount.
-		@details	From http://www.php.net/manual/en/function.filesize.php#106569
-		@since		2014-06-11 14:13:28
-	**/
-	public static function human_bytes( $bytes, $decimals = 2 )
-	{
-		$prefix = [
-			'',
-			'k',
-			'M',
-			'G',
-			'T',
-			'P',
-		];
-		$factor = floor( ( strlen( $bytes ) - 1 ) / 3 );
-		return sprintf( "%.{$decimals}f %sB",
-			$bytes / pow( 1024, $factor ),
-			$prefix[ $factor ]
-		);
-	}
-
-	/**
-		@brief		Output the unix time as a human-readable string.
-		@details
-
-		In order to aid in translation, use the various text_* keys in the options array.
-
-		See the source below for a list of keys to include.
-
-		@param		int			$current		Current timestamp.
-		@param		int			$reference		Reference timestamp, if not now.
-		@param		array		$options		Options.
-		@since		20130809
-	**/
-	public static function human_time( $current, $reference = null, $options = [] )
-	{
-		$options = \plainview\sdk_broadcast\base::merge_objects( [
-			'time' => date( 'U' ),
-			'text_day' => '1 day',
-			'text_days' => '%d days',
-			'text_hour' => '1 hour',
-			'text_hours' => '%d hours',
-			'text_minute' => '1 minute',
-			'text_minutes' => '%d minutes',
-			'text_second' => '1 second',
-			'text_seconds' => '%d seconds',
-		], $options );
-		if ( $reference === null )
-			$reference = $options->time;
-		if( ! is_int( $current ) )
-			$current = strtotime( $current );
-		$difference = abs( $reference - $current );
-		$seconds = round( $difference, 0 );
-		$minutes = round( $difference / 60, 0 );
-		$hours = round( $difference / ( 60 * 60 ), 0 );
-		$days = round( $difference / ( 60 * 60 * 24 ), 0 );
-
-		if ( $days > 0 )
-			if ( $days == 1 )
-				return $options->text_day;
-			else
-				return sprintf( $options->text_days, $days );
-
-		if ( $hours > 0 )
-			if ( $hours == 1 )
-				return $options->text_hour;
-			else
-				return sprintf( $options->text_hours, $hours );
-
-		if ( $minutes > 0 )
-			if ( $minutes == 1 )
-				return $options->text_minute;
-			else
-				return sprintf( $options->text_minutes, $minutes );
-
-		if ( $seconds == 1 )
-			return $options->text_second;
-		else
-			return sprintf( $options->text_seconds, $seconds );
-	}
-
-	/**
-		@brief		Wrap the human time in a span with the computer time as the hover title.
-		@param		int			The current time (Y-m-d H:i:s)  to convert to human-readable time.
-		@return		string		A HTML string containing a span with a title, and the human-readable date within.
-		@since		20130809
-	**/
-	public function human_time_span( $current, $options = [] )
-	{
-		return sprintf( '<span title="%s">%s</span>', $current, $this->human_time( $current, null, $options ) );
-	}
-
-
-	/**
 		@brief		Implode an array in an HTML-friendly way.
 		@details	Used to implode arrays using HTML tags before, between and after the array. Good for lists.
 		@param		string		$prefix		li
@@ -404,36 +283,6 @@ class base
 	}
 
 	/**
-		@brief		Check if an IP is private.
-		@param		string		$ip		IP address to check.
-		@return		bool				True, if the IP is private.
-		@since		20130825
-	**/
-	public static function is_private_ip( $ip )
-	{
-		$private_addresses = [
-			'10.0.0.0|10.255.255.255',
-			'172.16.0.0|172.31.255.255',
-			'192.168.0.0|192.168.255.255',
-			'169.254.0.0|169.254.255.255',
-			'127.0.0.0|127.255.255.255'
-		];
-
-		$long_ip = ip2long( $ip );
-		if( $long_ip != -1 )
-		{
-			foreach( $private_addresses as $private_address )
-			{
-				list( $start, $end ) = explode( '|', $private_address );
-
-				 if( $long_ip >= ip2long( $start ) && $long_ip <= ip2long( $end ) )
-					return true;
-			}
-		}
-		return false;
-	}
-
-	/**
 		@brief		Creates a mail object.
 		@return		\\plainview\\sdk_broadcast\\mail\\mail		A new PHPmailer object.
 		@since		20130430
@@ -477,42 +326,6 @@ class base
 	}
 
 	/**
-		@brief		Tries to figure out the mime type of this filename.
-		@param		string		$filename		The complete file path.
-		@return		string
-		@since		20130416
-	**/
-	public static function mime_type( $filename )
-	{
-		// Try to use file.
-		if ( is_executable( '/usr/bin/file' ) )
-		{
-			exec( "file -bi '$filename'", $r );
-			$r = reset( $r );
-			$r = preg_replace( '/;.*/', '', $r );
-			return $r;
-		}
-
-		// Try to use the finfo class.
-		if ( class_exists( 'finfo' ) )
-		{
-			$fi = new finfo( FILEINFO_MIME, '/usr/share/file/magic' );
-			$r = $fi->buffer(file_get_contents( $filename ));
-			return $r;
-		}
-
-		// Last resort: mime_content_type which rarely works properly.
-		if ( function_exists( 'mime_content_type' ) )
-		{
-			$r = mime_content_type ( $filename );
-			return $r;
-		}
-
-		// Nope. Return a general value.
-		return 'application/octet-stream';
-	}
-
-	/**
 		@brief		Enclose in string in an HTML element tag.
 		@details	Parameter order: enclose THIS in THIS
 		@param		string		$string		String to wrap.
@@ -548,17 +361,6 @@ class base
 	}
 
 	/**
-		@brief		Returns a stack trace as a string.
-		@return		string			A stacktrace.
-		@since		20130416
-	**/
-	public static function stacktrace()
-	{
-		$e = new \Exception;
-		return var_export( $e->getTraceAsString(), true );
-	}
-
-	/**
 		@brief		Converts a string to an array of e-mail addresses.
 		@param		string		$string		A multiline text-area.
 		@param		bool		$mx			Check each e-mail address for valid MX?
@@ -575,23 +377,6 @@ class base
 				$r[ $line ] = $line;
 		ksort( $r );
 		return $r;
-	}
-
-	/**
-		@brief		Strips the array of slashes. Used for $_POSTS.
-		@param		array		$post		The array to strip. If null then $_POST is used.
-		@return		array					Posts with slashes stripped.
-		@since		20130416
-	**/
-	public static function strip_post_slashes( $post = null )
-	{
-		if ( $post === null )
-			$post = $_POST;
-		foreach( $post as $key => $value )
-			if ( ! is_array( $value ) && strlen( $value ) > 1 )
-				$post[ $key ] = stripslashes( $value );
-
-		return $post;
 	}
 
 	/**
@@ -682,7 +467,7 @@ class base
 	{
 		$r = 'u';
 		while( strlen( $r ) < $length )
-			$r .= self::hash( microtime() . rand( 0, PHP_INT_MAX ) );
+			$r .= hash( 'sha512', microtime() . rand( 0, PHP_INT_MAX ) );
 		return substr( $r, 0, $length );
 	}
 

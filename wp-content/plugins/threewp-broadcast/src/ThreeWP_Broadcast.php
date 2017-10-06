@@ -105,8 +105,6 @@ class ThreeWP_Broadcast
 			return;
 
 		$this->add_action( 'add_meta_boxes' );
-		$this->add_action( 'admin_menu' );
-		$this->add_action( 'admin_print_styles' );
 
 		if ( $this->get_site_option( 'override_child_permalinks' ) )
 		{
@@ -120,13 +118,7 @@ class ThreeWP_Broadcast
 		$this->savings_calculator_init();
 		$this->terms_and_taxonomies_init();
 
-		$this->add_action( 'network_admin_menu', 'admin_menu' );
 		$this->add_action( 'plugins_loaded' );
-
-		// In the plugin table.
-		$this->add_filter( 'network_admin_plugin_action_links', 'plugin_action_links', 10, 4 );
-		$this->add_filter( 'plugin_action_links', 'plugin_action_links', 10, 4 );
-		$this->add_filter( 'plugin_row_meta' );
 
 		$this->add_filter( 'threewp_broadcast_add_meta_box' );
 		$this->add_filter( 'threewp_broadcast_admin_menu', 'add_post_row_actions_and_hooks', 100 );
@@ -139,8 +131,6 @@ class ThreeWP_Broadcast
 		$this->add_action( 'threewp_broadcast_get_user_writable_blogs', 100 );		// Allow other plugins to do this first.
 		$this->add_filter( 'threewp_broadcast_get_post_types', 5 );					// Add our custom post types to the array of broadcastable post types.
 		$this->add_action( 'threewp_broadcast_maybe_clear_post', 100 );
-		$this->add_action( 'threewp_broadcast_menu', 5 );
-		$this->add_action( 'threewp_broadcast_menu', 'threewp_broadcast_menu_final', 100 );
 		$this->add_filter( 'threewp_broadcast_parse_content' );
 		$this->add_action( 'threewp_broadcast_prepare_broadcasting_data' );
 		$this->add_filter( 'threewp_broadcast_prepare_meta_box', 5 );
@@ -1042,14 +1032,5 @@ class ThreeWP_Broadcast
 			**/
 			'taxonomy_term_protectlist' => '',
 		], parent::site_options() );
-	}
-
-	/**
-		@brief		Return yes / no, depending on value.
-		@since		20140220
-	**/
-	public function yes_no( $value )
-	{
-		return $value ? 'yes' : 'no';
 	}
 }
