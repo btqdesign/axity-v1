@@ -1,5 +1,5 @@
-# Translation of WordPress - 4.7.x - Administration - Network Admin in Spanish (Guatemala)
-# This file is distributed under the same license as the WordPress - 4.7.x - Administration - Network Admin package.
+# Translation of WordPress - 4.8.x - Administration - Network Admin in Spanish (Guatemala)
+# This file is distributed under the same license as the WordPress - 4.8.x - Administration - Network Admin package.
 msgid ""
 msgstr ""
 "PO-Revision-Date: 2016-12-07 11:58:08+0000\n"
@@ -9,10 +9,10 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: GlotPress/2.4.0-alpha\n"
 "Language: es_GT\n"
-"Project-Id-Version: WordPress - 4.7.x - Administration - Network Admin\n"
+"Project-Id-Version: WordPress - 4.8.x - Administration - Network Admin\n"
 
 #: wp-admin/network/index.php:51 wp-admin/network/site-info.php:31
-#: wp-admin/network/site-new.php:30 wp-admin/network/site-settings.php:30
+#: wp-admin/network/site-new.php:31 wp-admin/network/site-settings.php:30
 #: wp-admin/network/site-themes.php:30 wp-admin/network/site-users.php:33
 #: wp-admin/network/sites.php:43 wp-admin/network/user-new.php:27
 #: wp-admin/network/users.php:180
@@ -107,12 +107,12 @@ msgstr "Esta clave única de identificación también falta en tu archivo %s."
 msgid "These unique authentication keys are also missing from your %s file."
 msgstr "Estas claves únicas de identificación también faltan en tu archivo %s."
 
-#: wp-admin/network/site-new.php:155
+#: wp-admin/network/site-new.php:156
 msgctxt "email \"From\" field"
 msgid "Site Admin"
 msgstr "Administrador del sitio"
 
-#: wp-admin/network/site-new.php:205
+#: wp-admin/network/site-new.php:206
 msgid "Only lowercase letters (a-z), numbers, and hyphens are allowed."
 msgstr "Solo se permiten minúsculas (a-z), números y guiones."
 
@@ -258,18 +258,18 @@ msgctxt "site"
 msgid "Registered"
 msgstr "Registrado"
 
-#: wp-admin/includes/class-wp-ms-users-list-table.php:171
+#: wp-admin/includes/class-wp-ms-users-list-table.php:172
 msgctxt "user"
 msgid "Registered"
 msgstr "Registrado"
 
-#: wp-admin/includes/class-wp-ms-sites-list-table.php:531
+#: wp-admin/includes/class-wp-ms-sites-list-table.php:538
 msgctxt "verb; site"
 msgid "Archive"
 msgstr "Archivar"
 
 #: wp-admin/includes/class-wp-ms-sites-list-table.php:42
-#: wp-admin/includes/class-wp-ms-sites-list-table.php:537
+#: wp-admin/includes/class-wp-ms-sites-list-table.php:544
 #: wp-admin/network/site-info.php:188
 msgctxt "site"
 msgid "Spam"
@@ -299,16 +299,16 @@ msgstr "Adulto"
 msgid "Deleted"
 msgstr "Borrado"
 
-#: wp-admin/includes/class-wp-ms-sites-list-table.php:529
+#: wp-admin/includes/class-wp-ms-sites-list-table.php:536
 msgid "Unarchive"
 msgstr "Desarchivar"
 
-#: wp-admin/includes/class-wp-ms-sites-list-table.php:360
+#: wp-admin/includes/class-wp-ms-sites-list-table.php:365
 msgid "Never"
 msgstr "Nunca"
 
 #. translators: 1: site name, 2: site tagline.
-#: wp-admin/includes/class-wp-ms-sites-list-table.php:334
+#: wp-admin/includes/class-wp-ms-sites-list-table.php:337
 msgid "%1$s &#8211; %2$s"
 msgstr "%1$s &#8211; %2$s"
 
@@ -323,7 +323,7 @@ msgid "Disable %s"
 msgstr "Desactivar %s"
 
 #: wp-admin/includes/class-wp-ms-sites-list-table.php:204
-#: wp-admin/includes/class-wp-ms-sites-list-table.php:535
+#: wp-admin/includes/class-wp-ms-sites-list-table.php:542
 msgctxt "site"
 msgid "Not Spam"
 msgstr "No es spam"
@@ -348,7 +348,7 @@ msgstr "Abrir %s en el editor de temas"
 msgid "Visit %s homepage"
 msgstr "Visita la portada de %s"
 
-#: wp-admin/network/site-users.php:332 wp-admin/network/user-new.php:117
+#: wp-admin/network/site-users.php:339 wp-admin/network/user-new.php:117
 msgid "A password reset link will be sent to the user via email."
 msgstr "Se te enviará un enlace por email para que puedas cambiar la contraseña."
 
@@ -390,7 +390,7 @@ msgstr "Lista de temas del sitio"
 msgid "Filter site users list"
 msgstr "Filtrar la lista de usuarios del sitio"
 
-#: wp-admin/network/site-new.php:110
+#: wp-admin/network/site-new.php:111
 msgid "The domain or path entered conflicts with an existing username."
 msgstr "El dominio o la ruta entran en conflicto con un nombre de usuario ya existente."
 
@@ -463,7 +463,7 @@ msgstr "<a href=\"https://codex.wordpress.org/Tools_Network_Screen\" target=\"_b
 msgid "<a href=\"https://codex.wordpress.org/Network_Admin\">Documentation on the Network Admin</a>"
 msgstr "<a href=\"https://codex.wordpress.org/Network_Admin\" target=\"_blank\">Documentación sobre Administrador de la red</a>"
 
-#: wp-admin/network/site-info.php:30 wp-admin/network/site-new.php:29
+#: wp-admin/network/site-info.php:30 wp-admin/network/site-new.php:30
 #: wp-admin/network/site-settings.php:29 wp-admin/network/site-themes.php:29
 #: wp-admin/network/site-users.php:32 wp-admin/network/sites.php:42
 msgid "<a href=\"https://codex.wordpress.org/Network_Admin_Sites_Screen\">Documentation on Site Management</a>"
@@ -482,7 +482,7 @@ msgid "<a href=\"https://codex.wordpress.org/Network_Admin_Settings_Screen\">Doc
 msgstr "<a href=\"https://codex.wordpress.org/Network_Admin_Settings_Screen\" target=\"_blank\">Documentación sobre Ajustes de la red</a>"
 
 #. translators: 1: site url, 2: server error message
-#: wp-admin/network/upgrade.php:87
+#: wp-admin/network/upgrade.php:88
 msgid "Warning! Problem updating %1$s. Your server may not be able to connect to sites running on it. Error message: %2$s"
 msgstr "¡Atención! Problema actualizando %1$s. El servidor parece no ser capaz de conectar con los sitios corriendo en el multisitio. Mensaje de error: %2$s"
 
@@ -490,13 +490,13 @@ msgstr "¡Atención! Problema actualizando %1$s. El servidor parece no ser capaz
 msgid "Delete Themes"
 msgstr "Eliminar Temas"
 
-#: wp-admin/network/themes.php:280
+#: wp-admin/network/themes.php:287
 msgid "%s theme deleted."
 msgid_plural "%s themes deleted."
 msgstr[0] "%s tema eliminado."
 msgstr[1] "%s temas eliminados."
 
-#: wp-admin/network/site-themes.php:185 wp-admin/network/themes.php:264
+#: wp-admin/network/site-themes.php:189 wp-admin/network/themes.php:271
 msgid "%s theme enabled."
 msgid_plural "%s themes enabled."
 msgstr[0] "%s tema habilitado."
@@ -518,7 +518,7 @@ msgstr "Estás a punto de eliminar los siguientes temas:"
 msgid "Yes, delete these themes"
 msgstr "Si, borra estos temas"
 
-#: wp-admin/network/site-themes.php:193 wp-admin/network/themes.php:272
+#: wp-admin/network/site-themes.php:197 wp-admin/network/themes.php:279
 msgid "%s theme disabled."
 msgid_plural "%s themes disabled."
 msgstr[0] "%s tema deshabilitado."
@@ -614,7 +614,7 @@ msgid "Quick Tasks"
 msgstr "Tareas rápidas"
 
 #: wp-admin/network/menu.php:22 wp-admin/network/upgrade.php:15
-#: wp-admin/network/upgrade.php:39 wp-admin/network/upgrade.php:130
+#: wp-admin/network/upgrade.php:40 wp-admin/network/upgrade.php:131
 msgid "Upgrade Network"
 msgstr "Actualiza la red"
 
@@ -622,12 +622,12 @@ msgstr "Actualiza la red"
 msgid "Only use this screen once you have updated to a new version of WordPress through Updates/Available Updates (via the Network Administration navigation menu or the Toolbar). Clicking the Upgrade Network button will step through each site in the network, five at a time, and make sure any database updates are applied."
 msgstr "Usa esta pantalla solamente una vez hayas actualizado a  una nueva versión de WordPress desde Actualizaciones disponibles (en el menú de navegación o barra de Administración de la red). Haciendo clic en el botón Actualizar red va sitio a sitio de la red, cinco cada vez, y se asegura de que se actualizan las bases de datos."
 
-#: wp-admin/network/upgrade.php:126
+#: wp-admin/network/upgrade.php:127
 msgid "WordPress has been updated! Before we send you on your way, we need to individually upgrade the sites in your network."
 msgstr "¡WordPress está actualizado\" Antes de devolverte a tus cosas tenemos que actualizar los sitios de tu red uno a uno."
 
 #. translators: 1: user login, 2: site url, 3: site name/title
-#: wp-admin/network/site-new.php:145
+#: wp-admin/network/site-new.php:146
 msgid ""
 "New site created by %1$s\n"
 "\n"
@@ -648,23 +648,23 @@ msgstr "Añade las líneas señaladas designadas a wp-config.php (justo antes de
 msgid "Subdirectory networks may not be fully compatible with custom wp-content directories."
 msgstr "Las redes en subdirectorio puede que no sean completamente compatibles con directorios wp-content personalizados."
 
-#: wp-admin/network/site-users.php:252
+#: wp-admin/network/site-users.php:259
 msgid "Enter the username and email."
 msgstr "Introduce el nombre de usuario y email."
 
-#: wp-admin/network/site-users.php:240
+#: wp-admin/network/site-users.php:247
 msgid "Select a user to change role."
 msgstr "Elige un usuario para cambiar su perfil."
 
-#: wp-admin/network/site-users.php:246
+#: wp-admin/network/site-users.php:253
 msgid "Select a user to remove."
 msgstr "Elige un usuario para borrarlo."
 
-#: wp-admin/network/site-users.php:249
+#: wp-admin/network/site-users.php:256
 msgid "User created."
 msgstr "Usuario creado."
 
-#: wp-admin/network/site-users.php:300 wp-admin/network/user-new.php:129
+#: wp-admin/network/site-users.php:307 wp-admin/network/user-new.php:129
 msgid "Add User"
 msgstr "Añadir usuario"
 
@@ -672,7 +672,7 @@ msgstr "Añadir usuario"
 msgid "Cannot add user."
 msgstr "No se pudo añadir el usuario."
 
-#: wp-admin/network/site-users.php:231
+#: wp-admin/network/site-users.php:238
 msgid "User is already a member of this site."
 msgstr "El usuario ya es miembro de este sitio."
 
@@ -680,15 +680,15 @@ msgstr "El usuario ya es miembro de este sitio."
 msgid "Site info updated."
 msgstr "Información del sitio actualizada."
 
-#: wp-admin/network/site-users.php:234
+#: wp-admin/network/site-users.php:241
 msgid "Enter the username of an existing user."
 msgstr "Introduce el nombre de usuario de un usuario existente."
 
-#: wp-admin/network/themes.php:286
+#: wp-admin/network/themes.php:293
 msgid "You cannot delete a theme while it is active on the main site."
 msgstr "No puedes borrar un tema si está activo en el sitio principal."
 
-#: wp-admin/network/site-new.php:178 wp-admin/network/site-new.php:188
+#: wp-admin/network/site-new.php:179 wp-admin/network/site-new.php:189
 msgid "Add New Site"
 msgstr "Añadir nuevo sitio"
 
@@ -712,7 +712,7 @@ msgstr "Borrar tema"
 msgid "Network Settings"
 msgstr "Ajustes de red"
 
-#: wp-admin/network/site-themes.php:200
+#: wp-admin/network/site-themes.php:204
 msgid "Network enabled themes are not shown on this screen."
 msgstr "Los temas activos para la red no se muestran en esta pantalla."
 
@@ -720,7 +720,7 @@ msgstr "Los temas activos para la red no se muestran en esta pantalla."
 msgid "Add User will set up a new user account on the network and send that person an email with username and password."
 msgstr "Añadir usuario configurará una nueva cuenta de usuario en la red y enviará a esa persona un correo electrónico con su usuario y contraseña."
 
-#: wp-admin/network/site-themes.php:191 wp-admin/network/themes.php:270
+#: wp-admin/network/site-themes.php:195 wp-admin/network/themes.php:277
 msgid "Theme disabled."
 msgstr "Tema desactivado."
 
@@ -729,17 +729,17 @@ msgstr "Tema desactivado."
 msgid "Invalid site ID."
 msgstr "ID de sitio no válido."
 
-#: wp-admin/network/site-themes.php:183 wp-admin/network/themes.php:262
+#: wp-admin/network/site-themes.php:187 wp-admin/network/themes.php:269
 msgid "Theme enabled."
 msgstr "Tema activado"
 
-#: wp-admin/network/site-themes.php:197 wp-admin/network/themes.php:284
+#: wp-admin/network/site-themes.php:201 wp-admin/network/themes.php:291
 msgid "No theme selected."
 msgstr "Ningún tema seleccionado."
 
 #. translators: %s: site name
 #: wp-admin/network/site-info.php:131 wp-admin/network/site-settings.php:84
-#: wp-admin/network/site-themes.php:163 wp-admin/network/site-users.php:193
+#: wp-admin/network/site-themes.php:167 wp-admin/network/site-users.php:200
 msgid "Edit Site: %s"
 msgstr "Editar sitio: %s"
 
@@ -781,7 +781,7 @@ msgid "All Sites"
 msgstr "Todos los sitios"
 
 #. translators: 1: dashboard url, 2: network admin edit url
-#: wp-admin/network/site-new.php:172
+#: wp-admin/network/site-new.php:173
 msgid "Site added. <a href=\"%1$s\">Visit Dashboard</a> or <a href=\"%2$s\">Edit Site</a>"
 msgstr "Sitio añadido. <a href=\"%1$s\">Visita el Escritorio</a> or <a href=\"%2$s\">Edita el sitio</a>"
 
@@ -789,7 +789,7 @@ msgstr "Sitio añadido. <a href=\"%1$s\">Visita el Escritorio</a> or <a href=\"%
 msgid "Add New takes you to the Add New Site screen. You can search for a site by Name, ID number, or IP address. Screen Options allows you to choose how many sites to display on one page."
 msgstr "Añadir nuevo te lleva a la pantalla de Añadir nuevo sitiio. Puedes buscar un sitio por nombre, número de ID o dirección IP. Las Opciones de pantalla te permiten elegir cuantos sitios mostrar por página."
 
-#: wp-admin/network/menu.php:41 wp-admin/network/themes.php:250
+#: wp-admin/network/menu.php:41 wp-admin/network/themes.php:253
 msgctxt "theme"
 msgid "Add New"
 msgstr "Añadir nuevo"
@@ -810,7 +810,7 @@ msgstr "Los temas puede activarlos el administrador de la red sitio a sitio en l
 msgid "An Edit link to a separate Edit Site screen."
 msgstr "Un enlace de Editar que lleva a otra pantalla de Editar sitio."
 
-#: wp-admin/network/site-new.php:23
+#: wp-admin/network/site-new.php:24
 msgid "This screen is for Super Admins to add new sites to the network. This is not affected by the registration settings."
 msgstr "Esta pantalla es para que los Super administradores añadan nuevos sitios a la red. No le afectan los ajustes de registro."
 
@@ -1026,7 +1026,7 @@ msgstr "Subdominios"
 msgid "Warning! User cannot be modified. The user %s is a network administrator."
 msgstr "¡Atención! El usuario no puede modificarse. El usuario %s es un administrador de la red."
 
-#: wp-admin/network/site-new.php:24
+#: wp-admin/network/site-new.php:25
 msgid "If the admin email for the new site does not exist in the database, a new user will also be created."
 msgstr "Si el correo electrónico del administrador para el nuevo sitio no existe en la base de datos también se creará un nuevo usuario."
 
@@ -1115,7 +1115,7 @@ msgid "You can sort the table by clicking on any of the table headings and switc
 msgstr "Puedes ordenar la tabla haciendo clic en cualquiera de los encabezados de la tabla y cambiando entre vista de listado y de extracto con los iconos de la parte superior de la lista de usuarios."
 
 #. translators: %s: reserved names list
-#: wp-admin/network/site-new.php:51
+#: wp-admin/network/site-new.php:52
 msgid "The following words are reserved for use by WordPress functions and cannot be used as blog names: %s"
 msgstr "Las siguientes palabras están reservadas para su uso en las funciones de WordPress y no pueden usarse como nombre del sitio: %s"
 
@@ -1127,11 +1127,11 @@ msgstr "Si quieres limitar el registro de sitios a determinados dominios. Un dom
 msgid "If you want to ban domains from site registrations. One domain per line."
 msgstr "Si quieres banear dominios del registro de sitios. Un dominio por línea."
 
-#: wp-admin/network/site-new.php:37
+#: wp-admin/network/site-new.php:38
 msgid "Can&#8217;t create an empty site."
 msgstr "No se puede crear un sitio vacío."
 
-#: wp-admin/network/upgrade.php:111
+#: wp-admin/network/upgrade.php:112
 msgid "If your browser doesn&#8217;t start loading the next page automatically, click this link:"
 msgstr "Si tu navegador no carga la siguiente página de forma automática haz clic en este enlace:"
 
@@ -1187,7 +1187,7 @@ msgstr "Usuarios eliminados."
 msgid "Site archived."
 msgstr "Sitio archivado."
 
-#: wp-admin/network/site-new.php:115
+#: wp-admin/network/site-new.php:116
 msgid "There was an error creating the user."
 msgstr "Hubo un error al crear el usuario."
 
@@ -1223,7 +1223,7 @@ msgstr "El primer comentario en un sitio nuevo."
 msgid "The URL for the first comment on a new site."
 msgstr "La URL para el primer comentario en un nuevo sitio."
 
-#: wp-admin/network/upgrade.php:67
+#: wp-admin/network/upgrade.php:68
 msgid "All done!"
 msgstr "¡Todo hecho!"
 
@@ -1263,16 +1263,16 @@ msgstr "Ajustes para sitios nuevos"
 msgid "Registration Settings"
 msgstr "Ajustes de registro"
 
-#: wp-admin/network/site-new.php:77
+#: wp-admin/network/site-new.php:78
 msgid "Missing or invalid site address."
 msgstr "La dirección del sitio no está o no es válida."
 
-#: wp-admin/network/site-new.php:80
+#: wp-admin/network/site-new.php:81
 msgid "Missing email address."
 msgstr "Falta la dirección de correo electrónico."
 
 #. translators: %s: network name
-#: wp-admin/network/site-new.php:140
+#: wp-admin/network/site-new.php:141
 msgid "[%s] New Site Created"
 msgstr "[%s] Nuevo sitio creado"
 
@@ -1292,7 +1292,7 @@ msgstr "Enviar al administrador de la red  un correo electrónico cada vez que a
 msgid "Users are not allowed to register these sites. Separate names by spaces."
 msgstr "Los usuarios no tienes permiso para crear estos sitios. Separa los nombres mediante espacios."
 
-#: wp-admin/network/upgrade.php:111
+#: wp-admin/network/upgrade.php:112
 msgid "Next Sites"
 msgstr "Sitios siguientes"
 
@@ -1308,7 +1308,7 @@ msgstr "Confirmar"
 msgid "Cannot create an empty user."
 msgstr "No se puede crear un usuario vacio"
 
-#: wp-admin/network/site-users.php:255
+#: wp-admin/network/site-users.php:262
 msgid "Duplicated username or email address."
 msgstr "Nombre de usuario o correo electrónico duplicado."
 
@@ -1368,19 +1368,19 @@ msgstr "URL del primer comentario"
 msgid "Max upload file size"
 msgstr "Tamaño máximo de archivo"
 
-#: wp-admin/network/site-new.php:259
+#: wp-admin/network/site-new.php:260
 msgid "Add Site"
 msgstr "Añadir sitio"
 
-#: wp-admin/network/site-new.php:243
+#: wp-admin/network/site-new.php:244
 msgid "Admin Email"
 msgstr "Correo electrónico del administrador"
 
-#: wp-admin/network/site-new.php:247
+#: wp-admin/network/site-new.php:248
 msgid "A new user will be created if the above email address is not in the database."
 msgstr "Se creará un usuario nuevo si el correo electrónico no está en la base de datos"
 
-#: wp-admin/network/site-new.php:247
+#: wp-admin/network/site-new.php:248
 msgid "The username and password will be mailed to this email address."
 msgstr "El nombre de usuario y la contraseña se enviarán a este correo electrónico."
 

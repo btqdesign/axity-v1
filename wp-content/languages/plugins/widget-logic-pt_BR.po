@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Widget Logic - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2017-04-13 18:21:11+0000\n"
+"PO-Revision-Date: 2017-10-02 00:47:10+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -11,19 +11,27 @@ msgstr ""
 "Language: pt_BR\n"
 "Project-Id-Version: Plugins - Widget Logic - Stable (latest release)\n"
 
+#: widget_logic.php:333
+msgid "widgets"
+msgstr "widgets"
+
+#: widget_logic.php:345
+msgid "Charity Donation"
+msgstr "Doação para caridade"
+
 #. Author of the plugin/theme
 msgid "wpchefgadget, alanft"
 msgstr "wpchefgadget, alanft"
 
-#: widget_logic.php:261
+#: widget_logic.php:244
 msgid "Display logic errors to admin"
 msgstr "Exibe erros de lógica para o administrador"
 
-#: widget_logic.php:243
+#: widget_logic.php:226
 msgid "when plugin starts"
 msgstr "quando o plugin inicia"
 
-#: widget_logic.php:242
+#: widget_logic.php:225
 msgid "after query variables set (default)"
 msgstr "depois que as variáveis da query forem estabelecidas (padrão)"
 
@@ -39,82 +47,82 @@ msgstr "http://wordpress.org/extend/plugins/widget-logic/"
 msgid "Widget Logic"
 msgstr "Widget Logic"
 
-#: widget_logic.php:305
+#: widget_logic.php:296 widget_logic.php:329
 msgid "Widget logic:"
 msgstr "Lógica de exibição do widget:"
 
-#: widget_logic.php:270
+#: widget_logic.php:253
 msgid "Select file for importing"
 msgstr "Selecionar arquivo para importar"
 
-#: widget_logic.php:269
+#: widget_logic.php:252
 msgid "Load all WL options from a plain text config file"
 msgstr "Carregar todas as opções do WL de um arquivo de configuração em texto puro"
 
-#: widget_logic.php:269
+#: widget_logic.php:252
 msgid "Import options"
 msgstr "Importar opções"
 
-#: widget_logic.php:268
+#: widget_logic.php:251
 msgid "Export options"
 msgstr "Exportar opções"
 
-#: widget_logic.php:268
+#: widget_logic.php:251
 msgid "Save all WL options to a plain text config file"
 msgstr "Salvar todas as opções do WL num arquivo de configuração em texto puro"
 
-#: widget_logic.php:264
+#: widget_logic.php:247
 msgid "Save WL options"
 msgstr "Salvar opções do WL"
 
-#: widget_logic.php:239
+#: widget_logic.php:222
 msgid "Load logic"
 msgstr "Lógica de carregamento"
 
-#: widget_logic.php:239
+#: widget_logic.php:222
 msgid "Delays widget logic code being evaluated til various points in the WP loading process"
 msgstr "Atrasa a avaliação do widget logic em vários pontos no processo de carregamento do WordPress"
 
-#: widget_logic.php:236
+#: widget_logic.php:219
 msgid "Use 'wp_reset_query' fix"
 msgstr "Usar o conserto 'wp_reset_query'"
 
-#: widget_logic.php:234
+#: widget_logic.php:217
 msgid "Resets a theme's custom queries before your Widget Logic is checked"
 msgstr "Reseta queries customizadas de temas antes que o Widget Login seja verificado"
 
-#: widget_logic.php:231
+#: widget_logic.php:214
 msgid "Add 'widget_content' filter"
 msgstr "Adicionar o filtro 'widget_content'"
 
-#: widget_logic.php:229
+#: widget_logic.php:212
 msgid "Adds a new WP filter you can use in your own code. Not needed for main Widget Logic functionality."
 msgstr "Adiciona um novo filtro do WordPress para você usar em seu próprio código. Não é necessário para a funcionalidade principal do Widget Logic."
 
-#: widget_logic.php:226
+#: widget_logic.php:209
 msgid "Widget Logic options"
 msgstr "Opções da lógica de exibição do widget"
 
-#: widget_logic.php:153
+#: widget_logic.php:165
 msgid "No options file provided"
 msgstr "Nenhum arquivo de opções informado"
 
-#: widget_logic.php:148
+#: widget_logic.php:160
 msgid "Invalid options file"
 msgstr "Arquivo de opções inválido"
 
-#: widget_logic.php:145
+#: widget_logic.php:157
 msgid "Success! Options file imported"
 msgstr "Sucesso! O arquivo de opções foi importado"
 
-#: widget_logic.php:246
+#: widget_logic.php:229
 msgid "during page header"
 msgstr "durante o cabeçalho da página"
 
-#: widget_logic.php:245
+#: widget_logic.php:228
 msgid "when all PHP loaded"
 msgstr "quando todo o PHP é carregado"
 
-#: widget_logic.php:244
+#: widget_logic.php:227
 msgid "after theme loads"
 msgstr "depois de carregar o tema"
