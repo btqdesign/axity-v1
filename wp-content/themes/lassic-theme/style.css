@@ -11,6 +11,7 @@ License: GNU General Public License
 License URI: license.txt
 Tags: dark, black, gray, one-column, two-columns, left-sidebar, right-sidebar, fluid-layout, custom-colors, custom-menu, editor-style, featured-image-header, featured-images, post-formats, rtl-language-support, theme-options, translation-ready
 */
+
 @font-face {
 	font-family: VitaStd;
 	src: url('assets/fonts/Vita-Std-Thin.eot');
@@ -156,6 +157,7 @@ h5 {font-size: 16px;}
 h6 {font-size: 14px;}
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {color: #000;}
 p a {color: #000000;}
+#introHome{color:#3c105!important;}
 /*---Peragraph Typo---*/
 p { letter-spacing: 0.2px; margin-bottom: 10px; font-size: 16px; line-height: 1.5 !important; }
 a { color: #000000; text-decoration: none; outline: none !important; }
