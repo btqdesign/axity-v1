@@ -11,3 +11,5 @@
   $sql = "UPDATE `{$wpdb->prefix}icl_languages` SET tag = REPLACE(default_locale, '_', '-')";
   $wpdb->query($sql);
   icl_cache_clear();
+  
+?>

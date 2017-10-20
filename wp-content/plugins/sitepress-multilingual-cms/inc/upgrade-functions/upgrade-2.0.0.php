@@ -155,15 +155,14 @@ function icl_upgrade_2_0_0_steps($step, $stepper){
 								'links_fixed'           => intval(isset($links_fixed)?$links_fixed:0)
 							));
 
-							$job_id = $TranslationManagement->add_translation_job($newrid, $translator_id , $translation_package);
-							if($job_id && $status == 10){
-								$post = get_post($t->element_id);
-								$TranslationManagement->save_job_fields_from_post($job_id, $post);
-							}
-						}
-					}
-				}
-			}
+                            $job_id = $TranslationManagement->add_translation_job( $newrid, $translator_id, $translation_package );
+                            if ( $job_id && $status == 10 ) {
+                                do_action( 'wpml_save_job_fields_from_post', $job_id );
+                            }
+                        }
+                    }
+                }
+            }
             if ($processing) {
                 update_option('icl_temp_upgrade_data', array('step' => 2, 'offset' => intval($offset+100)));
                 $stepper->setNextStep(2);
@@ -244,8 +243,8 @@ function icl_ajx_upgrade_2_0_0($call, $request){
         $completed = 0;
         $stop = 0;
         $message = __('Starting the upgrade process...', 'sitepress');
-        include_once ICL_PLUGIN_PATH . '/inc/upgrade-functions/2.0.0/stepper.php';
-        include_once ICL_PLUGIN_PATH . '/inc/upgrade-functions/upgrade-2.0.0.php';
+        include_once WPML_PLUGIN_PATH . '/inc/upgrade-functions/2.0.0/stepper.php';
+        include_once WPML_PLUGIN_PATH . '/inc/upgrade-functions/upgrade-2.0.0.php';
         $temp_upgrade_data = get_option('icl_temp_upgrade_data',
                 array('step' => 0, 'offset' => 0));
         $step = isset($request['step']) ? $request['step'] : $temp_upgrade_data['step'];
@@ -276,3 +275,5 @@ function icl_ajx_upgrade_2_0_0($call, $request){
             ));    
     }
 }
+
+?>
