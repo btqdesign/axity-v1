@@ -4672,9 +4672,9 @@ if ( ! function_exists( 'cs_breadcrumbs' ) ) {
 					$cat = get_the_category(); $cat = $cat[0];
 					$cats = get_category_parents($cat, TRUE, $delimiter);
 					if ($showCurrent == 0) $cats = preg_replace("#^(.+)$delimiter$#", "$1", $cats);
-					$cats = str_replace('<a', $linkBefore . '<a' . $linkAttr, $cats);
-					$cats = str_replace('</a>', '</a>' . $linkAfter, $cats);
-					echo cs_allow_special_char($cats);
+					//$cats = str_replace('<a', $linkBefore . '<a' . $linkAttr, $cats);
+					//$cats = str_replace('</a>', '</a>' . $linkAfter, $cats);
+					//echo cs_allow_special_char($cats);
 					if ($showCurrent == 1) echo cs_allow_special_char($before . $current_page . $after);
 				}
 			} elseif ( !is_single() && !is_page() && get_post_type() <> '' && get_post_type() != 'post' && get_post_type() <> 'events' && !is_404() ) {
