@@ -3,7 +3,7 @@
  * Plugin Name: WP Image Zoom
  * Plugin URI: https://wordpress.org/plugins/wp-image-zoooom/
  * Description: Add zoom effect over the an image, whether it is an image in a post/page or the featured image of a product in a WooCommerce shop 
- * Version: 1.16
+ * Version: 1.18
  * Author: SilkyPress 
  * Author URI: https://www.silkypress.com
  * License: GPL2
@@ -11,6 +11,8 @@
  * Text Domain: wp-image-zoooom
  * Domain Path: /languages/
  *
+ * WC requires at least: 2.3.0
+ * WC tested up to: 3.2.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -109,8 +111,6 @@ final class ImageZoooom {
 
         add_filter( 'woocommerce_single_product_image_html', array( $this, 'remove_prettyPhoto' ) );
         add_filter( 'woocommerce_single_product_image_thumbnail_html', array( $this, 'remove_prettyPhoto' ) );
-//        add_filter( 'single_product_large_thumbnail_size', array( $this, 'single_product_large_thumbnail_size'), 40 );
-//        add_filter( 'single_product_small_thumbnail_size', array( $this, 'single_product_small_thumbnail_size'), 40 );
 
         add_filter( 'the_content', array( $this, 'find_bigger_image' ), 40 );
 
@@ -253,12 +253,8 @@ final class ImageZoooom {
      * wp_head compatibilities 
      */
     function wp_head_compatibilities() {
-        if ($this->theme('bridge')) { 
+        if ($this->theme('bridge') || $this->theme('nouveau') || $this->theme('stockholm') ) { 
             echo '<style type="text/css"> .wrapper { z-index: 40 !important; } </style>' . PHP_EOL;
-        }
-
-        if ($this->theme('nouveau')) { 
-            echo '<style type="text/css"> .wrapper { z-index: 100 !important; } </style>' . PHP_EOL;
         }
 
         if ($this->theme('artcore')) {
@@ -283,6 +279,7 @@ final class ImageZoooom {
         if ( defined('LP_PLUGIN_FILE')) {
             echo '<style type="text/css">body.content-item-only .learn-press-content-item-only { z-index: 990; } .single-lp_course #wpadminbar{z-index:900;}</style>' . PHP_EOL;
         }
+
     }
 
 

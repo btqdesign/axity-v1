@@ -1,12 +1,12 @@
 === WP Image Zoom ===
 Created: 21/11/2015
 Contributors: diana_burduja
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=diana.burduja@gmail.com&lc=AT&item_name=Diana%20Burduja&item_number=WP%2dImage%2dZoooom%2dplugin&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=diana.burduja@gmail.com&lc=AT&item_name=Diana%20Burduja&item_number=WP%2dImage%2dZoom%2dplugin&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Email: diana@burduja.eu
 Tags: e-commerce, featured image, hover over image zoom, image, image zoom, image zoom plugin, image magnification, image magnifier, jquery picture zoom, magnifier, magnify image, magnifying glass, mouse over image zoom, panorama, picture zoom, product image, product zoom, product magnification, product magnifier, responsive, woocommerce product zoom, woocommerce zoom, woocommerce  magnifying glass, zoom, zoom image, zoom plugin, woocommerce image zoom, woocommerce product image zoom, woocommerce zoom magnifier
 Requires at least: 3.0.1
 Tested up to: 4.8
-Stable tag: 1.16 
+Stable tag: 1.18 
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -140,8 +140,16 @@ Alternatively you can upgrade to the Pro version, as there the zoom lens is buil
 
 == Changelog ==
 
+= 1.18 =
+* 10/19/2017
+* Declare compatibility with WooCommerce 3.2 (https://woocommerce.wordpress.com/2017/08/28/new-version-check-in-woocommerce-3-2/)
+
+= 1.17 =
+* 10/14/2017
+* Feature: compatibility with the Stockholm theme
+
 = 1.16 =
-* 12/09/2017
+* 09/14/2017
 * Feature: support select-themes.com which add a wrapper on top of the page
 
 = 1.15 =
