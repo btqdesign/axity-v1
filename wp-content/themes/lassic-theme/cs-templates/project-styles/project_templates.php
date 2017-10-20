@@ -142,7 +142,7 @@ if ( !class_exists('ProjectTemplates') ) {
 										<?php cs_get_title($cs_title_limit); ?>
 									</a>
                                 </h3>
-                                <?php $cs_term_list	= get_the_term_list ( $post->ID, 'project-category', '<span><i class="fa fa-plus"></i>', ', ', '</span>' ); ?>
+                                <?php /*$cs_term_list	= get_the_term_list ( $post->ID, 'project-category', '<span><i class="fa fa-plus"></i>', ', ', '</span>' );*/ ?>
                                 <?php if ( isset( $cs_term_list ) && $cs_term_list!='' ) {?>
                                 <ul class="post-options">
                                     <li><?php echo cs_allow_special_char($cs_term_list);?></li>
@@ -300,7 +300,7 @@ if ( !class_exists('ProjectTemplates') ) {
                                     </i>
                                 </a>
                                 <a href="<?php esc_url(the_permalink()); ?>"><?php echo esc_attr('View Project','lassic');?></a>
-                                <?php $cs_term_list	= get_the_term_list ( $post->ID, 'project-category', '<span><i class="fa fa-plus"></i>', ', ', '</span>' ); ?>
+                                <?php /*$cs_term_list	= get_the_term_list ( $post->ID, 'project-category', '<span><i class="fa fa-plus"></i>', ', ', '</span>' );*/ ?>
                                 <?php if ( isset( $cs_term_list ) && $cs_term_list!='' ) {?>
                                 <ul class="post-options">
                                     <li><?php echo cs_allow_special_char($cs_term_list);?></li>
@@ -462,13 +462,13 @@ if ( !class_exists('ProjectTemplates') ) {
     	    	        <?php cs_get_title($cs_title_limit); ?>
         	        </a>
                 </h3>
-				<?php 
+				<?php /* 
 					$cs_term_list	= get_the_term_list ( $post->ID, 'project-category', '<span><i class="fa fa-plus"></i>', ', ', '</span>' ); 
 					if ( isset( $cs_term_list ) && $cs_term_list!='' ) {?>
                         <ul class="post-options">
                             <li><?php echo cs_allow_special_char($cs_term_list);?></li>
                         </ul>
-                <?php }?>
+                <?php }*/?>
             </div>
          </article>
 		<?php endwhile;?>
@@ -596,12 +596,12 @@ if ( !class_exists('ProjectTemplates') ) {
                                             </i>
                                         </a>
                                         <a href="<?php esc_url(the_permalink()); ?>"><?php echo esc_attr('View Project','lassic');?></a>
-                                        <?php 
+                                        <?php /* 
 											$cs_term_list	= get_the_term_list ( $post->ID, 'project-category', '<span><i class="fa fa-plus"></i>', ', ', '</span>' ); 										if ( isset( $cs_term_list ) && $cs_term_list!='' ) {?>
                                             <ul class="post-options">
                                                 <li><?php echo cs_allow_special_char($cs_term_list);?></li>
                                             </ul>
-                                        <?php }?>
+                                        <?php }*/?>
                                     </div>
                                 </div>
                             </figcaption>
