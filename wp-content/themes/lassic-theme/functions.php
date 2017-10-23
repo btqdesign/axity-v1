@@ -3731,7 +3731,7 @@ if ( ! function_exists( 'cs_contact_form_submit' ) ) :
         /* Verificamos el reCAPTCHA*/
         $resp = null;
         if (isset($_POST['g-recaptcha-response'])) {
-            $recaptcha = new \ReCaptcha\ReCaptcha('6Le7lgYTAAAAAGocKBoAewkGkElJE2Hsp6qjM2xH');
+            $recaptcha = new \ReCaptcha\ReCaptcha('6LcOczUUAAAAAGlHBX7zRfwV3Bjm2T07my6YClF5');
             
             if ($_SERVER['REMOTE_ADDR'] != '127.0.0.1' || $_SERVER['REMOTE_ADDR'] != '::1') {
 	            
@@ -3847,7 +3847,7 @@ if ( ! function_exists( 'cs_contact_form_submit' ) ) :
 					<td>'.$_SERVER["REMOTE_ADDR"].'</td>
 				  </tr>
 				</table>';
-			$headers  = 'From: Servidor Web <info@intellego.com.mx>' . "\r\n";
+			$headers  = 'From: Servidor Web <conectados@axity.com>' . "\r\n";
 			$headers .= 'Reply-To: ' . sanitize_email($contact_email) . "\r\n";
 			$headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
 			$headers .= 'MIME-Version: 1.0' . "\r\n";

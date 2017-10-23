@@ -548,19 +548,19 @@ if (!function_exists('cs_contactus_shortcode')) {
 		
 		$html	.= '<label> <i class="icon-globe4"></i> <input type="text" name="subject" onfocus="if(this.value == \''.__('Subjet','lassic').'\') { this.value = \'\'; }" onblur="if(this.value == \'\') { this.value = \''.__('Subjet','lassic').'\'; }" value="'.__('Subjet','lassic').'" class="'.sanitize_html_class($cs_class).'" required /></label>';
 		
-		$html	.= '<label> <i class="icon-phone8"></i> <input type="text" name="contact_number" onfocus="if(this.value == \''.__('Phone','lassic').'\') { this.value = \'\'; }" onblur="if(this.value == \'\') { this.value = \''.__('Phone','lassic').'\'; }" value="'.__('Phone','lassic').'" class="'.sanitize_html_class($cs_class).'" required /></label>';
+		//$html	.= '<label> <i class="icon-phone8"></i> <input type="text" name="contact_number" onfocus="if(this.value == \''.__('Phone','lassic').'\') { this.value = \'\'; }" onblur="if(this.value == \'\') { this.value = \''.__('Phone','lassic').'\'; }" value="'.__('Phone','lassic').'" class="'.sanitize_html_class($cs_class).'" required /></label>';
+		$html	.= '<label> <i class="icon-user9"></i> <input type="text" name="contact_country" onfocus="if(this.value == \'País\') { this.value = \'\'; }" onblur="if(this.value == \'\') { this.value = \'País\'; }" value="País" class="'.sanitize_html_class($cs_class).'" required /></label>';
 		
 		if ( isset( $cs_contactus_vacancies ) && $cs_contactus_vacancies == 'on' ) {
 			$html	.= '<label> <i class="icon-user9"></i> <input type="text" name="contact_birthdate" onfocus="if(this.value == \'Fecha de Nacimiento\') { this.value = \'\'; }" onblur="if(this.value == \'\') { this.value = \'Fecha de Nacimiento\'; }" value="Fecha de Nacimiento" class="'.sanitize_html_class($cs_class).'" required /></label>';
 			$html	.= '<label> <i class="icon-user9"></i> <input type="text" name="contact_city" onfocus="if(this.value == \'Ciudad\') { this.value = \'\'; }" onblur="if(this.value == \'\') { this.value = \'Ciudad\'; }" value="Ciudad" class="'.sanitize_html_class($cs_class).'" required /></label>';
-			$html	.= '<label> <i class="icon-user9"></i> <input type="text" name="contact_country" onfocus="if(this.value == \'País\') { this.value = \'\'; }" onblur="if(this.value == \'\') { this.value = \'País\'; }" value="País" class="'.sanitize_html_class($cs_class).'" required /></label>';
 			$html	.= '<label> <i class="icon-user9"></i> <input type="text" name="contact_interest" onfocus="if(this.value == \'Área de Interés\') { this.value = \'\'; }" onblur="if(this.value == \'\') { this.value = \'Área de Interés\'; }" value="Área de Interés" class="'.sanitize_html_class($cs_class).'" required /></label>';
 			$html	.= '<label> <i class="icon-user9"></i> <input type="text" name="contact_education" onfocus="if(this.value == \'Educación Formal\') { this.value = \'\'; }" onblur="if(this.value == \'\') { this.value = \'Educación Formal\'; }" value="Educación Formal" class="'.sanitize_html_class($cs_class).'" required /></label>';
 			$html	.= '<label> <i class="icon-user9"></i> <input type="text" name="contact_studies" onfocus="if(this.value == \'Estudios Universitarios\') { this.value = \'\'; }" onblur="if(this.value == \'\') { this.value = \'Estudios Universitarios\'; }" value="Estudios Universitarios" class="'.sanitize_html_class($cs_class).'" required /></label>';
 		}
 		
 		// reCAPTCHA
-		$html	.= '<div class="g-recaptcha" data-sitekey="6Le7lgYTAAAAAHv4nen0SGCUT780SE158YkhxODx"></div>';
+		$html	.= '<div class="g-recaptcha" data-sitekey="6LcOczUUAAAAAEzh5-4QhvRY9SC2vdEJTZl7CaB3"></div>';
 		
 		if ( isset( $cs_contactus_vacancies ) && $cs_contactus_vacancies == 'on' ) {
 		    $html	.= '<label class="textaera-sec"> <i class="icon-quote4"></i> <textarea placeholder="CV" class="'.sanitize_html_class($cs_class).' '.sanitize_html_class($cs_view_class).'" name="contact_msg" style="height: 754px !important;" required></textarea></label>';
