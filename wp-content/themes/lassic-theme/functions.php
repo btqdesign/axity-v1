@@ -1,4 +1,21 @@
 <?php
+function cubiq_setup () {
+    remove_action('wp_head', 'wp_generator');
+    remove_action('wp_head', 'wlwmanifest_link');
+    add_filter('the_generator', '__return_false');
+}
+add_action('after_setup_theme', 'cubiq_setup');
+//Remove All Meta Generators
+function remove_meta_generators($html) {
+    $pattern = '/<meta name(.*)=(.*)"generator"(.*)>/i';
+    $html = preg_replace($pattern, '', $html);
+    return $html;
+}
+function clean_meta_generators($html) {
+    ob_start('remove_meta_generators');
+}
+add_action('get_header', 'clean_meta_generators', 100);
+add_action('wp_footer', function(){ ob_end_flush(); }, 100);
 remove_filter( 'the_title_rss', 'strip_tags');
 
 //Custom Width Height Settings (Gallery)
