@@ -56,6 +56,10 @@ trait broadcasting
 		// Primary switch to the parent blog.
 		switch_to_blog( $bcd->parent_blog_id );
 
+		$action = new actions\broadcasting_setup;
+		$action->broadcasting_data = $bcd;
+		$action->execute();
+
 		if ( $bcd->link )
 		{
 			$this->debug( 'Linking is enabled.' );
@@ -348,7 +352,7 @@ trait broadcasting
 
 					// Does this child post still exist?
 					$child_post = get_post( $child_post_id );
-					if ( $child_post !== null )
+					if ( is_a( $child_post, 'WP_Post' ) )
 					{
 						$temp_post_data = $bcd->new_post;
 						$temp_post_data->ID = $child_post_id;
@@ -403,6 +407,9 @@ trait broadcasting
 			}
 
 			$bcd->new_post = get_post( $bcd->new_post( 'ID' ) );
+
+			if ( ! is_a( $bcd->new_post, 'WP_Post' ) )
+				wp_die( 'Broadcast fatal error! After creating / updating the child post, it has disappeared. Try enabling Broadcast debug mode to help diagnose the error.' );
 
 			$action = new actions\broadcasting_after_update_post;
 			$action->broadcasting_data = $bcd;

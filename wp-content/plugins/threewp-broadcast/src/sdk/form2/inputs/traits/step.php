@@ -18,7 +18,7 @@ trait step
 	**/
 	public function step( $step )
 	{
-		$step = intval( $step );
+		$step = floatval( $step );
 		return $this->set_attribute( 'step', $step );
 	}
 }

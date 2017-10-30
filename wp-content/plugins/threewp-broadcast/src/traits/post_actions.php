@@ -27,13 +27,9 @@ trait post_actions
 		$this->add_action( 'wp_ajax_broadcast_post_bulk_action' );
 
 		// We need to keep track of linking.
-		$this->add_action( 'wp_trash_post', 'trash_post' );
-		$this->add_action( 'trash_post' );
-		$this->add_action( 'trash_page', 'trash_post' );
-		$this->add_action( 'untrash_post' );
-		$this->add_action( 'untrash_page', 'untrash_post' );
 		$this->add_action( 'delete_post' );
-		$this->add_action( 'delete_page', 'delete_post' );
+		$this->add_action( 'trash_post' );
+		$this->add_action( 'untrash_post' );
 	}
 
 	/**
@@ -63,7 +59,7 @@ trait post_actions
 		}
 	}
 
-	public function delete_post( $post_id)
+	public function delete_post( $post_id )
 	{
 		$this->trash_untrash_delete_post( 'wp_delete_post', $post_id );
 	}
@@ -394,7 +390,7 @@ trait post_actions
 		}
 	}
 
-	public function trash_post( $post_id)
+	public function trash_post( $post_id )
 	{
 		$this->trash_untrash_delete_post( 'wp_trash_post', $post_id );
 	}
@@ -404,7 +400,7 @@ trait post_actions
 	 * @param string $command Command to run.
 	 * @param int $post_id Post with linked children
 	 */
-	private function trash_untrash_delete_post( $command, $post_id)
+	private function trash_untrash_delete_post( $command, $post_id )
 	{
 		global $blog_id;
 		$broadcast_data = $this->get_post_broadcast_data( $blog_id, $post_id );
@@ -445,7 +441,7 @@ trait post_actions
 		}
 	}
 
-	public function untrash_post( $post_id)
+	public function untrash_post( $post_id )
 	{
 		$this->trash_untrash_delete_post( 'wp_untrash_post', $post_id );
 	}

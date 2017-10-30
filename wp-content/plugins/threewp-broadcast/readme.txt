@@ -78,6 +78,7 @@ There are several <a href="https://broadcast.plainviewplugins.com/">Broadcast ad
 * <a href="https://broadcast.plainviewplugins.com/addon/global-blocks-for-cornerstone/">Global Blocks For Cornerstone</a> adds support for the <a href="https://wordpress.org/plugins/global-blocks-for-cornerstone/">Global Blocks for Cornerstone</a> plugin.
 * <a href="https://broadcast.plainviewplugins.com/addon/global-content-blocks/">Global Content Blocks</a> adds support for shortcodes from <a href="https://wordpress.org/plugins/global-content-blocks/">WP Xpert&#8217;s Global Content Blocks</a> plugin.
 * <a href="https://broadcast.plainviewplugins.com/addon/gravity-forms/">Gravity Forms</a> adds support for the <a href="http://www.gravityforms.com/">Gravity Forms</a> plugin.
+* <a href="https://broadcast.plainviewplugins.com/addon/image-map-pro/">Image Map Pro</a> adds support for the <a href="https://codecanyon.net/item/image-map-pro-for-wordpress-interactive-image-map-builder/2826664">Image Map Pro</a> plugin.
 * <a href="https://broadcast.plainviewplugins.com/addon/intagrate/">Intagrate</a> adds support for the <a href="https://intagrate.io/">Intagrate</a> plugin.
 * <a href="https://broadcast.plainviewplugins.com/addon/jetpack/">Jetpack</a> adds support for <a href="https://wordpress.org/plugins/jetpack/">Automattic's Jetpack plugin</a>.
 * <a href="https://broadcast.plainviewplugins.com/addon/learndash">LearnDash</a>: New add-on. Adds support for the <a href="https://www.learndash.com/">LearnDash LMS</a> plugin.
@@ -88,6 +89,7 @@ There are several <a href="https://broadcast.plainviewplugins.com/">Broadcast ad
 * <a href="https://broadcast.plainviewplugins.com/addon/pods/">Pods</a> adds support for the <a href="https://www.pods.io/">Pods - Custom Content Types and Fields</a> plugin.
 * <a href="https://broadcast.plainviewplugins.com/addon/polylang/">Polylang</a> adds support for Broadcasting posts in different languages using Frédéric Demarle’s <a href="https://wordpress.org/plugins/polylang/">Polylang</a> translation plugin.
 * <a href="https://broadcast.plainviewplugins.com/addon/post-expirator/">Post Expirator</a> adds support for Aaron Axelsen's <a href="https://wordpress.org/plugins/post-expirator/">Post Expirator</a> plugin.
+* <a href="https://broadcast.plainviewplugins.com/addon/sensei/">Sensei</a> adds support for the <a href="https://woocommerce.com/products/sensei/">Sensei</a> plugin.
 * <a href="https://broadcast.plainviewplugins.com/addon/siteorigin-page-builder/">SiteOrigin Page Builder</a> adds support for <a href="https://wordpress.org/plugins/siteorigin-panels/">SiteOrigin's Page Builder plugin</a>.
 * <a href="https://broadcast.plainviewplugins.com/addon/slider-revolution/">Slider Revolution</a> adds support for the <a href="https://revolution.themepunch.com/">Slider Revolution</a> plugin.
 * <a href="https://broadcast.plainviewplugins.com/addon/smart-slider-3/">Smart Slider 3</a> adds support for the <a href="https://wordpress.org/plugins/smart-slider-3/">Smart Slider 3</a> plugin.
@@ -97,6 +99,7 @@ There are several <a href="https://broadcast.plainviewplugins.com/">Broadcast ad
 * <a href="https://broadcast.plainviewplugins.com/addon/the-events-calendar/">The Events Calendar</a> adds venue and organiser support for Modern Tribe’s <a href="https://wordpress.org/plugins/the-events-calendar/">The Events Calendar </a> plugin.
 * <a href="https://broadcast.plainviewplugins.com/addon/toolset/">Toolset</a> adds support for <a href="https://wp-types.com/">OnTheGoSystems&#8217; Toolset</a> plugins: CRED, Types and Views.
 * <a href="https://broadcast.plainviewplugins.com/addon/ultimate-member/">Ultimate Member</a> adds support for the <a href="https://wordpress.org/plugins/ultimate-member/">Ultimate Member</a> plugin.
+* <a href="https://broadcast.plainviewplugins.com/addon/unyson/">Unyson</a> adds support for the <a href="https://wordpress.org/plugins/unyson/">Unyson page builder plugin</a>.
 * <a href="https://broadcast.plainviewplugins.com/addon/woocommerce/">WooCommerce</a> allows attribute taxonomies and product variations to be broadcasted.
 * <a href="https://broadcast.plainviewplugins.com/addon/wp-all-import/">WP All Import</a> adds support for post updates from Soffly's <a href="http://www.wpallimport.com/">WP All Import Pro</a>.
 * <a href="https://broadcast.plainviewplugins.com/addon/wpcustom-category-image/">WPCustom Category Image</a> adds support for the <a href="https://wordpress.org/plugins/wpcustom-category-image/">WPCustom Category Image</a> plugin.
@@ -154,6 +157,7 @@ Utilities pack
 * <a href="https://broadcast.plainviewplugins.com/addon/menus/">Menus</a> copies menus between blogs (overwrite / update), with support for equivalent child posts on the child blogs and equivalent taxonomies.
 * <a href="https://broadcast.plainviewplugins.com/addon/page-content-shortcode/">Page Content Shortcode</a> provides a <code>[bc_page_content slug="pageslug"]</code> shortcode to display the contents of a page.
 * <a href="https://broadcast.plainviewplugins.com/addon/php-code/">PHP Code</a> runs custom PHP code on selected blogs. Easily switch themes for all blogs, for example.
+* <a href="https://broadcast.plainviewplugins.com/addon/shortcodes/">Shortcodes</a> provides arbitrary admin-defined global or local shortcodes.
 * <a href="https://broadcast.plainviewplugins.com/addon/sync-taxonomies/">Sync Taxonomies</a> synchronizes the taxonomies of target blogs with those from a source blog.
 * <a href="https://broadcast.plainviewplugins.com/addon/user-role-sync/">User Role Sync</a> copies user roles between blogs.
 * <a href="https://broadcast.plainviewplugins.com/addon/widgets/">Widgets</a> copies widget and sidebar settings between blogs.
@@ -238,6 +242,7 @@ The broadcast meta box, menu and columns in the post view can be hidden from use
 
 Below is a list of plugins that just will not work properly with Broadcast and / or its addons:
 
+* <a href="https://wordpress.org/plugins/intuitive-custom-post-order/">Intuitive Custom Post Order</a> - Prevents broadcasting due to switch_to_blog() mismatch.
 * Post Type Switcher - Turns post types into attachments and vice versa.
 * Taxonomy Terms Order - prevents terms from being seen.
 
@@ -286,6 +291,20 @@ This will broadcast all normal product settings: SKU, price, etc.
 If your products have variations, a product image gallery, you want to sync stock, you want to sync orders, need the attribute taxonomies to be synced, you'll be wanting the <a href="https://broadcast.plainviewplugins.com/addon/woocommerce/">WooCommerce add-on</a>.
 
 == Changelog ==
+
+= 41 20171030 =
+
+* New: Added database maintenance tool. Currently used just for cleaning up the database a little, and will expand as need be.
+* Fix: Add extra error checking after creating / updating child posts to ensure that it was correctly updated. This should prevent rogue developer plugins from causing generous amounts of havoc and debugging time unnecessarily.
+* New add-on. <a href="https://broadcast.plainviewplugins.com/addon/image-map-pro/">Image Map Pro</a> adds support for the <a href="https://codecanyon.net/item/image-map-pro-for-wordpress-interactive-image-map-builder/2826664">Image Map Pro</a> plugin.
+* New add-on. <a href="https://broadcast.plainviewplugins.com/addon/sensei/">Sensei</a> adds support for the <a href="https://woocommerce.com/products/sensei/">Sensei</a> plugin.
+* New add-on. <a href="https://broadcast.plainviewplugins.com/addon/shortcodes/">Shortcodes</a> provides arbitrary admin-defined global or local shortcodes.
+* New add-on. <a href="https://broadcast.plainviewplugins.com/addon/unyson/">Unyson</a> adds support for the <a href="https://wordpress.org/plugins/unyson/">Unyson page builder plugin</a>.
+* New snippet: <a href="https://broadcast.plainviewplugins.com/snippet/post-actions-from-the-child-to-the-parent/">Post actions from the child to the parent</a> shows how to enable deletion / trashing / untrashing of parent the post from the child post.
+* Code: The view post info check also shows child posts.
+* Code: Removed old actions for trash_page, untrash_page, delete_page.
+* Code: Added broadcasting_data()->custom_fields()->child_fields()->update_meta_json() call.
+* Code: Added broadcasting_setup action to allow for modifying the broadcasting_data object before the content preparsing.
 
 = 40.1 20171004 =
 

@@ -80,6 +80,7 @@ class ThreeWP_Broadcast
 		@since		2017-01-16 17:14:35
 	**/
 	public static $incompatible_plugins = [
+		'intuitive-custom-post-order/intuitive-custom-post-order.php',
 		'post-type-switcher/post-type-switcher.php',
 		'taxonomy-terms-order/taxonomy-terms-order.php',
 	];
@@ -706,6 +707,19 @@ class ThreeWP_Broadcast
 		return $r;
 	}
 
+
+	/**
+		@brief		Modify the debug class name, if necessary.
+		@since		2017-10-28 18:11:53
+	**/
+	public function get_debug_class_name( $class_name )
+	{
+		$count = count( $this->broadcasting );
+		if ( $count < 2 )
+			return $class_name;
+		return $class_name . ' (' . $count . ')';
+	}
+
 	/**
 		@brief		Return an array of all callbacks of a hook.
 		@since		2014-04-30 00:11:30
@@ -850,14 +864,6 @@ class ThreeWP_Broadcast
 		$row->td()->text( implode( "<br>\n", $hooks ) );
 
 		$row = $table->body()->row();
-		$row->td()->text_( 'Save post decoys' );
-		$row->td()->text( $this->get_site_option( 'save_post_decoys' ) );
-
-		$row = $table->body()->row();
-		$row->td()->text_( 'Save post priority' );
-		$row->td()->text( $this->get_site_option( 'save_post_priority' ) );
-
-		$row = $table->body()->row();
 		$row->td()->text_( 'Plugins active on blog' );
 		$plugins = $this->get_plugin_info_array( get_option( 'active_plugins' ) );
 		$row->td()->text( implode( "<br>\n", $plugins ) );
@@ -867,6 +873,14 @@ class ThreeWP_Broadcast
 		$plugins = get_site_option( 'active_sitewide_plugins' );
 		$plugins = $this->get_plugin_info_array( array_keys( $plugins ) );
 		$row->td()->text( implode( "<br>\n", $plugins ) );
+
+		foreach( $this->site_options() as $key => $value )
+		{
+			$row = $table->body()->row();
+			$row->td()->text_( 'Broadcast option %s', $key );
+			$value = $this->get_site_option( $key );
+			$row->td()->text( json_encode( $value ) );
+		}
 
 		return $table;
 	}

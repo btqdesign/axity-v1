@@ -11,15 +11,6 @@ use \Exception;
 trait Store
 {
 	/**
-		@brief		Return the container that stores this object.
-		@since		2015-10-23 10:54:49
-	**/
-	public static function store_container()
-	{
-		throw new Exception( 'Please override the store_container method.' );
-	}
-
-	/**
 		@brief		Delete the object completely.
 		@since		2015-10-23 10:54:49
 	**/
@@ -29,13 +20,15 @@ trait Store
 	}
 
 	/**
-		@brief		Return the storage key.
-		@details	Key / ID.
-		@since		2016-01-02 01:03:18
+		@brief		Return the name of the property that should be used as the cached object.
+		@since		2017-10-15 20:40:40
 	**/
-	public static function store_key()
+	public static function get_cache_property_key()
 	{
-		throw new Exception( 'Please override the store_key method.' );
+		$key = static::store_key();
+		// We use the class in case two classes have the same key.
+		$class = str_replace( '\\', '', __CLASS__ );
+		return '__' . $class . $key;
 	}
 
 	/**
@@ -47,14 +40,14 @@ trait Store
 		// Conv
 		$container = static::store_container();
 
-		$key = static::store_key();
-		$__key = '__' . $key;
+		$__key = static::get_cache_property_key();
 
 		// Does the object already exist in the container cache?
 		if ( isset( $container->$__key ) )
 			return $container->$__key;
 
 		// Try to load the object from the store.
+		$key = static::store_key();
 		$r = static::load_from_store( $key );
 
 		$r = maybe_unserialize( $r );
@@ -84,10 +77,43 @@ trait Store
 	}
 
 	/**
+		@brief		For a reload of the object from disk.
+		@details	This can be used either the first time the store is loaded or by forcing it to be reloaded once cached.
+		@since		2017-10-15 20:44:29
+	**/
+	public static function reload()
+	{
+		$container = static::store_container();
+		$__key = static::get_cache_property_key();
+		if ( isset( $container->$__key ) )
+			unset( $container->$__key );
+		return static::load();
+	}
+
+	/**
 		@brief		Save the object to the store.
 		@since		2016-01-02 01:29:20
 	**/
 	public function save()
+	{
+		throw new Exception( 'Please override the store_key method.' );
+	}
+
+	/**
+		@brief		Return the container that stores this object.
+		@since		2015-10-23 10:54:49
+	**/
+	public static function store_container()
+	{
+		throw new Exception( 'Please override the store_container method.' );
+	}
+
+	/**
+		@brief		Return the storage key.
+		@details	Key / ID.
+		@since		2016-01-02 01:03:18
+	**/
+	public static function store_key()
 	{
 		throw new Exception( 'Please override the store_key method.' );
 	}

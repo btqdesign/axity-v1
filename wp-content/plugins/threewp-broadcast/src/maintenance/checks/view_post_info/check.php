@@ -77,5 +77,22 @@ class check
 
 		$text = sprintf( '<pre>%s</pre>', var_export( $metas, true ) );
 		$o->r .= $this->broadcast()->message( $text );
+
+		// Show all posts that have this post as the parent.
+		global $wpdb;
+		// We have to use a query since get_posts is post_status sensitive.
+		$query = sprintf( "SELECT `ID`, `post_title`, `post_type` FROM `%s` WHERE `post_parent` = '%d'",
+			$wpdb->posts,
+			$post_id
+		);
+		$child_posts = $wpdb->get_results( $query );
+
+		$child_post_ids = [];
+		foreach( $child_posts as $child_post )
+			$child_post_ids[ $child_post->ID ] = sprintf( '%s / %s', $child_post->post_title, $child_post->post_type );
+		ksort( $child_post_ids );
+
+		$text = sprintf( '<pre>%s</pre>', var_export( $child_post_ids, true ) );
+		$o->r .= $this->broadcast()->message( $text );
 	}
 }

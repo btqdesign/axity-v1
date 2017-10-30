@@ -43,8 +43,8 @@ class ThreeWP_Broadcast_Plugin_Pack
 		$r .= $this->get_plugins_table();
 
 		$r .= $this->p( sprintf(
-			__( 'The author can be contacted at: %s', 'threewp_broadcast' ),
-			'<a href="mailto:edward@plainviewplugins.com">edward@plainviewplugins.com</a>'
+			__( 'The developer can be contacted at: %s', 'threewp_broadcast' ),
+			'<a href="mailto:info@plainviewplugins.com">info@plainviewplugins.com</a>'
 		) );
 
 		echo $r;

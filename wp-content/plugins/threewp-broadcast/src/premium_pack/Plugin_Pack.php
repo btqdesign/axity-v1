@@ -38,6 +38,9 @@ abstract class Plugin_Pack
 	**/
 	public function edd_admin_license_tab_text()
 	{
+		$status = $this->edd_get_cached_license_status();
+		if ( in_array( $status->license, [ 'deactivated', 'valid' ] ) )
+			return;
 		return $this->p_(
 			__( "If the pack is not activating as it should due to an SSL error, add this to your wp-config.php file: %s", 'threewp_broadcast' ),
 			"<code>define( 'BROADCAST_PP_SSL_WORKAROUND', true );</code>"
