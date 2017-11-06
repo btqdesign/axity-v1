@@ -6,7 +6,7 @@ function wp_image_zoooom_settings($type) {
     $l = 'wp-image-zoooom';
 
     $plugin = array(
-        'version'           => '1.18',
+        'version'           => '1.19',
         'plugin_name'       => 'WP Image Zoom',
         'plugin_file'       => str_replace('includes/settings.php', 'image-zoooom.php', __FILE__),
         'plugin_server'     => 'https://www.silkypress.com',
@@ -68,13 +68,13 @@ function wp_image_zoooom_settings($type) {
         'lensFade' => array(
             'label' => __('Fade Time', $l ),
             'post_input' => 'sec',
-            'value' => 1,
+            'value' => 0.5,
             'description' => __('The amount of time it takes for the Lens to slowly appear or dissapear', $l),
             'input_form' => 'input_text',
         ),
         'tint' => array(
             'label' => __('Tint', $l),
-            'value' => false,
+            'value' => true,
             'description' => __('A color that will layed on top the of non-magnified image in order to emphasize the lens', $l),
             'input_form' => 'checkbox',
         ),
@@ -85,7 +85,7 @@ function wp_image_zoooom_settings($type) {
         ),
         'tintOpacity' => array(
             'label' => __('Tint Opacity', $l),
-            'value' => '0.5',
+            'value' => '0.1',
             'post_input' => '%',
             'input_form' => 'input_text',
         ),
@@ -110,7 +110,7 @@ function wp_image_zoooom_settings($type) {
         'zwBorderThickness' => array(
             'label' => __('Border Thickness', $l),
             'post_input' => 'px',
-            'value' => 4,
+            'value' => 1,
             'input_form' => 'input_text',
         ),
         'zwShadow' => array(
@@ -134,7 +134,7 @@ function wp_image_zoooom_settings($type) {
         'zwFade' => array(
             'label' => __('Fade Time', $l),
             'post_input' => 'sec',
-            'value' => 0,
+            'value' => 0.5,
             'description' => __('The amount of time it takes for the Zoom Window to slowly appear or disappear', $l),
             'input_form' => 'input_text',
         ),
@@ -311,7 +311,7 @@ function wp_image_zoooom_settings($type) {
             'value' => '',
             'input_form' => 'input_color',
             'pro' => true,
-        ),            
+        ),
         'customTextAlign' => array(
             'label' => __('Text Align', $l),
             'values' => array(

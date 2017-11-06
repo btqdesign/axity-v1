@@ -29,7 +29,28 @@ class ImageZoooom_Warnings {
         $this->check_avada();
         $this->check_shopkeeper();
         $this->check_bwf_minify();
+        $this->check_woo_swipe();
     }
+
+
+    /**
+     * Warning about WooSwipe plugin 
+     */
+    function check_woo_swipe() {
+
+        if ( ! is_plugin_active( 'wooswipe/wooswipe.php' ) ) return false;
+
+        $option = get_option( 'iz_dismiss_wooswipe', '' );
+
+        if ( !empty( $option ) ) {
+            return;
+        }
+
+        add_action( 'admin_notices', array( $this, 'check_wooswipe_notice' ) );
+
+    }
+
+
 
     /**
      * Warning about BWF settings 
@@ -107,6 +128,20 @@ class ImageZoooom_Warnings {
 
     }
 
+    /**
+     * Show a warning about the WooSwipe plugin 
+     */
+    function check_wooswipe_notice() {
+        $id = 'iz_dismiss_wooswipe';
+        $class = 'notice notice-warning is-dismissible';
+        $pro_url = 'https://www.silkypress.com/wp-image-zoom-plugin/?utm_source=wordpress&utm_campaign=iz_free&utm_medium=banner';
+        $wooswipe_url = 'https://wordpress.org/plugins/wooswipe/';
+        $message = sprintf( __( 'WP Image Zoom plugin is <b>not compatible with the <a href="%1$s">WooSwipe WooCommerce Gallery</a> plugin</b>. You can try the zoom plugin with the default WooCommerce gallery by deactivating the WooSwipe plugin. Alternatively, you can upgrade to the WP Image Zoom Pro version, where the issue with the WooSwipe plugin is fixed.' ), $wooswipe_url, $pro_url);
+        printf( '<div class="%1$s" id="%2$s"><p>%3$s</p></div>', $class, $id, $message );
+
+        $this->dismiss_js( $id );
+
+    }
 
 
     /**

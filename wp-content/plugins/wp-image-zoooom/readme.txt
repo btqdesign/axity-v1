@@ -6,7 +6,7 @@ Email: diana@burduja.eu
 Tags: e-commerce, featured image, hover over image zoom, image, image zoom, image zoom plugin, image magnification, image magnifier, jquery picture zoom, magnifier, magnify image, magnifying glass, mouse over image zoom, panorama, picture zoom, product image, product zoom, product magnification, product magnifier, responsive, woocommerce product zoom, woocommerce zoom, woocommerce  magnifying glass, zoom, zoom image, zoom plugin, woocommerce image zoom, woocommerce product image zoom, woocommerce zoom magnifier
 Requires at least: 3.0.1
 Tested up to: 4.8
-Stable tag: 1.18 
+Stable tag: 1.19 
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -20,7 +20,7 @@ WP Image Zoom is a robust, modern and very configurable image zoom plugin. It al
 
 Your visitors will be able to see the beautiful details of your images. This will improve your users' experience and hopefully also your revenue.
 
-[youtube https://www.youtube.com/watch?v=jIuhEUGurHY]
+[youtube https://www.youtube.com/watch?v=qph190mQaNI]
 
 = Features =
 
@@ -119,7 +119,7 @@ Alternatively you can upgrade to the Pro version, as there the zoom lens is buil
 
 = Credits =
 
-* Demo photo from http://pixabay.com/en/wordcloud-tagcloud-cloud-text-tag-679951/ under CC0 Public Domain license
+* Demo photo from https://pixabay.com/en/camera-retro-ricoh-old-camera-813814/ under CC0 Public Domain license
 
 
 == Screenshots ==
@@ -139,6 +139,12 @@ Alternatively you can upgrade to the Pro version, as there the zoom lens is buil
 7. Apply the zoom from Visual Composer, the Single Image element
 
 == Changelog ==
+
+= 1.19 =
+* 11/05/2017
+* Change demo image, presentation video and screenshots
+* Fix: bug https://wordpress.org/support/topic/error-in-the-console-undefined-404/
+* Show warning incompatibility with WooSwipe plugin
 
 = 1.18 =
 * 10/19/2017

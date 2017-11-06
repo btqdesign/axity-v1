@@ -7,7 +7,7 @@ jQuery(document).ready(function( $ ){
 
     if($.browser.mobile && IZ.enable_mobile != '1' ) {
         return;
-    } 
+    }
 
     var options = IZ.options;
 
@@ -21,21 +21,28 @@ jQuery(document).ready(function( $ ){
         $(this).attr('data-zoom-image', $(this).data('large_image'));
     });
 
+    // Attach the .zoooom class to the IMG children
+    $(".zoooom").each(function(){
+      if ( this.tagName !== 'IMG' ) {
+        $(this).children("img").addClass('zoooom');
+        $(this).removeClass('zoooom');
+      }
+    });
 
     // Start the zoom for the normal images
     options.zIndex = 112400;
-    $(".zoooom, .zoooom img").image_zoom(options);
+    $("img.zoooom").image_zoom(options);
 
     // WooCommerce category pages
     if ( IZ.woo_categories == '1' ) {
         $(".tax-product_cat .products img, .post-type-archive-product .products img").image_zoom(options);
     }
 
-    // Fix for the LazyLoad (unveil.js) plugins 
-    if (typeof $.unveil === "function") { 
+    // Fix for the LazyLoad (unveil.js) plugins
+    if (typeof $.unveil === "function") {
         $("img.unveil").unveil(0, function() {
             $(this).load(function() {
-                $("img.zoooom, .zoooom img").image_zoom(options);
+                $("img.zoooom").image_zoom(options);
             });
         });
     }
@@ -48,7 +55,7 @@ jQuery(document).ready(function( $ ){
             clearTimeout(window.resizeEvt);
             window.resizeEvt = setTimeout(function() {
                 $(".zoomContainer").remove();
-                $(".zoooom, .zoooom img, .attachment-shop_single, .attachment-shop_thumbnail.flex-active-slide img").image_zoom(options);
+                $("img.zoooom, .attachment-shop_single, .attachment-shop_thumbnail.flex-active-slide img").image_zoom(options);
                 $(".tax-product_cat .products img").image_zoom(options);
             }, 500);
         });
@@ -66,11 +73,11 @@ jQuery(document).ready(function( $ ){
     $('.sub-menu li').hover(function(){
         $('.zoomContainer').remove();
     });
-    restart_on_hover($('.zoooom, .zoooom img'));
-    
+    restart_on_hover($('img.zoooom'));
+
 
     // Show zoom on the WooCommerce gallery
-    if ( IZ.with_woocommerce == '1' ) { 
+    if ( IZ.with_woocommerce == '1' ) {
     $(".attachment-shop_single").image_zoom(options);
     restart_on_hover($('.attachment-shop_single'));
 
@@ -96,7 +103,7 @@ jQuery(document).ready(function( $ ){
                 // Exchange the attributes
                 $.each(['src', 'alt', 'title'], function(key,attr) {
                     var temp;
-                    if ( obj1.attr( attr ) ) temp = obj1.attr( attr ); 
+                    if ( obj1.attr( attr ) ) temp = obj1.attr( attr );
                     if ( obj2.attr( attr ) ) {
                         obj1.attr(attr, obj2.attr(attr) );
                     } else {
@@ -120,7 +127,7 @@ jQuery(document).ready(function( $ ){
                 obj1.parent().attr('href', temp );
 
                 // Set the obj1.src = the link source
-                obj1.attr('src', temp ); 
+                obj1.attr('src', temp );
 
                 // Set the obj2.src = data-thumbnail-src
                 if ( obj1.data('thumbnail-src') && IZ.exchange_thumbnails == '1' ) {
@@ -128,11 +135,11 @@ jQuery(document).ready(function( $ ){
                 }
 
                 // Set the obj1.data-thumbnail-src
-                obj1.attr('data-thumbnail-src', thumb_src ); 
+                obj1.attr('data-thumbnail-src', thumb_src );
 
                 // Replace the data-zoom-image
                 temp = obj1.data('zoom-image');
-                if ( !obj2.data('zoom-image') ) obj2.data('zoom-image', ''); 
+                if ( !obj2.data('zoom-image') ) obj2.data('zoom-image', '');
                 obj1.data('zoom-image', obj2.data('zoom-image'));
                 if( ! temp ) temp = '';
                 obj2.data('zoom-image', temp);
@@ -156,7 +163,7 @@ jQuery(document).ready(function( $ ){
             setTimeout( function() {
                 if ( $(".flex-viewport").length > 0 ) {
                     first_img = ".woocommerce-product-gallery__wrapper .flex-active-slide img";
-                } 
+                }
                 $(first_img).first().image_zoom( options );
                 restart_on_hover($(first_img).first());
             }, 500 );
@@ -194,14 +201,14 @@ jQuery(document).ready(function( $ ){
                 e.preventDefault();
             });
 
-        } 
+        }
     }
 
 
 
 
     // Show zoom on the WooCommerce 3.0.+ gallery without slider
-    if ( IZ.with_woocommerce == '1' && (IZ.woo_slider == '0' || $('.woo_product_slider_disabled').length > 0)) { 
+    if ( IZ.with_woocommerce == '1' && (IZ.woo_slider == '0' || $('.woo_product_slider_disabled').length > 0)) {
         var first_img = $('.woocommerce-product-gallery__image:first-child img');
 
         // Zoom on the first image
@@ -229,7 +236,7 @@ jQuery(document).ready(function( $ ){
                 // Exchange the attributes
                 $.each(['alt', 'title', 'data-src'], function(key,attr) {
                     var temp;
-                    if ( first_img.attr( attr ) ) temp = first_img.attr( attr ); 
+                    if ( first_img.attr( attr ) ) temp = first_img.attr( attr );
                     if ( this_thumb.attr( attr ) ) {
                         first_img.attr(attr, this_thumb.attr(attr) );
                     } else {
@@ -257,7 +264,7 @@ jQuery(document).ready(function( $ ){
                 first_img.parent().attr('href', temp );
 
                 // Set the first_img.src = the link source
-                first_img.attr('src', temp ); 
+                first_img.attr('src', temp );
 
                 // Set the this_thumb.src = data-thumbnail-src
                 if ( first_img.data('thumbnail-src') && IZ.exchange_thumbnails == '1' ) {
@@ -265,11 +272,11 @@ jQuery(document).ready(function( $ ){
                 }
 
                 // Set the first_img.data-thumbnail-src
-                first_img.attr('data-thumbnail-src', thumb_src ); 
+                first_img.attr('data-thumbnail-src', thumb_src );
 
                 // Replace the data-zoom-image
                 temp = first_img.data('zoom-image');
-                if ( !this_thumb.data('zoom-image') ) this_thumb.data('zoom-image', ''); 
+                if ( !this_thumb.data('zoom-image') ) this_thumb.data('zoom-image', '');
                 first_img.data('zoom-image', this_thumb.data('zoom-image'));
                 if( ! temp ) temp = '';
                 this_thumb.data('zoom-image', temp);
