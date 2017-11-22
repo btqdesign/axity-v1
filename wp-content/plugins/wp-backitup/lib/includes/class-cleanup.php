@@ -127,6 +127,11 @@ class WPBackItUp_Cleanup {
 	        WPBackItUp_Logger::log($this->log_name,'***BEGIN JOB***');
 		    $job_id = $task->getJobId();
 		    $job = WPBackItUp_Job::get_job_by_id($job_id);
+		    if (false===$job){
+			    WPBackItUp_Logger::log_error($this->log_name,__METHOD__,'Cleanup job not be found: ' .var_export($job_id,true));
+			    return false;
+		    }
+
 		    $job->setStatus(WPBackItUp_Job::ACTIVE);
 
 	        WPBackItUp_Logger::log_sysinfo($this->log_name);
@@ -256,15 +261,37 @@ class WPBackItUp_Cleanup {
      * @param WPBackItUp_Job_Task $task
      */
     public function purge_old_files($task){
-        global $wp_backup;
 
         try {
 	        $this->set_job_log($task);
 
 	        WPBackItUp_Logger::log($this->log_name,'**PURGE OLD FILES**' );
 
+	        $backup_retained_number = WPBackItUp_Utility::get_option('_backup_retained_number',5);
+	        $backup_path = WPBACKITUP__BACKUP_PATH .'/';
+
+
 	        // purge old files from the backup and logs folders - this is NOT for backups
-	        $wp_backup->purge_old_files();
+	        $fileSystem = new WPBackItUp_FileSystem( $this->log_name);
+
+	        //Check the retention
+	        $fileSystem->purge_FilesByDate($backup_retained_number,$backup_path);
+
+	        //      --PURGE BACKUP FOLDER
+	        //Purge logs in backup older than N days
+	        $fileSystem->purge_files($backup_path,'*.log',WPBACKITUP__BACKUP_RETAINED_DAYS);
+
+	        //Purge restore DB checkpoints older than 5 days
+	        $fileSystem->purge_files($backup_path,'db*.cur',WPBACKITUP__BACKUP_RETAINED_DAYS);
+
+	        //      --PURGE LOGS FOLDER
+	        $logs_path = WPBACKITUP__PLUGIN_PATH .'/logs/';
+
+	        //Purge logs in logs older than 5 days
+	        $fileSystem->purge_files($logs_path,'*.log',WPBACKITUP__BACKUP_RETAINED_DAYS);
+
+	        //Purge Zipped logs in logs older than 5 days
+	        $fileSystem->purge_files($logs_path,'*.zip',WPBACKITUP__BACKUP_RETAINED_DAYS);
 
 	        //check debug.log
 	        //TODO: Add UI for setting to purge debug.log when gets too big - use MB in UI - 104857600(100mb)
@@ -342,6 +369,10 @@ class WPBackItUp_Cleanup {
 
 	        $job_id = $task->getJobId();
 	        $job = WPBackItUp_Job::get_job_by_id($job_id);
+	        if (false===$job){
+		        WPBackItUp_Logger::log_error($this->log_name,__METHOD__,'Cleanup job not be found: ' .var_export($job_id,true));
+	        	return false;
+	        }
 
 	        $task->setStatus(WPBackItUp_Job_Task::COMPLETE);
 	        $job->setStatus(WPBackItUp_Job::COMPLETE);

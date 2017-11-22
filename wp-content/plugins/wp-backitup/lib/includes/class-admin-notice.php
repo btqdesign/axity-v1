@@ -11,7 +11,7 @@
  */
 
 if ( ! class_exists( 'WPBackitup_Admin_Notice' ) ) {
-
+//TODO: Refactor class and file name
 	class WPBackitup_Admin_Notice {
 
 
@@ -38,15 +38,25 @@ if ( ! class_exists( 'WPBackitup_Admin_Notice' ) ) {
 		private $id;
 		private $days;				// days after the notice should display
 		private $temp_days;			// days after the temporary dismissed notice should display
+		private $notice_type;
 		private $type;
 		private $message;
-		private $link_label;
+
+		private $link_1;
+		private $link_2;
+		private $link_3;
+
+		private $link_label_1;
+		private $link_label_2;
+		private $link_label_3;
 		private $rating;
 		private $slug;
 		private $cap;
 		private $scope;
 		private $initial_time_key;
-		private $link_id;
+		private $link_id_1;
+		private $link_id_2;
+		private $link_id_3;
 
 		
 		public function __construct($args){
@@ -55,16 +65,27 @@ if ( ! class_exists( 'WPBackitup_Admin_Notice' ) ) {
 			$this->id 		  = $args['id'];
 			$this->days 	  = $args['days_after'];         //Show the notice after these days
 			$this->temp_days  = $args['temp_days_after'];    //Show the notice again after these days after temporary dismiss
+			$this->notice_type= $args['notice_type'];       //review,promo
 			$this->type       = $args['type'];
 			$this->message    = $args['message'];
-			$this->link_label = $args['link_label'];
+
+			$this->link_1 = $args['link_1'];
+			$this->link_2 = $args['link_2'];
+			$this->link_3 = $args['link_3'];
+
+			$this->link_label_1 = $args['link_label_1'];
+			$this->link_label_2 = $args['link_label_2'];
+			$this->link_label_3 = $args['link_label_3'];
+
 			$this->rating 	  = $args['rating'];
 			$this->slug       = $args['slug'];
 			$this->cap        = $args['cap'];
 			$this->scope      = $args['scope'];
 
 			$this->initial_time_key = 'wp-backitup_notice_' . substr( md5( plugin_basename( __FILE__ ) ), 0, 20 );
-			$this->link_id 	  = 'wp-backitup-review-link-' . $this->initial_time_key;
+			$this->link_id_1        = 'wp-backitup-notice-link1-' . $this->initial_time_key;
+			$this->link_id_2        = 'wp-backitup-notice-link2-' . $this->initial_time_key;
+			$this->link_id_3        = 'wp-backitup-notice-link3-' . $this->initial_time_key;
 
 			//Register a new notice on instantiate
 			$this->register_notice($args);
@@ -83,23 +104,32 @@ if ( ! class_exists( 'WPBackitup_Admin_Notice' ) ) {
 		private function default_args() {
 
 			$defaults = array(
-				'id'         => 'wpbackitup_initial_id',
-				'days_after' => 10,
-				'temp_days_after' => 3,
-				'type'       => '',
-				'message'    => sprintf( "%s<p>%s<p>%s",
+				'id'                => 'wpbackitup_initial_id',
+				'days_after'        => 10,
+				'temp_days_after'   => 3,
+				'notice_type'       => 'review',
+				'type'              => '',
+				'message'           => sprintf( "%s<p>%s<p>%s",
 										esc_html__( "You've been using WPBackItUp for some time now and we truly hope it's made backing up your WordPress site simple.", "wp-backitup"),
 										esc_html__( "You might not realize this, but user reviews are an essential part of the WordPress community.  They provide a tremendous benefit to both plugin developers and the WordPress community but unfortunately less than 1 percent of people take the time to leave reviews.  And with more than 50,000 plugins in the WordPress directory, reviews are the only way great people like you can find high quality, supported plugins.", "wp-backitup" ),
 										esc_html__( "We would be extremely grateful if you would take just a few minutes to leave a review on WordPress.org. It really does help the entire community.  Many thanks in advance :)", "wp-backitup" )
-								),
-				'link_label' => esc_html__( 'Ok, you deserve it', 'wp-backitup' ),
-				'rating'     => 5,
-				'slug'	     => 'wp-backitup',
+									),
+
+				'link_1'            => $this->get_review_link_1(),
+				'link_2'            => '#',
+				'link_3'            => '#',
+
+				'link_label_1'        => esc_html__( 'Ok, you deserve it', 'wp-backitup' ),
+				'link_label_2'        => esc_html__( 'Nope, maybe later', 'wp-backitup' ),
+				'link_label_3'        => esc_html__( 'I already did', 'wp-backitup' ),
+
+				'rating'            => 5,
+				'slug'	            => 'wp-backitup',
 
 				// Parameters used in WP Dismissible Notices Handler
-				'cap'        => 'administrator',
-				'scope'      => 'global',
-				'class'		 => '',
+				'cap'               => 'administrator',
+				'scope'             => 'global',
+				'class'		        => '',
 			);
 
 			return apply_filters( 'wp-backitup_default_args', $defaults );
@@ -253,7 +283,8 @@ if ( ! class_exists( 'WPBackitup_Admin_Notice' ) ) {
 				}
 			}
 
-			if( $pagenow == 'plugins.php' || $this->is_wpbackitup_page != false ){
+			//if( $pagenow == 'plugins.php' || $this->is_wpbackitup_page != false ){
+			if( $this->is_wpbackitup_page != false ){
 				return true;
 			}
 
@@ -389,7 +420,7 @@ if ( ! class_exists( 'WPBackitup_Admin_Notice' ) ) {
 		 */
 		protected function get_message() {
 			$message = $this->message;
-			$link    = $this->get_review_link_tag();
+			$link    = $this->get_link_tag();
 			$message = $message . ' ' . $link;
 			return wp_kses_post( $message );
 		}
@@ -400,12 +431,19 @@ if ( ! class_exists( 'WPBackitup_Admin_Notice' ) ) {
 		 *
 		 * @return string
 		 */
-		protected function get_review_link_tag() {
-			$link = $this->get_review_link();
-			$review_link_tag = "<p><a href='$link' target='_blank' id='$this->link_id'>$this->link_label</a><p>";
-			$later_review_link_tag = "<a href='#' id='wpb-temporary-hide'>" . esc_html__('Nope, maybe later','wp-backitup'). "</a>";
-			$completed_review_link_tag = "<p><a href='#' id='wpb-permanent-hide'>" . esc_html__('I already did','wp-backitup') . "</a></p>";
-			$review_links = $review_link_tag . ' ' . $later_review_link_tag . ' ' . $completed_review_link_tag;
+		protected function get_link_tag() {
+
+			$review_link_tag_1 = "<div><a href='$this->link_1' target='_blank' id='$this->link_id_1'>$this->link_label_1</a></div>";
+			$review_link_tag_2 = "<div><a href='$this->link_2' id='wpb-temporary-hide'>$this->link_label_2</a></div>";
+			$review_link_tag_3 = "<div><a href='$this->link_3' id='wpb-permanent-hide'>$this->link_label_3</a></div>";
+
+			//$later_review_link_tag = "<a href='#' id='wpb-temporary-hide'>" . esc_html__('Nope, maybe later','wp-backitup'). "</a>";
+			//$completed_review_link_tag = "<p><a href='#' id='wpb-permanent-hide'>" . esc_html__('I already did','wp-backitup') . "</a></p>";
+
+			//need to check for values here
+
+			$review_links = '<p>' .$review_link_tag_1 . ' ' . $review_link_tag_2 . ' ' . $review_link_tag_3 . '</p>';
+
 			return $review_links;
 		}
 
@@ -415,14 +453,13 @@ if ( ! class_exists( 'WPBackitup_Admin_Notice' ) ) {
 		 * @return string
 		 */
 		 
-		protected function get_review_link() {
+		protected function get_review_link_1() {
 			$link = 'https://wordpress.org/support/plugin/';
 			$link .= $this->slug . '/reviews/';
 			$link = add_query_arg( '?filter', $this->rating, $link );
 			$link = esc_url( $link . '#new-post' );
 			return $link;
 		}
-
 
 		/**
 		 * Notice dismissal triggered by Ajax

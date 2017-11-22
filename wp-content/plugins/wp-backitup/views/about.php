@@ -58,9 +58,9 @@ class WPBackItUp_Welcome {
 			<a class="nav-tab <?php echo $selected == 'getting-started' ? 'nav-tab-active' : ''; ?>" href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'wp-backitup-about' ), 'admin.php' ) ) ); ?>">
 				<?php _e( 'Getting Started', 'wp-backitup' ); ?>
 			</a>
-			<a class="nav-tab <?php echo $selected == 'whats-new' ? 'nav-tab-active' : ''; ?>" href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'wp-backitup-about','tab'=>'whats-new'  ), 'admin.php' ) ) ); ?>">
-				<?php _e( "What's New", 'wp-backitup'); ?>
-			</a>
+<!--			<a class="nav-tab --><?php //echo $selected == 'whats-new' ? 'nav-tab-active' : ''; ?><!--" href="--><?php //echo esc_url( admin_url( add_query_arg( array( 'page' => 'wp-backitup-about','tab'=>'whats-new'  ), 'admin.php' ) ) ); ?><!--">-->
+<!--				--><?php //_e( "What's New", 'wp-backitup'); ?>
+<!--			</a>-->
 			<a class="nav-tab <?php echo $selected == 'premium' ? 'nav-tab-active' : ''; ?>" href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'wp-backitup-about','tab'=>'premium' ), 'admin.php' ) ) ); ?>">
 				<?php _e( 'Premium Plugin', 'wp-backitup' ); ?>
 			</a>
@@ -221,11 +221,11 @@ class WPBackItUp_Welcome {
 
 						<p><?php printf(__( 'We do our best to provide the best product possible but if you run into trouble then support is just a few clicks away. To get help or if you have a question, simply open a ticket using our %s.', 'wp-backitup'),WPBackItUp_Utility::get_anchor_with_utm(__('support portal','wp-backitup'),'support/home' ,'getting+started','support',WPBACKITUP__SUPPORTSITE_URL));?></p>
 
-						<h4><?php _e( 'Need Even Faster Support?', 'wp-backitup' );?></h4>
-						<p><?php printf(__( 'Our %s system is there for customers that need faster or more in-depth assistance.', 'wp-backitup' ),WPBackItUp_Utility::get_anchor_with_utm(__('Priority Support','wp-backitup'),'priority-support' ,'getting+started','support',WPBACKITUP__SECURESITE_URL));?></p>
+<!--						<h4>--><?php //_e( 'Need Even Faster Support?', 'wp-backitup' );?><!--</h4>-->
+<!--						<p>--><?php //printf(__( 'Our %s system is there for customers that need faster or more in-depth assistance.', 'wp-backitup' ),WPBackItUp_Utility::get_anchor_with_utm(__('Priority Support','wp-backitup'),'priority-support' ,'getting+started','support',WPBACKITUP__SECURESITE_URL));?><!--</p>-->
 
-						<h4><?php _e( 'Need Help Migrating Your Site to a New Host?', 'wp-backitup' );?></h4>
-						<p><?php printf(__( 'Our Site Migration experts have helped hundreds of WPBackItUp customers migrate their sites and now you can take advantage of that experience with our WordPress %s. Let our experts save you time and headaches by doing it for you!', 'wp-backitup' ),WPBackItUp_Utility::get_anchor_with_utm(__('Site Migration Service','wp-backitup'),'wordpress-site-migration' ,'getting+started','support',WPBACKITUP__SECURESITE_URL));?></p>
+<!--						<h4>--><?php //_e( 'Need Help Migrating Your Site to a New Host?', 'wp-backitup' );?><!--</h4>-->
+<!--						<p>--><?php //printf(__( 'Our Site Migration experts have helped hundreds of WPBackItUp customers migrate their sites and now you can take advantage of that experience with our WordPress %s. Let our experts save you time and headaches by doing it for you!', 'wp-backitup' ),WPBackItUp_Utility::get_anchor_with_utm(__('Site Migration Service','wp-backitup'),'wordpress-site-migration' ,'getting+started','support',WPBACKITUP__SECURESITE_URL));?><!--</p>-->
 
 						<h4><?php _e( 'Tools Tools Tools...','wp-backitup' );?></h4>
 						<p><?php printf(__( 'Great web sites and businesses are built with great tools and products that help you achieve your goals as efficiently as possible.  My team and I  have spent a tremendous amount of time and effort evaluating tools to help run our WordPress powered website and business. And now you can leverage all our hard work and my 20+ years experience in the software industry with a simple mouse click.  The %s is a growing list of tools and products we use at WPBackItUp to enhance our websites and businesses.  Please feel free to use our experience to empower, enhance and accelerate your sites and businesses.', 'wp-backitup' ),WPBackItUp_Utility::get_anchor_with_utm(__('WPBackItUp Tools List','wp-backitup'),'tools' ,'getting+started','tools',WPBACKITUP__SECURESITE_URL));?></p>

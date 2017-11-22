@@ -110,7 +110,7 @@ class WPBackItUp_Job_Task {
 	 * @param $job_id Job Id
 	 * @param $status_list array of statuses to filter on
 	 *
-	 * @return array|bool
+	 * @return bool| WPBackItUp_Job_Task[]
 	 */
 	public static function get_job_tasks($job_id,$status_list){
 		WPBackItUp_Logger::log_info(self::DEFAULT_LOG_NAME,__METHOD__,'Begin');

@@ -30,6 +30,7 @@ class WPBackItUp_Job_Item {
 	const QUEUED    = 'queued';
 	const COMPLETE  = 'complete';
 	const ERROR     = 'error';
+	const CANCELLED  = 'cancelled';
 
 
 	// ** END ITEM CONSTANTS **
@@ -155,7 +156,7 @@ class WPBackItUp_Job_Item {
 	 * @param $batch_size
 	 * @param $group_id
 	 *
-	 * @return array|bool
+	 * @return bool| WPBackItUp_Job_Item[]
 	 */
 	public static function get_item_batch_by_group($job_id,$batch_size,$group_id) {
 		WPBackItUp_Logger::log_info( self::DEFAULT_LOG_NAME, __METHOD__, 'Begin' );
@@ -189,6 +190,32 @@ class WPBackItUp_Job_Item {
 
 		$db        = new WPBackItUp_DataAccess();
 		$item_rows = $db->get_open_items_by_group( $groups,$batch_size);
+		if ( false === $item_rows ) {
+			return false;
+		}
+
+		$item_list = array();
+		foreach ( $item_rows as $key => $row ) {
+			$item_list[] = new WPBackItUp_Job_Item( $row );
+		}
+
+		return $item_list;
+	}
+
+
+	/**
+	 * Get Job items by status
+	 *
+	 * @param $job_id
+	 * @param $status_list[]
+	 *
+	 * @return bool| WPBackItUp_Job_Item[]
+	 */
+	public static function get_job_items($job_id,$status_list) {
+		WPBackItUp_Logger::log_info( self::DEFAULT_LOG_NAME, __METHOD__, 'Begin' );
+
+		$db        = new WPBackItUp_DataAccess();
+		$item_rows = $db->get_job_items( $job_id,$status_list);
 		if ( false === $item_rows ) {
 			return false;
 		}
@@ -241,6 +268,29 @@ class WPBackItUp_Job_Item {
 		$remaining_count = $db->get_open_item_count($job_id,$group_id);
 
 		return $remaining_count;
+	}
+
+	/**
+	 * Get a count of all items by status
+	 *
+	 * @param  int   $job_id
+	 *
+	 * @param  array $item_status_list
+	 *
+	 * @return mixed
+	 */
+	public static function get_item_status_count($job_id,$item_status_list=null) {
+		WPBackItUp_Logger::log_info( self::DEFAULT_LOG_NAME, __METHOD__, 'Begin' );
+
+		//IF not null and not array, stick in array
+		if ( ! WPBackItUp_Utility::is_null_or_empty($item_status_list) && ! is_array($item_status_list)){
+			$item_status_list = array( $item_status_list);
+		}
+
+		$db        = new WPBackItUp_DataAccess();
+		$count = $db->get_item_status_count($job_id,$item_status_list);
+
+		return (int) $count;
 	}
 
 

@@ -744,6 +744,37 @@ class WPBackItUp_DataAccess {
 		return $query_result;
 	}
 
+	/**
+	 * Get all items for job by status
+	 *
+	 * @param $job_id Job Id
+	 * @param $status_array Array of statuses to be included
+	 *
+	 * @return mixed
+	 */
+	public function get_job_items( $job_id, $status_array ) {
+		global $wpdb;
+		WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Begin');
+
+		$status_list = self::get_delimited_list($status_array);
+
+		$sql = $wpdb->prepare(
+			"SELECT *
+				FROM  $wpdb->wpbackitup_job_item
+				WHERE
+				  job_id=%d
+				  AND item_status IN ( {$status_list})
+				ORDER BY item_id
+		    ",$job_id);
+
+		$query_result=$this->get_rows($sql);
+		WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Results:'.var_export($query_result,true));
+
+		return $query_result;
+
+
+	}
+
 
 	/**
 	 * Delete job by job id
@@ -841,7 +872,8 @@ class WPBackItUp_DataAccess {
 		$item_status_list = self::get_delimited_list(array(WPBackItUp_Job_Item::OPEN,WPBackItUp_Job_Item::QUEUED,WPBackItUp_Job_Item::ERROR));
 
 		$sql = $wpdb->prepare(
-			"SELECT count(*) as item_count FROM $wpdb->wpbackitup_job_item
+			"SELECT count(*) as item_count
+ 			 FROM $wpdb->wpbackitup_job_item
 		     WHERE
 		     	  record_type=%s
 				  && job_id=%d
@@ -849,6 +881,43 @@ class WPBackItUp_DataAccess {
 				  && retry_count <= 3
 				  && item_status IN ( {$item_status_list})
 		    ",WPBackItUp_Job_Item::JOB_ITEM_RECORD,$job_id,$group_id);
+
+		$row=$this->get_row($sql);
+		WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Results:'.var_export($row,true));
+
+		return $row->item_count;
+	}
+
+	/**
+	 * Get a count of all items by status
+	 *
+	 * @param      $job_id
+	 *
+	 * @param null $item_status_list
+	 *
+	 * @return mixed
+	 * @internal param $status
+	 *
+	 */
+	function get_item_status_count($job_id,$item_status_list=null){
+		global $wpdb;
+		WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Begin');
+
+		//If null get all statuses
+		if (null ==$item_status_list) {
+			$item_status_list = array(WPBackItUp_Job_Item::OPEN,WPBackItUp_Job_Item::QUEUED,WPBackItUp_Job_Item::COMPLETE,WPBackItUp_Job_Item::ERROR);
+		}
+
+		//create delimited list of array
+		$item_status_list = self::get_delimited_list($item_status_list);
+
+		$sql = $wpdb->prepare(
+			"SELECT count(*) as item_count 
+ 			 FROM $wpdb->wpbackitup_job_item
+		     WHERE
+				  job_id=%d
+				  && item_status IN ( {$item_status_list})				  
+		    ",$job_id);
 
 		$row=$this->get_row($sql);
 		WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Results:'.var_export($row,true));

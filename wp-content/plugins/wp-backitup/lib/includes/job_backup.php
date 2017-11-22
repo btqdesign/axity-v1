@@ -282,7 +282,7 @@ if ('task_inventory_database'==$current_task->getTaskName()) {
 	$wpb_job_tables = WPBackItUp_DataAccess::get_excluded_jobs_tables();
 
 	//get excludes from settings
-	$backup_dbtables_filter_list = explode(', ', WPBackitup_Admin::backup_dbtables_filter_list());
+	$backup_dbtables_filter_list = array_map('trim', explode(',', WPBackitup_Admin::backup_dbtables_filter_list()));
 	$tables_exclude = array_merge(
 		$backup_dbtables_filter_list,
 		$wpb_job_tables
@@ -330,7 +330,8 @@ if ('task_inventory_plugins'==$current_task->getTaskName()) {
 		$backup_plugins_filter,
 		array(
 			"wp-backitup",
-            "wp-backitup-premium"
+            "wp-backitup-premium",
+            "wp-backitup-safe"
 		)
 	);
 
@@ -861,6 +862,7 @@ if ('task_validate_backup'==$current_task->getTaskName()) {
 	$upload_validation_meta = $current_task->getTaskMetaValue('task_multistep_validate_uploads');
 	$other_validation_meta = $current_task->getTaskMetaValue('task_multistep_validate_others');
 
+
 	$validation_meta=false;
 	$validation_task=false;
 	if( $plugin_validation_meta != WPBackItUp_Job_Task::COMPLETE ) {
@@ -879,13 +881,13 @@ if ('task_validate_backup'==$current_task->getTaskName()) {
 		$set_validate_backup_job_queue = false;
 	}
 
-	if( $validation_meta !==false ) {
+
+    if( $validation_meta !==false ) {
 		$meta_task = sprintf( 'task_multistep_validate_%s', $validation_task );
 		$batch_ids = $db->get_item_batch_ids( $current_job->getJobId(), $validation_task );
 
 		if(!empty($batch_ids)){
 			WPBackItUp_Logger::log_info( $backup_logname, $log_function, sprintf('%s Batch Ids: %s',$validation_task,var_export( $batch_ids, true )));
-			//$plugin_validation_batch_ids will never be empty
 
 			$array_index = 0;
 			if ( is_numeric( $validation_meta ) ) {
@@ -895,12 +897,16 @@ if ('task_validate_backup'==$current_task->getTaskName()) {
 
 
 			if ( array_key_exists( $array_index, $batch_ids ) ) {
-				$batch_id        = $batch_ids[ $array_index ];//get batch ID
+                WPBackItUp_Logger::log_info( $backup_logname, $log_function, "Array index: " .var_export($array_index, true));
+                $batch_id        = $batch_ids[ $array_index ];//get batch ID
 				$validate_result = $wp_backup->validate_backup_files_by_batch_id( $current_job->getJobId(), $validation_task, $batch_id );
 				if ( $validate_result === false ) {
 					$set_validate_backup_error = true;
 				} else {
-					$current_task->setTaskMetaValue( $meta_task, $array_index );
+					$updated_meta = $current_task->setTaskMetaValue( $meta_task, $array_index );
+					if($updated_meta === false){
+                        WPBackItUp_Logger::log_error( $backup_logname, $log_function, sprintf('Meta %s update failed', $meta_task));
+                    }
 					WPBackItUp_Logger::log_info( $backup_logname, $log_function, sprintf('%s Content, Batch ID: %s Validated Successfully!',$validation_task,$batch_id ));
 				}
 			} else {
@@ -1188,7 +1194,7 @@ if ('task_finalize_backup'==$current_task->getTaskName()) {
 		}
 
 		//Send the files over to safe sync to be uploaded.
-		if (false===$wp_backup->queue_safe_sync($zip_files,$remove_supporting_zip_files)){
+		if (false===$wp_backup->queue_safe_job_sync($current_job->getJobId(),$WPBackitup->single_file_backupset())){
 			WPBackItUp_Logger::log_warning($backup_logname,$log_function,'Error with queue safe sync job.');
 		}
 

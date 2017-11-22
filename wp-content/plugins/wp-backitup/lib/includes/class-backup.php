@@ -236,37 +236,37 @@ class WPBackItUp_Backup {
 		}
     }
 
-	/**
-	 * Purge old backup files
-	 */
-	public function purge_old_files(){
-
-	    WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Begin');
-        $fileSystem = new WPBackItUp_FileSystem( $this->log_name);
-
-        //Check the retention
-        $fileSystem->purge_FilesByDate($this->backup_retained_number,$this->backup_folder_root);
-
-	    //      --PURGE BACKUP FOLDER
-        //Purge logs in backup older than N days
-	    $backup_path = WPBACKITUP__BACKUP_PATH .'/';
-        $fileSystem->purge_files($backup_path,'*.log',$this->backup_retained_days);
-
-	    //Purge restore DB checkpoints older than 5 days
-	    $fileSystem->purge_files($backup_path,'db*.cur',$this->backup_retained_days);
-
-	    //      --PURGE LOGS FOLDER
-	    $logs_path = WPBACKITUP__PLUGIN_PATH .'/logs/';
-
-	    //Purge logs in logs older than 5 days
-	    $fileSystem->purge_files($logs_path,'*.log',$this->backup_retained_days);
-
-        //Purge Zipped logs in logs older than 5 days
-	    $fileSystem->purge_files($logs_path,'*.zip',$this->backup_retained_days);
-
-	    WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'End');
-
-    }
+//	/**
+//	 * Purge old backup files
+//	 */
+//	public function purge_old_files(){
+//
+//	    WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Begin');
+//        $fileSystem = new WPBackItUp_FileSystem( $this->log_name);
+//
+//        //Check the retention
+//        $fileSystem->purge_FilesByDate($this->backup_retained_number,$this->backup_folder_root);
+//
+//	    //      --PURGE BACKUP FOLDER
+//        //Purge logs in backup older than N days
+//	    $backup_path = WPBACKITUP__BACKUP_PATH .'/';
+//        $fileSystem->purge_files($backup_path,'*.log',$this->backup_retained_days);
+//
+//	    //Purge restore DB checkpoints older than 5 days
+//	    $fileSystem->purge_files($backup_path,'db*.cur',$this->backup_retained_days);
+//
+//	    //      --PURGE LOGS FOLDER
+//	    $logs_path = WPBACKITUP__PLUGIN_PATH .'/logs/';
+//
+//	    //Purge logs in logs older than 5 days
+//	    $fileSystem->purge_files($logs_path,'*.log',$this->backup_retained_days);
+//
+//        //Purge Zipped logs in logs older than 5 days
+//	    $fileSystem->purge_files($logs_path,'*.zip',$this->backup_retained_days);
+//
+//	    WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'End');
+//
+//    }
 
 	/**
 	 * Make sure the root backup folder wpbackitup_backups exists
@@ -1155,44 +1155,18 @@ class WPBackItUp_Backup {
 	 *
 	 * @param      $zip_files
 	 *
-	 * @param bool $backup_set_only
+	 * @param bool $sync_backup_set_only
+	 * @param      $job_id
 	 *
 	 * @return bool
+	 * @internal param bool $backup_set_only
+	 *
 	 */
-	public function queue_safe_sync($zip_files, $sync_backup_set_only=false){
-
-		if (!is_array($zip_files) || count($zip_files)<=0) {
-			WPBackItUp_Logger::log_error($this->log_name,__METHOD__,'Zip file list was not array ' .var_export( $zip_files,true));
-			return false;
-		}
+	public function queue_safe_job_sync($job_id,$sync_backup_set_only=false){
 
 		try {
 
-			//zip files created above
-			$backupset_found=false;
-			$file_list = array();
-			$backup_set_only = array();
-
-			//Build the list of files and look for the backup set zip
-			foreach ($zip_files as $file_path => $file_size){
-				$file_list[] =$file_path; //entire list
-				if (false!== strpos(basename( $file_path ),'-backupset-')){
-					$backupset_found=true;
-					$backup_set_only[]= $file_path;
-				}
-			}
-
-
-			//If backup set found and sync backup set only
-			if ($backupset_found && $sync_backup_set_only ) {
-				do_action( 'wpbackitup-safe_queue_file_sync', $backup_set_only );
-
-				WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Backup Set found - Sync backup set only:'. var_export($backup_set_only,true));
-			} else{
-				do_action( 'wpbackitup-safe_queue_file_sync', $file_list );
-				WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Sync all files:'. var_export($file_list,true));
-			}
-
+			do_action( 'wpbackitup-safe_queue_job_sync', $job_id,$sync_backup_set_only );
 			return true;
 
 		} catch(Exception $e) {

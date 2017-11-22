@@ -93,19 +93,36 @@ class WPBackitup_Admin {
      */
     public function __construct() {
 
+    	//Load Dependencies
+	    $this->load_dependencies();
+
         // Add all action, filter and shortcode hooks
         $this->_add_hooks();
 
 //      $this->load_constants();
-//      $this->load_dependencies();
 //      $this->set_locale();
 
     }
+
+	/**
+	 * Load the required dependencies for this plugin.
+	 * - This is new method that will be used as part of a
+	 * larger refactor
+	 *
+	 */
+	private function load_dependencies() {
+
+		//API Class
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-api.php';
+
+	}
 
     /**
      * Add in various hooks
      */
     private function _add_hooks() {
+
+	    $ajax_prefix='wp_ajax_'.WPBACKITUP__NAMESPACE.'_';
 
         // Options page for configuration
         if( is_multisite() ) {
@@ -124,46 +141,46 @@ class WPBackitup_Admin {
         add_action( 'admin_enqueue_scripts', array( &$this, 'load_resources' ) );
 
         // delete transient
-        add_action('wp_ajax_wp-backitup_delete_transient', array( &$this,'ajax_queue_delete_transient'));
+        add_action($ajax_prefix .'delete_transient', array( &$this,'ajax_queue_delete_transient'));
 
         //Queue and run backup
-        add_action('wp_ajax_wp-backitup_backup', array( &$this, 'ajax_queue_manual_backup' ));
+        add_action($ajax_prefix . 'backup', array( &$this, 'ajax_queue_manual_backup' ));
 
         //Load the cancel backup action
-        add_action('wp_ajax_wp-backitup_cancel_backup', array( &$this, 'ajax_queue_cancel_backup' ));
+        add_action($ajax_prefix .'cancel_backup', array( &$this, 'ajax_queue_cancel_backup' ));
 
         //Load the restore action
-        add_action('wp_ajax_wp-backitup_restore', array( &$this, 'ajax_queue_restore' ));
+        add_action($ajax_prefix .'restore', array( &$this, 'ajax_queue_restore' ));
 
         //Load the upload action
-        add_action('wp_ajax_wp-backitup_plupload_action', array($this,'plupload_action'));
+        add_action($ajax_prefix .'plupload_action', array($this,'plupload_action'));
 
 		//Status readers for UI
-		add_action('wp_ajax_wp-backitup_backup_status_reader', array( &$this,'ajax_get_backup_status'));
-        add_action('wp_ajax_wp-backitup_restore_status_reader', array( &$this,'ajax_get_restore_status'));
+		add_action($ajax_prefix .'backup_status_reader', array( &$this,'ajax_get_backup_status'));
+        add_action($ajax_prefix .'restore_status_reader', array( &$this,'ajax_get_restore_status'));
 
         //Run tasks using new background processing engine
         add_action('wp_ajax_nopriv_wp-backitup_run_task', array( &$this,'ajax_run_task'));
-	    add_action('wp_ajax_wp-backitup_run_task', array( &$this,'ajax_run_task'));
+	    add_action($ajax_prefix .'run_task', array( &$this,'ajax_run_task'));
 
-        add_action('wp_ajax_wp-backitup_backup_response_reader', array( &$this,'ajax_backup_response_reader'));
+        add_action($ajax_prefix .'backup_response_reader', array( &$this,'ajax_backup_response_reader'));
 
         //Delete File Action
-        add_action('wp_ajax_wp-backitup_delete_file', array( &$this,'ajax_delete_backup'));
+        add_action($ajax_prefix .'delete_file', array( &$this,'ajax_delete_backup'));
 
 	    //Safe Upload Action
-	    add_action('wp_ajax_wp-backitup_safe_upload', array( &$this,'ajax_safe_upload'));
+	    add_action($ajax_prefix .'safe_upload', array( &$this,'ajax_safe_upload'));
 
         //Single backup zip file list
-        add_action('wp_ajax_wp-backitup_backup_zip_filelist', array( &$this,'ajax_get_backup_zip_filelist'));
+        add_action($ajax_prefix .'backup_zip_filelist', array( &$this,'ajax_get_backup_zip_filelist'));
 
         //Get and Add note to backup
-        add_action('wp_ajax_wp-backitup_backup_get_note', array( &$this,'ajax_backup_get_note'));
-        add_action('wp_ajax_wp-backitup_backup_add_note', array( &$this,'ajax_backup_add_note'));
+        add_action($ajax_prefix .'backup_get_note', array( &$this,'ajax_backup_get_note'));
+        add_action($ajax_prefix .'backup_add_note', array( &$this,'ajax_backup_add_note'));
 
         // Get and Set all settings via Ajax
-        add_action('wp_ajax_wp-backitup_get_settings', array( &$this,'ajax_backup_get_settings'));
-        add_action('wp_ajax_wp-backitup_set_settings', array( &$this,'ajax_backup_set_settings'));
+        add_action($ajax_prefix .'get_settings', array( &$this,'ajax_backup_get_settings'));
+        add_action($ajax_prefix .'set_settings', array( &$this,'ajax_backup_set_settings'));
 
         //View Log Action
         add_action('admin_post_viewlog', array( &$this,'admin_viewlog'));
@@ -173,6 +190,11 @@ class WPBackitup_Admin {
 
         //Create Daily backup action
         add_action( 'wpbackitup_queue_scheduled_jobs',  array( &$this,'wpbackitup_queue_scheduled_jobs'));
+
+
+	    $api = new WPBackItUp_API();
+	    add_action( $ajax_prefix. 'get_available_backups',array($api,'get_available_backups'));
+
 
     }
 
@@ -256,11 +278,27 @@ class WPBackitup_Admin {
                 'new_backup' => __('New Backup!', 'wp-backitup'),
                 'uploaded_backup' => __('Uploaded Backup', 'wp-backitup'),
 
+                // Backup list
+                'bl_backup_set' => __('WP BackItUp Backup Set:', 'wp-backitup'),
+                'bl_note_save' => __('Save', 'wp-backitup'),
+                'bl_note_saved_success' => __('Note Saved!', 'wp-backitup'),
+                'bl_note_placeholder' => __('add notes here', 'wp-backitup'),
+                'bl_backup_download_single' => __('Download a single zip file that contains all these files.', 'wp-backitup'),
+                'bl_backup_download' => __('Below are the archive files included in this backup set. Click the link to download.', 'wp-backitup'),
+                'bl_please_note' => __('* Please note that this is a ', 'wp-backitup'),
+                'bl_may_timeout' => __(' file which may timeout on some hosts.', 'wp-backitup'),
+
                 //Settings View
                 'settings_save_awesome' => __('Awesome!', 'wp-backitup'),
                 'settings_save_success_message' => __('Your settings has been successfully saved', 'wp-backitup'),
                 'settings_save_oops' => __('Oops...', 'wp-backitup'),
                 'settings_save_error_message' => __('Something went wrong', 'wp-backitup'),
+                'settings_no_database_table_to_filter' => __('No database table to filter', 'wp-backitup'),
+                'settings_select_database_table_to_filter' => __('Select Database table to filter', 'wp-backitup'),
+
+
+                //Nonces
+                'get_available_backups' => wp_create_nonce('get_available_backups'),
             );
 
 		    wp_localize_script( "{$this->namespace}-admin", 'wpbackitup_local',$translation_array);
@@ -386,7 +424,7 @@ class WPBackitup_Admin {
 		            delete_option( 'wp-backitup_new_install');
 	                wp_safe_redirect( admin_url( add_query_arg( array( 'page' => 'wp-backitup-about'  ), 'admin.php' )));
 	            } else { // Update
-	                wp_safe_redirect( admin_url( add_query_arg( array( 'page' => 'wp-backitup-about','tab'=>'whats-new' ), 'admin.php' ))) ;
+	                wp_safe_redirect( admin_url( add_query_arg( array( 'page' => 'wp-backitup-about'  ), 'admin.php' ))) ;
 	            }
 
 			    return; //dont do anything else
@@ -446,6 +484,8 @@ class WPBackitup_Admin {
             else {
 
             }
+        } else {
+
         }
     }
 
@@ -475,6 +515,7 @@ class WPBackitup_Admin {
 
         // This class is used for showing a review nag
         require_once( WPBACKITUP__PLUGIN_PATH . '/lib/includes/class-admin-notice.php' );
+	    require_once( WPBACKITUP__PLUGIN_PATH . '/lib/includes/class-admin-notices.php' );
 
 		$languages_path = dirname(dirname(dirname( plugin_basename( __FILE__ )))) . '/languages/';
 
@@ -487,10 +528,9 @@ class WPBackitup_Admin {
 	    //admin activation hook does NOT get called on plugin update to this needs to stay here
         $this->maybe_update(); //Check version and update database if needed
 
-	    //if they had more than 10 successful backups then show the message in 1 day
-	    $days_after = 10;
-	    if ($this->successful_backup_count()>=10) $days_after = 1;
-	    new WPBackitup_Admin_Notice( array('id' => 'wpbu-review-me','days_after' => $days_after,'type' => 'updated') );
+	    //display any active notices
+	    $notices = new WPBackitup_Admin_Notices();
+	    $notices->run();//display any active notices
 
         //Create instance to service background tasks(ajax requests)
         $task_processor = new WPBackItUp_Task_Processor();
@@ -1732,13 +1772,7 @@ class WPBackitup_Admin {
         $job_tables_name = WPBackItUp_DataAccess::get_jobs_tables();
         $table_list = array_diff($table_list,$job_tables_name);
 
-        $filtered_list = $this->backup_dbtables_filter_list();
-        if(!empty($filtered_list)){
-            $filtered_list = explode(", ", $filtered_list);
-        }else{
-            $filtered_list = array();
-        }
-        return array_diff($table_list, $filtered_list);
+        return $table_list;
 
     }
 

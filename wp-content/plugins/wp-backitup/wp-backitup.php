@@ -6,9 +6,8 @@
  * Description: Backup your content, settings, themes, plugins and media in just a few simple clicks.
  * Author: WPBackItUp
  * Author URI: https://www.wpbackitup.com
- * Version: 1.15
+ * Version: 1.15.3
  * Text Domain: wp-backitup
- * Domain Path: /languages
  *
  * License: GPL3
  *
@@ -34,7 +33,7 @@ define( 'WPBACKITUP__CLASSNAMESPACE', 'WPBackItUp' );
 
 define( 'WPBACKITUP__MAJOR_VERSION', 1);
 define( 'WPBACKITUP__MINOR_VERSION', 15);
-define( 'WPBACKITUP__MAINTENANCE_VERSION', 0); //Dont forget to update version in header on WP release
+define( 'WPBACKITUP__MAINTENANCE_VERSION', 3); //Dont forget to update version in header on WP release
 define( 'WPBACKITUP__BUILD_VERSION', 0); //Used for hotfix releases
 
 define( 'WPBACKITUP__VERSION',sprintf("%d.%d.%d.%d", WPBACKITUP__MAJOR_VERSION, WPBACKITUP__MINOR_VERSION,WPBACKITUP__MAINTENANCE_VERSION,WPBACKITUP__BUILD_VERSION));

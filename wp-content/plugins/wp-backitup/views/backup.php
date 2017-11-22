@@ -265,7 +265,7 @@ if (!$backup_folder_exists) {
 ?>
 
 <script type="text/javascript">var __namespace = "<?php echo($namespace); ?>";</script>
-<div class="wrap">
+<div class="wrap" id="wpbackitup-core-backup" v-cloak>
   <h2><?php //echo $page_title; ?></h2>
 
   <div id="content">
@@ -286,7 +286,7 @@ if (!$backup_folder_exists) {
       <?php
 
       echo apply_filters( 'wpbackitup_show_active',
-          '<p> * ' . sprintf(__('WPBackItUp lite customers may use these backup files to manually restore their site.  Please visit %s for manual restore instructions.', 'wp-backitup'), WPBackItUp_Utility::get_anchor_with_utm('www.wpbackitup.com','documentation/restore/how-to-manually-restore-your-wordpress-database','backup','manual+restore')) .'</p>'
+          '<p> * ' . sprintf(__('WPBackItUp lite customers may use these backup files to manually restore their site.  Please visit %s for manual restore instructions.', 'wp-backitup'), WPBackItUp_Utility::get_anchor_with_utm('support.wpbackitup.com','support/solutions/articles/5000676459-how-to-manually-restore-your-wordpress-database','backup','manual+restore','http://support.wpbackitup.com')) .'</p>'
       ,false);
 
         if ($this->successful_backup_count()>=10) {
@@ -343,13 +343,17 @@ if (!$backup_folder_exists) {
 	        $file_datetime   = $job->getJobDate();
             $backup_run_type = $job->getJobRunType();
             $cloud_status    = $job->getCloudStatus();
-          
+
               switch ($job->getJobStatus()) {
                   case WPBackItUp_Job::COMPLETE:
                       $status = __("Success", 'wp-backitup');
                       break;
                   case WPBackItUp_Job::ACTIVE:
                       $status = __("Active", 'wp-backitup');
+
+                      //Dont display active backups at this time
+                      continue 2;
+                      
                       break;
                   default:
                     $status = __("Error", 'wp-backitup');
@@ -384,27 +388,48 @@ if (!$backup_folder_exists) {
 
                <td>
 	            <?php // WPBACKITUP__SAFE_SYNC_ON is temporary flag used to turn on sync functionality
-	                if (true==WPBACKITUP__SAFE_SYNC_ON) : ?>
-			             <?php  if ( WPBackItUp_Job::CLOUD_UPLOADED == $cloud_status) : ?>
-			               <span class="fa-stack" title="Backup safely stored in cloud" >
-							    <i class="fa fa fa-cloud fa-stack-2x" style="color:dodgerblue;"></i>
-				                <i class="fa fa-check fa-stack-1x fa-inverse"></i>
-							</span>
-		                <?php  elseif ( WPBackItUp_Job::CLOUD_UPLOADING== $cloud_status) : ?>
-			                <span class="fa-stack" title="Sending backup to cloud" >
-							  <i class="fa fa-refresh fa-spin fa-2x fa-fw" style="color:dodgerblue;"></i>
-							</span>
-		                <?php  elseif ( WPBackItUp_Job::CLOUD_ERROR == $cloud_status) : ?>
-			                <span class="fa-stack" title="Error sending backup to cloud" >
-							    <i class="fa fa-exclamation-circle fa-2x" style="color:#d9534f;"></i>
-							</span>
-			             <?php else: //Send to Cloud?>
-			               <span class="fa-stack">
-			                <i class="fa fa-refresh fa-spin fa-2x fa-fw" style="color:dodgerblue;display: none"></i>
-			                <a href="#" title="Send to Cloud" data-id="<?php echo $job->getJobId() ?>" class="safeUploadRow" id="safeUploadRow<?php echo $i; ?>"><i class="fa fa-cloud-upload fa-2x" style="color:grey;" aria-hidden="true"></i></a>
-			               </span>
-	                    <?php endif ?>
-                    <?php endif ?>
+	                if (true==WPBACKITUP__SAFE_SYNC_ON && strtoupper($status)== "SUCCESS") : ?>
+                       <span v-if="cloudStatus['<?php echo $job->getJobId() ?>'] == 'uploaded' " class="fa-stack" title="<?php _e('Backup safely stored in cloud', 'wp-backitup'); ?>" >
+                           <a href="#" @click="openModal('modal<?php echo $job->getJobId() ?>')">
+                               <i class="fa fa fa-cloud fa-stack-2x" style="color:dodgerblue;"></i>
+                               <i class="fa fa-check fa-stack-1x fa-inverse"></i>
+                           </a>
+                        </span>
+
+                        <span v-else-if="cloudStatus['<?php echo $job->getJobId() ?>'] == 'uploading'" class="fa-stack" title="<?php _e('Sending backup to cloud', 'wp-backitup'); ?>" >
+                            <i class="fa fa-refresh fa-spin fa-2x fa-fw" style="color:dodgerblue;"></i>
+                        </span>
+
+                        <span v-else-if="cloudStatus['<?php echo $job->getJobId() ?>'] == 'error'" class="fa-stack" title="<?php _e('Error sending backup to cloud', 'wp-backitup'); ?>" >
+                            <a href="#" @click="openModal('modal<?php echo $job->getJobId() ?>')">
+                                <i class="fa fa-exclamation-circle fa-2x" style="color:#d9534f;"></i>
+                            </a>
+                        </span>
+
+                       <span v-else class="fa-stack">
+                        <i class="fa fa-refresh fa-spin fa-2x fa-fw" style="color:dodgerblue;display: none"></i>
+                        <a href="#" @click="openModal('modal<?php echo $job->getJobId() ?>')" title="Send to Cloud" data-id="<?php echo $job->getJobId() ?>" class="safeUploadRow" id="safeUploadRow<?php echo $i; ?>">
+                            <i class="fa fa-cloud-upload fa-2x" style="color:grey;" aria-hidden="true"></i>
+                        </a>
+                       </span>
+
+                            <!-- safe modal -->
+                            <div class="page__demo-group">
+                                <ui-modal ref="modal<?php echo $job->getJobId() ?>" title="<?php _e('Upload to Cloud','wp-backitup') ?>">
+	                                <h2>Which cloud storage provider(s) would like to use?</h2>
+                                    <div v-for="provider in providers">
+                                        <ui-checkbox v-if="provider === 'DROPBOX' " v-model="DROPBOX['<?php echo $job->getJobId() ?>']">{{ provider }}</ui-checkbox>
+                                        <ui-checkbox v-if="provider === 'GDRIVE' " v-model="GDRIVE['<?php echo $job->getJobId() ?>']">{{ provider }}</ui-checkbox>
+                                        <ui-checkbox v-if="provider === 'AMAZONS3' " v-model="AMAZONS3['<?php echo $job->getJobId() ?>']">{{ provider }}</ui-checkbox>
+                                    </div>
+
+                                    <div slot="footer">
+                                        <ui-button color="primary" @click="saveIndProviders('<?php echo $job->getJobId() ?>')"><?php _e('Save', 'wp-backitup'); ?></ui-button>
+                                        <ui-button @click="closeModal('modal<?php echo $job->getJobId() ?>')"><?php _e('Close', 'wp-backitup'); ?></ui-button>
+                                    </div>
+                                </ui-modal>
+                            </div>
+	                  <?php endif ?>
                </td>
 	            <td>
 		            <a href="#" title="Delete Backup" data-id="<?php echo $job->getJobId() ?>" class="deleteRow" id="deleteRow<?php echo $i; ?>"><i class="fa fa-trash-o fa-2x"></i></a>
@@ -532,15 +557,13 @@ if (!$backup_folder_exists) {
                   ,true
                   );
               ?>
-              
-              <li><?php echo(WPBackItUp_Utility::get_anchor_with_utm(__('Website Migration Service','wp-backitup'),'wordpress-site-migration' ,'useful+links','site+migration'))?></li>
 
               <li><?php echo(WPBackItUp_Utility::get_anchor_with_utm(__('Documentation','wp-backitup'),'support/solutions','useful+links','documentation',WPBACKITUP__SUPPORTSITE_URL))?></li>
 
               <li><?php echo(WPBackItUp_Utility::get_anchor_with_utm(__('Feature request','wp-backitup'),'contact' ,'useful+links','feature+request'))?></li>
-              
-              <li><?php echo(WPBackItUp_Utility::get_anchor_with_utm(__('Language Translations','wp-backitup'),'support/solutions/articles/5000675693-wp-backitup-in-your-language' ,'useful+links','translations',WPBACKITUP__SUPPORTSITE_URL))?></li>
-              
+
+	          <li><?php echo(WPBackItUp_Utility::get_anchor_with_utm(__('Blog','wp-backitup') ,'blog','blog','blog'))?></li>
+
               <li><?php echo(WPBackItUp_Utility::get_anchor_with_utm(__('Contact','wp-backitup') ,'contact','useful+links','contact'))?></li>
 
           </ul>
