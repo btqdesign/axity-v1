@@ -6,7 +6,7 @@ function wp_image_zoooom_settings($type) {
     $l = 'wp-image-zoooom';
 
     $plugin = array(
-        'version'           => '1.19',
+        'version'           => '1.21',
         'plugin_name'       => 'WP Image Zoom',
         'plugin_file'       => str_replace('includes/settings.php', 'image-zoooom.php', __FILE__),
         'plugin_server'     => 'https://www.silkypress.com',
@@ -197,30 +197,53 @@ function wp_image_zoooom_settings($type) {
             'pro' => true,
             'input_form' => 'checkbox',
         ),
+        'custom_class' => array(
+            'label' => __('Apply zoom on this particular image(s)', $l),
+            'value' => '',
+            'pro' => true,
+            'input_form' => 'input_text',
+            'description' => __('CSS style selector(s) for identifying the image(s) on which to apply the zoom.', $l ),
+        ),
         'flexslider' => array(
             'label' => __('FlexSlider container class', $l),
             'value' => '',
             'pro' => true,
             'input_form' => 'input_text',
         ),
+        'owl' => array(
+            'label' => __('<a href="https://www.silkypress.com/i/js-owl" target="_blank">Owl Carousel</a> container class', $l),
+            'value' => '',
+            'input_form' => 'input_text',
+            'pro' => true,
+            'description' => __('If the images are in a Owl Carousel gallery, then type in here the class of the div containing the Owl Carousel gallery', $l ),
+        ),
+
+
+        /*
         'enable_fancybox' => array(
             'label' => __('Enable inside <a href="http://fancyapps.com/fancybox/" target="_blank">fancyBox</a> lightbox', $l),
             'value' => false,
             'pro' => true,
             'input_form' => 'checkbox',
         ),
-            'enable_jetpack_carousel' => array(
+        'enable_jetpack_carousel' => array(
             'label' => __('Enable inside <a href="https://jetpack.com/ support/carousel/" target="_blank">Jetpack Carousel</a> lightbox', $l),
             'value' => false,
             'pro' => true,
             'input_form' => 'checkbox',
         ),
-
+        */
         'huge_it_gallery' => array(
-            'label' => __('Huge IT Gallery id', $l),
+            'label' => __('<a href="https://www.silkypress.com/i/wp-huge-it-gallery" target="_blank">Huge IT Gallery</a> id', $l),
             'value' => '',
             'pro' => true,
             'input_form' => 'input_text',
+        ),
+        'enable_lightbox_zoom' => array(
+            'label' => __('Enable inside a Lightbox. <a href="#TB_inline?width=600&height=350&inlineId=supported-lightboxes" class="thickbox">See supported lightboxes</a>', $l),
+            'value' => false,
+            'pro' => true,
+            'input_form' => 'checkbox',
         ),
         'onClick' => array(
             'label' => __('Enable the zoom on ...', $l),

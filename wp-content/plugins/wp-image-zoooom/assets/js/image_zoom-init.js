@@ -24,7 +24,7 @@ jQuery(document).ready(function( $ ){
     // Attach the .zoooom class to the IMG children
     $(".zoooom").each(function(){
       if ( this.tagName !== 'IMG' ) {
-        $(this).children("img").addClass('zoooom');
+        $(this).find("img").addClass('zoooom');
         $(this).removeClass('zoooom');
       }
     });
@@ -35,7 +35,12 @@ jQuery(document).ready(function( $ ){
 
     // WooCommerce category pages
     if ( IZ.woo_categories == '1' ) {
-        $(".tax-product_cat .products img, .post-type-archive-product .products img").image_zoom(options);
+        var cat_class = '.tax-product_cat .products img, .post-type-archive-product .products img'; 
+        $(cat_class).image_zoom(options);
+        $(document).on('ready yith-wcan-ajax-filtered', function() {
+            $('.zoomContainer').remove();
+            $(cat_class).image_zoom(options);
+        } );
     }
 
     // Fix for the LazyLoad (unveil.js) plugins

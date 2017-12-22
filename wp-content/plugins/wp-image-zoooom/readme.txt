@@ -5,8 +5,8 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=diana
 Email: diana@burduja.eu
 Tags: e-commerce, featured image, hover over image zoom, image, image zoom, image zoom plugin, image magnification, image magnifier, jquery picture zoom, magnifier, magnify image, magnifying glass, mouse over image zoom, panorama, picture zoom, product image, product zoom, product magnification, product magnifier, responsive, woocommerce product zoom, woocommerce zoom, woocommerce  magnifying glass, zoom, zoom image, zoom plugin, woocommerce image zoom, woocommerce product image zoom, woocommerce zoom magnifier
 Requires at least: 3.0.1
-Tested up to: 4.8
-Stable tag: 1.19 
+Tested up to: 4.9
+Stable tag: 1.21 
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -31,7 +31,7 @@ Your visitors will be able to see the beautiful details of your images. This wil
 * **Works with WooCommerce** - easily enable the zoom on all your products' images. Only a checkbox away.
 * **Works in Pages and Posts** - within the post's/page's editor you'll find a button for applying the zooming effect on any image.
 
-= Why should you upgrade to WP Image Zoooom Pro? =
+= Why should you upgrade to WP Image Zoom Pro? =
 
 * Responsive (the zoom window will fit to the browser width)
 * Mousewheel Zoom
@@ -48,7 +48,7 @@ Your visitors will be able to see the beautiful details of your images. This wil
 = Notes =
 
 * This plugin is provided "as-is"; within the scope of WordPress. We will update this plugin to remain secure, and to follow WP coding standards.
-* If you prefer more dedicated support, with more advanced and powerful plugin features, please consider upgrading to [WP Image Zoooom Pro](https://www.silkypress.com/wp-image-zoom-plugin/?utm_source=wordpress&utm_campaign=iz_free&utm_medium=banner).
+* If you prefer more dedicated support, with more advanced and powerful plugin features, please consider upgrading to [WP Image Zoom Pro](https://www.silkypress.com/wp-image-zoom-plugin/?utm_source=wordpress&utm_campaign=iz_free&utm_medium=banner).
 
 
 == Installation ==
@@ -81,7 +81,10 @@ OR...
 Yes
 
 = If I have Visual Composer installed, how do I apply the zoom? =
-You can apply the zoom on the Single Image element from Visual Composer. See the following [screenshot](https://ps.w.org/wp-image-zoooom/trunk/screenshot-7.jpg).
+You can apply the zoom on the Single Image element from Visual Composer. See the following [screenshot](https://ps.w.org/wp-image-zoooom/assets/screenshot-7.jpg).
+
+= The zoom will show up only on the first image on my WooCommerce gallery =
+The zoom should work fine with all the images on the default WooCommerce gallery, but some themes replace entirely the gallery with a [Owl Carousel](https://owlcarousel2.github.io/OwlCarousel2/) or a another gallery/carousel/slider. Note that this plugin doesn't change the gallery, it only tries to add a zoom to the present gallery and we cannot guarantee compatibility with each gallery/carousel/slider implementation out there.
 
 = It displays the zoom lens, but the picture is not enlarged =
 In order for the zoom to work you have to upload a bigger picture than the one presented on the website. For more control over the zoom level you can try upgrading to the PRO version. There you can set the zoom level to 2x or 3x the size of the presented picture.
@@ -91,9 +94,9 @@ In case you did upload a bigger picture and the zoom still isn't working, you mi
 = The zoom window is about 1cm lower than the zoomed image =
 This is an effect caused by the WordPres Admin Bar. Try logging out and check the zoom again.
 
-Another cause could be the sticky header. When the page is loaded, the zoom window is built and set in the right position (next to the zoomed image). When you scroll down, the sticky header changes its height but the zoom window keeps staying in the same position. In order to solve this you can choose between removing the header's sticky effect or upgrading to the WP Image Zoooom PRO, as there the zoom window is totally differently built and the sticky header doesn't affect the zoom position.
+Another cause could be the sticky header. When the page is loaded, the zoom window is built and set in the right position (next to the zoomed image). When you scroll down, the sticky header changes its height but the zoom window keeps staying in the same position. In order to solve this you can choose between removing the header's sticky effect or upgrading to the WP Image Zoom PRO, as there the zoom window is totally differently built and the sticky header doesn't affect the zoom position.
 
-Another cause could be the "CSS Animation" settings within Visual Composer. If you want to keep the animation effect and still have the zoom, I recommend you upgrade to the WP Image Zoooom PRO. 
+Another cause could be the "CSS Animation" settings within Visual Composer. If you want to keep the animation effect and still have the zoom, I recommend you upgrade to the WP Image Zoom PRO. 
 
 = How to zoom an image without the button in the editor? =
 When you add a CSS class called 'zoooom' to any image, the zoom will be applied on that particular image. Remember that the zooming works only when the displayed image is smaller than the loaded image (i.e. the image is shrinked with "width" and "height" attributes).
@@ -109,7 +112,7 @@ Alternatively you can upgrade to the Pro version, as there the zoom lens is buil
 
 = Known Incompatibilities =
 
-* **Black Studio Tiny MCE Widget** plugin and **SiteOrigin Widgets Bundle** plugin makes the Image Zoooom button doesn't show in the Edit Post and Edit Page editor
+* When both the **Black Studio TinyMCE Widget** and the "Site Builder by SiteOrigin" plugins are installed on the website, then the WP Image Zoom button doesn't show up in the Edit Post and Edit Page editor. But you can still apply the zoom if you manage to add the "zoooom" CSS class to the image.
 
 * The zoom doesn't work well with **Image Carousel** on **Avada** theme. You cannot use the zoom and the carousel on the same page.
 
@@ -138,7 +141,16 @@ Alternatively you can upgrade to the Pro version, as there the zoom lens is buil
 
 7. Apply the zoom from Visual Composer, the Single Image element
 
+8. Apply the zoom from Page Builder by SiteOrigin, the Image Widget
+
 == Changelog ==
+
+= 1.21 =
+* 12/04/2017
+* Tweak: remove the "Exchange the thumbnail with main image on WooCommerce products" for WooCommerce 3, as it doesn't have an effect anymore
+* Compatibility with plugins that load WooCommerce products with AJAX
+* Info about supported lightboxes
+* Compatibility with the YITH WooCommerce Ajax Product Filter plugin
 
 = 1.19 =
 * 11/05/2017
@@ -313,7 +325,7 @@ Alternatively you can upgrade to the Pro version, as there the zoom lens is buil
 
 = 1.0.7 =
 * 06/21/2015
-* Added: right side box with WP Image Zoooom Pro
+* Added: right side box with WP Image Zoom Pro
 
 = 1.0.6 =
 * 06/03/2015

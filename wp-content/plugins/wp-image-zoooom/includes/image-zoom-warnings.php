@@ -30,7 +30,53 @@ class ImageZoooom_Warnings {
         $this->check_shopkeeper();
         $this->check_bwf_minify();
         $this->check_woo_swipe();
+        $this->check_ajax_product_filters();
     }
+
+    /**
+     * Warning about AJAX product filter plugins
+     */
+    function check_ajax_product_filters() {
+        $continue = false;
+
+        $general = get_option('zoooom_general');
+        if ( isset($_POST['tab'] )) {
+            $general['woo_cat'] = (isset($_POST['woo_cat'])) ? true : false;
+        }
+        if ( ! isset($general['woo_cat']) || $general['woo_cat'] != true ) return;
+
+        if ( is_plugin_active( 'woocommerce-ajax-filters/woocommerce-filters.php' ) ) $continue = true;
+        if ( is_plugin_active( 'load-more-products-for-woocommerce/load-more-products.php' ) ) $continue = true;
+        if ( is_plugin_active( 'wc-ajax-product-filter/wcapf.php' ) ) $continue = true;
+
+        if ( !$continue ) return false;
+
+        $option = get_option( 'iz_dismiss_ajax_product_filters', '' );
+
+        if ( !empty( $option ) ) {
+            return;
+        }
+
+        add_action( 'admin_notices', array( $this, 'check_ajax_product_filters_notice' ) );
+    }
+
+    /**
+     * Show a warning about the AJAX product filter plugins
+     */
+    function check_ajax_product_filters_notice() {
+        $id = 'iz_dismiss_ajax_product_filters';
+        $class = 'notice notice-error is-dismissible';
+        $article_url = 'https://www.silkypress.com/wp-image-zoom/zoom-woocommerce-category-page-ajax/';
+        $message = sprintf(__( 'You are using the zoom on WooCommerce shop pages in combination with a plugin that loads more products with AJAX (a product filter plugin or a "load more" products plugin). You\'ll notice that the zoom isn\'t applied after new products are loaded with AJAX. Please read <a href="%1$s" target="_blank">this article for a solution</a>.', 'wp-image-zoooom' ), $article_url);;
+
+        printf( '<div class="%1$s" id="%2$s"><p>%3$s</p></div>', $class, $id, $message );
+
+        $this->dismiss_js( $id );
+
+    }
+
+
+
 
 
     /**
