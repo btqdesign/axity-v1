@@ -3,7 +3,7 @@ Contributors: neversettle
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=53JXD4ENC8MM2&rm=2
 Tags: automate, duplicate, copy, copy site, copier, clone, clone site, cloner, multisite, network, subdomain, subdirectory, subfolder, template
 Requires at least: 3.0.1
-Tested up to: 4.7.5
+Tested up to: 4.9.1
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -91,6 +91,9 @@ Usually this means that the clone operation did not complete successfully. The m
 2. All new Add-on manager
 
 == Changelog ==
+
+= 3.0.8 =
+* Added Japanese translation files provided by @cheesyuk 
 
 = 3.0.7 =
 * Replaced deprecated wp_get_sites() with get_sites()
