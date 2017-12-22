@@ -4,7 +4,6 @@ namespace threewp_broadcast\traits;
 
 use \Exception;
 use \plainview\sdk_broadcast\collections\collection;
-use \threewp_broadcast\actions;
 use \threewp_broadcast\attachment_data;
 use \threewp_broadcast\broadcasting_data;
 use \threewp_broadcast\broadcast_data\blog;
@@ -56,7 +55,7 @@ trait broadcasting
 		// Primary switch to the parent blog.
 		switch_to_blog( $bcd->parent_blog_id );
 
-		$action = new actions\broadcasting_setup;
+		$action = $this->new_action( 'broadcasting_setup' );
 		$action->broadcasting_data = $bcd;
 		$action->execute();
 
@@ -95,6 +94,7 @@ trait broadcasting
 		if ( $bcd->taxonomies )
 		{
 			$this->debug( 'Will broadcast taxonomies.' );
+			$bcd->add_new_taxonomies = true;
 			$bcd->taxonomies();
 			$this->collect_post_type_taxonomies( $bcd );
 			$this->debug( 'Taxonomy data dump: %s', $bcd->taxonomy_data );
@@ -228,7 +228,7 @@ trait broadcasting
 		$this->debug( 'Post sticky status: %s', intval( $bcd->post_is_sticky ) );
 
 		// POST is no longer needed. Empty it so that other plugins don't use it.
-		$action = new actions\maybe_clear_post;
+		$action = $this->new_action( 'maybe_clear_post' );
 		$action->post = $_POST;
 		$action->execute();
 		// This is for any other plugins that might be interested in the _POST.
@@ -248,13 +248,13 @@ trait broadcasting
 		$this->add_action( 'upload_dir', 'broadcasting_upload_dir' );
 
 		// Inform everyone of content that will be parsed later on.
-		$preparse_content = new actions\preparse_content();
+		$preparse_content = $this->new_action( 'preparse_content' );
 		$preparse_content->broadcasting_data = $bcd;
 		$preparse_content->content = $bcd->post->post_content;
 		$preparse_content->id = 'post_content';
 		$preparse_content->execute();
 
-		$action = new actions\broadcasting_started;
+		$action = $this->new_action( 'broadcasting_started' );
 		$action->broadcasting_data = $bcd;
 		$action->execute();
 
@@ -289,7 +289,7 @@ trait broadcasting
 			foreach( [ 'comment_count', 'post_parent' ] as $key )
 				$bcd->new_post->$key = 0;
 
-			$action = new actions\broadcasting_after_switch_to_blog;
+			$action = $this->new_action( 'broadcasting_after_switch_to_blog' );
 			$action->broadcasting_data = $bcd;
 			$action->execute();
 
@@ -411,7 +411,7 @@ trait broadcasting
 			if ( ! is_a( $bcd->new_post, 'WP_Post' ) )
 				wp_die( 'Broadcast fatal error! After creating / updating the child post, it has disappeared. Try enabling Broadcast debug mode to help diagnose the error.' );
 
-			$action = new actions\broadcasting_after_update_post;
+			$action = $this->new_action( 'broadcasting_after_update_post' );
 			$action->broadcasting_data = $bcd;
 			$action->execute();
 
@@ -425,8 +425,11 @@ trait broadcasting
 			{
 				$gmt_column = $column . '_gmt';
 				$time = strtotime( $dated_post->$gmt_column );
-				$time += $gmt_offset;
-				$dated_post->$column = date( 'Y-m-d H:i:s', $time );
+				if ( $time > 1 )
+				{
+					$time += $gmt_offset;
+					$dated_post->$column = date( 'Y-m-d H:i:s', $time );
+				}
 				$this->debug( 'Setting %s date column to %s', $column, $dated_post->$column );
 			}
 
@@ -458,7 +461,7 @@ trait broadcasting
 				$this->debug( 'Taxonomies: Starting.' );
 				foreach( $bcd->parent_post_taxonomies as $parent_post_taxonomy => $parent_post_terms )
 				{
-					$this->debug( 'Taxonomies: %s', $parent_post_taxonomy );
+					$this->debug( 'Taxonomies: Handling taxonomy %s', $parent_post_taxonomy );
 
 					// If we're updating a linked post, remove all the taxonomies and start from the top.
 					if ( $bcd->link )
@@ -472,62 +475,21 @@ trait broadcasting
 						continue;
 					}
 
+					$this->debug( 'Taxonomies: Syncing terms for %s.', $parent_post_taxonomy );
+					$this->sync_terms( $bcd, $parent_post_taxonomy );
+					$this->debug( 'Taxonomies: Synced terms for %s.', $parent_post_taxonomy );
+
 					// Get a list of terms that the target blog has.
 					$target_blog_terms = $this->get_current_blog_taxonomy_terms( $parent_post_taxonomy );
 
 					// Go through the original post's terms and compare each slug with the slug of the target terms.
 					$taxonomies_to_add_to = [];
-					foreach( $parent_post_terms as $parent_post_term )
+					foreach( $parent_post_terms as $term )
 					{
-						$found = false;
-						$parent_slug = $parent_post_term->slug;
-						foreach( $target_blog_terms as $target_blog_term )
-						{
-							if ( $target_blog_term->slug == $parent_slug )
-							{
-								$this->debug( 'Taxonomies: Found existing taxonomy %s.', $parent_slug );
-								$found = true;
-								$taxonomies_to_add_to[] = intval( $target_blog_term->term_id );
-								break;
-							}
-						}
-
-						// Should we create the taxonomy term if it doesn't exist?
-						if ( ! $found )
-						{
-							// Does the term have a parent?
-							$target_parent_id = 0;
-							if ( $parent_post_term->parent != 0 )
-							{
-								// Recursively insert ancestors if needed, and get the target term's parent's ID
-								$target_parent_id = $this->insert_term_ancestors(
-									$parent_post_term,
-									$parent_post_taxonomy,
-									$target_blog_terms,
-									$bcd->parent_blog_taxonomies[ $parent_post_taxonomy ][ 'terms' ]
-								);
-							}
-
-							$new_term = clone( $parent_post_term );
-							$new_term->parent = $target_parent_id;
-							$action = new actions\wp_insert_term;
-							$action->taxonomy = $parent_post_taxonomy;
-							$action->term = $new_term;
-							$action->execute();
-							if ( $action->new_term )
-							{
-								$term_id = intval( $action->new_term->term_id );
-								$taxonomies_to_add_to []= $term_id;
-								$this->debug( 'Taxonomies: Created taxonomy %s (%s).', $parent_post_term->name, $term_id );
-							}
-							else
-								$this->debug( 'Taxonomies: Taxonomy %s was not created.', $parent_post_term->name );
-						}
+						$new_term_id = $bcd->terms()->get( $term->term_id );
+						$taxonomies_to_add_to[] = $new_term_id;
+						$this->debug( 'Found term %d for original term %d.', $new_term_id, $term->term_id );
 					}
-
-					$this->debug( 'Taxonomies: Syncing terms.' );
-					$this->sync_terms( $bcd, $parent_post_taxonomy );
-					$this->debug( 'Taxonomies: Synced terms.' );
 
 					if ( count( $taxonomies_to_add_to ) > 0 )
 					{
@@ -537,6 +499,8 @@ trait broadcasting
 						$this->debug( 'Setting taxonomies for %s: %s', $parent_post_taxonomy, $taxonomies_to_add_to );
 						wp_set_object_terms( $bcd->new_post( 'ID' ), $taxonomies_to_add_to, $parent_post_taxonomy );
 					}
+					else
+						$this->debug( 'No taxonomy terms for %s', $parent_post_taxonomy );
 				}
 				$this->debug( 'Taxonomies: Finished.' );
 			}
@@ -546,7 +510,7 @@ trait broadcasting
 			$modified_post = clone( $unmodified_post );
 
 			// Tell everyone it's time to parse this content.
-			$parse_content = new actions\parse_content();
+			$parse_content = $this->new_action( 'parse_content' );
 			$parse_content->broadcasting_data = $bcd;
 			$parse_content->content = $modified_post->post_content;
 			$parse_content->id = 'post_content';
@@ -554,7 +518,7 @@ trait broadcasting
 			$modified_post->post_content = $parse_content->content;
 
 			$bcd->modified_post = $modified_post;
-			$action = new actions\broadcasting_modify_post;
+			$action = $this->new_action( 'broadcasting_modify_post' );
 			$action->broadcasting_data = $bcd;
 			$action->execute();
 
@@ -583,9 +547,6 @@ trait broadcasting
 
 				$child_fields = $bcd->custom_fields()->child_fields();
 				$child_fields->load();
-
-				// new_post_old_custom_fields is obsolete. Remove the first part in a few versions.
-				$bcd->new_post_old_custom_fields = $child_fields;
 
 				$this->debug( 'Custom fields of the child post: %s', $child_fields->to_array() );
 
@@ -675,7 +636,7 @@ trait broadcasting
 				$this->set_post_broadcast_data( $bcd->parent_blog_id, $bcd->post->ID, $bcd->broadcast_data );
 			}
 
-			$action = new actions\broadcasting_before_restore_current_blog;
+			$action = $this->new_action( 'broadcasting_before_restore_current_blog' );
 			$action->broadcasting_data = $bcd;
 			$action->execute();
 
@@ -685,7 +646,7 @@ trait broadcasting
 		// The primary switch to the parent blog.
 		restore_current_blog();
 
-		$action = new actions\broadcasting_finished;
+		$action = $this->new_action( 'broadcasting_finished' );
 		$action->broadcasting_data = $bcd;
 		$action->execute();
 
@@ -766,7 +727,7 @@ trait broadcasting
 
 		// We must handle this post type.
 		$post = get_post( $post_id );
-		$action = new actions\get_post_types;
+		$action = $this->new_action( 'get_post_types' );
 		$action->execute();
 		if ( ! in_array( $post->post_type, $action->post_types ) )
 			return $this->debug( 'We do not care about the %s post type.', $post->post_type );
@@ -805,7 +766,7 @@ trait broadcasting
 		$this->debug( 'Preparing the broadcasting data.' );
 
 		// This is to fetch the selected blogs from the meta box.
-		$action = new actions\prepare_broadcasting_data;
+		$action = $this->new_action( 'prepare_broadcasting_data' );
 		$action->broadcasting_data = $broadcasting_data;
 		$action->execute();
 
@@ -949,7 +910,7 @@ trait broadcasting
 
 				$post_id = $bcd->meta_box_data->broadcast_data->get_linked_post_on_this_blog();
 
-				$post_action = new actions\post_action();
+				$post_action = $this->new_action( 'post_action' );
 				$post_action->action = $unchecked_child_blogs_action;
 				$post_action->post_id = $post_id;
 				$this->debug( 'Executing post action %s on %s', $unchecked_child_blogs_action, $post_id );

@@ -3,7 +3,6 @@
 namespace threewp_broadcast;
 
 use \Exception;
-use \threewp_broadcast\actions;
 use \threewp_broadcast\broadcast_data\blog;
 
 /**
@@ -312,7 +311,7 @@ class broadcasting_data
 			$this->meta_box_data = ThreeWP_Broadcast()->create_meta_box( $this->post );
 
 			// Allow plugins to modify the meta box with their own info.
-			$action = new actions\prepare_meta_box;
+			$action = ThreeWP_Broadcast()->new_action( 'prepare_meta_box' );
 			$action->meta_box_data = $this->meta_box_data;
 			$action->execute();
 		}

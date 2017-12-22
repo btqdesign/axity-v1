@@ -2,7 +2,6 @@
 
 namespace threewp_broadcast\traits;
 
-use \threewp_broadcast\actions;
 use \threewp_broadcast\maintenance;
 
 /**
@@ -13,10 +12,10 @@ trait admin_menu
 {
 	public function admin_menu()
 	{
-		$action = new actions\admin_menu;
+		$action = $this->new_action( 'admin_menu' );
 		$action->execute();
 
-		$action = new actions\menu;
+		$action = $this->new_action( 'menu' );
 		$action->broadcast = $this;
 		$action->menu_page = $this->menu_page();
 		$action->execute();
@@ -228,7 +227,7 @@ trait admin_menu
 			->size( 3, 3 )
 			->value( $this->get_site_option( 'blogs_hide_overview' ) );
 
-		$get_existing_attachment_actions = new actions\get_existing_attachment_actions();
+		$get_existing_attachment_actions = $this->new_action( 'get_existing_attachment_actions' );
 		$get_existing_attachment_actions->execute();
 		$actions = $get_existing_attachment_actions->get_actions();
 		$actions = array_flip( $actions );
@@ -441,29 +440,29 @@ trait admin_menu
 
 		$tabs->tab( 'settings' )
 			->callback_this( 'admin_menu_settings' )
-			// Name of tab for Broadcast settings
+			// Name of tab
 			->name( __( 'Settings', 'threewp_broadcast' ) )
 			->sort_order( 25 );		// Always first.
 
 		$tabs->tab( 'maintenance' )
 			->callback_this( 'admin_menu_maintenance' )
-			// Name of tab for Broadcast settings
+			// Name of tab
 			->name( __( 'Maintenance', 'threewp_broadcast' ) );
 
 		$tabs->tab( 'system_info' )
 			->callback_this( 'admin_menu_system_info' )
-			// Name of tab for Broadcast settings
+			// Name of tab
 			->name( __( 'System info', 'threewp_broadcast' ) );
 
 		$this->savings_calculator_tabs( $tabs );
 
 		$tabs->tab( 'uninstall' )
 			->callback_this( 'admin_uninstall' )
-			// Name of tab for Broadcast settings
+			// Name of tab
 			->name( __( 'Uninstall', 'threewp_broadcast' ) )
 			->sort_order( 90 );		// Always last.
 
-		echo $tabs;
+		echo $tabs->render();
 	}
 
 	/**
@@ -571,11 +570,11 @@ trait admin_menu
 			// Tab name for non-admins
 			->name( __( 'Broadcast information', 'threewp_broadcast' ) );
 
-		$action = new actions\broadcast_menu_tabs();
+		$action = $this->new_action( 'broadcast_menu_tabs' );
 		$action->tabs = $tabs;
 		$action->execute();
 
-		echo $tabs;
+		echo $tabs->render();
 	}
 
 	/**

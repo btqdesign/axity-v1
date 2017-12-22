@@ -1,3 +1,5 @@
+20171208		Update Wordpress updater.
+20171123		Wordpress tabs: Display the exception nicely.
 20171028		Better Wordpress debugging strings.
 20171019		Form Range input accepts float steps.
 20171015		Collection flush() should return itself.

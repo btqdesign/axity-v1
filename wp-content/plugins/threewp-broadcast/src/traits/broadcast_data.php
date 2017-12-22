@@ -2,7 +2,6 @@
 
 namespace threewp_broadcast\traits;
 
-use threewp_broadcast\actions;
 use threewp_broadcast\broadcast_data as data;			// Else if conflicts with the trait name. *sigh*
 
 /**
@@ -38,7 +37,7 @@ trait broadcast_data
 	*/
 	public function delete_post_broadcast_data( $blog_id, $post_id)
 	{
-		$action = new actions\delete_post_broadcast_data();
+		$action = $this->new_action( 'delete_post_broadcast_data' );
 		$action->blog_id = $blog_id;
 		$action->post_id = $post_id;
 		$action->execute();
@@ -85,7 +84,7 @@ trait broadcast_data
 	 */
 	public function get_post_broadcast_data( $blog_id, $post_id )
 	{
-		$action = new actions\get_post_broadcast_data();
+		$action = $this->new_action( 'get_post_broadcast_data' );
 		$action->blog_id = $blog_id;
 		$action->post_id = $post_id;
 		$action->execute();
@@ -110,7 +109,7 @@ trait broadcast_data
 		// Update the cache.
 		$this->broadcast_data_cache()->set_for( $blog_id, $post_id, $broadcast_data );
 
-		$action = new actions\set_post_broadcast_data();
+		$action = $this->new_action( 'set_post_broadcast_data' );
 		$action->blog_id = $blog_id;
 		$action->post_id = $post_id;
 		$action->broadcast_data = $broadcast_data;

@@ -5,6 +5,8 @@ namespace threewp_broadcast\premium_pack;
 class base
 	extends \plainview\sdk_broadcast\wordpress\base
 {
+	use \threewp_broadcast\traits\actions;		// For new_action()
+
 	/**
 		@brief		Convenience method to add a select of user writeable blogs to a forum.
 		@details	The options array contains the following parameters.
@@ -137,20 +139,6 @@ class base
 
 		preg_match( $pattern, $subject, $matches );
 		return ( count( $matches ) > 0 );
-	}
-
-	/**
-		@brief		Generate a new action.
-		@details	Convenience method so that other plugins don't have to use the whole namespace for the class' actions.
-		@since		2017-09-27 13:20:01
-	**/
-	public function new_action( $action_name )
-	{
-		$called_class = get_called_class();
-		// Strip off the class name.
-		$namespace = preg_replace( '/(.*)\\\\.*/', '\1', $called_class );
-		$classname = $namespace  . '\\actions\\' . $action_name;
-		return new $classname();
 	}
 
 	/**

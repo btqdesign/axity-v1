@@ -2,7 +2,6 @@
 
 namespace threewp_broadcast\traits;
 
-use \threewp_broadcast\actions;
 use \threewp_broadcast\meta_box;
 
 /**
@@ -23,7 +22,7 @@ trait meta_boxes
 		// If it's true, then show it to all post types!
 		if ( $this->display_broadcast_meta_box === true )
 		{
-			$action = new actions\get_post_types;
+			$action = $this->new_action( 'get_post_types' );
 			$action->execute();
 			foreach( $action->post_types as $post_type )
 				add_meta_box(
@@ -43,7 +42,8 @@ trait meta_boxes
 		$this->display_broadcast_meta_box |= static::user_has_roles( $this->get_site_option( 'role_broadcast' ) );
 
 		// No access to any other blogs = no point in displaying it.
-		$filter = new actions\get_user_writable_blogs( $this->user_id() );
+		$filter = $this->new_action( 'get_user_writable_blogs' );
+		$filter->user_id = $this->user_id();
 		$blogs = $filter->execute()->blogs;
 		if ( count( $blogs ) <= 1 )
 		{
@@ -83,7 +83,7 @@ trait meta_boxes
 		$meta_box_data = $this->create_meta_box( $post );
 
 		// Allow plugins to modify the meta box with their own info.
-		$action = new actions\prepare_meta_box;
+		$action = $this->new_action( 'prepare_meta_box' );
 		$action->meta_box_data = $meta_box_data;
 		$action->execute();
 
@@ -226,7 +226,8 @@ trait meta_boxes
 			$meta_box_data->convert_form_input_later( 'taxonomies' );
 		}
 
-		$filter = new actions\get_user_writable_blogs( $this->user_id() );
+		$filter = $this->new_action( 'get_user_writable_blogs' );
+		$filter->user_id = $this->user_id();
 		$blogs = $filter->execute()->blogs;
 
 		$blogs_input = $form->checkboxes( 'blogs' )

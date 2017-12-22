@@ -2,7 +2,6 @@
 
 namespace threewp_broadcast\traits;
 
-use threewp_broadcast\actions;
 use threewp_broadcast\attachment_data;
 
 use \Exception;
@@ -309,7 +308,7 @@ trait attachments
 			$existing_action = $this->get_site_option( 'existing_attachments', 'use' );
 			$this->debug( 'Maybe copy attachment: The action for existing attachments is to %s.', $existing_action );
 
-			$apply_existing_attachment_action = new actions\apply_existing_attachment_action();
+			$apply_existing_attachment_action = $this->new_action( 'apply_existing_attachment_action' );
 			$apply_existing_attachment_action->action = $existing_action;
 			$apply_existing_attachment_action->broadcasting_data = $options;
 			$apply_existing_attachment_action->source_attachment = $attachment_data;
@@ -327,7 +326,7 @@ trait attachments
 
 		// Since it doesn't exist, copy it.
 		$this->debug( 'Maybe copy attachment: Really copying attachment.' );
-		$copy_attachment_action = new actions\copy_attachment();
+		$copy_attachment_action = $this->new_action( 'copy_attachment' );
 		$copy_attachment_action->attachment_data = $attachment_data;
 		$copy_attachment_action->execute();
 		$options->attachment_id = $copy_attachment_action->attachment_id;

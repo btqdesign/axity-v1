@@ -2,7 +2,6 @@
 
 namespace threewp_broadcast\traits;
 
-use \threewp_broadcast\actions;
 use \threewp_broadcast\ajax;
 use \threewp_broadcast\posts\actions\action as post_action;
 use \threewp_broadcast\posts\actions\bulk\wp_ajax;
@@ -44,7 +43,7 @@ trait post_actions
 			{
 				// Add the broadcasted column to each post type we support.
 
-				$action = new actions\get_post_types;
+				$action = $this->new_action( 'get_post_types' );
 				$action->execute();
 
 				foreach( $action->post_types as $post_type )
@@ -68,13 +67,13 @@ trait post_actions
 	{
 		if ( isset( $_GET[ 'post_type' ] ) )
 		{
-			$action = new actions\get_post_types;
+			$action = $this->new_action( 'get_post_types' );
 			$action->execute();
 			if ( ! in_array( $_GET[ 'post_type' ], $action->post_types ) )
 				return;
 		}
 
-		$action = new actions\get_post_bulk_actions();
+		$action = $this->new_action( 'get_post_bulk_actions' );
 		$action->execute();
 		$this->add_admin_script( 'post_bulk_actions', $action->get_js() );
 
@@ -109,7 +108,7 @@ trait post_actions
 			->get_for( $blog_id, $parent_post_id );
 
 		global $post;
-		$action = new actions\manage_posts_custom_column();
+		$action = $this->new_action( 'manage_posts_custom_column' );
 		$action->post = $post;
 		$action->parent_blog_id = $blog_id;
 		$action->parent_post_id = $parent_post_id;
@@ -280,10 +279,11 @@ trait post_actions
 
 				$broadcast_data = $this->get_post_broadcast_data( $blog_id, $post_id );
 				// Get a list of blogs that this user can link to.
-				$filter = new actions\get_user_writable_blogs( $this->user_id() );
+				$filter = $this->new_action( 'get_user_writable_blogs' );
+				$filter->user_id = $this->user_id();
 				$blogs = $filter->execute()->blogs;
 
-				$filter = new actions\find_unlinked_posts_blogs();
+				$filter = $this->new_action( 'find_unlinked_posts_blogs' );
 				$filter->blogs = $blogs;
 				$blogs = $filter->execute()->blogs;
 
@@ -452,7 +452,7 @@ trait post_actions
 	**/
 	public function wp_ajax_broadcast_post_bulk_action()
 	{
-		$action = new actions\post_action;
+		$action = $this->new_action( 'post_action' );
 		$json = new ajax\json();
 
 		if ( ! isset( $_REQUEST[ 'nonce' ] ) )
@@ -554,7 +554,7 @@ trait post_actions
 		{
 			$form->blogs = [];
 			// Find all options for posts.
-			$action = new actions\get_post_actions();
+			$action = $this->new_action( 'get_post_actions' );
 			$action->post = get_post( $post_id );
 			$action->execute();
 			$options = [ '' => $this->_( 'No change' ) ];
@@ -611,7 +611,7 @@ trait post_actions
 			{
 				if ( isset( $unlink ) && $unlink->is_checked() )
 				{
-					$post_action = new actions\post_action;
+					$post_action = $this->new_action( 'post_action' );
 					$post_action->action = 'unlink';
 					$post_action->post_id = $post_id;
 					$post_action->execute();
@@ -623,7 +623,7 @@ trait post_actions
 						$value = $select->get_post_value();
 						if( $value == '' )
 							continue;
-						$post_action = new actions\post_action;
+						$post_action = $this->new_action( 'post_action' );
 						$post_action->action = $value;
 						$post_action->post_id = $post_id;
 						$post_action->child_blog_id = $select->blog_id;

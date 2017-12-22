@@ -66,6 +66,36 @@ class Taxonomies
 	}
 
 	/**
+		@brief		Convenience method to also sync this taxonomy.
+		@details	Used best during broadcasting_started.
+		@since		2017-11-08 12:38:59
+	**/
+	public function also_sync( $post_type, $taxonomy )
+	{
+		ThreeWP_Broadcast()->debug( 'Also syncing taxonomy <em>%s</em> for post type <em>%s</em>.', $taxonomy, $post_type );
+
+		// We need to store the taxonomy + terms of the post type.
+		// Fake a post
+		$post = (object)[
+			'ID' => 0,
+			'post_type' => $post_type,
+			'post_status' => 'publish',
+		];
+
+		// And now collect the taxonomy info for the post type.
+		$post_bcd = new \threewp_broadcast\broadcasting_data( [
+			'parent_post_id' => -1,
+			'post' => $post,
+		] );
+		$post_bcd->add_new_taxonomies = true;
+		unset( $post_bcd->post->ID );		// This is so that collect_post_type_taxonomies returns ALL the terms, not just those from the non-existent post.
+		ThreeWP_Broadcast()->collect_post_type_taxonomies( $post_bcd );
+
+		// Copy the collected taxonomy data.
+		$this->broadcasting_data->parent_blog_taxonomies[ $taxonomy ] = $post_bcd->parent_blog_taxonomies[ $taxonomy ];
+	}
+
+	/**
 		@brief		Checks whether a taxonomy + term + meta_key combo exist in the blacklist.
 		@since		2017-07-10 17:13:49
 	**/

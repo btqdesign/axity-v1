@@ -9,6 +9,7 @@ class ThreeWP_Broadcast
 {
 	use \plainview\sdk_broadcast\wordpress\traits\debug;
 
+	use traits\actions;
 	use traits\admin_menu;
 	use traits\admin_scripts;
 	use traits\attachments;
@@ -318,7 +319,7 @@ class ThreeWP_Broadcast
 	public function plugins_loaded()
 	{
 		$this->__loaded = true;
-		$action = new actions\loaded();
+		$action = $this->new_action( 'loaded' );
 		$action->execute();
 	}
 

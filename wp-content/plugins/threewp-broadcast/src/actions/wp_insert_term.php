@@ -10,6 +10,12 @@ class wp_insert_term
 	extends action
 {
 	/**
+		@brief		The broadcasting data.
+		@since		2017-11-24 18:48:47
+	**/
+	public $broadcasting_data;
+
+	/**
 		@brief		OUT: The newly-created term object. Or a WP_Error or false if the term was not created.
 		@since		2014-04-08 15:32:24
 	**/

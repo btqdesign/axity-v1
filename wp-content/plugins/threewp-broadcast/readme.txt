@@ -6,7 +6,7 @@ Requires at least: 4.6
 Requires PHP: 5.4
 Stable tag: trunk
 Tags: multipost, sharing, duplicate, franchise, syndication, marketing, news, hub
-Tested up to: 4.8
+Tested up to: 4.9.1
 
 Network content syndication made easy! Automatically share content by multiposting between multisite blogs.
 
@@ -14,7 +14,7 @@ Network content syndication made easy! Automatically share content by multiposti
 
 = Network Content Syndication Made Easy! =
 
-Single source content on Wordpress is now as easy as pie! Syndicate posts to other blogs, update posts between blogs, sync posts, share content templates, etc. Broadcasted posts can be linked to their parents, which updates child posts when the parent post is updated. This includes all data: title, slug, content, custom fields, attachments, etc.
+Single source content on a Wordpress multisite network is now as easy as pie! Syndicate posts to other blogs in the network, update posts between blogs, sync posts, share content templates, etc. Broadcasted posts can be linked to their parents, which updates child posts when the parent post is updated. This includes all data: title, slug, content, custom fields, attachments, etc.
 
 Broadcast, formerly ThreeWP Broadcast, is great for:
 
@@ -58,58 +58,64 @@ There are several <a href="https://broadcast.plainviewplugins.com/">Broadcast ad
 3rd party pack
 --------------
 
-* <a href="https://broadcast.plainviewplugins.com/addon/activity-monitor/">Activity Monitor</a> adds a Broadcast hook to the <a href="http://wordpress.org/plugins/plainview-activity-monitor/">Plainview Activity Monitor</a>, at the same time disabling post related hooks during broadcasting to prevent unnecessary logging.
-* <a href="https://broadcast.plainviewplugins.com/addon/advanced-custom-fields/">Advanced Custom Fields</a> adds support for correctly broadcasting various field types using Elliot Condon’s <a href="http://www.advancedcustomfields.com/">Advanced Custom Fields plugin</a>.
-* <a href="https://broadcast.plainviewplugins.com/addon/all-in-one-calendar/">All In One Calendar</a> adds support for <a href="http://www.wordpress.org/plugins/all-in-one-event-calendar/">Timely’s All In One Calendar</a> plugin.
-* <a href="https://broadcast.plainviewplugins.com/addon/aqua-page-builder/">Aqua Page Builder</a> adds support for the <a href="https://wordpress.org/plugins/aqua-page-builder/">Aqua Page Builder plugin</a>.
-* <a href="https://broadcast.plainviewplugins.com/addon/bbpress/">bbPress</a> adds support for <a href="https://wordpress.org/plugins/bbpress/">BBPress</a> forums, topics and replies.
-* <a href="https://broadcast.plainviewplugins.com/addon/beaver-builder/">Beaver Builder</a> adds support for the <a href="https://www.wpbeaverbuilder.com/">Beaver Builder page builder plugin</a>.
-* <a href="https://broadcast.plainviewplugins.com/addon/calendarize-it/">Calendarize It</a> adds support for <a href="http://codecanyon.net/item/calendarize-it-for-wordpress/2568439">Calendarize It!</a> events.
-* <a href="https://broadcast.plainviewplugins.com/addon/contact-form-7/">Contact Form 7</a> adds support for <a href="https://wordpress.org/plugins/contact-form-7/">Takayuki Miyoshi's Contact Form 7</a> plugin.
-* <a href="https://broadcast.plainviewplugins.com/addon/divi-builder/">Divi Builder</a> adds support for <a href="https://www.elegantthemes.com/plugins/divi-builder/">Divi Builder</a> and themes using it.
-* <a href="https://broadcast.plainviewplugins.com/addon/download-monitor/">Download Monitor</a> adds support for downloads and shortcodes from <a href="https://wordpress.org/plugins/download-monitor/">Never5's Download Monitor</a> plugin.
-* <a href="https://broadcast.plainviewplugins.com/addon/elementor/">Elementor</a> adds support for the <a href="https://wordpress.org/plugins/elementor/">Elementor Page Builder plugin</a>.
-* <a href="https://broadcast.plainviewplugins.com/addon/eventon/">EventOn</a> adds support for Ashan Jay's <a href="http://www.myeventon.com/">EventON</a> plugin with tickets.
-* <a href="https://broadcast.plainviewplugins.com/addon/event-organiser/">Event Organiser</a> adds support for Stephen Harris’ <a href="http://wordpress.org/plugins/event-organiser/">Event Organiser plugin</a>, with events and venues.
-* <a href="https://broadcast.plainviewplugins.com/addon/events-manager/">Events Manager</a> adds support for the <a href="https://wordpress.org/plugins/events-manager/">Events Manager</a> plugin.
-* <a href="https://broadcast.plainviewplugins.com/addon/foogallery/">FooGallery</a> adds support for <a href="https://wordpress.org/plugins/foogallery/">FooPlugins&#8217; FooGallery</a> plugin.
-* <a href="https://broadcast.plainviewplugins.com/addon/geo-my-wp/">GEO my WordPress</a> adds support for Eyal Fitoussi&#8217;s <a href="https://wordpress.org/plugins/geo-my-wp/">GEO my WordPress</a> geolocation plugin.
-* <a href="https://broadcast.plainviewplugins.com/addon/geodirectory/">Geodirectory</a> adds support for <a href="https://wordpress.org/plugins/geodirectory/">Geodirectory</a> places.
-* <a href="https://broadcast.plainviewplugins.com/addon/global-blocks-for-cornerstone/">Global Blocks For Cornerstone</a> adds support for the <a href="https://wordpress.org/plugins/global-blocks-for-cornerstone/">Global Blocks for Cornerstone</a> plugin.
-* <a href="https://broadcast.plainviewplugins.com/addon/global-content-blocks/">Global Content Blocks</a> adds support for shortcodes from <a href="https://wordpress.org/plugins/global-content-blocks/">WP Xpert&#8217;s Global Content Blocks</a> plugin.
-* <a href="https://broadcast.plainviewplugins.com/addon/gravity-forms/">Gravity Forms</a> adds support for the <a href="http://www.gravityforms.com/">Gravity Forms</a> plugin.
-* <a href="https://broadcast.plainviewplugins.com/addon/image-map-pro/">Image Map Pro</a> adds support for the <a href="https://codecanyon.net/item/image-map-pro-for-wordpress-interactive-image-map-builder/2826664">Image Map Pro</a> plugin.
-* <a href="https://broadcast.plainviewplugins.com/addon/intagrate/">Intagrate</a> adds support for the <a href="https://intagrate.io/">Intagrate</a> plugin.
-* <a href="https://broadcast.plainviewplugins.com/addon/jetpack/">Jetpack</a> adds support for <a href="https://wordpress.org/plugins/jetpack/">Automattic's Jetpack plugin</a>.
-* <a href="https://broadcast.plainviewplugins.com/addon/learndash">LearnDash</a>: New add-on. Adds support for the <a href="https://www.learndash.com/">LearnDash LMS</a> plugin.
-* <a href="https://broadcast.plainviewplugins.com/addon/mailster/">Mailster</a> adds support for the <a href="https://codecanyon.net/item/mailster-email-newsletter-plugin-for-wordpress/3078294">Mailster</a> plugin.
-* <a href="https://broadcast.plainviewplugins.com/addon/metaslider/">Metaslider</a> adds support for <a href="https://www.metaslider.com/">Metaslider</a> shortcodes.
-* <a href="https://broadcast.plainviewplugins.com/addon/ninja-forms/">Ninja Forms</a> adds support for the <a href="https://wordpress.org/plugins/ninja-forms/">Ninja Forms</a> plugin.
-* <a href="https://broadcast.plainviewplugins.com/addon/ns-cloner/">NS Cloner</a> adds support for the <a href="https://wordpress.org/plugins/ns-cloner-site-copier/">NS Cloner</a> plugin.
-* <a href="https://broadcast.plainviewplugins.com/addon/pods/">Pods</a> adds support for the <a href="https://www.pods.io/">Pods - Custom Content Types and Fields</a> plugin.
-* <a href="https://broadcast.plainviewplugins.com/addon/polylang/">Polylang</a> adds support for Broadcasting posts in different languages using Frédéric Demarle’s <a href="https://wordpress.org/plugins/polylang/">Polylang</a> translation plugin.
-* <a href="https://broadcast.plainviewplugins.com/addon/post-expirator/">Post Expirator</a> adds support for Aaron Axelsen's <a href="https://wordpress.org/plugins/post-expirator/">Post Expirator</a> plugin.
-* <a href="https://broadcast.plainviewplugins.com/addon/sensei/">Sensei</a> adds support for the <a href="https://woocommerce.com/products/sensei/">Sensei</a> plugin.
-* <a href="https://broadcast.plainviewplugins.com/addon/siteorigin-page-builder/">SiteOrigin Page Builder</a> adds support for <a href="https://wordpress.org/plugins/siteorigin-panels/">SiteOrigin's Page Builder plugin</a>.
-* <a href="https://broadcast.plainviewplugins.com/addon/slider-revolution/">Slider Revolution</a> adds support for the <a href="https://revolution.themepunch.com/">Slider Revolution</a> plugin.
-* <a href="https://broadcast.plainviewplugins.com/addon/smart-slider-3/">Smart Slider 3</a> adds support for the <a href="https://wordpress.org/plugins/smart-slider-3/">Smart Slider 3</a> plugin.
-* <a href="https://broadcast.plainviewplugins.com/addon/social-networks-auto-poster/">Social Networks Auto Poster</a> tells <a href="https://wordpress.org/plugins/social-networks-auto-poster-facebook-twitter-g/">NextScripts’ Social Networks Auto Poster</a> (SNAP) to use the different social settings on each blog.
-* <a href="https://broadcast.plainviewplugins.com/addon/tablepress/">TablePress</a> adds support for broadcasting <a href="https://wordpress.org/plugins/tablepress/">TablePress</a> shortcodes.
-* <a href="https://broadcast.plainviewplugins.com/addon/tao-schedule-update/">Tao Schedule Update</a> adds support for <a href="https://wordpress.org/plugins/tao-schedule-update/">Tao Schedule Update</a> plugin.
-* <a href="https://broadcast.plainviewplugins.com/addon/the-events-calendar/">The Events Calendar</a> adds venue and organiser support for Modern Tribe’s <a href="https://wordpress.org/plugins/the-events-calendar/">The Events Calendar </a> plugin.
-* <a href="https://broadcast.plainviewplugins.com/addon/toolset/">Toolset</a> adds support for <a href="https://wp-types.com/">OnTheGoSystems&#8217; Toolset</a> plugins: CRED, Types and Views.
-* <a href="https://broadcast.plainviewplugins.com/addon/ultimate-member/">Ultimate Member</a> adds support for the <a href="https://wordpress.org/plugins/ultimate-member/">Ultimate Member</a> plugin.
-* <a href="https://broadcast.plainviewplugins.com/addon/unyson/">Unyson</a> adds support for the <a href="https://wordpress.org/plugins/unyson/">Unyson page builder plugin</a>.
-* <a href="https://broadcast.plainviewplugins.com/addon/woocommerce/">WooCommerce</a> allows attribute taxonomies and product variations to be broadcasted.
-* <a href="https://broadcast.plainviewplugins.com/addon/wp-all-import/">WP All Import</a> adds support for post updates from Soffly's <a href="http://www.wpallimport.com/">WP All Import Pro</a>.
-* <a href="https://broadcast.plainviewplugins.com/addon/wpcustom-category-image/">WPCustom Category Image</a> adds support for the <a href="https://wordpress.org/plugins/wpcustom-category-image/">WPCustom Category Image</a> plugin.
-* <a href="https://broadcast.plainviewplugins.com/addon/wplms/">WPLMS</a> adds support for Vibethemes' <a href="https://themeforest.net/item/wplms-learning-management-system/6780226">WPLMS theme</a>.
-* <a href="https://broadcast.plainviewplugins.com/addon/wpml/">WPML</a> adds support for <a href="http://wpml.org/">ICanLocalize’s WPML</a> translation plugin.
-* <a href="https://broadcast.plainviewplugins.com/addon/wp-ultimate-recipe/">WP Ultimate Recipe</a> adds support for recipes and ingredients from <a href="http://bootstrapped.ventures">Bootstrapped Ventures’</a> <a href="http://bootstrapped.ventures">WP Ultimate Recipe</a> plugin.
-* <a href="https://broadcast.plainviewplugins.com/addon/yoast-seo/">Yoast SEO</a> adds support for the <a href="https://wordpress.org/plugins/wordpress-seo/">Yoast SEO</a> plugin.
+The following add-ons add support for the plugin after which they are named.
+
+* <a href="https://broadcast.plainviewplugins.com/addon/activity-monitor/">Activity Monitor</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/advanced-custom-fields/">Advanced Custom Fields</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/all-in-one-calendar/">All In One Calendar</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/aqua-page-builder/">Aqua Page Builder</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/avia-layout-builder/">Avia Layout Builder</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/bbpress/">bbPress</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/beaver-builder/">Beaver Builder</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/calendarize-it/">Calendarize It</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/contact-form-7/">Contact Form 7</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/divi-builder/">Divi Builder</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/download-monitor/">Download Monitor</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/elementor/">Elementor</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/eventon/">EventOn</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/event-organiser/">Event Organiser</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/events-manager/">Events Manager</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/foogallery/">FooGallery</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/geo-my-wp/">GEO my WordPress</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/geodirectory/">Geodirectory</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/global-blocks-for-cornerstone/">Global Blocks For Cornerstone</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/global-content-blocks/">Global Content Blocks</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/goodlayers/">GoodLayers</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/gravity-forms/">Gravity Forms</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/image-map-pro/">Image Map Pro</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/intagrate/">Intagrate</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/jetpack/">Jetpack</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/learndash">LearnDash</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/mailster/">Mailster</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/metaslider/">Metaslider</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/ninja-forms/">Ninja Forms</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/ns-cloner/">NS Cloner</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/pods/">Pods</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/polylang/">Polylang</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/post-expirator/">Post Expirator</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/sensei/">Sensei</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/siteorigin-page-builder/">SiteOrigin Page Builder</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/slider-revolution/">Slider Revolution</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/smart-slider-3/">Smart Slider 3</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/social-networks-auto-poster/">Social Networks Auto Poster</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/tablepress/">TablePress</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/tao-schedule-update/">Tao Schedule Update</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/the-events-calendar/">The Events Calendar</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/toolset/">Toolset</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/ultimate-member/">Ultimate Member</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/unyson/">Unyson</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/woocommerce/">WooCommerce</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/wp-all-import/">WP All Import</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/wpcustom-category-image/">WPCustom Category Image</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/wplms/">WPLMS</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/wpml/">WPML</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/wp-ultimate-recipe/">WP Ultimate Recipe</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/yoast-seo/">Yoast SEO</a>
 
 Control pack
 ------------
+
+These add-ons give you extra control of what you broadcast and how.
 
 * <a href="https://broadcast.plainviewplugins.com/addon/all-blogs/">All Blogs</a> gives all users access to all of the blogs in the network.
 * <a href="https://broadcast.plainviewplugins.com/addon/all-blogs/">All Blogs Superadmin</a> allows only superadmins to broadcast to all blogs in the network without having to be a user of the blog.
@@ -140,6 +146,8 @@ Control pack
 Efficiency pack
 ---------------
 
+These add-ons allow you to broadcast more efficiently, saving you even more time.
+
 * <a href="https://broadcast.plainviewplugins.com/addon/blog-groups-2/">Blog Groups 2</a> provides a means of groups blogs together, in order to be able to quickly select and unselect blogs from the Broadcast meta box.
 * <a href="https://broadcast.plainviewplugins.com/addon/duplicate-attachments/">Duplicate Attachments</a> will duplicate the attachment and thumbnails, instead of letting WordPress regenerate them.
 * <a href="https://broadcast.plainviewplugins.com/addon/find-some-unlinked-children/">Find Some Unlinked Children</a> can selectively link orphans / unlinked posts to parents, instead of automatically linking all found children.
@@ -152,8 +160,11 @@ Efficiency pack
 Utilities pack
 --------------
 
+These add-ons do things semi-related to broadcasting, but are good to have none-the-less.
+
 * <a href="https://broadcast.plainviewplugins.com/addon/cdn-workaround/">CDN Workaround</a> works around faulty CDNs that do not report the correct URL for attachments.
 * <a href="https://broadcast.plainviewplugins.com/addon/lock-post/">Lock Post</a> allows users to lock editing of posts / pages to only themselves and super admins.
+* <a href="https://broadcast.plainviewplugins.com/addon/media-cleanup/">Media Cleanup</a>: cleans up unused media by looking for unused items in the database and on disk.
 * <a href="https://broadcast.plainviewplugins.com/addon/menus/">Menus</a> copies menus between blogs (overwrite / update), with support for equivalent child posts on the child blogs and equivalent taxonomies.
 * <a href="https://broadcast.plainviewplugins.com/addon/page-content-shortcode/">Page Content Shortcode</a> provides a <code>[bc_page_content slug="pageslug"]</code> shortcode to display the contents of a page.
 * <a href="https://broadcast.plainviewplugins.com/addon/php-code/">PHP Code</a> runs custom PHP code on selected blogs. Easily switch themes for all blogs, for example.
@@ -189,16 +200,17 @@ The git repository can be found at: https://bitbucket.org/edward_electric/broadc
 == Screenshots ==
 
 1. Broadcast meta box when editing posts
-2. Post overview showing linked children
-3. Post overview showing linked parents
-4. Bulk actions that can be applied to several marked posts at once
-5. Post actions for parent posts
-6. Post actions for child posts
-7. The Broadcast menu
-8. Admin settings tab
-9. Maintenance tab
-10. Uninstall tab
-11. Time savings tab showing how much time Broadcast has saved you
+2. How posts and pages can be broadcasted
+3. Post overview showing linked children
+4. Post overview showing linked parents
+5. Bulk actions that can be applied to several marked posts at once
+6. Post actions for parent posts
+7. Post actions for child posts
+8. The Broadcast menu
+9. Admin settings tab
+10. Maintenance tab
+11. Uninstall tab
+12. Time savings tab showing how much time Broadcast has saved you
 
 == Frequently Asked Questions ==
 
@@ -291,6 +303,25 @@ This will broadcast all normal product settings: SKU, price, etc.
 If your products have variations, a product image gallery, you want to sync stock, you want to sync orders, need the attribute taxonomies to be synced, you'll be wanting the <a href="https://broadcast.plainviewplugins.com/addon/woocommerce/">WooCommerce add-on</a>.
 
 == Changelog ==
+
+= 42.2 20171213 =
+
+* Fix: GMT dates on draft posts were being incorrectly set from 0000-00-00 (a very invalid date in itself, btw).
+* New add-on. <a href="https://broadcast.plainviewplugins.com/addon/goodlayers/">GoodLayers</a>: Adds support for the <a href="https://goodlayers.com/">GoodLayers family of themes</a>.
+
+= 42.1 20171130 =
+
+* Fix fatal error for PHP v5.6 installs.
+
+= 42 20171130 =
+
+* New snippet: <a href="https://broadcast.plainviewplugins.com/snippet/sync-taxonomies-programmatically/">Sync taxonomies programmatically</a>
+* New snippet: <a href="https://broadcast.plainviewplugins.com/snippet/media-cleanup-delete-only-image-files/">Media Cleanup – Delete only image files</a>
+* New snippet: <a href="https://broadcast.plainviewplugins.com/snippet/media-cleanup-modify-search-regexps/">Media Cleanup – Modify search regexps</a>
+* New add-on. <a href="https://broadcast.plainviewplugins.com/addon/media-cleanup/">Media Cleanup</a>: cleans up unused media by looking for unused items in the database and on disk.
+* Code: Added synced_taxonomy action.
+* Code: Simplified handling of taxonomies during broadcast.
+* Code: Start using new_action() convenience method to generate actions.
 
 = 41 20171030 =
 

@@ -2,8 +2,6 @@
 
 namespace threewp_broadcast\premium_pack;
 
-use \threewp_broadcast\actions;
-
 /**
 	@brief		This is the class that manages all of the Broadcast packs.
 	@details	The reason for it being in this namespace is due to being moved from the premium pack and not wanting to break backward compatability.
@@ -66,7 +64,7 @@ class ThreeWP_Broadcast_Plugin_Pack
 			->name( __( 'Available add-ons', 'threewp_broadcast' ) )
 			->sort_order( 25 );
 
-		$action = new actions\plugin_pack_tabs();
+		$action = ThreeWP_Broadcast()->new_action( 'plugin_pack_tabs' );
 		$action->tabs = $tabs;
 		$action->execute();
 
@@ -76,7 +74,7 @@ class ThreeWP_Broadcast_Plugin_Pack
 			->name( __( 'Uninstall', 'threewp_broadcast' ) )
 			->sort_order( 75 );
 
-		echo $tabs;
+		echo $tabs->render();
 	}
 
 	/**
@@ -228,7 +226,7 @@ class ThreeWP_Broadcast_Plugin_Pack
 	**/
 	public function uninstall()
 	{
-		$action = new actions\plugin_pack_uninstall();
+		$action = ThreeWP_Broadcast()->new_action( 'plugin_pack_uninstall' );
 		$action->execute();
 	}
 }
