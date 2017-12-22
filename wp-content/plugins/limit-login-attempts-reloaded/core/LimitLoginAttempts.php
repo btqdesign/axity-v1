@@ -1001,13 +1001,17 @@ class Limit_Login_Attempts
 	*/
 	public function get_address( $type_name = '' ) {
 
-		if ( isset( $_SERVER['HTTP_X_FORWARDED_FOR'] ) && ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
+		if ( !empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) )
 			return $_SERVER['HTTP_X_FORWARDED_FOR'];
-		} elseif ( isset( $_SERVER['REMOTE_ADDR'] ) ) {
+
+		elseif ( !empty( $_SERVER['HTTP_X_SUCURI_CLIENTIP'] ) )
+			return $_SERVER['HTTP_X_SUCURI_CLIENTIP'];
+
+		elseif ( isset( $_SERVER['REMOTE_ADDR'] ) )
 			return $_SERVER['REMOTE_ADDR'];
-		} else {
+
+		else
 			return '';
-		}
 	}
 
 	/**
