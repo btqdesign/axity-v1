@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Yoast SEO - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2017-12-20 12:58:41+0000\n"
+"PO-Revision-Date: 2018-01-09 08:41:08+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -10,6 +10,36 @@ msgstr ""
 "X-Generator: GlotPress/2.4.0-alpha\n"
 "Language: es\n"
 "Project-Id-Version: Plugins - Yoast SEO - Stable (latest release)\n"
+
+#. Author URI of the plugin/theme
+msgid "https://yoa.st/1uk"
+msgstr "https://yoa.st/1uk"
+
+#. Plugin URI of the plugin/theme
+msgid "https://yoa.st/1uj"
+msgstr "https://yoa.st/1uj"
+
+#: admin/metabox/class-metabox.php:315
+#: admin/taxonomy/class-taxonomy-metabox.php:60
+msgid "Meta box"
+msgstr "Caja meta"
+
+#. translators: %1$s resolves to Yoast.com
+#: admin/class-yoast-dashboard-widget.php:108
+msgid "Latest blogposts on %1$s"
+msgstr "Últimos artículos en %1$s"
+
+#: admin/class-help-center.php:220
+msgid "Need help?"
+msgstr "¿Necesitas ayuda?"
+
+#: admin/class-help-center.php:204
+msgid "Type here to search..."
+msgstr "Teclea aquí para buscar…"
+
+#: admin/class-help-center.php:203
+msgid "Search the Yoast Knowledge Base for answers to your questions:"
+msgstr "Busca en la base de conocimiento de Yoast respuestas a tus preguntas:"
 
 #. Translators: %1$s and $3$s expand to the admin search page for the focus
 #. keyword, %2$d expands to the number 	   of times this focus keyword has been
@@ -222,10 +252,6 @@ msgstr "Cargando el centro de ayuda."
 msgid "Get support"
 msgstr "Obtén soporte"
 
-#: admin/class-help-center.php:204
-msgid "Search the knowledge base"
-msgstr "Buscar en la base de conocimiento"
-
 #: admin/class-help-center.php:206
 msgid "View in KB"
 msgstr "Ver en la KB"
@@ -430,13 +456,9 @@ msgstr "¿Tu sitio representa a una persona o a una empresa?"
 msgid "Close wizard"
 msgstr "Cerrar asistente"
 
-#: admin/class-yoast-dashboard-widget.php:107
+#: admin/class-yoast-dashboard-widget.php:111
 msgid "Read more like this on our SEO blog"
 msgstr "Lee más como esto en nuestro blog de SEO"
-
-#: admin/class-yoast-dashboard-widget.php:106
-msgid "Latest blogposts on Yoast.com"
-msgstr "Últimas entradas en Yoast.com"
 
 #: inc/class-wpseo-rank.php:137
 msgid "Readability: Good"
@@ -526,10 +548,10 @@ msgstr "¡Ve al premium!"
 msgid "Dismiss %s upgrade motivation"
 msgstr "Descartar la incitación a actualizar %s"
 
-#. translators: 1: open link tag 2: close link tag
+#. translators: 1: open link tag 2: close link tag, 3: Yoast.com
 #: admin/views/tabs/dashboard/features.php:55
-msgid "This feature helps you improve the internal link structure of your site. If you want to know more about the why and how of internal linking, check out the %1$sarticle about internal linking on Yoast.com%2$s."
-msgstr "Esta funcionalidad te ayuda a mejorar la estructura de enlaces internos de tu sitio. Si quieres saber más sobre el porqué y el cómo del enlazado interno revisa nuestro %1$sartículo sobre enlazado interno en Yoast.com%2$s."
+msgid "This feature helps you improve the internal link structure of your site. If you want to know more about the why and how of internal linking, check out the %1$sarticle about internal linking on %3$s%2$s."
+msgstr "Esta funcionalidad te ayuda a mejorar la estructura de enlaces internos de tu sitio. Si quieres saber más sobre el porqué y el cómo del enlazado interno revisa nuestro %1$sartículo sobre enlazado interno en %3$s%2$s."
 
 #. translators: %1$s: Yoast SEO. %2$s: Version number of Yoast SEO. %3$s: link
 #. to knowledge base article about solving table issue. %4$s: is anchor
@@ -1681,7 +1703,7 @@ msgid "%s installation wizard"
 msgstr "Asistente de instalación de %s"
 
 #. translators: %1$s expands to Yoast SEO
-#: admin/views/tabs/dashboard/features.php:74
+#: admin/views/tabs/dashboard/features.php:75
 msgid "%1$s comes with a lot of features. You can enable / disable some of them below."
 msgstr "%1$s viene con un montón de características. Puedes activar / desactivar algunas a continuación."
 
@@ -1707,7 +1729,7 @@ msgstr "Los ajustes avanzados incluyen ajustes globales para tus títulos y meta
 msgid "Advanced settings pages"
 msgstr "Páginas de ajustes avanzados"
 
-#: admin/pages/dashboard.php:60 admin/views/tabs/dashboard/features.php:70
+#: admin/pages/dashboard.php:60 admin/views/tabs/dashboard/features.php:71
 msgid "Features"
 msgstr "Características"
 
@@ -2467,10 +2489,6 @@ msgstr "Cargando..."
 msgid "Something went wrong. Please try again later."
 msgstr "Algo salió mal. Por favor, inténtalo de nuevo más tarde."
 
-#: admin/class-help-center.php:203
-msgid "Search the Yoast knowledge base"
-msgstr "Buscar en la base de conocimientos de Yoast ."
-
 #: admin/class-help-center.php:211
 msgid "No results found."
 msgstr "No se han encontrado resultados."
@@ -2701,7 +2719,7 @@ msgstr "La sección avanzada de la meta box %1$s permite no indexar entradas o c
 msgid "Advanced part of the %1$s meta box"
 msgstr "Sección avanzada de la caja meta %1$s"
 
-#: admin/class-yoast-form.php:316 admin/views/tabs/dashboard/features.php:84
+#: admin/class-yoast-form.php:316 admin/views/tabs/dashboard/features.php:85
 #: admin/views/tabs/dashboard/security.php:17
 #: admin/views/tabs/metas/archives.php:34
 #: admin/views/tabs/metas/archives.php:53
@@ -2710,7 +2728,7 @@ msgstr "Sección avanzada de la caja meta %1$s"
 msgid "Enabled"
 msgstr "Activado"
 
-#: admin/class-yoast-form.php:316 admin/views/tabs/dashboard/features.php:85
+#: admin/class-yoast-form.php:316 admin/views/tabs/dashboard/features.php:86
 #: admin/views/tabs/dashboard/security.php:18
 #: admin/views/tabs/metas/archives.php:35
 #: admin/views/tabs/metas/archives.php:54
@@ -2747,11 +2765,11 @@ msgstr "Quitar las variables %s."
 msgid "Strip the category base (usually %s) from the category URL."
 msgstr "Quitar la categoría base (normalmente %s) de la URL de categoría."
 
-#: admin/class-yoast-dashboard-widget.php:114
+#: admin/class-yoast-dashboard-widget.php:118
 msgid "Analyze entire site"
 msgstr "Analizar el sitio completo"
 
-#: admin/class-yoast-dashboard-widget.php:113
+#: admin/class-yoast-dashboard-widget.php:117
 msgid "Fetch the current status"
 msgstr "Ver el estado actual."
 
@@ -2766,7 +2784,7 @@ msgid "Your homepage can be indexed by search engines."
 msgstr "Tu página de inicio puede ser indexada por los motores de búsqueda."
 
 #. translators: %1$s expands to Ryte.
-#: admin/class-yoast-dashboard-widget.php:110
+#: admin/class-yoast-dashboard-widget.php:114
 msgid "Indexability check by %1$s"
 msgstr "Comprobación de indexación de %1$s"
 
@@ -2855,10 +2873,6 @@ msgstr "%1$s de %2$s hecho."
 msgid "We've updated our SEO score algorithm. %1$sRecalculate the SEO scores%2$s for all posts and pages."
 msgstr "Hemos actualizado nuestro algoritmo de puntuación SEO. %1$sRecalcula las puntuaciones SEO%2$s de todas las entradas y páginas."
 
-#. Author URI of the plugin/theme
-msgid "https://yoast.com/"
-msgstr "https://yoast.com/"
-
 #. Author of the plugin/theme
 msgid "Team Yoast"
 msgstr "Equipo Yoast"
@@ -2867,11 +2881,7 @@ msgstr "Equipo Yoast"
 msgid "The first true all-in-one SEO solution for WordPress, including on-page content analysis, XML sitemaps and much more."
 msgstr "La primera verdadera solución SEO todo en uno para WordPress, incluyendo análisis de contenido de páginas, mapas del sitio en XML y mucho más."
 
-#. Plugin URI of the plugin/theme
-msgid "https://yoast.com/wordpress/plugins/seo/#utm_source=wpadmin&utm_medium=plugin&utm_campaign=wpseoplugin"
-msgstr "https://yoast.com/wordpress/plugins/seo/#utm_source=wpadmin&utm_medium=plugin&utm_campaign=wpseoplugin"
-
-#. #-#-#-#-#  wordpress-seo-code.pot (Yoast SEO 6.0)  #-#-#-#-#
+#. #-#-#-#-#  wordpress-seo-code.pot (Yoast SEO 6.1.1)  #-#-#-#-#
 #. Plugin Name of the plugin/theme
 #: admin/capabilities/class-capability-manager-integration.php:66
 msgid "Yoast SEO"
@@ -3364,7 +3374,7 @@ msgstr "Una variable de reemplazo no puede comenzar por \"%%cf_\" or \"%%ct_\" d
 msgid "A replacement variable can only contain alphanumeric characters, an underscore or a dash. Try renaming your variable."
 msgstr "Una variable de reemplazo solamente puede contener caracteres alfanuméricos, guión bajo, o guión normal. Intenta renombrar tu variable."
 
-#: frontend/class-frontend.php:1260
+#: frontend/class-frontend.php:1261
 msgid "Admin only notice: this page doesn't show a meta description because it doesn't have one, either write it for this page specifically or go into the SEO -> Titles menu and set up a template."
 msgstr "Aviso solo para el Administrador: esta página no muestra una meta description porque no la tiene. Haz una de estas dos cosas: escribe una específicamente para esta página o ve al menú SEO -> Títulos y configura una plantilla."
 
@@ -3744,7 +3754,7 @@ msgid "This tool allows you to quickly change titles and descriptions of your po
 msgstr "Esta herramienta te permite modificar rápidamente títulos y descripciones de entradas y páginas sin necesidad de editar cada página."
 
 #: admin/pages/tools.php:21 admin/views/tool-bulk-editor.php:37
-#: admin/views/tool-bulk-editor.php:40
+#: admin/views/tool-bulk-editor.php:40 admin/views/tool-file-editor.php:97
 msgid "Bulk editor"
 msgstr "Editor masivo"
 
@@ -5040,24 +5050,24 @@ msgstr "Configuracion de WooThemes SEO framework &amp; datos importados correcta
 msgid "HeadSpace2 data successfully imported"
 msgstr "Datos de HeadSpace2 importados correctamente"
 
-#: admin/class-export.php:187
+#: admin/class-export.php:191
 msgid "No taxonomy metadata found"
 msgstr "No se han encontrado metadatos de taxonomías"
 
-#: admin/class-export.php:118
+#: admin/class-export.php:122
 msgid "This export includes taxonomy metadata"
 msgstr "Esta exportación incluye metadatos de taxonomía"
 
-#. translators: %1$s expands to Yoast SEO
-#: admin/class-export.php:116
-msgid "This is a settings export file for the %1$s plugin by Yoast.com"
-msgstr "Este es un archivo de exportación de los ajustes del plugin %1$s de Yoast.com "
+#. translators: %1$s expands to Yoast SEO, %2$s expands to Yoast.com
+#: admin/class-export.php:117
+msgid "This is a settings export file for the %1$s plugin by %2$s"
+msgstr "Este es un archivo de exportación de los ajustes del plugin %1$s de %2$s "
 
 #: admin/class-export.php:100
 msgid "Could not write settings to file."
 msgstr "No se han podido escribir los ajustes en un fichero."
 
-#: admin/class-export.php:225
+#: admin/class-export.php:229
 msgid "Could not zip settings-file."
 msgstr "No se pudo crear el archivo zip con los ajustes."
 
@@ -5240,37 +5250,37 @@ msgstr "Editar archivos"
 msgid "MultiSite Settings"
 msgstr "Ajustes multisitio"
 
-#: admin/class-admin.php:692 admin/class-admin.php:693 admin/pages/metas.php:75
+#: admin/class-admin.php:700 admin/class-admin.php:701 admin/pages/metas.php:75
 msgid "Advanced Variables"
 msgstr "Variables avanzadas"
 
-#: admin/class-admin.php:684 admin/class-admin.php:685 admin/pages/metas.php:69
+#: admin/class-admin.php:692 admin/class-admin.php:693 admin/pages/metas.php:69
 msgid "Basic Variables"
 msgstr "Variables básicas"
 
-#: admin/class-admin.php:677 admin/pages/metas.php:64
+#: admin/class-admin.php:685 admin/pages/metas.php:64
 msgid "Note that not all variables can be used in every template."
 msgstr "Ten en cuenta que no todas las variables pueden usarse en cada plantilla."
 
 #. translators: %1$s expands to Yoast SEO.
-#: admin/class-admin.php:674
+#: admin/class-admin.php:682
 msgid "The title &amp; metas settings for %1$s are made up of variables that are replaced by specific values from the page when the page is displayed. The tabs on the left explain the available variables."
 msgstr "Los ajustes de título y metas de %1$s están creadas con variables que son reemplazadas por valores específicos de la página cuando la página se muestra. Las pestañas de la izquierda explican las variables disponibles. "
 
-#: admin/class-admin.php:670 admin/class-admin.php:671 admin/pages/metas.php:41
+#: admin/class-admin.php:678 admin/class-admin.php:679 admin/pages/metas.php:41
 #: admin/pages/metas.php:62
 msgid "Template explanation"
 msgstr "Explicación de la plantilla"
 
-#: admin/class-admin.php:664
+#: admin/class-admin.php:672
 msgid "Why Google won't display the right page title"
 msgstr "Por qué Google no muestra el título correcto de la página"
 
-#: admin/class-admin.php:663
+#: admin/class-admin.php:671
 msgid "Title optimization"
 msgstr "Optimización del título"
 
-#: admin/class-admin.php:662
+#: admin/class-admin.php:670
 msgid "For more information:"
 msgstr "Para mas información:"
 
