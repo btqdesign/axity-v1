@@ -332,6 +332,18 @@ if (!$backup_folder_exists) {
             </tr>
           </thead>
           <tbody>
+          <tr v-if="isNewRowAvailable" is="backup-row"
+              class="success-grid"
+              :name="backupNewRow.name"
+              :type="backupNewRow.type"
+              :date="backupNewRow.date"
+              :duration="backupNewRow.duration"
+              :status="backupNewRow.status"
+              :row="backupNewRow.row"
+              :job-id="backupNewRow.jobId"
+              :zip-exist="backupNewRow.zipExist"
+          >
+          </tr>
         <?php
 
         if ($backup_job_list!=false)
@@ -360,82 +372,23 @@ if (!$backup_folder_exists) {
 
               }
 
-
-            $class = $i % 2 == 0 ? 'class="alternate"' : '';
+              $zip_exist = false;
+              $zip_files = $job->getJobMetaValue('backup_zip_files');
+              if(is_array($zip_files) && count($zip_files)>0) {
+                  $zip_exist = true;
+              }
             ?>
-
-            <tr <?php echo $class ?> id="row<?php echo $i; ?>">
-              <td data-th="<?php _e('Backup', 'wp-backitup') ?>">
-                  <?php
-                    $zip_files = $job->getJobMetaValue('backup_zip_files');
-                    if(is_array($zip_files) && count($zip_files)>0) { ?>
-                        <a href="#TB_inline?width=600&height=550&inlineId=<?php echo preg_replace('/[^A-Za-z0-9\-]/', '', $backup_name) ?>" class="thickbox" title="Download Backup" name="<?php echo $backup_name ?>" data-jobid="<?php echo $job->getJobId(); ?>">
-                        <i class="fa fa-download"></i> 
-                    <?php echo $backup_name ?>
-                  </a>
-                  <?php } else {
-                      echo $backup_name;
-                  } ?>
-              </td>
-
-              <td class="word-capitalize" data-th="<?php _e('Type', 'wp-backitup') ?>"><?php echo $backup_run_type ?></td>
-              <!--date-->
-              <td data-th="<?php _e('Date', 'wp-backitup') ?>"><?php echo $file_datetime ?></td>
-
-              <td data-th="<?php _e('Duration', 'wp-backitup') ?>"><?php echo $job->getJobDurationFormatted() ?></td>
-
-              <td data-th="<?php _e('Status', 'wp-backitup') ?>"><?php echo $status ?></td>
-
-               <td>
-	            <?php // WPBACKITUP__SAFE_SYNC_ON is temporary flag used to turn on sync functionality
-	                if (true==WPBACKITUP__SAFE_SYNC_ON && strtoupper($status)== "SUCCESS") : ?>
-                       <span v-if="cloudStatus['<?php echo $job->getJobId() ?>'] == 'uploaded' " class="fa-stack" title="<?php _e('Backup safely stored in cloud', 'wp-backitup'); ?>" >
-                           <a href="#" @click="openModal('modal<?php echo $job->getJobId() ?>')">
-                               <i class="fa fa fa-cloud fa-stack-2x" style="color:dodgerblue;"></i>
-                               <i class="fa fa-check fa-stack-1x fa-inverse"></i>
-                           </a>
-                        </span>
-
-                        <span v-else-if="cloudStatus['<?php echo $job->getJobId() ?>'] == 'uploading'" class="fa-stack" title="<?php _e('Sending backup to cloud', 'wp-backitup'); ?>" >
-                            <i class="fa fa-refresh fa-spin fa-2x fa-fw" style="color:dodgerblue;"></i>
-                        </span>
-
-                        <span v-else-if="cloudStatus['<?php echo $job->getJobId() ?>'] == 'error'" class="fa-stack" title="<?php _e('Error sending backup to cloud', 'wp-backitup'); ?>" >
-                            <a href="#" @click="openModal('modal<?php echo $job->getJobId() ?>')">
-                                <i class="fa fa-exclamation-circle fa-2x" style="color:#d9534f;"></i>
-                            </a>
-                        </span>
-
-                       <span v-else class="fa-stack">
-                        <i class="fa fa-refresh fa-spin fa-2x fa-fw" style="color:dodgerblue;display: none"></i>
-                        <a href="#" @click="openModal('modal<?php echo $job->getJobId() ?>')" title="Send to Cloud" data-id="<?php echo $job->getJobId() ?>" class="safeUploadRow" id="safeUploadRow<?php echo $i; ?>">
-                            <i class="fa fa-cloud-upload fa-2x" style="color:grey;" aria-hidden="true"></i>
-                        </a>
-                       </span>
-
-                            <!-- safe modal -->
-                            <div class="page__demo-group">
-                                <ui-modal ref="modal<?php echo $job->getJobId() ?>" title="<?php _e('Upload to Cloud','wp-backitup') ?>">
-	                                <h2>Which cloud storage provider(s) would like to use?</h2>
-                                    <div v-for="provider in providers">
-                                        <ui-checkbox v-if="provider === 'DROPBOX' " v-model="DROPBOX['<?php echo $job->getJobId() ?>']">{{ provider }}</ui-checkbox>
-                                        <ui-checkbox v-if="provider === 'GDRIVE' " v-model="GDRIVE['<?php echo $job->getJobId() ?>']">{{ provider }}</ui-checkbox>
-                                        <ui-checkbox v-if="provider === 'AMAZONS3' " v-model="AMAZONS3['<?php echo $job->getJobId() ?>']">{{ provider }}</ui-checkbox>
-                                    </div>
-
-                                    <div slot="footer">
-                                        <ui-button color="primary" @click="saveIndProviders('<?php echo $job->getJobId() ?>')"><?php _e('Save', 'wp-backitup'); ?></ui-button>
-                                        <ui-button @click="closeModal('modal<?php echo $job->getJobId() ?>')"><?php _e('Close', 'wp-backitup'); ?></ui-button>
-                                    </div>
-                                </ui-modal>
-                            </div>
-	                  <?php endif ?>
-               </td>
-	            <td>
-		            <a href="#" title="Delete Backup" data-id="<?php echo $job->getJobId() ?>" class="deleteRow" id="deleteRow<?php echo $i; ?>"><i class="fa fa-trash-o fa-2x"></i></a>
-	            </td>
-            </tr>
-
+              <tr is="backup-row"
+                  name="<?php echo $backup_name; ?>"
+                  type="<?php echo $backup_run_type; ?>"
+                  date="<?php echo $file_datetime; ?>"
+                  duration="<?php echo $job->getJobDurationFormatted() ?>"
+                  status="<?php echo $status; ?>"
+                  row="<?php echo $i ?>"
+                  job-id="<?php echo $job->getJobId(); ?>"
+                  zip-exist="<?php echo $zip_exist ?>"
+              >
+              </tr>
             <?php
               $i++;
           }
@@ -577,3 +530,87 @@ if (!$backup_folder_exists) {
 <span class="hidden" id="popupbox">
   <?php  add_thickbox(); ?>
 </span>
+
+
+
+<!--Vue JS component for backup row-->
+<script type="text/x-template" id="backup-row-template">
+    <tr v-bind:class="klass" v-bind:id="'row' + row">
+        <td data-th="<?php _e('Backup', 'wp-backitup') ?>" v-if="zipExist">
+            <a v-bind:href="'#TB_inline?width=600&height=550&inlineId=' + backupParsedId" class="thickbox" title="Download Backup" v-bind:name="name" v-bind:data-jobid="jobId">
+                <i class="fa fa-download"></i>
+                {{ name }}
+            </a>
+        </td>
+        <td data-th="<?php _e('Backup', 'wp-backitup') ?>" v-else>
+            {{ name }}
+        </td>
+
+        <td class="word-capitalize" data-th="<?php _e('Type', 'wp-backitup') ?>"> {{ type }}</td>
+        <!--date-->
+        <td data-th="<?php _e('Date', 'wp-backitup') ?>">{{ date }}</td>
+
+        <td data-th="<?php _e('Duration', 'wp-backitup') ?>">{{ duration }}</td>
+
+        <td data-th="<?php _e('Status', 'wp-backitup') ?>">{{ status }}</td>
+
+        <send-cloud v-bind:visible="cloudVisible"
+                    v-bind:kloud-status="cstatus"
+        >
+        </send-cloud>
+
+        <td>
+            <a href="#" title="Delete Backup" v-bind:data-id="jobId" class="deleteRow" v-bind:id="'deleteRow'+row"><i class="fa fa-trash-o fa-2x"></i></a>
+        </td>
+    </tr>
+</script>
+
+
+
+<!--Vue Send to cloud-->
+<script type="text/x-template" id="send-to-cloud">
+    <td v-if="visible">
+    <?php if (true==WPBACKITUP__SAFE_SYNC_ON) : ?>
+        <span v-if="kloudStatus == 'uploaded' " class="fa-stack" title="<?php _e('Backup safely stored in cloud', 'wp-backitup'); ?>" >
+            <a href="#" @click="openModal('modal'+ jobId)">
+            <i class="fa fa fa-cloud fa-stack-2x" style="color:dodgerblue;"></i>
+            <i class="fa fa-check fa-stack-1x fa-inverse"></i>
+            </a>
+        </span>
+
+        <span v-else-if="kloudStatus == 'uploading'" class="fa-stack" title="<?php _e('Sending backup to cloud', 'wp-backitup'); ?>" >
+            <i class="fa fa-refresh fa-spin fa-2x fa-fw" style="color:dodgerblue;"></i>
+        </span>
+
+        <span v-else-if="kloudStatus == 'error'" class="fa-stack" title="<?php _e('Error sending backup to cloud', 'wp-backitup'); ?>" >
+            <a href="#" @click="openModal('modal'+ jobId)">
+            <i class="fa fa-exclamation-circle fa-2x" style="color:#d9534f;"></i>
+            </a>
+        </span>
+
+        <span v-else class="fa-stack">
+            <i class="fa fa-refresh fa-spin fa-2x fa-fw" style="color:dodgerblue;display: none"></i>
+            <a href="#" @click="openModal('modal'+ jobId)" title="Send to Cloud" v-bind:data-id="jobId" class="safeUploadRow" id="'safeUploadRow'+ row">
+                <i class="fa fa-cloud-upload fa-2x" style="color:grey;" aria-hidden="true"></i>
+            </a>
+        </span>
+
+        <div class="page__demo-group">
+            <ui-modal v-bind:ref="'modal'+ jobId" title="<?php _e('Upload to Cloud','wp-backitup') ?>">
+                <h2>Which cloud storage provider(s) would like to use?</h2>
+                <div v-for="provider in providers">
+                    <ui-checkbox v-if="provider === 'DROPBOX' " v-model="DROPBOX[jobId]">{{ provider }}</ui-checkbox>
+                    <ui-checkbox v-if="provider === 'GDRIVE' " v-model="GDRIVE[jobId]">{{ provider }}</ui-checkbox>
+                    <ui-checkbox v-if="provider === 'AMAZONS3' " v-model="AMAZONS3[jobId]">{{ provider }}</ui-checkbox>
+                </div>
+
+                <div slot="footer">
+                    <ui-button color="primary" @click="saveIndProviders(jobId)"><?php _e('Save', 'wp-backitup'); ?></ui-button>
+                    <ui-button @click="closeModal('modal'+ jobId)"><?php _e('Close', 'wp-backitup'); ?></ui-button>
+                </div>
+            </ui-modal>
+        </div>
+
+    <?php endif ?>
+    </td>
+</script>

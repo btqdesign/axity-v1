@@ -314,7 +314,7 @@ class WPBackitup_Admin {
             // Enqueue Style for Settings page
             // Todo:: Maybe Removes these file loadings from wpbackitup-safe
             wp_enqueue_style( $this->namespace . '_vue_tab', WPBACKITUP__PLUGIN_URL . 'css/vue-tabs.min.css', array(), $this->version, false );
-            wp_enqueue_style( $this->namespace . '_sweetalert', WPBACKITUP__PLUGIN_URL . 'css/sweetalert.css', array(), $this->version, false);
+//          wp_enqueue_style( $this->namespace . '_sweetalert', WPBACKITUP__PLUGIN_URL . 'css/sweetalert.css', array(), $this->version, false);
             wp_enqueue_style( $this->namespace . '_vue_keen_ui', WPBACKITUP__PLUGIN_URL . 'css/keen-ui.min.css', array(), $this->version, false);
 
 
@@ -330,9 +330,10 @@ class WPBackitup_Admin {
             // Loading new JS files for VueJS
             // Todo:: Maybe Removes these file loadings from wpbackitup-safe
             wp_enqueue_script($this->namespace . '_vue', WPBACKITUP__PLUGIN_URL . 'js/vue.min.js', array(), $this->version, false);
-            wp_enqueue_script($this->namespace . '_vue_tabs', WPBACKITUP__PLUGIN_URL . 'js/vue-tabs.js', array(), $this->version, false);
+            wp_enqueue_script($this->namespace . '_vue_tabs', WPBACKITUP__PLUGIN_URL . 'js/vue-tabs.min.js', array(), $this->version, false);
             wp_enqueue_script($this->namespace . '_jquery_sweetalert', WPBACKITUP__PLUGIN_URL . 'js/sweetalert.min.js', array('jquery'), $this->version, false);
             wp_enqueue_script($this->namespace . '_vue_keen_ui', WPBACKITUP__PLUGIN_URL . 'js/keen-ui.min.js', array(), $this->version, false);
+            wp_enqueue_script($this->namespace . '_vue_components', WPBACKITUP__PLUGIN_URL . 'js/wp-backitup-components.min.js', array(), $this->version, false);
 
             // Loading tagit and core JS
             wp_enqueue_script( "{$this->namespace}-admin" );

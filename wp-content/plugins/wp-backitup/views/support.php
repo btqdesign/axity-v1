@@ -286,11 +286,14 @@ class WPBackItUp_Support {
 	}
 
 	/* For delete data data on delete action */
+	//http://localhost/wp-admin/admin.php?page=wp-backitup-support&delete_log=..%2F..%2F..%2F..%2Ftest-delete.php
 	private function delete_action(){
-		
-		$filename = WPBACKITUP__LOGS_PATH.'/'.$_GET['delete_log'];
-		if (file_exists($filename)) {
-			unlink($filename);
+		if (false!==wp_verify_nonce($_GET['s'],'wp-backitup'. "-delete_log")){
+			$file_name = basename(sanitize_file_name($_GET['delete_log']));
+			$filename = WPBACKITUP__LOGS_PATH.'/'.$file_name;
+			if (file_exists($filename)) {
+				unlink($filename);
+			}
 		}
 	}
 

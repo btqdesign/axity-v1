@@ -12,20 +12,50 @@
 
 if ( ! class_exists( 'WPBackitup_Admin_Notices' ) ) {
 
+
 	class WPBackitup_Admin_Notices {
 
 		private $promo;
 		private $today;
 
+		//PROMO Constants
+		private $BLACK_FRIDAY_2017_PROMO = 'black-friday-2017';
+		private $SAFE_BETA_PROMO = 'safe-beta-december';
+
 		public function __construct(){
 
-			//$test_date = date("Y-m-d H:i", strtotime("16 November 2017 5:00 AM UTC")); //todo: comment for LIVE
-			//$this->today =$test_date;//todo:remove this line for LIVE
-
-			$this->today =date("Y-m-d H:i"); //todo:uncomment for LIVE
+			$today = date("Y-m-d H:i");
+			//$today = date("Y-m-d H:i", strtotime("01 December 2017 5:00 AM UTC")); //todo: comment for LIVE
+			$this->today =$today;
 
 			//IS there a promo to run
-			$this->promo = $this->get_active_notice();
+			$this->promo = $this->get_active_promo();
+		}
+
+		/**
+		 * Get the active notice
+		 *
+		 */
+		private function get_active_promo() {
+
+			//Is the safe beta promo active
+//			if ( false !== $this->get_safe_beta_notice_id()) {
+//				return $this->SAFE_BETA_PROMO;
+//			}
+//
+//
+//			//Is the black friday active
+//			if ( false !== $this->get_black_friday_day_id()) {
+//				$wpbacktiup_license = new WPBackItUp_License();
+//
+//				//Don't show notice when premium is installed
+//				if (!$wpbacktiup_license->is_premium_license() || ! $wpbacktiup_license->is_license_active() ) {
+//					return  $this->BLACK_FRIDAY_2017_PROMO;
+//				}
+//			}
+
+			return false; //no active promos
+
 		}
 
 		/**
@@ -35,16 +65,24 @@ if ( ! class_exists( 'WPBackitup_Admin_Notices' ) ) {
 		 */
 		public function run() {
 			try {
-				//Which promo should be run
+
 				switch ( $this->promo ) {
-					case "black-friday":
-						$this->black_friday();
-						break;
+//					case $this->SAFE_BETA_PROMO:
+//						$promo =  sprintf("%s-%s",$this->promo,$this->get_safe_beta_notice_id());
+//						$notice = $this->get_safe_beta_notice();
+//						$this->show_notice($promo,$notice);
+//						break;
+//					case $this->BLACK_FRIDAY_2017_PROMO:
+//						$promo =  sprintf("%s-%s",$this->promo,$this->get_black_friday_day_id());
+//						$notice = $this->get_black_friday_notice();
+//						$this->show_notice($promo,$notice);
+//						break;
+
+
 					default:
-						//Run the wordpress review promo if nothing else is going on
 						$this->wordpress_review();
-						break;
 				}
+
 			} catch ( Exception $e ) {
 
 			}
@@ -69,130 +107,199 @@ if ( ! class_exists( 'WPBackitup_Admin_Notices' ) ) {
 		}
 
 		/**
-		 * Black Friday Notice
+		 * Show Notice
 		 *
+		 * @param $id
+		 * @param $notice
 		 */
-		private function black_friday() {
-
-			$black_friday_notice = $this->get_blackfriday_notice();
-
-			//black friday sale notice
-			$days_after=0;
-			$black_friday_sale = array(
-				'id'                => 'black-friday-sale',
-				'days_after'        => 0,
-				'temp_days_after'   => $black_friday_notice['temp_days_after'],
-				'type'              => 'updated',
-				'message'           => $black_friday_notice['message'],
-				'link_1'            => $black_friday_notice['link_1'],
-				'link_label_1'      => $black_friday_notice['link_label_1'],
-				'link_label_2'      => $black_friday_notice['link_label_2'],
-				'link_label_3'      => $black_friday_notice['link_label_3'],
-			);
-
-			new WPBackitup_Admin_Notice($black_friday_sale);
-		}
+//		private function show_notice($id, $notice) {
+//
+//			if (is_array($notice)) {
+//				$promo_notice = array(
+//					'id'                => $id,
+//					'days_after'        => $notice['days_after'],
+//					'temp_days_after'   => $notice['temp_days_after'],
+//					'type'              => 'updated',
+//					'message'           => $notice['message'],
+//					'link_1'            => $notice['link_1'],
+//					'link_label_1'      => $notice['link_label_1'],
+//					'link_label_2'      => $notice['link_label_2'],
+//					'link_label_3'      => $notice['link_label_3'],
+//				);
+//
+//				new WPBackitup_Admin_Notice($promo_notice);
+//			}
+//		}
 
 		/**
-		 * Get the active notice
+		 * Get SAFE promo ID
+		 *
+		 * @return bool|int false = no promo
+		 *
 		 */
-		private function get_active_notice() {
-
-			$wpbacktiup_license = new WPBackItUp_License();
-
-			//Don't show notice when premium is installed
-			if (!$wpbacktiup_license->is_premium_license() || ! $wpbacktiup_license->is_license_active() ){
-				return 'black-friday';
-			}
-
-		}
-
-
-		private function get_black_friday_day_id() {
-			$id = false;
-
-			//12:00 AM EST = 5:00 AM UTC
-			//11:59 PM EST = 4:59 AM UTC
-
-			$pre_sale_start = date( "Y-m-d H:i", strtotime( "16 November 2017 5:00 AM UTC" ) ); // 16th  12:00 AM EST
-			$pre_sale_end   = date( "Y-m-d H:i", strtotime( "24 November 2017 4:59 AM UTC" ) ); // 23rd 11:59 PM EST
-
-			$sale_start     = date( "Y-m-d H:i", strtotime( "24 November 2017 5:00 AM UTC" ) );// 24th 12:00 AM EST
-			$sale_end       = date( "Y-m-d H:i", strtotime( "27 November 2017 4:59 AM UTC" ) );// 26th 11:59 PM EST
-
-			$lastday_start  = date( "Y-m-d H:i", strtotime( "27 November 2017 5:00 AM UTC" ) );// 27th 12:00 AM EST
-			$lastday_end    = date( "Y-m-d H:i", strtotime( "28 November 2017 4:59 AM UTC" ) );// 27th 11:59 PM EST
+//		private function get_safe_beta_notice_id() {
+//			$id = false;
+//
+//			//12:00 AM EST = 5:00 AM UTC
+//			//11:59 PM EST = 4:59 AM UTC
+//
+//			$promo_start = date( "Y-m-d H:i", strtotime( "01 December 2017 5:00 AM UTC" ) );
+//			$promo_end   = date( "Y-m-d H:i", strtotime( "30 December 2017 4:59 AM UTC" ) );
+//
+//			if ( $this->today >= $promo_start && $this->today <= $promo_end ) {
+//				$id = 0;
+//			}
+//
+//			return $id;
+//		}
 
 
-			if ( $this->today >= $pre_sale_start && $this->today <= $pre_sale_end ) {
-				$id = 0;
-			} elseif ( $this->today >= $sale_start && $this->today <= $sale_end ) {
-				$id = 1;
-			} elseif ( $this->today >= $lastday_start && $this->today <= $lastday_end ) {
-				$id = 2;
-			}
+		/**
+		 * Get Black Friday Promo ID
+		 *
+		 * @return bool|int false = no promo
+		 *
+		 */
+//		private function get_black_friday_day_id() {
+//			$id = false;
+//
+//			//12:00 AM EST = 5:00 AM UTC
+//			//11:59 PM EST = 4:59 AM UTC
+//
+//			$pre_sale_start = date( "Y-m-d H:i", strtotime( "16 November 2017 5:00 AM UTC" ) ); // 16th  12:00 AM EST
+//			$pre_sale_end   = date( "Y-m-d H:i", strtotime( "24 November 2017 4:59 AM UTC" ) ); // 23rd 11:59 PM EST
+//
+//			$sale_start     = date( "Y-m-d H:i", strtotime( "24 November 2017 5:00 AM UTC" ) );// 24th 12:00 AM EST
+//			$sale_end       = date( "Y-m-d H:i", strtotime( "27 November 2017 4:59 AM UTC" ) );// 26th 11:59 PM EST
+//
+//			$lastday_start  = date( "Y-m-d H:i", strtotime( "27 November 2017 5:00 AM UTC" ) );// 27th 12:00 AM EST
+//			$lastday_end    = date( "Y-m-d H:i", strtotime( "28 November 2017 4:59 AM UTC" ) );// 27th 11:59 PM EST
+//
+//
+//			if ( $this->today >= $pre_sale_start && $this->today <= $pre_sale_end ) {
+//				$id = 0;
+//			} elseif ( $this->today >= $sale_start && $this->today <= $sale_end ) {
+//				$id = 1;
+//			} elseif ( $this->today >= $lastday_start && $this->today <= $lastday_end ) {
+//				$id = 2;
+//			}
+//
+//			return $id;
+//		}
 
-			return $id;
-		}
+		/**
+		 * Get Black Friday notice
+		 *
+		 * @return array|false on no notice
+		 */
+//		private function get_black_friday_notice() {
+//			$message= array();
+//			$link_1=array();
+//			$link_label_1=array();
+//			$link_label_2=array();
+//			$link_label_3=array();
+//			$days_after=array();
+//			$temp_days_after=array();
+//
+//			$id = $this->get_black_friday_day_id();
+//			if (false===$id) return false;
+//
+//			//PRESALE
+//			$message[]=sprintf( "%s<p>%s<p>%s",
+//				'<h2>' . esc_html__( "Black Friday/Cyber Monday Sale Starts Soon!", "wp-backitup") . ' </h2>',
+//				__( "Save <b>30%</b> on WPBackItUp Premium for a limited time!", "wp-backitup" ),
+//				__( "We just wanted to let you know that WPBackItUp will be participating in the Black Friday and Cyber Monday craziness next week.<br/><br/>If you purchase WPBackItUp Premium or upgrade an existing license between <b>Friday, November 24, 2017, 12 AM EST (5 AM UTC)</b> and <b>Monday, November 27, 2017, 11:59 PM EST ( 4:59 AM UTC )</b> you'll automatically get <b>30%</b> off our regular prices.", "wp-backitup" )
+//			);
+//
+//			$days_after[]=0;
+//			$temp_days_after[]=1;
+//			$link_1[] =  "https://www.wpbackitup.com/pricing-purchase/?utm_medium=plugin&utm_source=wp-backitup&utm_campaign=plugin-black-friday-1";
+//			$link_label_1[] =  esc_html__( 'Buy now, I don\'t need the discount!', 'wp-backitup' );
+//			$link_label_2[] = esc_html__( 'Remind me later', 'wp-backitup' );
+//			$link_label_3[] = esc_html__( 'I already purchased', 'wp-backitup' );
+//
+//			//SALE
+//			$message[]=sprintf( "%s<p>%s<p>%s",
+//				'<h2>' . esc_html__( "WPBackItUp Black Friday SALE! Save 30% on all purchases and upgrades!", "wp-backitup") . ' </h2>',
+//				__( "<b>It’s SALE time!</b><br/><br/>The WPBackItUp Black Friday sale has started so if you have been thinking about safeguarding your WordPress site with WPBackItUp Premium then now is the time.", "wp-backitup" ),
+//				__( "If you purchase WPBackItUp Premium or upgrade an existing license between <b>Friday, November 24, 2017, 12 AM EST (5 AM UTC)</b> and <b>Monday, November 27, 2017, 11:59 PM EST ( 4:59 AM UTC )</b> you'll automatically get 30% off our regular prices.", "wp-backitup" )
+//			);
+//			$days_after[]=0;
+//			$temp_days_after[]=1;
+//			$link_1[] =  "https://www.wpbackitup.com/pricing-purchase/?utm_medium=plugin&utm_source=wp-backitup&utm_campaign=plugin-black-friday-2";;
+//			$link_label_1[] =  esc_html__( 'Buy now and save 30%', 'wp-backitup' );
+//			$link_label_2[] = esc_html__( 'Remind me later', 'wp-backitup' );
+//			$link_label_3[] = esc_html__( 'I already purchased', 'wp-backitup' );
+//
+//			//LAST DAY
+//			$message[]=sprintf( "%s<p>%s<p>%s",
+//				'<h2>' . esc_html__( "Less than 24 hours left to save 30%  on WPBackItUp Premium!", "wp-backitup") . ' </h2>',
+//				__( "Happy Cyber Monday! Today is your last chance to save <b>30% </b> on WPBackItUp Premium.", "wp-backitup" ),
+//				__( "If you purchase WPBackItUp Premium or upgrade an existing license between <b>Friday, November 24, 2017, 12 AM EST (5 AM UTC)</b> and <b>Monday, November 27, 2017, 11:59 PM EST ( 4:59 AM UTC )</b> you'll automatically get 30% off our regular prices.", "wp-backitup" )
+//			);
+//			$days_after[]=0;
+//			$temp_days_after[]=1;
+//			$link_1[] =  "https://www.wpbackitup.com/pricing-purchase/?utm_medium=plugin&utm_source=wp-backitup&utm_campaign=plugin-black-friday-3";;
+//			$link_label_1[] =  esc_html__( 'Buy now and save 30%', 'wp-backitup' );
+//			$link_label_2[] = esc_html__( 'Remind me later', 'wp-backitup' );
+//			$link_label_3[] = esc_html__( 'I already purchased', 'wp-backitup' );
+//
+//			$rtn = array(
+//				'message'=>$message[$id],
+//				'days_after'=>$days_after[$id],
+//				'temp_days_after'=>$temp_days_after[$id],
+//				'link_1'=>$link_1[$id],
+//				'link_label_1'=>$link_label_1[$id],
+//				'link_label_2'=>$link_label_2[$id],
+//				'link_label_3'=>$link_label_3[$id],
+//				);
+//
+//			return $rtn;
+//
+//		}
 
-		private function get_blackfriday_notice() {
-			$message= array();
-			$link_1=array();
-			$link_label_1=array();
-			$link_label_2=array();
-			$link_label_3=array();
-			$temp_days_after=array();
 
-			$id = $this->get_black_friday_day_id();
-
-			//PRESALE
-			$message[]=sprintf( "%s<p>%s<p>%s",
-				'<h2>' . esc_html__( "Black Friday/Cyber Monday Sale Starts Soon!", "wp-backitup") . ' </h2>',
-				__( "Save <b>30%</b> on WPBackItUp Premium for a limited time!", "wp-backitup" ),
-				__( "We just wanted to let you know that WPBackItUp will be participating in the Black Friday and Cyber Monday craziness next week.<br/><br/>If you purchase WPBackItUp Premium or upgrade an existing license between <b>Friday, November 24, 2017, 12 AM EST (5 AM UTC)</b> and <b>Monday, November 27, 2017, 11:59 PM EST ( 4:59 AM UTC )</b> you'll automatically get <b>30%</b> off our regular prices.", "wp-backitup" )
-			);
-			$temp_days_after[]=1;
-			$link_1[] =  "https://www.wpbackitup.com/pricing-purchase/?utm_medium=plugin&utm_source=wp-backitup&utm_campaign=plugin-black-friday-1";
-			$link_label_1[] =  esc_html__( 'Buy now, I don\'t need the discount!', 'wp-backitup' );
-			$link_label_2[] = esc_html__( 'Remind me later', 'wp-backitup' );
-			$link_label_3[] = esc_html__( 'I already purchased', 'wp-backitup' );
-
-			//SALE
-			$message[]=sprintf( "%s<p>%s<p>%s",
-				'<h2>' . esc_html__( "WPBackItUp Black Friday SALE! Save 30% on all purchases and upgrades!", "wp-backitup") . ' </h2>',
-				__( "<b>It’s SALE time!</b><br/><br/>The WPBackItUp Black Friday sale has started so if you have been thinking about safeguarding your WordPress site with WPBackItUp Premium then now is the time.", "wp-backitup" ),
-				__( "If you purchase WPBackItUp Premium or upgrade an existing license between <b>Friday, November 24, 2017, 12 AM EST (5 AM UTC)</b> and <b>Monday, November 27, 2017, 11:59 PM EST ( 4:59 AM UTC )</b> you'll automatically get 30% off our regular prices.", "wp-backitup" )
-			);
-			$temp_days_after[]=1;
-			$link_1[] =  "https://www.wpbackitup.com/pricing-purchase/?utm_medium=plugin&utm_source=wp-backitup&utm_campaign=plugin-black-friday-2";;
-			$link_label_1[] =  esc_html__( 'Buy now and save 30%', 'wp-backitup' );
-			$link_label_2[] = esc_html__( 'Remind me later', 'wp-backitup' );
-			$link_label_3[] = esc_html__( 'I already purchased', 'wp-backitup' );
-
-			//LAST DAY
-			$message[]=sprintf( "%s<p>%s<p>%s",
-				'<h2>' . esc_html__( "Less than 24 hours left to save 30%  on WPBackItUp Premium!", "wp-backitup") . ' </h2>',
-				__( "Happy Cyber Monday! Today is your last chance to save <b>30% </b> on WPBackItUp Premium.", "wp-backitup" ),
-				__( "If you purchase WPBackItUp Premium or upgrade an existing license between <b>Friday, November 24, 2017, 12 AM EST (5 AM UTC)</b> and <b>Monday, November 27, 2017, 11:59 PM EST ( 4:59 AM UTC )</b> you'll automatically get 30% off our regular prices.", "wp-backitup" )
-			);
-			$temp_days_after[]=1;
-			$link_1[] =  "https://www.wpbackitup.com/pricing-purchase/?utm_medium=plugin&utm_source=wp-backitup&utm_campaign=plugin-black-friday-3";;
-			$link_label_1[] =  esc_html__( 'Buy now and save 30%', 'wp-backitup' );
-			$link_label_2[] = esc_html__( 'Remind me later', 'wp-backitup' );
-			$link_label_3[] = esc_html__( 'I already purchased', 'wp-backitup' );
-
-			$rtn = array(
-				'message'=>$message[$id],
-				'temp_days_after'=>$temp_days_after[$id],
-				'link_1'=>$link_1[$id],
-				'link_label_1'=>$link_label_1[$id],
-				'link_label_2'=>$link_label_2[$id],
-				'link_label_3'=>$link_label_3[$id],
-				);
-
-			return $rtn;
-
-		}
+		/**
+		 * Get SAFE beta promo
+		 *         		 *
+		 * @return array|false false on no notice
+		 */
+//		private function get_safe_beta_notice() {
+//			$message= array();
+//			$link_1=array();
+//			$link_label_1=array();
+//			$link_label_2=array();
+//			$link_label_3=array();
+//			$days_after=array();
+//			$temp_days_after=array();
+//
+//			$id = $this->get_safe_beta_notice_id();
+//			if (false===$id) return false;
+//
+//			$message[]=sprintf( "%s<p>%s<p>%s",
+//				'<h2>' . esc_html__( "SAFE BETA - Black Friday/Cyber Monday Sale Starts Soon!", "wp-backitup") . ' </h2>',
+//				__( "Save <b>30%</b> on WPBackItUp Premium for a limited time!", "wp-backitup" ),
+//				__( "We just wanted to let you know that WPBackItUp will be participating in the Black Friday and Cyber Monday craziness next week.<br/><br/>If you purchase WPBackItUp Premium or upgrade an existing license between <b>Friday, November 24, 2017, 12 AM EST (5 AM UTC)</b> and <b>Monday, November 27, 2017, 11:59 PM EST ( 4:59 AM UTC )</b> you'll automatically get <b>30%</b> off our regular prices.", "wp-backitup" )
+//			);
+//			$days_after[]=0;
+//			$temp_days_after[]=1;
+//			$link_1[] =  "https://www.wpbackitup.com/pricing-purchase/?utm_medium=plugin&utm_source=wp-backitup&utm_campaign=plugin-black-friday-1";
+//			$link_label_1[] =  esc_html__( 'Buy now, I don\'t need the discount!', 'wp-backitup' );
+//			$link_label_2[] = esc_html__( 'Remind me later', 'wp-backitup' );
+//			$link_label_3[] = esc_html__( 'I already purchased', 'wp-backitup' );
+//
+//
+//			return array(
+//				'message'=>$message[$id],
+//				'days_after'=>$days_after[$id],
+//				'temp_days_after'=>$temp_days_after[$id],
+//				'link_1'=>$link_1[$id],
+//				'link_label_1'=>$link_label_1[$id],
+//				'link_label_2'=>$link_label_2[$id],
+//				'link_label_3'=>$link_label_3[$id],
+//			);
+//
+//		}
 
 	}
 }

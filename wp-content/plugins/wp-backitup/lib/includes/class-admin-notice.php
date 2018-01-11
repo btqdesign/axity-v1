@@ -62,6 +62,7 @@ if ( ! class_exists( 'WPBackitup_Admin_Notice' ) ) {
 		public function __construct($args){
 
 			$args 			  = wp_parse_args( $args, $this->default_args() );
+
 			$this->id 		  = $args['id'];
 			$this->days 	  = $args['days_after'];         //Show the notice after these days
 			$this->temp_days  = $args['temp_days_after'];    //Show the notice again after these days after temporary dismiss
@@ -103,6 +104,14 @@ if ( ! class_exists( 'WPBackitup_Admin_Notice' ) ) {
 		 */
 		private function default_args() {
 
+			$slug = 'wp-backitup';
+			$rating =5;
+
+			$link = 'https://wordpress.org/support/plugin/';
+			$link .= $slug . '/reviews/';
+			$link = add_query_arg( '?filter', $rating, $link );
+			$link = esc_url( $link . '#new-post' );
+
 			$defaults = array(
 				'id'                => 'wpbackitup_initial_id',
 				'days_after'        => 10,
@@ -115,7 +124,7 @@ if ( ! class_exists( 'WPBackitup_Admin_Notice' ) ) {
 										esc_html__( "We would be extremely grateful if you would take just a few minutes to leave a review on WordPress.org. It really does help the entire community.  Many thanks in advance :)", "wp-backitup" )
 									),
 
-				'link_1'            => $this->get_review_link_1(),
+				'link_1'            => $link,
 				'link_2'            => '#',
 				'link_3'            => '#',
 
@@ -123,8 +132,8 @@ if ( ! class_exists( 'WPBackitup_Admin_Notice' ) ) {
 				'link_label_2'        => esc_html__( 'Nope, maybe later', 'wp-backitup' ),
 				'link_label_3'        => esc_html__( 'I already did', 'wp-backitup' ),
 
-				'rating'            => 5,
-				'slug'	            => 'wp-backitup',
+				'rating'            => $rating,
+				'slug'	            => $slug,
 
 				// Parameters used in WP Dismissible Notices Handler
 				'cap'               => 'administrator',
@@ -133,7 +142,6 @@ if ( ! class_exists( 'WPBackitup_Admin_Notice' ) ) {
 			);
 
 			return apply_filters( 'wp-backitup_default_args', $defaults );
-
 		}
 
 
@@ -453,13 +461,16 @@ if ( ! class_exists( 'WPBackitup_Admin_Notice' ) ) {
 		 * @return string
 		 */
 		 
-		protected function get_review_link_1() {
-			$link = 'https://wordpress.org/support/plugin/';
-			$link .= $this->slug . '/reviews/';
-			$link = add_query_arg( '?filter', $this->rating, $link );
-			$link = esc_url( $link . '#new-post' );
-			return $link;
-		}
+//		protected function get_review_link_1() {
+//			$link = 'https://wordpress.org/support/plugin/';
+//			//$link .= $this->slug . '/reviews/';
+//
+//
+//			$link .= $this->slug . '/reviews/';
+//			$link = add_query_arg( '?filter', 5, $link );
+//			$link = esc_url( $link . '#new-post' );
+//			return $link;
+//		}
 
 		/**
 		 * Notice dismissal triggered by Ajax
