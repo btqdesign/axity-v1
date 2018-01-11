@@ -315,14 +315,16 @@ class WPML_LS_Settings {
 	 * @return WPML_LS_Slot
 	 */
 	public function get_menu_settings_from_id( $term_id ) {
-		$menu_element = new WPML_Menu_Element( $term_id, $this->sitepress );
-		$default_lang = $this->sitepress->get_default_language();
+		if ( $term_id > 0 ) {
+			$menu_element = new WPML_Menu_Element( $term_id, $this->sitepress );
+			$default_lang = $this->sitepress->get_default_language();
 
-		if ( $menu_element->get_language_code() !== $default_lang ) {
-			$nav_menu = $menu_element->get_translation( $default_lang )
-				? $menu_element->get_translation( $default_lang )->get_wp_object() : null;
+			if ( $menu_element->get_language_code() !== $default_lang ) {
+				$nav_menu = $menu_element->get_translation( $default_lang )
+					? $menu_element->get_translation( $default_lang )->get_wp_object() : null;
 
-			$term_id = $nav_menu && ! is_wp_error( $nav_menu ) ? $nav_menu->term_id : null;
+				$term_id = $nav_menu && ! is_wp_error( $nav_menu ) ? $nav_menu->term_id : null;
+			}
 		}
 
 		return $this->get_slot( 'menus', $term_id );

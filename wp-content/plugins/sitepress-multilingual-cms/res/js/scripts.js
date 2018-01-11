@@ -130,7 +130,7 @@ jQuery(document).ready(function($){
         var table_row = jQuery(this).closest('tr');
         var cpt_slugs = jQuery(table_row).find('.js-cpt-slugs');
         var icl_slug_translation = jQuery(table_row).find(':checkbox');
-        if (val == 1) {
+        if (val === 1) {
             icl_slug_translation.closest('.icl_slug_translation_choice').show();
             if( icl_slug_translation.prop('checked') && cpt_slugs) {
                 cpt_slugs.show();
@@ -141,6 +141,17 @@ jQuery(document).ready(function($){
         }
 
     });
+
+	jQuery( '.js-wpml-sync-lock' ).on( 'click', function ( e ) {
+		var radio_name = jQuery( this ).data( 'radio-name' ),
+			unlocked_name = jQuery( this ).data( 'unlocked-name' );
+
+		jQuery( this ).fadeOut();
+		jQuery( 'input[name="' + radio_name + '"]' ).prop( 'disabled', false );
+		jQuery( 'input[name="' + unlocked_name + '"]' ).prop( 'value', '1' );
+
+		return false;
+	} );
 
     jQuery(document).delegate('.icl_error_input', 'focus', function() {
         jQuery(this).removeClass('icl_error_input');
@@ -220,6 +231,15 @@ jQuery(document).ready(function($){
 
 	update_icl_untranslated_blog_posts();
 	icl_untranslated_blog_posts.bind('click', update_icl_untranslated_blog_posts);
+
+	var last_form_id = localStorage.getItem( 'wpml-mlcs-last-form-id' );
+	if (  last_form_id ) {
+		jQuery( 'html, body' ).animate( {
+			scrollTop: jQuery( "#" + last_form_id ).offset().top
+		}, 1000 );
+		localStorage.removeItem( 'wpml-mlcs-last-form-id' );
+	}
+
 });
 
 function fadeInAjxResp(spot, msg, err){
@@ -266,8 +286,11 @@ function iclSaveForm() {
 				}
 				if (form_name == 'icl_slug_translation' ||
 						form_name == 'wpml_ls_settings_form' ||
-						form_name == 'icl_custom_posts_sync_options') {
-					location.reload();
+						form_name == 'icl_custom_posts_sync_options' ||
+						form_name == 'icl_custom_tax_sync_options'
+				) {
+					localStorage.setItem( 'wpml-mlcs-last-form-id', form_name );
+					location.reload( true );
 				}
 			} else {
 				var icl_form_errors = jQuery('form[name="' + form_name + '"] .icl_form_errors');
@@ -387,9 +410,10 @@ function icl_make_translatable(){
     var that = jQuery(this);
     jQuery(this).attr('disabled', 'disabled');
     jQuery('#icl_div_config').find('.icl_form_success').hide();
-    var iclMakeTranslatable = jQuery('#icl_make_translatable');
-    var translate = iclMakeTranslatable.attr('checked') ? 1 : 0;
-    var custom_post = iclMakeTranslatable.val();
+    var iclMakeTranslatable = jQuery('[name=icl_make_translatable]:checked');
+    var translate_input = iclMakeTranslatable.val().split(',');
+    var translate = parseInt(translate_input[1]);
+    var custom_post = translate_input[0];
     var custom_taxs_on = [];
     var custom_taxs_off = [];
     jQuery(".icl_mcs_custom_taxs").each(function(){

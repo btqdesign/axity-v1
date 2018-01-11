@@ -9,7 +9,7 @@ function wpml_plugins_integration_setup() {
 	if ( defined( 'WPSEO_VERSION' ) && version_compare( WPSEO_VERSION, '1.0.3', '>=' ) ) {
 		$wpml_wpseo_xml_sitemap_filters = new WPML_WPSEO_XML_Sitemaps_Filter( $sitepress, $wpml_url_converter );
 		$wpml_wpseo_xml_sitemap_filters->init_hooks();
-		$canonical     = new WPML_Canonicals( $sitepress );
+		$canonical     = new WPML_Canonicals( $sitepress, new WPML_Translation_Element_Factory( $sitepress ) );
 		$wpseo_filters = new WPML_WPSEO_Filters( $canonical );
 		$wpseo_filters->init_hooks();
 	}

@@ -114,6 +114,9 @@ abstract class WPML_Translation_Element extends WPML_SP_User {
 		return $trid;
 	}
 
+	/**
+	 * @return string|WP_Error
+	 */
 	function get_wp_element_type() {
 		$element = $this->get_wp_object();
 		if ( is_wp_error( $element ) ) {
@@ -182,5 +185,7 @@ abstract class WPML_Translation_Element extends WPML_SP_User {
 	}
 
 	abstract function is_translatable();
+	abstract function is_display_as_translated();
 
-}
+
+	}

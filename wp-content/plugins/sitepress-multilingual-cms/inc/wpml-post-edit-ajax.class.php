@@ -217,6 +217,8 @@ class WPML_Post_Edit_Ajax {
 	}
 
 	private static function add_term_metadata( $term, $meta_data ) {
+		global $sitepress;
+
 		foreach ( $meta_data as $meta_key => $meta_value ) {
 			delete_term_meta( $term['term_id'], $meta_key );
 			$data = maybe_unserialize( stripslashes( $meta_value ) );
@@ -224,6 +226,9 @@ class WPML_Post_Edit_Ajax {
 				throw new RuntimeException( sprintf( 'Unable to add term meta form term: %d', $term['term_id'] ) );
 			}
 		}
+
+		$sync_meta_action = new WPML_Sync_Term_Meta_Action( $sitepress, $term[ 'term_taxonomy_id' ] );
+		$sync_meta_action->run();
 
 		return true;
 	}

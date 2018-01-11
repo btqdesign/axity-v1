@@ -47,7 +47,10 @@ class WPML_Action_Filter_Loader {
 			$this->add_deferred_action( $factory );
 		} else {
 			$load_handler = $factory->create();
-			$load_handler->add_hooks();
+
+			if ( $load_handler ) {
+				$load_handler->add_hooks();
+			}
 		}
 	}
 

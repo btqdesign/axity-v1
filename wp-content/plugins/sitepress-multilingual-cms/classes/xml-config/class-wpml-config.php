@@ -306,6 +306,7 @@ class WPML_Config {
 			$config_all = apply_filters( 'wpml_config_array', $config_all );
 		}
 
+		$config_all = WPML_Config_Display_As_Translated::merge_to_translate_mode( $config_all );
 		self::parse_wpml_config_post_process( $config_all );
 	}
 

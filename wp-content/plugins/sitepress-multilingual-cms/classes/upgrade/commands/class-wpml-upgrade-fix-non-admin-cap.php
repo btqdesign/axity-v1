@@ -21,13 +21,6 @@ class WPML_Upgrade_Fix_Non_Admin_With_Admin_Cap implements IWPML_Upgrade_Command
 	}
 
 	/**
-	 * @return string
-	 */
-	public function get_command_id() {
-		return 'wpml-upgrade-fix-non-admin-with-admin-cap';
-	}
-
-	/**
 	 * @return bool
 	 */
 	public function run_ajax() {

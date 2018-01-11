@@ -302,24 +302,19 @@ final class WP_Installer {
 			foreach ( $this->settings['repositories'] as $repository_id => $repository ) {
 
 				foreach ( $repository['data']['packages'] as $package ) {
-
 					foreach ( $package['products'] as $product ) {
-
-						foreach ( $product['plugins'] as $plugin_slug ) {
-
-							$download = $this->settings['repositories'][ $repository_id ]['data']['downloads']['plugins'][ $plugin_slug ];
-
-							if ( ! isset( $repositories_plugins[ $repository_id ][ $download['slug'] ] ) ) {
-								$repositories_plugins[ $repository_id ][ $download['slug'] ] = array(
-									'name'       => $download['name'],
-									'registered' => $this->plugin_is_registered( $repository_id, $download['slug'] ) ? 1 : 0
-								);
+						if ( $this->has_plugins( $product ) ) {
+							foreach ( $product['plugins'] as $plugin_slug ) {
+								$download = $this->settings['repositories'][ $repository_id ]['data']['downloads']['plugins'][ $plugin_slug ];
+								if ( ! isset( $repositories_plugins[ $repository_id ][ $download['slug'] ] ) ) {
+									$repositories_plugins[ $repository_id ][ $download['slug'] ] = array(
+										'name'       => $download['name'],
+										'registered' => $this->plugin_is_registered( $repository_id, $download['slug'] ) ? 1 : 0
+									);
+								}
 							}
-
 						}
-
 					}
-
 				}
 
 				foreach ( $plugins as $plugin_id => $plugin ) {
@@ -547,7 +542,7 @@ final class WP_Installer {
 						);
 
 						if ( ! empty( $response['error'] ) ) {
-							$this->remove_site_key( $repository_id );
+							$this->remove_site_key( $repository_id, false );
 
 							$this->admin_messages[] = array(
 								'type' => 'error',
@@ -1016,8 +1011,10 @@ final class WP_Installer {
 				// downloads
 				if ( isset( $subscription_type ) && ! $expired && ( $product['subscription_type'] == $subscription_type || $product['subscription_type_equivalent'] == $subscription_type ) ) {
 
-					foreach ( $product['plugins'] as $plugin_slug ) {
-						$row['downloads'][ $plugin_slug ] = $this->settings['repositories'][ $repository_id ]['data']['downloads']['plugins'][ $plugin_slug ];
+					if ( $this->has_plugins( $product ) ) {
+						foreach ( $product['plugins'] as $plugin_slug ) {
+							$row['downloads'][ $plugin_slug ] = $this->settings['repositories'][ $repository_id ]['data']['downloads']['plugins'][ $plugin_slug ];
+						}
 					}
 
 				}
@@ -1209,11 +1206,13 @@ final class WP_Installer {
 		return WP_Installer::get_repository_site_key( $repository_id );
 	}
 
-	public function remove_site_key( $repository_id ) {
+	public function remove_site_key( $repository_id, $refresh_repositories_data = true ) {
 		if ( isset( $this->settings['repositories'][ $repository_id ] ) ) {
 			unset( $this->settings['repositories'][ $repository_id ]['subscription'] );
 			$this->save_settings();
-			$this->refresh_repositories_data();
+			if( $refresh_repositories_data ){
+				$this->refresh_repositories_data();
+			}
 		}
 	}
 
@@ -1565,20 +1564,22 @@ final class WP_Installer {
 
 						foreach ( $package['products'] as $product ) {
 
-							foreach ( $product['plugins'] as $plugin_slug ) {
+							if ( $this->has_plugins( $product ) ) {
+								foreach ( $product['plugins'] as $plugin_slug ) {
 
-								$download = $this->settings['repositories'][ $repository_id ]['data']['downloads']['plugins'][ $plugin_slug ];
+									$download = $this->settings['repositories'][ $repository_id ]['data']['downloads']['plugins'][ $plugin_slug ];
 
-								if ( $download['slug'] == $slug || $download['name'] == $plugin['Name'] || $download['name'] == $plugin['Title'] ) { //match order: slug, name, title
+									if ( $download['slug'] == $slug || $download['name'] == $plugin['Name'] || $download['name'] == $plugin['Title'] ) { //match order: slug, name, title
 
-									if ( isset( $subscriptions_with_warnings[ $product['subscription_type'] ] ) ) {
+										if ( isset( $subscriptions_with_warnings[ $product['subscription_type'] ] ) ) {
 
-										$this->_plugins_renew_warnings[ $plugin_id ] = $subscriptions_with_warnings[ $product['subscription_type'] ];
+											$this->_plugins_renew_warnings[ $plugin_id ] = $subscriptions_with_warnings[ $product['subscription_type'] ];
+
+										}
 
 									}
 
 								}
-
 							}
 
 						}
@@ -2249,33 +2250,30 @@ final class WP_Installer {
 				}
 
 				foreach ( $repository['data']['packages'] as $package ) {
-
 					foreach ( $package['products'] as $product ) {
+						if ( $this->has_plugins( $product ) ) {
+							foreach ( $product['plugins'] as $plugin_slug ) {
 
-						foreach ( $product['plugins'] as $plugin_slug ) {
+								$download = $this->settings['repositories'][ $repository_id ]['data']['downloads']['plugins'][ $plugin_slug ];
+								if ( ! empty( $download['free-on-wporg'] ) && $download['channel'] == WP_Installer_Channels::CHANNEL_PRODUCTION ) {
+									continue;
+								}
 
-							$download = $this->settings['repositories'][ $repository_id ]['data']['downloads']['plugins'][ $plugin_slug ];
-							if ( ! empty( $download['free-on-wporg'] ) && $download['channel'] == WP_Installer_Channels::CHANNEL_PRODUCTION ) {
-								continue;
-							}
+								if ( $download['slug'] == $slug || $download['name'] == $name ) {
 
-							if ( $download['slug'] == $slug || $download['name'] == $name ) {
+									if ( ! $site_key || ! $this->plugin_is_registered( $repository_id, $download['slug'] ) ) {
+										add_action( "after_plugin_row_" . $plugin_id, array(
+											$this,
+											'show_purchase_notice_under_plugin'
+										), 10, 3 );
+									}
 
-								if ( ! $site_key || ! $this->plugin_is_registered( $repository_id, $download['slug'] ) ) {
-									add_action( "after_plugin_row_" . $plugin_id, array(
-										$this,
-										'show_purchase_notice_under_plugin'
-									), 10, 3 );
 								}
 
 							}
-
 						}
-
 					}
-
 				}
-
 			}
 
 		}
@@ -2763,6 +2761,15 @@ final class WP_Installer {
 			}
 		}
 
+	}
+
+	/**
+	 * @param array $product
+	 *
+	 * @return bool
+	 */
+	private function has_plugins( $product ) {
+		return isset( $product['plugins'] ) && is_array( $product['plugins'] );
 	}
 
 }

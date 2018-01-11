@@ -1,9 +1,4 @@
 <?php
-require dirname( __FILE__ ) . '/wpml-slug-resolution.class.php';
-require dirname( __FILE__ ) . '/wpml-name-query-filter.class.php';
-require dirname( __FILE__ ) . '/wpml-name-query-filter-translated.class.php';
-require dirname( __FILE__ ) . '/wpml-name-query-filter-untranslated.class.php';
-require dirname( __FILE__ ) . '/wpml-pagename-query-filter.class.php';
 
 /**
  * Class WPML_Query_Filter
@@ -125,8 +120,8 @@ class WPML_Query_Filter extends  WPML_Full_Translation_API {
 	 * @return string
 	 */
 	public function filter_single_type_where( $where, $post_type ) {
-		if ( $this->posttypes_not_translated ( $post_type ) === false ) {
-			$where .= $this->specific_lang_where ($this->sitepress->get_current_language());
+		if ( $this->posttypes_not_translated( $post_type ) === false ) {
+			$where .= $this->specific_lang_where( $this->sitepress->get_current_language(), $this->sitepress->get_default_language() );
 		}
 
 		return $where;
@@ -139,16 +134,21 @@ class WPML_Query_Filter extends  WPML_Full_Translation_API {
 	 * @return string
 	 */
 	public function posts_where_filter( $where, $query ) {
-		if ( $query === null || $this->where_filter_active($query) === false ) {
+		if ( $query === null || $this->where_filter_active( $query ) === false ) {
 			return $where;
 		}
 
-		$requested_id = isset( $_REQUEST[ 'attachment_id' ] ) && $_REQUEST[ 'attachment_id' ] ? $_REQUEST[ 'attachment_id' ] : false;
-		$requested_id = isset( $_REQUEST[ 'post_id' ] ) && $_REQUEST[ 'post_id' ] ? $_REQUEST[ 'post_id' ] : $requested_id;
-		$current_language = $requested_id ? $this->post_translations->get_element_lang_code ( $requested_id ) : $this->sitepress->get_current_language();
-		$current_language = $current_language ? $current_language : $this->sitepress->get_default_language ();
-		$condition = $current_language === 'all' ? $this->all_langs_where () : $this->specific_lang_where ( $current_language );
-		$where .= $condition;
+		$requested_id = isset( $_REQUEST['attachment_id'] ) && $_REQUEST['attachment_id'] ? $_REQUEST['attachment_id'] : false;
+		$requested_id = isset( $_REQUEST['post_id'] ) && $_REQUEST['post_id'] ? $_REQUEST['post_id'] : $requested_id;
+		$requested_id = (int) $requested_id;
+
+		$default_language = $this->sitepress->get_default_language();
+
+		$current_language = $requested_id ? $this->post_translations->get_element_lang_code( $requested_id ) : $this->sitepress->get_current_language();
+		$current_language = $current_language ? $current_language : $default_language;
+
+		$condition = $current_language === 'all' ? $this->all_langs_where() : $this->specific_lang_where( $current_language, $default_language );
+		$where     .= $condition;
 
 		return $where;
 	}
@@ -163,7 +163,12 @@ class WPML_Query_Filter extends  WPML_Full_Translation_API {
 		$not         = $not ? " NOT " : "";
 		$posts_alias = $posts_alias ? $posts_alias : $this->wpdb->posts;
 
-		return "{$posts_alias}.post_type {$not} IN (" . wpml_prepare_in( array_keys( $this->sitepress->get_translatable_documents( false ) ) ) . " ) ";
+		$post_types = $this->sitepress->get_translatable_documents( false );
+		if ( $post_types ) {
+			return "{$posts_alias}.post_type {$not} IN (" . wpml_prepare_in( array_keys( $post_types ) ) . " ) ";
+		} else {
+			return '';
+		}
 	}
 
 	/**
@@ -199,6 +204,9 @@ class WPML_Query_Filter extends  WPML_Full_Translation_API {
 	 * @return bool
 	 */
 	private function is_join_filter_active( $query, $pagenow ) {
+		if ( isset( $query->query['suppress_wpml_where_and_join_filter'] ) && $query->query['suppress_wpml_where_and_join_filter'] ) {
+			return false;
+		}
 		$is_attachment_and_cant_be_translated = $query->is_attachment() ? $this->is_media_and_cant_be_translated( 'attachment' ) : false;
 
 		return $pagenow !== 'media-upload.php' && ! $is_attachment_and_cant_be_translated && ! $this->is_queried_object_root( $query );
@@ -269,10 +277,7 @@ class WPML_Query_Filter extends  WPML_Full_Translation_API {
 	 * @return String[]
 	 */
 	private function get_tax_query_posttype( $query ) {
-		$tax       = $query->get( 'taxonomy' );
-		$post_type = $this->term_translations->get_taxonomy_post_types( $tax );
-
-		return $post_type;
+		return WPML_WP_Taxonomy::get_linked_post_types( $query->get( 'taxonomy' ) );
 	}
 
 	/**
@@ -298,14 +303,28 @@ class WPML_Query_Filter extends  WPML_Full_Translation_API {
 		return ' AND t.language_code IN (' . wpml_prepare_in( array_keys( $this->sitepress->get_active_languages() ) ) . ') ';
 	}
 
-	private function specific_lang_where( $current_language ) {
+	private function specific_lang_where( $current_language, $fallback_language ) {
 
 		return $this->wpdb->prepare (
-			" AND ( ( t.language_code = %s AND "
+			" AND ( ( ( t.language_code = %s OR "
+			. $this->display_as_translated_snippet( $current_language, $fallback_language )
+			. " ) AND "
 			. $this->in_translated_types_snippet ()
 			. " ) OR " . $this->in_translated_types_snippet ( true ) . " )",
 			$current_language
 		);
+	}
+
+	private function display_as_translated_snippet( $current_language, $fallback_language ) {
+		$post_types = $this->sitepress->get_display_as_translated_documents();
+
+		if ( $post_types && apply_filters( 'wpml_should_use_display_as_translated_snippet', ! is_admin(), $post_types ) ) {
+			$display_as_translated_query = new WPML_Display_As_Translated_Posts_Query( $this->wpdb );
+
+			return $display_as_translated_query->get_language_snippet( $current_language, $fallback_language, array_keys( $post_types ) );
+		} else {
+			return '0';
+		}
 	}
 
 	/**
@@ -360,7 +379,7 @@ class WPML_Query_Filter extends  WPML_Full_Translation_API {
 			}
 		}
 
-		return $filtered;
+		return apply_filters( 'wpml_is_comment_query_filtered', $filtered, $post_id );
 	}
 
 	/**
@@ -388,5 +407,25 @@ class WPML_Query_Filter extends  WPML_Full_Translation_API {
 		$join_part = $posts_query ? " AND " : "JOIN {$this->wpdb->posts} ON ";
 
 		return $join_part;
+	}
+
+	/**
+	 * @param $requested_id
+	 *
+	 * @return bool|mixed|null|string
+	 */
+	private function get_current_language( $requested_id ) {
+		$current_language = null;
+		if ( $requested_id ) {
+			$current_language = $this->post_translations->get_element_lang_code( $requested_id );
+		}
+		if ( ! $current_language ) {
+			$current_language = $this->sitepress->get_current_language();
+		}
+		if ( ! $current_language ) {
+			$current_language = $this->sitepress->get_default_language();
+		}
+
+		return $current_language;
 	}
 }
