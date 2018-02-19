@@ -1,0 +1,127 @@
+# Translation of Plugins - AMP - Stable (latest release) in Portuguese (Brazil)
+# This file is distributed under the same license as the Plugins - AMP - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2016-10-20 06:22:42+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: GlotPress/2.3.0-alpha\n"
+"Language: pt_BR\n"
+"Project-Id-Version: Plugins - AMP - Stable (latest release)\n"
+
+#: includes/class-amp-content.php:102
+msgid "Sanitizer (%s) class does not exist"
+msgstr "A classe (%s) não existe"
+
+#: templates/meta-taxonomy.php:17
+msgid "Tags: %s"
+msgstr "Tags: %s"
+
+#: templates/meta-taxonomy.php:4
+msgid "Categories: %s"
+msgstr "Categorias: %s"
+
+#: templates/footer.php:7
+msgid "Back to top"
+msgstr "Ir para o topo"
+
+#: templates/footer.php:5
+msgid "Powered by %s"
+msgstr "Desenvolvido por %s"
+
+#: templates/footer.php:5
+msgid "https://wordpress.org/"
+msgstr "https://wordpress.org/"
+
+#: includes/settings/class-amp-customizer-design-settings.php:113
+msgid "Dark"
+msgstr "Escuro"
+
+#: includes/settings/class-amp-customizer-design-settings.php:112
+msgid "Light"
+msgstr "Claro"
+
+#: includes/settings/class-amp-customizer-design-settings.php:75
+msgid "Color Scheme"
+msgstr "Esquema de cores"
+
+#: includes/settings/class-amp-customizer-design-settings.php:66
+msgid "Header Background & Link Color"
+msgstr "Cor de fundo do cabeçalho e do link"
+
+#: includes/settings/class-amp-customizer-design-settings.php:56
+msgid "Header Text Color"
+msgstr "Cor do texto do cabeçalho"
+
+#: includes/settings/class-amp-customizer-design-settings.php:48
+msgid "Design"
+msgstr "Aparência"
+
+#: includes/class-amp-post-template.php:213
+msgid "View Comments"
+msgstr "Ver comentários"
+
+#: includes/class-amp-post-template.php:212
+msgid "Leave a Comment"
+msgstr "Deixar um comentário"
+
+#: includes/admin/class-amp-customizer.php:114
+msgid "<a href=\"%s\" target=\"_blank\">The AMP Project</a> is a Google-led initiative that dramatically improves loading speeds on phones and tablets. You can use the Customizer to preview changes to your AMP template before publishing them."
+msgstr "<a href=\"%s\" target=\"_blank\">O Projeto AMP</a> é uma iniciativa do Google que melhora drasticamente o tempo de carregamento em celulares e tablets. Você pode usar o Personalizador para visualizar seu modelo do AMP antes de publicá-lo."
+
+#: includes/amp-post-template-actions.php:83
+msgid "Analytics entry for %s is missing one of the following keys: `type`, `attributes`, or `config_data` (array keys: %s)"
+msgstr "Os dados do Analytics para %s estão sem as chaves: `type`, `attributes` ou  `config_data` (array keys: %s)"
+
+#. Author URI of the plugin/theme
+msgid "https://automattic.com"
+msgstr "https://automattic.com"
+
+#. Author of the plugin/theme
+msgid "Automattic"
+msgstr "Automattic"
+
+#. Description of the plugin/theme
+msgid "Add AMP support to your WordPress site."
+msgstr "Adicione suporte ao AMP em seu site WordPress."
+
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/automattic/amp-wp"
+msgstr "https://github.com/automattic/amp-wp"
+
+#. #-#-#-#-#  tmp-amp.pot (AMP 0.4.2)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
+#: includes/admin/class-amp-customizer.php:113 includes/admin/functions.php:38
+#: includes/admin/functions.php:39
+msgid "AMP"
+msgstr "AMP"
+
+#: back-compat/templates-v0-3/meta-time.php:6 templates/meta-time.php:6
+msgctxt "%s = human-readable time difference"
+msgid "%s ago"
+msgstr "%s atrás"
+
+#: back-compat/templates-v0-3/meta-taxonomy.php:1
+#: back-compat/templates-v0-3/meta-taxonomy.php:9 templates/meta-taxonomy.php:1
+#: templates/meta-taxonomy.php:11
+msgctxt "Used between list items, there is a space after the comma."
+msgid ", "
+msgstr ", "
+
+#: includes/class-amp-post-template.php:384
+msgid "Path validation for template (%s) failed. Path cannot traverse and must be located in `%s`."
+msgstr "Validação do caminho do modelo (%s) falhou. Caminho não pode ser alterado e precisa estar localizado em `%s`."
+
+#: includes/class-amp-post-template.php:98
+msgid "Called for non-existant key (\"%s\")."
+msgstr "Chamado por uma chave não existente (\"%s\")."
+
+#: includes/class-amp-content.php:109
+msgid "Sanitizer (%s) must extend `AMP_Base_Sanitizer`"
+msgstr "Sanitizer (%s) precisa estender `AMP_Base_Sanitizer`"
+
+#: includes/class-amp-content.php:66
+msgid "Embed Handler (%s) must extend `AMP_Embed_Handler`"
+msgstr "Gerenciador de incorporação (%s) precisa estender `AMP_Embed_Handler`"
