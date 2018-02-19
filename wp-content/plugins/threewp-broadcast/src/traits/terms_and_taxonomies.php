@@ -64,7 +64,16 @@ trait terms_and_taxonomies
 			'include' => array_keys( $wanted_terms ),
 		] );
 		foreach( $new_terms as $new_term )
+		{
+			unset( $wanted_terms[ $new_term->term_id ] );
 			$o->terms[ $new_term->term_id ] = $new_term;
+		}
+
+		if ( count( $wanted_terms ) > 0 )
+		{
+			$this->debug( 'Warning! Wanted these extra terms, but get_terms could not supply them. So ignoring them.' );
+			return;
+		}
 
 		// And since we have added new terms, they might have parents themselves.
 		$this->get_parent_terms( $o );
@@ -484,6 +493,7 @@ trait terms_and_taxonomies
 				'description' => $action->new_term->description,
 				'name' => $action->new_term->name,
 				'parent' => $action->new_term->parent,
+				'term_order' => $action->new_term->term_order,
 			) );
 			$action->updated = true;
 		}

@@ -59,7 +59,7 @@ trait admin_menu
 	public function admin_menu_settings()
 	{
 		$this->enqueue_js();
-		$form = $this->form2();
+		$form = $this->form();
 		$form->id( 'broadcast_settings' );
 		$form->css_class( 'plainview_form_auto_tabs' );
 		$r = '';
@@ -190,6 +190,12 @@ trait admin_menu
 			// Input label.
 			->label( __( 'Clear POST', 'threewp_broadcast' ) )
 			->checked( $this->get_site_option( 'clear_post' ) );
+
+		$all_networks = $fs->checkbox( 'all_networks' )
+			->description( __( 'In the Broadcast meta box, include all the sites on all networks available to a user, or just the sites on the current network.', 'threewp_broadcast' ) )
+			// Input label.
+			->label( __( 'Include all networks', 'threewp_broadcast' ) )
+			->checked( $this->get_site_option( 'all_networks' ) );
 
 		$save_post_decoys = $fs->number( 'save_post_decoys' )
 			->description( __( "How many save_post hook decoys to insert before the real Broadcast save_post hook. This value should be raised if you notice that Broadcast isn't doing anything. This is due to a bug in Wordpress when other plugins call remove_action on the save_post hook.", 'threewp_broadcast' ) )
@@ -395,6 +401,7 @@ trait admin_menu
 			$custom_field_protectlist = $this->lines_to_string( $custom_field_protectlist );
 			$this->update_site_option( 'custom_field_protectlist', $custom_field_protectlist );
 
+			$this->update_site_option( 'all_networks', $all_networks->is_checked() );
 			$this->update_site_option( 'clear_post', $clear_post->is_checked() );
 			$this->update_site_option( 'save_post_priority', $save_post_priority->get_post_value() );
 			$this->update_site_option( 'save_post_decoys', $save_post_decoys->get_post_value() );
@@ -410,10 +417,12 @@ trait admin_menu
 
 			$this->save_debug_settings_from_form( $form );
 
-			echo $this->info_message_box()->_( 'Options saved!' );
+			$r .= $this->info_message_box()->_( __( 'Settings saved!', 'threewp_broadcast' ) );
 
+			echo $r;
 			$_POST = [];
-			echo $this->admin_menu_settings();
+			$function = __FUNCTION__;
+			echo $this->$function();
 			return;
 		}
 

@@ -48,6 +48,9 @@ trait broadcasting
 
 		$this->debug( 'System info: %s', $this->get_system_info_table() . '' );
 
+		if ( ! $bcd->post )
+			return $this->debug( 'Warning! Refusing to broadcast non-existent post.' );
+
 		$this->debug( 'Broadcasting the post %s <pre>%s</pre>', $bcd->post->ID, $bcd->post );
 
 		$this->debug( 'The POST is <pre>%s</pre>', $bcd->_POST );

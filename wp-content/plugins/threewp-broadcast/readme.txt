@@ -6,7 +6,7 @@ Requires at least: 4.6
 Requires PHP: 5.4
 Stable tag: trunk
 Tags: multipost, sharing, duplicate, franchise, syndication, marketing, news, hub
-Tested up to: 4.9.1
+Tested up to: 4.9.2
 
 Network content syndication made easy! Automatically share content by multiposting between multisite blogs.
 
@@ -82,6 +82,7 @@ The following add-ons add support for the plugin after which they are named.
 * <a href="https://broadcast.plainviewplugins.com/addon/global-content-blocks/">Global Content Blocks</a>
 * <a href="https://broadcast.plainviewplugins.com/addon/goodlayers/">GoodLayers</a>
 * <a href="https://broadcast.plainviewplugins.com/addon/gravity-forms/">Gravity Forms</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/h5p/">H5P</a>
 * <a href="https://broadcast.plainviewplugins.com/addon/image-map-pro/">Image Map Pro</a>
 * <a href="https://broadcast.plainviewplugins.com/addon/intagrate/">Intagrate</a>
 * <a href="https://broadcast.plainviewplugins.com/addon/jetpack/">Jetpack</a>
@@ -257,6 +258,7 @@ Below is a list of plugins that just will not work properly with Broadcast and /
 * <a href="https://wordpress.org/plugins/intuitive-custom-post-order/">Intuitive Custom Post Order</a> - Prevents broadcasting due to switch_to_blog() mismatch.
 * Post Type Switcher - Turns post types into attachments and vice versa.
 * Taxonomy Terms Order - prevents terms from being seen.
+* <a href="http://intellywp.com/tracking-code-manager/">Tracking Code Manager</a> - prevents User & Blog Settings from working by inserting data into the _POST variable during a normal page GET. Very non-standard behavior.
 
 = Orphans? =
 
@@ -303,6 +305,19 @@ This will broadcast all normal product settings: SKU, price, etc.
 If your products have variations, a product image gallery, you want to sync stock, you want to sync orders, need the attribute taxonomies to be synced, you'll be wanting the <a href="https://broadcast.plainviewplugins.com/addon/woocommerce/">WooCommerce add-on</a>.
 
 == Changelog ==
+
+= 42.4 20180129 =
+
+* New: Option to show all sites on a multinetwork setup, instead of defaulting to just the sites on the current network.
+* Fix: Do not broadcast non-existent posts using the API.
+* Fix: Speed up post editing when user has access to a _large_ amount of blogs by caching the blog names. Best used in conjunction with the <a href="https://broadcast.plainviewplugins.com/addon/all-blogs/">All-Blogs add-ons</a>.
+* Fix: Adding Tracking Code Manager plugin to list of incompatible plugins.
+* New add-on. <a href="https://broadcast.plainviewplugins.com/addon/h5p/">H5P</a>: Adds support for the <a href="https://wordpress.org/plugins/h5p/">H5P Interactive Content</a> plugin.
+
+= 42.3 20180115 =
+
+* Fix: Also sync term_order setting when syncing terms.
+* Fix: Do not overwrite attachment's _wp_attached_file property, which otherwise would prevent the attachment from being seen. Sometimes.
 
 = 42.2 20171213 =
 

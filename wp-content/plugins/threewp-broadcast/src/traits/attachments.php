@@ -210,17 +210,10 @@ trait attachments
 
 				foreach( $attachment_data->post_custom as $key => $value )
 				{
+					if ( $key == '_wp_attached_file' )
+						continue;
 					$value = reset( $value );
 					$value = maybe_unserialize( $value );
-					switch( $key )
-					{
-						// Some values need to handle completely different upload paths (from different months, for example).
-						case '_wp_attached_file':
-							// Some files, like MP3s, don't have this key.
-							if ( isset( $attach_data[ 'file' ] ) )
-								$value = $attach_data[ 'file' ];
-							break;
-					}
 					update_post_meta( $action->attachment_id, $key, $value );
 				}
 
@@ -235,6 +228,9 @@ trait attachments
 			$this->debug( 'Copy attachment: Directly copying all metadata.' );
 			foreach( $attachment_data->post_custom as $key => $value )
 			{
+				// Don't overwrite this key since it probably isn't uploaded to the same directory.
+				if ( $key == '_wp_attached_file' )
+					continue;
 				$value = reset( $value );
 				$value = maybe_unserialize( $value );
 				update_post_meta( $action->attachment_id, $key, $value );
