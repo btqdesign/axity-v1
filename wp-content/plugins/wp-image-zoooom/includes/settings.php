@@ -6,7 +6,7 @@ function wp_image_zoooom_settings($type) {
     $l = 'wp-image-zoooom';
 
     $plugin = array(
-        'version'           => '1.21',
+        'version'           => '1.23',
         'plugin_name'       => 'WP Image Zoom',
         'plugin_file'       => str_replace('includes/settings.php', 'image-zoooom.php', __FILE__),
         'plugin_server'     => 'https://www.silkypress.com',

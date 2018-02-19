@@ -1,12 +1,11 @@
 === WP Image Zoom ===
 Created: 21/11/2015
 Contributors: diana_burduja
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=diana.burduja@gmail.com&lc=AT&item_name=Diana%20Burduja&item_number=WP%2dImage%2dZoom%2dplugin&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Email: diana@burduja.eu
 Tags: e-commerce, featured image, hover over image zoom, image, image zoom, image zoom plugin, image magnification, image magnifier, jquery picture zoom, magnifier, magnify image, magnifying glass, mouse over image zoom, panorama, picture zoom, product image, product zoom, product magnification, product magnifier, responsive, woocommerce product zoom, woocommerce zoom, woocommerce  magnifying glass, zoom, zoom image, zoom plugin, woocommerce image zoom, woocommerce product image zoom, woocommerce zoom magnifier
 Requires at least: 3.0.1
 Tested up to: 4.9
-Stable tag: 1.21 
+Stable tag: 1.23
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -144,6 +143,15 @@ Alternatively you can upgrade to the Pro version, as there the zoom lens is buil
 8. Apply the zoom from Page Builder by SiteOrigin, the Image Widget
 
 == Changelog ==
+
+= 1.23 =
+* 08/02/2018
+* Fix: on window resize, show zoom on WooCommerce gallery only if the option is enabled (https://wordpress.org/support/topic/disabling-the-zoom-not-working/)
+* Fix: if the image's width is set to 0, then there is "division by zero" warning
+
+= 1.22 =
+* 30/01/2018
+* Fix: on window resize, show zoom on WooCommerce category pages only if the option is enabled (https://wordpress.org/support/topic/disabling-the-zoom-not-working/)
 
 = 1.21 =
 * 12/04/2017

@@ -60,8 +60,12 @@ jQuery(document).ready(function( $ ){
             clearTimeout(window.resizeEvt);
             window.resizeEvt = setTimeout(function() {
                 $(".zoomContainer").remove();
-                $("img.zoooom, .attachment-shop_single, .attachment-shop_thumbnail.flex-active-slide img").image_zoom(options);
-                $(".tax-product_cat .products img").image_zoom(options);
+                if ( IZ.with_woocommerce == '1' ) {
+                    $("img.zoooom, .attachment-shop_single, .attachment-shop_thumbnail.flex-active-slide img").image_zoom(options);
+                }
+                if ( IZ.woo_categories == '1' ) {
+                    $(".tax-product_cat .products img").image_zoom(options);
+                }
             }, 500);
         });
     });

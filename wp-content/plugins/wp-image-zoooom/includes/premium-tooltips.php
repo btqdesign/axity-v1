@@ -18,7 +18,7 @@ $message = sprintf( $message, 'https://www.silkypress.com/wp-image-zoom-plugin/?
 
     <script type="text/javascript">
         jQuery(document).ready(function($){
-            $(".form-group.disabled-short").click(function(e){
+            $(".form-group.disabled-short, .form-group.disabled").click(function(e){
                 if(typeof window.tooltip != "undefined"){
                     clearTimeout(window.tooltip);
                 }
@@ -40,6 +40,22 @@ $message = sprintf( $message, 'https://www.silkypress.com/wp-image-zoom-plugin/?
                 });
                 return;
             });
+
+            $(".form-group.disabled").click(function(e){ 
+                if(typeof window.tooltip != "undefined"){ 
+                    clearTimeout(window.tooltip); 
+                } 
+
+                var left = $(e.currentTarget).width(); 
+                var offsetTop = $(e.currentTarget).offset().top - 38; 
+                offsetTop -= $('h2').offset().top - 52; 
+
+                $("#wpfc-premium-tooltip").css({"margin-left" : left + "px", "margin-top" : offsetTop + "px"}); 
+                $("#wpfc-premium-tooltip").fadeIn( "slow", function() { 
+                    window.tooltip = setTimeout(function(){ $("#wpfc-premium-tooltip").hide(); }, 1000); 
+                }); 
+                return false; 
+            }); 
         });
     </script>
     
