@@ -57,6 +57,9 @@ class WPML_LS_Settings {
 	 */
 	public function reset_ls_settings_action( array $ls_config ) {
 		$restore_ls_settings = ( isset( $_GET[ 'restore_ls_settings' ] ) && 1 == $_GET[ 'restore_ls_settings' ] );
+		$has_valid_nonce     = isset( $_GET[ 'nonce' ] )
+		                       && wp_create_nonce( WPML_LS_Admin_UI::RESET_NONCE_NAME ) === $_GET[ 'nonce' ];
+		$restore_ls_settings = $restore_ls_settings && $has_valid_nonce;
 
 		if ( ! $this->sitepress->get_setting( 'language_selector_initialized' ) || $restore_ls_settings	) {
 

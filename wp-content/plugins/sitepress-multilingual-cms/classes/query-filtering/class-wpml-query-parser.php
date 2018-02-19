@@ -459,8 +459,11 @@ class WPML_Query_Parser {
 		$permalink   = $this->sitepress->get_wp_api()->get_permalink( $post_id );
 		if ( ! $this->is_permalink_part_of_request( $permalink, $request_uri[0] ) ) {
 			if ( isset( $request_uri[1] ) ) {
-				$lang = substr( $request_uri[1], strpos( $request_uri[1], '=' ) + 1 );
-				$permalink = add_query_arg( array( 'lang' => $lang ), $permalink );
+				$args = array();
+				parse_str( $request_uri[1], $args );
+				if ( array_key_exists( 'lang', $args ) ) {
+					$permalink = add_query_arg( array( 'lang' => $args['lang'] ), $permalink );
+				}
 			}
 			$redirect = $permalink;
 		}
@@ -479,7 +482,7 @@ class WPML_Query_Parser {
 		$type = $this->post_translations->get_type( $element_id );
 		if ( $this->sitepress->is_display_as_translated_post_type( $type ) ) {
 			$post = get_post( $translated_id );
-			if ( 'publishied' != $post->post_status ) {
+			if ( 'publish' != $post->post_status ) {
 				$translated_id = $element_id;
 			}
 		}

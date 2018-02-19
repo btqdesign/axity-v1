@@ -88,6 +88,13 @@ abstract class WPML_Translation_Element extends WPML_SP_User {
 	/**
 	 * @return array
 	 */
+	public function get_translations() {
+		return $this->maybe_init_translations();
+	}
+
+	/**
+	 * @return array
+	 */
 	public function maybe_init_translations() {
 		if ( ! $this->element_translations ) {
 			$this->element_translations = array();

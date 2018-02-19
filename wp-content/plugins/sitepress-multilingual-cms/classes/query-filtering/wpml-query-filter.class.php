@@ -238,7 +238,13 @@ class WPML_Query_Filter extends  WPML_Full_Translation_API {
 		$post_type       = false;
 		foreach ( $debug_backtrace as $o ) {
 			if ( $o['function'] == 'apply_filters_ref_array' && $o['args'][0] === $query_type ) {
-				$post_type = esc_sql( $o['args'][1][1]->query_vars['post_type'] );
+				$query_vars = $o['args'][1][1]->query_vars;
+				$post_type  = esc_sql( $query_vars['post_type'] );
+
+				if ( ! $post_type && (bool) $query_vars['pagename'] ) {
+					$post_type = 'page';
+				}
+
 				break;
 			}
 		}

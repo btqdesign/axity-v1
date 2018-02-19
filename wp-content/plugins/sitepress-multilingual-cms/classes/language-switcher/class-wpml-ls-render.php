@@ -140,12 +140,11 @@ class WPML_LS_Render extends WPML_SP_User {
 			$is_before  = 'before' === $slot->get( 'position_in_menu' );
 			$lang_items = $this->get_menu_items( $slot );
 
-			if( $items ) {
+			if ( $items && $lang_items ) {
 				$items = $this->merge_menu_items( $items, $lang_items, $is_before );
-			} else {
+			} elseif ( ! $items && $lang_items ) {
 				$items = $lang_items;
 			}
-
 		}
 
 		return $items;

@@ -163,14 +163,14 @@ class WPML_Taxonomy_Translation_Table_Display {
 		$default_lang = $sitepress->get_default_language();
 
 		$result['activeLanguages'][ $default_lang ] = array(
-			'label' => $active_langs[ $default_lang ]['display_name'],
-			'flag'  => $sitepress->get_flag_url( $default_lang )
+			'label' => esc_js( $active_langs[ $default_lang ]['display_name'] ),
+			'flag'  => esc_url( $sitepress->get_flag_url( $default_lang ) ),
 		);
 		foreach ( $active_langs as $code => $lang ) {
 			if ( $code !== $default_lang ) {
 				$result['activeLanguages'][ $code ] = array(
-					'label' => $lang['display_name'],
-					'flag'  => $sitepress->get_flag_url( $code )
+					'label' => esc_js( $lang['display_name'] ),
+					'flag'  => esc_url( $sitepress->get_flag_url( $code ) ),
 				);
 			}
 		}
@@ -178,8 +178,8 @@ class WPML_Taxonomy_Translation_Table_Display {
 		$all_languages = $sitepress->get_languages();
 		foreach ( $all_languages as $code => $lang ) {
 			$result['allLanguages'][ $code ] = array(
-				'label' => $lang['display_name'],
-				'flag'  => $sitepress->get_flag_url( $code )
+				'label' => esc_js( $lang['display_name'] ),
+				'flag'  => esc_url( $sitepress->get_flag_url( $code ) ),
 			);
 		}
 

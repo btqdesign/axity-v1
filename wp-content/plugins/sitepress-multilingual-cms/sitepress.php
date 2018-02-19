@@ -2,10 +2,10 @@
 /*
 Plugin Name: WPML Multilingual CMS
 Plugin URI: https://wpml.org/
-Description: WPML Multilingual CMS | <a href="https://wpml.org">Documentation</a> | <a href="https://wpml.org/version/wpml-3-9-1/">WPML 3.9.1 release notes</a>
+Description: WPML Multilingual CMS | <a href="https://wpml.org">Documentation</a> | <a href="https://wpml.org/version/wpml-3-9-3/">WPML 3.9.3 release notes</a>
 Author: OnTheGoSystems
 Author URI: http://www.onthegosystems.com/
-Version: 3.9.1
+Version: 3.9.3
 Plugin Slug: sitepress-multilingual-cms
 */
 
@@ -18,7 +18,7 @@ if ( defined( 'ICL_SITEPRESS_VERSION' ) || ( (bool) get_option( '_wpml_inactive'
 	return;
 }
 
-define( 'ICL_SITEPRESS_VERSION', '3.9.1' );
+define( 'ICL_SITEPRESS_VERSION', '3.9.3' );
 
 // Do not uncomment the following line!
 // If you need to use this constant, use it in the wp-config.php file
@@ -167,7 +167,10 @@ if ( $sitepress->is_setup_complete() ) {
 		'WPML_Display_As_Translated_Snippet_Filters_Factory',
 		'WPML_Upgrade_Loader_Factory',
 		'WPML_Post_Edit_Terms_Hooks_Factory',
+		'WPML_Attachments_Urls_With_Identical_Slugs_Factory',
+		'WPML_API_Hooks_Factory',
 		'WPML_Cache_Terms_Per_Lang_Factory',
+		'WPML_Display_As_Translated_Message_For_New_Post_Factory',
 	);
 	$action_filter_loader->load( $actions );
 }
@@ -244,7 +247,20 @@ function wpml_init_language_switcher() {
 	$wpml_language_switcher->init_hooks();
 }
 
-add_action( 'wpml_loaded', 'wpml_init_language_switcher' );
+function wpml_mlo_init() {
+	global $sitepress, $wpdb;
+	$array_helper    = new WPML_Multilingual_Options_Array_Helper();
+	$utils           = new WPML_Multilingual_Options_Utils( $wpdb );
+	$wpml_ml_options = new WPML_Multilingual_Options( $sitepress, $array_helper, $utils );
+	$wpml_ml_options->init_hooks();
+}
+
+function wpml_loaded() {
+	wpml_init_language_switcher();
+	wpml_mlo_init();
+}
+
+add_action( 'wpml_loaded', 'wpml_loaded' );
 
 if ( $sitepress ) {
 	add_action( 'init', 'wpml_integrations_requirements' );

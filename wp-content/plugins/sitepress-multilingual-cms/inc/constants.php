@@ -91,7 +91,7 @@ define( 'ICL_PRO_TRANSLATION_COST_PER_WORD', 0.09 );
 define( 'ICL_PRO_TRANSLATION_PICKUP_XMLRPC', 0 );
 define( 'ICL_PRO_TRANSLATION_PICKUP_POLLING', 1 );
 
-define( 'ICL_REMOTE_WPML_CONFIG_FILES_INDEX', 'https://d2salfytceyqoe.cloudfront.net/' );
+define( 'ICL_REMOTE_WPML_CONFIG_FILES_INDEX', 'http://cdn.wpml.org/' );
 
 define( 'ICL_ICONS_URL', ICL_PLUGIN_URL . '/res/img/' );
 define( 'ICL_ICON', ICL_ICONS_URL . 'icon.png' );
@@ -134,6 +134,9 @@ define( 'WPML_TERM_META_SETTING_INDEX_PLURAL', 'custom_term_fields_translation' 
 
 define( 'WPML_POST_META_READONLY_SETTING_INDEX', 'custom_fields_readonly_config' );
 define( 'WPML_TERM_META_READONLY_SETTING_INDEX', 'custom_term_fields_readonly_config' );
+
+define( 'WPML_POST_META_UNLOCKED_SETTING_INDEX', 'custom_fields_unlocked_config' );
+define( 'WPML_TERM_META_UNLOCKED_SETTING_INDEX', 'custom_term_fields_unlocked_config' );
 
 define( 'WPML_POST_TYPE_READONLY_SETTING_INDEX', 'custom_types_readonly_config' );
 

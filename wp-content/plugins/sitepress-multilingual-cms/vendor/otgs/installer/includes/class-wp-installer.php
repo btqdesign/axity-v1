@@ -647,6 +647,19 @@ final class WP_Installer {
 		return $site_url;
 	}
 
+	/**
+	 * @param string $repository_id
+	 *
+	 * @return string|null
+	 */
+	public function get_registered_site_url( $repository_id ) {
+		if ( isset( $this->settings['repositories'][ $repository_id ]['subscription']['site_url'] ) ) {
+			return $this->settings['repositories'][ $repository_id ]['subscription']['site_url'];
+		}
+
+		return null;
+	}
+
 	public function show_site_key_nags() {
 		$screen = get_current_screen();
 
@@ -1159,7 +1172,8 @@ final class WP_Installer {
 					$this->settings['repositories'][ $repository_id ]['subscription'] = array(
 						'key'           => $site_key,
 						'data'          => $subscription_data,
-						'registered_by' => get_current_user_id()
+						'registered_by' => get_current_user_id(),
+						'site_url'      => get_site_url(),
 					);
 					$this->save_settings();
 				} else {

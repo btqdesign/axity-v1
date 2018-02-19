@@ -233,10 +233,13 @@ jQuery(document).ready(function($){
 	icl_untranslated_blog_posts.bind('click', update_icl_untranslated_blog_posts);
 
 	var last_form_id = localStorage.getItem( 'wpml-mlcs-last-form-id' );
-	if (  last_form_id ) {
-		jQuery( 'html, body' ).animate( {
-			scrollTop: jQuery( "#" + last_form_id ).offset().top
-		}, 1000 );
+	if ( last_form_id ) {
+		var last_form = jQuery( "#" + last_form_id );
+		if ( last_form.length ) {
+			jQuery( 'html, body' ).animate( {
+				scrollTop: last_form.offset().top
+			}, 1000 );
+		}
 		localStorage.removeItem( 'wpml-mlcs-last-form-id' );
 	}
 
@@ -380,22 +383,26 @@ function icl_copy_from_original(lang, trid){
 					            //these have to be of array type with the indexes editor_type editor_name and value
 					            //possible types are editor or text
 					            //in case of text te prompt to be removed might have to be provided
-					            for (var element in msg.customfields) {
-						            if (msg.customfields.hasOwnProperty(element) && msg.customfields[element].editor_type === 'editor') {
-							            if (typeof tinyMCE !== 'undefined' && ( ed = tinyMCE.get(msg.customfields[element].editor_name) ) && !ed.isHidden()) {
+					            for (var element in msg.builtin_custom_fields) {
+						            if (msg.builtin_custom_fields.hasOwnProperty(element) && msg.builtin_custom_fields[element].editor_type === 'editor') {
+							            if (typeof tinyMCE !== 'undefined' && ( ed = tinyMCE.get(msg.builtin_custom_fields[element].editor_name) ) && !ed.isHidden()) {
 								            ed.focus();
 								            if (tinymce.isIE) {
 									            ed.selection.moveToBookmark(tinymce.EditorManager.activeEditor.windowManager.bookmark);
 								            }
-								            ed.execCommand('mceInsertContent', false, msg.customfields[element].value);
+								            ed.execCommand('mceInsertContent', false, msg.builtin_custom_fields[element].value);
 							            } else {
-								            wpActiveEditor = msg.customfields[element].editor_name;
-								            edInsertContent(edCanvas, msg.customfields[element].value);
+								            wpActiveEditor = msg.builtin_custom_fields[element].editor_name;
+								            edInsertContent(edCanvas, msg.builtin_custom_fields[element].value);
 							            }
 						            } else {
-							            jQuery('#' + msg.customfields[element].editor_name).val(msg.customfields[element].value);
+							            jQuery('#' + msg.builtin_custom_fields[element].editor_name).val(msg.builtin_custom_fields[element].value);
 						            }
 					            }
+
+					            if (typeof msg.external_custom_fields !== "undefined") {
+                                    wpml_copy_external_custom_fields_from_original(msg.external_custom_fields);
+                                }
 				            } catch (err) {
                             }
 			            }
@@ -404,6 +411,24 @@ function icl_copy_from_original(lang, trid){
 	            });
 
 	return false;
+}
+
+function wpml_copy_external_custom_fields_from_original(custom_fields) {
+    var translation_already_contains_custom_fields = jQuery("#postcustomstuff #the-list tr input").length > 0;
+    if (translation_already_contains_custom_fields) {
+        return;
+    }
+
+    var container = jQuery("#newmeta");
+    var meta_key_field = container.find("#metakeyselect");
+    var meta_value_field = container.find("#metavalue");
+    var add_button = container.find("#newmeta-submit");
+
+    custom_fields.forEach(function(item) {
+        meta_key_field.val(item.name);
+        meta_value_field.val(item.value);
+        add_button.click();
+    });
 }
 
 function icl_make_translatable(){

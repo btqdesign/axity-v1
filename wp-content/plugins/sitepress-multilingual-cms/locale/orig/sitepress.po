@@ -204,6 +204,20 @@ msgstr ""
 msgid "Max input vars"
 msgstr ""
 
+# 'utf8mb4_charset' => array(
+# 'label'      => __( 'Utf8mb4 charset', 'sitepress' ),
+# 'value' => __( $this->support_info->is_utf8mb4_charset_supported() ? 'Yes' : 'No', 'sitepress' ),
+
+msgid "Utf8mb4 charset"
+msgstr ""
+
+# 'messages'   => array(
+# __( 'Some features related to String Translations may not work correctly without utf8mb4 character.', 'sitepress' ) => 'https://wpml.org/home/minimum-requirements/',
+# ),
+
+msgid "Some features related to String Translations may not work correctly without utf8mb4 character."
+msgstr ""
+
 # 'strings' => array(
 # 'title' => __( 'WordPress', 'sitepress' ),
 # ),
@@ -451,14 +465,14 @@ msgstr ""
 msgid "of"
 msgstr ""
 
-# 'total_items' => sprintf(
+# 'total_items_text' => sprintf(
 # _n( '%s item', '%s items', $this->pagination->get_total_items(), 'sitepress' ),
 # $this->pagination->get_total_items()
 
 msgid "%s item"
 msgstr ""
 
-# 'total_items' => sprintf(
+# 'total_items_text' => sprintf(
 # _n( '%s item', '%s items', $this->pagination->get_total_items(), 'sitepress' ),
 # $this->pagination->get_total_items()
 
@@ -498,6 +512,55 @@ msgstr ""
 # $text .= '</p>';
 
 msgid "To fix, open \"%s\" and set the \"default locale\" values as shown above."
+msgstr ""
+
+# <div class="js-thankyou-content" style="display: none">
+# <p><?php echo sprintf( esc_html__( 'Thank you for choosing. You can always change your selection in %sPost Types Translation setup%s.', 'sitepress' ), '<a href="' . $setup_url . '">', '</a>' ); ?></p>
+# </div>
+
+msgid "Thank you for choosing. You can always change your selection in %sPost Types Translation setup%s."
+msgstr ""
+
+#
+# <input type="button" class="button-primary" name="save" value="<?php esc_attr_e( 'Save' ); ?>"
+# disabled="disabled"/>
+
+msgid "Save"
+msgstr ""
+
+# <div class="js-main-content">
+# <h2><?php esc_html_e( 'Display mode for blog posts has changed', 'sitepress' ); ?></h2>
+#
+
+msgid "Display mode for blog posts has changed"
+msgstr ""
+
+#
+# <p><?php esc_html_e( 'Until now, your site was set to display "all blog posts", even if they are not translated. That feature is now replaced with a better and more complete translation mode.', 'sitepress' ); ?></p>
+#
+
+msgid "Until now, your site was set to display \"all blog posts\", even if they are not translated. That feature is now replaced with a better and more complete translation mode."
+msgstr ""
+
+#
+# <p><?php esc_html_e( "Which blog posts do you want to display on your site's translations?", 'sitepress' ); ?></p>
+#
+
+msgid "Which blog posts do you want to display on your site's translations?"
+msgstr ""
+
+# <p><label><input type="radio" name="mode"
+# value="display-as-translated"/> <?php esc_html_e( "Blog posts from the site's default language, or translations when they exist", 'sitepress' ); ?>
+# </label></p>
+
+msgid "Blog posts from the site's default language, or translations when they exist"
+msgstr ""
+
+# <p><label><input type="radio" name="mode"
+# value="translate"/> <?php esc_html_e( "Only translated blog posts (never display posts from the default language on translation languages)", 'sitepress' ); ?>
+# </label></p>
+
+msgid "Only translated blog posts (never display posts from the default language on translation languages)"
 msgstr ""
 
 # $options[] = array(
@@ -2469,18 +2532,53 @@ msgstr ""
 msgid "Missing key \"%s\"."
 msgstr ""
 
-# 'taxonomy_translation_help_tab',
-# esc_html__( 'Taxonomy Translation', 'sitepress' ),
-# '<p>' . esc_html__( 'Descriptive content that will show in My Help Tab-body goes here.' ) . '</p>'
+# class="button-secondary wpml-button-lock js-wpml-sync-lock"
+# title="<?php esc_html_e( 'This setting is controlled by a wpml-config.xml file. Click here to unlock and override this setting.', 'sitepress' ); ?>"
+# data-radio-name="<?php echo $radio_name; ?>"
+
+msgid "This setting is controlled by a wpml-config.xml file. Click here to unlock and override this setting."
+msgstr ""
+
+# if ( $screen_options_factory ) {
+# $help_title = esc_html__( 'Taxonomy Translation', 'sitepress' );
+# $help_text  = $this->get_help_text();
 
 msgid "Taxonomy Translation"
 msgstr ""
 
-# esc_html__( 'Taxonomy Translation', 'sitepress' ),
-# '<p>' . esc_html__( 'Descriptive content that will show in My Help Tab-body goes here.' ) . '</p>'
-# );
+# /* translators: this is the title of a documentation page used to terminate the sentence "is not possible to ..."  */
+# $translate_base_taxonomy_slug_link_title = esc_html__( 'translate the base taxonomy slugs with WPML',
+# 'sitepress' );
 
-msgid "Descriptive content that will show in My Help Tab-body goes here."
+msgid "translate the base taxonomy slugs with WPML"
+msgstr ""
+
+# /* translators: this is the title of a documentation page used to terminate the sentence "To learn more, please visit our documentation page about..."  */
+# $translate_taxonomies_link_title = esc_html__( 'translating post categories and custom taxonomies',
+# 'sitepress' );
+
+msgid "translating post categories and custom taxonomies"
+msgstr ""
+
+# $help_sentences   = array();
+# $help_sentences[] = esc_html__( "WPML allows you to easily translate your site's taxonomies. Only taxonomies marked as translatable will be available for translation. Select the taxonomy in the dropdown menu and then use the list of taxonomy terms that appears to translate them.",
+# 'sitepress' );
+
+msgid "WPML allows you to easily translate your site's taxonomies. Only taxonomies marked as translatable will be available for translation. Select the taxonomy in the dropdown menu and then use the list of taxonomy terms that appears to translate them."
+msgstr ""
+
+# /* translators: the sentence is completed with "translate the base taxonomy slugs with WPML" */
+# $help_sentences[] = sprintf( esc_html__( 'Please note that currently, you can translate the slugs of taxonomy terms but it is not possible to %s.',
+# 'sitepress' ),
+
+msgid "Please note that currently, you can translate the slugs of taxonomy terms but it is not possible to %s."
+msgstr ""
+
+# /* translators: the sentence is completed with "translating post categories and custom taxonomies" */
+# $help_sentences[] = sprintf( esc_html__( 'To learn more, please visit our documentation page about %s.',
+# 'sitepress' ),
+
+msgid "To learn more, please visit our documentation page about %s."
 msgstr ""
 
 # <option value=""<?php selected( true, $admin_default_language_selected ) ?>>
@@ -2872,19 +2970,19 @@ msgstr ""
 
 # return array(
 # WPML_CONTENT_TYPE_TRANSLATE                => __( 'Translatable - only show translated items', 'sitepress' ),
-# WPML_CONTENT_TYPE_DISPLAY_AS_IF_TRANSLATED => __( 'Translatable - use translation if available or fallback to original language', 'sitepress' ),
+# WPML_CONTENT_TYPE_DISPLAY_AS_IF_TRANSLATED => __( 'Translatable - use translation if available or fallback to default language', 'sitepress' ),
 
 msgid "Translatable - only show translated items"
 msgstr ""
 
 # WPML_CONTENT_TYPE_TRANSLATE                => __( 'Translatable - only show translated items', 'sitepress' ),
-# WPML_CONTENT_TYPE_DISPLAY_AS_IF_TRANSLATED => __( 'Translatable - use translation if available or fallback to original language', 'sitepress' ),
+# WPML_CONTENT_TYPE_DISPLAY_AS_IF_TRANSLATED => __( 'Translatable - use translation if available or fallback to default language', 'sitepress' ),
 # WPML_CONTENT_TYPE_DONT_TRANSLATE           => __( 'Not translatable', 'sitepress' ),
 
-msgid "Translatable - use translation if available or fallback to original language"
+msgid "Translatable - use translation if available or fallback to default language"
 msgstr ""
 
-# WPML_CONTENT_TYPE_DISPLAY_AS_IF_TRANSLATED => __( 'Translatable - use translation if available or fallback to original language', 'sitepress' ),
+# WPML_CONTENT_TYPE_DISPLAY_AS_IF_TRANSLATED => __( 'Translatable - use translation if available or fallback to default language', 'sitepress' ),
 # WPML_CONTENT_TYPE_DONT_TRANSLATE           => __( 'Not translatable', 'sitepress' ),
 # );
 
@@ -4490,16 +4588,16 @@ msgstr ""
 msgid "You haven't set your synchronization preferences for these %s: %s. Default value was selected."
 msgstr ""
 
-# <div class="wpml-flex-table-cell name">
-# <?php _e( 'Post types', 'sitepress' ) ?>
-# </div>
+# <div class="wpml-flex-table wpml-translation-setup-table wpml-margin-top-sm">
+# <?php $custom_types_ui->render_custom_types_header_ui( esc_html__( 'Post types', 'sitepress' ) ); ?>
+# <div class="wpml-flex-table-body">
 
 msgid "Post types"
 msgstr ""
 
-# <div class="wpml-flex-table-cell name">
-# <?php _e( 'Taxonomy', 'sitepress' ) ?>
-# </div>
+# <div class="wpml-flex-table wpml-translation-setup-table wpml-margin-top-sm">
+# <?php $custom_types_ui->render_custom_types_header_ui( esc_html__( 'Taxonomy', 'sitepress' ) ); ?>
+# <div class="wpml-flex-table-body">
 
 msgid "Taxonomy"
 msgstr ""
@@ -5727,20 +5825,6 @@ msgstr ""
 msgid "This term has additional meta fields:"
 msgstr ""
 
-# $changeLabelLanguage_url = admin_url( 'admin.php?page=' . WPML_ST_FOLDER . '/menu/string-translation.php&context=WordPress' );
-# $changeLabelLanguage     = __( 'You can change the language of this label from the <a href="%s">string translation page</a>.', 'sitepress' );
-# } else {
-
-msgid "You can change the language of this label from the <a href=\"%s\">string translation page</a>."
-msgstr ""
-
-# $changeLabelLanguage_url = 'https://wpml.org/account/downloads/#wpml-string-translation';
-# $changeLabelLanguage     = __( 'You can change the language of this label if you install and activate <a href="%s">WPML String Translation</a>.', 'sitepress' );
-# }
-
-msgid "You can change the language of this label if you install and activate <a href=\"%s\">WPML String Translation</a>."
-msgstr ""
-
 # '3.2'   => array(
 # 'message' => __('This version of WPML includes major updates and improvements.', 'sitepress' ),
 # 'link'    => '<a href="https://wpml.org/version/wpml-3-2/">' . __('WPML 3.2 release notes', 'sitepress') . '</a>',
@@ -5867,7 +5951,7 @@ msgstr ""
 msgid "Browser language redirect"
 msgstr ""
 
-# '#lang-sec-9-5' =>  __('SEO Options','sitepress'),
+# '#cookie'       =>  __('Language filtering for AJAX operations', 'sitepress'),
 # '#lang-sec-10'  =>  __('WPML love','sitepress'),
 # );
 
@@ -7279,6 +7363,55 @@ msgstr ""
 # foreach($languages as $l){
 
 msgid "This post is also available in: "
+msgstr ""
+
+# 'label'               => __( $type_identifier . 'post_type', 'text_domain' ),
+# 'description'         => __( 'Post Type Description', 'text_domain' ),
+# 'labels'              => $labels,
+
+msgid "Post Type Description"
+msgstr ""
+
+# // Default category
+# $cat_name = __('Uncategorized');
+# /* translators: Default category slug */
+
+msgid "Uncategorized"
+msgstr ""
+
+# 'nonce_value' => $nonce,
+# 'section_label' => __( 'Localization options', 'wpml-string-translation' ),
+# 'top_title' => __( 'How to translate strings in themes and plugins?', 'wpml-string-translation' ),
+
+msgid "Localization options"
+msgstr ""
+
+# 'section_label' => __( 'Localization options', 'wpml-string-translation' ),
+# 'top_title' => __( 'How to translate strings in themes and plugins?', 'wpml-string-translation' ),
+# 'top_options' => array(
+
+msgid "How to translate strings in themes and plugins?"
+msgstr ""
+
+# 'value' => WPML_Theme_Localization_Type::USE_ST,
+# 'label' => __( "Translate themes and plugins using WPML's String Translation and always load .mo files as backup", 'wpml-string-translation' ),
+# 'checked' => '',
+
+msgid "Translate themes and plugins using WPML's String Translation and always load .mo files as backup"
+msgstr ""
+
+# 'value' => WPML_Theme_Localization_Type::USE_MO_FILES,
+# 'label' => __( "Don't use String Translation to translate themes and plugins", 'wpml-string-translation' ),
+# 'checked' => '',
+
+msgid "Don't use String Translation to translate themes and plugins"
+msgstr ""
+
+# ),
+# 'button_label' => __( 'Save', 'wpml-string-translation' ),
+# 'st_active' => defined( 'WPML_ST_VERSION' ),
+
+msgid "Save"
 msgstr ""
 
 # $message = '';

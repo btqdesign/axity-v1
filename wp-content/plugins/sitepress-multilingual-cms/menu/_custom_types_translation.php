@@ -48,7 +48,7 @@ foreach ( $custom_taxonomies as $custom_tax ) {
 
 $translation_modes = new WPML_Translation_Modes();
 
-$custom_types_ui = new WPML_Custom_Types_Translation_UI( $translation_modes );
+$custom_types_ui = new WPML_Custom_Types_Translation_UI( $translation_modes, new WPML_UI_Unlock_Button() );
 
 if ( $custom_posts ) {
 	$notice = prepare_synchronization_needed_warning( $custom_posts_sync_not_set, 'custom posts' );

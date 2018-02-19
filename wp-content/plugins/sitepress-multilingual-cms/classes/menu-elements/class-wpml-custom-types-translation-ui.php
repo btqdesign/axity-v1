@@ -8,8 +8,12 @@ class WPML_Custom_Types_Translation_UI {
 	/** @var WPML_Translation_Modes $translation_modes */
 	private $translation_modes;
 
-	public function __construct( WPML_Translation_Modes $translation_modes ) {
+	/** @var WPML_UI_Unlock_Button $unlock_button_ui */
+	private $unlock_button_ui;
+
+	public function __construct( WPML_Translation_Modes $translation_modes, WPML_UI_Unlock_Button $unlock_button_ui ) {
 		$this->translation_modes              = $translation_modes;
+		$this->unlock_button_ui               = $unlock_button_ui;
 		$this->translation_option_class_names = array(
 			WPML_CONTENT_TYPE_TRANSLATE                => 'translate',
 			WPML_CONTENT_TYPE_DISPLAY_AS_IF_TRANSLATED => 'display-as-translated',
@@ -40,19 +44,10 @@ class WPML_Custom_Types_Translation_UI {
 		$unlocked_name = esc_attr( $name . '_unlocked[' . $content_slug . ']' );
 		?>
 		<div class="wpml-flex-table-cell name">
-			<?php if ( $disabled && ! $unlocked ) { ?>
-				<button type="button"
-				        class="button-secondary wpml-button-lock js-wpml-sync-lock"
-				        title="<?php esc_html_e( 'This setting is controlled by a wpml-config.xml file. Click here to unlock and override this setting.', 'sitepress' ); ?>"
-				        data-radio-name="<?php echo $radio_name; ?>"
-				        data-unlocked-name="<?php echo $unlocked_name; ?>">
-					<i class="otgs-ico-lock"></i>
-				</button>
-			<?php } ?>
-
-			<input type="hidden" name="<?php echo $unlocked_name; ?>" value="<?php echo $unlocked ? '1' : '0'; ?>">
-
-			<?php echo $content_label; ?>
+			<?php
+			$this->unlock_button_ui->render( $disabled, $unlocked, $radio_name, $unlocked_name );
+			echo $content_label;
+			?>
 			(<i><?php echo esc_html( $content_slug ); ?></i>)
 		</div>
 		<?php foreach ( $this->translation_modes->get_options() as $value => $label ) { ?>

@@ -528,15 +528,21 @@ class TranslationManagement {
 				break;
 			case 'icl_cf_translation':
 			case 'icl_tcf_translation':
-				if ( ! empty( $data['cf'] ) ) {
-					foreach ( $data['cf'] as $k => $v ) {
-						$cft[ base64_decode( $k ) ] = $v;
-					}
-					if ( isset( $cft ) ) {
-						$this->settings[ $call === 'icl_tcf_translation'
-							? WPML_TERM_META_SETTING_INDEX_PLURAL
-							: WPML_POST_META_SETTING_INDEX_PLURAL ] = $cft;
-						$this->save_settings();
+				foreach (
+					array(
+						'cf'          => $call === 'icl_tcf_translation' ? WPML_TERM_META_SETTING_INDEX_PLURAL : WPML_POST_META_SETTING_INDEX_PLURAL,
+						'cf_unlocked' => $call === 'icl_tcf_translation' ? WPML_TERM_META_UNLOCKED_SETTING_INDEX : WPML_POST_META_UNLOCKED_SETTING_INDEX,
+					) as $field => $setting
+				) {
+					if ( ! empty( $data[ $field ] ) ) {
+						$cft = array();
+						foreach ( $data[ $field ] as $k => $v ) {
+							$cft[ base64_decode( $k ) ] = $v;
+						}
+						if ( ! empty( $cft ) ) {
+							$this->settings[ $setting ] = $cft;
+							$this->save_settings();
+						}
 					}
 				}
 				echo '1|';
@@ -2269,31 +2275,36 @@ class TranslationManagement {
 	 * @param array $data  Request data
 	 */
 	public function icl_tm_save_notification_settings( $data ) {
-		foreach (
-			array(
-				'new-job',
-				'include_xliff',
-				'resigned',
-				'completed',
-				'completed_frequency',
-				'overdue',
-				'overdue_offset'
-			) as $setting
+		if ( wp_verify_nonce(
+			$data['save_notification_settings_nonce'],
+			'save_notification_settings_nonce' )
 		) {
-			if ( ! array_key_exists( $setting, $data['notification'] ) ) {
-				$data['notification'][ $setting ] = ICL_TM_NOTIFICATION_NONE;
+			foreach (
+				array(
+					'new-job',
+					'include_xliff',
+					'resigned',
+					'completed',
+					'completed_frequency',
+					'overdue',
+					'overdue_offset'
+				) as $setting
+			) {
+				if ( ! array_key_exists( $setting, $data['notification'] ) ) {
+					$data['notification'][ $setting ] = ICL_TM_NOTIFICATION_NONE;
+				}
 			}
-		}
 
-		$this->settings['notification'] = $data['notification'];
-		$this->save_settings();
-		$message = array(
-			'id'   => 'icl_tm_message_save_notification_settings',
-			'type' => 'updated',
-			'text' => __( 'Preferences saved.', 'sitepress' )
-		);
-		ICL_AdminNotifier::add_message( $message );
-		do_action( 'wpml_tm_notification_settings_saved', $this->settings[ 'notification' ] );
+			$this->settings['notification'] = $data['notification'];
+			$this->save_settings();
+			$message = array(
+				'id'   => 'icl_tm_message_save_notification_settings',
+				'type' => 'updated',
+				'text' => __( 'Preferences saved.', 'sitepress' )
+			);
+			ICL_AdminNotifier::add_message( $message );
+			do_action( 'wpml_tm_notification_settings_saved', $this->settings['notification'] );
+		}
 	}
 
 	/**
