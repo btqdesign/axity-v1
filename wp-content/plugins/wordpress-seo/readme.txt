@@ -5,8 +5,8 @@ License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 Tags: SEO, XML sitemap, Google Search Console, Content analysis, Readability
 Requires at least: 4.8
-Tested up to: 4.9.1
-Stable tag: 6.1.1
+Tested up to: 4.9.4
+Stable tag: 6.3
 Requires PHP: 5.2.4
 
 Improve your WordPress SEO: Write better content and have a fully optimized WordPress site using the Yoast SEO plugin.
@@ -106,94 +106,55 @@ You'll find answers to many of your questions on [kb.yoast.com](https://yoa.st/1
 
 == Changelog ==
 
-= 6.1.1 =
-Release Date: January 10th, 2018
+= 6.3.0 =
+Release Date: February 13th, 2018
 
 Bugfixes:
 
-* Fixes a bug where sitemaps could not be generated when there one or more galleries in the content.
+* Reverts the shortlink in the HTML comment back to the hard link it was before.
+* Fixes a bug where the Local SEO for WooCommerce extension was not shown on the licenses page.
+* Fixes a bug where the `current_user_can()` function was not called with the post ID as argument.
+* Fixes a bug where the auto-generated meta descriptions were not using the new 320 characters limitation.
+* Fixes a bug where specific external links were not filtered from the post_type sitemap.
+* Fixes a bug where trashed posts were displayed in the bulk editor overview.
+* Fixes a bug where old meta values were not deleted during import.
+* Fixes a bug where only 10 posts when executing meta robots import from wpSEO.de.
+* Clears the sitemap cache when the Site URL is changed.
 
-= 6.1.0 =
-Release Date: January 9th, 2018
+Enhancements:
+
+* Adds an importer for the SEO Ultimate plugin SEO data.
+* Adds an importer for the SEOpressor plugin SEO data.
+* Adds links to explanatory articles on the features tab.
+* Adds additional explanation for entries on the features tab.
+* Improves Open Graph copy for Facebook and Twitter in the Social settings to better explain what it does.
+* Improves Content Analysis and Publish box copy for better translations.
+* Applies design changes to the Help Center support tab for Premium.
+
+Other:
+
+* Removes "meta keywords" from the plugin as this has had no search result value for at least 7 years.
+* Removes the "noindex subpages" feature as Google has gotten much better at paginated series, and it's now actually detrimental to use.
+* Removes the "Other" tab from the Titles & Metas settings screen, as all options have been moved or removed.
+* Security hardening.
+
+= 6.2.0 =
+Release Date: January 23rd, 2018
 
 Enhancements:
 
 * Allows more strings to be translated.
-* Replaces any Yoast domain URLs with shortlink alternatives.
+* Adds the passive voice assessment for French.
+* Adds the passive voice assessment for Spanish.
+* Simplifies the feedback message for the assessment that checks whether subheadings contain the keyword.
 
 Bugfixes:
 
-* Fixes a bug where the internal links aren't recognized when the `site_url` is not the same as the `home_url`.
-* Fixes a bug where the user locale is not used for the Help Center when it is different from the site locale.
-* Removes unsupported PHP 5.2 arguments in an `array_unique` call in the Term image sitemap.
-* Removes unsupported PHP 5.3 arguments in a `json_encode` call in the notification functionality.
-* Added support for locales without territory (examples: et, fi) - Props [Peeter Marvet](https://github.com/petskratt).
-* Added support support for 3-letter language codes (example: rhg) - Props [Peeter Marvet](https://github.com/petskratt).
-* Fixes a JavaScript compatibility issue by prefixing the webpack jsonP function with `yoast` - Props [Raitis Sevelis from Visual Composer](https://visualcomposer.io/).
-
-= 6.0.0 =
-Release Date: December 20th, 2017
-
-Enhancements:
-
-* Adds support for custom page titles and meta descriptions on the WooCommerce shop page. Props [Caleb Burks](https://github.com/WPprodigy).
-* Adds support for custom page social titles and descriptions on the WooCommerce shop page.
-* Adds a link to the Google Knowledge Graph article on Yoast.com. Props [Raaj Trambadia](https://github.com/raajtram).
-* Adds a link to an article on Yoast.com on why it might be a bad idea to use the same keyword more than once.
-* Changed the meta description maximum recommended length from 156 to 320 characters.
-
-Bugfixes:
-
-* Disables the mark buttons of the content analysis when switched to text view.
-* Hides the mark buttons when the WYSIWYG editor is not loaded or the filter `wpseo_enable_assessment_markers` returns false.
 * Security hardening through stricter code checks.
-
-= 5.9.3 =
-
-Release Date: December 11th, 2017
-
-Security:
-
-* Fixes an issue where a part of the excerpt would be leaked on password protected posts when used as a replacement variable. Such as `%%excerpt%%` and `%%excerpt_only%%`. Props to [Rolands Umbrovskis](https://profiles.wordpress.org/rolandinsh) for reporting this issue to us.
-
-= 5.9.2 =
-Release Date: December 11th, 2017
-
-Bugfixes:
-
-* Fixes a bug where older browsers couldn't load the content analysis. This applies to Internet Explorer (10 and lower) and Safari (9.1 and lower).
-* Fixes a bug where the Yoast Metabox wouldn't be shown for posts set to `noindex`, therefore making it impossible to change it back to `index`, view Readability scores and not being able to optimize a post, before allowing it to be indexed.
-* Fixes a bug where translations wouldn't be applied in the Yoast SEO Metabox for SEO and Readability scores.
-
-= 5.9.1 =
-Release Date: December 5th, 2017
-
-Bugfixes:
-
-* Fixes a bug where the configuration wizard could not be loaded, caused by a missing JavaScript dependency.
-
-= 5.9.0 =
-Release Date: December 5th, 2017
-
-Bugfixes:
-
-* Fixes a bug where the title isn't added back to the HTML when the debug marker has been disabled.
-* Fixes a bug where multiple help panels showed up when clicking on different help buttons.
-* Fixes a bug where the Help Center wouldn't be closed when clicking the Go Premium link.
-* Fixes a bug where the cornerstone setting for a post would be lost when quick editing the post.
-* Fixes a bug where newly created posts were taken into account for the link count, resulting in MySQL errors. Props to [stodorovic](https://github.com/stodorovic).
-* Fixes a bug where Premium plugins were being treated as WordPress.org plugins in the 'suggested plugin' notifications, resulting in download errors.
-* Fixes a bug where an empty div was visible when both Content and Readability analysis are disabled.
-
-Enhancements
-
-* Shows a notice regarding opening the Onboarding Wizard when the plugin is installed for the first time.
-* Makes it easier to unhook the debug code rendered as HTML comment.
-* Implements the Reactified content analysis.
-* Introduces the `wpseo_add_opengraph_additional_images` filter to allow additional OpenGraph Images to be added at a low priority.
-* Changes the Dashboard widget's progress bar height to 24px.
-* Makes the 'Next' and 'Back' buttons in the Onboarding Wizard focusable.
-* Adds grouping of feedback within the content analysis, in the following categories: 'errors', 'problems', 'needs improvement', 'considerations', and 'good'. Each category can be expanded and collapsed.
+* Reduces the number of times the content analysis is refreshed on page load.
+* Fixes a bug where relative URLs were not counted as internal links in the internal link assessment.
+* Fixes a bug where Premium users would be shown ads when following a certain path through the SEO menu.
+* Fixes a bug where the method of setting the title and meta description templates for the WooCommerce shop page would not work anymore.
 
 = Earlier versions =
 
