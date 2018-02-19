@@ -51,6 +51,7 @@ class WPBackitup_Admin {
         'backup_lastrun_date'=>"-2147483648",
         'cleanup_lastrun_date'=>"-2147483648",
         'delete_all' => 0,
+        'safe_sync' => 0,
         'rversion_compare' => 0,
         'backup_dbtables_batch_size'=> WPBACKITUP__DATABASE_BATCH_SIZE,
         'backup_sql_merge_batch_size' => WPBACKITUP__SQL_MERGE_BATCH_SIZE,
@@ -1255,6 +1256,7 @@ class WPBackitup_Admin {
             'notification_email' => $this->get_option('notification_email'),
             'backup_retained_number' => $this->get_option('backup_retained_number'),
             'delete_all' => $this->get_option('delete_all'),
+            'safe_sync' => $this->get_option('safe_sync'),
             'rversion_compare' => $this->get_option('rversion_compare'),
             'backup_dbtables_batch_size'=> $this->get_option('backup_dbtables_batch_size', WPBACKITUP__DATABASE_BATCH_SIZE),
             'backup_sql_merge_batch_size' => $this->get_option('backup_sql_merge_batch_size', WPBACKITUP__SQL_MERGE_BATCH_SIZE),
@@ -1449,6 +1451,8 @@ class WPBackitup_Admin {
         //** VALIDATE delete_all  on uninstall **//
         $data['delete_all'] = $data['delete_all'] === 'true' ? 1: 0;
 
+        //** Safe Sync ON/OFF **//
+        $data['safe_sync'] = $data['safe_sync'] === 'true' ? 1: 0;
 
         // Update the options value with the data submitted
         foreach( $data as $key => $val ) {

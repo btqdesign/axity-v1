@@ -4,7 +4,7 @@ Tags: backup, backups, back up, backup plugin, database backup, multisite backup
 Requires at least: 3.8.0
 Requires PHP: 5.2.4
 Tested up to: 4.9
-Stable tag: 1.15.3
+Stable tag: 1.15.4
 Author URI: https://www.wpbackitup.com
 Donate link: https://www.wpbackitup.com
 License: GPLv2 or later
@@ -214,6 +214,12 @@ Our online documentation and full list of FAQs can be found at [support.wpbackit
 
 
 == Changelog ==
+= 1.15.5 =
+*Release Date -  February, 9, 2017
+
+* UPDATE:  Updates to support WPBackItUp Safe Beta Launch
+* UPDATE:  Updates to WordPress 4.9.4
+
 = 1.15.4 =
 *Release Date -  January 3, 2018
 

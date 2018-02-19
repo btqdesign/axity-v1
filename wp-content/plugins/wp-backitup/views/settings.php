@@ -239,6 +239,25 @@
 
 
                 <div class="widget">
+                    <h3 class="promo">
+	                    <div class="fa-sm">
+	                       <span class="fa-layers fa-fw">
+                            <i class="fa fa-cloud"></i>
+		                    <?php _e(' WPBackItUp Safe Sync', 'wp-backitup') ?>
+	                    </span>
+	                    </div>
+                    </h3>
+                    <p>
+                        <input type="checkbox" v-model="safe_sync" checked="safe_sync === true">
+                        <label for="wpbackitup_safe_sync"><?php _e('Check this box if you would like to turn <strong>on</strong> WPBackItUp Safe.', 'wp-backitup') ?></label>
+                    </p>
+                    <div class="submit">
+                        <button class="button-primary" v-on:click="setSettings()"><?php _e("Save", 'wp-backitup') ?></button>
+                    </div>
+                </div>
+
+
+                <div class="widget">
                     <h3 class="promo"><i class="fa fa-trash-o"></i> <?php _e('Remove Data on Uninstall?', 'wp-backitup') ?></h3>
                     <p>
                         <input type="checkbox" v-model="delete_all" checked="delete_all === true">

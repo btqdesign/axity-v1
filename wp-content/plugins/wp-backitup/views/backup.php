@@ -30,6 +30,9 @@
         // get retention number set
         $number_retained_archives = $this->backup_retained_number();
 
+        // get safe sync value
+        $safe_sync_on = $this->get_option('safe_sync');
+
         $wpbackitup_license = new WPBackItUp_License();
         $is_lite_registered = $wpbackitup_license->is_lite_registered();
 
@@ -570,7 +573,7 @@ if (!$backup_folder_exists) {
 <!--Vue Send to cloud-->
 <script type="text/x-template" id="send-to-cloud">
     <td v-if="visible">
-    <?php if (true==WPBACKITUP__SAFE_SYNC_ON) : ?>
+    <?php if (true==$safe_sync_on) : ?>
         <span v-if="kloudStatus == 'uploaded' " class="fa-stack" title="<?php _e('Backup safely stored in cloud', 'wp-backitup'); ?>" >
             <a href="#" @click="openModal('modal'+ jobId)">
             <i class="fa fa fa-cloud fa-stack-2x" style="color:dodgerblue;"></i>
