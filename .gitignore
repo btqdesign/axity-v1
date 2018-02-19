@@ -1,6 +1,7 @@
 *.swp
 .DS_Store
 *.log
+*_log
 .htaccess
 sitemap.xml
 sitemap.xml.gz
