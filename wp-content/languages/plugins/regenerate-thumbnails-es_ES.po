@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Regenerate Thumbnails - Development (trunk) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2017-12-26 18:30:36+0000\n"
+"PO-Revision-Date: 2018-01-29 15:13:45+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -10,6 +10,10 @@ msgstr ""
 "X-Generator: GlotPress/2.4.0-alpha\n"
 "Language: es\n"
 "Project-Id-Version: Plugins - Regenerate Thumbnails - Development (trunk)\n"
+
+#: includes/class-regeneratethumbnails-regenerator.php:597
+msgid "Attachment %d"
+msgstr "Adjunto %d"
 
 #: regenerate-thumbnails.php:263
 msgid "Skipped Attachment ID {id}: {reason}"
@@ -278,17 +282,17 @@ msgstr "No existe ningún adjunto con ese ID."
 msgid "Alex Mills (Viper007Bond)"
 msgstr "Alex Mills (Viper007Bond)"
 
-#: regenerate-thumbnails.php:406 regenerate-thumbnails.php:422
-#: regenerate-thumbnails.php:446
+#: regenerate-thumbnails.php:412 regenerate-thumbnails.php:428
+#: regenerate-thumbnails.php:452
 msgid "Regenerate the thumbnails for this single image"
 msgstr "Regenerar las miniaturas sólo para esta imagen"
 
-#. #-#-#-#-#  regenerate-thumbnails-code.pot (Regenerate Thumbnails 3.0.1) 
+#. #-#-#-#-#  regenerate-thumbnails-code.pot (Regenerate Thumbnails 3.0.2) 
 #. #-#-#-#-#
 #. Plugin Name of the plugin/theme
 #: regenerate-thumbnails.php:159 regenerate-thumbnails.php:211
-#: regenerate-thumbnails.php:300 regenerate-thumbnails.php:406
-#: regenerate-thumbnails.php:422 regenerate-thumbnails.php:446
-#: regenerate-thumbnails.php:468
+#: regenerate-thumbnails.php:300 regenerate-thumbnails.php:412
+#: regenerate-thumbnails.php:428 regenerate-thumbnails.php:452
+#: regenerate-thumbnails.php:474
 msgid "Regenerate Thumbnails"
 msgstr "Regenerate Thumbnails"
