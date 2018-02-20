@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Yoast SEO - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2018-02-09 11:55:33+0000\n"
+"PO-Revision-Date: 2018-02-13 12:08:12+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -10,6 +10,161 @@ msgstr ""
 "X-Generator: GlotPress/2.4.0-alpha\n"
 "Language: es\n"
 "Project-Id-Version: Plugins - Yoast SEO - Stable (latest release)\n"
+
+#: admin/views/tabs/social/twitterbox.php:17
+msgid "Enable this feature if you want Twitter to display a preview with images and a text excerpt when a link to your site is shared."
+msgstr "Activa esta característica si quieres que Twitter muestre una vista previa con imágenes y un extracto de texto cuando se comparta un enlace de tu sitio."
+
+#: admin/views/tabs/tool/import-seo.php:35
+msgid "Import from SEOpressor"
+msgstr "Importar desde SEOpressor"
+
+#: admin/views/tabs/tool/import-seo.php:34
+msgid "Import from Ultimate SEO"
+msgstr "Importar desde Ultimate SEO"
+
+#: admin/class-help-center.php:120
+msgid "Support requests you create here are sent directly into our support system, which is secured with 256 bit SSL, so communication is 100% secure."
+msgstr "Las peticiones de soporte que has creado aquí se enviaron directamente a nuestro sistema de soporte, que está asegurado con SSL de 256 bits, así que la comunicación es 100% segura."
+
+#: admin/class-import-ultimate-seo.php:23
+msgid "SEO Ultimate data successfully imported."
+msgstr "Datos de SEO Ultimate importados con éxito."
+
+#. translators: %1$s expands to an opening strong tag, %2$s expands to a
+#. closing strong tag.
+#: admin/formatter/class-metabox-formatter.php:76
+msgid "Readability: %1$sNot available%2$s"
+msgstr "Legibilidad: %1$sNo disponible%2$s"
+
+#: admin/views/tabs/dashboard/features.php:32
+msgid "The cornerstone content feature lets you to mark and filter cornerstone content on your website."
+msgstr "La característica de contenido esencial te permite marcar y filtrar contenido esencial de tu web."
+
+#: admin/class-help-center.php:116
+msgid "If you have a problem that you can't solve with our video tutorials or knowledge base, you can send a message to our support team. They can be reached 24/7."
+msgstr "Si tienes algún problema que no puedas resolver con nuestros tutoriales en vídeo o base de conocimiento puedes enviar un mensaje a nuestro equipo de soporte. Puedes contactar con ellos 24/7."
+
+#: admin/class-help-center.php:231
+msgid "Search result"
+msgstr "Resultado de búsqueda"
+
+#: admin/class-help-center.php:240
+msgid "New support request"
+msgstr "Nueva petición de soporte"
+
+#: admin/class-import-seopressor.php:24
+msgid "SEOpressor data successfully imported."
+msgstr "Datos de SEOpressor importados con éxito."
+
+#. translators: %1$s expands to an opening strong tag, %2$s expands to a
+#. closing strong tag.
+#: admin/formatter/class-metabox-formatter.php:79
+msgid "Readability: %1$sNeeds improvement%2$s"
+msgstr "Legibilidad: %1$sNecesita mejoras%2$s"
+
+#. translators: %1$s expands to an opening strong tag, %2$s expands to a
+#. closing strong tag.
+#: admin/formatter/class-metabox-formatter.php:82
+msgid "Readability: %1$sOK%2$s"
+msgstr "Legibilidad: %1$sBien%2$s"
+
+#. translators: %1$s expands to an opening strong tag, %2$s expands to a
+#. closing strong tag.
+#: admin/formatter/class-metabox-formatter.php:85
+msgid "Readability: %1$sGood%2$s"
+msgstr "Legibilidad: %1$sBuena%2$s"
+
+#. translators: %1$s expands to an opening strong tag, %2$s expands to a
+#. closing strong tag.
+#: admin/formatter/class-metabox-formatter.php:90
+msgid "SEO: %1$sNot available%2$s"
+msgstr "SEO: %1$sNo disponible%2$s"
+
+#. translators: %1$s expands to an opening strong tag, %2$s expands to a
+#. closing strong tag.
+#: admin/formatter/class-metabox-formatter.php:93
+msgid "SEO: %1$sNeeds improvement%2$s"
+msgstr "SEO: %1$sNecesita mejoras%2$s"
+
+#. translators: %1$s expands to an opening strong tag, %2$s expands to a
+#. closing strong tag.
+#: admin/formatter/class-metabox-formatter.php:96
+msgid "SEO: %1$sOK%2$s"
+msgstr "SEO: %1$sBien%2$s"
+
+#. translators: %1$s expands to an opening strong tag, %2$s expands to a
+#. closing strong tag.
+#: admin/formatter/class-metabox-formatter.php:99
+msgid "SEO: %1$sGood%2$s"
+msgstr "SEO: %1$sBueno%2$s"
+
+#: admin/formatter/class-metabox-formatter.php:135
+msgid "Good results"
+msgstr "Buenos resultados"
+
+#: admin/views/licenses.php:101
+msgid "Get better search results in local search"
+msgstr "Consigue mejores resultados de búsqueda en la búsqueda local"
+
+#: admin/views/licenses.php:102
+msgid "Enhance your contact pages with Google Maps, opening hours and a store locator"
+msgstr "Mejora tus páginas de contacto con Google Maps, horas de apertura y localizador de la tienda"
+
+#. translators: %1$s expands to WooCommerce
+#: admin/views/licenses.php:104
+msgid "Allow customers to pick up their %s order locally"
+msgstr "Permite a tus clientes recoger su pedido de %s en tu local"
+
+#: admin/views/tabs/dashboard/features.php:14
+msgid "SEO analysis"
+msgstr "Análisis SEO"
+
+#: admin/views/tabs/dashboard/features.php:16
+msgid "The SEO analysis offers suggestions to improve the SEO of your text."
+msgstr "El análisis SEO ofrece sugerencias para mejorar el SEO de tu texto."
+
+#: admin/views/tabs/dashboard/features.php:17
+msgid "Learn how the SEO analysis can help you rank."
+msgstr "Aprende cómo puede el análisis SEO mejorar tu posicionamiento."
+
+#: admin/views/tabs/dashboard/features.php:24
+msgid "The readability analysis offers suggestions to improve the structure and style of your text."
+msgstr "El análisis de legibilidad ofrece sugerencias para mejorar la estructura y estilo de tu texto."
+
+#: admin/views/tabs/dashboard/features.php:25
+msgid "Discover why readability is important for SEO."
+msgstr "Descubre porqué la legibilidad es importante para el SEO."
+
+#: admin/views/tabs/dashboard/features.php:33
+msgid "Find out how cornerstone content can help you improve your site structure."
+msgstr "Descubre como el contenido esencial puede ayudarte a mejorar la estructura de tu sitio."
+
+#: admin/views/tabs/dashboard/features.php:40
+msgid "The text link counter helps you improve your site structure."
+msgstr "El contador de enlaces de texto te ayuda a mejorar la estructura de tu sitio."
+
+#: admin/views/tabs/dashboard/features.php:41
+msgid "Find out how the text link counter can enhance your SEO."
+msgstr "Descubre como el contador de enlaces de texto puede mejorar tu SEO."
+
+#: admin/views/tabs/dashboard/features.php:49
+msgid "Discover all the features that Yoast SEO offers."
+msgstr "Descubre todas la características que ofrece Yoast SEO."
+
+#. translators: %s expands to Ryte.
+#: admin/views/tabs/dashboard/features.php:55
+msgid "%s integration"
+msgstr "Integración con %s"
+
+#. translators: %s expands to Ryte.
+#: admin/views/tabs/dashboard/features.php:60
+msgid "Read more about how %s works."
+msgstr "Lee más acerca de cómo funciona %s."
+
+#: admin/views/tabs/social/facebook.php:19
+msgid "Enable this feature if you want Facebook and other social media to display a preview with images and a text excerpt when a link to your site is shared."
+msgstr "Activa esta característica si quieres que Facebook y otras redes sociales muestren una vista previa con imágenes y un extracto de texto cuando se comparta un enlace de tu sitio."
 
 #: languages/yoast-seo-js.php:212
 msgid "The focus keyword appears in %2$d (out of %1$d) subheadings in your copy."
@@ -161,6 +316,12 @@ msgstr "%1$s%3$s Integración con ACF%2$s - una integración creada por %4$s y s
 msgid "%1$sGlue for %4$s &amp; AMP%3$s - an integration between %2$sthe WordPress AMP plugin%3$s and %4$s."
 msgstr "%1$sGlue for %4$s &amp; AMP%3$s - una integración entre %2$sel plugin WordPress AMP%3$s y %4$s."
 
+#. translators: 1: expands to "Yoast SEO"; 2: emphasis open tag; 3: emphasis
+#. close tag.
+#: admin/views/about.php:232
+msgid "%1$s 3.0 brought a way for theme builders and custom field plugins to integrate with %1$s. These integrations make sure that %2$sall%3$s the data on your page is used for the content analysis. On this page, we highlight the frameworks that have nicely working integrations."
+msgstr "%1$s 3.0 trajo un modo de que los maquetadores de temas y los plugins de campos personalizados se integren con %1$s. Estas integraciones aseguran que %2$stodos%3$s los datos de tu página se utilicen en el análisis de contenido. En esta página destacamos frameworks que tienen integraciones que funcionan estupendamente."
+
 #: admin/views/about.php:261
 msgid "We've got other integrations we'd like to tell you about:"
 msgstr "Tenemos otras integraciones de las que nos gustaría hablarte:"
@@ -168,12 +329,6 @@ msgstr "Tenemos otras integraciones de las que nos gustaría hablarte:"
 #: admin/views/about.php:259
 msgid "Other integrations"
 msgstr "Otras integraciones"
-
-#. translators: 1: expands to "Yoast SEO"; 2: emphasis open tag; 3: emphasis
-#. close tag.
-#: admin/views/about.php:232
-msgid "%1$s 3.0 brought a way for theme builders and custom field plugins to integrate with %1$s. These integrations make sure that %2$sall%3$s the data on your page is used for the content analysis. On this page, we highlight the frameworks that have nicely working integrations."
-msgstr "%1$s 3.0 trajo un modo de que los maquetadores de temas y los plugins de campos personalizados se integren con %1$s. Estas integraciones aseguran que %2$stodos%3$s los datos de tu página se utilicen en el análisis de contenido. En esta página destacamos frameworks que tienen integraciones que funcionan estupendamente."
 
 #. translators: %1$s expands to Yoast SEO, %2$s expands to the dependency name,
 #. %3$s expands to the install link, %4$s expands to the more info link.
@@ -982,6 +1137,14 @@ msgstr "Varias palabras clave"
 msgid "Easy redirect manager"
 msgstr "Sencillo gestor de redirecciones"
 
+#. Translators: %1$s opens a link to a Yoast article about stop words, %2$s
+#. closes the link
+#: languages/yoast-seo-js.php:164
+msgid "The focus keyword contains a stop word. This may or may not be wise depending on the circumstances. %1$sLearn more about the stop words%2$s."
+msgid_plural "The focus keyword contains %3$d stop words. This may or may not be wise depending on the circumstances. %1$sLearn more about the stop words%2$s."
+msgstr[0] "La palabra clave objetivo contiene una palabra vacía. Esto podría ser o no inteligente dependiendo de las circunstancias. %1$sAprende más sobre las palabras vacías%2$s."
+msgstr[1] "La palabra clave objetivo contiene %3$d palabras vacías. Esto podría ser o no inteligente dependiendo de las circunstancias. %1$sAprende más sobre las palabras vacías%2$s."
+
 #: admin/views/tabs/advanced/rss.php:33 inc/class-wpseo-replace-vars.php:1037
 msgid "Variable"
 msgstr "Variable"
@@ -997,14 +1160,6 @@ msgstr "Navega para ver el contenido de la tabla."
 #: admin/banner/class-admin-banner-sidebar.php:351
 msgid "Take the online Technical SEO Training course and learn essential technical SEO-concepts!"
 msgstr "¡Haz nuestro curso online de entrenamiento técnico SEO y aprende los conceptos técnicos SEO esenciales!"
-
-#. Translators: %1$s opens a link to a Yoast article about stop words, %2$s
-#. closes the link
-#: languages/yoast-seo-js.php:164
-msgid "The focus keyword contains a stop word. This may or may not be wise depending on the circumstances. %1$sLearn more about the stop words%2$s."
-msgid_plural "The focus keyword contains %3$d stop words. This may or may not be wise depending on the circumstances. %1$sLearn more about the stop words%2$s."
-msgstr[0] "La palabra clave objetivo contiene una palabra vacía. Esto podría ser o no inteligente dependiendo de las circunstancias. %1$sAprende más sobre las palabras vacías%2$s."
-msgstr[1] "La palabra clave objetivo contiene %3$d palabras vacías. Esto podría ser o no inteligente dependiendo de las circunstancias. %1$sAprende más sobre las palabras vacías%2$s."
 
 #. translators: %1$s will be a link to a review explanation page. Text between
 #. %2$s and %3$s will be a link to an SEO copywriting course page.
@@ -1712,6 +1867,11 @@ msgstr "%1$s viene con un montón de características. Puedes activar / desactiv
 msgid "%s installation wizard"
 msgstr "Asistente de instalación de %s"
 
+#. translators: %1$s expands to Ryte.
+#: admin/views/tabs/dashboard/features.php:58
+msgid "%1$s can check daily if your site is still indexable by search engines and will notify you when this is not the case."
+msgstr "%1$s puede comprobar a diario si tu sitio aún está indexado en los motores de búsqueda, y te avisa cuando no sea así."
+
 #: admin/pages/dashboard.php:60 admin/views/tabs/dashboard/features.php:81
 msgid "Features"
 msgstr "Características"
@@ -2286,6 +2446,11 @@ msgstr "Quita la pestaña de legibilidad de la caja meta y desactiva todas las s
 #: admin/views/user-profile.php:42
 msgid "Disable readability analysis"
 msgstr "Desactivar el análisis de legibilidad"
+
+#. translators: %1$s resolves to https://github.com/Yoast/wordpress-seo
+#: admin/class-admin-asset-seo-location.php:48
+msgid "You are trying to load non-minified files. These are only available in our development package. Check out %1$s to see all the source files."
+msgstr "Estás tratando de cargar archivos sin minimizar. Estos solo están disponibles en nuestro paquete de desarrollo. Revisa %1$s para ver todos los archivos originales."
 
 #: inc/wpseo-non-ajax-functions.php:94
 msgid "You have a new issue concerning your SEO!"
@@ -3032,7 +3197,7 @@ msgstr "\"Número máximo de entradas por página de mapa del sitio\" debería s
 msgid "License Key"
 msgstr "Clave de licencia"
 
-#. #-#-#-#-#  wordpress-seo-code.pot (Yoast SEO 6.3)  #-#-#-#-#
+#. #-#-#-#-#  wordpress-seo-code.pot (Yoast SEO 6.3.1)  #-#-#-#-#
 #. Plugin Name of the plugin/theme
 #: admin/capabilities/class-capability-manager-integration.php:66
 msgid "Yoast SEO"
@@ -3257,10 +3422,6 @@ msgstr "El uso de esta característica de migas de pan está explicada en %1$s n
 #: admin/views/tabs/advanced/permalinks.php:52
 msgid "If you choose a permalink for your posts with %1$s, or anything else but a %2$s at the end, this will force WordPress to add a trailing slash to non-post pages nonetheless."
 msgstr "Si eliges un enlace permanente para tus entradas con  %1$s, o cualquier otra cosa diferente a %2$s al final, esto obligará a WordPress a añadir una barra diagonal a páginas no relacionadas con ninguna entrada."
-
-#: admin/views/tabs/advanced/permalinks.php:60
-msgid "People make mistakes in their links towards you sometimes, or unwanted parameters are added to the end of your URLs, this allows you to redirect them all away. Please note that while this is a feature that is actively maintained, it is known to break several plugins, and should for that reason be the first feature you disable when you encounter issues after installing this plugin."
-msgstr "Algunas veces la gente comete errores cuando te enlazan, o añaden parámetros no deseados al final de tus URLs, esto te permite redireccionarlos todos. Por favor fíjate que aunque esta es una función a la que se le da mantenimiento constantemente, es sabido que provoca mal funcionamiento de diversos plugins, y por esa razón debe ser la primera función que desactives cuando encuentres algún problema después de instalar el plugin."
 
 #. translators: %s expands to <code>?utm_</code>
 #: admin/views/tabs/advanced/permalinks.php:70
@@ -3631,14 +3792,6 @@ msgstr "%1$s incluye algunas herramientas integradas muy potentes:"
 msgid "Page %1$d of %2$d"
 msgstr "Página %1$d de %2$d"
 
-#: admin/views/tabs/advanced/breadcrumbs.php:72
-msgid "Post type archive to show in breadcrumbs for taxonomies"
-msgstr "Archivo de tipo de entrada a mostrar en las migas de pan para las taxonomías"
-
-#: admin/views/tabs/advanced/breadcrumbs.php:47
-msgid "Taxonomy to show in breadcrumbs for post types"
-msgstr "Taxonomía a mostrar en migas de pan para el tipo \"entradas\""
-
 #: admin/views/tabs/advanced/permalinks.php:30
 msgid "Clean up permalinks"
 msgstr "Limpiar enlaces permanentes"
@@ -3816,6 +3969,18 @@ msgstr "Esto impide que los comentarios anidados dejen de funcionar cuando el us
 #: admin/views/tabs/sitemaps/general.php:26
 msgid "You do %1$snot%2$s need to generate the XML sitemap, nor will it take up time to generate after publishing a post."
 msgstr "%1$sNo%2$s necesitas generar el mapa del sitio en XML, tampoco tomará tiempo generarlo después de publicar una entrada."
+
+#: admin/views/tabs/advanced/permalinks.php:60
+msgid "People make mistakes in their links towards you sometimes, or unwanted parameters are added to the end of your URLs, this allows you to redirect them all away. Please note that while this is a feature that is actively maintained, it is known to break several plugins, and should for that reason be the first feature you disable when you encounter issues after installing this plugin."
+msgstr "Algunas veces la gente comete errores cuando te enlazan, o añaden parámetros no deseados al final de tus URLs, esto te permite redireccionarlos todos. Por favor fíjate que aunque esta es una función a la que se le da mantenimiento constantemente, se sabe que provoca mal funcionamiento de diversos plugins, y por esa razón debe ser la primera función que desactives cuando encuentres algún problema después de instalar el plugin."
+
+#: admin/views/tabs/advanced/breadcrumbs.php:47
+msgid "Taxonomy to show in breadcrumbs for post types"
+msgstr "Taxonomía a mostrar en las migas de pan para los tipos de contenido"
+
+#: admin/views/tabs/advanced/breadcrumbs.php:72
+msgid "Post type archive to show in breadcrumbs for taxonomies"
+msgstr "Archivo de tipo de contenido a mostrar en las migas de pan para las taxonomías"
 
 #. Translators: %1$s: expands to 'Yoast SEO Premium', %2$s: links to Yoast SEO
 #. Premium plugin page.
@@ -4477,12 +4642,6 @@ msgstr "Para poder acceder a %1$sFacebook Insights%2$s tienes que añadir aquí 
 msgid "Your input contains invalid characters. Please make sure both fields are filled in correctly."
 msgstr "Los datos introducidos tienen caracteres incorrectos. Por favor, asegúrate de rellenar correctamente ambos campos."
 
-#. translators: %1$s expands to Yoast SEO, %2$s: 'Google XML Sitemaps' plugin
-#. name of possibly conflicting plugin with regard to the creation of sitemaps.
-#: admin/class-plugin-conflict.php:151
-msgid "Both %1$s and %2$s can create XML sitemaps. Having two XML sitemaps is not beneficial for search engines, yet might slow down your site."
-msgstr "Tanto %1$s como %2$s pueden crear mapas de sitio XML. Tener dos mapas de sitio XML no es beneficioso para los motores de búsqueda, y de hecho podrían ralentizar tu sitio."
-
 #. translators: %1$s expands to Yoast SEO, %2%s: 'Facebook' plugin name of
 #. possibly conflicting plugin with regard to creating OpenGraph output.
 #: admin/class-plugin-conflict.php:139
@@ -4809,6 +4968,12 @@ msgstr "SEO: Bien"
 msgid "SEO issue: The featured image should be at least 200 by 200 pixels to be picked up by Facebook and other social media sites."
 msgstr "Problema SEO: La imagen destacada debe ser de al menos 200 por 200 pixeles para que la use Facebook y otros sitios de redes sociales."
 
+#. translators: %1$s expands to Yoast SEO, %2$s: 'Google XML Sitemaps' plugin
+#. name of possibly conflicting plugin with regard to the creation of sitemaps.
+#: admin/class-plugin-conflict.php:151
+msgid "Both %1$s and %2$s can create XML sitemaps. Having two XML sitemaps is not beneficial for search engines, yet might slow down your site."
+msgstr "Tanto %1$s como %2$s pueden crear mapas de sitio XML. Tener dos mapas de sitio XML no es beneficioso para los motores de búsqueda, y podrían ralentizar tu sitio."
+
 #. translators: %s expands to the number of posts in localized format.
 #: admin/class-bulk-editor-list-table.php:306
 msgctxt "posts"
@@ -5102,12 +5267,6 @@ msgstr "Esta exportación incluye metadatos de taxonomía"
 msgid "Tools"
 msgstr "Herramientas"
 
-#. translators: this should be an array of stop words for your language,
-#. separated by comma's.
-#: admin/class-stop-words.php:39
-msgid "a,about,above,after,again,against,all,am,an,and,any,are,as,at,be,because,been,before,being,below,between,both,but,by,could,did,do,does,doing,down,during,each,few,for,from,further,had,has,have,having,he,he'd,he'll,he's,her,here,here's,hers,herself,him,himself,his,how,how's,i,i'd,i'll,i'm,i've,if,in,into,is,it,it's,its,itself,let's,me,more,most,my,myself,nor,of,on,once,only,or,other,ought,our,ours,ourselves,out,over,own,same,she,she'd,she'll,she's,should,so,some,such,than,that,that's,the,their,theirs,them,themselves,then,there,there's,these,they,they'd,they'll,they're,they've,this,those,through,to,too,under,until,up,very,was,we,we'd,we'll,we're,we've,were,what,what's,when,when's,where,where's,which,while,who,who's,whom,why,why's,with,would,you,you'd,you'll,you're,you've,your,yours,yourself,yourselves"
-msgstr "un,sobre,encima,después,de nuevo,contra,todo,soy,un,y,cualquiera,son,como,en,ser,porque,sido,antes, siendo,a continuación,entre,ambos,pero,por,podría,hizo,hacer,hace,haciendo,abajo,durante,cada,pocos,para,de,adicional,tenía,tiene,tener,teniendo,él,él,él,él es,su,aquí,aquí está,sus,ella misma,de él,él mismo,su,cómo,cómo es,yo,yo he,voy a,soy,tengo,si,en,en,es,esto,es,su,el mismo,vamos a,yo,más,el más,mi,yo mismo,ni,de,en,una vez,solamente,o,otro,debe,nuestro,nuestros,nosotros mismos,fuera,sobre,propia,mismo,ella,ella,ella,ella es,debería,por lo que,algunos,como,que,eso,eso es,el,su,sus,ellos,ellos mismos,entonces,allí,hay,éstos,ellos,habían,ellos harán,son,han,esto,esos,a través de,a,también,bajo,hasta,arriba,muy,era,nosotros,habíamos,vamos, somos,hemos,eran,qué,qué es,cuándo,cuándo es,dónde,dónde está,cual,mientras,quién,quién es,a quién,por qué,por qué es,con,haría,tu,deberías,vas a,eres,has,su,sus,tu mismo,vosotros mismos"
-
 #: admin/metabox/class-metabox.php:254 admin/taxonomy/class-taxonomy.php:227
 msgid "(no parent)"
 msgstr "(sin superior)"
@@ -5115,6 +5274,12 @@ msgstr "(sin superior)"
 #: admin/metabox/class-metabox.php:105
 msgid "No Image Index"
 msgstr "Ningun Indice de imagen"
+
+#. translators: this should be an array of stop words for your language,
+#. separated by comma's.
+#: admin/class-stop-words.php:39
+msgid "a,about,above,after,again,against,all,am,an,and,any,are,as,at,be,because,been,before,being,below,between,both,but,by,could,did,do,does,doing,down,during,each,few,for,from,further,had,has,have,having,he,he'd,he'll,he's,her,here,here's,hers,herself,him,himself,his,how,how's,i,i'd,i'll,i'm,i've,if,in,into,is,it,it's,its,itself,let's,me,more,most,my,myself,nor,of,on,once,only,or,other,ought,our,ours,ourselves,out,over,own,same,she,she'd,she'll,she's,should,so,some,such,than,that,that's,the,their,theirs,them,themselves,then,there,there's,these,they,they'd,they'll,they're,they've,this,those,through,to,too,under,until,up,very,was,we,we'd,we'll,we're,we've,were,what,what's,when,when's,where,where's,which,while,who,who's,whom,why,why's,with,would,you,you'd,you'll,you're,you've,your,yours,yourself,yourselves"
+msgstr "un,sobre,encima,después,de nuevo,contra,todo,soy,un,y,cualquiera,son,como,en,ser,porque,sido,antes, siendo,a continuación,entre,ambos,pero,por,podría,hizo,hacer,hace,haciendo,abajo,durante,cada,pocos,para,de,adicional,tenía,tiene,tener,teniendo,él,él,él,él es,su,aquí,aquí está,sus,ella misma,de él,él mismo,su,cómo,cómo es,yo,yo he,voy a,soy,tengo,si,en,en,es,esto,es,su,el mismo,vamos a,yo,más,el más,mi,yo mismo,ni,de,en,una vez,solamente,o,otro,debe,nuestro,nuestros,nosotros mismos,fuera,sobre,propia,mismo,ella,ella,ella,ella es,debería,por lo que,algunos,como,que,eso,eso es,el,su,sus,ellos,ellos mismos,entonces,allí,hay,éstos,ellos,habían,ellos harán,son,han,esto,esos,a través de,a,también,bajo,hasta,arriba,muy,era,nosotros,habíamos,vamos, somos,hemos,eran,qué,qué es,cuándo,cuándo es,dónde,dónde está,cual,mientras,quién,quién es,a quién,por qué,por qué es,con,haría,tu,deberías,vas a,eres,has,su,sus,tu mismo,vosotros mismos"
 
 #: admin/class-bulk-editor-list-table.php:1009
 msgid "Publication date"
