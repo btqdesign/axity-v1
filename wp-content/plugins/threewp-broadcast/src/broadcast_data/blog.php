@@ -8,9 +8,30 @@ class blog
 
 	public $id;
 
+	/**
+		@brief		The name of the blog.
+		@since		2018-01-26 15:52:14
+	**/
+	public $blogname;
+
 	public $disabled = false;
+
+	/**
+		@brief		The domain name.
+		@since		2018-01-26 15:52:14
+	**/
+	public $domain;
+
 	public $linked = false;
+
+	/**
+		@brief		The path of the blog.
+		@since		2018-01-26 15:53:23
+	**/
+	public $path;
+
 	public $required = false;
+
 	public $selected = false;
 
 	/**
@@ -25,9 +46,11 @@ class blog
 
 	public function __toString()
 	{
-		$info = get_blog_details( $this->id );
-		$r = $info->blogname ? $info->blogname : $info->domain . $info->path;
-		return $r . '';
+		if ( $this->blogname != '' )
+			$r = $this->blogname;
+		else
+			$r = $this->domain;
+		return $r;
 	}
 
 	public function disabled( $disabled = true )
@@ -81,8 +104,18 @@ class blog
 	public static function make( $data )
 	{
 		$r = new blog;
-		foreach( (array)$data as $key=>$value )
-			$r->$key = $value;
+		foreach( [
+			'blog_id',
+			'blogname',
+			'domain',
+			'path',
+			'userblog_id',
+		] as $key )
+		{
+			if ( ! property_exists( $data, $key ) )
+				continue;
+			$r->$key = $data->$key;
+		}
 		if ( property_exists( $r, 'blog_id' ) )
 			$r->id = intval( $r->blog_id );
 		return $r;

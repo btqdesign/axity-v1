@@ -1,4 +1,96 @@
+/*globals jQuery, troubleshooting_data */
+
+/** @namespace troubleshooting_data.nonce.icl_restore_notifications */
+/** @namespace troubleshooting_data.nonce.icl_remove_notifications */
+
 jQuery(document).ready(function () {
+
+	var remove_notifications_button = jQuery('#icl_remove_notifications');
+	var restore_notifications_button = jQuery('#icl_restore_notifications');
+	var restore_notifications_all_users = jQuery('#icl_restore_notifications_all_users');
+	var sync_posts_taxonomies_button = jQuery('#wpml_sync_posts_taxonomies');
+	remove_notifications_button.off('click');
+	remove_notifications_button.bind('click', remove_all_notifications);
+	restore_notifications_button.off('click');
+	restore_notifications_button.bind('click', restore_notifications);
+
+	function remove_all_notifications() {
+		if (typeof(event.preventDefault) !== 'undefined') {
+			event.preventDefault();
+		} else {
+			event.returnValue = false;
+		}
+
+		jQuery(this).attr('disabled', 'disabled');
+		jQuery(this).after(icl_ajxloaderimg);
+
+		var ajax_data = {
+			'action': 'icl_remove_notifications',
+			'nonce':  troubleshooting_data.nonce.icl_remove_notifications
+		};
+
+		jQuery.ajax({
+			type:     "POST",
+			url:      ajaxurl,
+			data:     ajax_data,
+			dataType: 'json',
+			success:  function (response) {
+				remove_notifications_button.removeAttr('disabled');
+				alert(troubleshooting_data.strings.done);
+				remove_notifications_button.next().fadeOut();
+				if(response.reload == 1) {
+					location.reload();
+				}
+			},
+			error:    function (jqXHR, status, error) {
+				var parsed_response = jqXHR.statusText || status || error;
+				alert(parsed_response);
+			}
+		});
+
+		return false;
+	}
+
+	function restore_notifications() {
+		if (typeof(event.preventDefault) !== 'undefined') {
+			event.preventDefault();
+		} else {
+			event.returnValue = false;
+		}
+
+		jQuery(this).attr('disabled', 'disabled');
+		jQuery(this).after(icl_ajxloaderimg);
+
+		var all_users = restore_notifications_all_users.is(':checked') ? 1 : 0;
+
+		var ajax_data = {
+			'action': 'icl_restore_notifications',
+			'nonce':  troubleshooting_data.nonce.icl_restore_notifications,
+			'all_users':  all_users
+		};
+
+		jQuery.ajax({
+			type:     "POST",
+			url:      ajaxurl,
+			data:     ajax_data,
+			dataType: 'json',
+			success:  function (response) {
+				restore_notifications_button.removeAttr('disabled');
+				alert(troubleshooting_data.strings.done);
+				restore_notifications_button.next().fadeOut();
+				if(response.reload == 1) {
+					location.reload();
+				}
+			},
+			error:    function (jqXHR, status, error) {
+				var parsed_response = jqXHR.statusText || status || error;
+				alert(parsed_response);
+			}
+		});
+
+		return false;
+	}
+
 	var fix_post_types_and_source_langs_button = jQuery("#icl_fix_post_types");
 	var updateTermNamesButton = jQuery("#icl-update-term-names");
 
@@ -31,14 +123,18 @@ jQuery(document).ready(function () {
 						text = troubleshooting_strings.no_problems;
 					}
 					var type_term_popup_html = '<div id="icl_fix_languages_and_post_types"><p>' + text + '</p></div>';
-					jQuery(type_term_popup_html).dialog({
-						modal: true,
-						buttons: {
-							Ok: function () {
-								jQuery( this ).dialog( "close" );
+					jQuery(type_term_popup_html).dialog(
+						{
+							dialogClass: 'wpml-dialog otgs-ui-dialog',
+							width      : 'auto',
+							modal      : true,
+							buttons    : {
+								Ok: function () {
+									jQuery(this).dialog("close");
+								}
 							}
 						}
-					});
+					);
 				}
 			});
 	}
@@ -87,16 +183,67 @@ jQuery(document).ready(function () {
 					}
 
 					var termSuffixUpdatedHTML = '<div id="icl_fix_term_suffixes"><p>' + troubleshooting_strings.suffixesRemoved + '</p></div>';
-					jQuery(termSuffixUpdatedHTML).dialog({
-	          modal: true,
-	          buttons: {
-	            Ok: function () {
-	              jQuery( this ).dialog( "close" );
-	            }
-	          }
+					jQuery(termSuffixUpdatedHTML).dialog(
+						{
+							dialogClass: 'wpml-dialog otgs-ui-dialog',
+							width      : 'auto',
+							modal      : true,
+							buttons    : {
+								Ok: function () {
+									jQuery(this).dialog("close");
+								}
+							}
 
-					});
+						}
+					);
 				}
 			});
 	}
+
+	jQuery('#icl_cache_clear').click(function () {
+		var self = jQuery(this);
+		self.attr('disabled', 'disabled');
+		self.after(icl_ajxloaderimg);
+		jQuery.post(location.href + '&debug_action=cache_clear&nonce=' + troubleshooting_strings.cacheClearNonce, function () {
+			self.removeAttr('disabled');
+			alert( troubleshooting_strings.done );
+			self.next().fadeOut();
+		});
+	});
+
+	sync_posts_taxonomies_button.click(function(){
+		var requestData = {};
+
+		sync_posts_taxonomies_button.siblings('.wpml-notice').empty();
+		sync_posts_taxonomies_button.attr('disabled', 'disabled');
+		sync_posts_taxonomies_button.after(icl_ajxloaderimg);
+		requestData.batch_number = 0;
+		requestData.post_type    = sync_posts_taxonomies_button.siblings('select[name="wpml_post_type"]').val();
+		sync_posts_taxonomies_send_ajax(requestData);
+	});
+
+	var sync_posts_taxonomies_send_ajax = function(requestData) {
+		requestData.debug_action = 'synchronize_posts_taxonomies';
+		requestData.nonce        = troubleshooting_strings.syncPostsTaxNonce;
+		jQuery.ajax({
+			type    : "POST",
+			url     : location.href,
+			data    : requestData,
+			success: sync_posts_taxonomies_receive_ajax
+		});
+	};
+
+	var sync_posts_taxonomies_receive_ajax = function(response) {
+		sync_posts_taxonomies_button.siblings('.wpml-notice').html(response.data.message);
+
+		if ( response.success && ! response.data.completed ) {
+			var requestData = response.data || {};
+			requestData.debug_action = 'synchronize_posts_taxonomies';
+			requestData.nonce        = troubleshooting_strings.syncPostsTaxNonce;
+			sync_posts_taxonomies_send_ajax(requestData);
+		} else {
+			sync_posts_taxonomies_button.next().fadeOut();
+			sync_posts_taxonomies_button.removeAttr('disabled');
+		}
+	};
 });

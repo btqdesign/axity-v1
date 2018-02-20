@@ -152,12 +152,18 @@ class SiteOrigin_Widget_Image_Widget extends SiteOrigin_Widget {
 		} else {
 			$attr['alt'] = get_post_meta( $instance['image'], '_wp_attachment_image_alt', true );
 		}
+		
+		$link_atts = array();
+		if ( ! empty( $instance['new_window'] ) ) {
+			$link_atts['target'] = '_blank';
+		}
 
 		return array(
 			'title' => $title,
 			'title_position' => $instance['title_position'],
 			'url' => $instance['url'],
 			'new_window' => $instance['new_window'],
+			'link_attributes' => $link_atts,
 			'attributes' => $attr,
 			'classes' => array( 'so-widget-image' ),
 		);
@@ -171,6 +177,16 @@ class SiteOrigin_Widget_Image_Widget extends SiteOrigin_Widget {
 			'image_max_width' => ! empty( $instance['bound'] ) ? '100%' : '',
 			'image_height' => ! empty( $instance['bound'] ) ? 'auto' : '',
 			'image_width' => ! empty( $instance['full_width'] ) ? '100%' : ( ! empty( $instance['bound'] ) ? 'inherit' : '' ),
+		);
+	}
+
+	function get_form_teaser(){
+		if( class_exists( 'SiteOrigin_Premium' ) ) return false;
+
+		return sprintf(
+			__( 'Add a Lightbox to your images with %sSiteOrigin Premium%s', 'so-widgets-bundle' ),
+			'<a href="https://siteorigin.com/downloads/premium/?featured_addon=plugin/lightbox" target="_blank">',
+			'</a>'
 		);
 	}
 }

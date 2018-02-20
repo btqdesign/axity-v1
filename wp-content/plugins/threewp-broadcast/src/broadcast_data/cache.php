@@ -36,10 +36,19 @@ class cache
 		{
 			// Retrieve the post data for this solitary post.
 			$results = $this->lookup( $blog_id, $post_id );
-			if ( count( $results ) == 1 )
+			if ( count( $results ) > 0 )
 			{
-				$results = reset( $results );
-				$bcd = $results[ 'data' ];
+				// We keep the first result. The rest have to go.
+				$result = array_shift( $results );
+				$bcd = $result[ 'data' ];
+
+				$bc = ThreeWP_Broadcast();
+
+				foreach( $results as $result )
+				{
+					$bc->debug( 'Deleting duplicate BCD %d for blog %d post %d', $result[ 'id' ], $blog_id, $post_id );
+					$bc->sql_delete_broadcast_data( $result[ 'id' ] );
+				}
 			}
 			else
 				$bcd = new BroadcastData;

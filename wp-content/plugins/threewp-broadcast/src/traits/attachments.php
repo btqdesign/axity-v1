@@ -2,7 +2,6 @@
 
 namespace threewp_broadcast\traits;
 
-use threewp_broadcast\actions;
 use threewp_broadcast\attachment_data;
 
 use \Exception;
@@ -211,17 +210,10 @@ trait attachments
 
 				foreach( $attachment_data->post_custom as $key => $value )
 				{
+					if ( $key == '_wp_attached_file' )
+						continue;
 					$value = reset( $value );
 					$value = maybe_unserialize( $value );
-					switch( $key )
-					{
-						// Some values need to handle completely different upload paths (from different months, for example).
-						case '_wp_attached_file':
-							// Some files, like MP3s, don't have this key.
-							if ( isset( $attach_data[ 'file' ] ) )
-								$value = $attach_data[ 'file' ];
-							break;
-					}
 					update_post_meta( $action->attachment_id, $key, $value );
 				}
 
@@ -236,6 +228,9 @@ trait attachments
 			$this->debug( 'Copy attachment: Directly copying all metadata.' );
 			foreach( $attachment_data->post_custom as $key => $value )
 			{
+				// Don't overwrite this key since it probably isn't uploaded to the same directory.
+				if ( $key == '_wp_attached_file' )
+					continue;
 				$value = reset( $value );
 				$value = maybe_unserialize( $value );
 				update_post_meta( $action->attachment_id, $key, $value );
@@ -309,7 +304,7 @@ trait attachments
 			$existing_action = $this->get_site_option( 'existing_attachments', 'use' );
 			$this->debug( 'Maybe copy attachment: The action for existing attachments is to %s.', $existing_action );
 
-			$apply_existing_attachment_action = new actions\apply_existing_attachment_action();
+			$apply_existing_attachment_action = $this->new_action( 'apply_existing_attachment_action' );
 			$apply_existing_attachment_action->action = $existing_action;
 			$apply_existing_attachment_action->broadcasting_data = $options;
 			$apply_existing_attachment_action->source_attachment = $attachment_data;
@@ -327,7 +322,7 @@ trait attachments
 
 		// Since it doesn't exist, copy it.
 		$this->debug( 'Maybe copy attachment: Really copying attachment.' );
-		$copy_attachment_action = new actions\copy_attachment();
+		$copy_attachment_action = $this->new_action( 'copy_attachment' );
 		$copy_attachment_action->attachment_data = $attachment_data;
 		$copy_attachment_action->execute();
 		$options->attachment_id = $copy_attachment_action->attachment_id;
@@ -358,7 +353,6 @@ trait attachments
 
 			foreach( $guids as $old_guid => $new_guid )
 			{
-				$this->debug( 'Beginning to replace attachment %s with %s', $old_guid, $new_guid );
 				$count = 0;
 
 				// We are going to be pregging things in order to ensure that as an exact, local match as possible is replaced with new values
@@ -413,7 +407,6 @@ trait attachments
 
 				// Replace whatever is left.
 				$content = str_replace( $old_guid, $new_guid, $content, $count );
-				$this->debug( 'Replaced %s misc occurrences.', $count, $old_guid, $new_guid );
 			}
 		}
 		return $content;

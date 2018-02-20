@@ -273,11 +273,9 @@ class WPBackItUp_Logger {
      *
      * @return boolean
      */
-    private static function is_logging(){
-        global $WPBackitup;
-        return $WPBackitup->logging();
+    public static function is_logging(){
+	    return (bool) WPBackItUp_Utility::get_option('logging',0);
     }
-
 
 	/**                             PUBLIC METHODS                              	**/
 

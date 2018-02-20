@@ -89,9 +89,9 @@ class WPBackitup_Download_Logs extends WPBackitup_WP_List_Table {
 	 * @return string
 	 */
 	function column_job_name($item){
-		
+
 		$actions = array(
-			'delete'  	=> sprintf('<a href="?page=%s&action=%s&delete_log=%s" onclick="%s">'.__('Delete', 'wp-backitup').'</a>','wp-backitup-support&tab=download-logs','delete',$item['job_name'],"return confirm('".__('Are you sure?', 'wp-backitup')."')"),
+			'delete'  	=> sprintf('<a href="?page=%s&action=%s&delete_log=%s&s=%s" onclick="%s">'.__('Delete', 'wp-backitup').'</a>','wp-backitup-support&tab=download-logs','delete',$item['job_name'],wp_create_nonce('wp-backitup'. "-delete_log"),"return confirm('".__('Are you sure?', 'wp-backitup')."')"),
 			'download'	=> sprintf('<a href="'.$item['job_name'].'" class="logs_backup">'.__('Download', 'wp-backitup').'</a>',$item['job_name'],'download')
 
 		);
@@ -183,18 +183,19 @@ class WPBackitup_Download_Logs extends WPBackitup_WP_List_Table {
 	 */
 	public function process_bulk_action() {
 
-		if( 'delete'===$this->current_action() ) {
-			
-			foreach($_POST['download_log'] as $single_val){
-				
-				$path = WPBACKITUP__LOGS_PATH.'/'.$single_val;
-				unlink($path);           
+		$nonce  = filter_input( INPUT_POST, '_wpnonce', FILTER_SANITIZE_STRING );
+		$action = 'bulk-' . $this->_args['plural'];
+		if ( false !== wp_verify_nonce( $nonce, $action ) ) {
+			if( 'delete'===$this->current_action() ) {
+				foreach($_POST['download_log'] as $single_val){
+					$path = WPBACKITUP__LOGS_PATH.'/'.basename(sanitize_file_name($single_val));
+					unlink($path);
+				}
+
+				$redirect = get_admin_url(null,'admin.php?page=wp-backitup-support&tab=download-logs' );
+	            wp_safe_redirect($redirect);
 			}
-			
-			$redirect = get_admin_url(null,'admin.php?page=wp-backitup-support&tab=download-logs' );
-            wp_safe_redirect($redirect); 
-		} 
-		       
+		}
 	}
 
 	/**
@@ -205,8 +206,8 @@ class WPBackitup_Download_Logs extends WPBackitup_WP_List_Table {
 	 * @access public
 	 * @abstract
 	 */
-	function prepare_items() { 
-	
+	function prepare_items() {
+
 		$per_page 				= 15;
 		$columns 				= $this->get_columns();
 		$hidden 				= array();
@@ -217,7 +218,7 @@ class WPBackitup_Download_Logs extends WPBackitup_WP_List_Table {
 		$extensions = "zip";
 		$fileSystem = new WPBackItUp_FileSystem($this->log_name);
 		$file_list  = $fileSystem->get_fileonly_list($path, $extensions);
-		
+
 		foreach($file_list as $file){
 			$create_date = $fileSystem->get_filetime_with_filename($file);
 			$log_name    = explode('logs/',$file);

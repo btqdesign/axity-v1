@@ -34,7 +34,7 @@ Copy the files into a directory called plainview.
 
 Require the autoloader. Assuming you have the SDK in a subdirectory called "plainview" (it must be called plainview but can be placed anywhere):
 
-	require_once( 'plainview//autoload.php' );
+	require_once( 'plainview/autoload.php' );
 
 After that the classes are loaded automatically. The SDK's function can now be accessed statically:
 
@@ -51,10 +51,8 @@ Or by dynamically instantiating the base:
 	if ( $test->is_email( 'test@test.com' ) )
 		echo 'Valid e-mail address!';
 
-Third party libraries used
--------
+	$instance = sdk_test::instance();
 
-* [PHP Mailer](http://phpmailer.sourceforge.net)
 
 License
 -------

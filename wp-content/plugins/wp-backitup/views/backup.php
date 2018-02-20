@@ -11,9 +11,10 @@
 		require_once( WPBACKITUP__PLUGIN_PATH .'/lib/includes/class-filesystem.php' );
 
         $namespace = $this->namespace;
-		///TRANSLATORS: %s = plugin name.
-		/// This string is in the header of one of my pages and looks like this: WP BackItUp Dashboard
-		/// Similar to how WordPress uses the word dashboard at the in the left navigation.
+		/* translators: %s = plugin name.
+		   This string is in the header of one of my pages and looks like this: WP BackItUp Dashboard
+		   Similar to how WordPress uses the word dashboard at the in the left navigation.
+		*/
         $page_title = sprintf( __("%s Dashboard",'wp-backitup'), $this->friendly_name );
 
         //Path Variables
@@ -28,6 +29,9 @@
 
         // get retention number set
         $number_retained_archives = $this->backup_retained_number();
+
+        // get safe sync value
+        $safe_sync_on = $this->get_option('safe_sync');
 
         $wpbackitup_license = new WPBackItUp_License();
         $is_lite_registered = $wpbackitup_license->is_lite_registered();
@@ -204,10 +208,12 @@ function scan_import_backups($backup_dir){
     </a>
     <h2>WPBackItUp Backup &amp; Restore </h2>
     <?php // Show the review button only when user has more than two successfull backup or restore 
+    /*
         if( $this->successful_backup_count() > 2 || $this->successful_restore_count() > 2 ) {
     ?>
             <a target="_blank" href="https://wordpress.org/support/plugin/wp-backitup/reviews/?filter=5" class="button button-hero button-primary wpbiu-button">Review Plugin</a>
     <?php  } 
+    */
     ?>
 </div>
 
@@ -231,7 +237,7 @@ function scan_import_backups($backup_dir){
 		ob_start(); ?>
 		<div class="notice notice-error is-dismissible">
 			<p>
-				<?php printf(__('WPBackItUp Premium must be reinstalled with this release.  Please use this %s link %s to download WPBackItUp Premium.','wp-backitup'),"<a href='https://s3.amazonaws.com/wpbackitup-software/wpbackitup-plugin/wp-backitup-premium1.14.0.zip' target='_blank'>","</a>"); ?>
+				<?php printf(__("WPBackItUp Premium must be installed with this release.  Please contact <a href='%s' target='_blank'>support</a> for instructions on how to download and install WPBackItUp Premium.",'wp-backitup'),"http://support.wpbackitup.com/support/tickets/new'"); ?>
 				<br/><?php printf(__('See our knowledge base %s article %s to find out why you are seeing this message.','wp-backitup'),"<a href='https://wpbackitup.freshdesk.com/support/solutions/articles/12000023567-wpbackitup-premium-must-be-reinstalled-with-this-release' target='_blank'>","</a>"); ?>
 			</p>
 		</div>
@@ -262,7 +268,7 @@ if (!$backup_folder_exists) {
 ?>
 
 <script type="text/javascript">var __namespace = "<?php echo($namespace); ?>";</script>
-<div class="wrap">
+<div class="wrap" id="wpbackitup-core-backup" v-cloak>
   <h2><?php //echo $page_title; ?></h2>
 
   <div id="content">
@@ -283,7 +289,7 @@ if (!$backup_folder_exists) {
       <?php
 
       echo apply_filters( 'wpbackitup_show_active',
-          '<p> * ' . sprintf(__('WPBackItUp lite customers may use these backup files to manually restore their site.  Please visit %s for manual restore instructions.', 'wp-backitup'), WPBackItUp_Utility::get_anchor_with_utm('www.wpbackitup.com','documentation/restore/how-to-manually-restore-your-wordpress-database','backup','manual+restore')) .'</p>'
+          '<p> * ' . sprintf(__('WPBackItUp lite customers may use these backup files to manually restore their site.  Please visit %s for manual restore instructions.', 'wp-backitup'), WPBackItUp_Utility::get_anchor_with_utm('support.wpbackitup.com','support/solutions/articles/5000676459-how-to-manually-restore-your-wordpress-database','backup','manual+restore','http://support.wpbackitup.com')) .'</p>'
       ,false);
 
         if ($this->successful_backup_count()>=10) {
@@ -325,9 +331,22 @@ if (!$backup_folder_exists) {
                 <th><?php _e('Duration', 'wp-backitup') ?></th>
                 <th><?php _e('Status', 'wp-backitup') ?></th>
                 <th>&nbsp;</th>
+	            <th>&nbsp;</th>
             </tr>
           </thead>
           <tbody>
+          <tr v-if="isNewRowAvailable" is="backup-row"
+              class="success-grid"
+              :name="backupNewRow.name"
+              :type="backupNewRow.type"
+              :date="backupNewRow.date"
+              :duration="backupNewRow.duration"
+              :status="backupNewRow.status"
+              :row="backupNewRow.row"
+              :job-id="backupNewRow.jobId"
+              :zip-exist="backupNewRow.zipExist"
+          >
+          </tr>
         <?php
 
         if ($backup_job_list!=false)
@@ -335,52 +354,44 @@ if (!$backup_folder_exists) {
           $i = 0;
           foreach ($backup_job_list as $job)
           {
-	        $backup_name = $job->getJobName();
-	        $file_datetime= $job->getJobDate();
-          $backup_run_type = $job->getJobRunType();
-          
+	        $backup_name     = $job->getJobName();
+	        $file_datetime   = $job->getJobDate();
+            $backup_run_type = $job->getJobRunType();
+            $cloud_status    = $job->getCloudStatus();
+
               switch ($job->getJobStatus()) {
                   case WPBackItUp_Job::COMPLETE:
                       $status = __("Success", 'wp-backitup');
                       break;
                   case WPBackItUp_Job::ACTIVE:
                       $status = __("Active", 'wp-backitup');
+
+                      //Dont display active backups at this time
+                      continue 2;
+                      
                       break;
                   default:
                     $status = __("Error", 'wp-backitup');
 
               }
 
-
-            $class = $i % 2 == 0 ? 'class="alternate"' : '';
+              $zip_exist = false;
+              $zip_files = $job->getJobMetaValue('backup_zip_files');
+              if(is_array($zip_files) && count($zip_files)>0) {
+                  $zip_exist = true;
+              }
             ?>
-
-            <tr <?php echo $class ?> id="row<?php echo $i; ?>">
-              <td data-th="<?php _e('Backup', 'wp-backitup') ?>">
-                  <?php
-                    $zip_files = $job->getJobMetaValue('backup_zip_files');
-                    if(is_array($zip_files) && count($zip_files)>0) { ?>
-                        <a href="#TB_inline?width=600&height=550&inlineId=<?php echo preg_replace('/[^A-Za-z0-9\-]/', '', $backup_name) ?>" class="thickbox" title="Download Backup" name="<?php echo $backup_name ?>" data-jobid="<?php echo $job->getJobId(); ?>">
-                        <i class="fa fa-download"></i> 
-                    <?php echo $backup_name ?>
-                  </a>
-                  <?php } else {
-                      echo $backup_name;
-                  } ?>
-              </td>
-
-              <td class="word-capitalize" data-th="<?php _e('Type', 'wp-backitup') ?>"><?php echo $backup_run_type ?></td>
-              <!--date-->
-              <td data-th="<?php _e('Date', 'wp-backitup') ?>"><?php echo $file_datetime ?></td>
-
-              <td data-th="<?php _e('Duration', 'wp-backitup') ?>"><?php echo $job->getJobDurationFormatted() ?></td>
-
-              <td data-th="<?php _e('Status', 'wp-backitup') ?>"><?php echo $status ?></td>
-
-               <td>
-               <a href="#" title="Delete Backup" data-id="<?php echo $job->getJobId() ?>" class="deleteRow" id="deleteRow<?php echo $i; ?>"><i class="fa fa-trash-o"></i> <?php _e('Delete', 'wp-backitup') ?></a></td>
-            </tr>
-
+              <tr is="backup-row"
+                  name="<?php echo $backup_name; ?>"
+                  type="<?php echo $backup_run_type; ?>"
+                  date="<?php echo $file_datetime; ?>"
+                  duration="<?php echo $job->getJobDurationFormatted() ?>"
+                  status="<?php echo $status; ?>"
+                  row="<?php echo $i ?>"
+                  job-id="<?php echo $job->getJobId(); ?>"
+                  zip-exist="<?php echo $zip_exist ?>"
+              >
+              </tr>
             <?php
               $i++;
           }
@@ -502,15 +513,13 @@ if (!$backup_folder_exists) {
                   ,true
                   );
               ?>
-              
-              <li><?php echo(WPBackItUp_Utility::get_anchor_with_utm(__('Website Migration Service','wp-backitup'),'wordpress-site-migration' ,'useful+links','site+migration'))?></li>
 
               <li><?php echo(WPBackItUp_Utility::get_anchor_with_utm(__('Documentation','wp-backitup'),'support/solutions','useful+links','documentation',WPBACKITUP__SUPPORTSITE_URL))?></li>
 
               <li><?php echo(WPBackItUp_Utility::get_anchor_with_utm(__('Feature request','wp-backitup'),'contact' ,'useful+links','feature+request'))?></li>
-              
-              <li><?php echo(WPBackItUp_Utility::get_anchor_with_utm(__('Language Translations','wp-backitup'),'support/solutions/articles/5000675693-wp-backitup-in-your-language' ,'useful+links','translations',WPBACKITUP__SUPPORTSITE_URL))?></li>
-              
+
+	          <li><?php echo(WPBackItUp_Utility::get_anchor_with_utm(__('Blog','wp-backitup') ,'blog','blog','blog'))?></li>
+
               <li><?php echo(WPBackItUp_Utility::get_anchor_with_utm(__('Contact','wp-backitup') ,'contact','useful+links','contact'))?></li>
 
           </ul>
@@ -524,3 +533,87 @@ if (!$backup_folder_exists) {
 <span class="hidden" id="popupbox">
   <?php  add_thickbox(); ?>
 </span>
+
+
+
+<!--Vue JS component for backup row-->
+<script type="text/x-template" id="backup-row-template">
+    <tr v-bind:class="klass" v-bind:id="'row' + row">
+        <td data-th="<?php _e('Backup', 'wp-backitup') ?>" v-if="zipExist">
+            <a v-bind:href="'#TB_inline?width=600&height=550&inlineId=' + backupParsedId" class="thickbox" title="Download Backup" v-bind:name="name" v-bind:data-jobid="jobId">
+                <i class="fa fa-download"></i>
+                {{ name }}
+            </a>
+        </td>
+        <td data-th="<?php _e('Backup', 'wp-backitup') ?>" v-else>
+            {{ name }}
+        </td>
+
+        <td class="word-capitalize" data-th="<?php _e('Type', 'wp-backitup') ?>"> {{ type }}</td>
+        <!--date-->
+        <td data-th="<?php _e('Date', 'wp-backitup') ?>">{{ date }}</td>
+
+        <td data-th="<?php _e('Duration', 'wp-backitup') ?>">{{ duration }}</td>
+
+        <td data-th="<?php _e('Status', 'wp-backitup') ?>">{{ status }}</td>
+
+        <send-cloud v-bind:visible="cloudVisible"
+                    v-bind:kloud-status="cstatus"
+        >
+        </send-cloud>
+
+        <td>
+            <a href="#" title="Delete Backup" v-bind:data-id="jobId" class="deleteRow" v-bind:id="'deleteRow'+row"><i class="fa fa-trash-o fa-2x"></i></a>
+        </td>
+    </tr>
+</script>
+
+
+
+<!--Vue Send to cloud-->
+<script type="text/x-template" id="send-to-cloud">
+    <td v-if="visible">
+    <?php if (true==$safe_sync_on) : ?>
+        <span v-if="kloudStatus == 'uploaded' " class="fa-stack" title="<?php _e('Backup safely stored in cloud', 'wp-backitup'); ?>" >
+            <a href="#" @click="openModal('modal'+ jobId)">
+            <i class="fa fa fa-cloud fa-stack-2x" style="color:dodgerblue;"></i>
+            <i class="fa fa-check fa-stack-1x fa-inverse"></i>
+            </a>
+        </span>
+
+        <span v-else-if="kloudStatus == 'uploading'" class="fa-stack" title="<?php _e('Sending backup to cloud', 'wp-backitup'); ?>" >
+            <i class="fa fa-refresh fa-spin fa-2x fa-fw" style="color:dodgerblue;"></i>
+        </span>
+
+        <span v-else-if="kloudStatus == 'error'" class="fa-stack" title="<?php _e('Error sending backup to cloud', 'wp-backitup'); ?>" >
+            <a href="#" @click="openModal('modal'+ jobId)">
+            <i class="fa fa-exclamation-circle fa-2x" style="color:#d9534f;"></i>
+            </a>
+        </span>
+
+        <span v-else class="fa-stack">
+            <i class="fa fa-refresh fa-spin fa-2x fa-fw" style="color:dodgerblue;display: none"></i>
+            <a href="#" @click="openModal('modal'+ jobId)" title="Send to Cloud" v-bind:data-id="jobId" class="safeUploadRow" id="'safeUploadRow'+ row">
+                <i class="fa fa-cloud-upload fa-2x" style="color:grey;" aria-hidden="true"></i>
+            </a>
+        </span>
+
+        <div class="page__demo-group">
+            <ui-modal v-bind:ref="'modal'+ jobId" title="<?php _e('Upload to Cloud','wp-backitup') ?>">
+                <h2>Which cloud storage provider(s) would like to use?</h2>
+                <div v-for="provider in providers">
+                    <ui-checkbox v-if="provider === 'DROPBOX' " v-model="DROPBOX[jobId]">{{ provider }}</ui-checkbox>
+                    <ui-checkbox v-if="provider === 'GDRIVE' " v-model="GDRIVE[jobId]">{{ provider }}</ui-checkbox>
+                    <ui-checkbox v-if="provider === 'AMAZONS3' " v-model="AMAZONS3[jobId]">{{ provider }}</ui-checkbox>
+                </div>
+
+                <div slot="footer">
+                    <ui-button color="primary" @click="saveIndProviders(jobId)"><?php _e('Save', 'wp-backitup'); ?></ui-button>
+                    <ui-button @click="closeModal('modal'+ jobId)"><?php _e('Close', 'wp-backitup'); ?></ui-button>
+                </div>
+            </ui-modal>
+        </div>
+
+    <?php endif ?>
+    </td>
+</script>

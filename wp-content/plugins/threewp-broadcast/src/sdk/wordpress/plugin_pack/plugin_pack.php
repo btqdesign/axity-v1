@@ -197,7 +197,7 @@ abstract class plugin_pack
 					$group_slug = sanitize_title( $group );
 
 					$row = $table->body()->row()
-						->css_class( 'inactive group' )
+						->css_class( 'active group' )
 						->data( 'group', $group_slug );
 
 					$row->th()->css_class( 'plugin_group name' )->colspan( 3 )->text( $group );
@@ -232,6 +232,8 @@ abstract class plugin_pack
 		$r .= $form->open_tag();
 		$r .= $table;
 		$r .= $form->close_tag();
+
+		$r .= file_get_contents( __DIR__ . '/plugin_pack.js' );
 
 		return $r;
 	}

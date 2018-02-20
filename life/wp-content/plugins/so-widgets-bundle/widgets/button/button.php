@@ -230,12 +230,12 @@ class SiteOrigin_Widget_Button_Widget extends SiteOrigin_Widget {
 		$button_attributes = array();
 
 		$attributes = $instance['attributes'];
-		
+
 		$classes = ! empty( $attributes['classes'] ) ? $attributes['classes'] : '';
 		if( !empty($instance['design']['hover']) ) {
 			$classes .= ' ow-button-hover';
 		}
-		
+
 		if( ! empty( $classes ) ) {
 			$button_attributes['class'] = $classes;
 		}
@@ -289,13 +289,12 @@ class SiteOrigin_Widget_Button_Widget extends SiteOrigin_Widget {
 
 		$less_vars = array(
 			'button_width' => isset( $instance['design']['width'] ) ? $instance['design']['width'] : '',
-			'has_button_width' => empty( $instance['design']['width'] ) ? 'false' : 'true',
-			'button_color' => $instance['design']['button_color'],
-			'text_color' => $instance['design']['text_color'],
+			'button_color' => isset($instance['design']['button_color']) ? $instance['design']['button_color'] : '',
+			'text_color' =>   isset($instance['design']['text_color']) ? $instance['design']['text_color'] : '',
 
-			'font_size' => $instance['design']['font_size'] . 'em',
-			'rounding' => $instance['design']['rounding'] . 'em',
-			'padding' => $instance['design']['padding'] . 'em',
+			'font_size' => isset($instance['design']['font_size']) ? $instance['design']['font_size'] . 'em' : '',
+			'rounding' => isset($instance['design']['rounding']) ? $instance['design']['rounding'] . 'em' : '',
+			'padding' => isset($instance['design']['padding']) ? $instance['design']['padding'] . 'em' : '',
 			'has_text' => empty( $instance['text'] ) ? 'false' : 'true',
 		);
 
@@ -321,46 +320,38 @@ class SiteOrigin_Widget_Button_Widget extends SiteOrigin_Widget {
 	 *
 	 * @return mixed
 	 */
-	function modify_instance($instance){
-
-		if( empty($instance['button_icon']) ) {
-			$instance['button_icon'] = array();
-
-			if(isset($instance['icon_selected'])) $instance['button_icon']['icon_selected'] = $instance['icon_selected'];
-			if(isset($instance['icon_color'])) $instance['button_icon']['icon_color'] = $instance['icon_color'];
-			if(isset($instance['icon'])) $instance['button_icon']['icon'] = $instance['icon'];
-
-			unset($instance['icon_selected']);
-			unset($instance['icon_color']);
-			unset($instance['icon']);
-		}
-
-		if( empty($instance['design']) ) {
-			$instance['design'] = array();
-
-			if(isset($instance['align'])) $instance['design']['align'] = $instance['align'];
-			if(isset($instance['theme'])) $instance['design']['theme'] = $instance['theme'];
-			if(isset($instance['button_color'])) $instance['design']['button_color'] = $instance['button_color'];
-			if(isset($instance['text_color'])) $instance['design']['text_color'] = $instance['text_color'];
-			if(isset($instance['hover'])) $instance['design']['hover'] = $instance['hover'];
-			if(isset($instance['font_size'])) $instance['design']['font_size'] = $instance['font_size'];
-			if(isset($instance['rounding'])) $instance['design']['rounding'] = $instance['rounding'];
-			if(isset($instance['padding'])) $instance['design']['padding'] = $instance['padding'];
-
-			unset($instance['align']);
-			unset($instance['theme']);
-			unset($instance['button_color']);
-			unset($instance['text_color']);
-			unset($instance['hover']);
-			unset($instance['font_size']);
-			unset($instance['rounding']);
-			unset($instance['padding']);
-		}
-
-		if( empty($instance['attributes']) ) {
-			$instance['attributes'] = array();
-			if(isset($instance['id'])) $instance['attributes']['id'] = $instance['id'];
-			unset($instance['id']);
+	function modify_instance( $instance ) {
+		$migrate_props = array(
+			'button_icon' => array(
+				'icon_selected',
+				'icon_color',
+				'icon',
+			),
+			'design' => array(
+				'align',
+				'theme',
+				'button_color',
+				'text_color',
+				'hover',
+				'font_size',
+				'rounding',
+				'padding',
+			),
+			'attributes' => array(
+				'id'
+			),
+		);
+		
+		foreach ( $migrate_props as $prop => $sub_props ) {
+			if ( empty( $instance[ $prop ] ) ) {
+				$instance[ $prop ] = array();
+				foreach ( $sub_props as $sub_prop ) {
+					if ( isset( $instance[ $sub_prop ] ) ) {
+						$instance[ $prop ][ $sub_prop ] = $instance[ $sub_prop ];
+						unset( $instance[ $sub_prop ] );
+					}
+				}
+			}
 		}
 
 		return $instance;

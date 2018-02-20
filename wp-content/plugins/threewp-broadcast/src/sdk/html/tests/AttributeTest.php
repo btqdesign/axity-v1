@@ -10,9 +10,13 @@ class AttributeTest extends TestCase
 		$this->assertTrue( true );
 	}
 
+	/**
+		@brief	Test setting an invalid key.
+		@expectedException plainview\sdk_broadcast\html\exceptions\InvalidKeyException
+		@since		2017-10-02 00:46:43
+	**/
 	public function test_invalid_key()
 	{
-		$this->setExpectedException('plainview\\sdk_broadcast\\html\\exceptions\\InvalidKeyException');
 		$this->div()->set_attribute( 'bad key', 'ignore' );
 	}
 

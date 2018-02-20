@@ -2,8 +2,6 @@
 
 namespace threewp_broadcast\traits;
 
-use \threewp_broadcast\actions;
-
 /**
 	@brief		Methods related to terms and taxonomies.
 	@since		2014-10-19 15:44:39
@@ -23,7 +21,7 @@ trait terms_and_taxonomies
 	**/
 	public function collect_post_type_taxonomies( $bcd )
 	{
-		$action = new actions\collect_post_type_taxonomies();
+		$action = $this->new_action( 'collect_post_type_taxonomies' );
 		$action->broadcasting_data = $bcd;
 		$action->execute();
 	}
@@ -66,7 +64,16 @@ trait terms_and_taxonomies
 			'include' => array_keys( $wanted_terms ),
 		] );
 		foreach( $new_terms as $new_term )
+		{
+			unset( $wanted_terms[ $new_term->term_id ] );
 			$o->terms[ $new_term->term_id ] = $new_term;
+		}
+
+		if ( count( $wanted_terms ) > 0 )
+		{
+			$this->debug( 'Warning! Wanted these extra terms, but get_terms could not supply them. So ignoring them.' );
+			return;
+		}
 
 		// And since we have added new terms, they might have parents themselves.
 		$this->get_parent_terms( $o );
@@ -82,7 +89,7 @@ trait terms_and_taxonomies
 	 * @param array $parent_blog_taxonomy_terms The existing terms at the source
 	 * @return int The ID of the target parent term
 	 */
-	public function insert_term_ancestors( $source_post_term, $source_post_taxonomy, $target_blog_terms, $parent_blog_taxonomy_terms )
+	public function insert_term_ancestors( $bcd, $source_post_term, $source_post_taxonomy, $target_blog_terms, $parent_blog_taxonomy_terms )
 	{
 		// Fetch the parent of the current term among the source terms
 		foreach ( $parent_blog_taxonomy_terms as $term )
@@ -103,7 +110,7 @@ trait terms_and_taxonomies
 		$target_grandparent_id = 0;
 		if ( 0 != $source_parent->parent )
 			// Recursively insert ancestors, and get the newly inserted parent's ID
-			$target_grandparent_id = $this->insert_term_ancestors( $source_parent, $source_post_taxonomy, $target_blog_terms, $parent_blog_taxonomy_terms );
+			$target_grandparent_id = $this->insert_term_ancestors( $bcd, $source_parent, $source_post_taxonomy, $target_blog_terms, $parent_blog_taxonomy_terms );
 
 		// Check if the parent exists at the target grandparent
 		$term_id = term_exists( $source_parent->name, $source_post_taxonomy, $target_grandparent_id );
@@ -113,7 +120,8 @@ trait terms_and_taxonomies
 			// The target parent does not exist, we need to create it
 			$new_term = $source_parent;
 			$new_term->parent = $target_grandparent_id;
-			$action = new actions\wp_insert_term;
+			$action = $this->new_action( 'wp_insert_term' );
+			$action->broadcasting_data = $bcd;
 			$action->taxonomy = $source_post_taxonomy;
 			$action->term = $new_term;
 			$action->execute();
@@ -140,6 +148,9 @@ trait terms_and_taxonomies
 	**/
 	public function sync_terms( $bcd, $taxonomy )
 	{
+		if ( ! isset( $bcd->parent_blog_taxonomies[ $taxonomy ] ) )
+			return;
+
 		$source_terms = $bcd->parent_blog_taxonomies[ $taxonomy ][ 'terms' ];
 
 		if ( ! isset( $bcd->parent_blog_taxonomies[ $taxonomy ][ 'equivalent_terms' ] ) )
@@ -210,6 +221,7 @@ trait terms_and_taxonomies
 					{
 						$this->debug( 'Inserting parent term for %s', $unfound_source->slug );
 						$unfound_source->parent = $this->insert_term_ancestors(
+							$bcd,
 							$unfound_source,
 							$taxonomy,
 							$found_targets,
@@ -218,7 +230,8 @@ trait terms_and_taxonomies
 					}
 				}
 
-				$action = new actions\wp_insert_term;
+				$action = $this->new_action( 'wp_insert_term' );
+				$action->broadcasting_data = $bcd;
 				$action->taxonomy = $taxonomy;
 				$action->term = $unfound_source;
 				$action->execute();
@@ -245,7 +258,7 @@ trait terms_and_taxonomies
 			$source_term = (object)$source_terms[ $source_term_id ];
 			$target_term = (object)$target_terms[ $target_term_id ];
 
-			$action = new actions\wp_update_term;
+			$action = $this->new_action( 'wp_update_term' );
 			$action->broadcasting_data = $bcd;
 			$action->taxonomy = $taxonomy;
 
@@ -284,6 +297,12 @@ trait terms_and_taxonomies
 		// see: http://wordpress.org/support/topic/category_children-how-to-recalculate?replies=4
 		if ( $refresh_cache )
 			delete_option( 'category_children' );
+
+		// Tell everyone we've just synced this taxonomy.
+		$action = $this->new_action( 'synced_taxonomy' );
+		$action->broadcasting_data = $bcd;
+		$action->taxonomy = $taxonomy;
+		$action->execute();
 	}
 
 	/**
@@ -375,7 +394,20 @@ trait terms_and_taxonomies
 					$meta = [];
 				// We store the meta array as a collection for easier handling later.
 				$meta = ThreeWP_Broadcast()->collection( $meta );
-				$bcd->taxonomy_term_meta->collection( $bcd->parent_blog_id )->collection( 'terms' )->set( $term->term_id, $meta );
+
+				// Cull blacklisted meta keys.
+				foreach( $meta as $key => $value )
+				{
+					if ( $bcd->taxonomies()->blacklist_has( $taxonomy->name, $term->slug, $key ) )
+					{
+						$this->debug( 'Taxonomy term meta key %s / %s / %s is blacklisted. Not storing.', $taxonomy->name, $term->slug, $key );
+						unset( $meta[ $key ] );
+					}
+				}
+				$bcd->taxonomy_term_meta
+					->collection( $bcd->parent_blog_id )
+					->collection( 'terms' )
+					->set( $term->term_id, $meta );
 			}
 		}
 	}
@@ -437,6 +469,7 @@ trait terms_and_taxonomies
 	**/
 	public function threewp_broadcast_wp_update_term( $action )
 	{
+		$bcd = $action->broadcasting_data;
 		$this->debug( 'wp_update_term: %s', $action->new_term );
 		$update = true;
 
@@ -460,26 +493,42 @@ trait terms_and_taxonomies
 				'description' => $action->new_term->description,
 				'name' => $action->new_term->name,
 				'parent' => $action->new_term->parent,
+				'term_order' => $action->new_term->term_order,
 			) );
 			$action->updated = true;
 		}
 		else
 			$this->debug( 'Will not update the term %s.', $action->new_term->name );
 
-		if ( isset( $action->broadcasting_data->taxonomy_term_meta ) )
+		if ( isset( $bcd->taxonomy_term_meta ) )
 		{
 			$old_term_id = $action->old_term->term_id;
 			$new_term_id = $action->new_term->term_id;
 
-			$old_meta = $action->broadcasting_data->taxonomy_term_meta
-				->collection( $action->broadcasting_data->parent_blog_id )		// Extract the data from the parent blog
-				->collection( 'terms' )											// And extract the data from the terms subcollection
-				->get( $old_term_id );											// And get the collection for this old term ID.
-			foreach( $old_meta as $key => $values )
+			$old_meta = $bcd->taxonomy_term_meta
+				->collection( $bcd->parent_blog_id )				// Extract the data from the parent blog
+				->collection( 'terms' )								// And extract the data from the terms subcollection
+				->get( $old_term_id );								// And get the collection for this old term ID.
+			if ( is_object( $old_meta ) )
 			{
-				$value = reset( $values );		// Wordpress likes reporting back values in an array, even though I've never seen anyone store several values under one key.
-				$this->debug( 'Updating term %s with key %s and value %s', $new_term_id, $key, $value );
-				update_term_meta( $new_term_id, $key, $value );
+				foreach( $old_meta as $key => $values )
+				{
+					$value = reset( $values );		// Wordpress likes reporting back values in an array, even though I've never seen anyone store several values under one key.
+
+					// Is this term protected?
+					if ( $bcd->taxonomies()->protectlist_has( $action->taxonomy, $action->new_term->slug, $key ) )
+					{
+						$current_value = get_term_meta( $new_term_id, $key, true);
+						if ( count( $current_value ) > 0 )
+						{
+							$this->debug( 'Taxonomy term %s (%s) already has a %s term meta value. Skipping.', $action->new_term->slug, $action->new_term->term_id, $key );
+							continue;
+						}
+					}
+
+					$this->debug( 'Updating taxonomy term %s with key %s and value %s', $new_term_id, $key, $value );
+					update_term_meta( $new_term_id, $key, $value );
+				}
 			}
 		}
 	}

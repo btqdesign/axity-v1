@@ -163,8 +163,22 @@ if (!class_exists('cs_mega_menu_walker')) {
 					$mega_menu = 'dropdown sub-menu';
 				}
 			}
+			
+			//error_log('+++ item: ' . var_export($item, TRUE) ,0);
+			
+			//error_log('+++ item->object_id: ' . var_export($item->object_id, TRUE) ,0);
+			//error_log('--- get_the_ID: ' . var_export(get_the_ID(), TRUE) ,0);
+			
+			if ($item->object_id == get_the_ID()) {
+				$classCurrentItem = ' current-menu-item';
+			}
+			else {
+				$classCurrentItem = '';
+			}
+			
 			$class_names = join( " $mega_menu ", apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item ) );
-			$class_names = ' class="'. esc_attr( sanitize_html_class($class_names) ) . '"';
+			$class_names = ' class="'. esc_attr( sanitize_html_class($class_names) ) . $classCurrentItem . '"'; /* current-menu-item */
+			
 			$output .= $indent . '<li id="menu-item-'. $item->ID . '"' . $value . $class_names .'>';
 			$attributes  = ! empty( $item->attr_title ) ? ' title="'  . esc_attr( $item->attr_title ) .'"' : '';
  			$attributes .= ! empty( $item->target )     ? ' target="' . esc_attr( $item->target     ) .'"' : '';
@@ -346,7 +360,7 @@ if ( ! function_exists( 'cs_get_headers' ) ) {
                                 if ( isset($_COOKIE['cs_close_toggle']) ){
                                     $cs_close_icon = ' addicon';
                                 }
-                                cs_main_navigation('header2-nav','');
+                                cs_main_navigation('main-menu','');
                                 if(isset($cs_search) and  $cs_search=='on'){
                                     cs_search();
                                 }
@@ -384,7 +398,9 @@ function cs_header_main_navigation($nav=''){
 			$cs_xmlObject = new SimpleXMLElement($post_meta);
 		}
 		if ( empty($cs_xmlObject->page_custom_menu) ) $page_custom_menu = ""; else $page_custom_menu = $cs_xmlObject->page_custom_menu;
-		if($page_custom_menu != '' && $page_custom_menu != 'default'){
+		if($nav!=''){
+			cs_navigation("$nav",'navbar-nav');
+		} else if($page_custom_menu != '' && $page_custom_menu != 'default'){
 			cs_navigation("$page_custom_menu",'navbar-nav');
 		} else {
 			cs_navigation('main-menu','navbar-nav');	

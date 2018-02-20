@@ -12,8 +12,5 @@ function icl_language_canonical_redirects () {
             wp_redirect($permalink, 301);
             exit;
         }
-    } 
-    
-}  
-
-?>
+    }
+}

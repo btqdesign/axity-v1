@@ -55,7 +55,7 @@
 /* Blog Setup */.cs-blog  article:hover h2 a, .blog-grid article:hover h4 a, .pagination ul li:hover a,
 /* Widget Setup */.widget_categories ul li:hover a, .widget.twitter_widget ul li:before, .widget_pages ul li a:hover, .widget_meta ul li:hover a, .widget_recent_entries ul li:hover a, .widget_nav_menu ul li a:hover,.cs-post-options li a:hover,.infotext h2 a:hover,
 .widget_nav_menu ul li a:hover i, .widget_archive ul li:hover a, .cs-section-title h2 span, .widget_recent_comments ul li a:hover, .recentblog_post article:hover h6 a, .cs-post-sharebtn article h5 a:hover, .simple .panel-title a.collapsed span,blockquote p,.cs-portfoliolist article:hover .textinfo-sec h2 a,.post-options li a:hover,
-#copyright p a, .breadcrumb ul li.active, .cssearch form span, .cs-section-title h2 span, .cs-portfoliolist ul li:hover h2 a, .cs-portfoliolist .caption-inner a i,
+#copyright p a, .breadcrumb ul li.active, .cssearch form span, .cs-section-title h2 span, .cs-portfoliolist ul li:hover h2 a, /*.cs-portfoliolist .caption-inner a i,*/
 .cs-team article:hover .text h2 a,.page-not-found h2, .heading-description span, .modern .panel-title a, .top-bar .social-media ul li a:hover, .top-bar #lang_sel ul li a:hover, .navigation ul > li > a:hover, #footer-sec .widget ul li a:hover, .cs-bloginfo-sec h4 a:hover, .breadcrumb ul li a:hover,.main-section h3 a:hover, .cs-portfolio-detail ul li a:hover, .cs-search-results ul li a:hover{
  color:<?php echo cs_allow_special_char($cs_theme_color);?> !important;
 }
@@ -63,7 +63,7 @@
 .cs-bg-color,.csbg-color,.csbg-hovercolor:hover, .cs-tags ul li a:hover, .cs-blog figure figcaption a span, .cs-services.modren figure i, .cs-prv-next .owl-controls .owl-nav .owl-prev:hover, .cs-prv-next .owl-controls .owl-nav .owl-next:hover,.comment-respond form p input[type='submit'],.cs-attachments ul li i,.nav-tabs > li> a:hover
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover,
 /* Widget Setup */.widget_search form label input[type='submit'], #wp-calendar caption, .widget_tag_cloud .tagcloud a:hover, .default-btn, .cs-category li,
-.cs-filter-menu li.active, .cs-portfoliolist .caption-inner, .cs-filter-menu li:hover, .user-signup form input[type='button'],.cs-status,.cs-planbtn {
+.cs-filter-menu li.active, /*.cs-portfoliolist .caption-inner,*/ .cs-filter-menu li:hover, .user-signup form input[type='button'],.cs-status,.cs-planbtn {
 	background-color:<?php echo cs_allow_special_char($cs_theme_color); ?> !important;
 }
 
@@ -386,12 +386,36 @@ if ( ! function_exists( 'cs_header_color' ) ) {
 	.main-navbar {background:<?php echo cs_allow_special_char($cs_nav_bgcolor);?> !important;}
 	.navbar-nav > li > a,li.parentIcon a:after,.navigation ul .sub-dropdown li a i {color:<?php echo cs_allow_special_char($cs_menu_color);?> !important;}
 	.navbar-nav > li > .dropdown-menu,.navbar-nav > li > .dropdown-menu > li > .dropdown-menu,.mega-grid,.sub-dropdown { background-color:<?php echo cs_allow_special_char($cs_submenu_bgcolor);?> !important;}
-	.navbar-nav .sub-menu .dropdown-menu li a, .sub-dropdown li a {color:<?php echo cs_allow_special_char($cs_submenu_color);?> !important;}
-	.navigation ul .sub-dropdown > li:hover > a,.navbar-nav .sub-menu .dropdown-menu > li:hover > a,ul ul li.current-menu-ancestor.parentIcon > a:after,ul ul li.parentIcon:hover > a:after,.navigation ul .sub-dropdown >  li:hover > a > i {border-bottom-color:<?php echo cs_allow_special_char($cs_submenu_hover_color);?>;color:<?php echo cs_allow_special_char($cs_submenu_hover_color);?> !important;}
-	.navigation .navbar-nav > li.current-menu-item > a,.navigation .navbar-nav > li.current-menu-ancestor > a,.navigation .navbar-nav > li:hover > a,li.current-menu-ancestor.parentIcon > a:after,li.parentIcon:hover > a:after {color:<?php echo cs_allow_special_char($cs_menu_active_color);?> !important;}
-	{ border-bottom-color:<?php echo cs_allow_special_char($cs_menu_active_color);?> !important; }
+	
+	.navbar-nav .sub-menu .dropdown-menu li a, 
+	.sub-dropdown li a 
+	{color:<?php echo cs_allow_special_char($cs_submenu_color);?> !important;}
+	
+	.navigation ul .sub-dropdown > li:hover > a,
+	.navbar-nav .sub-menu .dropdown-menu > li:hover > a,
+	ul ul li.current-menu-ancestor.parentIcon > a:after,
+	ul ul li.parentIcon:hover > a:after,
+	.navigation ul .sub-dropdown >  li:hover > a > i 
+	{border-bottom-color:<?php echo cs_allow_special_char($cs_submenu_hover_color);?>;color:<?php echo cs_allow_special_char($cs_submenu_hover_color);?> !important;}
+	
+	.navigation .navbar-nav > li.current-menu-item > a,
+	.navigation .navbar-nav > li.current-menu-ancestor > a,
+	.navigation .navbar-nav > li:hover > a,
+	li.current-menu-ancestor.parentIcon > a:after,
+	li.parentIcon:hover > a:after 
+	{color:<?php echo cs_allow_special_char($cs_menu_active_color);?> !important;}
+	{border-bottom-color:<?php echo cs_allow_special_char($cs_menu_active_color);?> !important;}
+	.navigation .navbar-nav > li.current-menu-item > a
+	{border-bottom-color:<?php echo cs_allow_special_char($cs_menu_active_color);?> !important;}
+	.navigation ul > li.current-menu-item > a:after
+	{background-color:<?php echo cs_allow_special_char($cs_menu_active_color);?> !important; position: absolute !important; left: 0 !important; bottom: 0px !important; width: 100% !important; height: 3px !important; content: "" !important; opacity: 1 !important; }
+	
 	.cs-user,.cs-user-login { border-color:<?php echo cs_allow_special_char($cs_menu_active_color);?> !important; }
-	.navigation ul .sub-dropdown > li:hover > a,.navigation ul > li > a:after { background-color:<?php echo cs_allow_special_char($cs_menu_active_color);?> !important; }
+	
+	.navigation ul .sub-dropdown > li:hover > a,
+	.navigation ul > li > a:after 
+	{ background-color:<?php echo cs_allow_special_char($cs_menu_active_color);?> !important; }
+	
 	{
 		box-shadow: 0 4px 0 <?php echo cs_allow_special_char($cs_topstrip_bgcolor); ?> inset !important;
 	}

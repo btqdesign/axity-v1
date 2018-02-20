@@ -227,6 +227,24 @@ class WPBackItUp_Utility {
 		return false;
 	}
 
+	/**
+	 * Case in-sensitive array_search() with partial matches
+	 *
+	 * @param string $needle   The string to search for.
+	 * @param array  $haystack The array to search in.
+	 *
+	 * @return bool|int
+	 */
+	public static function array_find($needle, array $haystack) {
+
+		foreach ($haystack as $key => $value) {
+			if (false !== stripos($needle, $value)) {
+				return $key;
+			}
+		}
+		return false;
+
+	}
 
 	/**
 	 * Get WPBAckItUp Option Value
@@ -254,6 +272,19 @@ class WPBackItUp_Utility {
 	public static function set_option($option_name, $value) {
 		$option_name = WPBACKITUP__NAMESPACE .'_' .$option_name;
 		return update_option($option_name,$value);
+	}
+
+	/**
+	 *  Delete option value
+	 *    -- Prefix with namespace
+	 *
+	 * @param $option_name
+	 *
+	 * @return bool True on succes/False on Failure
+	 */
+	public static function delete_option($option_name) {
+		$option_name = WPBACKITUP__NAMESPACE .'_' .$option_name;
+		return delete_option($option_name);
 	}
 
 	//Pretty= Pretty version of anchor
@@ -292,6 +323,17 @@ class WPBackItUp_Utility {
 	 */
 	public static function is_premim_active() {
 		return is_plugin_active( 'wp-backitup-premium/wp-backitup-premium.php' );
+	}
+
+	/**
+	 *  Is null or empty function
+	 * @param $string
+	 *
+	 * @return bool
+	 */
+	public static function is_null_or_empty ($string){
+		if (is_null($string) || empty($string)) return true;
+		else false;
 	}
 
 }

@@ -18,7 +18,8 @@
                 $this.addClass( 'auto_tabbed' );
 
 				var $fieldsets = $( 'div.fieldset', $this );
-				if ( $fieldsets.length < 1 )
+				// At least two fieldsets for this to make sense.
+				if ( $fieldsets.length < 2 )
 					return;
 
 				$this.prepend( '<div style="clear: both"></div>' );

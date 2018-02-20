@@ -109,7 +109,7 @@ trait debug
 		}
 
 		// Put all of the arguments into one string.
-		$text = call_user_func_array( 'sprintf', $args );
+		$text = @ call_user_func_array( 'sprintf', $args );
 		if ( $text == '' )
 			$text = $string;
 
@@ -118,8 +118,16 @@ trait debug
 		// But without the namespace
 		$class_name = preg_replace( '/.*\\\/', '', $class_name );
 
+		$microtime = substr( microtime( true ), 11 );
+		if ( strlen( $microtime ) < 4 )
+			$microtime = '0' . $microtime;
+
 		// Date class: string
-		$text = sprintf( '%s.%s <em>%s</em>: %s<br/>', $this->now(), microtime( true ), $class_name, $text, "\n" );
+		$text = sprintf( '%s.%s <em>%s</em>: %s<br/>',
+			date( 'Y-m-d H:i:s' ),
+			$microtime,
+			$this->get_debug_class_name( $class_name ),
+			$text, "\n" );
 
 		$plugin = self::instance();
 
@@ -202,6 +210,15 @@ trait debug
 		$hash = md5( $this->paths( '__FILE__' ) . AUTH_KEY );
 		$hash = substr( $hash, 0, 8 );
 		return $this->paths( '__FILE__' ) . ".$hash.debug.html";
+	}
+
+	/**
+		@brief		Modify the debug class name, if necessary.
+		@since		2017-10-28 18:11:53
+	**/
+	public function get_debug_class_name( $class_name )
+	{
+		return $class_name;
 	}
 
 	/**

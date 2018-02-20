@@ -1,9 +1,12 @@
 *.swp
 .DS_Store
 *.log
+*_log
 .htaccess
+.htpasswd
 sitemap.xml
 sitemap.xml.gz
+wp-content/uploads/*
 wp-config.php
 wp-content/advanced-cache.php
 wp-content/backup-db/

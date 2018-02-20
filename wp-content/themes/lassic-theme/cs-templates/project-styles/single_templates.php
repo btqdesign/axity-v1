@@ -63,26 +63,26 @@ if ( !class_exists('cs_single_templates') ) {
                             $cs_construction_date	= get_post_meta($post->ID, "cs_construction_date", true );
                           	if(isset( $cs_construction_date ) && $cs_construction_date != '' ){?>
                                 <li>
-                                  <span><?php echo esc_attr('Construction Date','lassic')?></span>
+                                  <span><?php echo esc_attr('Fecha','lassic')?></span>
                                   <?php echo date_i18n(get_option('date_format'), strtotime($cs_construction_date)); ?>
                                 </li>
                                 <?php }?>
                                 
                                 <?php if(isset( $cs_area ) && $cs_area !='' ){?>
                                 <li>
-                                  <span><?php echo esc_attr('Surface Area','lassic')?></span>
+                                  <span><?php echo esc_attr('Autor','lassic')?></span>
                                   <?php echo cs_allow_special_char($cs_area);?>
                                 </li>
                                 <?php }?>
                                 <?php if(isset( $cs_investor ) && $cs_investor !='' ){?>
                                 <li>
-                                  <span><?php echo esc_attr('Contracting Investor','lassic')?></span>
+                                  <span><?php echo esc_attr('Puesto','lassic')?></span>
                                   <?php echo cs_allow_special_char($cs_investor);?>
                                 </li>
                                 <?php }?>
                                 <?php if(isset( $cs_value ) && $cs_value !='' ){?>
                                 <li>
-                                  <span><?php echo esc_attr('Value','lassic')?></span>
+                                  <span><?php echo esc_attr('Correo','lassic')?></span>
                                   <?php echo cs_allow_special_char($cs_value);?>
                                 </li>
                           <?php }?>
@@ -91,12 +91,12 @@ if ( !class_exists('cs_single_templates') ) {
                 </div>
                 <div class="cs-box-seprator col-md-12">
                     <div class="cs-seprator">
-                      <div class="cs-seprator-holder">
+                     <!-- <div class="cs-seprator-holder">
                         <span></span>
                         <span></span>
                         <span></span>
                         <span></span>
-                      </div>
+                      </div>-->
                     </div>
                 </div>
                 <div class="col-md-12">
@@ -140,12 +140,12 @@ if ( !class_exists('cs_single_templates') ) {
 					
 					echo '<div class="cs-box-seprator col-md-12">
                     <div class="cs-seprator">
-                      <div class="cs-seprator-holder">
+                      <!--<div class="cs-seprator-holder">
                         <span></span>
                         <span></span>
                         <span></span>
                         <span></span>
-                      </div>
+                      </div>-->
                     </div>
                   </div>';
 					
@@ -192,25 +192,25 @@ if ( !class_exists('cs_single_templates') ) {
                                 $cs_construction_date	= get_post_meta($post->ID, "cs_construction_date", true );
                                 if(isset( $cs_construction_date ) && $cs_construction_date !='' ){?>
                                     <li>
-                                        <span><?php echo esc_attr('Construction Date','lassic')?></span>
+                                        <span><?php echo esc_attr('Fecha','lassic')?></span>
                                         <?php echo date_i18n(get_option('date_format'), strtotime($cs_construction_date)); ?>
                                     </li>
                                     <?php }?>
                                     <?php if(isset( $cs_area ) && $cs_area !='' ){?>
                                     <li>
-                                        <span><?php echo esc_attr('Surface Area','lassic')?></span>
+                                        <span><?php echo esc_attr('Autor','lassic')?></span>
                                         <?php echo cs_allow_special_char($cs_area);?>
                                     </li>
                                     <?php }?>
                                     <?php if(isset( $cs_investor ) && $cs_investor !='' ){?>
                                     <li>
-                                      <span><?php echo esc_attr('Contracting Investor','lassic')?></span>
+                                      <span><?php echo esc_attr('Puesto','lassic')?></span>
                                       <?php echo cs_allow_special_char($cs_investor);?>
                                     </li>
                                     <?php }?>
                                     <?php if(isset( $cs_value ) && $cs_value !='' ){?>
                                     <li>
-                                      <span><?php echo esc_attr('Value','lassic')?></span>
+                                      <span><?php echo esc_attr('Correo','lassic')?></span>
                                       <?php echo cs_allow_special_char($cs_value);?>
                                     </li>
                              	    <?php }?>
@@ -262,12 +262,12 @@ if ( !class_exists('cs_single_templates') ) {
 					}
 					echo '<div class="cs-box-seprator col-md-12">
                     <div class="cs-seprator">
-                      <div class="cs-seprator-holder">
+                     <!-- <div class="cs-seprator-holder">
                         <span></span>
                         <span></span>
                         <span></span>
                         <span></span>
-                      </div>
+                      </div>-->
                     </div>
                   </div>';
 					
@@ -330,12 +330,12 @@ if ( !class_exists('cs_single_templates') ) {
 					}
 					echo '<div class="cs-box-seprator col-md-12">
                     <div class="cs-seprator">
-                      <div class="cs-seprator-holder">
+                      <!--<div class="cs-seprator-holder">
                         <span></span>
                         <span></span>
                         <span></span>
                         <span></span>
-                      </div>
+                      </div>-->
                     </div>
                   </div>';
                     if(isset($post_pagination_show) &&  $post_pagination_show == 'on'){
@@ -353,25 +353,25 @@ if ( !class_exists('cs_single_templates') ) {
                             $cs_construction_date	= get_post_meta($post->ID, "cs_construction_date", true );
                             if(isset( $cs_construction_date ) && $cs_construction_date !='' ){?>
                                 <li>
-                                    <span><?php echo esc_attr('Construction Date','lassic')?></span>
+                                    <span><?php echo esc_attr('Fecha','lassic')?></span>
                                     <?php echo date_i18n(get_option('date_format'), strtotime($cs_construction_date)); ?>
                                 </li>
                                 <?php }?>
                                 <?php if(isset( $cs_area ) && $cs_area !='' ){?>
                                 <li>
-                                    <span><?php echo esc_attr('Surface Area','lassic')?></span>
+                                    <span><?php echo esc_attr('Autor','lassic')?></span>
                                     <?php echo cs_allow_special_char($cs_area);?>
                                 </li>
                                 <?php }?>
                                 <?php if(isset( $cs_investor ) && $cs_investor !='' ){?>
                                 <li>
-                                  <span><?php echo esc_attr('Contracting Investor','lassic')?></span>
+                                  <span><?php echo esc_attr('Puesto','lassic')?></span>
                                   <?php echo cs_allow_special_char($cs_investor);?>
                                 </li>
                                 <?php }?>
                                 <?php if(isset( $cs_value ) && $cs_value !='' ){?>
                                 <li>
-                                  <span><?php echo esc_attr('Value','lassic')?></span>
+                                  <span><?php echo esc_attr('Correo','lassic')?></span>
                                   <?php echo cs_allow_special_char($cs_value);?>
                                 </li>
                          		<?php }?>
@@ -427,25 +427,25 @@ if ( !class_exists('cs_single_templates') ) {
                             $cs_construction_date	= get_post_meta($post->ID, "cs_construction_date", true );
                             if(isset( $cs_construction_date ) && $cs_construction_date !='' ){?>
                                 <li>
-                                    <span><?php echo esc_attr('Construction Date','lassic')?></span>
+                                    <span><?php echo esc_attr('Fecha','lassic')?></span>
                                     <?php echo date_i18n(get_option('date_format'), strtotime($cs_construction_date)); ?>
                                 </li>
                                 <?php }?>
                                 <?php if(isset( $cs_area ) && $cs_area !='' ){?>
                                 <li>
-                                    <span><?php echo esc_attr('Surface Area','lassic')?></span>
+                                    <span><?php echo esc_attr('Autor','lassic')?></span>
                                     <?php echo cs_allow_special_char($cs_area);?>
                                 </li>
                                 <?php }?>
                                 <?php if(isset( $cs_investor ) && $cs_investor !='' ){?>
                                 <li>
-                                  <span><?php echo esc_attr('Contracting Investor','lassic')?></span>
+                                  <span><?php echo esc_attr('Puesto','lassic')?></span>
                                   <?php echo cs_allow_special_char($cs_investor);?>
                                 </li>
                                 <?php }?>
                                 <?php if(isset( $cs_value ) && $cs_value !='' ){?>
                                 <li>
-                                  <span><?php echo esc_attr('Value','lassic')?></span>
+                                  <span><?php echo esc_attr('Correo','lassic')?></span>
                                   <?php echo cs_allow_special_char($cs_value);?>
                                 </li>
                           		<?php }?>
@@ -491,12 +491,12 @@ if ( !class_exists('cs_single_templates') ) {
                <?php }?>
 					<div class="cs-box-seprator col-md-12">
                     <div class="cs-seprator">
-                      <div class="cs-seprator-holder">
+                     <!-- <div class="cs-seprator-holder">
                         <span></span>
                         <span></span>
                         <span></span>
                         <span></span>
-                      </div>
+                      </div>-->
                     </div>
                   </div>
                    <?php 
@@ -510,7 +510,7 @@ if ( !class_exists('cs_single_templates') ) {
 					 
 					 if(isset($cs_project_members) &&  $cs_project_members != ''){
 						
-						echo '<div class="col-md-12"><div class="cs-section-title"><h2>Project Team</h2></div>';
+						echo '<div class="col-md-12"><div class="cs-section-title"><!--<h2>Project Team</h2>--></div>';
 						$args = array('posts_per_page' => "-1", 'post_type' => 'member', 'order' => 'ID', 'orderby' => 'DESC', 'post_status' => 'publish', 'post__in' => $cs_project_members);
 						$args = new WP_Query( $args );
 						$this->cs_member_view('grid-4-column',255,$args);
@@ -563,7 +563,7 @@ if ( !class_exists('cs_single_templates') ) {
                                 $cs_construction_date	= get_post_meta($post->ID, "cs_construction_date", true );
                            		if(isset( $cs_construction_date ) && $cs_construction_date !='' ){?>
                                     <li>
-                                      <span><?php echo esc_attr('Construction Date','lassic')?></span>
+                                      <span><?php echo esc_attr('Fecha','lassic')?></span>
                                       <?php echo date_i18n(get_option('date_format'), strtotime($cs_construction_date)); ?>
                                     </li>
                                     <?php }?>
@@ -578,19 +578,19 @@ if ( !class_exists('cs_single_templates') ) {
                                 
                                     <?php if(isset( $cs_area ) && $cs_area !='' ){?>
                                     <li>
-                                      <span><?php echo esc_attr('Surface Area','lassic')?></span>
+                                      <span><?php echo esc_attr('Autor','lassic')?></span>
                                       <?php echo get_post_meta($post->ID, "cs_area", true );?>
                                     </li>
                                     <?php }?>
                                     <?php if(isset( $cs_investor ) && $cs_investor !='' ){?>
                                     <li>
-                                      <span><?php echo esc_attr('Contracting Investor','lassic')?></span>
+                                      <span><?php echo esc_attr('Puesto','lassic')?></span>
                                       <?php echo get_post_meta($post->ID, "cs_investor", true );?>
                                     </li>
                                     <?php }?>
                                     <?php if(isset( $cs_value ) && $cs_value !='' ){?>
                                     <li>
-                                      <span><?php echo esc_attr('Value','lassic')?></span>
+                                      <span><?php echo esc_attr('Correo','lassic')?></span>
                                       <?php echo get_post_meta($post->ID, "cs_value", true );?>
                                     </li>
                             <?php }?>

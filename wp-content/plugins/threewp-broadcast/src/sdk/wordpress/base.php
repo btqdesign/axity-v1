@@ -1,16 +1,17 @@
 <?php
+namespace plainview\sdk_broadcast\wordpress;
+
 /**
 	@brief		Base class for the Plainview Wordpress SDK.
 	@details	Provides a framework with which to build Wordpress modules.
 	@author		Edward Plainview	edward@plainview.se
 	@copyright	GPL v3
 **/
-
-namespace plainview\sdk_broadcast\wordpress;
-
 class base
 	extends \plainview\sdk_broadcast\base
 {
+	use actions_and_filters_trait;
+
 	/**
 		@brief		Stores whether this blog is a network blog.
 		@since		20130416
@@ -321,7 +322,7 @@ class base
 			$this->language_domain = str_replace( '.php', '', $this->paths( 'filename' ) );
 
 		// This will allow other plugins to load a custom language file.
-		// The filter name will be similar to: threewp_broadcast_language_directory
+		// The filter name will be similar to: ThreeWP_Broadcast_language_directory
 		$filter_name = $this->language_domain . '_language_directory';
 		$language_directory = $this->paths ( 'path_from_plugin_directory' ) . '/lang';
 		$language_directory = $this->filters( $filter_name, $language_directory );
@@ -1033,105 +1034,6 @@ class base
 	// -------------------------------------------------------------------------------------------------
 
 	/**
-		@brief		Convenience function to add a Wordpress action.
-		@details	Using almost the same parameters as add_action(), this method can be used if the action has the same base method name as the callback.
-
-		If that is the case, then $callback can be skipped. Priority and parameters can also be skipped if you are using the same default values as Wordpress' add_action().
-
-		Example:
-
-		@code
-			$this->add_action( 'plainview_enter_castle', 'action_plainview_enter_castle', 10, 1 );		// All parameters specified
-			$this->add_action( 'plainview_enter_castle', 'action_plainview_enter_castle' );				// Priority and parameter count skipped (using Wordpress defaults)
-			$this->add_action( 'plainview_enter_castle', 10, 1 );										// Calls $base->plainview_enter_castle
-			$this->add_action( 'plainview_enter_castle' );												// Calls $base->plainview_enter_castle
-			$this->add_action( 'plainview_enter_castle', null, 3 );										// Uses Wordpress default priority and three parameters.
-		@endcode
-
-		@param		string		$action			The name of the action to create.
-		@param		mixed		$callback		Either the callback, or the priority, or nothing.
-		@param		mixed		$priority		If $callback is specified, then this is the priority. Else this is the amount of parameters.
-		@param		mixed		$parameters		Used only if callback and priority are specified.
-		@since		20130505
-	**/
-	public function add_action( $action, $callback = null, $priority = null, $parameters = null )
-	{
-		$args = array_merge( array( 'action' ), func_get_args() );
-		return call_user_func_array( array( $this, 'add_thing' ), $args );
-	}
-
-	/**
-		@brief		Convenience function to add a Wordpress filter.
-		@details	Using almost the same parameters as add_filter(), this method can be used if the filter has the same base method name as the callback.
-
-		If that is the case, then $callback can be skipped. Priority and parameters can also be skipped if you are using the same default values as Wordpress' add_filter().
-
-		Example:
-
-		@code
-			$this->add_filter( 'plainview_enter_castle', 'filter_plainview_enter_castle', 10, 1 );		// All parameters specified
-			$this->add_filter( 'plainview_enter_castle', 'filter_plainview_enter_castle' );				// Priority and parameter count skipped (using Wordpress defaults)
-			$this->add_filter( 'plainview_enter_castle', 10, 1 );										// Calls $base->plainview_enter_castle
-			$this->add_filter( 'plainview_enter_castle' );												// Calls $base->plainview_enter_castle
-			$this->add_filter( 'plainview_enter_castle', null, 3 );										// Uses Wordpress default priority and three parameters.
-		@endcode
-
-		@param		string		$filter			The name of the filter to create.
-		@param		mixed		$callback		Either the callback, or the priority, or nothing.
-		@param		mixed		$priority		If $callback is specified, then this is the priority. Else this is the amount of parameters.
-		@param		mixed		$parameters		Used only if callback and priority are specified.
-		@since		20130505
-	**/
-	public function add_filter( $filter, $callback = null, $priority = null, $parameters = null )
-	{
-		$args = array_merge( array( 'filter' ), func_get_args() );
-		return call_user_func_array( array( $this, 'add_thing' ), $args );
-	}
-
-	/**
-		@brief		Convenience method to add a shortwith with the same method name as the shortcode.
-		@param		string		$shortcode		Name of the shortcode, which should be the same name as the method to be called in the base.
-		@param		string		$callback		An optional callback method. If null the callback is assumed to have the same name as the shortcode itself.
-		@since		20130505
-	**/
-	public function add_shortcode( $shortcode, $callback = null )
-	{
-		if ( $callback === null )
-			$callback = $shortcode;
-		return add_shortcode( $shortcode, array( $this, $callback ) );
-	}
-
-	/**
-		@brief		Adds a Wordpress action or filter.
-		@see		add_action
-		@see		add_filter
-		@since		20130505
-	**/
-	public function add_thing()
-	{
-		$args = func_get_args();
-		// The add type is the first argument
-		$type = 'add_' . array_shift( $args );
-		$thing = $args[ 0 ];
-		// If the callback is not specified, then assume the same callback as the thing.
-		if ( ! isset( $args[ 1 ] ) )
-			$args[ 1 ] = $args[ 0 ];
-		// Is the callback anything but a string? That means parameter 1 is the priority.
-		if ( ! is_string( $args[ 1 ] ) )
-			array_splice( $args, 1, 0, $thing );
-		// * ... which is then turned into a self callback.
-		if ( ! is_array( $args[ 1 ] ) )
-			$args[ 1 ] = array( $this, $args[ 1 ] );
-		// No parameter count set? Unset it to allow add_* to use the default Wordpress value.
-		if ( isset( $args[ 3 ] ) && $args[ 3 ] === null )
-			unset( $args[ 3 ] );
-		// Is the priority set to null? Then use the Wordpress default.
-		if ( isset( $args[ 2 ] ) && $args[ 2 ] === null )
-			$args[ 2 ] = 10;
-		return call_user_func_array( $type, $args );
-	}
-
-	/**
 		@brief		Display the time ago as human-readable string.
 		@param		$time_string	"2010-04-12 15:19"
 		@param		$time			An optional timestamp to base time difference on, if not now.
@@ -1218,178 +1120,6 @@ class base
 	}
 
 	/**
-		@brief		Output a file to the browser for downloading.
-		@param		string		$file			Path to file on disk.
-		@param		string		$name			Downloaded file's name.
-		@param		string		$mime_type		Optional mime_type.
-		@author		http://w-shadow.com/blog/2007/08/12/how-to-force-file-download-with-php/
-		@since		20130416
-		@todo		Have another look at this some time...
-	**/
-	public function download( $filepath, $options = array() )
-	{
-		if ( ! is_readable( $filepath ) )
-			throw new \Exception( "The file $filepath could not be read!" );
-
-		$o = (object) array_merge( array(
-			'cache' => true,
-			'content_disposition' => 'attachment',
-			'content_type' => '',
-			'etag' => true,
-			'expires' => 3600 * 24 * 7,		// one week
-			'filemtime' => filemtime( $filepath ),
-			'filename' => '',
-			'filesize' => filesize( $filepath ),
-			'md5_file' => true,
-		), $options );
-
-		// 304 support
-		if ( $o->cache && isset( $_SERVER[ 'HTTP_IF_MODIFIED_SINCE' ] ) )
-		{
-			$since = $_SERVER[ 'HTTP_IF_MODIFIED_SINCE' ];
-			$since = strtotime( $since );
-			if ( $since >= $o->filemtime )
-			{
-				header( 'HTTP/1.1 304 Not Modified' );
-				return;
-			}
-		}
-
-		if ( $o->filename == '' )
-			$o->filename = basename( $filepath );
-
-		$headers = array(
-			'Accept-Ranges: bytes',
-			'Content-Disposition: ' . $o->content_disposition . '; filename="' . $o->filename . '"',
-			'Content-Transfer-Encoding: binary',
-			'Last-Modified: ' . gmdate( 'D, d M Y H:i:s', $o->filemtime ) . ' GMT',
-		);
-
-		if ( $o->content_type == '' )
-		{
-			$mime_types = array
-			(
-				'doc' => 'application/msword',
-				'exe' => 'application/octet-stream',
-				'gif' => 'image/gif',
-				'htm' => 'text/html',
-				'html' => 'text/html',
-				'jpeg'=> 'image/jpg',
-				'jpg' => 'image/jpg',
-				'pdf' => 'application/pdf',
-				'php' => 'text/plain',
-				'ppt' => 'application/vnd.ms-powerpoint',
-				'png' => 'image/png',
-				'txt' => 'text/plain',
-				'xls' => 'application/vnd.ms-excel',
-				'zip' => 'application/zip',
-			);
-			$file_extension = strtolower( substr( strrchr( $o->filename, '.' ), 1 ) );
-			if ( isset( $mime_types[ $file_extension ] ) )
-				$o->content_type = $mime_types[ $file_extension ];
-			else
-				$o->content_type = 'application/octet-stream';
-		}
-		$headers[] = 'Content-Type: ' . $o->content_type;
-
-		if ( $o->cache === false )
-		{
-			$headers[] = 'Cache-Control: no-cache, no-store';
-	 		$headers[] = 'Pragma: private';
-	 		$headers[] = 'Expires: Mon, 26 Jul 1995 00:00:00 GMT';
-		}
-		else
-		{
-			$expires = $o->filemtime + $o->expires;
-			$headers[] = 'Expires: ' . gmdate( 'D, d M Y H:i:s', $expires ) . ' GMT';
-			$headers[] = 'Cache-Control: max-age=' . $o->expires;
-		}
-
-		if ( $o->etag !== false )
-		{
-			$etag = ( $o->etag !== true ? $o->etag : md5( filesize( $o->filepath ) . filemtime( $o->filepath ) ) );
-			$headers[] = 'ETag: ' . $etag;
-		}
-
-		if ( $o->md5_file == true )
-			$headers[]  = 'Content-MD5: ' . base64_encode( md5_file( $filepath ) );
-
-		// Resume support.
-/**
-		if ( isset( $_SERVER['HTTP_RANGE']) )
-		{
-			if ( ! function_exists( 'download_416' ) )
-				function download_416( $filesize )
-				{
-					header( 'HTTP/1.1 416 Requested Range Not Satisfiable' );
-					header( 'Content-Range: bytes *\/' . $o->filesize); // Required in 416.		*\/ *\/ *\/
-				}
-
-			if (!preg_match( '^bytes=\d*-\d*(,\d*-\d*)*$', $_SERVER['HTTP_RANGE'])) {
-			{
-				download_416( $o->filesize );
-				return;
-			}
-
-			$ranges = explode( ',', substr( $_SERVER['HTTP_RANGE'], 6) );
-			foreach ( $ranges as $range )
-			{
-				$parts = explode( '-', $range);
-				$start = $parts[0];		// If this is empty, this should be 0.
-				$end = $parts[1];		// If this is empty or greater than than filelength - 1, this should be filelength - 1.
-
-				if ( $start > $end)
-				{
-					download_416( $o->filesize );
-					return;
-				}
-			}
-		}
-		else
-**/
-		{
-			$size_to_send = $o->filesize;
-		}
-		$headers[] = 'Content-Length: ' . $size_to_send;
-
-		foreach( $headers as $header )
-			header( $header );
-
-		$chunksize = 65536;
-		$bytes_sent = 0;
-		$file = fopen( $filepath, 'r' );
-		if ( ! $file )
-			throw new \Exception( "File $filepath could not be opened for reading!" );
-/*
-		if ( isset( $_SERVER['HTTP_RANGE'] ) )
-			fseek( $file, $range );
-**/
-		while ( ! feof( $file ) && ( ! connection_aborted() ) && ( $bytes_sent < $size_to_send ) )
-		{
-			$buffer = fread( $file, $chunksize );
-			echo ( $buffer );
-			flush();
-			$bytes_sent += strlen( $buffer );
-		}
-		fclose( $file );
-	}
-
-	/**
-		@brief		Convenience function to call apply_filters.
-		@details	Has same parameters as apply filters. Will insert a null if there are no arguments.
-		@since		20130416
-	**/
-	public static function filters()
-	{
-		$args = func_get_args();
-
-		if ( count( $args ) < 2 )
-			$args[] = null;
-
-		return call_user_func_array( 'apply_filters', $args );
-	}
-
-	/**
 		@brief		Creates a form2 object.
 		@see		form2
 		@since		20130416
@@ -1438,14 +1168,8 @@ class base
 	public static function mail()
 	{
 		// This ensures that the PHPmailer class is loaded and ready.
-		try
-		{
-			require_once( ABSPATH . WPINC . '/pluggable.php' );
-			wp_mail( '' , '', '' );
-		}
-		catch ( \phpmailerException $e )
-		{
-		}
+		if ( ! class_exists( '\\PHPMailer' ) )
+			require_once( ABSPATH . WPINC . '/class-phpmailer.php' );
 		return parent::mail();
 	}
 
@@ -1667,16 +1391,5 @@ class base
 				$text
 			</div>
 		";
-	}
-
-	/**
-		@brief		Return a yes or no string.
-		@param		bool		$bool		Boolean value to convert to a word.
-		@return		string		"Yes" is $bool is true. "No" if false.
-		@since		20130605
-	**/
-	public function yes_no( $bool )
-	{
-		return $bool ? $this->_( 'yes' ) : $this->_( 'no' );
 	}
 }

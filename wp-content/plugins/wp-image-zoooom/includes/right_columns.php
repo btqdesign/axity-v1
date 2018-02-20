@@ -4,11 +4,12 @@ $now = time();
 
 $zoooom_activation_time = get_option( 'zoooom_activation_time', '' );
 $zoooom_version = get_option( 'zoooom_version', '' );
+$plugin = wp_image_zoooom_settings('plugin');
 
-if ( empty( $zoooom_activation_time ) || version_compare( $zoooom_version, ImageZoooom::$version, '<' ) ) {
+if ( empty( $zoooom_activation_time ) || version_compare( $zoooom_version, $plugin['version'], '<' ) ) {
     $zoooom_activation_time = $now; 
     update_option( 'zoooom_activation_time', $now );
-    update_option( 'zoooom_version', ImageZoooom::$version );
+    update_option( 'zoooom_version', $plugin['version']);
 }
 
 
@@ -62,6 +63,29 @@ $offer_link = 'https://www.silkypress.com/wp-image-zoom-plugin/?a=' . iz_convert
         </div> 
     </div>   
     <?php endif; ?>
+
+    <?php if ( class_exists('woocommerce') ) : ?>
+    <div class="panel main_container">
+    <div class="container_title" style="position: relative;">
+        <span class="ribbon bottom-left ribbon-danger">
+          <small>new</small>
+        </span> 
+    <h3>Elegant Product Gallery with Zoom</h3>
+    </div>
+        <div class="metabox-holder product-gallery-plugin" style="text-align: center;"> 
+                
+        <p>If you're looking on replacing entirely the WooCommerce gallery with a very elegant one, then check out this plugin.</p>
+
+        <p>
+        <span style="color: #bc1117;">I know you'll love it.</span>. 
+        </p>
+        <p style="text-align: center;">
+            <a href="https://www.silkypress.com/elegant-product-gallery-zoom/" target="_blank" class="button" rel="noreferrer">Ok, let's see it</a>
+        </p>
+        </div> 
+    </div>   
+    <?php endif; ?>
+
     
     <div class="panel main_container">
     <div class="container_title">

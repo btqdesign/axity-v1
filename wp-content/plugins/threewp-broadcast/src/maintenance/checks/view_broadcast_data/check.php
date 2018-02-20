@@ -85,7 +85,7 @@ extends \threewp_broadcast\maintenance\checks\check
 		$o->results = $this->broadcast()->query( $query );
 		if ( count( $o->results ) !== 1 )
 		{
-			$o->r .= $this->broadcast()->error_message()->_( __( 'Row %s in the broadcast data table was not found!', 'threewp_broadcast' ), $row_id );
+			$o->r .= $this->broadcast()->error_message_box()->_( __( 'Row %s in the broadcast data table was not found!', 'threewp_broadcast' ), $row_id );
 			return;
 		}
 
@@ -94,7 +94,7 @@ extends \threewp_broadcast\maintenance\checks\check
 		$bcd = BroadcastData::sql( $result );
 
 		$text = sprintf( '<pre>%s</pre>', var_export( $bcd, true ) );
-		$o->r .= $this->broadcast()->message( $text );
+		$o->r .= $this->broadcast()->info_message_box()->_( $text );
 	}
 
 	public function handle_blog_and_post_id( $o )
@@ -107,6 +107,6 @@ extends \threewp_broadcast\maintenance\checks\check
 
 		$bcd = ThreeWP_Broadcast()->get_post_broadcast_data( $blog_id, $post_id );
 		$text = sprintf( '<pre>%s</pre>', var_export( $bcd, true ) );
-		$o->r .= $this->broadcast()->message( $text );
+		$o->r .= $this->broadcast()->info_message_box()->_( $text );
 	}
 }

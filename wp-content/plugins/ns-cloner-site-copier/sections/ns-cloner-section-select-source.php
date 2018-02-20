@@ -13,12 +13,34 @@ class ns_cloner_section_select_source extends ns_cloner_section {
 		<input type="text" class="ns-cloner-site-search" />
 		<label class="ns-cloner-site-select-label">Or select</label>
 		<select name="source_id" class="ns-cloner-site-select">
-			<?php $sites = function_exists('wp_get_sites')? wp_get_sites(array('limit'=>9999)) : get_blog_list(0,'all'); ?>
-			<?php foreach( $sites as $site ): ?>
-			<option value="<?php echo $site['blog_id']; ?>" <?php echo ( $site['blog_id'] == get_site_option('ns_cloner_default_template') ? 'selected' : '' ) ?> >
-				<?php $title = get_blog_details($site['blog_id'])->blogname; ?>
-				<?php $url = is_subdomain_install()? "$site[domain]" : "$site[domain]$site[path]"; ?>
-				<?php echo "$site[blog_id] - ".substr($title,0,30)." ($url)"; ?>
+			<?php
+				$sites = array();
+			 	// update for WP 4.6+ and deprecated wp_get_sites() use get_sites() instead
+				if ( function_exists( 'get_sites' ) && class_exists( 'WP_Site_Query' ) ) {
+					$sites = get_sites(array('number'=>9999));
+				} else {
+				// handle WP 4.5 and earlier
+					$sites = function_exists('wp_get_sites')? wp_get_sites(array('limit'=>9999)) : get_blog_list(0,'all');
+				}				
+			?>
+			<?php 
+				foreach( $sites as $site ):
+					// update for WP 4.6+ and deprecated wp_get_sites() use get_sites() instead
+					if ( function_exists( 'get_sites' ) && class_exists( 'WP_Site_Query' ) ) {
+						$blog_id = $site->blog_id;
+						$blog_domain = $site->domain;
+						$blog_path = $site->path;
+					} else {
+					// handle WP 4.5 and earlier
+						$blog_id = $site['blog_id'];
+						$blog_domain = $site['domain'];
+						$blog_path = $site['path'];
+					} 
+			?>
+			<option value="<?php echo $blog_id; ?>" <?php echo ( $blog_id == get_site_option('ns_cloner_default_template') ? 'selected' : '' ) ?> >
+				<?php $title = get_blog_details($blog_id)->blogname; ?>
+				<?php $url = is_subdomain_install()? "$blog_domain" : "$blog_domain$blog_path"; ?>
+				<?php echo "$blog_id - ".substr($title,0,30)." ($url)"; ?>
 		  <?php endforeach; ?>
 		</select>
 		<label class="ns-cloner-site-default-label">Save as default</label>

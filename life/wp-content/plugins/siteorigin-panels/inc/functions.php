@@ -42,6 +42,17 @@ function siteorigin_panels_render( $post_id = false, $enqueue_css = true, $panel
 }
 
 /**
+ * Generate the CSS for the page layout.
+ *
+ * @param $post_id
+ * @param $panels_data
+ * @return string
+ */
+function siteorigin_panels_generate_css($post_id, $panels_data = false){
+	return SiteOrigin_Panels::renderer()->generate_css( $post_id, $panels_data );
+}
+
+/**
  * Legacy function to process raw widgets.
  *
  * @param $widgets
@@ -80,4 +91,16 @@ function siteorigin_panels_plugin_activation_install_url( $plugin, $plugin_name,
  */
 function siteorigin_panels_activate(){
 	return false;
+}
+
+
+/**
+ * Returns the base URL of our widget with `$path` appended.
+ *
+ * @param string $path Extra path to append to the end of the URL.
+ *
+ * @return string Base URL of the widget, with $path appended.
+ */
+function siteorigin_panels_url( $path = '' ) {
+	return plugins_url( 'siteorigin-panels/' . $path );
 }

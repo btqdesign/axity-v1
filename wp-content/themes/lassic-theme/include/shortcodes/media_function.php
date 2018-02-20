@@ -114,6 +114,10 @@ if (!function_exists('cs_promobox_shortcode')) {
 		$cs_section_title  = '';
 		$cs_background	    = '';
 		
+		if(isset($cs_promobox_class) && $cs_promobox_class <> ''){
+			$cs_promobox_class_inc = $cs_promobox_class;
+		}
+		
 		if ($cs_promobox_section_title && trim($cs_promobox_section_title) !='') {
 			$cs_section_title	= '<div class="cs-section-title"><h2>'.cs_allow_special_char($cs_promobox_section_title).'</h2></div>';
 		}
@@ -124,7 +128,7 @@ if (!function_exists('cs_promobox_shortcode')) {
 
 		$html	.= '<div class="col-md-12 '.$cs_promobox_animation.'">';
 		$html   .= $cs_section_title;
-		$html	.= '<div class="cs-promobox promobox " '.$cs_background.'>';
+		$html	.= '<div class="cs-promobox promobox '.$cs_promobox_class_inc.' " '.$cs_background.'>';
 		$html	.= '<article class="'.$cs_promo_image_align.'">';
 		
 		if (isset($cs_promo_image)  && $cs_promo_image !="" and $cs_promo_style=='image') { 

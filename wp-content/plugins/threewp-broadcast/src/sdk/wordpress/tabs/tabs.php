@@ -2,6 +2,8 @@
 
 namespace plainview\sdk_broadcast\wordpress\tabs;
 
+use \Exception;
+
 /**
 	@brief		Handles creation of tabs in the Wordpress admin panel.
 
@@ -34,22 +36,6 @@ abstract class tabs
 	public $base;
 
 	/**
-		@brief		_GET variable to use. The default is the actual _GET.
-		@since		20130503
-		@since		20130503
-		@var		$get
-	**/
-	public $get;
-
-	/**
-		@brief		Which key in the _GET variable contains the ID of the current tab.
-		@since		20130503
-		@since		20130503
-		@var		$get_key
-	**/
-	public $get_key = 'tab';
-
-	/**
 		@brief		The ID of the default tab, if none is selected in the _GET.
 		@details	If no default tab is set, the first added tab is assumed to be the default.
 		@since		20130503
@@ -71,6 +57,22 @@ abstract class tabs
 		@var		$display_tab_name
 	**/
 	public $display_tab_name = true;
+
+	/**
+		@brief		_GET variable to use. The default is the actual _GET.
+		@since		20130503
+		@since		20130503
+		@var		$get
+	**/
+	public $get;
+
+	/**
+		@brief		Which key in the _GET variable contains the ID of the current tab.
+		@since		20130503
+		@since		20130503
+		@var		$get_key
+	**/
+	public $get_key = 'tab';
 
 	/**
 		@brief		The default prefix of the displayed tab name.
@@ -240,13 +242,23 @@ abstract class tabs
 		if ( count( $this->tabs ) < 1 )
 			return '';
 
+		// Sort the tabs.
+		$sorted = $this->tabs->sort_by( function( $tab )
+		{
+			return $tab->get_sort_order() . $tab->name;
+		} );
+
 		// Check that the default exists.
 		if ( ! $this->tabs->has( $this->default_tab ) )
-			$this->default_tab = key( $this->tabs->to_array() );
+			$this->default_tab = key( $sorted->to_array() );
 
 		// Select the default tab if none is selected.
 		if ( ! isset( $get[ $get_key ] ) )
+		{
+			if ( $this->default_tab == '' )
+				$this->default_tab = key( $sorted->to_array() );
 			$get[ $get_key ] = $this->default_tab;
+		}
 		$selected = $get[ $get_key ];
 
 		$r = '<div class="wrap">';
@@ -266,12 +278,6 @@ abstract class tabs
 					$original_link = remove_query_arg( $key, $original_link );
 
 			$counter = 1;
-
-			// Sort the tabs.
-			$sorted = $this->tabs->sort_by( function( $tab )
-			{
-				return $tab->get_sort_order() . $tab->name;
-			} );
 
 			foreach( $sorted as $tab_id => $tab )
 			{
@@ -321,9 +327,9 @@ abstract class tabs
 			{
 				call_user_func_array( $tab->callback, $tab->parameters );
 			}
-			catch ( \Exception $e )
+			catch ( Exception $e )
 			{
-				echo $e->getMessage();
+				echo 'Exception: ' . $e->getMessage() . $e->getTraceAsString();
 			}
 
 			$r .= ob_get_clean();

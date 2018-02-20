@@ -2881,17 +2881,17 @@ if ( ! function_exists( 'cs_next_prev_custom_links' ) ) {
 			if (isset($previd) && !empty($previd) && $previd >=0 ) {	   
 				?>
 				<a class="cs-post-prev" href="<?php echo esc_url(get_permalink($previd)); ?>">
-                	<i class="icon-arrow-left10"></i> 
+                	<!--<i class="icon-arrow-left10"></i> -->
 					<?php if($cs_show_text == true) echo substr(get_the_title($previd),0,30); ?>
                 </a>
 				<?php
 			}
-			echo '<a href="javascript:;" onclick="window.history.back();return false;"><span><i class="icon-th-large"></i></span></a>';
+			echo '<a href="javascript:;" onclick="window.history.back();return false;">.</a>';
 			if (isset($nextid) && !empty($nextid) ) {
 			?>
 				<a class="cs-post-next" href="<?php echo esc_url(get_permalink($nextid)); ?>">
 					<?php if($cs_show_text == true) echo substr(get_the_title($nextid),0,30); ?>
-                    <i class="icon-arrow-right10"></i> 
+                    <!--<i class="icon-arrow-right10"></i> -->
                 </a>
 		<?php }
 		}else {
@@ -3894,7 +3894,7 @@ if ( ! function_exists( 'cs_header_position_settings' ) ) :
 		?>
 		<div class="extra">
 		<?php if($header_bg_options == 'cs_bg_image_color'){?>
-			<style scoped="scoped">
+			<style scoped>
 				#main-header{
 					background-image:url('<?php echo esc_url($cs_header_bg_image); ?>');
 					background-color:<?php echo esc_attr($cs_header_bg_color); ?>;

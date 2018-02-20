@@ -166,6 +166,7 @@ implements
 	public function flush()
 	{
 		$this->items = [];
+		return $this;
 	}
 
 	/**
@@ -177,6 +178,7 @@ implements
 	public function forget( $key )
 	{
 		unset( $this->items[ $key ] );
+		return $this;
 	}
 
 	/**
@@ -437,6 +439,7 @@ implements
 			$this->items[] = $value;
 		else
 			$this->items[ $key ] = $value;
+		return $this;
 	}
 
 	/**
@@ -469,6 +472,7 @@ implements
 	public function push( $value )
 	{
 		array_unshift( $this->items, $value );
+		return $this;
 	}
 
 	/**

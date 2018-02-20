@@ -101,8 +101,10 @@ class form
 				$o2 = clone $o;
 				$o2->header = $input->label;
 
-				// If this is a container with a legend (fieldset) use the legend.
-				if ( isset( $input->legend ) )
+				if ( $input->label->content != '' )
+					$o2->header = $input->label->content;
+				else
+					// If this is a container with a legend (fieldset) use the legend.
 					$o2->header = $input->legend->label->content;
 
 				$o2->inputs = $input->inputs;

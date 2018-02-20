@@ -21,7 +21,7 @@
     		"plainview\\sdk_broadcast\\" : "."
     	}
     },
-    "minimum-stability": "dev",
+    "minimum-stability" : "dev",
 	"repositories": [
 		{
 			"type": "package",

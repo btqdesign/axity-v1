@@ -1,5 +1,6 @@
 <?php
-/* This file includes a set of functions that can be used by WP plugin developers to make their plugins interact with WPML */
+/* @todo: [WPML 3.3] check if needed in 3.3 */
+/* This file includes a set of functions that can be used by WP plugins developers to make their plugins interact with WPML */
 
 /* constants */
 define('WPML_API_SUCCESS' , 0);
@@ -202,6 +203,7 @@ function wpml_get_content_trid($content_type, $content_id){
 
 /**
  * Detects the current language and returns the language relevant content id. optionally it can return the original id if a translation is not found
+ * See also wpml_object_id_filter() in \template-functions.php
  *
  * @since 1.3
  * @package WPML
@@ -212,8 +214,8 @@ function wpml_get_content_trid($content_type, $content_id){
  * @param bool $return_original return the original id when translation not found.
  *
  * @return int trid or 0 for error
- *  */
-
+ *  
+ */
 function wpml_get_content($content_type, $content_id, $return_original = true){
     global $sitepress, $wpdb;
 
@@ -276,7 +278,7 @@ function wpml_get_content($content_type, $content_id, $return_original = true){
  *
  * @internal   param bool $return_original return the original id when translation not found.
  *
- * @return int trid or error code
+ * @return array|int translations or error code
  */
 function wpml_get_content_translations($content_type, $content_id, $skip_missing = true){
     global $sitepress;
@@ -288,12 +290,12 @@ function wpml_get_content_translations($content_type, $content_id, $skip_missing
 
     $translations = $sitepress->get_element_translations($trid, $content_type, $skip_missing);
 
-    $tr = array();
-    foreach($translations as $k=>$v){
-        $tr[$k] = $v->element_id;
-    }
+	$tr = array();
+	foreach($translations as $k=>$v){
+		$tr[$k] = $v->element_id;
+	}
 
-    return $tr;
+	return $tr;
 }
 
 /**
@@ -328,7 +330,8 @@ function wpml_get_content_translation($content_type, $content_id, $language_code
 }
 
 /**
- *  Returns the list of active languages
+ * Returns the list of active languages
+ * See also wpml_get_active_languages_filter() in \template-functions.php
  *
  * @since 1.3
  * @package WPML
@@ -343,35 +346,7 @@ function wpml_get_active_languages(){
     return $langs;
 }
 
-/**
- *  Returns the default language
- *
- * @since 1.3
- * @package WPML
- * @subpackage WPML API
- *
- *
- * @return string
- *  */
-function wpml_get_default_language(){
-    global $sitepress;
-    return $sitepress->get_default_language();
-}
 
-
-/**
- *  Get current language
- *
- * @since 1.3
- * @package WPML
- * @subpackage WPML API
- *
- * @return string
- *  */
-function wpml_get_current_language(){
-    global $sitepress;
-    return $sitepress->get_current_language();
-}
 
 /**
  *  Get contents of a specific type
@@ -403,90 +378,7 @@ function wpml_get_contents($content_type, $language_code = false){
                                                 WHERE element_type = %s AND language_code = %s",
                                                 $content_type, $language_code ) );
     return $contents;
-}
 
-/**
- *  Sends piece of content (string) to professional translation @ ICanLocalize
- *
- * @since 1.3
- * @package WPML
- * @subpackage WPML API
- *
- * @param string $string String
- * @param string $from_language Language to translate from
- * @param int $content_id Content ID
- * @param string $content_type Content Type
- * @param string $to_language Language to translate into
- *
- * @return int request id
- *  */
-function wpml_send_content_to_translation($string, $content_id, $content_type, $from_language, $to_language){
-    global $sitepress, $sitepress_settings, $wpdb;
-
-    if(!$sitepress->get_icl_translation_enabled()){
-        return 0; //WPML_API_CONTENT_TRANSLATION_DISABLED
-    }
-
-    if(!_wpml_api_allowed_content_type($content_type)){
-        return 0; //WPML_API_INVALID_CONTENT_TYPE
-    }
-
-    if(!$sitepress->get_language_details($from_language) || !$sitepress->get_language_details($to_language)){
-        return 0; // WPML_API_INVALID_LANGUAGE_CODE
-    }
-
-    $from_lang = $sitepress->get_language_details($from_language);
-    $to_lang   = $sitepress->get_language_details($to_language);
-    $from_lang_server = apply_filters('icl_server_languages_map', $from_lang['english_name']);
-    $to_lang_server = apply_filters('icl_server_languages_map', $to_lang['english_name']);
-
-    $iclq = new ICanLocalizeQuery($sitepress_settings['site_id'], $sitepress_settings['access_key']);
-
-    $rid = $iclq->cms_create_message($string, $from_lang_server, $to_lang_server);
-
-    if($rid > 0){
-        // does this comment already exist in the messages status queue?
-        $msid = $wpdb->get_var($wpdb->prepare(" SELECT id
-                                                FROM {$wpdb->prefix}icl_message_status
-                                                WHERE object_type = %s
-                                                  AND object_id = %d", $content_type, $content_id ));
-        if($msid){
-            $wpdb->update($wpdb->prefix.'icl_message_status',
-                array('rid'=>$rid, 'md5' => md5($string), 'status' => MESSAGE_TRANSLATION_IN_PROGRESS),
-                array('id' => $msid)
-                );
-        }else{
-            $wpdb->insert($wpdb->prefix.'icl_message_status', array(
-                'rid'           => $rid,
-                'object_id'     => $content_id,
-                'from_language' => $from_language,
-                'to_language'   => $to_language,
-                'md5'           => md5($string),
-                'object_type'   => $content_type,
-                'status'        => MESSAGE_TRANSLATION_IN_PROGRESS
-            ));
-        }
-    }
-
-    return $rid;
-}
-
-/**
- * Registers a callback for when a translation is received from the server.
- * The callback parameters are int $request_id, string $content, string $language
- * @since 1.3
- * @package WPML
- * @subpackage WPML API
- *
- * @param string $content_type
- * @param string $callback
- *
- * @return int error code (0 on success)
- *  */
-function wpml_add_callback_for_received_translation($content_type, $callback){
-    global $wpml_add_message_translation_callbacks;
-    $wpml_add_message_translation_callbacks[$content_type][] = $callback;
-    return 0;
 }
 
 /**
@@ -506,7 +398,7 @@ function wpml_get_word_count($string, $language = false){
 	$count = 0;
 
     if($language && in_array($language, $asian_languages)){
-        $count = ceil(mb_strlen($string)/WPML_API_MAGIC_NUMBER);
+        $count = ceil(strlen($string)/WPML_API_MAGIC_NUMBER);
     }elseif(is_string($string)){
 		$words = preg_split( '/[\s\/]+/', $string, 0, PREG_SPLIT_NO_EMPTY );
 		$count = count( $words );

@@ -14,7 +14,7 @@ namespace plainview\sdk_broadcast\tests;
 	@since		20130718
 	@version	20130718
 **/
-class TestCase extends \PHPUnit_Framework_TestCase
+class TestCase extends \PHPUnit\Framework\TestCase
 {
 	/**
 		@brief		Check if a string contains a substring.

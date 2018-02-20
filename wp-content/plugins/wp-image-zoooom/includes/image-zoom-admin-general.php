@@ -2,13 +2,12 @@
 
 require_once 'image-zoom-forms-helper.php';
 
-$iz = ImageZoooom();
 $iz_admin = new ImageZoooom_Admin;
 $iz_forms_helper = new ImageZoooom_FormsHelper;
 
-$assets_url = $iz->plugins_url() . '/assets';
+$assets_url = IMAGE_ZOOM_URL . '/assets'; 
 
-$settings = $iz->get_option_general();
+$settings = get_option('zoooom_general');
 if ( $settings == false ) {
     $settings = $iz_admin->validate_general( null );
 }
@@ -30,7 +29,31 @@ include_once( 'premium-tooltips.php' );
     });
 </script>
 
-    <?php $brand = '<img src="'. site_url() .'/wp-content/plugins/wp-image-zoooom/assets/images/silkypress_logo.png" /> <a href="https://www.silkypress.com/?utm_source=wordpress&utm_campaign=iz_free&utm_medium=banner" target="_blank">SilkyPress.com</a>';?>
+<?php add_thickbox(); ?>
+<div id="supported-lightboxes" style="display:none;">
+     <p>
+            The zoom is compatible with:
+          <ul style="list-style: inside; padding-left: 20px;">
+            <li>
+                the lightbox created by the <a href="https://www.silkypress.com/i/wp-huge-it-gallery" target="_blank" rel="nofollow">Huge IT Gallery</a> plugin
+            </li>
+            <li>
+                the lightbox created by the <a href="https://www.silkypress.com/i/wp-photo-gallery" target="_blank" rel="nofollow">Photo Gallery</a> plugin
+            </li>
+            <li>the iLightbox from the <a href="https://www.silkypress.com/i/avada-theme" target="_blank" rel="nofollow">Avada Theme</a></li>
+            <li>the lightbox created by <a href="https://www.silkypress.com/i/jetpack-carousel" target="_blank" rel="nofollow">Carousel</a> from Jetpack</li>
+            <li>the <a href="https://www.silkypress.com/i/js-prettyphoto" target="_blank" rel="nofollow">prettyPhoto</a> lightbox (also used by the <a href="https://www.silkypress.com/i/visual-composer" target="_blank" rel="nofollow">Visual Composer</a> gallery)</li>
+            <li>the <a href="https://www.silkypress.com/i/js-fancybox" target="_blank" rel="nofollow">fancyBox</a> lightbox (also used by the 
+          <a href="https://www.silkypress.com/i/wp-easy-fancybox" target="_blank" rel="nofollow">Easy Fancybox
+          </a> plugin)</li>
+            <li>the <a href="https://www.silkypress.com/i/js-featherlight" target="_blank" rel="nofollow">Featherlight.js</a> lightbox (also used by <a href="https://www.silkypress.com/i/wp-draw-attention" target="_blank" rel="nofollow">Draw Attention</a> plugin)</li>
+            <li>the lightbox created by the Ultimate Product Catalogue by Etoile Web Design</li> 
+            </ul>
+     </p>
+</div>
+
+
+    <?php $brand = '<img src="'. $assets_url.'/images/silkypress_logo.png" /> <a href="https://www.silkypress.com/?utm_source=wordpress&utm_campaign=iz_free&utm_medium=banner" target="_blank">SilkyPress.com</a>';?>
 <h2><?php printf(esc_html__('WP Image Zoom by %1$s', 'wp-image-zoooom'), $brand); ?></h2>
 
 <div class="wrap">
@@ -64,7 +87,13 @@ include_once( 'premium-tooltips.php' );
         <?php
             $iz_forms_helper->label_class = 'col-sm-6 control-label';
 
-        foreach ( array('enable_woocommerce', 'exchange_thumbnails', 'woo_cat', 'woo_variations', 'enable_mobile', 'remove_lightbox_thumbnails', 'remove_lightbox', 'force_attachments', 'flexslider', 'huge_it_gallery', 'enable_fancybox', 'enable_jetpack_carousel' ) as $_field ) {
+            $fields = array('enable_woocommerce', 'exchange_thumbnails', 'woo_cat', 'woo_variations', 'enable_mobile', 'remove_lightbox_thumbnails', 'remove_lightbox', 'force_attachments', 'custom_class', 'flexslider', 'owl', 'huge_it_gallery', 'enable_lightbox_zoom' );
+
+            if ( class_exists('woocommerce') && version_compare( WC_VERSION, '3.0', '>') ) {
+                unset($fields[array_search('exchange_thumbnails', $fields)]);
+            }
+
+        foreach ( $fields as $_field ) {
             $this_settings = $iz_admin->get_settings( $_field);
             $this_settings['value'] = '';
             if ( isset( $settings[$_field] ) ) {

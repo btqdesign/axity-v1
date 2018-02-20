@@ -386,6 +386,9 @@ class Logger
      */
     protected function formatMessageWithFunction($level, $function, $message, $additional_message)
     {
+        if(is_object($message)){
+            $message = json_encode($this->contextToString($message));
+        }
         $parts = array(
             'date' => $this->getTimestamp(),
             'function' => $function,

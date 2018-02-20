@@ -38,14 +38,26 @@ class WPBackItUp_Job {
 	const DELETED = 'deleted';
 
 	//Job types
-	const BACKUP =  'backup';
-	const RESTORE = 'restore';
-	const CLEANUP = 'cleanup';
+	const BACKUP    =  'backup';
+	const RESTORE   = 'restore';
+	const CLEANUP   = 'cleanup';
+	const SAFESYNC = 'safe-sync';
+
 
 	//Job run type
-	const SCHEDULED = 'scheduled';
-	const MANUAL = 'manual';
-	const IMPORTED = 'imported';
+	const SCHEDULED   = 'scheduled';
+	const MANUAL      = 'manual';
+	const IMPORTED    = 'imported';
+	const BACKGROUND  = 'background';
+
+	//Job meta keys
+	const BACKUP_JOB_ID = 'backup_job_id';
+
+	//Cloud Status
+	const CLOUD_UPLOADED    = 'uploaded';
+	const CLOUD_UPLOADING   = 'uploading';
+	const CLOUD_ERROR       = 'error';
+
 
 	//Properties
 	private $job_id;
@@ -106,9 +118,6 @@ class WPBackItUp_Job {
 		'task_restore_database',
 	);
 
-	public static $CLEANUP_TASKS = array(
-		'task_scheduled_cleanup'
-	);
 
 	// ** END JOB TASK CONSTANTS **
 
@@ -371,6 +380,84 @@ class WPBackItUp_Job {
 
 	}
 
+	/**
+	 * Set cloud status
+	 * @deprecated  use sync job id to get status
+	 *
+	 * @param $status
+	 *
+	 * @return bool true on success/false on error
+	 */
+	public function setCloudStatus( $status ) {
+		return $this->setJobMetaValue('cloud_status',$status);
+	}
+
+	/**
+	 * Set sync job id
+	 *
+	 * @param $status
+	 *
+	 * @return bool true on success/false on error
+	 */
+	public function setSyncJobId( $id ) {
+		return $this->setJobMetaValue('sync_job_id',$id);
+	}
+
+	/**
+	 * Get cloud status
+	 *
+	 * @return string/false on missing
+	 */
+	public function getCloudStatus() {
+		$sync_job_id = $this->getSyncJobId();
+		if (false=== $sync_job_id) {
+			//This is not an error - can have jobs with no sync job
+			WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'No Sync Job Id');
+			return false;
+		}
+
+		$sync_job = self::get_job_by_id($sync_job_id);
+		if (false===$sync_job) {
+			WPBackItUp_Logger::log_error($this->log_name,__METHOD__,'No Sync Job found.');
+			return false;
+		}
+
+		$sync_status = $sync_job->getJobStatus();
+		switch($sync_status)
+		{
+			case WPBackItUp_Job::ACTIVE:
+			case WPBackItUp_Job::QUEUED:
+				return WPBackItUp_Job::CLOUD_UPLOADING;
+				break;
+			case WPBackItUp_Job::COMPLETE:
+				return WPBackItUp_Job::CLOUD_UPLOADED;
+				break;
+			case WPBackItUp_Job::ERROR:
+				return WPBackItUp_Job::CLOUD_ERROR;
+			default:
+				return $sync_status;
+				break;
+		}
+	}
+
+	/**
+	 * Get Sync JobId
+	 *
+	 * @return string/false on missing
+	 */
+	public function getSyncJobId() {
+		return $this->getJobMetaValue('sync_job_id',false);
+	}
+
+	/**
+	 * Get backup Zip Files
+	 *
+	 * @return array/false on missing
+	 */
+	public function getBackupZipFiles() {
+		return $this->getJobMetaValue('backup_zip_files',false);
+	}
+
 
 	/**
 	 * Set job start time
@@ -522,7 +609,6 @@ class WPBackItUp_Job {
 		return false;
 	}
 
-
 	/**
 	 * Is there at least 1 job queued or active?
 	 *
@@ -584,13 +670,12 @@ class WPBackItUp_Job {
 		return $counter;
 	}
 
-
 	/**
 	 * Delete all job records
 	 *
 	 * @param $job_id
 	 */
-	private static function delete_job_records($job_id){
+	public static function delete_job_records($job_id){
 		$log_name='debug_purge_jobs';
 		$db= new WPBackItUp_DataAccess();
 
@@ -631,6 +716,7 @@ class WPBackItUp_Job {
 		// Purge jobs with status: cancelled, error, deleted
 		/*------------------------------------------------------*/
 
+
 		$jobs = self::get_jobs_by_status($job_type,array(WPBackItUp_Job::DELETED,WPBackItUp_Job::ERROR,WPBackItUp_Job::CANCELLED));
 		WPBackItUp_Logger::log_info($log_name,__METHOD__,'Total finished jobs found:' .count($jobs));
 
@@ -638,12 +724,13 @@ class WPBackItUp_Job {
 		if (is_array($jobs) && count($jobs)>0) {
 
 			foreach ($jobs  as $key=>$job){
+                //$cleanup_processor->push_to_queue($job->getJobId());
 
-				self::delete_job_records($job->getJobId());
-				$jobs_purged+=1;
+				WPBackItUp_Job::delete_job_records($job->getJobId());
+                $jobs_purged+=1;
 
-				WPBackItUp_Logger::log_info($log_name,__METHOD__,'Deleted Job:');
-				WPBackItUp_Logger::log_info($log_name,__METHOD__,var_export($job,true));
+                WPBackItUp_Logger::log_info($log_name,__METHOD__,'Queued the Job for delete:');
+                WPBackItUp_Logger::log_info($log_name,__METHOD__,var_export($job,true));
 			}
 		}
 
@@ -679,10 +766,11 @@ class WPBackItUp_Job {
 					if (false===$backups_exist) {
 						WPBackItUp_Logger::log_info($log_name,__METHOD__,'No backups found for job:'. $job->getJobId());
 
-						self::delete_job_records($job->getJobId());
+                        //$cleanup_processor->push_to_queue($job->getJobId());
+						WPBackItUp_Job::delete_job_records($job->getJobId());
 						$jobs_purged+=1;
 
-						WPBackItUp_Logger::log_info($log_name,__METHOD__,'Backups Missing - Deleted Job:');
+						WPBackItUp_Logger::log_info($log_name,__METHOD__,'Backups Missing - Queued the job for delete:');
 						WPBackItUp_Logger::log_info($log_name,__METHOD__,var_export($job,true));
 					}
 				}
@@ -711,17 +799,25 @@ class WPBackItUp_Job {
 				WPBackItUp_Logger::log_info($log_name,__METHOD__,var_export($jobs,true));
 				foreach ($purge_jobs  as $key=>$job){
 
-					self::delete_job_records($job->getJobId());
+                    //$cleanup_processor->push_to_queue($job->getJobId());
+					WPBackItUp_Job::delete_job_records($job->getJobId());
 					$jobs_purged+=1;
 
-					WPBackItUp_Logger::log_info($log_name,__METHOD__,'Deleted Job:');
+					WPBackItUp_Logger::log_info($log_name,__METHOD__,'Queued the Job for delete:');
 					WPBackItUp_Logger::log_info($log_name,__METHOD__,var_export($job,true));
 				}
 			}
 
 		}
 
-		WPBackItUp_Logger::log_info($log_name,__METHOD__,'End - job purge complete.  Jobs Purged:' .$jobs_purged);
+		/*------------------------------------------------------*/
+		//Purge jobs > 60 days no matter what the status
+		/*------------------------------------------------------*/
+		//TODO: add code to purge any job > 60 days no matter what status.
+
+
+        WPBackItUp_Logger::log_info($log_name,__METHOD__,'Job purge queue dispatched.');
+		WPBackItUp_Logger::log_info($log_name,__METHOD__,'End - No of job will be  Purged:' .$jobs_purged);
 
 		return $jobs_purged;
 	}
@@ -758,7 +854,7 @@ class WPBackItUp_Job {
 	 *
 	 * @param $limit Number of jobs in results
 	 *
-	 * @return mixed Array of jobs or false when no jobs found
+	 * @return WPBackItUp_Job[] Array of jobs or false when no jobs found
 	 */
 	public static function get_jobs_by_status($job_type,$job_status, $limit=100) {
 		WPBackItUp_Logger::log_info(self::DEFAULT_LOG_NAME,__METHOD__,'Begin');
@@ -908,7 +1004,7 @@ class WPBackItUp_Job {
                 break;
 
 			case self::CLEANUP:
-				return self::$CLEANUP_TASKS;
+				return WPBackItUp_Cleanup::$CLEANUP_TASKS;
                 break;
 
 			default:
@@ -947,6 +1043,39 @@ class WPBackItUp_Job {
 
 		$job_setting = sprintf('%s_%s_lastrun_date',WPBACKITUP__NAMESPACE,$job_type);
 		return  update_option($job_setting,$timestamp);
+	}
+
+
+	/**
+	 * Cancel Job - open/queued tasks and items will be cancelled also
+	 *
+	 * @return bool
+	 *
+	 */
+	public function cancel_job() {
+
+		try {
+
+			$this->setStatus(self::CANCELLED);
+
+			//get active and queued tasks - set to cancelled
+			$job_tasks = WPBackItUp_Job_Task::get_job_tasks($this->getJobId(),array(WPBackItUp_Job_Task::ACTIVE,WPBackItUp_Job_Task::QUEUED));
+			foreach ( $job_tasks as $job_task ) {
+				$job_task->setStatus(WPBackItUp_Job_Task::CANCELLED);
+			}
+
+			//get active and queued items - set to cancelled
+			$job_items = WPBackItUp_Job_Item::get_job_items($this->getJobId(),array(WPBackItUp_Job_Item::QUEUED, WPBackItUp_Job_Item::OPEN));
+			foreach ( $job_items as $job_item ) {
+				$job_item->setStatus(WPBackItUp_Job_Item::CANCELLED);
+			}
+
+			return true;
+
+		} catch(Exception $e) {
+			WPBackItUp_Logger::log_error($this->log_name,__METHOD__,'Exception occurred: ' .$e);
+			return false;
+		}
 	}
 
 	/*******************

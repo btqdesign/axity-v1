@@ -6,3 +6,8 @@ if(is_array($iclsettings['translation-management']['custom_fields_readonly_confi
 }
 delete_option($wpdb->prefix . 'icl_translators_cached');
 delete_option($wpdb->prefix . 'icl_non_translators_cached');
+
+
+
+  
+

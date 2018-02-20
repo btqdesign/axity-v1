@@ -1,4 +1,21 @@
 <?php
+function cubiq_setup () {
+    remove_action('wp_head', 'wp_generator');
+    remove_action('wp_head', 'wlwmanifest_link');
+    add_filter('the_generator', '__return_false');
+}
+add_action('after_setup_theme', 'cubiq_setup');
+//Remove All Meta Generators
+function remove_meta_generators($html) {
+    $pattern = '/<meta name(.*)=(.*)"generator"(.*)>/i';
+    $html = preg_replace($pattern, '', $html);
+    return $html;
+}
+function clean_meta_generators($html) {
+    ob_start('remove_meta_generators');
+}
+add_action('get_header', 'clean_meta_generators', 100);
+add_action('wp_footer', function(){ ob_end_flush(); }, 100);
 remove_filter( 'the_title_rss', 'strip_tags');
 
 //Custom Width Height Settings (Gallery)
@@ -3726,20 +3743,28 @@ if ( ! function_exists( 'cs_contact_form_submit' ) ) :
 		}
 		
 		/* Carga de reCAPTCHA */
-        require_once( 'recaptchalib.php' );
+        require('include/recaptcha/src/autoload.php');
         
         /* Verificamos el reCAPTCHA*/
         $resp = null;
         if (isset($_POST['g-recaptcha-response'])) {
-                $reCaptcha = new ReCaptcha('6Le7lgYTAAAAAGocKBoAewkGkElJE2Hsp6qjM2xH');
-            $resp = $reCaptcha->verifyResponse(
-                $_SERVER['REMOTE_ADDR'],
-                $_POST['g-recaptcha-response']
-            );
+            $recaptcha = new \ReCaptcha\ReCaptcha('6LcOczUUAAAAAGlHBX7zRfwV3Bjm2T07my6YClF5');
+            
+            if ($_SERVER['REMOTE_ADDR'] != '127.0.0.1' || $_SERVER['REMOTE_ADDR'] != '::1') {
+	            
+	            // Compatibilidad con CloudFlare
+	            $remoteIp = $_SERVER['HTTP_CF_CONNECTING_IP'];
+            }
+            else {
+	            $remoteIp = $_SERVER['REMOTE_ADDR'];
+            }
+            
+            $gRecaptchaResponse = $_POST['g-recaptcha-response'];
+            $resp = $recaptcha->verify($gRecaptchaResponse, $remoteIp);
         }
 		
 		/* Verificamos el reCAPTCHA */
-        if ($resp != null && $resp->success) {
+        if ($resp != null && $resp->isSuccess()) {
 	        
 			if(isset($phone) && $phone <> ''){
 				$subject_name = 'Phone';
@@ -3839,7 +3864,7 @@ if ( ! function_exists( 'cs_contact_form_submit' ) ) :
 					<td>'.$_SERVER["REMOTE_ADDR"].'</td>
 				  </tr>
 				</table>';
-			$headers  = 'From: Servidor Web <info@intellego.com.mx>' . "\r\n";
+			$headers  = 'From: Servidor Web <conectados@axity.com>' . "\r\n";
 			$headers .= 'Reply-To: ' . sanitize_email($contact_email) . "\r\n";
 			$headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
 			$headers .= 'MIME-Version: 1.0' . "\r\n";
@@ -3851,10 +3876,10 @@ if ( ! function_exists( 'cs_contact_form_submit' ) ) :
 			if(	$send_mail ) {
 				$json	= array();
 				$json['type']    = "success";
-				$json['message'] = '<p>'.cs_textarea_filter($cs_contact_succ_msg).'</p>';
+				$json['message'] = '<p>' . cs_textarea_filter($cs_contact_succ_msg) . '</p>';
 			} else {
 				$json['type']    = "error";
-				$json['message'] = '<p>'.cs_textarea_filter($cs_contact_error_msg).'</p>';
+				$json['message'] = '<p>' . cs_textarea_filter($cs_contact_error_msg) . '</p>';
 				// Debug Mail Send
 				//$json['message'] = '<p>'.cs_textarea_filter($cs_contact_error_msg).'</p><p> Send email: '.var_export($send_mail, true).'</p><p>'.'Email: '.sanitize_email($cs_contact_email).'</p><p>'.'Subject: '.$subjecteEmail.'</p><p>'.'Message: '.$message.'</p><p>'.'Headers: '.$headers.'</p>';
 			};
@@ -3862,7 +3887,14 @@ if ( ! function_exists( 'cs_contact_form_submit' ) ) :
 		}
 		else {
 			$json['type']    = "error";
-			$json['message'] = '<p>Invalid ReCAPCHA</p>';
+			//$json['message'] = '<p>Invalid ReCAPCHA '.$connecting_ip.'</p>';
+			$json['message'] = '<p>';
+			foreach ($resp->getErrorCodes() as $code) {
+                $json['message'] .=  $code . '<br>';
+            }
+            //$json['message'] .= $remoteIp . '<br>';
+            //$json['message'] .= '*';
+            $json['message'] .= '</p>';
 		}
 			
 		echo json_encode( $json );
@@ -4657,9 +4689,9 @@ if ( ! function_exists( 'cs_breadcrumbs' ) ) {
 					$cat = get_the_category(); $cat = $cat[0];
 					$cats = get_category_parents($cat, TRUE, $delimiter);
 					if ($showCurrent == 0) $cats = preg_replace("#^(.+)$delimiter$#", "$1", $cats);
-					$cats = str_replace('<a', $linkBefore . '<a' . $linkAttr, $cats);
-					$cats = str_replace('</a>', '</a>' . $linkAfter, $cats);
-					echo cs_allow_special_char($cats);
+					//$cats = str_replace('<a', $linkBefore . '<a' . $linkAttr, $cats);
+					//$cats = str_replace('</a>', '</a>' . $linkAfter, $cats);
+					//echo cs_allow_special_char($cats);
 					if ($showCurrent == 1) echo cs_allow_special_char($before . $current_page . $after);
 				}
 			} elseif ( !is_single() && !is_page() && get_post_type() <> '' && get_post_type() != 'post' && get_post_type() <> 'events' && !is_404() ) {

@@ -3,7 +3,7 @@
  * Plugin Name: WP Image Zoom
  * Plugin URI: https://wordpress.org/plugins/wp-image-zoooom/
  * Description: Add zoom effect over the an image, whether it is an image in a post/page or the featured image of a product in a WooCommerce shop 
- * Version: 1.9
+ * Version: 1.23
  * Author: SilkyPress 
  * Author URI: https://www.silkypress.com
  * License: GPL2
@@ -11,6 +11,8 @@
  * Text Domain: wp-image-zoooom
  * Domain Path: /languages/
  *
+ * WC requires at least: 2.3.0
+ * WC tested up to: 3.3.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -24,9 +26,8 @@ if ( ! class_exists( 'ImageZoooom' ) ) :
  * @class ImageZoooom
  */
 final class ImageZoooom {
-    public static $version = '1.9';
-    public $testing = false;
-    public $free = true;
+    public $plugin;
+    public $theme = '';
     protected static $_instance = null; 
 
 
@@ -67,6 +68,11 @@ final class ImageZoooom {
     public function __construct() {
         global $_wp_theme_features;
 
+        $this->theme = strtolower(get_template());
+        add_action('init', array($this, 'plugins_url'));
+        include_once( 'includes/settings.php' );
+        $this->plugin = wp_image_zoooom_settings('plugin'); 
+
          if ( is_admin() ) {
             $this->load_plugin_textdomain();
             include_once( 'includes/image-zoom-admin.php' );
@@ -89,22 +95,22 @@ final class ImageZoooom {
         if ( isset($general['enable_mobile']) && empty($general['enable_mobile']) && wp_is_mobile() )
             return false;
 
-
         // Adjust the zoom to WooCommerce 3.0.+
-        if (class_exists('woocommerce') && version_compare( WC_VERSION, '3.0', '>') ) {
+        if ( $general['enable_woocommerce'] && class_exists('woocommerce') && version_compare( WC_VERSION, '3.0', '>') ) {
             remove_theme_support( 'wc-product-gallery-zoom' );
             remove_theme_support( 'wc-product-gallery-lightbox' );
             add_theme_support( 'wc-product-gallery-slider' );
-        }
 
+            if ($this->theme('kiddy') || $this->theme('flatsome')) {
+                remove_theme_support( 'wc-product-gallery-slider' );
+            }
+        }
 
         add_filter( 'woocommerce_single_product_image_html', array( $this, 'woocommerce_single_product_image_html' ) );
         add_filter( 'woocommerce_single_product_image_thumbnail_html', array( $this, 'woocommerce_single_product_image_thumbnail_html' ) );
 
         add_filter( 'woocommerce_single_product_image_html', array( $this, 'remove_prettyPhoto' ) );
         add_filter( 'woocommerce_single_product_image_thumbnail_html', array( $this, 'remove_prettyPhoto' ) );
-//        add_filter( 'single_product_large_thumbnail_size', array( $this, 'single_product_large_thumbnail_size'), 40 );
-//        add_filter( 'single_product_small_thumbnail_size', array( $this, 'single_product_small_thumbnail_size'), 40 );
 
         add_filter( 'the_content', array( $this, 'find_bigger_image' ), 40 );
 
@@ -128,7 +134,11 @@ final class ImageZoooom {
             return $sources;
         }
 
-        if ( is_array($size_array) && count($size_array) == 2 && isset($image_meta['height']) && isset($image_meta['width'])) {
+        if ( is_array($size_array) && count($size_array) == 2 
+            && isset( $size_array[1] ) && isset($image_meta['height']) 
+            && $size_array[1] > 0
+            && isset($image_meta['width']) && $image_meta['width'] > 0 ) {
+
             $ratio = $size_array[0] * $image_meta['height'] / $size_array[1] / $image_meta['width'];
             if ( $ratio > 1.03 || $ratio < 0.97 ) return $sources;
         }
@@ -186,9 +196,8 @@ final class ImageZoooom {
             $content = str_replace('attachment-shop_single', '', $content);
         }
 
-        $theme = get_template();
         // Fix for the 2.8.6+ Virtue theme, see https://wordpress.org/support/topic/woocommerce_single_product_image_html-filter/
-        if ( $theme == 'virtue' ) {
+        if ($this->theme('virtue')) {
             $content = str_replace('attachment-shop_thumbnail  wp-post-image', 'attachment-shop_single  wp-post-image', $content);
         }
         return $content;
@@ -248,18 +257,33 @@ final class ImageZoooom {
      * wp_head compatibilities 
      */
     function wp_head_compatibilities() {
-        $theme = get_template();
-        if ( strpos( $theme, 'bridge') !== false ) { 
+        if ($this->theme('bridge') || $this->theme('nouveau') || $this->theme('stockholm') ) { 
             echo '<style type="text/css"> .wrapper { z-index: 40 !important; } </style>' . PHP_EOL;
         }
 
-        if ( strpos( $theme, 'nouveau') !== false ) { 
-            echo '<style type="text/css"> .wrapper { z-index: 100 !important; } </style>' . PHP_EOL;
-        }
-
-        if ( strpos( $theme, 'artcore') !== false ) {
+        if ($this->theme('artcore')) {
             echo '<style type="text/css"> .sidebar-menu-push { z-index: 40 !important; } </style>' . PHP_EOL;
         } 
+
+        // Many of the select-themes.com themes add a wrapper on the whole page
+        $select_themes = array(
+            'kloe', 'startit', 'kudos', 'moments', 'ayro', 'suprema', 'ultima', 'geko', 'target', 'coney', 'aton', 'ukiyo', 'zenit', 'mixtape', 'scribbler', 'alecta', 'cityrama', 'bazaar'
+        );
+        foreach( $select_themes as $_theme ) {
+            if ($this->theme($_theme) ) { ?>
+                <style type="text/css"> .qodef-wrapper { z-index: 200 !important; } </style>
+                <?php
+            }
+        }
+
+        if ($this->theme('dorianwp')) {
+            echo '<style type="text/css">.edgtf-side-menu-slide-from-right .edgtf-wrapper {z-index: 20;}</style>' . PHP_EOL;
+        } 
+
+        if ( defined('LP_PLUGIN_FILE')) {
+            echo '<style type="text/css">body.content-item-only .learn-press-content-item-only { z-index: 990; } .single-lp_course #wpadminbar{z-index:900;}</style>' . PHP_EOL;
+        }
+
     }
 
 
@@ -269,17 +293,16 @@ final class ImageZoooom {
      * @access public
      */
     public function wp_enqueue_scripts() {
+        $v = $this->plugin['version'];
+        $url = $this->plugin['url'];
         $prefix = '.min';
-        if ( $this->testing == true ) {
-            $prefix = '';
-        }
 
         // Load the jquery.image_zoom.js
-        wp_register_script( 'image_zoooom', $this->plugins_url( '/assets/js/jquery.image_zoom'.$prefix.'.js' ), array( 'jquery' ), self::$version, false);
+        wp_register_script( 'image_zoooom', $url.'assets/js/jquery.image_zoom'.$prefix.'.js', array( 'jquery' ), $v, false);
         wp_enqueue_script( 'image_zoooom' );
 
         // Load the image_zoom-init.js
-        wp_register_script( 'image_zoooom-init', $this->plugins_url( '/assets/js/image_zoom-init.js' ), array( 'jquery' ), self::$version, false);
+        wp_register_script( 'image_zoooom-init', $url. 'assets/js/image_zoom-init.js', array( 'jquery' ), $v, false);
         wp_localize_script( 'image_zoooom-init', 'IZ', $this->get_localize_vars());
         wp_enqueue_script( 'image_zoooom-init' );
 
@@ -374,7 +397,7 @@ final class ImageZoooom {
                    'lensFadeOut' => $i['lensFade'],
                    'zoomWindowFadeIn' => $i['zwFade'],
                    'zoomWindowFadeOut' => $i['zwFade'],
-                   'easingAmount  ' => $i['zwEasing'],
+                   'easingAmount' => $i['zwEasing'],
                 );
 
                 if ( $i['tint'] == true ) {
@@ -392,13 +415,25 @@ final class ImageZoooom {
 
     /** Helper function ****************************************/
 
-    public function plugins_url( $path  = '/' ) {
-        return untrailingslashit( plugins_url( $path, __FILE__ ) );
+    public function theme($string) {
+        $string = strtolower($string);
+        if (empty($this->theme)) {
+            $this->theme = strtolower(get_template());
+        }
+        if (strpos($this->theme, $string ) !== false) 
+            return true;
+
+        return false;       
     }
 
-    public function plugin_dir_path() {
-        return untrailingslashit( plugin_dir_path( __FILE__ ) );
+    function plugins_url() {
+        define('IMAGE_ZOOM_FILE', __FILE__);
+        define('IMAGE_ZOOM_URL', plugins_url('/', __FILE__));
+        define('IMAGE_ZOOM_PATH', plugin_dir_path(__FILE__));
+        $this->plugin['url'] = IMAGE_ZOOM_URL; 
+        $this->plugin['path'] = IMAGE_ZOOM_PATH; 
     }
+
 
     /**
      * Check if WooCommerce is activated
@@ -463,7 +498,7 @@ ImageZoooom();
 function wp_image_zoooom_plugin_action_links( $links ) {
 
     $settings_link = '<a href="admin.php?page=zoooom_settings">' .
-        esc_html( __('Settings' ) ) . '</a>';
+        esc_html( __('Settings', 'wp-image-zoooom' ) ) . '</a>';
 
     return array_merge( array( $settings_link), $links );
 

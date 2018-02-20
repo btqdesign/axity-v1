@@ -1,4 +1,5 @@
 /*!
+ModularBits v1.1
  * Bootstrap v3.3.2 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
@@ -368,18 +369,18 @@
              transform: rotate(45deg);
 }
 .cs-prv-next .owl-controls .owl-nav .owl-prev, .cs-prv-next .owl-controls .owl-nav .owl-next{
-   transform: skewX(-12deg);
+   /*transform: skewX(-12deg);
   -webkit-transform: skewX(-12deg);
    -moz-transform: skewX(-12deg);
     -ms-transform: skewX(-12deg);
-     -o-transform: skewX(-12deg);
+     -o-transform: skewX(-12deg);*/
 }
 .cs-prv-next .owl-controls .owl-nav .owl-prev i, .cs-prv-next .owl-controls .owl-nav .owl-next i{
-    transform: skewX(12deg);
+    /*transform: skewX(12deg);
   -webkit-transform: skewX(12deg);
    -moz-transform: skewX(12deg);
     -ms-transform: skewX(12deg);
-     -o-transform: skewX(12deg);
+     -o-transform: skewX(12deg);*/
 }
 .question-mark p:before{
    transform: rotate(180deg);

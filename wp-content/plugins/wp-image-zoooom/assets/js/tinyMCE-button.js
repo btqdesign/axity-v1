@@ -1,9 +1,10 @@
 (function() {
     tinymce.PluginManager.add('image_zoom_button', function( editor, url ) {
 
+        /*
     var this_js = tinyMCEPreInit.mceInit.content.external_plugins.image_zoom_button;
     var this_png_button = this_js.replace('js/tinyMCE-button.js', 'images/tinyMCE_button.png');
-
+        */
    function toggle_zoom() {
         var content = editor.selection.getContent();
         var zoom_class = 'zoooom';
@@ -26,14 +27,18 @@
         }
     }
 
-    editor.addButton('image_zoom_button', {
-            title: 'Image Zoooom',
-            icon: 'icon image-zoom-icon',
-//            image: '../wp-content/plugins/wp-image-zoooom/assets/images/tinyMCE_button.png',
-            image: this_png_button,
-            stateSelector: 'img.zoooom',
-            onClick: toggle_zoom,
-        });
+    var this_button = {
+        title: 'Image Zoom',
+        stateSelector: 'img.zoooom',
+        onClick: toggle_zoom,
+    };
+    if ( typeof jQuery('#toplevel_page_zoooom_settings img').attr('src') !== 'undefined' ) {
+        this_button.image = jQuery('#toplevel_page_zoooom_settings img').attr('src').replace('icon.svg', 'tinyMCE_button.png');
+    } else {
+        this_button.text = 'Image Zoom';
+    }
+
+    editor.addButton('image_zoom_button', this_button);
     });
 })();
 

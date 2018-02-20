@@ -126,7 +126,10 @@ if ( !class_exists('ProjectTemplates') ) {
                                   <div class="caption-inner">
                                       <div class="text">
                                           <a href="<?php esc_url(the_permalink()); ?>">
-                                              <i class="icon-plus8"></i>
+                                              <i class="icon-plus8">
+                                                  <?php $image_url_plus_icon = get_template_directory_uri().'/assets/images/plus.png'; ?>
+                                                  <img alt="plus-icon" src="<?php echo $image_url_plus_icon; ?>" style="margin: 0 0 18px;">
+                                              </i>
                                           </a>
                                           <a href="<?php esc_url(the_permalink()); ?>"><?php echo esc_attr(__('View','lassic'),'lassic');?><br> <?php echo esc_attr(__('Project','lassic'),'lassic');?></a>
                                       </div>
@@ -139,7 +142,7 @@ if ( !class_exists('ProjectTemplates') ) {
 										<?php cs_get_title($cs_title_limit); ?>
 									</a>
                                 </h3>
-                                <?php $cs_term_list	= get_the_term_list ( $post->ID, 'project-category', '<span><i class="fa fa-plus"></i>', ', ', '</span>' ); ?>
+                                <?php /*$cs_term_list	= get_the_term_list ( $post->ID, 'project-category', '<span><i class="fa fa-plus"></i>', ', ', '</span>' );*/ ?>
                                 <?php if ( isset( $cs_term_list ) && $cs_term_list!='' ) {?>
                                 <ul class="post-options">
                                     <li><?php echo cs_allow_special_char($cs_term_list);?></li>
@@ -291,10 +294,13 @@ if ( !class_exists('ProjectTemplates') ) {
                         <div class="caption-inner cs-large">
                             <div class="text">
                                 <a href="<?php esc_url(the_permalink()); ?>">
-                                    <i class="icon-plus8"></i>
+                                    <i class="icon-plus8">
+                                        <?php $image_url_plus_icon = get_template_directory_uri().'/assets/images/plus.png'; ?>
+                                        <img alt="plus-icon" src="<?php echo $image_url_plus_icon; ?>" style="margin: 0 0 18px;">
+                                    </i>
                                 </a>
                                 <a href="<?php esc_url(the_permalink()); ?>"><?php echo esc_attr('View Project','lassic');?></a>
-                                <?php $cs_term_list	= get_the_term_list ( $post->ID, 'project-category', '<span><i class="fa fa-plus"></i>', ', ', '</span>' ); ?>
+                                <?php /*$cs_term_list	= get_the_term_list ( $post->ID, 'project-category', '<span><i class="fa fa-plus"></i>', ', ', '</span>' );*/ ?>
                                 <?php if ( isset( $cs_term_list ) && $cs_term_list!='' ) {?>
                                 <ul class="post-options">
                                     <li><?php echo cs_allow_special_char($cs_term_list);?></li>
@@ -440,7 +446,10 @@ if ( !class_exists('ProjectTemplates') ) {
                     <div class="caption-inner">
                         <div class="text">
                             <a href="<?php esc_url(the_permalink()); ?>">
-                                <i class="icon-plus8"></i>
+                                <i class="icon-plus8">
+                                    <?php $image_url_plus_icon = get_template_directory_uri().'/assets/images/plus.png'; ?>
+                                    <img alt="plus-icon" src="<?php echo $image_url_plus_icon; ?>" style="margin: 0 0 18px;">
+                                </i>
                             </a>
                             <a href="<?php esc_url(the_permalink()); ?>"><?php echo esc_attr('View','lassic');?><br> <?php echo esc_attr('Project','lassic');?></a>
                         </div>
@@ -453,13 +462,13 @@ if ( !class_exists('ProjectTemplates') ) {
     	    	        <?php cs_get_title($cs_title_limit); ?>
         	        </a>
                 </h3>
-				<?php 
+				<?php /* 
 					$cs_term_list	= get_the_term_list ( $post->ID, 'project-category', '<span><i class="fa fa-plus"></i>', ', ', '</span>' ); 
 					if ( isset( $cs_term_list ) && $cs_term_list!='' ) {?>
                         <ul class="post-options">
                             <li><?php echo cs_allow_special_char($cs_term_list);?></li>
                         </ul>
-                <?php }?>
+                <?php }*/?>
             </div>
          </article>
 		<?php endwhile;?>
@@ -551,14 +560,14 @@ if ( !class_exists('ProjectTemplates') ) {
 			</script>
         	<div class="cs-portfoliolist cs-top-center mas-isotope">
          	<?php 
-				$cs_title_limit = 30;
+				$cs_title_limit = 160;
 		 		while ( $query->have_posts() ) : $query->the_post();
 					global $post;
 					$image_id = get_post_thumbnail_id($post->ID);
 					if($image_id <> ''){
 						$image_url = cs_attachment_image_src(get_post_thumbnail_id($post->ID), 0, 0);
 					}else{
-						$image_url 		= get_template_directory_uri().'/assets/images/no-image4x3.jpg';
+						$image_url = get_template_directory_uri().'/assets/images/no-image4x3.jpg';
 					}
 					
 					$post_cats = wp_get_object_terms( $post->ID, 'project-category' );
@@ -573,7 +582,7 @@ if ( !class_exists('ProjectTemplates') ) {
                                 <a href="<?php esc_url(the_permalink()); ?>"><img src="<?php echo esc_url($image_url); ?>" alt=""></a>
                             <?php } ?>
                             <h3>
-	                            <a href="<?php esc_url(the_permalink()); ?>">
+	                            <a href="<?php esc_url(the_permalink()); ?>" style="font-weight: 200 !important; font-size: 16px !important;">
     		                        <?php cs_get_title($cs_title_limit); ?>
             	                </a>
                             </h3>
@@ -581,15 +590,18 @@ if ( !class_exists('ProjectTemplates') ) {
                                 <div class="caption-inner cs-large">
                                     <div class="text">
                                         <a href="<?php esc_url(the_permalink()); ?>">
-                                            <i class="icon-plus8"></i>
+                                            <i class="icon-plus8">
+                                                <?php $image_url_plus_icon = get_template_directory_uri().'/assets/images/plus.png'; ?>
+                                                <img alt="plus-icon" src="<?php echo $image_url_plus_icon; ?>" style="margin: 0 0 18px;">
+                                            </i>
                                         </a>
                                         <a href="<?php esc_url(the_permalink()); ?>"><?php echo esc_attr('View Project','lassic');?></a>
-                                        <?php 
+                                        <?php /* 
 											$cs_term_list	= get_the_term_list ( $post->ID, 'project-category', '<span><i class="fa fa-plus"></i>', ', ', '</span>' ); 										if ( isset( $cs_term_list ) && $cs_term_list!='' ) {?>
                                             <ul class="post-options">
                                                 <li><?php echo cs_allow_special_char($cs_term_list);?></li>
                                             </ul>
-                                        <?php }?>
+                                        <?php }*/?>
                                     </div>
                                 </div>
                             </figcaption>

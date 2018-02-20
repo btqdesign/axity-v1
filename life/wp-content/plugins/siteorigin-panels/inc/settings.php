@@ -175,8 +175,18 @@ class SiteOrigin_Panels_Settings {
 		if ( $prefix != 'settings_page_siteorigin_panels' ) {
 			return;
 		}
-		wp_enqueue_style( 'siteorigin-panels-settings', plugin_dir_url( __FILE__ ) . '../settings/admin-settings.css', array(), SITEORIGIN_PANELS_VERSION );
-		wp_enqueue_script( 'siteorigin-panels-settings', plugin_dir_url( __FILE__ ) . '../settings/admin-settings' . SITEORIGIN_PANELS_JS_SUFFIX . '.js', array(), SITEORIGIN_PANELS_VERSION );
+		wp_enqueue_style(
+			'siteorigin-panels-settings',
+			siteorigin_panels_url( 'settings/admin-settings.css' ),
+			array(),
+			SITEORIGIN_PANELS_VERSION
+		);
+		wp_enqueue_script(
+			'siteorigin-panels-settings',
+			siteorigin_panels_url( 'settings/admin-settings' . SITEORIGIN_PANELS_JS_SUFFIX . '.js' ),
+			array(),
+			SITEORIGIN_PANELS_VERSION
+		);
 	}
 
 	/**
@@ -260,13 +270,23 @@ class SiteOrigin_Panels_Settings {
 			'label'       => __( 'Sidebars Emulator', 'siteorigin-panels' ),
 			'description' => __( 'Page Builder will create an emulated sidebar, that contains all widgets in the page.', 'siteorigin-panels' ),
 		);
+		
+		$fields['general']['fields']['display-teaser'] = array(
+			'type' => 'checkbox',
+			'label' => __('Upgrade Teaser', 'siteorigin-panels'),
+			'description' => sprintf(
+				__('Display the %sSiteOrigin Premium%s upgrade teaser in the Page Builder toolbar.', 'siteorigin-panels'),
+				'<a href="siteorigin.com/downloads/premium/" target="_blank">',
+				'</a>'
+			)
+		);
 
 		$fields['general']['fields']['display-learn'] = array(
 			'type' => 'checkbox',
 			'label' => __( 'Page Builder Learning', 'siteorigin-panels' ),
 			'description' => __( 'Display buttons for Page Builder learning.', 'siteorigin-panels' )
 		);
-
+		
 		$fields['general']['fields']['load-on-attach'] = array(
 			'type' => 'checkbox',
 			'label' => __( 'Default To Page Builder Interface', 'siteorigin-panels' ),

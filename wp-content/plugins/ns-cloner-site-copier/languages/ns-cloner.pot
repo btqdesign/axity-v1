@@ -1,131 +1,142 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: NS Cloner\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-10 15:18-0600\n"
-"PO-Revision-Date: 2014-09-10 15:20-0700\n"
-"Last-Translator: Nick Parsons <nick@neversettle.it>\n"
-"Language-Team: Never Settle <dev@neversettle.it>\n"
-"Language: en_US\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: NS Cloner - Site Copier\n"
+"POT-Creation-Date: 2017-11-14 16:55-0600\n"
+"PO-Revision-Date: 2017-11-14 16:54-0600\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.6.5\n"
+"X-Generator: Poedit 2.0.4\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: ns-cloner.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: ns-cloner.php:131
+#: lib/ns-log-utils.php:14
+#, php-format
+msgid ""
+"Unable to create log file %s. Functionality will work, but you won't have "
+"logs in case anything needs debugging. Is that file's parent directory "
+"writable by the server?"
+msgstr ""
+
+#: ns-cloner.php:143
 msgid "Normal Clone"
 msgstr ""
 
-#: ns-cloner.php:132
+#: ns-cloner.php:144
 msgid "Clone"
 msgstr ""
 
-#: ns-cloner.php:133
+#: ns-cloner.php:145
 msgid "Take an existing site and create a brand new copy of it at another url."
 msgstr ""
 
-#: ns-cloner.php:134
+#: ns-cloner.php:146
 msgid "Clone complete!"
 msgstr ""
 
-#: ns-cloner.php:161
+#: ns-cloner.php:174
 msgid ""
 "Sorry, the NS Cloner is a multisite only plugin. It won't work on a single "
 "site like this. Read more <a href='http://codex.wordpress.org/"
 "Create_A_Network' target='_blank'>here</a>"
 msgstr ""
 
-#: ns-cloner.php:204 ns-cloner.php:205
+#: ns-cloner.php:247 ns-cloner.php:248
 msgid "NS Cloner V3"
 msgstr ""
 
-#: ns-cloner.php:215 ns-cloner.php:216
+#: ns-cloner.php:258 ns-cloner.php:259
 msgid "Add-ons"
 msgstr ""
 
-#: ns-cloner.php:257
+#: ns-cloner.php:300
 msgid "Total process time"
 msgstr ""
 
-#: ns-cloner.php:257
+#: ns-cloner.php:300
 msgid "seconds"
 msgstr ""
 
-#: ns-cloner.php:265
+#: ns-cloner.php:309
 msgid "Log file"
 msgstr ""
 
-#: ns-cloner.php:273
+#: ns-cloner.php:317
 #, php-format
 msgid ""
-"WARNING! The cloned site has the same upload path (%s) as site id(s) %s. If "
-"you leave the upload_path options on both sites as they are, "
+"WARNING! The cloned site has the same upload path (%1$s) as site id(s) %2$s. "
+"If you leave the upload_path options on both sites as they are, "
 "<strong>deleting either site will delete all of the other's uploads.</strong>"
 msgstr ""
 
-#: ns-cloner.php:347
+#: ns-cloner.php:392
 msgid ""
 "Unable to create new site for cloning operation. Check the cloner logs for "
 "details."
 msgstr ""
 
-#: ns-cloner.php:469
+#: ns-cloner.php:579
 msgid "Tables cloned"
 msgstr ""
 
-#: ns-cloner.php:470
+#: ns-cloner.php:580
 msgid "Replacements made"
 msgstr ""
 
-#: ns-cloner.php:484
+#: ns-cloner.php:592
 msgid "Files/directories copied"
 msgstr ""
 
-#: ns-cloner.php:514
+#: ns-cloner.php:626
 msgid "You don't have sufficient permissions to create site clones."
 msgstr ""
 
-#: ns-cloner.php:581
+#: ns-cloner.php:635
+msgid "Invalid nonce."
+msgstr ""
+
+#: ns-cloner.php:708
 msgid "Could not connect to and select the source database"
 msgstr ""
 
-#: ns-cloner.php:593
+#: ns-cloner.php:719
 msgid "Old Site ID"
 msgstr ""
 
-#: ns-cloner.php:625
+#: ns-cloner.php:751
 msgid "Old Site"
 msgstr ""
 
-#: ns-cloner.php:640
+#: ns-cloner.php:772
 msgid "Could not connect to and select the target database"
 msgstr ""
 
-#: ns-cloner.php:653
+#: ns-cloner.php:783
 msgid "New Site ID"
 msgstr ""
 
-#: ns-cloner.php:685
+#: ns-cloner.php:815
 msgid "New Site"
 msgstr ""
 
-#: ns-cloner.php:786
+#: ns-cloner.php:934
 #, php-format
 msgid "Uh-oh - there was an sql error: %s."
 msgstr ""
 
-#: lib/ns-log-utils.php:9
-#, php-format
-msgid ""
-"Unable to create log file %s. Functionality will work, but you won't have "
-"logs in case anything needs debugging. Is that file's parent directory "
-"writable by the server?"
+#: ns-sidebar/ns-sidebar.php:85
+msgid "Support & Feature Requests"
 msgstr ""
 
 #: sections/ns-cloner-section-additional-settings.php:10
@@ -183,7 +194,7 @@ msgstr ""
 msgid "Select Source"
 msgstr ""
 
-#: sections/ns-cloner-section-select-source.php:21
+#: sections/ns-cloner-section-select-source.php:52
 msgid ""
 "Pick an existing source site to clone. If you haven't already, now is a "
 "great time to set up a \"template\" site exactly the way you want the new "
@@ -194,16 +205,16 @@ msgstr ""
 msgid "NS Cloner Add-On Manager"
 msgstr ""
 
-#: templates/ns-template-addons.php:33
+#: templates/ns-template-addons.php:38
 msgid "Learn More"
 msgstr ""
 
-#: templates/ns-template-addons.php:35
-#: templates/ns-template-side-add-ons.php:15
+#: templates/ns-template-addons.php:40
+#: templates/ns-template-side-add-ons.php:17
 msgid "Installed"
 msgstr ""
 
-#: templates/ns-template-addons.php:37
+#: templates/ns-template-addons.php:42
 msgid "Buy Now"
 msgstr ""
 
@@ -219,11 +230,11 @@ msgstr ""
 msgid "Expand All"
 msgstr ""
 
-#: templates/ns-template-main.php:40
+#: templates/ns-template-main.php:41
 msgid "WARNING:"
 msgstr ""
 
-#: templates/ns-template-main.php:41
+#: templates/ns-template-main.php:42
 msgid ""
 "We have made an incredibly complex process ridiculously easy with this "
 "powerful plugin. We have tested thoroughly and used this exact tool in our "
@@ -268,7 +279,7 @@ msgid ""
 "normally in the other plugin."
 msgstr ""
 
-#: templates/ns-template-report.php:26
+#: templates/ns-template-report.php:27
 msgid "OK, Close Report"
 msgstr ""
 
@@ -276,36 +287,44 @@ msgstr ""
 msgid "Add-Ons"
 msgstr ""
 
-#: templates/ns-template-side-add-ons.php:17
+#: templates/ns-template-side-add-ons.php:19
 msgid "Buy / Info"
 msgstr ""
 
-#: templates/ns-template-side-shares.php:3
-msgid ""
-"If the Cloner has saved you lots of time, tell everyone with a 5-star rating!"
-msgstr ""
-
-#: templates/ns-template-side-shares.php:16
-msgid "Stay up to date with updates, new plugins and all the good stuff!"
-msgstr ""
-
-#: templates/ns-template-side-shares.php:45
-msgid ""
-"Have any issues with the cloner, or ideas on how to make it better? We'd "
-"love to hear from you."
-msgstr ""
-
-#: templates/ns-template-side-shares.php:46
-msgid "Support & Feature Requests"
-msgstr ""
-
-#: templates/ns-template-side-shares.php:49
+#: templates/ns-template-side-shares.php:10
 msgid ""
 "If you're going to open a support request, could you please copy the log "
 "urls listed below and paste them at the bottom of your support request so we "
 "can give you better and faster help? Thank you!"
 msgstr ""
 
-#: templates/ns-template-side-shares.php:52
+#: templates/ns-template-side-shares.php:11
+msgid ""
+"(Also, please send privately, not on a forum - all super-sensitive info such "
+"as passwords is hidden but some logged details like database prefixes, etc. "
+"are best kept private to be safe.)"
+msgstr ""
+
+#: templates/ns-template-side-shares.php:14
 msgid "Continue to Support"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "NS Cloner - Site Copier"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+#. Author URI of the plugin/theme
+msgid "http://neversettle.it"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"The amazing NS Cloner creates a new site as an exact clone / duplicate / "
+"copy of an existing site with theme and all plugins and settings intact in "
+"just a few steps. Check out the add-ons for additional powerful features!"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Never Settle"
 msgstr ""

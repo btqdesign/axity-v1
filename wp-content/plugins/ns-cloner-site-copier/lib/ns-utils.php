@@ -74,16 +74,28 @@ function ns_recursive_search_replace( &$data, $search, $replace, $regex_search=a
 	if( $is_serialized ){
 		$data = unserialize($data);
 	}
-	// run through replacements for strings, arrays - other types are unsupported to vaoid
+
+	// run through replacements for strings, arrays - other types are unsupported to avoid
 	if( is_array($data) ){
 		foreach ($data as $key => $value) {
 			ns_recursive_search_replace( $data[$key], $search, $replace, $regex_search, $regex_replace, $case_sensitive );
 		}
 	}
+	
+	// run through replacements for strings, objects - other types are unsupported to avoid
+	elseif ( is_object($data) ) {
+		foreach ( $data as $key => $value) {
+			ns_recursive_search_replace( $data->$key, $search, $replace, $regex_search, $regex_replace, $case_sensitive );
+		}
+	}
 	elseif( is_string($data) ){
 		// simple string replacment - most of the time this is all that is needed
 		$replace_func = $case_sensitive? 'str_replace' : 'str_ireplace';
+		// not sure why ns_log_write does not work here... nothing happens
+		//ns_log_write( "DATA BEFORE replace: ".$data, $logfile );
 		$data = $replace_func( $search, $replace, $data, $string_replacements_made );
+		// not sure why ns_log_write does not work here... nothing happens
+		//ns_log_write( "DATA  AFTER replace: ".$data, $logfile );
 		// advanced regex replacement - this will be skipped most of the time
 		if( !empty($regex_search) && !empty($regex_replace) ){
 			$data = preg_replace(

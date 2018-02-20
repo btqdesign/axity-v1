@@ -125,10 +125,27 @@ class Limit_Login_Attempts
 		*/
 		add_action( 'wp_authenticate', array( $this, 'track_credentials' ), 10, 2 );
 		add_action( 'authenticate', array( $this, 'authenticate_filter' ), 5, 3 );
+		
+		if ( defined('XMLRPC_REQUEST') && XMLRPC_REQUEST )
+			add_action( 'init', array( $this, 'check_xmlrpc_lock' ) );
+		
+		add_action('wp_ajax_limit-login-unlock', array( $this, 'ajax_unlock' ) );
+	}
+	
+	public function check_xmlrpc_lock()
+	{
+		if ( is_user_logged_in() || $this->is_ip_whitelisted() )
+			return;
+			
+		if ( $this->is_ip_blacklisted() || !$this->is_limit_login_ok() )
+		{
+			header('HTTP/1.0 403 Forbidden');
+			exit;
+		}
 	}
 
 	public function check_whitelist_ips( $allow, $ip ) {
-		return in_array( $ip, (array) $this->get_option( 'whitelist' ) );
+		return $this->ip_in_range( $ip, (array) $this->get_option( 'whitelist' ) );
 	}
 
 	public function check_whitelist_usernames( $allow, $username ) {
@@ -136,11 +153,42 @@ class Limit_Login_Attempts
 	}
 
 	public function check_blacklist_ips( $allow, $ip ) {
-		return in_array( $ip, (array) $this->get_option( 'blacklist' ) );
+		return $this->ip_in_range( $ip, (array) $this->get_option( 'blacklist' ) );
 	}
 
 	public function check_blacklist_usernames( $allow, $username ) {
 		return in_array( $username, (array) $this->get_option( 'blacklist_usernames' ) );
+	}
+	
+	public function ip_in_range( $ip, $list )
+	{
+		foreach ( $list as $range )
+		{
+			$range = array_map('trim', explode('-', $range) );
+			if ( count( $range ) == 1 )
+			{
+				if ( (string)$ip === (string)$range[0] )
+					return true;
+			}
+			else
+			{
+				$low = ip2long( $range[0] );
+				$high = ip2long( $range[1] );
+				$ip = ip2long( $ip );
+				
+				if ( $low === false || $high === false || $ip === false )
+					continue;
+				
+				$low = (float)sprintf("%u",$low);
+				$high = (float)sprintf("%u",$high);
+				$ip = (float)sprintf("%u",$ip);
+				
+				if ( $ip >= $low && $ip <= $high )
+					return true;
+			}
+		}
+		
+		return false;
 	}
 
 	/**
@@ -555,6 +603,7 @@ class Limit_Login_Attempts
 		}
 
 		$blogname = $this->use_local_options ? get_option( 'blogname' ) : get_site_option( 'site_name' );
+		$blogname = htmlspecialchars_decode( $blogname, ENT_QUOTES );
 
 		if ( $whitelisted ) {
 			$subject = sprintf( __( "[%s] Failed login attempts from whitelisted IP"
@@ -581,6 +630,7 @@ class Limit_Login_Attempts
 
 		$admin_email = $this->use_local_options ? get_option( 'admin_email' ) : get_site_option( 'admin_email' );
 
+		//var_dump( $blogname, $subject ); exit;
 		@wp_mail( $admin_email, $subject, $message );
 	}
 	
@@ -604,30 +654,18 @@ class Limit_Login_Attempts
 		$ip = $this->get_address();
 
 		/* can be written much simpler, if you do not mind php warnings */
-		if ( isset( $log[ $ip ] ) ) {
-			if ( isset( $log[ $ip ][ $user_login ] ) ) {
-
-				if ( is_array( $log[ $ip ][ $user_login ] ) ) { // For new plugin version
-					$log[ $ip ][ $user_login ]['counter'] += 1;
-				} else { // For old plugin version
-					$temp_counter              = $log[ $ip ][ $user_login ];
-					$log[ $ip ][ $user_login ] = array(
-						'counter' => $temp_counter + 1
-					);
-				}
-			} else {
-				$log[ $ip ][ $user_login ] = array(
-					'counter' => 1
-				);
-			}
-		} else {
-			$log[ $ip ] = array(
-				$user_login => array(
-					'counter' => 1
-				)
+		if ( !isset( $log[ $ip ] ) )
+			$log[ $ip ] = array();
+		
+		if ( !isset( $log[ $ip ][ $user_login ] ) )
+			$log[ $ip ][ $user_login ] = array( 'counter' => 0 );
+		
+		elseif ( !is_array( $log[ $ip ][ $user_login ] ) )
+			$log[ $ip ][ $user_login ] = array( 
+				'counter' => $log[ $ip ][ $user_login ],
 			);
-		}
-
+		
+		$log[ $ip ][ $user_login ]['counter']++;
 		$log[ $ip ][ $user_login ]['date'] = time();
 
 		if ( isset( $_POST['woocommerce-login-nonce'] ) ) {
@@ -963,13 +1001,17 @@ class Limit_Login_Attempts
 	*/
 	public function get_address( $type_name = '' ) {
 
-		if ( isset( $_SERVER['HTTP_X_FORWARDED_FOR'] ) && ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
+		if ( !empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) )
 			return $_SERVER['HTTP_X_FORWARDED_FOR'];
-		} elseif ( isset( $_SERVER['REMOTE_ADDR'] ) ) {
+
+		elseif ( !empty( $_SERVER['HTTP_X_SUCURI_CLIENTIP'] ) )
+			return $_SERVER['HTTP_X_SUCURI_CLIENTIP'];
+
+		elseif ( isset( $_SERVER['REMOTE_ADDR'] ) )
 			return $_SERVER['REMOTE_ADDR'];
-		} else {
+
+		else
 			return '';
-		}
 	}
 
 	/**
@@ -1064,9 +1106,9 @@ class Limit_Login_Attempts
 				$this->update_option('valid_duration',     (int)$_POST['valid_duration'] * 3600 );
 				$this->update_option('allowed_lockouts',   (int)$_POST['allowed_lockouts'] );
 				$this->update_option('long_duration',      (int)$_POST['long_duration'] * 3600 );
-				$this->update_option('notify_email_after', (int)$_POST['email_after'] * 3600 );
+				$this->update_option('notify_email_after', (int)$_POST['email_after'] );
 
-				$white_list_ips = ( !empty( $_POST['lla_whitelist_ips'] ) ) ? explode("\n", str_replace("\r", "", $_POST['lla_whitelist_ips'] ) ) : array();
+				$white_list_ips = ( !empty( $_POST['lla_whitelist_ips'] ) ) ? explode("\n", str_replace("\r", "", stripslashes($_POST['lla_whitelist_ips']) ) ) : array();
 
 				if( !empty( $white_list_ips ) ) {
 					foreach( $white_list_ips as $key => $ip ) {
@@ -1077,7 +1119,7 @@ class Limit_Login_Attempts
 				}
 				$this->update_option('whitelist', $white_list_ips );
 
-				$white_list_usernames = ( !empty( $_POST['lla_whitelist_usernames'] ) ) ? explode("\n", str_replace("\r", "", $_POST['lla_whitelist_usernames'] ) ) : array();
+				$white_list_usernames = ( !empty( $_POST['lla_whitelist_usernames'] ) ) ? explode("\n", str_replace("\r", "", stripslashes($_POST['lla_whitelist_usernames']) ) ) : array();
 
 				if( !empty( $white_list_usernames ) ) {
 					foreach( $white_list_usernames as $key => $ip ) {
@@ -1088,7 +1130,7 @@ class Limit_Login_Attempts
 				}
 				$this->update_option('whitelist_usernames', $white_list_usernames );
 
-				$black_list_ips = ( !empty( $_POST['lla_blacklist_ips'] ) ) ? explode("\n", str_replace("\r", "", $_POST['lla_blacklist_ips'] ) ) : array();
+				$black_list_ips = ( !empty( $_POST['lla_blacklist_ips'] ) ) ? explode("\n", str_replace("\r", "", stripslashes($_POST['lla_blacklist_ips']) ) ) : array();
 
 				if( !empty( $black_list_ips ) ) {
 					foreach( $black_list_ips as $key => $ip ) {
@@ -1099,7 +1141,7 @@ class Limit_Login_Attempts
 				}
 				$this->update_option('blacklist', $black_list_ips );
 				
-				$black_list_usernames = ( !empty( $_POST['lla_blacklist_usernames'] ) ) ? explode("\n", str_replace("\r", "", $_POST['lla_blacklist_usernames'] ) ) : array();
+				$black_list_usernames = ( !empty( $_POST['lla_blacklist_usernames'] ) ) ? explode("\n", str_replace("\r", "", stripslashes($_POST['lla_blacklist_usernames']) ) ) : array();
 
 				if( !empty( $black_list_usernames ) ) {
 					foreach( $black_list_usernames as $key => $ip ) {
@@ -1121,11 +1163,44 @@ class Limit_Login_Attempts
 				
 				$this->sanitize_options();
 				
-				$this->show_error( __( 'Options changed', 'limit-login-attempts-reloaded' ) );
+				$this->show_error( __( 'Options saved.', 'limit-login-attempts-reloaded' ) );
 			}
 		}
 		
 		include_once( LLA_PLUGIN_DIR . '/views/options-page.php' );
+	}
+	
+	public function ajax_unlock()
+	{
+		check_ajax_referer('limit-login-unlock', 'sec');
+		$ip = (string)@$_POST['ip'];
+		
+		$lockouts = (array)$this->get_option('lockouts');
+		
+		if ( isset( $lockouts[ $ip ] ) )
+		{
+			unset( $lockouts[ $ip ] );
+			$this->update_option( 'lockouts', $lockouts );
+		}
+		
+		//save to log
+		$user_login = @(string)$_POST['username'];
+		$log = $this->get_option( 'logged' );
+		
+		if ( @$log[ $ip ][ $user_login ] )
+		{
+			if ( !is_array( $log[ $ip ][ $user_login ] ) )
+			$log[ $ip ][ $user_login ] = array( 
+				'counter' => $log[ $ip ][ $user_login ],
+			);
+			$log[ $ip ][ $user_login ]['unlocked'] = true;
+			
+			$this->update_option( 'logged', $log );
+		}
+		
+		header('Content-Type: application/json');
+		echo 'true';
+		exit;
 	}
 
 	/**

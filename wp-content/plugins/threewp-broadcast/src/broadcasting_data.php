@@ -3,7 +3,6 @@
 namespace threewp_broadcast;
 
 use \Exception;
-use \threewp_broadcast\actions;
 use \threewp_broadcast\broadcast_data\blog;
 
 /**
@@ -225,6 +224,13 @@ class broadcasting_data
 	public $taxonomies = true;
 
 	/**
+		@brief		Collection of data related to taxonomies.
+		@detail		The collection is automatically created using taxonomies().
+		@since		2017-07-10 17:34:10
+	**/
+	public $taxonomy_data = false;
+
+	/**
 		@brief		This is a collection of term meta used when syncing terms.
 		@details	The data is stored as ->taxonomy_term_meta->collection( blog_id )->collection( 'terms' )->collection[ term_id, term_meta_array ]
 					This is to allow add-ons to store their own data in their own collection, instead of the terms.
@@ -305,7 +311,7 @@ class broadcasting_data
 			$this->meta_box_data = ThreeWP_Broadcast()->create_meta_box( $this->post );
 
 			// Allow plugins to modify the meta box with their own info.
-			$action = new actions\prepare_meta_box;
+			$action = ThreeWP_Broadcast()->new_action( 'prepare_meta_box' );
 			$action->meta_box_data = $this->meta_box_data;
 			$action->execute();
 		}
@@ -482,6 +488,15 @@ class broadcasting_data
 			$this->custom_fields->whitelist = array_filter( explode( ' ', ThreeWP_Broadcast()->get_site_option( 'custom_field_whitelist' ) ) );
 			ThreeWP_Broadcast()->debug( 'The custom field whitelist is: %s', $this->custom_fields->whitelist );
 		}
+	}
+
+	/**
+		@brief		Return an instance of the taxonomies helper.
+		@since		2017-07-10 16:55:46
+	**/
+	public function taxonomies()
+	{
+		return new \threewp_broadcast\broadcasting_data\Taxonomies( $this );
 	}
 
 	/**

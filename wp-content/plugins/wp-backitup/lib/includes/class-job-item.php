@@ -30,6 +30,7 @@ class WPBackItUp_Job_Item {
 	const QUEUED    = 'queued';
 	const COMPLETE  = 'complete';
 	const ERROR     = 'error';
+	const CANCELLED  = 'cancelled';
 
 
 	// ** END ITEM CONSTANTS **
@@ -98,19 +99,54 @@ class WPBackItUp_Job_Item {
 	}
 
 	/**
+	 * Create Job Item
+	 *
+	 * @param $job_id
+	 * @param $group_id
+	 * @param $batch_id
+	 * @param $item
+	 * @param $size_kb
+	 *
+	 * @return bool|WPBackItUp_Job_Item
+	 */
+	public static function create_item($job_id, $group_id, $batch_id,$item, $size_kb) {
+		WPBackItUp_Logger::log_info( self::DEFAULT_LOG_NAME, __METHOD__, 'Begin' );
+
+		try {
+
+			$db        = new WPBackItUp_DataAccess();
+			$db_item = $db->insert_job_item($job_id, $group_id, $batch_id, $item, $size_kb);
+			if ( false === $db_item ) return false;
+
+
+			return new WPBackItUp_Job_Item( $db_item );
+
+		} catch(Exception $e) {
+			error_log($e); //Log to debug
+			WPBackItUp_Logger::log_error(self::DEFAULT_LOG_NAME,__METHOD__,'Constructor Exception: ' .$e);
+			return false;
+		}
+	}
+
+	/**
 	 * Get item by id
 	 *
 	 */
 	public static function get_item_by_id($item_id) {
 		WPBackItUp_Logger::log_info( self::DEFAULT_LOG_NAME, __METHOD__, 'Begin' );
+		try {
+			$db        = new WPBackItUp_DataAccess();
+			$db_item = $db->get_item_by_id( $item_id);
+			WPBackItUp_Logger::log_info(self::DEFAULT_LOG_NAME,__METHOD__,'Item: ' .var_export($db_item,true));
+			if ( empty($db_item)) return false;
 
-		$db        = new WPBackItUp_DataAccess();
-		$db_item = $db->get_item_by_id( $item_id);
-		if ( false === $db_item ) {
+			return new WPBackItUp_Job_Item( $db_item );
+
+		} catch(Exception $e) {
+			error_log($e); //Log to debug
+			WPBackItUp_Logger::log_error(self::DEFAULT_LOG_NAME,__METHOD__,'Constructor Exception: ' .$e);
 			return false;
 		}
-
-		return new WPBackItUp_Job_Item( $db_item );
 	}
 
 	/**
@@ -120,7 +156,7 @@ class WPBackItUp_Job_Item {
 	 * @param $batch_size
 	 * @param $group_id
 	 *
-	 * @return array|bool
+	 * @return bool| WPBackItUp_Job_Item[]
 	 */
 	public static function get_item_batch_by_group($job_id,$batch_size,$group_id) {
 		WPBackItUp_Logger::log_info( self::DEFAULT_LOG_NAME, __METHOD__, 'Begin' );
@@ -141,6 +177,82 @@ class WPBackItUp_Job_Item {
 		return $item_list;
 	}
 
+
+	/**
+	 *  Get open items(OPEN,QUEUED) for group list
+	 *
+	 * @param array|string $groups
+	 *
+	 * @return array|bool
+	 */
+	public static function get_open_items_by_group($groups,$batch_size=25) {
+		WPBackItUp_Logger::log_info( self::DEFAULT_LOG_NAME, __METHOD__, 'Begin' );
+
+		$db        = new WPBackItUp_DataAccess();
+		$item_rows = $db->get_open_items_by_group( $groups,$batch_size);
+		if ( false === $item_rows ) {
+			return false;
+		}
+
+		$item_list = array();
+		foreach ( $item_rows as $key => $row ) {
+			$item_list[] = new WPBackItUp_Job_Item( $row );
+		}
+
+		return $item_list;
+	}
+
+
+	/**
+	 * Get Job items by status
+	 *
+	 * @param $job_id
+	 * @param $status_list[]
+	 *
+	 * @return bool| WPBackItUp_Job_Item[]
+	 */
+	public static function get_job_items($job_id,$status_list) {
+		WPBackItUp_Logger::log_info( self::DEFAULT_LOG_NAME, __METHOD__, 'Begin' );
+
+		$db        = new WPBackItUp_DataAccess();
+		$item_rows = $db->get_job_items( $job_id,$status_list);
+		if ( false === $item_rows ) {
+			return false;
+		}
+
+		$item_list = array();
+		foreach ( $item_rows as $key => $row ) {
+			$item_list[] = new WPBackItUp_Job_Item( $row );
+		}
+
+		return $item_list;
+	}
+
+	/**
+	 *  Get open items(OPEN,QUEUED) for group list
+	 *
+	 * @param array|string $groups
+	 *
+	 * @return array|bool
+	 */
+	public static function get_open_items_by_group_last_day($groups) {
+		WPBackItUp_Logger::log_info( self::DEFAULT_LOG_NAME, __METHOD__, 'Begin' );
+
+		$db        = new WPBackItUp_DataAccess();
+		$item_rows = $db->get_open_items_by_group_last_day( $groups);
+		if ( false === $item_rows ) {
+			return false;
+		}
+
+		$item_list = array();
+		foreach ( $item_rows as $key => $row ) {
+			$item_list[] = new WPBackItUp_Job_Item( $row );
+		}
+
+		return $item_list;
+	}
+
+
 	/**
 	 * Get the number of open items remaining for a group
 	 *
@@ -156,6 +268,29 @@ class WPBackItUp_Job_Item {
 		$remaining_count = $db->get_open_item_count($job_id,$group_id);
 
 		return $remaining_count;
+	}
+
+	/**
+	 * Get a count of all items by status
+	 *
+	 * @param  int   $job_id
+	 *
+	 * @param  array $item_status_list
+	 *
+	 * @return mixed
+	 */
+	public static function get_item_status_count($job_id,$item_status_list=null) {
+		WPBackItUp_Logger::log_info( self::DEFAULT_LOG_NAME, __METHOD__, 'Begin' );
+
+		//IF not null and not array, stick in array
+		if ( ! WPBackItUp_Utility::is_null_or_empty($item_status_list) && ! is_array($item_status_list)){
+			$item_status_list = array( $item_status_list);
+		}
+
+		$db        = new WPBackItUp_DataAccess();
+		$count = $db->get_item_status_count($job_id,$item_status_list);
+
+		return (int) $count;
 	}
 
 
@@ -179,12 +314,100 @@ class WPBackItUp_Job_Item {
 	}
 
 	/**
-	 * Get Item
+	 * Set item offset
 	 *
+	 * @param $offset
+	 *
+	 * @return mixed
+	 */
+	public function setOffset($offset){
+		WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Begin');
+
+		$db        = new WPBackItUp_DataAccess();
+		$updated = $db->update_item_offset($this->item_id,$offset);
+		if (true===$updated){
+			$this->offset=$offset;
+		}
+
+		return $updated;
+	}
+
+	/**
+	 * Get Item
 	 * @return mixed
 	 */
 	public function getItem() {
 		return $this->item;
 	}
 
+	/**
+	 * Get Job Id
+	 * @return mixed
+	 */
+	public function getJobId() {
+		return $this->job_id;
+	}
+
+	/**
+	 * Get Item Id
+	 * @return mixed
+	 */
+	public function getItemId() {
+		return $this->item_id;
+	}
+
+	/**
+	 * Get Item Status
+	 * @return mixed
+	 */
+	public function getItemStatus() {
+		return $this->item_status;
+	}
+
+	/**
+	 * Get Group Id
+	 * @return string
+	 */
+	public function getGroupId() {
+		return $this->group_id;
+	}
+
+	/**
+	 * Get Size in KB
+	 * @return string
+	 */
+	public function getSizeKB() {
+		return $this->size_kb;
+	}
+
+	/**
+	 * Get Offset
+	 * @return string
+	 */
+	public function getOffset() {
+		return $this->offset;
+	}
+
+	/**
+	 * Get Create Date
+	 * @return timestamp
+	 */
+	public function getCreateDate() {
+
+		return strtotime($this->create_date);
+	}
+
+
+	/**
+	 * Percentage Complete
+	 * @return string
+	 */
+	public function getPercentComplete() {
+		$size = (int) $this->size_kb;
+		$offset= (int)$this->offset;
+		$percent = round(($offset/$size * 100 ),2);
+
+
+		return$percent;
+	}
 }

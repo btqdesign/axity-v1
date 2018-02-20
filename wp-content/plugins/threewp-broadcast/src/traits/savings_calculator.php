@@ -2,8 +2,6 @@
 
 namespace threewp_broadcast\traits;
 
-use \threewp_broadcast\actions;
-
 /**
 	@brief		Keep track of the time saved by using Broadcast.
 	@details	None of this needs to be translated, since it's not critical.
@@ -20,7 +18,7 @@ trait savings_calculator
 		$data = $this->savings_data();
 		$defaults = $data->get_defaults();
 
-		$form = $this->form2();
+		$form = $this->form();
 		$form->css_class( 'plainview_form_auto_tabs' );
 
 		$r = '';

@@ -44,6 +44,25 @@ class equivalent_posts
 	}
 
 	/**
+		@brief		Either retrieve the existing equivalent, or broadcast the post making a new equivalent.
+		@since		2017-10-25 16:44:53
+	**/
+	public function get_or_broadcast( $parent_blog, $parent_post, $child_blog )
+	{
+		$child_post = $this->get( $parent_blog, $parent_post, $child_blog );
+		if ( ! $child_post )
+		{
+			switch_to_blog( $parent_blog );
+			$new_bcd = ThreeWP_Broadcast()->api()
+				->broadcast_children( $parent_post, [ $child_blog ] );
+			restore_current_blog();
+			$child_post = $new_bcd->new_post( 'ID' );
+			$this->equivalents[ $parent_blog ][ $parent_post ][ $child_blog ] = $child_post;
+		}
+		return $child_post;
+	}
+
+	/**
 		@brief		Set the equivalent post on a blog.
 		@since		2014-09-21 11:54:04
 	**/

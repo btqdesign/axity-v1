@@ -16,19 +16,23 @@ class SiteOrigin_Widgets_Bundle_Elementor {
 	private $plugin;
 
 	function __construct() {
-		add_action( 'template_redirect', [ $this, 'init' ] );
+		add_action( 'admin_action_elementor', array( $this, 'init_editor' ) );
+		add_action( 'template_redirect', array( $this, 'init_preview' ) );
 
-		add_action( 'wp_ajax_elementor_render_widget', [ $this, 'ajax_render_widget_preview' ] );
-		add_action( 'wp_ajax_elementor_editor_get_wp_widget_form', [ $this, 'ajax_render_widget_form' ] );
+		add_action( 'wp_ajax_elementor_render_widget', array( $this, 'ajax_render_widget_preview' ) );
+		add_action( 'wp_ajax_elementor_editor_get_wp_widget_form', array( $this, 'ajax_render_widget_form' ) );
 	}
 
-	function init() {
+	function init_editor() {
+		add_action( 'elementor/editor/before_enqueue_scripts', array( $this, 'enqueue_active_widgets_scripts' ) );
+	}
+	
+	function init_preview() {
 		$this->plugin = Elementor\Plugin::instance();
 		if ( !empty( $this->plugin->preview ) && method_exists( $this->plugin->preview, 'is_preview_mode' ) && $this->plugin->preview->is_preview_mode() ) {
-			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_frontend_scripts' ] );
+			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_frontend_scripts' ) );
+			add_action( 'elementor/preview/enqueue_styles', array( $this, 'enqueue_preview_scripts' ) );
 		}
-
-		add_action( 'elementor/editor/before_enqueue_scripts', array( $this, 'enqueue_active_widgets_scripts' ) );
 	}
 
 	function enqueue_frontend_scripts() {
@@ -40,6 +44,21 @@ class SiteOrigin_Widgets_Bundle_Elementor {
 			// Elementor is calling widgets' `widget` method with instance data in the process of retrieving editor data.
 			$this->plugin->db->get_builder( $post_id, Elementor\DB::STATUS_DRAFT );
 		}
+	}
+	
+	function enqueue_preview_scripts() {
+		
+		global $wp_widget_factory;
+		
+		foreach ( $wp_widget_factory->widgets as $class => $widget_obj ) {
+			if ( ! empty( $widget_obj ) && is_object( $widget_obj ) && is_subclass_of( $widget_obj, 'SiteOrigin_Widget' ) ) {
+				/* @var $widget_obj SiteOrigin_Widget */
+				ob_start();
+				$widget_obj->widget( array(), array() );
+				ob_clean();
+			}
+		}
+	
 	}
 
 	function enqueue_active_widgets_scripts() {
@@ -59,6 +78,12 @@ class SiteOrigin_Widgets_Bundle_Elementor {
 		}
 
 		wp_enqueue_style( 'sowb-styles-for-elementor', plugin_dir_url( __FILE__ ) . 'styles.css' );
+		
+		wp_enqueue_script(
+			'sowb-js-for-elementor',
+			plugin_dir_url( __FILE__ ) . 'sowb-elementor' . SOW_BUNDLE_JS_SUFFIX . '.js',
+			array( 'jquery' )
+		);
 
 	}
 
@@ -75,18 +100,13 @@ class SiteOrigin_Widgets_Bundle_Elementor {
 	}
 
 	function ajax_render_widget_preview() {
-
+		add_filter( 'siteorigin_widgets_is_preview', '__return_true' );
 		add_filter( 'elementor/widget/render_content', array( $this, 'render_widget_preview' ) );
 	}
 
 	function render_widget_preview( $widget_output ) {
-
-		$wp_scripts = wp_scripts();
-		$wp_styles  = wp_styles();
-
-		// Print any scripts and styles we may have enqueued for live preview.
-		wp_print_scripts( $wp_scripts->queue );
-		wp_print_styles( $wp_styles->queue );
+		
+		siteorigin_widget_print_styles();
 
 		return $widget_output;
 	}

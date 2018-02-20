@@ -83,9 +83,15 @@ class WPBackItUp_DataAccess {
 	/**
 	 * Insert a job item
 	 *
+	 * @param $job_id
+	 * @param $group_id
+	 * @param $batch_id
+	 * @param $item
+	 * @param $size_kb
+	 *
 	 * @return bool
 	 */
-	public function insert_job_item($job_id, $group_id, $item, $size_kb, $create_date) {
+	public function insert_job_item($job_id, $group_id, $batch_id, $item, $size_kb) {
 		WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Begin');
 		global $wpdb;
 
@@ -93,25 +99,31 @@ class WPBackItUp_DataAccess {
 			"INSERT INTO $wpdb->wpbackitup_job_item
 				(job_id,
 				 group_id,
+				 batch_id,
 				 item,
 				 size_kb,
 				 create_date
 		 		)
 		 		VALUES
-		 		(%d,%s,%s,%d,%s)"
+		 		(%d,%s,%s,%s,%d,%s)"
 			,
 			$job_id,
 			$group_id,
+			$batch_id,
 			$item,
 			$size_kb,
-			$create_date
+			current_time('mysql')
 		);
 
 		//If inserts return false
 		$sql_rtn = $this->query($sql);
 		if (false=== $sql_rtn ||  $sql_rtn==0 ) return false;
-		else return true;
-
+		else
+			//return the PK
+			$sql = "SELECT * FROM  $wpdb->wpbackitup_job_item where item_id = LAST_INSERT_ID()";
+			$query_result=$this->get_row($sql);
+			WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Results:'.var_export($query_result,true));
+			return $query_result;
 	}
 
 	/**
@@ -596,6 +608,63 @@ class WPBackItUp_DataAccess {
 
 
 	/**
+	 *  Get open items(OPEN,QUEUED) for group list
+	 *
+	 * @param string|array $groups list of groups
+	 *
+	 * @param int          $batch_size
+	 *
+	 * @return mixed
+	 */
+	function get_open_items_by_group($groups,$batch_size=50){
+		global $wpdb;
+		WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Begin');
+
+		//Group List
+		$group_delimited_list = self::get_delimited_list($groups);
+
+		//Status List
+		//$item_status_list = self::get_delimited_list(array(WPBackItUp_Job_Item::OPEN,WPBackItUp_Job_Item::QUEUED,WPBackItUp_Job_Item::ERROR));
+
+		$sql_select =$wpdb->prepare(
+			"SELECT * FROM $wpdb->wpbackitup_job_item
+			          WHERE
+						  group_id IN ( {$group_delimited_list})	
+						  ORDER BY  item_id desc 
+					  LIMIT %d
+					  ",$batch_size);
+
+		//ORDER BY FIELD(item_status,'queued','', 'error','complete'), group_id desc
+
+		return $this->get_rows($sql_select);
+	}
+
+	/**
+	 *  Get open items(OPEN,QUEUED) for group list since yesterday
+	 *
+	 * @param string|array $groups list of groups
+	 *
+	 * @return mixed
+	 */
+	function get_open_items_by_group_last_day   ($groups){
+		global $wpdb;
+		WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Begin');
+
+		//Group List
+		$group_delimited_list = self::get_delimited_list($groups);
+
+		$sql_select = "SELECT * FROM $wpdb->wpbackitup_job_item
+			          WHERE
+						  group_id IN ( {$group_delimited_list}) &&	
+						  create_date >= NOW() - INTERVAL 1 DAY
+						  ORDER BY group_id desc,item_id desc 	
+					  ";
+
+		return $this->get_rows($sql_select);
+	}
+
+
+	/**
 	 * Get all completed items by job, group and batch ID
 	 *
 	 * @param $job_id
@@ -673,6 +742,37 @@ class WPBackItUp_DataAccess {
 		WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Results:'.var_export($query_result,true));
 
 		return $query_result;
+	}
+
+	/**
+	 * Get all items for job by status
+	 *
+	 * @param $job_id Job Id
+	 * @param $status_array Array of statuses to be included
+	 *
+	 * @return mixed
+	 */
+	public function get_job_items( $job_id, $status_array ) {
+		global $wpdb;
+		WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Begin');
+
+		$status_list = self::get_delimited_list($status_array);
+
+		$sql = $wpdb->prepare(
+			"SELECT *
+				FROM  $wpdb->wpbackitup_job_item
+				WHERE
+				  job_id=%d
+				  AND item_status IN ( {$status_list})
+				ORDER BY item_id
+		    ",$job_id);
+
+		$query_result=$this->get_rows($sql);
+		WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Results:'.var_export($query_result,true));
+
+		return $query_result;
+
+
 	}
 
 
@@ -772,7 +872,8 @@ class WPBackItUp_DataAccess {
 		$item_status_list = self::get_delimited_list(array(WPBackItUp_Job_Item::OPEN,WPBackItUp_Job_Item::QUEUED,WPBackItUp_Job_Item::ERROR));
 
 		$sql = $wpdb->prepare(
-			"SELECT count(*) as item_count FROM $wpdb->wpbackitup_job_item
+			"SELECT count(*) as item_count
+ 			 FROM $wpdb->wpbackitup_job_item
 		     WHERE
 		     	  record_type=%s
 				  && job_id=%d
@@ -780,6 +881,43 @@ class WPBackItUp_DataAccess {
 				  && retry_count <= 3
 				  && item_status IN ( {$item_status_list})
 		    ",WPBackItUp_Job_Item::JOB_ITEM_RECORD,$job_id,$group_id);
+
+		$row=$this->get_row($sql);
+		WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Results:'.var_export($row,true));
+
+		return $row->item_count;
+	}
+
+	/**
+	 * Get a count of all items by status
+	 *
+	 * @param      $job_id
+	 *
+	 * @param null $item_status_list
+	 *
+	 * @return mixed
+	 * @internal param $status
+	 *
+	 */
+	function get_item_status_count($job_id,$item_status_list=null){
+		global $wpdb;
+		WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Begin');
+
+		//If null get all statuses
+		if (null ==$item_status_list) {
+			$item_status_list = array(WPBackItUp_Job_Item::OPEN,WPBackItUp_Job_Item::QUEUED,WPBackItUp_Job_Item::COMPLETE,WPBackItUp_Job_Item::ERROR);
+		}
+
+		//create delimited list of array
+		$item_status_list = self::get_delimited_list($item_status_list);
+
+		$sql = $wpdb->prepare(
+			"SELECT count(*) as item_count 
+ 			 FROM $wpdb->wpbackitup_job_item
+		     WHERE
+				  job_id=%d
+				  && item_status IN ( {$item_status_list})				  
+		    ",$job_id);
 
 		$row=$this->get_row($sql);
 		WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Results:'.var_export($row,true));
@@ -869,6 +1007,32 @@ class WPBackItUp_DataAccess {
 
 	}
 
+
+	/**
+	 * Update item offset
+	 *
+	 * @param $item_id
+	 * @param $offset
+	 *
+	 * @return bool
+	 */
+	public function update_item_offset( $item_id, $offset ) {
+		WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Begin');
+		global $wpdb;
+
+		$sql = $wpdb->prepare(
+			"UPDATE  $wpdb->wpbackitup_job_item
+				SET offset=%d,
+					retry_count = retry_count + 1 ,
+					update_date = %s
+			 WHERE  item_id=%d"
+			,$offset,current_time('mysql'),$item_id);
+
+		$sql_rtn = $this->query($sql);
+		if (false=== $sql_rtn) return false;
+		else return true;
+
+	}
 
 	/**
 	 *  Update job start time
