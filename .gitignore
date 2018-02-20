@@ -3,6 +3,7 @@
 *.log
 *_log
 .htaccess
+.htpasswd
 sitemap.xml
 sitemap.xml.gz
 wp-content/uploads/*
