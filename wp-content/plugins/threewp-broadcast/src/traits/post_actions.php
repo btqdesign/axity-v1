@@ -538,7 +538,7 @@ trait post_actions
 			);
 
 			$form->markup( 'm_parent_links' )
-				->p_ ( $links );
+				->p( $links );
 
 			restore_current_blog();
 
@@ -563,7 +563,6 @@ trait post_actions
 				$options[ $post_action->action ] = $post_action->get_name();
 			}
 			ksort( $options );
-			$options = array_flip( $options );
 
 			$children = $broadcast_data->get_linked_children();
 			foreach( $children as $child_blog_id => $child_post_id )
@@ -582,7 +581,7 @@ trait post_actions
 				$select = $form->select( $child_blog_id )
 					->label( $blogname )
 					->prefix( 'blogs' )
-					->options( $options )
+					->opts( $options )
 					;
 
 				// The edit link we put in the description, but it requires that the HTML be set without escaping.

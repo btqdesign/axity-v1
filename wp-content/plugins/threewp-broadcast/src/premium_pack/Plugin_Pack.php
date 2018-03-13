@@ -41,11 +41,11 @@ abstract class Plugin_Pack
 		$status = $this->edd_get_cached_license_status();
 		if ( in_array( $status->license, [ 'deactivated', 'valid' ] ) )
 			return;
-		$r = $this->p_(
+		$r = $this->p(
 			__( "If the pack is not activating as it should due to an SSL error, add this to your wp-config.php file: %s", 'threewp_broadcast' ),
 			"<code>define( 'BROADCAST_PP_SSL_WORKAROUND', true );</code>"
 		);
-		$r .= $this->p_(
+		$r .= $this->p(
 			__( "If even that doesn't work, try using the %sBroadcast license download tool%s together with your license key.", 'threewp_broadcast' ),
 			'<a href="https://broadcast.plainviewplugins.com/download/">',
 			'</a>'

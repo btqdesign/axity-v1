@@ -123,7 +123,7 @@ extends \threewp_broadcast\maintenance\checks\check
 		$max = count( $this->data->bcd_to_check );
 		$counter = min( data::$rows_per_step, $max );
 
-		$r = $this->broadcast()->p_(
+		$r = $this->broadcast()->p(
 			// the next 500 of 1000 relations
 			__( 'Checking the next %s of %s relations.', 'threewp_broadcast' ),
 			$counter,
@@ -319,7 +319,7 @@ extends \threewp_broadcast\maintenance\checks\check
 		}
 
 
-		$r .= $this->broadcast()->p_(
+		$r .= $this->broadcast()->p(
 			__( '%s rows left to check...', 'threewp_broadcast' ),
 			count( $this->data->ids_to_check )
 		);
@@ -410,7 +410,7 @@ extends \threewp_broadcast\maintenance\checks\check
 
 		$this->data->ids_to_check = $this->data->ids;
 
-		$r = $this->broadcast()->p_(
+		$r = $this->broadcast()->p(
 			__( 'Beginning to check broadcast data. %s rows to check.', 'threewp_broadcast' ),
 			count( $this->data->ids_to_check )
 		);

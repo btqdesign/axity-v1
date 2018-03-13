@@ -1,3 +1,6 @@
+20180207		Check the scripts/upgrade directory for the new check_deprecated_functions script that will help you remove obsolete methods.
+				Removed never used option_f().
+20180206		Do not use AND anymore. Use &&.
 20180126		Do not unserialize a db object if it is already unserialized.
 20171208		Update Wordpress updater.
 20171123		Wordpress tabs: Display the exception nicely.

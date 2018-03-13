@@ -6,7 +6,7 @@ Requires at least: 4.6
 Requires PHP: 5.4
 Stable tag: trunk
 Tags: multipost, sharing, duplicate, franchise, syndication, marketing, news, hub
-Tested up to: 4.9.2
+Tested up to: 4.9.4
 
 Network content syndication made easy! Automatically share content by multiposting between multisite blogs.
 
@@ -163,6 +163,7 @@ Utilities pack
 
 These add-ons do things semi-related to broadcasting, but are good to have none-the-less.
 
+* <a href="https://broadcast.plainviewplugins.com/addon/bulk-cloner/">Bulk Cloner</a> creates clones of existing blogs on the network.
 * <a href="https://broadcast.plainviewplugins.com/addon/cdn-workaround/">CDN Workaround</a> works around faulty CDNs that do not report the correct URL for attachments.
 * <a href="https://broadcast.plainviewplugins.com/addon/lock-post/">Lock Post</a> allows users to lock editing of posts / pages to only themselves and super admins.
 * <a href="https://broadcast.plainviewplugins.com/addon/media-cleanup/">Media Cleanup</a>: cleans up unused media by looking for unused items in the database and on disk.
@@ -305,6 +306,14 @@ This will broadcast all normal product settings: SKU, price, etc.
 If your products have variations, a product image gallery, you want to sync stock, you want to sync orders, need the attribute taxonomies to be synced, you'll be wanting the <a href="https://broadcast.plainviewplugins.com/addon/woocommerce/">WooCommerce add-on</a>.
 
 == Changelog ==
+
+= 43 20180226 =
+
+* New add-on. <a href="https://broadcast.plainviewplugins.com/addon/bulk-cloner/">Bulk Cloner</a> creates clones of existing blogs on the network.
+* New snippet: <a href="https://broadcast.plainviewplugins.com/snippet/change-the-name-of-a-blog/">Change the name of a blog</a>
+* New snippet: <a href="https://broadcast.plainviewplugins.com/snippet/faking-a-shortcode-to-broadcast-an-item/">Faking a shortcode to broadcast an item</a>
+* New snippet: <a href="https://broadcast.plainviewplugins.com/snippet/modify-the-hreflang-links/">Modify the hreflang links</a>
+* Code: SDK update.
 
 = 42.4 20180129 =
 

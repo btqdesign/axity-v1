@@ -109,7 +109,6 @@ class blog
 			'blogname',
 			'domain',
 			'path',
-			'userblog_id',
 		] as $key )
 		{
 			if ( ! property_exists( $data, $key ) )
@@ -118,6 +117,8 @@ class blog
 		}
 		if ( property_exists( $r, 'blog_id' ) )
 			$r->id = intval( $r->blog_id );
+		if ( property_exists( $data, 'userblog_id' ) )
+			$r->id = intval( $data->userblog_id );
 		return $r;
 	}
 

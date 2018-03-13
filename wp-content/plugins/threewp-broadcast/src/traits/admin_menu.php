@@ -63,8 +63,6 @@ trait admin_menu
 		$form->id( 'broadcast_settings' );
 		$form->css_class( 'plainview_form_auto_tabs' );
 		$r = '';
-		$roles = $this->roles_as_options();
-		$roles = array_flip( $roles );
 
 		// Check that the version of BC and the packs mostly match.
 		$constants = get_defined_constants();
@@ -238,13 +236,14 @@ trait admin_menu
 		$actions = $get_existing_attachment_actions->get_actions();
 		$actions = array_flip( $actions );
 		ksort( $actions );
+		$actions = array_flip( $actions );
 
 		$existing_attachments = $fs->select( 'existing_attachments' )
 			->description( __( 'Action to take when attachments with the same filename already exist on the child blog.', 'threewp_broadcast' ) )
 			// What to do with existing attachments when broadcasting?
 			->label( __( 'Existing attachments', 'threewp_broadcast' ) )
 			// Array flip because we till be getting [ key => description ]
-			->options( $actions )
+			->opts( $actions )
 			->required()
 			->value( $this->get_site_option( 'existing_attachments', 'use' ) );
 
@@ -253,6 +252,8 @@ trait admin_menu
 		$fs = $form->fieldset( 'roles' );
 		// Label for fieldset
 		$fs->legend->label( __( 'Roles', 'threewp_broadcast' ) );
+
+		$roles = $this->roles_as_options();
 
 		$fs->markup( 'm_roles' )
 			->p( __( 'Multiple roles may be selected. Each role must be individually selected, since there is no automatic hierarchy where, for example, authors automatically include the editor role. Note that only the roles on this blog can be shown.', 'threewp_broadcast' ) );
@@ -263,7 +264,7 @@ trait admin_menu
 			// Role needed to...
 			->label( __( 'Broadcast', 'threewp_broadcast' ) )
 			->multiple()
-			->options( $roles );
+			->opts( $roles );
 
 		$role_link = $fs->select( 'role_link' )
 			->value( $this->get_site_option( 'role_link' ) )
@@ -271,7 +272,7 @@ trait admin_menu
 			// Role needed to...
 			->label( __( 'Link to child posts', 'threewp_broadcast' ) )
 			->multiple()
-			->options( $roles );
+			->opts( $roles );
 
 		$role_custom_fields = $fs->select( 'role_custom_fields' )
 			->value( $this->get_site_option( 'role_custom_fields' ) )
@@ -279,7 +280,7 @@ trait admin_menu
 			// Role needed to...
 			->label( __( 'Broadcast custom fields', 'threewp_broadcast' ) )
 			->multiple()
-			->options( $roles );
+			->opts( $roles );
 
 		$role_taxonomies = $fs->select( 'role_taxonomies' )
 			->value( $this->get_site_option( 'role_taxonomies' ) )
@@ -287,7 +288,7 @@ trait admin_menu
 			// Role needed to...
 			->label( __( 'Broadcast taxonomies', 'threewp_broadcast' ) )
 			->multiple()
-			->options( $roles );
+			->opts( $roles );
 
 		$role_broadcast_as_draft = $fs->select( 'role_broadcast_as_draft' )
 			->value( $this->get_site_option( 'role_broadcast_as_draft' ) )
@@ -295,7 +296,7 @@ trait admin_menu
 			// Role needed to...
 			->label( __( 'Broadcast as draft', 'threewp_broadcast' ) )
 			->multiple()
-			->options( $roles );
+			->opts( $roles );
 
 		$role_broadcast_scheduled_posts = $fs->select( 'role_broadcast_scheduled_posts' )
 			->value( $this->get_site_option( 'role_broadcast_scheduled_posts' ) )
@@ -303,7 +304,7 @@ trait admin_menu
 			// Role needed to...
 			->label( __( 'Broadcast scheduled posts', 'threewp_broadcast' ) )
 			->multiple()
-			->options( $roles );
+			->opts( $roles );
 
 		// --SEO----------------------------------------------------------------------------------------------------
 

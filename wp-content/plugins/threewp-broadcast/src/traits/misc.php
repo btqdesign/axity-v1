@@ -287,7 +287,7 @@ trait misc
 		$row = $table->body()->row();
 		$row->td()->text_( 'PHP maximum execution time' );
 		$count = ini_get ( 'max_execution_time' );
-		$text = $this->p_( _n( '%d second', '%d seconds', $count, 'threewp_broadcast' ), $count );
+		$text = $this->p( _n( '%d second', '%d seconds', $count, 'threewp_broadcast' ), $count );
 		$row->td()->text( $text );
 
 		$row = $table->body()->row();

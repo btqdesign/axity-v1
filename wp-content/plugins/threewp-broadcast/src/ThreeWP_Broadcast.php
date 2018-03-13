@@ -472,7 +472,7 @@ class ThreeWP_Broadcast
 				if ( $blog->site_id != $network_id )
 					continue;
 			$blog = blog::make( $blog );
-			$blog->id = $blog->userblog_id;
+			$blog->id = $blog->id;
 			if ( ! $this->is_blog_user_writable( $action->user_id, $blog ) )
 				continue;
 			$action->blogs->set( $blog->id, $blog );
