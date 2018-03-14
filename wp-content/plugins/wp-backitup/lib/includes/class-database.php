@@ -542,6 +542,37 @@ class WPBackItUp_DataAccess {
 		else return true;
 	}
 
+//    public function update_task_functional($meta, $retry_count, $task_start, $task_end, $task_status, $task_err, $task_id ) {
+//        WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Begin');
+//        global $wpdb;
+//
+//        $sql = $wpdb->prepare(
+//            "UPDATE  $wpdb->wpbackitup_job_task
+//				SET
+//					task_meta=%s,
+//					retry_count=%d,
+//					task_start = %s,
+//					task_end = %s,
+//					update_date =%s,
+//					task_status=%s,
+//					error=%d
+//			 WHERE  task_id=%d
+//			",
+//            maybe_serialize($meta),
+//            $retry_count,
+//            $task_start,
+//            $task_end,
+//            current_time('mysql'),
+//            $task_status,
+//            $task_err,
+//            $task_id
+//        );
+//
+//        $sql_rtn = $this->query($sql);
+//        if (false=== $sql_rtn) return false;
+//        else return true;
+//    }
+
 
 	/**
 	 * Fetch a distinct list of job_ids from the job_item table

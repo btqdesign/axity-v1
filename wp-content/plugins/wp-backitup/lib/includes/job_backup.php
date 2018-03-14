@@ -858,9 +858,16 @@ if ('task_validate_backup'==$current_task->getTaskName()) {
 	$db = new WPBackItUp_DataAccess();
 
 	$plugin_validation_meta = $current_task->getTaskMetaValue('task_multistep_validate_plugins');
+	WPBackItUp_Logger::log_info( $backup_logname, $log_function, sprintf('plugin validation meta: %s',var_export( $plugin_validation_meta, true )));
+
 	$theme_validation_meta = $current_task->getTaskMetaValue('task_multistep_validate_themes');
+	WPBackItUp_Logger::log_info( $backup_logname, $log_function, sprintf('theme validation meta: %s',var_export( $theme_validation_meta, true )));
+
 	$upload_validation_meta = $current_task->getTaskMetaValue('task_multistep_validate_uploads');
+	WPBackItUp_Logger::log_info( $backup_logname, $log_function, sprintf('upload validation meta: %s',var_export( $upload_validation_meta, true )));
+
 	$other_validation_meta = $current_task->getTaskMetaValue('task_multistep_validate_others');
+	WPBackItUp_Logger::log_info( $backup_logname, $log_function, sprintf('other validation meta: %s',var_export( $other_validation_meta, true )));
 
 
 	$validation_meta=false;
@@ -882,6 +889,7 @@ if ('task_validate_backup'==$current_task->getTaskName()) {
 	}
 
 
+    WPBackItUp_Logger::log_info( $backup_logname, $log_function, sprintf('%s validation meta: %s',$validation_task,var_export( $validation_meta, true )));
     if( $validation_meta !==false ) {
 		$meta_task = sprintf( 'task_multistep_validate_%s', $validation_task );
 		$batch_ids = $db->get_item_batch_ids( $current_job->getJobId(), $validation_task );
@@ -904,10 +912,13 @@ if ('task_validate_backup'==$current_task->getTaskName()) {
 					$set_validate_backup_error = true;
 				} else {
 					$updated_meta = $current_task->setTaskMetaValue( $meta_task, $array_index );
-					if($updated_meta === false){
+
+                    WPBackItUp_Logger::log_info( $backup_logname, $log_function, sprintf('Meta %s', $meta_task));
+                    if($updated_meta === false){
                         WPBackItUp_Logger::log_error( $backup_logname, $log_function, sprintf('Meta %s update failed', $meta_task));
                     }
 					WPBackItUp_Logger::log_info( $backup_logname, $log_function, sprintf('%s Content, Batch ID: %s Validated Successfully!',$validation_task,$batch_id ));
+
 				}
 			} else {
 				//task is done

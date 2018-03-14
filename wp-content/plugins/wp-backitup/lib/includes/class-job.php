@@ -156,7 +156,9 @@ class WPBackItUp_Job {
 		$this->instance_id=current_time('timestamp');
 		$this->job_status=$db_job->job_status;
 
-		$this->job_meta = maybe_unserialize($db_job->job_meta);
+		//initialize task meta as array php 7.1
+		$this->job_meta=array();
+		if (null!=$db_job->job_meta) $this->job_meta = maybe_unserialize($db_job->job_meta);
 
 		//leave set to null default
 		if (! empty($db_job->job_start) && '0000-00-00 00:00:00'!= $db_job->job_start) {
