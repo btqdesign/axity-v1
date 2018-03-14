@@ -1,85 +1,186 @@
-# Translation of Plugins - AMP - Stable (latest release) in Spanish (Spain)
-# This file is distributed under the same license as the Plugins - AMP - Stable (latest release) package.
+# Translation of Plugins - AMP for WordPress - Stable (latest release) in Spanish (Spain)
+# This file is distributed under the same license as the Plugins - AMP for WordPress - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2017-08-05 07:26:56+0000\n"
+"PO-Revision-Date: 2018-03-01 10:19:20+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: GlotPress/2.4.0-alpha\n"
 "Language: es\n"
-"Project-Id-Version: Plugins - AMP - Stable (latest release)\n"
+"Project-Id-Version: Plugins - AMP for WordPress - Stable (latest release)\n"
 
-#: includes/options/views/class-amp-options-menu-page.php:10
-msgid "This admin panel menu contains configuration options for the AMP Plugin."
-msgstr "Este menú del panel de administración contiene opciones de configuración del plugin AMP."
+#: wpcom/class-amp-polldaddy-embed.php:83
+msgid "View Poll"
+msgstr "Ver encuesta"
 
-#: includes/options/views/class-amp-options-menu-page.php:7
-msgid "AMP Plugin Options"
-msgstr "Opciones del plugin AMP"
+#: wpcom/class-amp-polldaddy-embed.php:81
+msgid "View Survey"
+msgstr "Ver cuestionario"
 
-#: includes/options/views/class-amp-options-manager.php:33
+#: templates/admin/amp-status.php:68
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: templates/admin/amp-status.php:66
+msgid "OK"
+msgstr "Aceptar"
+
+#: templates/admin/amp-status.php:57
+msgid "Unavailable for an unknown reason."
+msgstr "No disponible por motivos desconocidos."
+
+#: templates/admin/amp-status.php:54
+msgid "A plugin or theme has disabled AMP support."
+msgstr "Un plugin o tema ha desactivado la compatibilidad con AMP."
+
+#. translators: %s is URL to AMP settings screen
+#: templates/admin/amp-status.php:51
+msgid "AMP cannot be enabled because this <a href=\"%s\">post type does not support it</a>."
+msgstr "No se puede activar AMP porque este <a href=\"%s\">tipo de contenido no es compatible</a>."
+
+#: templates/admin/amp-status.php:47
+msgid "AMP cannot be enabled on password protected posts."
+msgstr "No se puede activar AMP en entradas protegidas por contraseña."
+
+#: templates/admin/amp-status.php:27
+msgid "Edit Status"
+msgstr "Editar estado"
+
+#: templates/admin/amp-status.php:26
+msgid "Edit"
+msgstr "Editar"
+
+#: templates/admin/amp-status.php:23
+msgid "AMP:"
+msgstr "AMP:"
+
+#: includes/options/class-amp-options-menu.php:105
+msgid "Enable/disable AMP post type(s) support"
+msgstr "Activar/desactivar compatibilidad de AMP en tipo(s) de contenido"
+
+#: includes/options/class-amp-options-menu.php:58
+msgid "Post Type Support"
+msgstr "Compatibilidad con tipos de contenido"
+
+#: includes/options/class-amp-options-menu.php:45
+msgid "General"
+msgstr "General"
+
+#: includes/options/class-amp-options-menu.php:44
+msgid "AMP Settings"
+msgstr "Ajustes AMP"
+
+#. translators: %s: Post type name.
+#: includes/options/class-amp-options-manager.php:185
+msgid "\"%s\" could not be deactivated because support is added by a plugin or theme"
+msgstr "\"%s\" no se pudo desactivar debido a que la compatibilidad la ha añadido un plugin o tema"
+
+#. translators: %s: Post type name.
+#: includes/options/class-amp-options-manager.php:181
+msgid "\"%s\" could not be activated because support is removed by a plugin or theme"
+msgstr "\"%s\" no se pudo activar debido a que la compatibilidad la ha quitado un plugin o tema"
+
+#: includes/options/class-amp-options-manager.php:139
+msgid "Duplicate analytics entry found."
+msgstr "Se ha encontrado una entrada de analítica duplicada."
+
+#: includes/options/class-amp-options-manager.php:123
+msgid "Invalid analytics config JSON."
+msgstr "Configuración jSON de analítica no válida"
+
+#: includes/options/class-amp-options-manager.php:116
+msgid "Missing vendor type or config."
+msgstr "Tipo de proveedor o configuración no disponible."
+
+#: includes/options/class-amp-options-manager.php:103
+msgid "Unrecognized post type."
+msgstr "Tipo de contenido no reconocido."
+
+#: includes/admin/class-amp-post-meta-box.php:178
+msgid "Disabled"
+msgstr "Desactivado"
+
+#: includes/admin/class-amp-post-meta-box.php:177
+msgid "Enabled"
+msgstr "Activo"
+
+#: includes/admin/class-amp-post-meta-box.php:151
+msgid "Preview changes in AMP (opens in new window)"
+msgstr "Vista previa de los cambios en AMP (abre en ventana nueva)"
+
+#: includes/admin/class-amp-post-meta-box.php:81
+msgid "AMP status."
+msgstr "Estado de AMP."
+
+#: includes/admin/class-amp-customizer.php:265
+msgid "AMP preview enabled"
+msgstr "Vista previa de AMP activa"
+
+#: includes/admin/class-amp-customizer.php:142
+msgid "Navigate to an AMP compatible page"
+msgstr "Navega hasta una página compatible con AMP"
+
+#: includes/admin/class-amp-customizer.php:141
+msgid "AMP is not available for the page currently being previewed."
+msgstr "AMP no está disponible en la página que estás previsualizando en este momento."
+
+#: includes/options/class-amp-options-manager.php:225
 msgid "Sorry, you do not have the necessary permissions to perform this action"
 msgstr "Lo siento, no tienes los permisos necesarios para llevar a cabo esta acción"
 
-#: includes/options/views/class-amp-analytics-options-submenu-page.php:81
-msgid "Dismiss this notice."
-msgstr "Descartar este aviso."
-
-#: includes/options/views/class-amp-analytics-options-submenu-page.php:68
-msgid "Failed to save the analytics entry. Please make sure that the JSON configuration is valid and unique."
-msgstr "Fallo al guardar el código de analytics. Por favor, asegúrate de que la configuración de JSON sea válida y única."
-
-#: includes/options/views/class-amp-analytics-options-submenu-page.php:65
+#: includes/options/class-amp-options-manager.php:236
 msgid "The analytics entry was successfully saved!"
 msgstr "¡El código de analytics se guardó con éxito!"
 
-#: includes/options/views/class-amp-analytics-options-submenu-page.php:49
+#: includes/options/views/class-amp-analytics-options-submenu-page.php:65
 msgid "Delete"
 msgstr "Borrar"
 
-#: includes/options/views/class-amp-analytics-options-submenu-page.php:47
+#: includes/options/views/class-amp-analytics-options-submenu-page.php:63
 msgid "Save"
 msgstr "Guardar"
 
-#: includes/options/views/class-amp-analytics-options-submenu-page.php:37
+#: includes/options/views/class-amp-analytics-options-submenu-page.php:53
 msgid "JSON Configuration:"
 msgstr "Configuración de JSON:"
 
-#: includes/options/views/class-amp-analytics-options-submenu-page.php:30
+#: includes/options/views/class-amp-analytics-options-submenu-page.php:46
 msgid "ID:"
 msgstr "ID:"
 
-#: includes/options/views/class-amp-analytics-options-submenu-page.php:26
+#: includes/options/views/class-amp-analytics-options-submenu-page.php:42
 msgid "Type:"
 msgstr "Tipo:"
 
-#: includes/options/views/class-amp-analytics-options-submenu-page.php:15
+#: includes/options/views/class-amp-analytics-options-submenu-page.php:28
 msgid "Add new entry:"
 msgstr "Añadir nuevo código:"
 
-#: includes/options/views/class-amp-analytics-options-submenu-page.php:13
+#. translators: %s is the entry slug
+#: includes/options/views/class-amp-analytics-options-submenu-page.php:26
 msgid "Analytics: %s"
 msgstr "Analytics: %s"
 
-#: includes/options/class-amp-options-menu.php:26
+#: includes/options/class-amp-options-menu.php:34
 msgid "AMP Options"
 msgstr "Opciones de AMP"
 
-#: includes/options/class-amp-analytics-options-submenu.php:30
+#: includes/options/class-amp-analytics-options-submenu.php:35
 msgid "Analytics"
 msgstr "Analytics"
 
-#: includes/options/class-amp-analytics-options-submenu.php:29
+#: includes/options/class-amp-analytics-options-submenu.php:34
 msgid "AMP Analytics Options"
 msgstr "Opciones de AMP Analytics"
 
-#: includes/amp-helper-functions.php:44
+#: includes/amp-helper-functions.php:118
 msgid "is_amp_endpoint() was called before the 'parse_query' hook was called. This function will always return 'false' before the 'parse_query' hook is called."
 msgstr "is_amp_endpoint() se reclamó antes de llamar al gancho 'parse_query'. Esta función siempre devolverá 'false' antes de llamar al gancho 'parse_query'."
 
-#: includes/class-amp-content.php:102
+#. translators: %s is sanitizer class
+#: includes/templates/class-amp-content-sanitizer.php:30
 msgid "Sanitizer (%s) class does not exist"
 msgstr "La clase de saneo (%s) no existe."
 
@@ -91,57 +192,60 @@ msgstr "Etiquetas: %s"
 msgid "Categories: %s"
 msgstr "Categorías: %s"
 
-#: templates/footer.php:7
+#: templates/footer.php:25
 msgid "Back to top"
 msgstr "Volver arriba"
 
-#: templates/footer.php:5
+#. translators: %s is WordPress.
+#: templates/footer.php:21
 msgid "Powered by %s"
 msgstr "Funciona gracias a %s"
 
-#: templates/footer.php:5
+#: templates/footer.php:18
 msgid "https://wordpress.org/"
 msgstr "https://es.wordpress.org/"
 
-#: includes/settings/class-amp-customizer-design-settings.php:113
+#: includes/settings/class-amp-customizer-design-settings.php:241
 msgid "Dark"
 msgstr "Oscuro"
 
-#: includes/settings/class-amp-customizer-design-settings.php:112
+#: includes/settings/class-amp-customizer-design-settings.php:240
 msgid "Light"
 msgstr "Claro"
 
-#: includes/settings/class-amp-customizer-design-settings.php:75
+#: includes/settings/class-amp-customizer-design-settings.php:140
 msgid "Color Scheme"
 msgstr "Esquema de color"
 
-#: includes/settings/class-amp-customizer-design-settings.php:66
+#: includes/settings/class-amp-customizer-design-settings.php:131
 msgid "Header Background & Link Color"
 msgstr "Fondo de cabecera y color de enlaces"
 
-#: includes/settings/class-amp-customizer-design-settings.php:56
+#: includes/settings/class-amp-customizer-design-settings.php:121
 msgid "Header Text Color"
 msgstr "Color del texto de cabecera"
 
-#: includes/settings/class-amp-customizer-design-settings.php:48
+#: includes/settings/class-amp-customizer-design-settings.php:113
 msgid "Design"
 msgstr "Diseño"
 
-#: includes/class-amp-post-template.php:222
+#: includes/templates/class-amp-post-template.php:349
 msgid "View Comments"
 msgstr "Ver comentarios"
 
-#: includes/class-amp-post-template.php:221
+#: includes/templates/class-amp-post-template.php:348
 msgid "Leave a Comment"
 msgstr "Deja un comentario"
 
-#: includes/admin/class-amp-customizer.php:114
+#. translators: placeholder is URL to AMP project.
+#: includes/admin/class-amp-customizer.php:89
 msgid "<a href=\"%s\" target=\"_blank\">The AMP Project</a> is a Google-led initiative that dramatically improves loading speeds on phones and tablets. You can use the Customizer to preview changes to your AMP template before publishing them."
 msgstr "<a href=\"%s\" target=\"_blank\">El proyecto AMP</a> es una iniciativa liderada por Google que mejora dramáticamente la velocidad de carga en teléfonos y tabletas. Puedes usar el personalizador para previsualizar los cambios en tu plantilla AMP antes de publicarlos."
 
-#: includes/amp-post-template-actions.php:87
-msgid "Analytics entry for %s is missing one of the following keys: `type`, `attributes`, or `config_data` (array keys: %s)"
-msgstr "A los datos de Analytics para %s les faltan una de las siguientes claves:  `type`, `attributes` o `config_data` (array keys: %s)"
+#. translators: %1$s is analytics entry ID, %2$s is actual entry keys.
+#: includes/amp-post-template-actions.php:147
+msgid "Analytics entry for %1$s is missing one of the following keys: `type`, `attributes`, or `config_data` (array keys: %2$s)"
+msgstr "A los datos de Analytics para %1$s les faltan una de las siguientes claves:  `type`, `attributes` o `config_data` (array keys: %2$s)"
 
 #. Author URI of the plugin/theme
 msgid "https://automattic.com"
@@ -159,11 +263,11 @@ msgstr "Añade compatibilidad con AMP a tu sitio WordPress."
 msgid "https://github.com/automattic/amp-wp"
 msgstr "https://github.com/automattic/amp-wp"
 
-#. #-#-#-#-#  amp-code.pot (AMP 0.5.1)  #-#-#-#-#
+#. #-#-#-#-#  amp-code.pot (AMP 0.6.2)  #-#-#-#-#
 #. Plugin Name of the plugin/theme
-#: includes/admin/class-amp-customizer.php:113 includes/admin/functions.php:69
-#: includes/admin/functions.php:70
-#: includes/options/class-amp-options-menu.php:27
+#: includes/admin/class-amp-customizer.php:87 includes/admin/functions.php:76
+#: includes/admin/functions.php:77
+#: includes/options/class-amp-options-menu.php:35
 msgid "AMP"
 msgstr "AMP"
 
@@ -179,18 +283,22 @@ msgctxt "Used between list items, there is a space after the comma."
 msgid ", "
 msgstr ", "
 
-#: includes/class-amp-post-template.php:399
-msgid "Path validation for template (%s) failed. Path cannot traverse and must be located in `%s`."
-msgstr "La ruta de validación para la plantilla (%s) falló. La ruta no puede ser transversal y debe estar situada en `%s`."
+#. translators: %1$s is template file, %2$s is 'WP_CONTENT_DIR' string.
+#: includes/templates/class-amp-post-template.php:556
+msgid "Path validation for template (%1$s) failed. Path cannot traverse and must be located in `%2$s`."
+msgstr "La ruta de validación para la plantilla (%1$s) falló. La ruta no puede ser transversal y debe estar situada en `%2$s`."
 
-#: includes/class-amp-post-template.php:107
-msgid "Called for non-existant key (\"%s\")."
+#. translators: %s is key name
+#: includes/templates/class-amp-post-template.php:182
+msgid "Called for non-existent key (\"%s\")."
 msgstr "Llamada una clave que no existe (\"%s\")."
 
-#: includes/class-amp-content.php:109
+#. translators: %s is sanitizer class
+#: includes/templates/class-amp-content-sanitizer.php:38
 msgid "Sanitizer (%s) must extend `AMP_Base_Sanitizer`"
 msgstr "El saneador (%s) debe ampliar `AMP_Base_Sanitizer`"
 
-#: includes/class-amp-content.php:66
+#. translators: %s is embed handler
+#: includes/templates/class-amp-content.php:154
 msgid "Embed Handler (%s) must extend `AMP_Embed_Handler`"
 msgstr "El gestor de incrustación (%s) debe ampliar `AMP_Embed_Handler`"

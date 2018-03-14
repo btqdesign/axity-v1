@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WordPress - 4.9.x - Development package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2018-01-26 20:38:24+0000\n"
+"PO-Revision-Date: 2018-02-22 19:29:24+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1215,14 +1215,6 @@ msgstr "Digite a cidade mais próxima para encontrar os eventos por perto."
 msgid "City updated. Listing events near %s."
 msgstr "Cidade atualizada. Listando eventos perto de %s."
 
-#: wp-includes/script-loader.php:1179
-msgid "An error occurred. Please try again."
-msgstr "Ocorreu um erro. Tente novamente."
-
-#: wp-includes/script-loader.php:1180
-msgid "Attend an upcoming event near you."
-msgstr "Participe de um evento próximo de você."
-
 #. translators: %s is the name of the city we couldn't locate. Replace the
 #. examples with cities related to your locale. Test that they match the
 #. expected location and have upcoming events before including them. If no
@@ -1233,6 +1225,14 @@ msgstr "Participe de um evento próximo de você."
 #: wp-includes/script-loader.php:1197
 msgid "We couldn&#8217;t locate %s. Please try another nearby city. For example: Kansas City; Springfield; Portland."
 msgstr "Não foi possível localizar %s. Tente uma cidade mais próxima. Por exemplo: São Paulo, Rio de Janeiro, Belo Horizonte."
+
+#: wp-includes/script-loader.php:1179
+msgid "An error occurred. Please try again."
+msgstr "Ocorreu um erro. Tente novamente."
+
+#: wp-includes/script-loader.php:1180
+msgid "Attend an upcoming event near you."
+msgstr "Participe de um evento próximo de você."
 
 #: wp-includes/widgets/class-wp-widget-media-gallery.php:54
 #: wp-includes/widgets/class-wp-widget-media.php:148
@@ -5744,6 +5744,36 @@ msgstr "j \\d\\e F \\d\\e Y \\à\\s H:i:s"
 msgid "Drag and drop to reorder media files."
 msgstr "Arraste e solte para reorganizar arquivos de mídia."
 
+#. translators: Do not translate USERNAME, PASSWORD, LOGINLINK, SITE_NAME:
+#. those are placeholders.
+#: wp-includes/ms-functions.php:2230
+msgid ""
+"Howdy USERNAME,\n"
+"\n"
+"Your new account is set up.\n"
+"\n"
+"You can log in with the following information:\n"
+"Username: USERNAME\n"
+"Password: PASSWORD\n"
+"LOGINLINK\n"
+"\n"
+"Thanks!\n"
+"\n"
+"--The Team @ SITE_NAME"
+msgstr ""
+"Olá USERNAME,\n"
+"\n"
+"Sua nova conta está configurada.\n"
+"\n"
+"Você pode acessar com a seguinte informação:\n"
+"Nome de usuário: USERNAME\n"
+"Senha: PASSWORD\n"
+"LOGINLINK\n"
+"\n"
+"Atenciosamente,\n"
+"Equipe SITE_NAME\n"
+"###SITEURL### "
+
 #. translators: Do not translate USERNAME, SITE_NAME, BLOG_URL, PASSWORD: those
 #. are placeholders.
 #: wp-includes/ms-functions.php:1556
@@ -5777,36 +5807,6 @@ msgstr ""
 "Esperamos que você aproveite seu novo site!\n"
 "\n"
 "--Equipe SITE_NAME"
-
-#. translators: Do not translate USERNAME, PASSWORD, LOGINLINK, SITE_NAME:
-#. those are placeholders.
-#: wp-includes/ms-functions.php:2230
-msgid ""
-"Howdy USERNAME,\n"
-"\n"
-"Your new account is set up.\n"
-"\n"
-"You can log in with the following information:\n"
-"Username: USERNAME\n"
-"Password: PASSWORD\n"
-"LOGINLINK\n"
-"\n"
-"Thanks!\n"
-"\n"
-"--The Team @ SITE_NAME"
-msgstr ""
-"Olá USERNAME,\n"
-"\n"
-"Sua nova conta está configurada.\n"
-"\n"
-"Você pode acessar com a seguinte informação:\n"
-"Nome de usuário: USERNAME\n"
-"Senha: PASSWORD\n"
-"LOGINLINK\n"
-"\n"
-"Atenciosamente,\n"
-"Equipe SITE_NAME\n"
-"###SITEURL### "
 
 #. translators: %s: post title
 #: wp-includes/comment-template.php:1505
@@ -6388,8 +6388,8 @@ msgstr "Widgets são seções independentes de conteúdo que podem ser colocados
 msgid "<strong>ERROR</strong>: The comment could not be saved. Please try again later."
 msgstr "<strong>ERRO</strong>: Esse comentário não pode ser salvo. Tente novamente mais tarde."
 
-#: wp-includes/update.php:154 wp-includes/update.php:356
-#: wp-includes/update.php:538
+#: wp-includes/update.php:154 wp-includes/update.php:346
+#: wp-includes/update.php:528
 msgid "(WordPress could not establish a secure connection to WordPress.org. Please contact your server administrator.)"
 msgstr "(O WordPress não conseguiu estabelecer uma conexão segura com o WordPress.org. Contate o administrador do servidor.)"
 
@@ -7058,7 +7058,7 @@ msgid "Source code"
 msgstr "Código fonte"
 
 #: wp-includes/admin-bar.php:164 wp-includes/update.php:153
-#: wp-includes/update.php:355 wp-includes/update.php:537
+#: wp-includes/update.php:345 wp-includes/update.php:527
 #: wp-includes/wp-db.php:1062 wp-includes/wp-db.php:1595
 #: wp-includes/wp-db.php:1753 wp-login.php:882
 msgid "https://wordpress.org/support/"
@@ -7377,8 +7377,8 @@ msgid "no-subset"
 msgstr "no-subset"
 
 #. translators: %s: support forums URL
-#: wp-includes/update.php:152 wp-includes/update.php:354
-#: wp-includes/update.php:536
+#: wp-includes/update.php:152 wp-includes/update.php:344
+#: wp-includes/update.php:526
 msgid "An unexpected error occurred. Something may be wrong with WordPress.org or this server&#8217;s configuration. If you continue to have problems, please try the <a href=\"%s\">support forums</a>."
 msgstr "Ocorreu um erro inesperado. Algo pode estar errado com o WordPress.org ou com a configuração deste servidor. Se os problemas persistirem, busque ajuda no <a href=\"%s\">fórum de suporte</a>."
 
@@ -7386,7 +7386,7 @@ msgstr "Ocorreu um erro inesperado. Algo pode estar errado com o WordPress.org o
 msgid "Menu"
 msgstr "Menu"
 
-#: wp-includes/update.php:643
+#: wp-includes/update.php:633
 msgid "Translation Updates"
 msgstr "Atualizações de tradução"
 
@@ -9268,6 +9268,18 @@ msgstr "Este site está reservado, mas pode ficar disponível em alguns dias."
 msgid "New Site Registration: %s"
 msgstr "Registro de novo site: %s"
 
+#: wp-includes/class-wp-xmlrpc-server.php:3730
+#: wp-includes/class-wp-xmlrpc-server.php:3811
+#: wp-includes/class-wp-xmlrpc-server.php:3843
+#: wp-includes/class-wp-xmlrpc-server.php:3875
+#: wp-includes/class-wp-xmlrpc-server.php:4113
+msgid "Sorry, you are not allowed access to details about this site."
+msgstr "Sem permissão para acessar detalhes sobre este site."
+
+#: wp-includes/option.php:1846
+msgid "Site URL."
+msgstr "URL do site."
+
 #: wp-includes/ms-functions.php:892
 msgid ""
 "To activate your blog, please click the following link:\n"
@@ -9284,23 +9296,11 @@ msgstr ""
 "\n"
 "%s\n"
 "\n"
-"Ante de ativá-lo, você receberá *outro e-mail* com seu login.\n"
+"Depois de ativá-lo, você receberá *outro e-mail* com seu login.\n"
 "\n"
-"Antes de ativá-lo, você pode visitar seu site aqui:\n"
+"Depois de ativá-lo, você pode visitar seu site aqui:\n"
 "\n"
 "%s"
-
-#: wp-includes/class-wp-xmlrpc-server.php:3730
-#: wp-includes/class-wp-xmlrpc-server.php:3811
-#: wp-includes/class-wp-xmlrpc-server.php:3843
-#: wp-includes/class-wp-xmlrpc-server.php:3875
-#: wp-includes/class-wp-xmlrpc-server.php:4113
-msgid "Sorry, you are not allowed access to details about this site."
-msgstr "Sem permissão para acessar detalhes sobre este site."
-
-#: wp-includes/option.php:1846
-msgid "Site URL."
-msgstr "URL do site."
 
 #: wp-includes/ms-load.php:114
 msgid "This site has been archived or suspended."
@@ -9435,19 +9435,19 @@ msgid "This is the short link."
 msgstr "Este é o link encurtado."
 
 #. translators: 1: Number of updates available to WordPress
-#: wp-includes/update.php:632
+#: wp-includes/update.php:622
 msgid "%d WordPress Update"
 msgstr "%d Atualização do WordPress"
 
 #. translators: 1: Number of updates available to plugins
-#: wp-includes/update.php:636
+#: wp-includes/update.php:626
 msgid "%d Plugin Update"
 msgid_plural "%d Plugin Updates"
 msgstr[0] "%d atualização de plugin"
 msgstr[1] "%d atualizações de plugin"
 
 #. translators: 1: Number of updates available to themes
-#: wp-includes/update.php:640
+#: wp-includes/update.php:630
 msgid "%d Theme Update"
 msgid_plural "%d Theme Updates"
 msgstr[0] "%d atualização de temas"
