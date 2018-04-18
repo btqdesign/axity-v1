@@ -192,6 +192,16 @@ jQuery(document).ready(function( $ ){
                     old_value = event.newValue;
                 }
             });
+            $(".pswp").attrchange({
+                trackValues: true,
+                callback: function(event) {
+                    if ( event.newValue != old_value ) {
+                        $(".zoomContainer").remove();
+                    }
+                }
+            });
+
+
 
             // Resize the zoom windows when resizing the page
             $(window).bind('resize', function(e) {

@@ -6,7 +6,7 @@ function wp_image_zoooom_settings($type) {
     $l = 'wp-image-zoooom';
 
     $plugin = array(
-        'version'           => '1.23',
+        'version'           => '1.24',
         'plugin_name'       => 'WP Image Zoom',
         'plugin_file'       => str_replace('includes/settings.php', 'image-zoooom.php', __FILE__),
         'plugin_server'     => 'https://www.silkypress.com',
@@ -217,6 +217,15 @@ function wp_image_zoooom_settings($type) {
             'pro' => true,
             'description' => __('If the images are in a Owl Carousel gallery, then type in here the class of the div containing the Owl Carousel gallery', $l ),
         ),
+        'flickity' => array(
+            'label' => __('<a href="https://flickity.metafizzy.co/" target="_blank">Flickity Carousel</a> container class', $l),
+            'value' => '',
+            'input_form' => 'input_text',
+            'pro' => true,
+            'description' => __('If the images are in a Flickity Carousel gallery, then type in here the class of the div containing the Flickity Carousel gallery', $l ),
+        ),
+
+
 
 
         /*
