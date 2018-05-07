@@ -14,13 +14,13 @@ class check
 	public function get_description()
 	{
 		// Maintenance check description
-		return __( 'View post information including metadata.', 'threewp_broadcast' );
+		return __( 'View post information including metadata.', 'threewp-broadcast' );
 	}
 
 	public function get_name()
 	{
 		// Maintenance check name
-		return __( 'View post info', 'threewp_broadcast' );
+		return __( 'View post info', 'threewp-broadcast' );
 	}
 
 	public function step_start()
@@ -31,13 +31,13 @@ class check
 		$o->r = '';
 
 		$o->inputs->post_id = $o->form->number( 'post_id' )
-			->description( __( 'The ID of the post to view', 'threewp_broadcast' ) )
-			->label( __( 'Post ID', 'threewp_broadcast' ) )
+			->description( __( 'The ID of the post to view', 'threewp-broadcast' ) )
+			->label( __( 'Post ID', 'threewp-broadcast' ) )
 			->value( 0 );
 
 		$button = $o->form->primary_button( 'dump' )
 			// Button
-			->value( __( 'Find and display the post info', 'threewp_broadcast' ) );
+			->value( __( 'Find and display the post info', 'threewp-broadcast' ) );
 
 		if ( $o->form->is_posting() )
 		{
@@ -60,19 +60,19 @@ class check
 		if ( ! $post )
 		{
 			// Post 123 does not
-			$o->r .= $this->broadcast()->message( sprintf( __( 'Post %s does not exist.', 'threewp_broadcast' ), $post_id ) );
+			$o->r .= $this->broadcast()->message( sprintf( __( 'Post %s does not exist.', 'threewp-broadcast' ), $post_id ) );
 			return;
 		}
 
 		$text = sprintf( '<pre>%s</pre>', var_export( $post, true ) );
-		$o->r .= $this->broadcast()->message( $text );
+		$o->r .= $this->broadcast()->message( htmlspecialchars( $text ) );
 
 		$metas = get_post_meta( $post_id );
 		foreach( $metas as $key => $value )
 		{
 			$value = reset( $value );
 			$value = maybe_unserialize( $value );
-			$metas [ $key ] = $value;
+			$metas [ $key ] = htmlspecialchars( $value );
 		}
 
 		$text = sprintf( '<pre>%s</pre>', var_export( $metas, true ) );

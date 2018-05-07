@@ -249,15 +249,15 @@ trait attachments
 	public function threewp_broadcast_get_existing_attachment_actions( $action )
 	{
 		// Existing attachment action.
-		$s = __( 'Use the existing attachment on the child blog', 'threewp_broadcast' );
+		$s = __( 'Use the existing attachment on the child blog', 'threewp-broadcast' );
 		$action->add( 'use', $s );
 
 		// Existing attachment action.
-		$s = __( 'Delete and then recopy the attachment', 'threewp_broadcast' );
+		$s = __( 'Delete and then recopy the attachment', 'threewp-broadcast' );
 		$action->add( 'overwrite', $s );
 
 		// Existing attachment action.
-		$s = __( 'Create a new attachment with a randomized suffix', 'threewp_broadcast' );
+		$s = __( 'Create a new attachment with a randomized suffix', 'threewp-broadcast' );
 		$action->add( 'randomize', $s );
 	}
 

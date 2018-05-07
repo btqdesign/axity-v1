@@ -140,10 +140,10 @@ class input
 	public function assemble_input_string( $o )
 	{
 		$r = '';
-		$r .= $o->indent . $o->label . "\n";
-		$r .= $o->indent . $o->input . "\n";
+		$r .= $o->indent . '<div class="label_container">' . $o->label . "</div>\n";
+		$r .= $o->indent . '<div class="input_container">' . $o->input . "</div>\n";
 		if ( isset( $o->description ) )
-			$r .= $o->indent . $o->description . "\n";
+			$r .= $o->indent . '<div class="description_container">' . $o->description . "</div>\n";
 		return $r;
 	}
 
@@ -211,6 +211,8 @@ class input
 
 		$input->css_class( isset( $this->type ) ? $this->type : $this->tag );
 
+		$input->css_class( 'input_' . $input->get_name() );
+
 		if ( $input->is_required() )
 			$input->css_class( 'required' );
 
@@ -271,6 +273,7 @@ class input
 	{
 		$r = new \plainview\sdk_broadcast\html\div();
 		$r->css_class( 'form_item' )
+			->css_class( 'form_item_' . $this->get_name() )
 			->css_class( 'form_item_' . $this->make_id() );
 		if ( isset( $this->type ) )
 			$r->css_class( 'form_item_' . $this->type );

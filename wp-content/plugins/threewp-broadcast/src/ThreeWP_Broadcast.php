@@ -290,7 +290,7 @@ class ThreeWP_Broadcast
 			$url = admin_url( 'admin.php?page=threewp_broadcast' );
 		$links []= sprintf( '<a href="%s">%s</a>',
 			$url,
-			__( 'Settings', 'threewp_broadcast' )
+			__( 'Settings', 'threewp-broadcast' )
 		);
 		return $links;
 	}
@@ -311,8 +311,8 @@ class ThreeWP_Broadcast
 				$url = admin_url( 'admin.php?page=threewp_broadcast_premium_pack_info' );
 			$meta []= sprintf( '<a href="%s" title="%s">%s</a>',
 				$url,
-				__( 'View the add-ons available for Broadcast', 'threewp_broadcast' ),
-				__( 'Add-ons', 'threewp_broadcast' )
+				__( 'View the add-ons available for Broadcast', 'threewp-broadcast' ),
+				__( 'Add-ons', 'threewp-broadcast' )
 			);
 		}
 		return $meta;

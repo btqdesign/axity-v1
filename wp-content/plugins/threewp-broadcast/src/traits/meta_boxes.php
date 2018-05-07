@@ -28,7 +28,7 @@ trait meta_boxes
 				add_meta_box(
 					'threewp_broadcast',
 					// Meta box title
-					__( 'Broadcast', 'threewp_broadcast' ),
+					__( 'Broadcast', 'threewp-broadcast' ),
 					[ $this, 'threewp_broadcast_add_meta_box' ],
 					$post_type,
 					'side',
@@ -110,7 +110,7 @@ trait meta_boxes
 		if ( count( $incompatible_plugins ) > 0 )
 		{
 			$meta_box_data->html->put( 'incompatible_plugins1',
-				$this->p( __( 'Please disable the following incompatible plugins before using Broadcasting:' ), 'threewp_broadcast' )
+				$this->p( __( 'Please disable the following incompatible plugins before using Broadcasting:' ), 'threewp-broadcast' )
 			);
 			$incompatible_plugins = $this->get_plugin_info_array( $incompatible_plugins );
 			// Extract only the middle part.
@@ -137,14 +137,14 @@ trait meta_boxes
 
 		if ( $this->debugging() )
 			$meta_box_data->html->put( 'debug',
-				$this->p( __( 'Broadcast is in debug mode. More information than usual will be shown.' , 'threewp_broadcast' ) )
+				$this->p( __( 'Broadcast is in debug mode. More information than usual will be shown.' , 'threewp-broadcast' ) )
 			);
 
 		if ( $action->is_finished() )
 		{
 			if ( $this->debugging() )
 				$meta_box_data->html->put( 'debug_applied',
-					$this->p( __( 'Broadcast is not preparing the meta box because it has already been applied.', 'threewp_broadcast' ) )
+					$this->p( __( 'Broadcast is not preparing the meta box because it has already been applied.', 'threewp-broadcast' ) )
 				);
 			return;
 		}
@@ -159,7 +159,7 @@ trait meta_boxes
 			$meta_box_data->html->put( 'already_broadcasted',  sprintf( '<p>%s</p>',
 				sprintf(
 					// broadcasted is linked.
-					__( 'This post is a %sbroadcasted%s child post. It cannot be broadcasted further.', 'threewp_broadcast' ),
+					__( 'This post is a %sbroadcasted%s child post. It cannot be broadcasted further.', 'threewp-broadcast' ),
 					'<a href="' . $edit_url . '">',
 					'</a>'
 					)
@@ -190,9 +190,9 @@ trait meta_boxes
 			$link_input = $form->checkbox( 'link' )
 				->checked( true )
 				// Input label for meta box
-				->label( __( 'Link this post to its children', 'threewp_broadcast' ) )
+				->label( __( 'Link this post to its children', 'threewp-broadcast' ) )
 				// Input title for meta box
-				->title( __( 'Create a link to the children, which will be updated when this post is updated, trashed when this post is trashed, etc.', 'threewp_broadcast' ) );
+				->title( __( 'Create a link to the children, which will be updated when this post is updated, trashed when this post is trashed, etc.', 'threewp-broadcast' ) );
 			$meta_box_data->convert_form_input_later( 'link' );
 		}
 
@@ -209,7 +209,7 @@ trait meta_boxes
 			$custom_fields_input = $form->checkbox( 'custom_fields' )
 				->checked( isset( $meta_box_data->last_used_settings[ 'custom_fields' ] ) )
 				// Input label for meta box
-				->label( __( 'Custom fields', 'threewp_broadcast' ) )
+				->label( __( 'Custom fields', 'threewp-broadcast' ) )
 				// Input title for meta box
 				->title( 'Broadcast all the custom fields and the featured image?' );
 			$meta_box_data->convert_form_input_later( 'custom_fields' );
@@ -220,7 +220,7 @@ trait meta_boxes
 			$taxonomies_input = $form->checkbox( 'taxonomies' )
 				->checked( isset( $meta_box_data->last_used_settings[ 'taxonomies' ] ) )
 				// Input label for meta box
-				->label( __( 'Taxonomies', 'threewp_broadcast' ) )
+				->label( __( 'Taxonomies', 'threewp-broadcast' ) )
 				// Input title for meta box
 				->title( 'The taxonomies must have the same name (slug) on the selected blogs.' );
 			$meta_box_data->convert_form_input_later( 'taxonomies' );
@@ -233,7 +233,7 @@ trait meta_boxes
 		$blogs_input = $form->checkboxes( 'blogs' )
 			->css_class( 'blogs checkboxes' )
 			// Input label for meta box
-			->label( __( 'Broadcast to', 'threewp_broadcast' ) )
+			->label( __( 'Broadcast to', 'threewp-broadcast' ) )
 			->prefix( 'blogs' );
 
 		// Preselect those children that this post has.
@@ -263,7 +263,7 @@ trait meta_boxes
 				$option->css_class( 'linked' );
 			if ( $blog->is_required() )
 				// Input title for required blogs.
-				$option->css_class( 'required' )->title( __( 'This blog is required', 'threewp_broadcast' ) );
+				$option->css_class( 'required' )->title( __( 'This blog is required', 'threewp-broadcast' ) );
 			if ( $blog->is_selected() )
 				$option->checked( true );
 			// The current blog should be "selectable", for the sake of other plugins that modify the meta box. But hidden from users.
@@ -276,17 +276,17 @@ trait meta_boxes
 		$unchecked_child_blogs = $form->select( 'unchecked_child_blogs' )
 			->css_class( 'blogs checkboxes' )
 			// Input title
-			->title( __( 'What to do with unchecked, linked child blogs', 'threewp_broadcast' ) )
+			->title( __( 'What to do with unchecked, linked child blogs', 'threewp-broadcast' ) )
 			// Input label
-			->label( __( 'With the unchecked child blogs', 'threewp_broadcast' ) )
+			->label( __( 'With the unchecked child blogs', 'threewp-broadcast' ) )
 			// With the unchecked child blogs:
-			->option( __( 'Do not update', 'threewp_broadcast' ), '' )
+			->option( __( 'Do not update', 'threewp-broadcast' ), '' )
 			// With the unchecked child blogs:
-			->option( __( 'Delete the child post', 'threewp_broadcast' ), 'delete' )
+			->option( __( 'Delete the child post', 'threewp-broadcast' ), 'delete' )
 			// With the unchecked child blogs:
-			->option( __( 'Trash the child post', 'threewp_broadcast' ), 'trash' )
+			->option( __( 'Trash the child post', 'threewp-broadcast' ), 'trash' )
 			// With the unchecked child blogs:
-			->option( __( 'Unlink the child post', 'threewp_broadcast' ), 'unlink' );
+			->option( __( 'Unlink the child post', 'threewp-broadcast' ), 'unlink' );
 		$meta_box_data->convert_form_input_later( 'unchecked_child_blogs' );
 
 		$js = sprintf( '<script type="text/javascript">var broadcast_blogs_to_hide = %s;</script>', $this->get_site_option( 'blogs_to_hide', 5 ) );
@@ -321,7 +321,7 @@ trait meta_boxes
 			// Display a list of actions that have hooked into save_post
 			$save_post_callbacks = $this->get_hooks( 'save_post' );
 			$meta_box_data->html->put( 'debug_save_post_callbacks', sprintf( '%s%s',
-				$this->p( __( 'Plugins that have hooked into save_post:', 'threewp_broadcast' ) ),
+				$this->p( __( 'Plugins that have hooked into save_post:', 'threewp-broadcast' ) ),
 				$this->implode_html( $save_post_callbacks )
 			) );
 		}

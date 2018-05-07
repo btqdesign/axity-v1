@@ -36,7 +36,7 @@
 						if ( $input.prop( 'hidden' ) === true )
 							return;
 						if ( ! checked )
-							$input.parent().hide();
+							$input.parent().parent().hide();
 					} );
 				},
 
@@ -52,7 +52,7 @@
 						var $input = $( this );
 						if ( $input.prop( 'hidden' ) === true )
 							return;
-						$input.parent().show();
+						$input.parent().parent().show();
 					} );
 				}
 

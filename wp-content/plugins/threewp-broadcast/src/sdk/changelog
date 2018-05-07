@@ -1,3 +1,5 @@
+20180302		wordpress message boxes take text() instead of _()
+20180218		Add containers to form items when outputting as a string.
 20180207		Check the scripts/upgrade directory for the new check_deprecated_functions script that will help you remove obsolete methods.
 				Removed never used option_f().
 20180206		Do not use AND anymore. Use &&.

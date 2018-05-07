@@ -100,7 +100,7 @@ class base
 					So instead of writing:
 
 					$mbd->lock_post = $form->checkbox( 'lock_post' )
-						->label( __( 'Lock the post', 'threewp_broadcast' ) )
+						->label( __( 'Lock the post', 'threewp-broadcast' ) )
 
 					You have to ask the plugin itself to translate the string first, before it is given to the form:
 

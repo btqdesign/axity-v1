@@ -2,6 +2,12 @@
 
 #threewp_broadcast.postbox
 {
+	.label_container,
+	.input_container
+	{
+		display: inline;
+	}
+
 	.blogs.html_section
 	{
 		position: relative;
