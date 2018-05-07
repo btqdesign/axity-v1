@@ -364,7 +364,7 @@ class ImageZoooom_Admin {
      */
     public function show_messages() {
         global $comment;
-        if ( sizeof( $comment ) == 0 ) return;
+        if ( !$comment || sizeof( $comment ) == 0 ) return;
         $output = '';
         foreach ( $comment as $message ) {
             $output .= '<div class="alert alert-'.$message['type'].'">

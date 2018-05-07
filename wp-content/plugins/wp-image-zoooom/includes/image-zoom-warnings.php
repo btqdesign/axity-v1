@@ -36,35 +36,21 @@ class ImageZoooom_Warnings {
                 return;
         }
 
-        if ( $this_notice = $this->check_ajax_product_filters() ) {
-            $this->notices[] = $this_notice;
-        }
-        if ( $this_notice = $this->check_jetpack() ) {
-            $this->notices[] = $this_notice;
-        }
-        if ( $this_notice = $this->check_avada() ) {
-            $this->notices[] = $this_notice;
-        }
-        if ( $this_notice = $this->check_shopkeeper() ) {
-            $this->notices[] = $this_notice;
-        }
-        if ( $this_notice = $this->check_bwf_minify() ) {
-            $this->notices[] = $this_notice;
-        }
-        if ( $this_notice = $this->check_woo_swipe() ) {
-            $this->notices[] = $this_notice;
-        }
+        $this->iz_dismiss_ajax_product_filters();
+        $this->iz_dismiss_jetpack();
+        $this->iz_dismiss_avada();
+        $this->iz_dismiss_shopkeeper();
+        $this->iz_dismiss_bwp_minify();
+        $this->iz_dismiss_wooswipe();
 
-        if ( is_array($this->notices) && count($this->notices) > 0 ) {
-            add_action( 'admin_notices', array($this, 'show_admin_notice') );
-        } 
+        add_action( 'admin_notices', array($this, 'show_admin_notice') );
     }
 
 
     /**
      * Warning about AJAX product filter plugins
      */
-    function check_ajax_product_filters() {
+    function iz_dismiss_ajax_product_filters() {
         $continue = false;
 
         $general = get_option('zoooom_general');
@@ -79,116 +65,104 @@ class ImageZoooom_Warnings {
 
         if ( !$continue ) return false;
 
-        if ( !empty( get_option( 'iz_dismiss_ajax_product_filters', '' ) ) ) return false;
-
         $article_url = 'https://www.silkypress.com/wp-image-zoom/zoom-woocommerce-category-page-ajax/';
-        $notice = array(
-            'id'        => 'iz_dismiss_ajax_product_filters',
-            'class'     => 'notice notice-error is-dismissible',
-            'message'   => sprintf(__( 'You are using the zoom on WooCommerce shop pages in combination with a plugin that loads more products with AJAX (a product filter plugin or a "load more" products plugin). You\'ll notice that the zoom isn\'t applied after new products are loaded with AJAX. Please read <a href="%1$s" target="_blank">this article for a solution</a>.', 'wp-image-zoooom' ), $article_url),
-        );
+        
+        $message = sprintf(__( 'You are using the zoom on WooCommerce shop pages in combination with a plugin that loads more products with AJAX (a product filter plugin or a "load more" products plugin). You\'ll notice that the zoom isn\'t applied after new products are loaded with AJAX. Please read <a href="%1$s" target="_blank">this article for a solution</a>.', 'wp-image-zoooom' ), $article_url);
 
-        return $notice;
+        $this->add_notice( 'iz_dismiss_ajax_product_filters', $message );
     }
 
 
     /**
      * Check if Jetpack Photon module is active
      */
-    function check_jetpack() {
+    function iz_dismiss_jetpack() {
         if ( ! defined('JETPACK__VERSION' ) ) return false; 
 
         if ( ! Jetpack::is_module_active( 'photon' ) ) return false; 
 
-        if ( !empty( get_option( 'iz_dismiss_jetpack', '' ) ) ) return false;
+        $message = __( 'WP Image Zoom plugin is not compatible with the <a href="admin.php?page=jetpack">Jetpack Photon</a> module. If you find that the zoom is not working, try to deactivate the Photon module and see if that solves it.', 'wp-image-zoooom' );
 
-        $notice = array(
-            'id'        => 'iz_dismiss_jetpack',
-            'message'   => __( 'WP Image Zoom plugin is not compatible with the <a href="admin.php?page=jetpack">Jetpack Photon</a> module. If you find that the zoom is not working, try to deactivate the Photon module and see if that solves it.', 'wp-image-zoooom' ),
-        );
-
-        return $notice;
+        $this->add_notice( 'iz_dismiss_jetpack', $message );
     }
 
 
     /**
      * Check if the Avada theme is active
      */
-    function check_avada() {
+    function iz_dismiss_avada() {
         if ( get_template() != 'Avada' ) return false;
 
         if ( ! is_plugin_active( 'woocommerce/woocommerce.php' ) ) return false;
 
-        if ( !empty( get_option( 'iz_dismiss_avada', '' ) ) ) return false;
-
         $flexslider_url = 'https://woocommerce.com/flexslider/';
         $pro_url = 'https://www.silkypress.com/wp-image-zoom-plugin/?utm_source=wordpress&utm_campaign=iz_free&utm_medium=banner';
-        $notice = array(
-            'id'        => 'iz_dismiss_avada',
-            'message'   => sprintf( __( 'The WP Image Zoom plugin <b>will not work</b> on the WooCommerce products gallery with the Avada theme. The Avada theme changes entirely the default WooCommerce gallery with the <a href="%1$s" target="_blank">Flexslider gallery</a> and the zoom plugin does not support the Flexslider gallery. Please check the <a href="%2$s" target="_blank">PRO version</a> of the plugin for compatibility with the Flexslider gallery.', 'wp-image-zoooom' ), $flexslider_url, $pro_url ),
-        );
+        
+        $message = sprintf( __( 'The WP Image Zoom plugin <b>will not work</b> on the WooCommerce products gallery with the Avada theme. The Avada theme changes entirely the default WooCommerce gallery with the <a href="%1$s" target="_blank">Flexslider gallery</a> and the zoom plugin does not support the Flexslider gallery. Please check the <a href="%2$s" target="_blank">PRO version</a> of the plugin for compatibility with the Flexslider gallery.', 'wp-image-zoooom' ), $flexslider_url, $pro_url );
 
-        return $notice;
+        $this->add_notice( 'iz_dismiss_avada', $message );
     }
 
 
     /**
      * Check if for the Shopkeeper theme 
      */
-    function check_shopkeeper() {
+    function iz_dismiss_shopkeeper() {
         if ( get_template() != 'shopkeeper' ) return false;
 
         if ( ! is_plugin_active( 'woocommerce/woocommerce.php' ) ) return false;
 
-        if ( !empty( get_option( 'iz_dismiss_shopkeeper', '' ) ) ) return false;
-
         $pro_url = 'https://www.silkypress.com/wp-image-zoom-plugin/?utm_source=wordpress&utm_campaign=iz_free&utm_medium=banner';
-        $notice = array(
-            'id'        => 'iz_dismiss_shopkeeper',
-            'class'     => 'updated settings-error notice is-dismissible',
-            'message'   => sprintf( __( 'The WP Image Zoom plugin <b>will not work</b> on the WooCommerce products gallery with the Shopkeeper theme. The Shopkeeper theme changes entirely the default WooCommerce gallery with a custom made gallery not supported by the free version of the WP Image Zoom plugin. Please check the <a href="%1$s" target="_blank">PRO version</a> of the plugin for compatibility with the Shopkeeper\'s gallery.', 'wp-image-zoooom' ), $pro_url ),
-        );
 
-        return $notice;
+        $message = sprintf( __( 'The WP Image Zoom plugin <b>will not work</b> on the WooCommerce products gallery with the Shopkeeper theme. The Shopkeeper theme changes entirely the default WooCommerce gallery with a custom made gallery not supported by the free version of the WP Image Zoom plugin. Please check the <a href="%1$s" target="_blank">PRO version</a> of the plugin for compatibility with the Shopkeeper\'s gallery.', 'wp-image-zoooom' ), $pro_url );
+
+        $this->add_notice( 'iz_dismiss_shopkeeper', $message, 'updated settings-error notice is-dismissible' );
     }
 
 
     /**
      * Warning about BWF Minify settings 
      */
-    function check_bwf_minify() {
-
+    function iz_dismiss_bwp_minify() {
         if ( ! is_plugin_active( 'bwp-minify/bwp-minify.php' ) ) return false;
 
-        if ( !empty( get_option( 'iz_dismiss_bwp_minify', '' ) ) ) return false;
-
         $url = 'https://www.silkypress.com/wp-content/uploads/2016/09/image-zoom-bwp.png';
-        $notice = array(
-            'id'        => 'iz_dismiss_bwp_minify',
-            'message'   => sprintf(__( '<b>If the zoom does not show up</b> on your website, it could be because you need to add the “image_zoooom-init” and the “image_zoooom” to the “Scripts to NOT minify” option in the BWP Minify settings, as shown in <a href="%1$s" target="_blank">this screenshot</a>.', 'wp-image-zoooom' ), $url),
-        );
 
-        return $notice;
+        $message = sprintf(__( '<b>If the zoom does not show up</b> on your website, it could be because you need to add the “image_zoooom-init” and the “image_zoooom” to the “Scripts to NOT minify” option in the BWP Minify settings, as shown in <a href="%1$s" target="_blank">this screenshot</a>.', 'wp-image-zoooom' ), $url);
+
+        $this->add_notice( 'iz_dismiss_bwp_minify', $message );
     }
 
 
     /**
      * Warning about WooSwipe plugin 
      */
-    function check_woo_swipe() {
+    function iz_dismiss_wooswipe() {
 
         if ( ! is_plugin_active( 'wooswipe/wooswipe.php' ) ) return false;
 
-        if ( !empty( get_option( 'iz_dismiss_wooswipe', '' ) ) ) return false;
-
         $pro_url = 'https://www.silkypress.com/wp-image-zoom-plugin/?utm_source=wordpress&utm_campaign=iz_free&utm_medium=banner';
         $wooswipe_url = 'https://wordpress.org/plugins/wooswipe/';
-        $notice = array(
-            'id'        => 'iz_dismiss_wooswipe',
-            'message'   => sprintf( __( 'WP Image Zoom plugin is <b>not compatible with the <a href="%1$s">WooSwipe WooCommerce Gallery</a> plugin</b>. You can try the zoom plugin with the default WooCommerce gallery by deactivating the WooSwipe plugin. Alternatively, you can upgrade to the WP Image Zoom Pro version, where the issue with the WooSwipe plugin is fixed.' ), $wooswipe_url, $pro_url),
-        );
 
-        return $notice;
+        $message = sprintf( __( 'WP Image Zoom plugin is <b>not compatible with the <a href="%1$s">WooSwipe WooCommerce Gallery</a> plugin</b>. You can try the zoom plugin with the default WooCommerce gallery by deactivating the WooSwipe plugin. Alternatively, you can upgrade to the WP Image Zoom Pro version, where the issue with the WooSwipe plugin is fixed.' ), $wooswipe_url, $pro_url);
+
+        $this->add_notice( 'iz_dismiss_woo_swipe', $message );
+    }
+
+
+    /**
+     * Add this message to the $this->notices array
+     */
+    function add_notice($id, $message, $class = '') {
+        if ( get_option($id) != false ) return false;
+
+        $notice = array(
+            'id'        => $id,
+            'message'   => $message,
+        );
+        if ( !empty($class) ) $notice['class'] = $class;
+
+        $this->notices[] = $notice;
     }
 
 
