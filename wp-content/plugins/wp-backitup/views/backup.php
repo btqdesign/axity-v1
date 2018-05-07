@@ -616,4 +616,5 @@ if (!$backup_folder_exists) {
 
     <?php endif ?>
     </td>
+    <td v-else>&nbsp;</td>
 </script>

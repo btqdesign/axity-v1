@@ -1598,8 +1598,15 @@ class WPBackitup_Admin {
 						delete_transient($key);
 					}
 
+					//send safe logs
+					do_action('wpbackitup-safe_upload_logs_files');
+
 					wp_safe_redirect($url . '&s=1');
                 } else{
+
+	                //send safe logs
+	                do_action('wpbackitup-safe_upload_logs_files');
+
 	                wp_safe_redirect($url . '&s=2');
                 }
 

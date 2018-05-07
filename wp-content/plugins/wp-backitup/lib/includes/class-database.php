@@ -671,7 +671,8 @@ class WPBackItUp_DataAccess {
 	}
 
 	/**
-	 *  Get open items(OPEN,QUEUED) for group list since yesterday
+	 *  Get open items(OPEN,QUEUED) for group
+	 *  Also get other items for group list since yesterday
 	 *
 	 * @param string|array $groups list of groups
 	 *
@@ -683,11 +684,14 @@ class WPBackItUp_DataAccess {
 
 		//Group List
 		$group_delimited_list = self::get_delimited_list($groups);
+		$status_delimited_list = self::get_delimited_list(array(WPBackItUp_Job_Item::OPEN, WPBackItUp_Job_Item::QUEUED));
 
 		$sql_select = "SELECT * FROM $wpdb->wpbackitup_job_item
 			          WHERE
-						  group_id IN ( {$group_delimited_list}) &&	
-						  create_date >= NOW() - INTERVAL 1 DAY
+						  (group_id IN ( {$group_delimited_list}) &&						  
+						  create_date >= NOW() - INTERVAL 1 DAY) ||
+						  (group_id IN ( {$group_delimited_list}) &&
+						  item_status IN ( {$status_delimited_list}))						  
 						  ORDER BY group_id desc,item_id desc 	
 					  ";
 
