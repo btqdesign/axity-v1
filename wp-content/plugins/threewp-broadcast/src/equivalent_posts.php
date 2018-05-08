@@ -52,11 +52,13 @@ class equivalent_posts
 		$child_post = $this->get( $parent_blog, $parent_post, $child_blog );
 		if ( ! $child_post )
 		{
+			$this->broadcast()->debug( 'Equivalent child of %s / %s on %s not found. Broadcasting.', $parent_blog, $parent_post, $child_blog );
 			switch_to_blog( $parent_blog );
 			$new_bcd = ThreeWP_Broadcast()->api()
 				->broadcast_children( $parent_post, [ $child_blog ] );
 			restore_current_blog();
 			$child_post = $new_bcd->new_post( 'ID' );
+			$this->broadcast()->debug( 'Equivalent child of %s / %s is now %s / %s.', $parent_blog, $parent_post, $child_blog, $child_post );
 			$this->equivalents[ $parent_blog ][ $parent_post ][ $child_blog ] = $child_post;
 		}
 		return $child_post;

@@ -14,13 +14,13 @@ class check
 	public function get_description()
 	{
 		// Maintenance check description
-		return __( 'Various tools for manipulating the database.', 'threewp_broadcast' );
+		return __( 'Various tools for manipulating the database.', 'threewp-broadcast' );
 	}
 
 	public function get_name()
 	{
 		// Maintenance check name
-		return __( 'Database tools', 'threewp_broadcast' );
+		return __( 'Database tools', 'threewp-broadcast' );
 	}
 
 	public function step_start()
@@ -36,24 +36,24 @@ class check
 		$row = $table->head()->row();
 
 		// Table head column
-		$th = $row->th( 'key' )->text( __( 'Key', 'threewp_broadcast' ) );
+		$th = $row->th( 'key' )->text( __( 'Key', 'threewp-broadcast' ) );
 		// Table head column
-		$th = $row->th( 'value' )->text( __( 'Value', 'threewp_broadcast' ) );
+		$th = $row->th( 'value' )->text( __( 'Value', 'threewp-broadcast' ) );
 
 		$row = $table->head()->row();
-		$row->td( 'key' )->text( __( 'Auto drafts', 'threewp_broadcast' ) );
+		$row->td( 'key' )->text( __( 'Auto drafts', 'threewp-broadcast' ) );
 		$query = sprintf( "SELECT COUNT( * ) FROM `%s` WHERE `post_status` = 'auto-draft'", $wpdb->posts );
 		$value = $wpdb->get_var( $query );
 		$row->td( 'value' )->text( $value );
 
 		$row = $table->head()->row();
-		$row->td( 'key' )->text( __( 'Extra postmeta data', 'threewp_broadcast' ) );
+		$row->td( 'key' )->text( __( 'Extra postmeta data', 'threewp-broadcast' ) );
 		$query = sprintf( "SELECT COUNT( * ) FROM `%s` WHERE `post_id` NOT IN ( SELECT `ID` FROM `%s` )", $wpdb->postmeta, $wpdb->posts );
 		$value = $wpdb->get_var( $query );
 		$row->td( 'value' )->text( $value );
 
 		$row = $table->head()->row();
-		$row->td( 'key' )->text( __( 'Revisions', 'threewp_broadcast' ) );
+		$row->td( 'key' )->text( __( 'Revisions', 'threewp-broadcast' ) );
 		$query = sprintf( "SELECT COUNT( * ) FROM `%s` WHERE `post_type` = 'revision'", $wpdb->posts );
 		$value = $wpdb->get_var( $query );
 		$row->td( 'value' )->text( $value );
@@ -64,15 +64,15 @@ class check
 
 		$delete_auto_drafts = $o->form->secondary_button( 'delete_auto_drafts' )
 			// Button
-			->value( __( 'Delete auto drafts', 'threewp_broadcast' ) );
+			->value( __( 'Delete auto drafts', 'threewp-broadcast' ) );
 
 		$delete_extra_postmeta = $o->form->secondary_button( 'delete_extra_postmeta' )
 			// Button
-			->value( __( 'Delete extra postmeta data', 'threewp_broadcast' ) );
+			->value( __( 'Delete extra postmeta data', 'threewp-broadcast' ) );
 
 		$delete_revisions = $o->form->secondary_button( 'delete_revisions' )
 			// Button
-			->value( __( 'Delete all revisions', 'threewp_broadcast' ) );
+			->value( __( 'Delete all revisions', 'threewp-broadcast' ) );
 
 		if ( $o->form->is_posting() )
 		{
@@ -87,7 +87,7 @@ class check
 				$this->broadcast()->debug( $query );
 				$wpdb->query( $query );
 				$o->r .= $this->broadcast()->info_message_box()
-					->_( __( 'The postmeta table has been cleaned up.', 'threewp_broadcast' ) );
+					->_( __( 'The postmeta table has been cleaned up.', 'threewp-broadcast' ) );
 			}
 
 			if ( $delete_auto_drafts->pressed() )
@@ -96,7 +96,7 @@ class check
 				$this->broadcast()->debug( $query );
 				$wpdb->query( $query );
 				$o->r .= $this->broadcast()->info_message_box()
-					->_( __( 'All auto drafts have been deleted.', 'threewp_broadcast' ) );
+					->_( __( 'All auto drafts have been deleted.', 'threewp-broadcast' ) );
 			}
 
 			if ( $delete_revisions->pressed() )
@@ -105,7 +105,7 @@ class check
 				$this->broadcast()->debug( $query );
 				$wpdb->query( $query );
 				$o->r .= $this->broadcast()->info_message_box()
-					->_( __( 'All revision posts have been deleted.', 'threewp_broadcast' ) );
+					->_( __( 'All revision posts have been deleted.', 'threewp-broadcast' ) );
 			}
 		}
 

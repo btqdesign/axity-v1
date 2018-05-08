@@ -62,7 +62,10 @@ class WPBackItUp_Job_Task {
 		$this->task_id      = $db_task->task_id;
 		$this->job_id       = $db_task->job_id;
 		$this->task_name    = $db_task->task_name;
-		$this->task_meta    = maybe_unserialize($db_task->task_meta);
+
+		//initialize task meta as array php 7.1
+		$this->task_meta=array();
+		if (null!=$db_task->task_meta) $this->task_meta    = maybe_unserialize($db_task->task_meta);
 
 		//leave set to null default
 		if (! empty($db_task->task_start) && '0000-00-00 00:00:00'!= $db_task->task_start) {
@@ -243,6 +246,8 @@ class WPBackItUp_Job_Task {
 	public function setTaskMetaValue($meta_name,$meta_value){
 
 		$this->task_meta[$meta_name]=$meta_value;
+        WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Task Meta: '. var_export($this->task_meta, true));
+
 		return $this->save();
 	}
 

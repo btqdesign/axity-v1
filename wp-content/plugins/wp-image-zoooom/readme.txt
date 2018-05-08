@@ -5,7 +5,7 @@ Email: diana@burduja.eu
 Tags: e-commerce, featured image, hover over image zoom, image, image zoom, image zoom plugin, image magnification, image magnifier, jquery picture zoom, magnifier, magnify image, magnifying glass, mouse over image zoom, panorama, picture zoom, product image, product zoom, product magnification, product magnifier, responsive, woocommerce product zoom, woocommerce zoom, woocommerce  magnifying glass, zoom, zoom image, zoom plugin, woocommerce image zoom, woocommerce product image zoom, woocommerce zoom magnifier
 Requires at least: 3.0.1
 Tested up to: 4.9
-Stable tag: 1.23
+Stable tag: 1.25
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -143,6 +143,18 @@ Alternatively you can upgrade to the Pro version, as there the zoom lens is buil
 8. Apply the zoom from Page Builder by SiteOrigin, the Image Widget
 
 == Changelog ==
+
+= 1.25 =
+* 31/03/2018
+* Fix: Fatal error for PHP older than 5.5
+* Code refactory
+
+= 1.24 =
+* 29/03/2018
+* Fix: Allow the default WooCommerce lightbox along with the zoom
+* Fix: WC3 with the "Remove Lightbox" option disabled showed a lingering image after closing the lightbox. 
+* Security fix: check the option name against an array of allowed values. (https://advisories.dxw.com/advisories/wp-image-zoom-dos/)
+* Tweak: update the list of themes that add a whole page wrapper with the z-index higher than the zoom  
 
 = 1.23 =
 * 08/02/2018

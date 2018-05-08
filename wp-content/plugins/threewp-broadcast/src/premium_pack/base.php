@@ -16,6 +16,8 @@ class base
 		- form						The form2 object.
 		- [multiple] = false		May the user select several blogs?
 		- name						The name of the input. "blogs" is a good name.
+		- [options]					An array of prepopulated options.
+		- [opts]					An array of prepopulated options using the new opts() call.
 		- [required] = false		Is the input required?
 		- [size] = 0				Optional size, else the input is autosized.
 		- value						Value or values to be selected.
@@ -31,6 +33,8 @@ class base
 			'required' => true,
 			'multiple' => true,
 			'name' => '',
+			'options' => [],
+			'opts' => [],
 			'size' => 0,
 			'value' => '',
 		], $options );
@@ -38,6 +42,10 @@ class base
 		$input = $options->form->select( $options->name )
 			->label( $options->label )
 			->value( $options->value );
+
+		// Prepopulate
+		$input->options( $options->options );
+		$input->opts( $options->opts );
 
 		// Add all available blogs as options.
 		$filter = new \threewp_broadcast\actions\get_user_writable_blogs( $this->user_id() );
@@ -92,7 +100,7 @@ class base
 					So instead of writing:
 
 					$mbd->lock_post = $form->checkbox( 'lock_post' )
-						->label( __( 'Lock the post', 'threewp_broadcast' ) )
+						->label( __( 'Lock the post', 'threewp-broadcast' ) )
 
 					You have to ask the plugin itself to translate the string first, before it is given to the form:
 

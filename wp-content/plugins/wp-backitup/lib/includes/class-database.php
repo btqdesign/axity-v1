@@ -542,6 +542,37 @@ class WPBackItUp_DataAccess {
 		else return true;
 	}
 
+//    public function update_task_functional($meta, $retry_count, $task_start, $task_end, $task_status, $task_err, $task_id ) {
+//        WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Begin');
+//        global $wpdb;
+//
+//        $sql = $wpdb->prepare(
+//            "UPDATE  $wpdb->wpbackitup_job_task
+//				SET
+//					task_meta=%s,
+//					retry_count=%d,
+//					task_start = %s,
+//					task_end = %s,
+//					update_date =%s,
+//					task_status=%s,
+//					error=%d
+//			 WHERE  task_id=%d
+//			",
+//            maybe_serialize($meta),
+//            $retry_count,
+//            $task_start,
+//            $task_end,
+//            current_time('mysql'),
+//            $task_status,
+//            $task_err,
+//            $task_id
+//        );
+//
+//        $sql_rtn = $this->query($sql);
+//        if (false=== $sql_rtn) return false;
+//        else return true;
+//    }
+
 
 	/**
 	 * Fetch a distinct list of job_ids from the job_item table
@@ -640,7 +671,8 @@ class WPBackItUp_DataAccess {
 	}
 
 	/**
-	 *  Get open items(OPEN,QUEUED) for group list since yesterday
+	 *  Get open items(OPEN,QUEUED) for group
+	 *  Also get other items for group list since yesterday
 	 *
 	 * @param string|array $groups list of groups
 	 *
@@ -652,11 +684,14 @@ class WPBackItUp_DataAccess {
 
 		//Group List
 		$group_delimited_list = self::get_delimited_list($groups);
+		$status_delimited_list = self::get_delimited_list(array(WPBackItUp_Job_Item::OPEN, WPBackItUp_Job_Item::QUEUED));
 
 		$sql_select = "SELECT * FROM $wpdb->wpbackitup_job_item
 			          WHERE
-						  group_id IN ( {$group_delimited_list}) &&	
-						  create_date >= NOW() - INTERVAL 1 DAY
+						  (group_id IN ( {$group_delimited_list}) &&						  
+						  create_date >= NOW() - INTERVAL 1 DAY) ||
+						  (group_id IN ( {$group_delimited_list}) &&
+						  item_status IN ( {$status_delimited_list}))						  
 						  ORDER BY group_id desc,item_id desc 	
 					  ";
 

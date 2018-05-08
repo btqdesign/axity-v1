@@ -36,12 +36,12 @@ class ThreeWP_Broadcast_Plugin_Pack
 	{
 		$r = '';
 
-		$r .= $this->p( __( 'This table shows all Broadcast add-ons that are available via the activated Broadcast add-on packs.', 'threewp_broadcast' ) );
+		$r .= $this->p( __( 'This table shows all Broadcast add-ons that are available via the activated Broadcast add-on packs.', 'threewp-broadcast' ) );
 
 		$r .= $this->get_plugins_table();
 
 		$r .= $this->p( sprintf(
-			__( 'The developer can be contacted at: %s', 'threewp_broadcast' ),
+			__( 'The developer can be contacted at: %s', 'threewp-broadcast' ),
 			'<a href="mailto:info@plainviewplugins.com">info@plainviewplugins.com</a>'
 		) );
 
@@ -61,7 +61,7 @@ class ThreeWP_Broadcast_Plugin_Pack
 		$tabs->tab( 'plugins' )
 			->callback_this( 'admin_menu_plugins' )
 			// Add-ons tab name
-			->name( __( 'Available add-ons', 'threewp_broadcast' ) )
+			->name( __( 'Available add-ons', 'threewp-broadcast' ) )
 			->sort_order( 25 );
 
 		$action = ThreeWP_Broadcast()->new_action( 'plugin_pack_tabs' );
@@ -71,7 +71,7 @@ class ThreeWP_Broadcast_Plugin_Pack
 		$tabs->tab( 'uninstall' )
 			->callback_this( 'admin_uninstall' )
 			// Uninstall tab name
-			->name( __( 'Uninstall', 'threewp_broadcast' ) )
+			->name( __( 'Uninstall', 'threewp-broadcast' ) )
 			->sort_order( 75 );
 
 		echo $tabs->render();
@@ -88,13 +88,13 @@ class ThreeWP_Broadcast_Plugin_Pack
 		$form->prefix( get_class( $this ) );
 
 		$form->markup( 'uninstall_info_1' )
-			->p( __( 'This button will remove the database settings for the add-on packs themselves: list of activated plugins, license keys.', 'threewp_broadcast' ) );
+			->p( __( 'This button will remove the database settings for the add-on packs themselves: list of activated plugins, license keys.', 'threewp-broadcast' ) );
 
 		$form->markup( 'uninstall_info_2' )
-			->p( __( 'To uninstall the settings for each pack add-on, use the add-on list bulk action.', 'threewp_broadcast' ) );
+			->p( __( 'To uninstall the settings for each pack add-on, use the add-on list bulk action.', 'threewp-broadcast' ) );
 
 		$uninstall = $form->primary_button( 'uninstall' )
-			->value( __( 'Uninstall the pack settings', 'threewp_broadcast' ) );
+			->value( __( 'Uninstall the pack settings', 'threewp-broadcast' ) );
 
 		if ( $form->is_posting() )
 		{
@@ -108,7 +108,7 @@ class ThreeWP_Broadcast_Plugin_Pack
 				else
 					$url ='index.php';
 				$this->message(
-					__( 'The plugin and all associated settings and database tables have been removed. Please %sfollow this link to complete the uninstallation procedure%s.', 'threewp_broadcast' ),
+					__( 'The plugin and all associated settings and database tables have been removed. Please %sfollow this link to complete the uninstallation procedure%s.', 'threewp-broadcast' ),
 					sprintf( '<a href="%s" title="%s">', $url, $this->_( 'This link will take you to the index page' ) ),
 					'</a>' );
 				return;
@@ -151,9 +151,9 @@ class ThreeWP_Broadcast_Plugin_Pack
 			->submenu( 'bc_pp' )
 			->callback_this( 'admin_menu_tabs' )
 			// Menu item for menu
-			->menu_title( __( 'Add-ons', 'threewp_broadcast' ) )
+			->menu_title( __( 'Add-ons', 'threewp-broadcast' ) )
 			// Page title for menu
-			->page_title( __( 'Add-ons', 'threewp_broadcast' ) )
+			->page_title( __( 'Add-ons', 'threewp-broadcast' ) )
 			->sort_order( 25 );
 	}
 

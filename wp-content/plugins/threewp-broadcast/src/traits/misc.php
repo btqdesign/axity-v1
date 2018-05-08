@@ -287,7 +287,7 @@ trait misc
 		$row = $table->body()->row();
 		$row->td()->text_( 'PHP maximum execution time' );
 		$count = ini_get ( 'max_execution_time' );
-		$text = $this->p_( _n( '%d second', '%d seconds', $count, 'threewp_broadcast' ), $count );
+		$text = $this->p( _n( '%d second', '%d seconds', $count, 'threewp-broadcast' ), $count );
 		$row->td()->text( $text );
 
 		$row = $table->body()->row();
@@ -312,7 +312,7 @@ trait misc
 
 <code>ini_set('display_errors','On');</code>
 <code>define('WP_DEBUG', true);</code>
-",		$this->p( __( 'Add the following lines to your wp-config.php to help find out why errors or blank screens are occurring:' ) ), 'threewp_broadcast' ) );
+",		$this->p( __( 'Add the following lines to your wp-config.php to help find out why errors or blank screens are occurring:' ) ), 'threewp-broadcast' ) );
 		$row->td()->text( $text );
 
 		$row = $table->body()->row();

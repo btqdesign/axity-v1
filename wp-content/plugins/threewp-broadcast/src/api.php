@@ -74,6 +74,28 @@ class api
 	}
 
 	/**
+		@brief		Delete the specified children.
+		@param		int		$post_id		ID of post on this blog to use as the parent.
+		@param		array	$blogs			Array of blog IDs from which to delete the child posts.
+		@since		2018-03-02 18:40:09
+	**/
+	public function delete_children( $post_id, $blogs )
+	{
+		if ( ! is_array( $blogs ) )
+			$blogs = [ $blogs ];
+		$broadcast_data = ThreeWP_Broadcast()->get_post_broadcast_data( get_current_blog_id(), $post_id );
+		foreach( $broadcast_data->get_linked_children() as $child_blog_id => $child_post_id )
+		{
+			if ( ! in_array( $child_blog_id, $blogs ) )
+				continue;
+			switch_to_blog( $child_blog_id );
+			// Don't even trash them. Go away!
+			wp_delete_post( $child_post_id, true );
+			restore_current_blog();
+		}
+	}
+
+	/**
 		@brief		Rebroadcasts a parent post to its existing children.
 		@details	Optionally adds children on new blogs.
 		@param		int		$post_id	The ID of the post to rebroadcast.

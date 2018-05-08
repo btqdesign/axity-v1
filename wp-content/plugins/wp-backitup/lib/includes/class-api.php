@@ -40,33 +40,36 @@ class WPBackItUp_API {
 			), $backup_list_size );
 
 			$available_backups = array();
-			foreach ( $backup_jobs as $backup_job ) {
-				switch ( $backup_job->getJobStatus() ) {
-					case WPBackItUp_Job::COMPLETE:
-						$status = __( "Success", 'wp-backitup' );
-						break;
-					case WPBackItUp_Job::ACTIVE:
-						$status = __( "Active", 'wp-backitup' );
-						break;
-					default:
-						$status = __( "Error", 'wp-backitup' );
+			if (is_array($backup_jobs)) {
+				foreach ( $backup_jobs as $backup_job ) {
+					switch ( $backup_job->getJobStatus() ) {
+						case WPBackItUp_Job::COMPLETE:
+							$status = __( "Success", 'wp-backitup' );
+							break;
+						case WPBackItUp_Job::ACTIVE:
+							$status = __( "Active", 'wp-backitup' );
+							break;
+						default:
+							$status = __( "Error", 'wp-backitup' );
+					}
+
+					// Random status value
+					// $cloud_status = array('uploading', 'uploaded', 'error', false);
+
+					$available_backups[] = array(
+						'backup_job_id'           => $backup_job->getJobId(),
+						'backup_job_name'         => $backup_job->getJobName(),
+						'backup_job_date'         => $backup_job->getJobDate(),
+						'backup_job_type'         => $backup_job->getJobType(),
+						'backup_job_run_type'     => $backup_job->getJobRunType(),
+						'backup_job_start_time'   => $backup_job->getJobStartTime(),
+						'backup_job_end_time'     => $backup_job->getJobEndTime(),
+						'backup_job_status'       => $status,
+						'backup_job_cloud_status' => $backup_job->getCloudStatus(),
+						// pick a random $cloud_status[array_rand($cloud_status, 1)],
+						'backup_job_zip_files'    => $backup_job->getJobMetaValue( 'backup_zip_files' ),
+					);
 				}
-
-				// Random status value
-				// $cloud_status = array('uploading', 'uploaded', 'error', false);
-
-				$available_backups[] = array(
-					'backup_job_id'           => $backup_job->getJobId(),
-					'backup_job_name'         => $backup_job->getJobName(),
-					'backup_job_date'         => $backup_job->getJobDate(),
-					'backup_job_type'         => $backup_job->getJobType(),
-					'backup_job_run_type'     => $backup_job->getJobRunType(),
-					'backup_job_start_time'   => $backup_job->getJobStartTime(),
-					'backup_job_end_time'     => $backup_job->getJobEndTime(),
-					'backup_job_status'       => $status,
-					'backup_job_cloud_status' => $backup_job->getCloudStatus(), // pick a random $cloud_status[array_rand($cloud_status, 1)],
-					'backup_job_zip_files'    => $backup_job->getJobMetaValue( 'backup_zip_files' ),
-				);
 			}
 
 			wp_send_json_success( $available_backups ); //Send JSON Response

@@ -14,13 +14,13 @@ extends \threewp_broadcast\maintenance\checks\check
 	public function get_description()
 	{
 		// Maintenace check description
-		return __( 'Check to see which users can write to which blogs.', 'threewp_broadcast' );
+		return __( 'Check to see which users can write to which blogs.', 'threewp-broadcast' );
 	}
 
 	public function get_name()
 	{
 		// Name of maintenance check.
-		return __( 'View blog access', 'threewp_broadcast' );
+		return __( 'View blog access', 'threewp-broadcast' );
 	}
 
 	public function step_start()
@@ -31,9 +31,9 @@ extends \threewp_broadcast\maintenance\checks\check
 		$o->r = '';
 
 		$o->inputs->user = $o->form->select( 'user' )
-			->description( __( 'The user or users for which to check blog access.', 'threewp_broadcast' ) )
+			->description( __( 'The user or users for which to check blog access.', 'threewp-broadcast' ) )
 			// for blog access in the maintenance check
-			->label( __( 'User(s) to check', 'threewp_broadcast' ) )
+			->label( __( 'User(s) to check', 'threewp-broadcast' ) )
 			->multiple();
 
 		$all_users = get_users();
@@ -48,7 +48,7 @@ extends \threewp_broadcast\maintenance\checks\check
 
 		$button = $o->form->primary_button( 'view_blog_access' )
 			// Button
-			->value( __( 'Display blog access for the selected user(s)', 'threewp_broadcast' ) );
+			->value( __( 'Display blog access for the selected user(s)', 'threewp-broadcast' ) );
 
 		if ( $o->form->is_posting() )
 		{
@@ -66,7 +66,7 @@ extends \threewp_broadcast\maintenance\checks\check
 						$blogs = $filter->execute()->blogs;
 
 						if ( count( $blogs ) < 1 )
-							$r .= $this->broadcast()->p_( __( '%s does not have access to any blogs.', 'threewp_broadcast' ), $user->data->user_login );
+							$r .= $this->broadcast()->p( __( '%s does not have access to any blogs.', 'threewp-broadcast' ), $user->data->user_login );
 						else
 						{
 							$blogs_ul = [];
@@ -75,7 +75,7 @@ extends \threewp_broadcast\maintenance\checks\check
 								$blogs_ul []= sprintf( '<a href="%s/wp-admin">%s</a>', $blog->siteurl, $blog->get_name() );
 							}
 							// Use x has access to the following blogs: ul-blogs-ul
-							$r .= $this->broadcast()->p_( __( '%s has access to the following blogs: %s%s%s', 'threewp_broadcast' ),
+							$r .= $this->broadcast()->p( __( '%s has access to the following blogs: %s%s%s', 'threewp-broadcast' ),
 								$user->data->user_login,
 								'<ul>',
 								$this->broadcast()->implode_html( $blogs_ul ),
@@ -92,7 +92,7 @@ extends \threewp_broadcast\maintenance\checks\check
 		}
 
 		// Description of the maintenance check
-		$o->r .= $this->broadcast()->p( __( "Use this tool to help diagnose why the Broadcast meta box isn't apprearing for some users. To be able to broadcast to a blog the user must be added as an author or above.", 'threewp_broadcast' ) );
+		$o->r .= $this->broadcast()->p( __( "Use this tool to help diagnose why the Broadcast meta box isn't apprearing for some users. To be able to broadcast to a blog the user must be added as an author or above.", 'threewp-broadcast' ) );
 
 		$o->r .= $o->form->open_tag();
 		$o->r .= $o->form->display_form_table();

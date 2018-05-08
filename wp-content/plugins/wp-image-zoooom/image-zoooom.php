@@ -3,7 +3,7 @@
  * Plugin Name: WP Image Zoom
  * Plugin URI: https://wordpress.org/plugins/wp-image-zoooom/
  * Description: Add zoom effect over the an image, whether it is an image in a post/page or the featured image of a product in a WooCommerce shop 
- * Version: 1.23
+ * Version: 1.25
  * Author: SilkyPress 
  * Author URI: https://www.silkypress.com
  * License: GPL2
@@ -98,7 +98,7 @@ final class ImageZoooom {
         // Adjust the zoom to WooCommerce 3.0.+
         if ( $general['enable_woocommerce'] && class_exists('woocommerce') && version_compare( WC_VERSION, '3.0', '>') ) {
             remove_theme_support( 'wc-product-gallery-zoom' );
-            remove_theme_support( 'wc-product-gallery-lightbox' );
+            //remove_theme_support( 'wc-product-gallery-lightbox' );
             add_theme_support( 'wc-product-gallery-slider' );
 
             if ($this->theme('kiddy') || $this->theme('flatsome')) {
@@ -257,33 +257,44 @@ final class ImageZoooom {
      * wp_head compatibilities 
      */
     function wp_head_compatibilities() {
-        if ($this->theme('bridge') || $this->theme('nouveau') || $this->theme('stockholm') ) { 
-            echo '<style type="text/css"> .wrapper { z-index: 40 !important; } </style>' . PHP_EOL;
-        }
+        $theme = get_template();
 
-        if ($this->theme('artcore')) {
-            echo '<style type="text/css"> .sidebar-menu-push { z-index: 40 !important; } </style>' . PHP_EOL;
-        } 
-
-        // Many of the select-themes.com themes add a wrapper on the whole page
-        $select_themes = array(
-            'kloe', 'startit', 'kudos', 'moments', 'ayro', 'suprema', 'ultima', 'geko', 'target', 'coney', 'aton', 'ukiyo', 'zenit', 'mixtape', 'scribbler', 'alecta', 'cityrama', 'bazaar'
+        // These themes add a wrapper on the whole page with index higher than the zoom
+        $wrapper_themes = array(
+            array(
+                'rule' => '.wrapper { z-index: 40 !important; }',
+                'themes' => array('bridge', 'nouveau', 'stockholm', 'tactile', 'vigor', 'homa', 'hudsonwp', ),
+            ),
+            array(
+                'rule' => '.qodef-wrapper { z-index: 200 !important; }',
+                'themes' => array('kloe', 'startit', 'kudos', 'moments', 'ayro', 'suprema', 'ultima', 'geko', 'target', 'coney', 'aton', 'ukiyo', 'zenit', 'mixtape', 'scribbler', 'alecta', 'cityrama', 'bazaar'),
+            ),
+            array(
+                'rule' => '.edgtf-wrapper { z-index: 40 !important; }',
+                'themes' => array('quadric', 'oxides', 'kvadrat', 'magazinevibe', 'kolumn', 'skyetheme', 'conall', 'dorianwp', 'node', 'ratio', 'escher', 'fair', 'assemble', 'any', 'walker', 'freestyle', 'shuffle', 'vangard', 'fuzion', 'crimson', 'cozy', 'xpo', 'onschedule', 'illustrator', 'oberon', 'fluid', 'barista', 'kamera', 'revolver', 'baker', 'rebellion', 'goodwish', 'maison', 'silverscreen', 'sovereign', 'atmosphere', 'dekko', 'objektiv', 'okami', 'coyote', 'bumblebee', 'blaze', 'mediadesk', 'penumbra', 'pxlz', 'gastrobar', 'aalto', 'dishup', 'voevod', 'orkan', 'fierce'),
+            ),
+            array(
+                'rule' => '.edge-wrapper { z-index: 40 !important; }',
+                'themes' => array('dieter', 'anders', 'adorn'),
+            ),
+            array(
+                'rule' => '.edgt-wrapper { z-index: 40 !important; }',
+                'themes' => array('shade', 'eldritch', 'morsel', 'educator'),
+            ),
+            array(
+                'rule' => '.sidebar-menu-push { z-index: 40 !important; }',
+                'themes' => array('artcore'),
+            ),
         );
-        foreach( $select_themes as $_theme ) {
-            if ($this->theme($_theme) ) { ?>
-                <style type="text/css"> .qodef-wrapper { z-index: 200 !important; } </style>
-                <?php
+        foreach( $wrapper_themes as $_v ) {
+            if ( in_array($theme, $_v['themes'] ) ) { 
+                echo '<style type="text/css">' . $_v['rule'] . '</style>'. PHP_EOL;
             }
         }
-
-        if ($this->theme('dorianwp')) {
-            echo '<style type="text/css">.edgtf-side-menu-slide-from-right .edgtf-wrapper {z-index: 20;}</style>' . PHP_EOL;
-        } 
 
         if ( defined('LP_PLUGIN_FILE')) {
             echo '<style type="text/css">body.content-item-only .learn-press-content-item-only { z-index: 990; } .single-lp_course #wpadminbar{z-index:900;}</style>' . PHP_EOL;
         }
-
     }
 
 
@@ -503,7 +514,7 @@ function wp_image_zoooom_plugin_action_links( $links ) {
     return array_merge( array( $settings_link), $links );
 
 }
-add_filter( 'plugin_action_links_' . plugin_basename(__FILE__),                                  'wp_image_zoooom_plugin_action_links' );
+add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'wp_image_zoooom_plugin_action_links' );
 
 if ( ! function_exists( 'x_disable_wp_image_srcset' ) ) :
 function x_disable_wp_image_srcset() {

@@ -66,10 +66,10 @@ class WPBackItUp_Logger {
 	/**
 	 *  Write error messages to the log
 	 *
-	 * @param $log_name Log Name
-	 * @param $function Name of calling function(__METHOD__)
-	 * @param $message Log Message (Array or object)
-	 * @param null $additional_message  (string)
+	 * @param string $log_name Log Name
+	 * @param string $function Name of calling function(__METHOD__)
+	 * @param string $message Log Message (Array or object)
+	 * @param string $additional_message  (string)
 	 */
 	public static function log_error($log_name, $function,$message,$additional_message=null) {
 
