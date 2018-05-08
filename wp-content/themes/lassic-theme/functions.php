@@ -1,4 +1,9 @@
 <?php
+add_filter('final_output', function($output) {
+    // Soporte HTTPS
+    $output = str_replace('http:', 'https:', $output);
+    return $output;
+});
 function cubiq_setup () {
     remove_action('wp_head', 'wp_generator');
     remove_action('wp_head', 'wlwmanifest_link');
