@@ -1588,7 +1588,7 @@ class RevSliderOperations extends RevSliderElementsBase{
 			<link rel="stylesheet" type="text/css" href="<?php echo $path_css; ?>navigation.css">
 			
 			<!-- FONT AND STYLE FOR BASIC DOCUMENTS, NO NEED FOR FURTHER USAGE IN YOUR PROJECTS-->
-			<link href="http://fonts.googleapis.com/css?family=Roboto%3A700%2C300" rel="stylesheet" property="stylesheet" type="text/css" media="all" />
+			<link href="https://fonts.googleapis.com/css?family=Roboto%3A700%2C300" rel="stylesheet" property="stylesheet" type="text/css" media="all" />
 			<link rel="stylesheet" type="text/css" href="../../assets/css/noneed.css">
 			<?php
 		}
