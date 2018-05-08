@@ -183,7 +183,7 @@ class WPML_URL_Converter {
 
 	/**
 	 * @param string $url
-	 * @param string $langauge
+	 * @param string $language
 	 *
 	 * @return string
 	 */
