@@ -1,4 +1,14 @@
 <?php
+add_action('wp_footer', 'axity_content_hide');
+function axity_content_hide(){
+?>
+	<script>
+		jQuery(document).ready(function() {
+			jQuery('.content-hide').hide();
+		});	
+	</script>
+<?php
+}
 add_filter('final_output', function($output) {
     // Soporte HTTPS
     $output = str_replace('http:', 'https:', $output);
