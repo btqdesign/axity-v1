@@ -9,6 +9,14 @@ function axity_content_hide(){
 	</script>
 <?php
 }
+add_action('wp_header', 'axity_css_content_hide');
+function axity_css_content_hide(){
+?>
+	<style>
+		.content-hide{display: none !important; color: white !important; background: white !important;}
+	</style>
+<?php
+}
 add_filter('final_output', function($output) {
     // Soporte HTTPS
     $output = str_replace('http:', 'https:', $output);
