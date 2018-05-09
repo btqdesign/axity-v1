@@ -84,7 +84,7 @@ amp-sidebar{background:#333;width:100%;padding-left:20%;padding-right:10%;paddin
 .header{
 <?php if($redux_builder_amp['minimalblog-color-scheme']['rgba']){?>
     background: <?php echo $redux_builder_amp['minimalblog-color-scheme'] ['rgba'] ?>;
-    <?php } else { ?> background:rgba(62, 17, 81, 1); <?php } ?> padding:10px 0;
+    <?php } else { ?> background:rgba(62, 17, 81, 1); <?php } ?> padding:20px 0;
 .head-sec .left,.head-sec .right{line-height:0;display:block}
 .header h1{font-size:1.5em}
 .amp-phone,.amp-sidebar-button,.amp-social{display:inline-flex}
