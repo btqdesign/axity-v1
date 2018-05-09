@@ -70,7 +70,11 @@
                                 </a>
                                 <?php 
                                 }
+                                
+                                echo "<!-- \n";
                                 the_content();
+                                echo "\n -->";
+                                
                                 wp_link_pages( array( 'before' => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'lassic' ) . '</span>', 'after' => '</div>', 'link_before' => '<span>', 'link_after' => '</span>' ) );
                                 ?>
                         </div>
@@ -332,7 +336,9 @@
                                 <h6 class="transform"><?php echo the_title(); ?></h6>
                             </header>
                             <?php
+                            echo "<!-- \n";
                             the_content();
+                            echo "\n -->";
 							wp_link_pages( array( 'before' => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'lassic' ) . '</span>', 'after' => '</div>', 'link_before' => '<span>', 'link_after' => '</span>' ) );
                             echo '</div>';
                     endwhile;
