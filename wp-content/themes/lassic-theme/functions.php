@@ -9,7 +9,7 @@ function axity_content_hide(){
 	</script>
 <?php
 }
-add_action('wp_header', 'axity_css_content_hide');
+add_action('wp_head', 'axity_css_content_hide');
 function axity_css_content_hide(){
 ?>
 	<style>
