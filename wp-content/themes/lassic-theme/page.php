@@ -55,10 +55,11 @@
 				$image_url = cs_get_post_img_src($post->ID, $width, $height);
 			if(get_the_content() <> '' || $image_url <> '')	{
 				if ( function_exists( 'cs_prettyphoto_enqueue' ) ) { cs_prettyphoto_enqueue(); } ?>
+				<div class="content-hide">
 				<section class="page-section">
                     <div  class="container">
                         <div class="row">
-                          <div class="col-md-12 rich_editor_text lightbox">
+                            <div class="col-md-12 rich_editor_text lightbox">
                                 
                                 <?php if (isset($image_url) && $image_url !=''){ ?>
                                 <a href="<?php echo esc_url($image_url);?>">
@@ -73,10 +74,11 @@
                                 the_content();
                                 wp_link_pages( array( 'before' => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'lassic' ) . '</span>', 'after' => '</div>', 'link_before' => '<span>', 'link_after' => '</span>' ) );
                                 ?>
+                            </div>
                         </div>
-                        </div>
-                     </div>
-	             </section>
+                    </div>
+	            </section>
+				</div>
 		<?php	}
 		}
 		/**
@@ -320,6 +322,7 @@
 			}
 		} else {
 			?>
+		<div class="content-hide">
         <div class="container">		
             <!-- Row Start -->
             <div class="row">
@@ -338,10 +341,11 @@
                     endwhile;
                     wp_reset_query();
                     ?>
-               </div>
-             </div>
-           </div>
-       </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		</div>
 <?php
 	}
 get_footer(); ?>

@@ -38,7 +38,7 @@ class WPML_WPSEO_XML_Sitemaps_Filter {
 		global $wpml_query_filter;
 
 		if ( $this->is_per_domain() ) {
-			add_filter( 'wpml_get_home_url', array( $this, 'get_home_url_filter' ), 10, 1 );
+			add_filter( 'wpml_get_home_url', array( $this, 'get_home_url_filter' ), 10, 4 );
 			add_filter( 'wpseo_posts_join', array( $wpml_query_filter, 'filter_single_type_join' ), 10, 2 );
 			add_filter( 'wpseo_posts_where', array( $wpml_query_filter, 'filter_single_type_where' ), 10, 2 );
 			add_filter( 'wpseo_typecount_join', array( $wpml_query_filter, 'filter_single_type_join' ), 10, 2 );
@@ -82,8 +82,11 @@ class WPML_WPSEO_XML_Sitemaps_Filter {
 	 *
 	 * @return bool|mixed|string
 	 */
-	public function get_home_url_filter( $home_url ) {
-		return $this->wpml_url_converter->convert_url( $home_url, $this->sitepress->get_current_language() );
+	public function get_home_url_filter( $home_url, $url, $path, $orig_scheme ) {
+		if( 'relative' !== $orig_scheme ){
+			$home_url = $this->wpml_url_converter->convert_url( $home_url, $this->sitepress->get_current_language() );
+		}
+		return $home_url;
 	}
 
 	public function list_domains() {

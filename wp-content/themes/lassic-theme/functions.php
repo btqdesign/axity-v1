@@ -1,4 +1,27 @@
 <?php
+add_action('wp_footer', 'axity_content_hide');
+function axity_content_hide(){
+?>
+	<script>
+		jQuery(document).ready(function() {
+			jQuery('.content-hide').hide();
+		});	
+	</script>
+<?php
+}
+add_action('wp_head', 'axity_css_content_hide');
+function axity_css_content_hide(){
+?>
+	<style>
+		.content-hide{display: none !important; color: white !important; background: white !important;}
+	</style>
+<?php
+}
+add_filter('final_output', function($output) {
+    // Soporte HTTPS
+    $output = str_replace('http:', 'https:', $output);
+    return $output;
+});
 function cubiq_setup () {
     remove_action('wp_head', 'wp_generator');
     remove_action('wp_head', 'wlwmanifest_link');

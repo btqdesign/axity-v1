@@ -176,7 +176,7 @@ if ( ! function_exists( 'cs_get_font_family' ) ) {
 				$name = $fonts[$font_index];
 				$name = str_replace(' ', '+',$name);
 				if($att <> '') $all_att = ':'.$att;
-				$url = 'http://fonts.googleapis.com/css?family='.$name.$all_att;
+				$url = 'https://fonts.googleapis.com/css?family='.$name.$all_att;
 				$html ='@import url('.$url.');';
 			}
 		}
