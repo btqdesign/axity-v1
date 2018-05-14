@@ -1,4 +1,8 @@
 <?php
+add_action('wp_enqueue_scripts', 'btq_style_scripts');
+function btq_style_scripts() {
+    wp_enqueue_style('btq-style', get_stylesheet_directory_uri() . '/style-btq.css', 'style_css');
+}
 add_action('wp_footer', 'axity_content_hide');
 function axity_content_hide(){
 ?>
