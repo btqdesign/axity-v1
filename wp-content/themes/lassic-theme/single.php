@@ -136,9 +136,9 @@
                                     cs_post_flex_slider($width,$height,get_the_id(),'post');
                                 echo '</figure>';
                             } else if ($inside_post_view == "Single Image" && $image_url <> '') { 
-                                echo '<figure  class="cs-detailpost">';
-                                    echo '<img src="'.$image_url.'" alt="" >';
-                                echo '</figure>';
+                                //echo '<figure  class="cs-detailpost">';
+                                //    echo '<img src="'.$image_url.'" alt="" >';
+                                //echo '</figure>';
                             } elseif ( $inside_post_view == "Video" and $post_video <> '' and $inside_post_view <> '' ) {
                                  echo '<figure class="cs-detailpost">';
                                     $url = parse_url($post_video);
@@ -198,7 +198,7 @@
                                 <?php } 
                              }?>  
                         </div>
-                        <?php
+                        <?php /*
                          $thumb_ID = get_post_thumbnail_id( $post->ID );
                          if ( $images = get_children(array(
                            'post_parent' => get_the_ID(),
@@ -238,7 +238,7 @@
                                 <?php } ?>
                               </ul>
                            </div>
-                        <?php }
+                        <?php } */
                             if(isset($cs_post_social_sharing) and $cs_post_social_sharing <> ''){?>
                                 <div class="cs-social-share">
                                     <?php cs_social_share(false,true,'yes'); ?>
