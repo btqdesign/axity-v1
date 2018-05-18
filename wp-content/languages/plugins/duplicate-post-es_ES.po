@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Duplicate Post - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2017-12-05 22:37:37+0000\n"
+"PO-Revision-Date: 2018-05-15 11:24:15+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -53,7 +53,7 @@ msgstr "Acciones en masa"
 
 #: duplicate-post-options.php:285
 msgid "You can use * to match zero or more alphanumeric characters or underscores: e.g. field*"
-msgstr "Puedes usar * para sustituir cero o más caracteres alfanuméricos o guiones bajos: ej: campo* "
+msgstr "Puedes usar * para sustituir cero o más caracteres alfanuméricos o guiones bajos: p. ej. campo* "
 
 #: duplicate-post-options.php:244
 msgid "Menu order"
@@ -104,7 +104,7 @@ msgstr "También puedes usar la etiqueta de plantilla duplicate_post_clone_post_
 
 #: duplicate-post-options.php:346 duplicate-post-options.php:372
 msgid "Whether the links are displayed for custom post types registered by themes or plugins depends on their use of standard WordPress UI elements"
-msgstr "Que los enlaces se muestren como tipos de post personalizados por temas o plugins depende de su uso de los elementos de la interfaz estándar de WordPress"
+msgstr "Que los enlaces se muestren para los tipos de contenido personalizados registrados por temas o plugins depende del uso que le den a los elementos de la interfaz estándar de WordPress"
 
 #: duplicate-post-options.php:345
 msgid "Select the post types you want the plugin to be enabled"
@@ -212,7 +212,7 @@ msgstr "Enrico Battocchi"
 
 #. Description of the plugin/theme
 msgid "Clone posts and pages."
-msgstr "Clonar entradas y páginas"
+msgstr "Clona entradas y páginas."
 
 #: duplicate-post.php:49
 msgid "Settings"
