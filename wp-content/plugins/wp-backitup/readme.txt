@@ -1,10 +1,10 @@
-=== Backup and Restore WordPress - WPBackItUp Backup Plugin ===
+=== Backup and Restore WordPress - Backup Plugin ===
 Contributors: wpbackitup, cssimmon, alaminopu, imranshuvo
 Tags: backup, backups, back up, backup plugin, database backup, multisite backup, full backup, database, restore, migrate, clone, malware
 Requires at least: 3.8.0
 Requires PHP: 5.2.4
 Tested up to: 4.9
-Stable tag: 1.15.6
+Stable tag: 1.17
 Author URI: https://www.wpbackitup.com
 Donate link: https://www.wpbackitup.com
 License: GPLv2 or later
@@ -214,6 +214,17 @@ Our online documentation and full list of FAQs can be found at [support.wpbackit
 
 
 == Changelog ==
+= 1.17 =
+*Release Date -  May 19, 2018
+
+* UPDATE: Fix issue with ut-API
+
+= 1.16 =
+*Release Date -  May 18, 2018
+
+* UPDATE: Updates for WordPress version 4.9.6
+* UPDATE: Updates to usage tracking
+
 = 1.15.7 =
 *Release Date -  May 4, 2018
 

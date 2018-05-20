@@ -33,6 +33,10 @@ function wpbackitup_update_plugin() {
 	WPBackItUp_Logger::log_info($log_name,__METHOD__, 'Current Plugin Minor Version:' . $current_plugin_minor_ver );
 	WPBackItUp_Logger::log_info($log_name,__METHOD__, 'Target Plugin Minor Version:' . $target_plugin_minor_ver );
 
+	//fire to help troubleshoot upgrade issues
+	$ut = new WPBackItUp_Usage();
+	$ut->ut_event(true,true);
+
 	//If current version = 0 then this is an install
 	if ($current_plugin_major_ver==0){
 		WPBackItUp_Logger::log_info($log_name,__METHOD__, 'New Install.');
