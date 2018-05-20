@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WordPress - 4.9.x - Development - Administration package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2018-05-16 07:51:28+0000\n"
+"PO-Revision-Date: 2018-05-18 16:46:51+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -3430,7 +3430,7 @@ msgstr "<a href=\"https://codex.wordpress.org/Formatting_Date_and_Time\">Documen
 
 #: wp-admin/update-core.php:183
 msgid "<strong>Important:</strong> before updating, please <a href=\"https://codex.wordpress.org/WordPress_Backups\">back up your database and files</a>. For help with updates, visit the <a href=\"https://codex.wordpress.org/Updating_WordPress\">Updating WordPress</a> Codex page."
-msgstr "<strong>Importante:</strong> antes de la actualización, por favor, <a href=\"https://codex.wordpress.org/WordPress_Backups\">haz copia de seguridad de la base de datos y ficheros</a>. Si necesitas ayuda sobre como actualizar visita la página del Codex: <a href=\"https://codex.wordpress.org/Updating_WordPress\">Actualizando WordPress</a>."
+msgstr "<strong>Importante:</strong> antes de actualizar, por favor, <a href=\"https://codex.wordpress.org/WordPress_Backups\">haz una copia de seguridad de la base de datos y archivos</a>. Si necesitas ayuda para actualizar, visita la página del Codex: <a href=\"https://codex.wordpress.org/Updating_WordPress\">Actualizando WordPress</a>."
 
 #: wp-admin/theme-install.php:120
 msgid "<a href=\"https://codex.wordpress.org/Using_Themes#Adding_New_Themes\">Documentation on Adding New Themes</a>"
@@ -4321,13 +4321,13 @@ msgstr "<strong>Traducciones</strong> &mdash; Los archivos que traducen WordPres
 msgid "If an update is available, you&#8127;ll see a notification appear in the Toolbar and navigation menu."
 msgstr "Si hay una actualización disponible aparecerá una notificación en la barra de herramientas y en el menú de navegación."
 
-#: wp-admin/update-core.php:561
-msgid "On this screen, you can update to the latest version of WordPress, as well as update your themes, plugins, and translations from the WordPress.org repositories."
-msgstr "En esta pantalla puedes actualizar a la última versión de WordPress así como actualizar tus temas, plugins y traducciones desde los repositorios de WordPress.org. "
-
 #: wp-admin/update-core.php:571
 msgid "<strong>Themes and Plugins</strong> &mdash; To update individual themes or plugins from this screen, use the checkboxes to make your selection, then <strong>click on the appropriate &#8220;Update&#8221; button</strong>. To update all of your themes or plugins at once, you can check the box at the top of the section to select all before clicking the update button."
 msgstr "<strong>Temas y Plugins</strong> &mdash; Para actualizar temas o plugins uno a uno desde esta pantalla usa las casillas de selección para hacer tu elección, luego <strong>haz clic en el botón &#8220;Actualizar&#8221; correspondiente</strong>. Para actualizar todos tus temas o plugins de una vez puedes seleccionar la casilla de la parte superior de la sección para elegirlos todos antes de hacer clic en el botón de actualizar."
+
+#: wp-admin/update-core.php:561
+msgid "On this screen, you can update to the latest version of WordPress, as well as update your themes, plugins, and translations from the WordPress.org repositories."
+msgstr "En esta pantalla puedes actualizar a la última versión de WordPress, así como actualizar tus temas, plugins y traducciones desde los repositorios de WordPress.org. "
 
 #: wp-admin/about.php:21
 msgid "Welcome to WordPress&nbsp;%s"
@@ -4398,13 +4398,13 @@ msgstr "Esta pantalla se utiliza para gestionar los temas que tienes instalados.
 msgid "The current theme is displayed highlighted as the first theme."
 msgstr "El tema actual se muestra de forma destacada en primer lugar."
 
-#: wp-admin/themes.php:107
-msgid "When previewing on smaller monitors, you can use the collapse icon at the bottom of the left-hand pane. This will hide the pane, giving you more room to preview your site in the new theme. To bring the pane back, click on the collapse icon again."
-msgstr "Al previsualizar en monitores pequeños puedes usar el icono de Contraer que está al fondo del panel izquierdo. esto ocultará el panel, dándote más espacio para previsualizar tu sitio con el nuevo tema. Para volver a ver el panel haz clic de nuevo en el icono de Contraer."
-
 #: wp-admin/themes.php:105
 msgid "Tap or hover on any theme then click the Live Preview button to see a live preview of that theme and change theme options in a separate, full-screen view. You can also find a Live Preview button at the bottom of the theme details screen. Any installed theme can be previewed and customized in this way."
 msgstr "Toca o muévete sobre cualquier tema, luego haz clic en el botón de Vista previa para ver una visualización en directo de ese tema y cambiar los ajustes del tema en una vista separada y a pantalla completa. También encontrarás un botón de Vista previa al fondo de la pantalla de detalles del tema. Cualquier tema instalado puede previsualizarse y personalizarse de este modo."
+
+#: wp-admin/themes.php:107
+msgid "When previewing on smaller monitors, you can use the collapse icon at the bottom of the left-hand pane. This will hide the pane, giving you more room to preview your site in the new theme. To bring the pane back, click on the collapse icon again."
+msgstr "Al previsualizar en monitores pequeños puedes usar el icono de Contraer que está al fondo del panel izquierdo. esto ocultará el panel, dándote más espacio para previsualizar tu sitio con el nuevo tema. Para volver a ver el panel haz clic de nuevo en el icono de Contraer."
 
 #: wp-admin/themes.php:74
 msgid "Hover or tap to see Activate and Live Preview buttons"
@@ -6478,10 +6478,6 @@ msgstr "Si el importador que necesitas no está en la lista, <a href=\"%s\">busc
 msgid "If you want to convert your categories to tags (or vice versa), use the <a href=\"%s\">Categories and Tags Converter</a> available from the Import screen."
 msgstr "Si quieres convertir categorías en etiquetas (o viceversa), utiliza el <a href=\"%s\">Conversor de categorías y etiquetas</a> que está disponible en la página de importación."
 
-#: wp-admin/export.php:159
-msgid "Once you&#8217;ve saved the download file, you can use the Import function in another WordPress installation to import the content from this site."
-msgstr "Una vez que has guardado el archivo descargado, puedes utilizar la función de importarlo en otra instalación de WordPress para importar el contenido de este sitio."
-
 #: wp-admin/edit.php:192
 msgid "This screen provides access to all of your posts. You can customize the display of this screen to suit your workflow."
 msgstr "Esta pantalla te da acceso a todas tus entradas. Puedes personalizar el formato de esta pantalla para acomodarlo a tu sistema de trabajo."
@@ -6521,6 +6517,10 @@ msgstr "Si usas la edición por lotes puedes cambiar los metadatos (categorías,
 #: wp-admin/edit.php:196 wp-admin/users.php:38
 msgid "Screen Content"
 msgstr "Contenido en pantalla"
+
+#: wp-admin/export.php:159
+msgid "Once you&#8217;ve saved the download file, you can use the Import function in another WordPress installation to import the content from this site."
+msgstr "Una vez hayas guardado el archivo descargado, puedes utilizar la función de importación en otra instalación de WordPress para importar el contenido de este sitio."
 
 #: wp-admin/options-permalink.php:182
 msgid "Common Settings"
@@ -7000,24 +7000,6 @@ msgstr "Usuario borrado de este sitio."
 msgid "Role"
 msgstr "Perfil"
 
-#: wp-admin/menu.php:225
-msgid "All Users"
-msgstr "Todos los usuarios"
-
-#: wp-admin/includes/class-wp-theme-install-list-table.php:408
-#: wp-admin/includes/deprecated.php:1381 wp-admin/includes/theme.php:699
-#: wp-admin/theme-install.php:290 wp-admin/theme-install.php:310
-msgid "Install"
-msgstr "Instalar"
-
-#: wp-admin/menu.php:206
-msgid "Plugins %s"
-msgstr "Plugins %s"
-
-#: wp-admin/menu.php:248 wp-admin/ms-delete-site.php:30
-msgid "Delete Site"
-msgstr "Borrar sitio"
-
 #: wp-admin/edit-tag-form.php:264
 #: wp-admin/includes/class-wp-links-list-table.php:82
 #: wp-admin/includes/class-wp-links-list-table.php:318
@@ -7035,6 +7017,24 @@ msgstr "Borrar sitio"
 #: wp-admin/themes.php:499 wp-admin/widgets.php:320
 msgid "Delete"
 msgstr "Borrar"
+
+#: wp-admin/menu.php:225
+msgid "All Users"
+msgstr "Todos los usuarios"
+
+#: wp-admin/includes/class-wp-theme-install-list-table.php:408
+#: wp-admin/includes/deprecated.php:1381 wp-admin/includes/theme.php:699
+#: wp-admin/theme-install.php:290 wp-admin/theme-install.php:310
+msgid "Install"
+msgstr "Instalar"
+
+#: wp-admin/menu.php:206
+msgid "Plugins %s"
+msgstr "Plugins %s"
+
+#: wp-admin/menu.php:248 wp-admin/ms-delete-site.php:30
+msgid "Delete Site"
+msgstr "Borrar sitio"
 
 #: wp-admin/menu.php:45
 msgid "Updates %s"
@@ -9848,13 +9848,13 @@ msgstr "Publicar por correo electrónico"
 msgid "<strong><em>Note that password</em></strong> carefully! It is a <em>random</em> password that was generated just for you."
 msgstr "¡<strong><em>Anota la contraseña</em></strong> cuidadosamente! Es una contraseña <em>aleatoria</em> que ha sido generada solo para ti."
 
-#: wp-admin/options-discussion.php:169
-msgid "When a comment contains any of these words in its content, name, URL, email, or IP address, it will be put in the trash. One word or IP address per line. It will match inside words, so &#8220;press&#8221; will match &#8220;WordPress&#8221;."
-msgstr "Cuando un comentario contiene alguna de las siguientes palabras en su contenido, nombre, URL o IP, se mandará a la papelera. Pon solo una palabra o IP por línea. También afectará las palabras contenidas dentro de otras, como &#8220;press&#8221; que está dentro de &#8220;WordPress&#8221;."
-
 #: wp-admin/options-discussion.php:160
 msgid "When a comment contains any of these words in its content, name, URL, email, or IP address, it will be held in the <a href=\"edit-comments.php?comment_status=moderated\">moderation queue</a>. One word or IP address per line. It will match inside words, so &#8220;press&#8221; will match &#8220;WordPress&#8221;."
 msgstr "Cuando un comentario contiene alguna de estas palabras en su contenido, nombre, URL, correo electrónico o IP se mantendrá en la <a href=\"edit-comments.php?comment_status=moderated\">cola de moderación</a>. Pon una palabra o dirección IP por línea. También afectará a las palabras contenidas dentro de otras, como &#8220;press&#8221;, que está dentro de  &#8220;WordPress&#8221;"
+
+#: wp-admin/options-discussion.php:169
+msgid "When a comment contains any of these words in its content, name, URL, email, or IP address, it will be put in the trash. One word or IP address per line. It will match inside words, so &#8220;press&#8221; will match &#8220;WordPress&#8221;."
+msgstr "Cuando un comentario contiene alguna de las siguientes palabras en su contenido, nombre, URL o IP, se mandará a la papelera. Pon solo una palabra o IP por línea. También afectará las palabras contenidas dentro de otras, como &#8220;press&#8221; que está dentro de &#8220;WordPress&#8221;."
 
 #. translators: %s: web.config
 #: wp-admin/options-permalink.php:322

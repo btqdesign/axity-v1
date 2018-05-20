@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WordPress - 4.9.x - Development package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2018-05-17 09:04:15+0000\n"
+"PO-Revision-Date: 2018-05-19 15:17:57+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -42,7 +42,7 @@ msgstr "O administrador do site foi notificado. Você receberá um e-mail de con
 
 #: wp-includes/user.php:3127
 msgid "Thanks for confirming your erasure request."
-msgstr "Obrigado por confirmar sua solicitação para deletar seus dados."
+msgstr "Obrigado por confirmar sua solicitação para remover seus dados."
 
 #: wp-includes/user.php:3125
 msgid "The site administrator has been notified. You will receive a link to download your export via email when they fulfill your request."
@@ -325,7 +325,7 @@ msgstr ""
 "Para confirmar, clique no link a seguir:\n"
 "###CONFIRM_URL###\n"
 "\n"
-"Você pode ignorar ou deletar este e-mail caso não queria que está ação seja executada.\n"
+"Você pode ignorar ou excluir este e-mail caso não queria que esta ação seja executada.\n"
 "\n"
 "Este e-mail foi enviado para ###EMAIL###.\n"
 "\n"
