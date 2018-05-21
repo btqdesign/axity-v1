@@ -2,7 +2,7 @@
 .DS_Store
 *.log
 *_log
-.htaccess-prueba
+.htaccess
 .htpasswd
 sitemap.xml
 sitemap.xml.gz
