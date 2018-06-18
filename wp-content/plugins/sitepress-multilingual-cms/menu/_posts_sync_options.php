@@ -83,6 +83,16 @@ global $sitepress, $sitepress_settings;
 			<?php endif; ?>
 
 			<div class="wpml-section-content-inner">
+				<p>
+					<h4><?php esc_html_e( 'Media Translation', 'sitepress' ) ?></h4>
+				</p>
+				<p>
+					<label><input type="checkbox" name="display_featured_image_as_translated" <?php checked( $sitepress->get_setting( 'display_featured_image_as_translated' ) ) ?> value="1" />
+						<?php esc_html_e( 'Use the same featured image as set for the content in the original  language', 'sitepress' ) ?></label>
+				</p>
+			</div>
+
+			<div class="wpml-section-content-inner">
 				<p class="buttons-wrap">
 					<span class="icl_ajx_response" id="icl_ajx_response_mo"></span>
 					<input class="button button-primary" name="save" value="<?php esc_attr_e( 'Save', 'sitepress' ) ?>" type="submit" />

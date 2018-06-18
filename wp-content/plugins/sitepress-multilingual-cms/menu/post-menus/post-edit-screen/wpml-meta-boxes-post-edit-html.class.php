@@ -52,9 +52,11 @@ class WPML_Meta_Boxes_Post_Edit_HTML {
 		ob_start();
 		$this->post_edit_languages_dropdown();
 		$this->connect_translations();
+		$this->translation_priority();
 		$this->translation_of();
 		$this->languages_actions();
 		$this->copy_from_original( $post );
+		$this->media_options( $post );
 		do_action( 'icl_post_languages_options_after' );
 		$contents = ob_get_clean();
 
@@ -78,7 +80,7 @@ class WPML_Meta_Boxes_Post_Edit_HTML {
 
 	private function post_edit_languages_dropdown() {
 		?>
-		<div id="icl_document_language_dropdown" class="icl_box_paragraph">
+		<div id="icl_document_language_dropdown" class="icl_box_paragraph" data-metabox-refresh-nonce="<?php echo wp_create_nonce( 'wpml_get_meta_boxes_html' ) ?>">
 			<p>
 				<label for="icl_post_language">
                     <strong><?php printf( esc_html__( 'Language of this %s', 'sitepress' ), esc_html( $this->post_type_label ) ); ?></strong>
@@ -110,6 +112,57 @@ class WPML_Meta_Boxes_Post_Edit_HTML {
 			</select>
 			<input type="hidden" name="icl_trid" value="<?php echo esc_attr( $this->get_trid() ); ?>"/>
 		</div>
+		<?php
+	}
+
+	private function translation_priority() {
+		if ( ! class_exists( 'WPML_TM_Translation_Priorities' ) ) {
+			return;
+		}
+		?>
+        <div id="icl_translation_priority_dropdown" class="icl_box_paragraph">
+            <p>
+                <label for="icl_translation_priority_dropdown">
+                    <strong><?php esc_html_e( 'Translation Priority', 'sitepress' ); ?></strong>
+                </label>
+            </p>
+			<?php
+			$taxonomy = 'translation_priority';
+			wp_nonce_field( 'wpml_translation_priority', 'nonce' );
+
+			if ( $this->is_original ) {
+				$term_obj = wp_get_object_terms( $this->post->ID, $taxonomy );
+				$selected = $term_obj ? $term_obj[0]->term_id : WPML_TM_Translation_Priorities::get_default_term()->term_id;
+			} else {
+				$this->fix_source_language();
+				$element_id = $this->post_translation->get_element_id( $this->source_language, $this->trid );
+				$element_terms  = wp_get_object_terms( (int)$element_id, $taxonomy );
+
+				if( !$element_terms ){
+				    $term_obj = WPML_TM_Translation_Priorities::get_default_term();
+                }else{
+					$term_obj = $element_terms[0];
+                }
+
+                $selected = apply_filters( 'translate_object_id', $term_obj->term_id, $taxonomy, false, $this->selected_language );
+
+                if ( ! $selected ) {
+                    $selected = WPML_TM_Translation_Priorities::insert_missing_translation( $term_obj->term_id, $term_obj->name, $this->selected_language );
+                }
+			}
+
+			wp_dropdown_categories(
+				array(
+					'hide_empty' => 0,
+					'selected'   => $selected,
+					'name'       => 'icl_translation_priority',
+					'taxonomy'   => $taxonomy
+				)
+			);
+			?>
+            <a href="<?php echo admin_url( 'edit-tags.php?taxonomy=translation_priority' ); ?>"
+               target="_blank"><?php esc_html_e( 'edit terms', 'sitepress' ); ?></a>
+        </div>
 		<?php
 	}
 
@@ -185,7 +238,7 @@ class WPML_Meta_Boxes_Post_Edit_HTML {
 		?>
 		<div id="translation_of_wrap">
 			<?php
-			if ( $this->is_a_translation() || ! $this->has_translations() ) {
+			if ( 'auto-draft' !== $this->post->post_status && ( $this->is_a_translation() || ! $this->has_translations() ) ) {
 				$disabled = disabled( false, $this->is_edit_action() && $this->get_trid(), false );
 				?>
 
@@ -325,13 +378,11 @@ class WPML_Meta_Boxes_Post_Edit_HTML {
 		$not_show_flags = ! apply_filters( 'wpml_setting', false, 'show_translations_flag' );
 		?>
         <div class="icl_box_paragraph">
-            <b><?php esc_html_e( 'Translations', 'sitepress' ) ?></b>
-            (<a class="icl_toggle_show_translations" href="#"
-			    <?php if ( $not_show_flags ) : ?>style="display:none;"<?php endif; ?>><?php esc_html_e( 'hide', 'sitepress' ); ?></a>
-            <a class="icl_toggle_show_translations" href="#"
-			   <?php if ( ! $not_show_flags ) : ?>style="display:none;"<?php endif; ?>><?php esc_html_e( 'show', 'sitepress' ) ?></a>)
-			<?php wp_nonce_field( 'toggle_show_translations_nonce', '_icl_nonce_tst' ) ?>
-            <table width="100%" class="icl_translations_table" id="icl_translations_table"
+            <p><b><?php esc_html_e( 'Translations', 'sitepress' ) ?></b>
+          (<a class="icl_toggle_show_translations" href="#" <?php if ( $not_show_flags ) : ?>style="display:none;"<?php endif; ?>><?php esc_html_e( 'hide', 'sitepress' ); ?></a><a class="icl_toggle_show_translations" href="#" <?php if ( ! $not_show_flags ) : ?>style="display:none;"<?php endif; ?>><?php esc_html_e( 'show', 'sitepress' ) ?></a>)
+            </p>
+		            <?php wp_nonce_field( 'toggle_show_translations_nonce', '_icl_nonce_tst' ) ?>
+            <table width="100%" class="icl_translations_table wpml-margin-bottom-base" id="icl_translations_table"
 			       <?php
 			       if ( $not_show_flags ) : ?>style="display:none;"<?php endif; ?>>
 				<?php
@@ -514,6 +565,34 @@ class WPML_Meta_Boxes_Post_Edit_HTML {
 		}
 	}
 
+	private function media_options( $post ) {
+		echo '<br /><br /><strong>' . esc_html__( 'Media options', 'sitepress' ) . '</strong>';
+
+		$default_lang_code = $this->sitepress->get_default_language();
+
+		$featured_as_translated = get_post_meta( $post->ID, WPML_Admin_Post_Actions::DISPLAY_FEATURED_IMAGE_AS_TRANSLATED_META_KEY, true );
+		if ( '' === $featured_as_translated ) {
+			$original_post_id = $this->post_translation->get_original_post_ID( $this->trid );
+			if ( null == $original_post_id ) {
+				$featured_as_translated = $this->sitepress->get_setting( 'display_featured_image_as_translated' );
+			} else {
+				$featured_as_translated = get_post_meta( $original_post_id, WPML_Admin_Post_Actions::DISPLAY_FEATURED_IMAGE_AS_TRANSLATED_META_KEY, true );
+			}
+		}
+		if ( $this->selected_language === $default_lang_code ) {
+			$featured_as_translated_label = esc_html__( 'Show the same featured image in translations', 'sitepress' );
+		} else {
+			$admin_lang_code    = $this->sitepress->get_admin_language();
+			$default_lang       = $this->sitepress->get_languages( $admin_lang_code );
+			$default_lang_label = $default_lang[ $default_lang_code ]['display_name'];
+
+			$featured_as_translated_label = sprintf( esc_html__( 'Use featured image from original post (%s)', 'sitepress' ), $default_lang_label );
+		}
+
+		echo '<br /><label><input name="wpml_featured_as_translated" type="checkbox" value="1" ' .
+		     checked( $featured_as_translated, true, false ) . '/>&nbsp;' . $featured_as_translated_label . '</label>';
+	}
+
 	/**
 	 * Renders the button for copying the original posts content to the currently edited post on the post edit screen.
 	 *
@@ -530,7 +609,7 @@ class WPML_Meta_Boxes_Post_Edit_HTML {
                 $source_lang_name
             ) . '"
 				onclick="icl_copy_from_original(\'' . esc_js( $source_lang ) . '\', \'' . esc_js( $trid ) . '\')"'
-		     . $disabled . ' style="white-space:normal;height:auto;line-height:normal;"/>';
+		     . $disabled . ' />';
 		icl_pop_info(
 				esc_html__(
 						"This operation copies the content from the original language onto this translation. It's meant for when you want to start with the original content, but keep translating in this language. This button is only enabled when there's no content in the editor.",
@@ -554,7 +633,6 @@ class WPML_Meta_Boxes_Post_Edit_HTML {
 		wp_nonce_field( 'set_duplication_nonce', '_icl_nonce_sd' ) ?>
 		<input id="icl_set_duplicate" type="button" class="button-secondary"
 		       value="<?php printf( esc_html__( 'Overwrite with %s content.', 'sitepress' ), $source_lang_name ) ?>"
-		       style="white-space:normal;height:auto;line-height:normal;"
 		       data-wpml_original_post_id="<?php echo absint( $original_post_id ); ?>"
 		       data-post_lang="<?php echo esc_attr( $post_lang ); ?>"/>
 		<span style="display: none;"><?php echo esc_js(
