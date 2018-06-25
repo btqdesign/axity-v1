@@ -1,0 +1,253 @@
+# Translation of Plugins - Limit Login Attempts Reloaded - Stable (latest release) in Spanish (Spain)
+# This file is distributed under the same license as the Plugins - Limit Login Attempts Reloaded - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2018-05-20 18:50:55+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+"Language: es\n"
+"Project-Id-Version: Plugins - Limit Login Attempts Reloaded - Stable (latest release)\n"
+
+#: views/options-page.php:93
+msgid "GDPR compliance"
+msgstr "Cumplimiento GDPR"
+
+#: views/options-page.php:96
+msgid "this makes the plugin <a href=\"https://gdpr-info.eu/\" target=\"_blank\" >GDPR</a> compliant"
+msgstr "esto hace que el plugin cumpla con el <a href=\"https://gdpr-info.eu/\" target=\"_blank\" >GDPR</a>"
+
+#: views/options-page.php:165
+msgid "Save Options"
+msgstr "Guardar opciones"
+
+#: core/LimitLoginAttempts.php:1218
+msgid "Options saved."
+msgstr "Opciones guardadas."
+
+#: views/options-page.php:140 views/options-page.php:154
+msgid "One IP or IP range (1.2.3.4-5.6.7.8) per line"
+msgstr "Una IP o rango de IPs (1.2.3.4-5.6.7.8) por línea"
+
+#: views/options-page.php:70
+msgid "If disabled, the global settings will be forcibly applied to the entire network."
+msgstr "Si está desactivado, la configuración global se aplicará a la fuerza a toda la red."
+
+#: views/options-page.php:151
+msgid "Blacklist"
+msgstr "Lista negra"
+
+#: views/options-page.php:137
+msgid "Whitelist"
+msgstr "Lista blanca"
+
+#: views/options-page.php:192
+msgid "Gateway"
+msgstr "Puerta de enlace"
+
+#: core/LimitLoginAttempts.php:969
+msgid "WC Error"
+msgstr "WC Error"
+
+#. Author of the plugin/theme
+msgid "wpchefgadget"
+msgstr "wpchefgadget"
+
+#. Description of the plugin/theme
+msgid "Limit the rate of login attempts, including by way of cookies and for each IP address."
+msgstr "Limita los intentos de inicio de sesión, mediante cookies y para cada dirección IP."
+
+#. Plugin Name of the plugin/theme
+msgid "Limit Login Attempts Reloaded"
+msgstr "Limit Login Attempts Reloaded"
+
+#: views/options-page.php:191
+msgid "Tried to log in as"
+msgstr "Intentó iniciar sesión como"
+
+#: views/options-page.php:190
+msgctxt "Internet address"
+msgid "IP"
+msgstr "IP"
+
+#: views/options-page.php:189
+msgid "Date"
+msgstr "Fecha"
+
+#: views/options-page.php:181
+msgid "Clear Log"
+msgstr "Limpiar registro"
+
+#: views/options-page.php:127 views/options-page.php:176
+msgid "Lockout log"
+msgstr "Registro de bloqueos"
+
+#: views/options-page.php:132
+msgid "lockouts"
+msgstr "bloqueos"
+
+#: views/options-page.php:129
+msgid "Email to admin after"
+msgstr "Enviar un correo electrónico al administrador después de"
+
+#: views/options-page.php:124
+msgid "Notify on lockout"
+msgstr "Notificar al bloquear"
+
+#: views/options-page.php:119
+msgid "hours until retries are reset"
+msgstr "horas hasta reiniciar los reintentos"
+
+#: views/options-page.php:116
+msgid "hours"
+msgstr "horas"
+
+#: views/options-page.php:109
+msgid "minutes lockout"
+msgstr "minutos por bloqueo"
+
+#: views/options-page.php:105
+msgid "allowed retries"
+msgstr "reintentos permitidos"
+
+#: views/options-page.php:100
+msgid "Lockout"
+msgstr "Bloqueo"
+
+#: views/options-page.php:65
+msgid "Options"
+msgstr "Opciones"
+
+#: views/options-page.php:59
+msgid "%d IP is currently blocked from trying to log in"
+msgstr "La IP %d no tiene permitido iniciar una sesión"
+
+#: views/options-page.php:57
+msgid "Restore Lockouts"
+msgstr "Reiniciar bloqueos"
+
+#: views/options-page.php:54
+msgid "Active lockouts"
+msgstr "Bloqueos activos"
+
+#: views/options-page.php:47
+msgid "No lockouts yet"
+msgstr "Ningún bloqueo todavía"
+
+#: views/options-page.php:45
+msgid "%d lockout since last reset"
+msgid_plural "%d lockouts since last reset"
+msgstr[0] "%d bloqueo desde el último reinicio"
+msgstr[1] "%d bloqueos desde el último reinicio"
+
+#: views/options-page.php:43
+msgid "Reset Counter"
+msgstr "Reiniciar contador"
+
+#: views/options-page.php:39
+msgid "Total lockouts"
+msgstr "Bloqueos totales"
+
+#: views/options-page.php:34
+msgid "Statistics"
+msgstr "Estadísticas"
+
+#: views/options-page.php:33
+msgid "Limit Login Attempts Settings"
+msgstr "Configuración de Limit Login Attempts"
+
+#: core/LimitLoginAttempts.php:1146
+msgid "Cleared current lockouts"
+msgstr "Bloqueos actuales eliminados"
+
+#: core/LimitLoginAttempts.php:1139
+msgid "Reset lockout count"
+msgstr "Reiniciar contador de bloqueos"
+
+#: core/LimitLoginAttempts.php:1132
+msgid "Cleared IP log"
+msgstr "Registro de IPs vaciado"
+
+#: core/LimitLoginAttempts.php:239 core/LimitLoginAttempts.php:1028
+msgid "<strong>%d</strong> attempt remaining."
+msgid_plural "<strong>%d</strong> attempts remaining."
+msgstr[0] "Queda <strong>%d</strong> intento."
+msgstr[1] "Quedan <strong>%d</strong> intentos."
+
+#: core/LimitLoginAttempts.php:946
+msgid "<strong>ERROR</strong>: Incorrect username or password."
+msgstr "<strong>ERROR</strong>: Nombre de usuario o contraseña incorrectos."
+
+#: core/LimitLoginAttempts.php:878
+msgid "Please try again in %d minute."
+msgid_plural "Please try again in %d minutes."
+msgstr[0] "Por favor, inténtalo de nuevo en %d minuto."
+msgstr[1] "Por favor, inténtalo de nuevo en %d minutos."
+
+#: core/LimitLoginAttempts.php:876
+msgid "Please try again in %d hour."
+msgid_plural "Please try again in %d hours."
+msgstr[0] "Por favor, inténtalo de nuevo en %d hora."
+msgstr[1] "Por favor, inténtalo de nuevo en %d horas."
+
+#: core/LimitLoginAttempts.php:868
+msgid "Please try again later."
+msgstr "Por favor, inténtalo de nuevo más tarde."
+
+#: core/LimitLoginAttempts.php:860
+msgid "<strong>ERROR</strong>: Too many failed login attempts."
+msgstr "<strong>ERROR</strong>: Demasiados intentos fallidos."
+
+#: core/LimitLoginAttempts.php:648
+msgid "IP was blocked for %s"
+msgstr "La IP ha sido bloqueada durante %s"
+
+#: core/LimitLoginAttempts.php:646
+msgid "IP was NOT blocked because of external whitelist."
+msgstr "La IP NO ha sido bloqueada por aparecer en una lista blanca externa."
+
+#: core/LimitLoginAttempts.php:642
+msgid "Last user attempted: %s"
+msgstr "Último intento de usuario: %s"
+
+#: core/LimitLoginAttempts.php:638
+msgid "%d failed login attempts (%d lockout(s)) from IP: %s"
+msgstr "%d intentos fallidos (%d bloqueo(s)) de la IP: %s"
+
+#: core/LimitLoginAttempts.php:633
+msgid "[%s] Too many failed login attempts"
+msgstr "[%s] Demasiados intentos fallidos"
+
+#: core/LimitLoginAttempts.php:629
+msgid "[%s] Failed login attempts from whitelisted IP"
+msgstr "[%s] Intentos fallidos de la IP en la lista blanca"
+
+#: core/LimitLoginAttempts.php:622
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] "%d minuto"
+msgstr[1] "%d minutos"
+
+#: core/LimitLoginAttempts.php:616
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] "%d hora"
+msgstr[1] "%d horas"
+
+#: views/options-page.php:72
+msgid "Use global settings"
+msgstr "Usar ajustes globales"
+
+#: views/options-page.php:69
+msgid "Let network sites use their own settings"
+msgstr "Dejar a cada sitio de red usar sus propios ajustes"
+
+#: views/options-page.php:144 views/options-page.php:158
+msgid "One Username per line"
+msgstr "Un nombre de usuario por línea"
+
+#: views/options-page.php:113
+msgid "lockouts increase lockout time to"
+msgstr "los bloqueos incrementan el bloqueo a"
