@@ -1,3 +1,4 @@
+20180611		Make static delete() function on object_store traits into normal function.
 20180504		Wordpress: Fix _() command that doesn't exist. But does...
 20180425		Wordpress debug trait now has filter to allow the text to be modified.
 20180413		Added mail trait.

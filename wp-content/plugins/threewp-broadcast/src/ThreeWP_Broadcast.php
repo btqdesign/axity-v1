@@ -67,7 +67,7 @@ class ThreeWP_Broadcast
 		@since		20131015
 		@var		$display_broadcast_meta_box
 	**/
-	public $display_broadcast_meta_box = true;
+	public $display_broadcast_meta_box = null;
 
 	/**
 		@brief	Display information in the menu about the premium pack?
@@ -112,7 +112,7 @@ class ThreeWP_Broadcast
 		if ( ! $this->is_network )
 			return;
 
-		$this->add_action( 'add_meta_boxes' );
+		$this->add_action( 'add_meta_boxes', 100 );
 
 		if ( $this->get_site_option( 'override_child_permalinks' ) )
 		{
@@ -285,9 +285,9 @@ class ThreeWP_Broadcast
 		if ( $plugin_name != 'threewp-broadcast/ThreeWP_Broadcast.php' )
 			return $links;
 		if ( is_network_admin() )
-			$url = network_admin_url( 'admin.php?page=threewp_broadcast' );
+			$url = network_admin_url( 'admin.php?page=threewp-broadcast' );
 		else
-			$url = admin_url( 'admin.php?page=threewp_broadcast' );
+			$url = admin_url( 'admin.php?page=threewp-broadcast' );
 		$links []= sprintf( '<a href="%s">%s</a>',
 			$url,
 			__( 'Settings', 'threewp-broadcast' )

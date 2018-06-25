@@ -72,7 +72,11 @@ class check
 		{
 			$value = reset( $value );
 			$value = maybe_unserialize( $value );
-			$metas [ $key ] = htmlspecialchars( $value );
+			if ( ! is_string( $value ) )
+				$value = var_export( $value, true );
+			else
+			    $value = htmlspecialchars( $value );
+			$metas [ $key ] = $value;
 		}
 
 		$text = sprintf( '<pre>%s</pre>', var_export( $metas, true ) );
