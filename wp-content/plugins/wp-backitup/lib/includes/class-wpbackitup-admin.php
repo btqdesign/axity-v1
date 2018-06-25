@@ -133,6 +133,7 @@ class WPBackitup_Admin {
         }
 
 	    // Route requests for form processing
+	    add_action( 'admin_init', array( &$this, 'maybe_update' ) );
 	    add_action( 'admin_init', array( &$this, 'route' ) );
 
         // Add a settings link next to the "Deactivate" link on the plugin listing page
@@ -522,6 +523,9 @@ class WPBackitup_Admin {
         require_once( WPBACKITUP__PLUGIN_PATH . '/lib/includes/class-admin-notice.php' );
 	    require_once( WPBACKITUP__PLUGIN_PATH . '/lib/includes/class-admin-notices.php' );
 
+	    //Settings Class
+	    require_once( WPBACKITUP__PLUGIN_PATH . '/lib/includes/class-settings.php' );
+
 		$languages_path = dirname(dirname(dirname( plugin_basename( __FILE__ )))) . '/languages/';
 
 	    load_plugin_textdomain(
@@ -529,9 +533,6 @@ class WPBackitup_Admin {
 		    false,
 		    $languages_path
 	    );
-
-	    //admin activation hook does NOT get called on plugin update to this needs to stay here
-        $this->maybe_update(); //Check version and update database if needed
 
 	    //display any active notices
 	    $notices = new WPBackitup_Admin_Notices();

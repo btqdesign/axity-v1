@@ -4,7 +4,7 @@ Tags: backup, backups, back up, backup plugin, database backup, multisite backup
 Requires at least: 3.8.0
 Requires PHP: 5.2.4
 Tested up to: 4.9
-Stable tag: 1.17
+Stable tag: 1.20.0
 Author URI: https://www.wpbackitup.com
 Donate link: https://www.wpbackitup.com
 License: GPLv2 or later
@@ -64,6 +64,7 @@ Here are just a few of our incredible features.
 * Migrate your site to different host, domain or table prefix
 * **Clone** your site for development, staging or testing
 * **Priority** support gets you right to the front of the line
+* Save your backups to **DropBox** with WPBackItUp Safe
 
 = Don't Risk Losing Your Website =
 Does the thought of losing your website keep you up at night? All that time, effort and money you've invested could be gone in an instant.
@@ -214,6 +215,30 @@ Our online documentation and full list of FAQs can be found at [support.wpbackit
 
 
 == Changelog ==
+= 1.21 =
+*Release Date -  June 5, 2018
+
+* UPDATE: Update available backup list to show last 10 backups
+* UPDATE: Update backup notification email to use domain instead of blog name
+* UPDATE: Add settings class & add site id to ut
+* UPDATE: Migrate premium code to separate repo
+
+= 1.20 =
+*Release Date -  June 1, 2018
+
+* FIX: Fix broken links on support tab for multi-site
+* UPDATE: Minor updates to ut actions
+
+= 1.19 =
+*Release Date -  May 25, 2018
+
+* UPDATE: Minor updates to ut actions
+
+= 1.18 =
+*Release Date -  May 22, 2018
+
+* UPDATE: Minor updates to UI scripts
+
 = 1.17 =
 *Release Date -  May 19, 2018
 

@@ -48,6 +48,7 @@ class WPBackItUp_Usage {
 		add_action( 'init', array( $this, 'schedule_events' ) );
 		add_action( 'wpbackitup_opt_into_tracking',   array( $this, 'optin_usage_tracking'  ) );
 		add_action( 'wpbackitup_opt_out_of_tracking', array( $this, 'optout_usage_tracking' ) );
+		add_action( 'wpbackitup_ut_event', array( $this, 'ut_event' ),10,3 );
 		add_action( 'admin_notices', array( $this, 'admin_notice'     ) );
 	}
 
@@ -78,7 +79,7 @@ class WPBackItUp_Usage {
 	 * @return void
 	 * @throws Exception
 	 */
-	private function setup_data() {
+	private function setup_data($source) {
 
 		try {
 			$data = array();
@@ -110,38 +111,40 @@ class WPBackItUp_Usage {
 
 			$plugins        = array_keys( get_plugins() );
 			$active_plugins = get_option( 'active_plugins', array());
+			$inactive_plugins = array();
 
-			$current_path = dirname(plugin_basename(__FILE__));
-			$current_root = current(explode("/",$current_path));
-			$current_plugin=$current_root;
+			//$current_path = dirname(plugin_basename(__FILE__));
+			//$current_root = current(explode("/",$current_path));
+			//$current_plugin=$current_root;
 
 			foreach ( $plugins as $key => $plugin ) {
-				if ( in_array( $plugin, $active_plugins ) ) {
+				if ( ! in_array( $plugin, $active_plugins ) ) {
 					// Remove active plugins from list so we can show active and inactive separately
-					unset( $plugins[ $key ] );
-
-					//Current Plugin
-					if (strpos($plugin, $current_root) !== false) {
-						$current_plugin=$plugin;
-					}
+					//unset( $plugins[ $key ] );
+					$inactive_plugins[] = $plugins[ $key ];
 				}
 			}
-			$data['source']           = $current_plugin;
+
+			$mu_plugins = array();
+			foreach ( get_mu_plugins() as $mu_key => $mu_plugin ) {
+				$mu_plugins[]=$mu_key;
+			}
+
+			$data['site_id']          = WPBackitup_Settings::get_site_id();
+			$data['source']           = $source;
 			$data['active_plugins']   = $active_plugins;
-			$data['inactive_plugins'] = $plugins;
+			$data['inactive_plugins'] = $inactive_plugins;
+			$data['mu_plugins']       = $mu_plugins;
 			$data['locale']           = get_locale();
 
 
 			/** Plugin Data Points  **/
-
 			$data['wpbackitup_version'] = WPBACKITUP__VERSION;
-
-			$wpb_license                    = new WPBackItUp_License();
-			$data['wpbackitup_license_key'] = $wpb_license->get_license_key();
-
+			$data['wpbackitup_license_key'] = 'lite';
 			$data['wpbackitup_backup_count'] = WPBackItUp_Utility::get_option( 'successful_backup_count' );
+			$data['wpbackitup_backup_last_run_date'] = date("Y-m-d",WPBackItUp_Utility::get_option( 'backup_lastrun_date' ));
 
-			$this->data = $data;
+			$this->data =  apply_filters('wpbackitup_ut_data',$data);
 
 		} catch (Exception $e) {
 			WPBackItUp_Logger::log_error($this->log_name,__METHOD__,'Exception: ' .$e);
@@ -161,8 +164,12 @@ class WPBackItUp_Usage {
 	 * @return bool
 	 * @throws Exception
 	 */
-	public function ut_event( $override = false, $ignore_last_checkin = false ) {
+	public function ut_event( $override = false, $ignore_last_checkin = false, $source='wpbackitup' ) {
 		WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Begin:' . var_export($override,true) .':' . var_export($ignore_last_checkin,true) );
+
+//		error_log('override:' .var_export($override,true));
+//		error_log('last_checkin:' .var_export($ignore_last_checkin,true));
+//		error_log('Source:' .var_export($source,true));
 
 		try {
 
@@ -175,13 +182,13 @@ class WPBackItUp_Usage {
 			//get last send date
 			$last_send = $this->get_last_send();
 
-			// Never send more than once per day
+			//Exit IF we sent within last day - never send more than once per day
 			if ( is_numeric( $last_send ) && $last_send > strtotime( '-1 day' )) {
 				WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Exit 2' );
 				return false;
 			}
 
-			// send once per week
+			//Exit IF we have sent within last week - only send once per week IF allowed
 			if ( is_numeric( $last_send ) && $last_send > strtotime( '-1 week' ) && ! $ignore_last_checkin ) {
 				WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Exit 3' );
 				return false;
@@ -189,7 +196,7 @@ class WPBackItUp_Usage {
 
 			$blocking=false;
 			if (true===WPBACKITUP__DEBUG) $blocking=true;
-			$this->setup_data();
+			$this->setup_data($source);
 			$response = wp_remote_post( 'https://5bx6m4uwn0.execute-api.us-east-1.amazonaws.com/prd/utv2', array(
 				'method'      => 'POST',
 				'timeout'     => 8,
@@ -253,22 +260,6 @@ class WPBackItUp_Usage {
 	 */
 	private function is_tracking_notice_off(){
 		return (bool) WPBackItUp_Utility::get_option( 'tracking_notice',false );
-	}
-
-
-	/**
-	 * Schedule a weekly checkin
-	 *
-	 * We send once a week (while tracking is allowed) to check in, which can be
-	 * used to determine active sites.
-	 *
-	 * @return void
-	 */
-	public function schedule_events() {
-		if ( WPBackItUp_Cron::doing_cron() ) {
-			add_action( 'wpbackitup_weekly_scheduled_events', array( $this, 'ut_event' ) );
-			//add_action( 'wpbackitup_daily_scheduled_events', array( $this, 'ut_event' ) );
-		}
 	}
 
 	/**
@@ -348,5 +339,16 @@ class WPBackItUp_Usage {
 			echo '</p></div>';
 		}
 	}
+	/**
+	 * Schedule a daily check to see if we have checked in lately
+	 *
+	 * @return void
+	 */
+	public function schedule_events() {
+		if ( WPBackItUp_Cron::doing_cron() ) {
+			add_action( 'wpbackitup_daily_scheduled_events', array( $this, 'ut_event' ) );
+		}
+	}
+
 }
 $wpb_tracking = new WPBackItUp_Usage();

@@ -55,13 +55,13 @@ class WPBackItUp_Welcome {
 
 		?>
 		<h1 class="nav-tab-wrapper">
-			<a class="nav-tab <?php echo $selected == 'getting-started' ? 'nav-tab-active' : ''; ?>" href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'wp-backitup-about' ), 'admin.php' ) ) ); ?>">
+			<a class="nav-tab <?php echo $selected == 'getting-started' ? 'nav-tab-active' : ''; ?>" href="<?php echo esc_url( network_admin_url( add_query_arg( array( 'page' => 'wp-backitup-about' ), 'admin.php' ) ) ); ?>">
 				<?php _e( 'Getting Started', 'wp-backitup' ); ?>
 			</a>
-<!--			<a class="nav-tab --><?php //echo $selected == 'whats-new' ? 'nav-tab-active' : ''; ?><!--" href="--><?php //echo esc_url( admin_url( add_query_arg( array( 'page' => 'wp-backitup-about','tab'=>'whats-new'  ), 'admin.php' ) ) ); ?><!--">-->
+<!--			<a class="nav-tab --><?php //echo $selected == 'whats-new' ? 'nav-tab-active' : ''; ?><!--" href="--><?php //echo esc_url( network_admin_url( add_query_arg( array( 'page' => 'wp-backitup-about','tab'=>'whats-new'  ), 'admin.php' ) ) ); ?><!--">-->
 <!--				--><?php //_e( "What's New", 'wp-backitup'); ?>
 <!--			</a>-->
-			<a class="nav-tab <?php echo $selected == 'premium' ? 'nav-tab-active' : ''; ?>" href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'wp-backitup-about','tab'=>'premium' ), 'admin.php' ) ) ); ?>">
+			<a class="nav-tab <?php echo $selected == 'premium' ? 'nav-tab-active' : ''; ?>" href="<?php echo esc_url( network_admin_url( add_query_arg( array( 'page' => 'wp-backitup-about','tab'=>'premium' ), 'admin.php' ) ) ); ?>">
 				<?php _e( 'Premium Plugin', 'wp-backitup' ); ?>
 			</a>
 		</h1>
@@ -143,7 +143,7 @@ class WPBackItUp_Welcome {
 						<img src="<?php echo WPBACKITUP__PLUGIN_URL . 'images/backup_inprogress.png'?>" />
 					</div>
 					<div class="feature-section-content">
-						<h4><a href="<?php echo admin_url( 'admin.php?page=wp-backitup-backup' ) ?>"><?php printf( __( 'One Click &rarr; Backup', 'wp-backitup' )); ?></a></h4>
+						<h4><a href="<?php echo network_admin_url( 'admin.php?page=wp-backitup-backup' ) ?>"><?php printf( __( 'One Click &rarr; Backup', 'wp-backitup' )); ?></a></h4>
 						<p><?php printf( __( 'The backup menu option is the starting point for all things related to backups. To create your first backup, simply click the <em>Backup</em> button and WPBackItUp will backup your entire site. This includes your database, plugins, themes, and even all your media files.', 'wp-backitup' )); ?></p>
 
 
@@ -307,7 +307,7 @@ class WPBackItUp_Welcome {
 
 			<div class="return-to-dashboard">
 				<?php _e( 'Want to see the entire changelog?', 'wp-backitup' ); ?> &mdash;
-				<a href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'wp-backitup-about','tab'=>'changelog' ), 'admin.php' ) )); ?>"><?php _e( 'View the Full Changelog', 'wp-backitup' ); ?></a>
+				<a href="<?php echo esc_url( network_admin_url( add_query_arg( array( 'page' => 'wp-backitup-about','tab'=>'changelog' ), 'admin.php' ) )); ?>"><?php _e( 'View the Full Changelog', 'wp-backitup' ); ?></a>
 			</div>
 		<?php
 	}

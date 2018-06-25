@@ -63,23 +63,22 @@ class WPBackItUp_Support {
 	 */
 	private function tabs() {
 		$selected = isset( $_GET['tab'] ) ? $_GET['tab'] : 'support';
-
 		?>
 		<h1 class="nav-tab-wrapper">
-			<a class="nav-tab <?php echo $selected == 'support' ? 'nav-tab-active' : ''; ?>" href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'wp-backitup-support' ), 'admin.php' ) ) ); ?>">
+			<a class="nav-tab <?php echo $selected == 'support' ? 'nav-tab-active' : ''; ?>" href="<?php echo esc_url( network_admin_url( add_query_arg( array( 'page' => 'wp-backitup-support' ), 'admin.php' ) ) ); ?>">
 				<?php _e( 'Support', 'wp-backitup' ); ?>
 			</a>
-			<a class="nav-tab <?php echo $selected == 'send-logs' ? 'nav-tab-active' : ''; ?>" href="<?php echo esc_url( admin_url( add_query_arg( array('page' => 'wp-backitup-support','tab'  => 'send-logs'), 'admin.php' ) ) ); ?>">
+			<a class="nav-tab <?php echo $selected == 'send-logs' ? 'nav-tab-active' : ''; ?>" href="<?php echo esc_url( network_admin_url( add_query_arg( array('page' => 'wp-backitup-support','tab'  => 'send-logs'), 'admin.php' ) ) ); ?>">
 				<?php _e( "Send Logs", 'wp-backitup' ); ?>
 			</a>
 
-			<a class="nav-tab <?php echo $selected == 'download-logs' ? 'nav-tab-active' : ''; ?>" href="<?php echo esc_url( admin_url( add_query_arg( array('page' => 'wp-backitup-support','tab'  => 'download-logs'), 'admin.php' ) ) ); ?>">
+			<a class="nav-tab <?php echo $selected == 'download-logs' ? 'nav-tab-active' : ''; ?>" href="<?php echo esc_url( network_admin_url( add_query_arg( array('page' => 'wp-backitup-support','tab'  => 'download-logs'), 'admin.php' ) ) ); ?>">
 				<?php _e( "Download Logs", 'wp-backitup' ); ?>
 			</a>
 
 			<?php //hide tab unless navigate directly
 			if ( $selected == 'advanced') : ?>
-				<a class="nav-tab <?php echo $selected == 'advanced' ? 'nav-tab-active' : ''; ?>" href="<?php echo esc_url( admin_url( add_query_arg( array('page' => 'wp-backitup-support','tab'  => 'advanced'), 'admin.php' ) ) ); ?>">
+				<a class="nav-tab <?php echo $selected == 'advanced' ? 'nav-tab-active' : ''; ?>" href="<?php echo esc_url( network_admin_url( add_query_arg( array('page' => 'wp-backitup-support','tab'  => 'advanced'), 'admin.php' ) ) ); ?>">
 					<?php _e( "Advanced", 'wp-backitup' ); ?>
 				</a>
 			<?php endif; ?>
@@ -138,7 +137,7 @@ class WPBackItUp_Support {
 						<h4><a href="http://support.wpbackitup.com/support/tickets" target="_blank"><?php printf( __( 'Check &rarr; Status', 'wp-backitup' )); ?></a></h4>
 						<p><?php _e( 'To check ticket status or update a previously submitted ticket you will first need to login. Our support portal provides a history of your current and past support requests complete with responses.', 'wp-backitup' );?></p>
 
-						<h4><a href="<?php echo esc_url( admin_url( add_query_arg( array('page' => 'wp-backitup-support','tab'  => 'send-logs'), 'admin.php' ))) ?>"><?php printf( __( 'Send &rarr; Logs', 'wp-backitup' )); ?></a></h4>
+						<h4><a href="<?php echo esc_url( network_admin_url( add_query_arg( array('page' => 'wp-backitup-support','tab'  => 'send-logs'), 'admin.php' ))) ?>"><?php printf( __( 'Send &rarr; Logs', 'wp-backitup' )); ?></a></h4>
 						<p><?php _e( 'Sometimes it may be necessary for you to send your log files to support. If that ever happens, just click the link above and we will show you what to do.', 'wp-backitup' );?></p>
 
 					</div>

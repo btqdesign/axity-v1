@@ -52,7 +52,8 @@
 
         scan_import_backups($backup_dir);
 
-        $backup_list_size=$number_retained_archives;
+        //Show the last 10 if they exist
+        $backup_list_size=10;//$number_retained_archives;
         $backup_job_list =  WPBackItUp_Job::get_jobs_by_status(WPBackItUp_Job::BACKUP,array(WPBackItUp_Job::ACTIVE,WPBackItUp_Job::COMPLETE,WPBackItUp_Job::ERROR),$backup_list_size);
         //-------------------------
 
