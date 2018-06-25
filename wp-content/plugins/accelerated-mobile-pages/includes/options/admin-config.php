@@ -78,6 +78,18 @@ $extension_listing_array = array(
                             'settingUrl'=>'{ampforwp-gf-subsection}',
                         ),
                         array(
+                            'name'=>'Ninja Forms for AMP',
+                            'desc'=>'Add Ninja Forms Support in AMP.',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/nf.png',
+                            'price'=>'$79',
+                            'url_link'=>'http://ampforwp.com/ninja-forms/#utm_source=options-panel&utm_medium=extension-tab_gf&utm_campaign=AMP%20Plugin',
+                            'plugin_active_path'=> 'amp-ninja-forms/amp-ninja-forms.php',
+                            'item_name'=>'Ninja Forms',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('amp-ninja-forms/amp-ninja-forms.php')? 1 : 2),
+                            'settingUrl'=>'{ampforwp-nf-subsection}',
+                        ),
+                        array(
                             'name'=>'Email Opt-in Forms',
                             'desc'=>'Capture Leads with Email Subscription.',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/email.png',
@@ -369,6 +381,300 @@ $extension_listing = '
 </div>
 ';
 
+$freepro_listing = '
+<div class="fp-wr">
+    <div class="fp-img">
+        <img src="'.AMPFORWP_IMAGE_DIR . '/Bitmap.png" />
+        <span class="ov"></span>
+    </div>
+    <div class="fp-cnt">
+            <h1>Upgrade to Pro</h1>
+            <p>Take your AMP to the next level with more beautiful themes, great extensions and more powerful features.</p>
+            <a class="buy" href="#upgrade">BUY NOW</a>
+    </div>
+    <div class="pvf">
+        <div class="ext">
+            <div class="ex-1 e-1">
+                <img src="'.AMPFORWP_IMAGE_DIR . '/ex-1.png" />
+                <h4>Extensions</h4>
+                <p>Includes a suite of advanced features like Ads, Email Optin, Contact Forms, E-Commerce, CTA, Cache and 15+ premium extensions.</p>
+            </div>
+            <div class="ex-1 e-2">
+                <img src="'.AMPFORWP_IMAGE_DIR . '/ex-2.png" />
+                <h4>Designs</h4>
+                <p>Wide Variety of AMP Theme Designs included with AMP Layouts. We are dedicated to release 2-3 new designs every month.</p>
+            </div>
+            <div class="ex-1 e-3">
+                <img src="'.AMPFORWP_IMAGE_DIR . '/ex-3.png" />
+                <h4>Dedicated Support</h4>
+                <p>Get private ticketing help from our full-time staff who helps you with the technical issues.</p>
+            </div>
+        </div><!-- /. ext -->
+        <div class="pvf-cnt">
+            <div class="pvf-tlt">
+                <h2>Compare Pro vs. Free Version</h2>
+                <span>See what you\'ll get with the professional version</span>
+            </div>
+            <div class="pvf-cmp">
+                <div class="fr">
+                    <h1>FREE</h1>
+                    <div class="fr-fe">
+                        <div class="fe-1">
+                            <h4>Continious Development</h4>
+                            <p>We take bug reports and feature requests seriously. We’re continiously developing & improve this product for last 2 years with passion and love.</p>
+                        </div>
+                        <div class="fe-1">
+                            <h4>300+ Features</h4>
+                            <p>We\'re constantly expanding the plugin and make it more useful. We have wide variety of features which will fit any use-case.</p>
+                        </div>
+                        <div class="fe-1">
+                            <h4>Design</h4>
+                            <p>We have 4 Built in themes for AMP which elevates your AMP exeprience.</p>
+                        </div>
+                        <div class="fe-1">
+                            <h4>Technical Support</h4>
+                            <p>We have a full time team which helps you with each and every issue regarding AMP.</p>
+                        </div>
+                    </div><!-- /. fr-fe -->
+                </div><!-- /. fr -->
+                <div class="pr">
+                    <h1>PRO</h1>
+                    <div class="pr-fe">
+                        <span>Everything in Free, and:</span>
+                        <div class="fet">
+                            <div class="fe-2">
+                                <div class="fe-t">
+                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
+                                    <h4>Advertisement</h4>
+                                </div>
+                                <p>Advanced Ad slots, Incontent ads & Supports all Ad networks.</p>
+                            </div>
+                            <div class="fe-2">
+                                <div class="fe-t">
+                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
+                                    <h4>AMP Cache</h4>
+                                </div>
+                                <p>Revolutionary cache system for AMP which makes it insanely fast.</p>
+                            </div>
+                            <div class="fe-2">
+                                <div class="fe-t">
+                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
+                                    <h4>Contact Forms</h4>
+                                </div>
+                                <p>Gravity Forms and Contact form 7 Support for the AMP.</p>
+                            </div>
+                            <div class="fe-2">
+                                <div class="fe-t">
+                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
+                                    <h4>E-Commerce</h4>
+                                </div>
+                                <p>WooCommerce & Easy Digital Downloads Support.</p>
+                            </div>
+                            <div class="fe-2">
+                                <div class="fe-t">
+                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
+                                    <h4>Email Optin</h4>
+                                </div>
+                                <p>Native Email optin forms to capture email with 17+ company integrations.</p>
+                            </div>
+                            <div class="fe-2">
+                                <div class="fe-t">
+                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
+                                    <h4>Call To Action</h4>
+                                </div>
+                                <p>Get your message, product or offering to your visitors.</p>
+                            </div>
+                            <div class="fe-2">
+                                <div class="fe-t">
+                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
+                                    <h4>Localization</h4>
+                                </div>
+                                <p>Integrates with WPML, Polylang and WeGlot to provide localization.</p>
+                            </div>
+                            <div class="fe-2">
+                                <div class="fe-t">
+                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
+                                    <h4>Structured Data</h4>
+                                </div>
+                                <p>Advanced Schema integration in AMP and WordPress.</p>
+                            </div>
+                            <div class="fe-2">
+                                <div class="fe-t">
+                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
+                                    <h4>Advanced Custom Field</h4>
+                                </div>
+                                <p>Built-in tools to help you impliment ACF easily in AMP.</p>
+                            </div>
+                            <div class="fe-2">
+                                <div class="fe-t">
+                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
+                                    <h4>Ratings</h4>
+                                </div>
+                                <p>Easily add Rating to the posts. Supports 3 popular rating plugins.</p>
+                            </div>
+                            <div class="fe-2">
+                                <div class="fe-t">
+                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
+                                    <h4>Design Catalogue</h4>
+                                </div>
+                                <p>AMP Layouts has 6 pre-built designs, We are constantly adding every week.</p>
+                            </div>
+                            <div class="fe-2">
+                                <div class="fe-t">
+                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
+                                    <h4>Dedicated Support</h4>
+                                </div>
+                                <p>With a Dedicated person helping you with the extension setup and questions.</p>
+                            </div>
+                            <div class="fe-2">
+                                <div class="fe-t">
+                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
+                                    <h4>Continious Updates</h4>
+                                </div>
+                                <p>We\'re continiously updating our premium features and releasing them.</p>
+                            </div>
+                            <div class="fe-2">
+                                <div class="fe-t">
+                                    <img src="'.AMPFORWP_IMAGE_DIR . '/tick.png" />
+                                    <h4>Innovation</h4>
+                                </div>
+                                <p>Be the first one to get the innovative features that we build in the future.</p>
+                            </div>
+                        </div><!-- /. fet -->
+                        <div class="pr-btn">
+                            <a href="#upgrade">Upgrade to Pro</a>
+                        </div><!-- /. pr-btn -->
+                    </div><!-- /. pr-fe -->
+                </div><!-- /.pr -->
+            </div><!-- /. pvf-cmp -->
+        </div><!-- /. pvf-cnt -->
+        <div id="upgrade" class="amp-upg">
+            <div class="upg-t">
+                <h2>Let\'s Upgrade Your AMP</h2>
+                <span>Choose your plan and upgrade in minutes!</span>
+            </div>
+            <div class="pri-lst">
+                <div class="pri-tb">
+                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&download_id=24570&edd_options[price_id]=1&utm_medium=freevspro&utm_campaign=AMP%20Plugin">
+                        <h5>PERSONAL</h5>
+                        <span class="amt"><sup>$</sup>149</span>
+                        <span class="bil">Billed Annually</span>
+                        <span class="s">1 Site License</span>
+                        <span class="e">E-mail support</span>
+                        <span class="f">Pro Features</span>
+                        <span class="sv">Save $800+</span>
+                        <span class="pri-by">Buy Now</span>
+                    </a>
+                </div>
+                <div class="pri-tb rec">
+                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&download_id=24570&edd_options[price_id]=2&utm_medium=freevspro&utm_campaign=AMP%20Plugin">
+                        <h5>MULTIPLE</h5>
+                        <span class="amt"><sup>$</sup>199</span>
+                        <span class="bil">Billed Annually</span>
+                        <span class="s">3 Site License</span>
+                        <span class="e">E-mail support</span>
+                        <span class="f">Pro Features</span>
+                        <span class="sv">Save 55%</span>
+                        <span class="pri-by">Buy Now</span>
+                        <span class="rcm">RECOMMENDED</span>
+                    </a>
+                </div>
+                <div class="pri-tb">
+                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&download_id=24570&edd_options[price_id]=3&utm_medium=freevspro&utm_campaign=AMP%20Plugin">
+                        <h5>WEBMASTER</h5>
+                        <span class="amt"><sup>$</sup>249</span>
+                        <span class="bil">Billed Annually</span>
+                        <span class="s">10 Site License</span>
+                        <span class="e">E-mail support</span>
+                        <span class="f">Pro Features</span>
+                        <span class="sv">Save 83%</span>
+                        <span class="pri-by">Buy Now</span>
+                    </a>
+                </div>
+                <div class="pri-tb">
+                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&download_id=24570&edd_options[price_id]=4&utm_medium=freevspro&utm_campaign=AMP%20Plugin">
+                        <h5>FREELANCER</h5>
+                        <span class="amt"><sup>$</sup>299</span>
+                        <span class="bil">Billed Annually</span>
+                        <span class="s">25 Site License</span>
+                        <span class="e">E-mail support</span>
+                        <span class="f">Pro Features</span>
+                        <span class="sv">Save 90%</span>
+                        <span class="pri-by">Buy Now</span>
+                    </a>
+                </div>
+                <div class="pri-tb">
+                    <a href="https://accounts.ampforwp.com/order?edd_action=add_to_cart&download_id=24570&edd_options[price_id]=5&utm_medium=freevspro&utm_campaign=AMP%20Plugin">
+                        <h5>AGENCY</h5>
+                        <span class="amt"><sup>$</sup>499</span>
+                        <span class="bil">Billed Annually</span>
+                        <span class="s">Unlimited</span>
+                        <span class="e">E-mail support</span>
+                        <span class="f">Pro Features</span>
+                        <span class="sv">UNLIMITED</span>
+                        <span class="pri-by">Buy Now</span>
+                    </a>
+                </div>
+            </div><!-- /.pri-lst -->
+            <div class="tru-us">
+                <img src="'.AMPFORWP_IMAGE_DIR . '/rating.png" />
+                <h2>Trusted by more that 130000+ Users!</h2>
+                <p>More than 130k Websites, Blogs & E-Commerce website are powered by our AMP making it the #1 Rated AMP plugin in WordPress Community.</p>
+                <a href="https://wordpress.org/support/plugin/accelerated-mobile-pages/reviews/?filter=5" target="_blank">Read The Reviews</a>
+            </div>
+        </div><!--/ .amp-upg -->
+        <div class="ampfaq">
+            <h4>Frequently Asked Questions</h4>
+            <div class="faq-lst">
+                <div class="lt">
+                    <ul>
+                        <li>
+                            <span>Is there a setup fee?</span>
+                            <p>No. There are no setup fees on any of our plans</p>
+                        </li>
+                        <li>
+                            <span>what\'s the time span for your contracts?</span>
+                            <p>All the plans are year-to-year which are subscribed annually.</p>
+                        </li>
+                        <li>
+                            <span>What payment methods are accepted?</span>
+                            <p>All the plans are year-to-year which are subscribed annually.</p>
+                        </li>
+                        <li>
+                            <span>Do you offer support if I need help?</span>
+                            <p>Yes! Top-notch customer support for our paid customers is key for a quality product, so we’ll do our very best to resolve any issues you encounter via our support page.</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="rt">
+                    <ul>
+                        <li>
+                            <span>Can I cancel my membership at any time?</span>
+                            <p>Yes. You can cancel your membership by contacting us.</p>
+                        </li>
+                        <li>
+                            <span>Can I change my plan later on?</span>
+                            <p>Yes. You can upgrade or downgrade your plan by contacting us.</p>
+                        </li>
+                        <li>
+                            <span>Do you offer refunds?</span>
+                            <p>You are fully protected by our 100% Money Back Guarantee Unconditional. If during the next 14 days you experience an issue that makes the plugin unusable and we are unable to resolve it, we’ll happily offer a full refund.</p>
+                        </li>
+                        <li>
+                            <span>Do I get updates for the premium plugin?</span>
+                            <p>All the plans are year-to-year which are subscribed annually.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div><!-- /.faq-lst -->
+            <div class="f-cnt">
+                <span>I have other pre-sale questions, can you help?</span>
+                <p>All the plans are year-to-year which are subscribed annually.</p>
+                <a href="https://ampforwp.com/support/?utm_medium=freevspro&utm_campaign=AMP%20Plugin#contact">Contact a Human</a>
+            </div><!-- /.f-cnt -->
+        </div><!-- /.faq -->
+    </div><!-- /. pvf -->
+</div><!-- /. fp-wr -->';
 
 
 $gettingstarted_extension_listing = '
@@ -515,6 +821,56 @@ if(is_array($layouts)){
     </div>';
     }
 }
+// GDPR iso codes
+$eu_iso_codes = array(
+                        'al' => 'Albania',
+                        'ad' => 'Andorra',
+                        'at' => 'Austria',
+                        'by' => 'Belarus',
+                        'be' => 'Belgium',
+                        'ba' => 'Bosnia and Herzegovina',
+                        'bg' => 'Bulgaria',
+                        'hr' => 'Croatia',
+                        'cy' => 'Cyprus',
+                        'cz' => 'Czech Republic',
+                        'dk' => 'Denmark',
+                        'ee' => 'Estonia',
+                        'fo' => 'Faroe Islands',
+                        'fi' => 'Finland',
+                        'fr' => 'France',
+                        'de' => 'Germany',
+                        'gi' => 'Gibraltar',
+                        'gr' => 'Greece',
+                        'hu' => 'Hungary',
+                        'is' => 'Iceland',
+                        'ie' => 'Ireland',
+                        'im' => 'Isle of Man',
+                        'it' => 'Italy',
+                        'xs' => 'Kosovo',
+                        'lv' => 'Latvia',
+                        'lt' => 'Lithuania',
+                        'lu' => 'Luxembourg',
+                        'mk' => 'The former Yugoslav Republic of Macedonia',
+                        'mt' => 'Malta',
+                        'md' => 'Moldova',
+                        'mc' => 'Monaco',
+                        'me' => 'Montenegro',
+                        'nl' => 'Netherlands',
+                        'no' => 'Norway',
+                        'pl' => 'Poland',
+                        'pt' => 'Portugal',
+                        'ro' => 'Romania',
+                        'ru' => 'Russia',
+                        'rs' => 'Serbia',
+                        'sk' => 'Slovakia',
+                        'si' => 'Slovenia',
+                        'es' => 'Spain',
+                        'se' => 'Sweden',
+                        'ch' => 'Switzerland',
+                        'ua' => 'Ukraine',
+                        'uk' => 'United Kingdom',
+                        'rs'=> 'Yugoslavia',
+                );
 
 // All the possible arguments for Redux.
 //$amp_redux_header = '<span id="name"><span style="color: #4dbefa;">U</span>ltimate <span style="color: #4dbefa;">W</span>idgets</span>';
@@ -892,7 +1248,7 @@ Redux::setArgs( "redux_builder_amp", $args );
        'title'      => __( 'Page Builder', 'accelerated-mobile-pages' ),
       'class'       =>'',
        'id'         => 'amp-content-builder',
-       'class' => 'amp_content_builder ampforwp-new-element',
+       'class'      => 'ampforwp-new-element',
        'subsection' => true,
        'fields' => array( 
             array(
@@ -1658,17 +2014,17 @@ Redux::setArgs( "redux_builder_amp", $args );
                                 array('amp-use-gtm-option', '=' , '1')
                               ),
                         ),
-//                        array(
-//                            'id'            =>'amp-gtm-analytics-type',
-//                            'type'          => 'text',
-//                            'title'         => __('Analytics Type','accelerated-mobile-pages'),
-//                            'default'       => '',
-//                            'desc'  => __('Eg: googleanalytics','accelerated-mobile-pages'),
-//                             // 'validate' => 'not_empty',
-//                              'required' => array(
-//                                array('amp-use-gtm-option', '=' , '1')
-//                              ),
-//                        ),
+                       array(
+                           'id'            =>'amp-gtm-analytics-type',
+                           'type'          => 'text',
+                           'title'         => __('Analytics Type','accelerated-mobile-pages'),
+                           'default'       => '',
+                           'desc'  => __('Eg: googleanalytics','accelerated-mobile-pages'),
+                            // 'validate' => 'not_empty',
+                             'required' => array(
+                               array('amp-use-gtm-option', '=' , '1')
+                             ),
+                       ),
                         array(
                             'class'=>'child_opt',
                             'id'            =>'amp-gtm-analytics-code',
@@ -2141,9 +2497,10 @@ function ampforwp_add_sd_fields($fields){
 
     // Notifications SECTION
    Redux::setSection( $opt_name, array(
-       'title'      => __( 'Notice Bar', 'accelerated-mobile-pages' ),
+       'title'      => __( 'Notice Bar & GDPR', 'accelerated-mobile-pages' ),
           'desc'       => $cta_desc ,
        'id'         => 'amp-notifications',
+       'class'      => 'ampforwp_new_features ',
        'subsection' => true,
        'fields'     => array(
            array(
@@ -2198,6 +2555,45 @@ function ampforwp_add_sd_fields($fields){
                'default'   => 0,
            ),
            array(
+               'class'  => 'child_opt',
+               'id'        =>'audience-for-amp-gdpr-compliance',
+               'type'      => 'select',
+               'title'     => __('GDPR Visibility', 'accelerated-mobile-pages'),
+               'tooltip-subtitle'  => __('Select the option to which you want to display GDPR. ', 'accelerated-mobile-pages'),
+               'options'      => array('1' => 'Globally',
+                                        '2' => 'For European Union',
+                                        '3' => 'Handpicked EU Countries'
+                                        ),
+               'default'    => 2,            
+               'required' => array('amp-gdpr-compliance-switch', '=' , '1'),
+           ),
+            array(
+               'class'  => 'child_opt',
+               'id'        =>'amp-gdpr-compliance-privacy-geo-location',
+               'type'      => 'checkbox',
+               'title'     => __('Select Countries for GDPR', 'accelerated-mobile-pages'),'tooltip-subtitle'  => __('Select the Countries to which you want to display GDPR, If checked None it displayed for all EU countries. ', 'accelerated-mobile-pages'),
+               'default'    => 0,            
+               'options'      => $eu_iso_codes,
+               'required' => array('audience-for-amp-gdpr-compliance', '=' , '3'),
+           ),
+           array(
+                    'id'    => 'gdpr-type',
+                   'title'  => __('GDPR Designs', 'accelerated-mobile-pages'),
+                   'type'   => 'image_select',
+                   'options'=> array(
+                        '1' => array(
+                                'alt'=>' Header 1 ',
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/gdpr-1.png'
+                                ),
+                        '2' => array(
+                                'alt'=>' Header 2 ',
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/gdpr-2.png'
+                                ),
+                    ),
+                   'default'=> '1',
+                   'required' => array( array('amp-gdpr-compliance-switch', '=' , '1') ),
+            ),
+           array(
                'class'  => 'child_opt child_opt_arrow',
                'id'        =>'amp-gdpr-compliance-headline-text',
                'type'      => 'text',
@@ -2213,7 +2609,7 @@ function ampforwp_add_sd_fields($fields){
                'title'     => __('Message to Visitor', 'accelerated-mobile-pages'),
                'subtitle'     => __('', 'accelerated-mobile-pages'),
                'default'   => '',
-               'required' => array('amp-gdpr-compliance-switch', '=' , '1'),
+               'required' =>  array(  array('amp-gdpr-compliance-switch', '=' , '1', ), array('gdpr-type', '=' , '1' ) ),
            ),
            
            array(
@@ -2240,8 +2636,34 @@ function ampforwp_add_sd_fields($fields){
                'default'   => 'Privacy Settings',
                'required' => array('amp-gdpr-compliance-switch', '=' , '1'),
            ),
-
- 
+           array(
+               'class'  => 'child_opt',
+               'id'        =>'amp-gdpr-compliance-for-more-privacy-info',
+               'type'      => 'text',
+               'title'     => __('For More information', 'accelerated-mobile-pages'),
+               'tooltip-subtitle'  => __('text before the privacy page button.', 'accelerated-mobile-pages'),
+               'default'   => 'For More information about Privacy',
+               'required' =>  array(  array('amp-gdpr-compliance-switch', '=' , '1', ), array('gdpr-type', '=' , '1' ) ),
+           ),
+          
+           array(
+               'class'  => 'child_opt',
+               'id'        =>'amp-gdpr-compliance-select-privacy-page',
+               'type'      => 'select',
+               'title'     => __('Select the Privacy Page', 'accelerated-mobile-pages'),
+               'tooltip-subtitle'  => __('Select the Privacy Page to display.', 'accelerated-mobile-pages'),
+               'default'   => 0,
+               'data'      => 'pages',
+               'required' => array('amp-gdpr-compliance-switch', '=' , '1'),
+           ),
+           array(
+               'class'  => 'child_opt',
+               'id'        =>'amp-gdpr-compliance-privacy-page-button-text',
+               'type'      => 'text',
+               'title'     => __('Privacy Page Button Text', 'accelerated-mobile-pages'),
+               'default'   => 'Click Here',
+               'required' => array('amp-gdpr-compliance-switch', '=' , '1'),
+           ),
        ),
 
    ) );
@@ -5881,6 +6303,14 @@ Redux::setSection( $opt_name, array(
 //        'icon' => 'el el-puzzle',
     ) );
 
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Free vs Pro', 'accelerated-mobile-pages' ),
+       // 'desc'       => __( 'For full documentation on this field, visit: ', 'accelerated-mobile-pages' ) . '<a href="http://docs.reduxframework.com/core/fields/textarea/" target="_blank">http://docs.reduxframework.com/core/fields/textarea/</a>',
+        'id'         => 'opt-choose',
+        'subsection' => false,
+       'desc' => $freepro_listing,
+        'icon' => 'el el-heart',
+    ) );
 
 
 // Priority Support

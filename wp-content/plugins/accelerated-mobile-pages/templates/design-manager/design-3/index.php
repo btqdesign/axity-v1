@@ -67,7 +67,7 @@ if ( get_query_var( 'paged' ) ) {
 						$thumb_url = ampforwp_get_post_thumbnail();
 						if($thumb_url){
 							?>
-							 <amp-img data-block-on-consent src=<?php echo $thumb_url ?> width=450 height=270></amp-img>
+							 <amp-img src=<?php echo $thumb_url ?> width=450 height=270></amp-img>
 						<?php } 
 					}?>
                   <a href="<?php echo ampforwp_url_controller( get_the_permalink() ); ?>">
@@ -106,7 +106,7 @@ if ( get_query_var( 'paged' ) ) {
 
 		$q = new WP_Query( $filtered_args );  
 		$blog_title = ampforwp_get_blog_details('title');
-		if($blog_title){  ?>
+		if( ampforwp_is_blog() && $blog_title){  ?>
 			<h1 class="amp-wp-content page-title archive-heading"><?php echo $blog_title ?></h1>
 		<?php }	
 		 if ( $q->have_posts() ) : while ( $q->have_posts() ) : $q->the_post(); ?>
@@ -126,7 +126,6 @@ if ( get_query_var( 'paged' ) ) {
 								<?php ampforwp_thumbnail_alt(); ?>
 								width=<?php echo $thumb_width; ?>
 								height=<?php echo $thumb_height; ?>
-								data-block-on-consent
 							></amp-img>
 						</a>
 					</div>
