@@ -14,6 +14,8 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 
 // Remove options introduced by the plugin.
 delete_option( 'health-check-disable-plugin-hash' );
+delete_option( 'health-check-default-theme' );
+delete_option( 'health-check-current-theme' );
 
 /*
  * Remove any user meta entries we made, done with a custom query as core
@@ -22,11 +24,16 @@ delete_option( 'health-check-disable-plugin-hash' );
 $wpdb->delete(
 	$wpdb->usermeta,
 	array(
-		'meta_key' => 'health-check'
+		'meta_key' => 'health-check',
 	)
 );
 
-// Remove the Must-Use plugin if it was implemented.
+// Remove the old Must-Use plugin if it was implemented.
 if ( file_exists( trailingslashit( WPMU_PLUGIN_DIR ) . 'health-check-disable-plugins.php' ) ) {
-	unlink( trailingslashit( WPMU_PLUGIN_DIR ) . 'health-check-disable-plugins.php' );
+	wp_delete_file( trailingslashit( WPMU_PLUGIN_DIR ) . 'health-check-disable-plugins.php' );
+}
+
+// Remove the renamed Must-Use plugin if it exists
+if ( file_exists( trailingslashit( WPMU_PLUGIN_DIR ) . 'health-check-troubleshooting-mode.php' ) ) {
+	wp_delete_file( trailingslashit( WPMU_PLUGIN_DIR ) . 'health-check-troubleshooting-mode.php' );
 }

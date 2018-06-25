@@ -45,7 +45,7 @@ class Health_Check_Files_Integrity {
 		$wplocale  = get_locale();
 
 		// Setup API Call.
-		$checksumapi = wp_remote_get( 'https://api.wordpress.org/core/checksums/1.0/?version=' . $wpversion . '&locale=' . $wplocale );
+		$checksumapi = wp_remote_get( 'https://api.wordpress.org/core/checksums/1.0/?version=' . $wpversion . '&locale=' . $wplocale, array( 'timeout' => 10000 ) );
 
 		// Encode the API response body.
 		$checksumapibody = json_decode( wp_remote_retrieve_body( $checksumapi ), true );
@@ -109,7 +109,8 @@ class Health_Check_Files_Integrity {
 			$output .= '</p></div>';
 		} else {
 			$output .= '<div class="notice notice-error inline"><p>';
-			$output .= __( 'It appears that some files may have been modified.', 'health-check' );
+			$output .= esc_html__( 'It appears as if some files may have been modified.', 'health-check' );
+			$output .= '<br>' . esc_html__( 'One possible reason for this may be that your installation contains translated versions. An easy way to clear this is to reinstall WordPress. Don\'t worry. This will only affect WordPress\' own files, not your themes, plugins or uploaded media.', 'health-check' );
 			$output .= '</p></div><table class="widefat striped file-integrity-table"><thead><tr><th>';
 			$output .= esc_html__( 'Status', 'health-check' );
 			$output .= '</th><th>';
@@ -184,4 +185,40 @@ class Health_Check_Files_Integrity {
 		wp_die();
 	}
 
+	/**
+	 * Add the Files integrity checker to the tools tab.
+	 *
+	 * @param array $tabs
+	 *
+	 * return array
+	 */
+	static function tools_tab( $tabs ) {
+		ob_start();
+		?>
+
+		<div>
+			<p>
+				<?php _e( 'The File Integrity checks all the core files with the <code>checksums</code> provided by the WordPress API to see if they are intact. If there are changes you will be able to make a Diff between the files hosted on WordPress.org and your installation to see what has been changed.', 'health-check' ); ?>
+			</p>
+			<form action="#" id="health-check-file-integrity" method="POST">
+				<p>
+					<input type="submit" class="button button-primary" value="<?php esc_html_e( 'Check the Files Integrity', 'health-check' ); ?>">
+				</p>
+			</form>
+
+			<div id="tools-file-integrity-response-holder">
+				<span class="spinner"></span>
+			</div>
+		</div>
+
+		<?php
+		$tab_content = ob_get_clean();
+
+		$tabs[] = array(
+			'label'   => esc_html__( 'File Integrity', 'health-check' ),
+			'content' => $tab_content,
+		);
+
+		return $tabs;
+	}
 }

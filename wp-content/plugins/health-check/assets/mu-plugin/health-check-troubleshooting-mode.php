@@ -1,8 +1,8 @@
 <?php
 /*
-	Plugin Name: Health Check Disable Plugins
-	Description: Conditionally disabled plugins on your site for a given session, used to rule out plugin interactions during troubleshooting.
-	Version: 1.3
+	Plugin Name: Health Check Troubleshooting Mode
+	Description: Conditionally disabled themes or plugins on your site for a given session, used to rule out conflicts during troubleshooting.
+	Version: 1.4
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -13,12 +13,13 @@ class Health_Check_Troubleshooting_MU {
 	private $override_active = true;
 	private $default_theme   = true;
 	private $active_plugins  = array();
+	private $current_theme;
 
 	private $available_query_args = array(
 		'health-check-disable-plugins',
 		'health-check-disable-plugins-hash',
 		'health-check-disable-troubleshooting',
-		'health-check-toggle-default-theme',
+		'health-check-change-active-theme',
 		'health-check-troubleshoot-enable-plugin',
 		'health-check-troubleshoot-disable-plugin',
 	);
@@ -74,6 +75,7 @@ class Health_Check_Troubleshooting_MU {
 
 		$this->default_theme  = ( 'yes' === get_option( 'health-check-default-theme', 'yes' ) ? true : false );
 		$this->active_plugins = $this->get_unfiltered_plugin_list();
+		$this->current_theme  = get_option( 'health-check-current-theme', false );
 	}
 
 	/**
@@ -251,7 +253,7 @@ class Health_Check_Troubleshooting_MU {
 	 *
 	 * @return array Array of active plugins.
 	 */
-	private function get_unfiltered_plugin_list() {
+	public function get_unfiltered_plugin_list() {
 		$this->override_active = false;
 		$all_plugins           = get_option( 'active_plugins' );
 		$this->override_active = true;
@@ -264,7 +266,7 @@ class Health_Check_Troubleshooting_MU {
 	 *
 	 * @return bool
 	 */
-	private function is_troubleshooting() {
+	public static function is_troubleshooting() {
 		// Check if a session cookie to disable plugins has been set.
 		if ( isset( $_COOKIE['health-check-disable-plugins'] ) ) {
 			$_GET['health-check-disable-plugin-hash'] = $_COOKIE['health-check-disable-plugins'];
@@ -358,14 +360,6 @@ class Health_Check_Troubleshooting_MU {
 			return false;
 		}
 
-		if ( ! $this->override_active ) {
-			return false;
-		}
-
-		if ( ! $this->default_theme ) {
-			return false;
-		}
-
 		return true;
 	}
 
@@ -386,10 +380,15 @@ class Health_Check_Troubleshooting_MU {
 			return $theme;
 		}
 
-		// Check if a default theme exists, and if so use it.
+		// Check if a default theme exists, and if so use it as a default.
 		$default_theme = $this->has_default_theme();
 		if ( $default_theme ) {
 			$theme = $default_theme;
+		}
+
+		// If a specific theme has been chosen, use it.
+		if ( false !== $this->current_theme ) {
+			$theme = $this->current_theme;
 		}
 
 		return $theme;
@@ -410,10 +409,18 @@ class Health_Check_Troubleshooting_MU {
 		}
 
 		if ( isset( $_COOKIE['health-check-disable-plugins'] ) ) {
-			unset( $_COOKIE['health-check-disable-plugins'] );
-			setcookie( 'health-check-disable-plugins', null, 0, COOKIEPATH, COOKIE_DOMAIN );
-			delete_option( 'health-check-allowed-plugins' );
+			$this->disable_troubleshooting_mode();
 		}
+	}
+
+	function disable_troubleshooting_mode() {
+		unset( $_COOKIE['health-check-disable-plugins'] );
+		setcookie( 'health-check-disable-plugins', null, 0, COOKIEPATH, COOKIE_DOMAIN );
+		delete_option( 'health-check-allowed-plugins' );
+		delete_option( 'health-check-default-theme' );
+		delete_option( 'health-check-current-theme' );
+
+		delete_option( 'health-check-backup-plugin-list' );
 	}
 
 	/**
@@ -431,9 +438,7 @@ class Health_Check_Troubleshooting_MU {
 
 		// Disable Troubleshooting Mode.
 		if ( isset( $_GET['health-check-disable-troubleshooting'] ) ) {
-			unset( $_COOKIE['health-check-disable-plugins'] );
-			setcookie( 'health-check-disable-plugins', null, 0, COOKIEPATH, COOKIE_DOMAIN );
-			delete_option( 'health-check-allowed-plugins' );
+			$this->disable_troubleshooting_mode();
 
 			wp_redirect( remove_query_arg( $this->available_query_args ) );
 			die();
@@ -461,13 +466,9 @@ class Health_Check_Troubleshooting_MU {
 			die();
 		}
 
-		// Toggle between the active theme and a default theme.
-		if ( isset( $_GET['health-check-toggle-default-theme'] ) ) {
-			if ( $this->default_theme ) {
-				update_option( 'health-check-default-theme', 'no' );
-			} else {
-				update_option( 'health-check-default-theme', 'yes' );
-			}
+		// Change the active theme for this session.
+		if ( isset( $_GET['health-check-change-active-theme'] ) ) {
+			update_option( 'health-check-current-theme', $_GET['health-check-change-active-theme'] );
 
 			wp_redirect( remove_query_arg( $this->available_query_args ) );
 			die();
@@ -489,6 +490,9 @@ class Health_Check_Troubleshooting_MU {
 		if ( ! $this->is_troubleshooting() ) {
 			return;
 		}
+
+		// Ensure the theme functions are available to us on every page.
+		include_once( trailingslashit( ABSPATH ) . 'wp-admin/includes/theme.php' );
 
 		// Add top-level menu item.
 		$wp_menu->add_menu( array(
@@ -526,6 +530,8 @@ class Health_Check_Troubleshooting_MU {
 				$plugin_slug = explode( '/', $single_plugin );
 				$plugin_slug = $plugin_slug[0];
 
+				$plugin_data = get_plugin_data( trailingslashit( WP_PLUGIN_DIR ) . $single_plugin );
+
 				$enabled = true;
 
 				if ( in_array( $plugin_slug, $allowed_plugins ) ) {
@@ -534,10 +540,12 @@ class Health_Check_Troubleshooting_MU {
 						esc_html__( 'Disable %s', 'health-check' ),
 						sprintf(
 							'<strong>%s</strong>',
-							$plugin_slug
+							$plugin_data['Name']
 						)
 					);
-					$url = add_query_arg( array( 'health-check-troubleshoot-disable-plugin' => $plugin_slug ) );
+					$url = add_query_arg( array(
+						'health-check-troubleshoot-disable-plugin' => $plugin_slug,
+					) );
 				} else {
 					$enabled = false;
 					$label   = sprintf(
@@ -545,10 +553,12 @@ class Health_Check_Troubleshooting_MU {
 						esc_html__( 'Enable %s', 'health-check' ),
 						sprintf(
 							'<strong>%s</strong>',
-							$plugin_slug
+							$plugin_data['Name']
 						)
 					);
-					$url = add_query_arg( array( 'health-check-troubleshoot-enable-plugin' => $plugin_slug ) );
+					$url = add_query_arg( array(
+						'health-check-troubleshoot-enable-plugin' => $plugin_slug,
+					) );
 				}
 
 				$wp_menu->add_node( array(
@@ -563,33 +573,46 @@ class Health_Check_Troubleshooting_MU {
 			}
 		}
 
-		$wp_menu->add_group( array(
+		$wp_menu->add_node( array(
 			'id'     => 'health-check-theme',
+			'title'  => esc_html__( 'Themes', 'health-check' ),
 			'parent' => 'health-check',
 		) );
 
-		// Check if a default theme exists before we add a menu item to toggle it.
-		if ( $this->has_default_theme() ) {
-			// Add a link to switch between active themes.
-			$wp_menu->add_node( array(
-				'id'     => 'health-check-default-theme',
-				'title'  => ( $this->default_theme ? esc_html__( 'Use your current theme', 'health-check' ) : esc_html__( 'Use a default theme', 'health-check' ) ),
+		$themes = wp_prepare_themes_for_js();
+
+		foreach ( $themes as $theme ) {
+			$node = array(
+				'id'     => sprintf(
+					'health-check-theme-%s',
+					sanitize_title( $theme['id'] )
+				),
+				'title'  => sprintf(
+					'%s %s',
+					// translators: Prefix for the active theme in a listing.
+					( $theme['active'] ? esc_html__( 'Active:', 'health-check' ) : '' ),
+					$theme['name']
+				),
 				'parent' => 'health-check-theme',
-				'href'   => add_query_arg( array( 'health-check-toggle-default-theme' => true ) ),
-			) );
-		}
+			);
 
-		$wp_menu->add_group( array(
-			'id'     => 'health-check-status',
-			'parent' => 'health-check',
-		) );
+			if ( ! $theme['active'] ) {
+				$node['href'] = add_query_arg( array(
+					'health-check-change-active-theme' => $theme['id'],
+				) );
+			}
+
+			$wp_menu->add_node( $node );
+		}
 
 		// Add a link to disable Troubleshooting Mode.
 		$wp_menu->add_node( array(
 			'id'     => 'health-check-disable',
 			'title'  => esc_html__( 'Disable Troubleshooting Mode', 'health-check' ),
-			'parent' => 'health-check-status',
-			'href'   => add_query_arg( array( 'health-check-disable-troubleshooting' => true ) ),
+			'parent' => 'health-check',
+			'href'   => add_query_arg( array(
+				'health-check-disable-troubleshooting' => true,
+			) ),
 		) );
 	}
 
