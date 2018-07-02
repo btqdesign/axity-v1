@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitca5c2bd617a51f5063bbe1b6f3551819
+class ComposerStaticInit26c508c178a4ac01471fede90bc67747
 {
     public static $files = array (
         '995b589e693a50f54393aa31ee1c3763' => __DIR__ . '/..' . '/yoast/whip/src/facades/wordpress.php',
@@ -143,6 +143,7 @@ class ComposerStaticInitca5c2bd617a51f5063bbe1b6f3551819
         'WPSEO_Admin_Media_Purge_Notification' => __DIR__ . '/../..' . '/admin/class-admin-media-purge-notification.php',
         'WPSEO_Admin_Menu' => __DIR__ . '/../..' . '/admin/menu/class-admin-menu.php',
         'WPSEO_Admin_Pages' => __DIR__ . '/../..' . '/admin/class-config.php',
+        'WPSEO_Admin_Recommended_Replace_Vars' => __DIR__ . '/../..' . '/admin/class-admin-recommended-replace-vars.php',
         'WPSEO_Admin_User_Profile' => __DIR__ . '/../..' . '/admin/class-admin-user-profile.php',
         'WPSEO_Admin_Utils' => __DIR__ . '/../..' . '/admin/class-admin-utils.php',
         'WPSEO_Advanced_Settings' => __DIR__ . '/../..' . '/deprecated/class-wpseo-advanced-settings.php',
@@ -367,6 +368,9 @@ class ComposerStaticInitca5c2bd617a51f5063bbe1b6f3551819
         'WPSEO_Remote_Request' => __DIR__ . '/../..' . '/admin/class-remote-request.php',
         'WPSEO_Remove_Reply_To_Com' => __DIR__ . '/../..' . '/frontend/class-remove-reply-to-com.php',
         'WPSEO_Replace_Vars' => __DIR__ . '/../..' . '/inc/class-wpseo-replace-vars.php',
+        'WPSEO_Replacement_Variable' => __DIR__ . '/../..' . '/inc/class-wpseo-replacement-variable.php',
+        'WPSEO_Replacevar_Editor' => __DIR__ . '/../..' . '/admin/menu/class-replacevar-editor.php',
+        'WPSEO_Replacevar_Field' => __DIR__ . '/../..' . '/admin/menu/class-replacevar-field.php',
         'WPSEO_Rewrite' => __DIR__ . '/../..' . '/inc/class-rewrite.php',
         'WPSEO_Role_Manager' => __DIR__ . '/../..' . '/admin/roles/class-role-manager.php',
         'WPSEO_Role_Manager_Factory' => __DIR__ . '/../..' . '/admin/roles/class-role-manager-factory.php',
@@ -478,10 +482,10 @@ class ComposerStaticInitca5c2bd617a51f5063bbe1b6f3551819
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitca5c2bd617a51f5063bbe1b6f3551819::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitca5c2bd617a51f5063bbe1b6f3551819::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitca5c2bd617a51f5063bbe1b6f3551819::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitca5c2bd617a51f5063bbe1b6f3551819::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit26c508c178a4ac01471fede90bc67747::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit26c508c178a4ac01471fede90bc67747::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit26c508c178a4ac01471fede90bc67747::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit26c508c178a4ac01471fede90bc67747::$classMap;
 
         }, null, ClassLoader::class);
     }
