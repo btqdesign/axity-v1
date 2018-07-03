@@ -1788,8 +1788,15 @@ Redux::setArgs( "redux_builder_amp", $args );
                   'title' => __('Advanced Indexing', 'accelerated-mobile-pages'),
                   'indent' => true,
                   'layout_type' => 'accordion',
-                   'accordion-open'=> 0,
+                   'accordion-open'=> 1,
               ),
+           array(
+               'id'       => 'amp-inspection-tool',
+               'type'     => 'switch',
+               'title'    => __('URL Inspection Tool Compatibility', 'accelerated-mobile-pages'),
+               'tooltip-subtitle'  => __("You can read about it <a target='_blank' href='https://webmasters.googleblog.com/2018/06/new-url-inspection-tool-more-in-search.html'>here</a>",'accelerated-mobile-pages'),
+               'default' => 1,
+           ),
            array(
                'id'       => 'ampforwp-robots-archive-sub-pages-sitewide',
                'type'     => 'switch',
@@ -1797,7 +1804,8 @@ Redux::setArgs( "redux_builder_amp", $args );
                'tooltip-subtitle'  => __("Such as /page/2 so on and so forth",'accelerated-mobile-pages'),
                'default' => 0,
                'on' => 'index',
-               'off' => 'noindex'
+               'off' => 'noindex',
+               'required'  => array('amp-inspection-tool', '=' , '0'),
            ),
            array(
                'id'       => 'ampforwp-robots-archive-author-pages',
@@ -1806,7 +1814,8 @@ Redux::setArgs( "redux_builder_amp", $args );
                'tooltip-subtitle'  => __("Enable it to set Indexing for Author Archives",'accelerated-mobile-pages'),
                'default' => 1,
                'on' => 'index',
-               'off' => 'noindex'
+               'off' => 'noindex',
+               'required'  => array('amp-inspection-tool', '=' , '0'),
 
            ),
            array(
@@ -1816,7 +1825,8 @@ Redux::setArgs( "redux_builder_amp", $args );
                'tooltip-subtitle'  => __("Enable it to set Indexing for Date Archives",'accelerated-mobile-pages'),
                'default' => 1,
                'on' => 'index',
-               'off' => 'noindex'
+               'off' => 'noindex',
+               'required'  => array('amp-inspection-tool', '=' , '0'),
 
            ),
            array(
@@ -1826,7 +1836,8 @@ Redux::setArgs( "redux_builder_amp", $args );
                'tooltip-subtitle'  => __("Enable it to set Indexing for Categories",'accelerated-mobile-pages'),
                'default' => 1,
                'on' => 'index',
-               'off' => 'noindex'
+               'off' => 'noindex',
+               'required'  => array('amp-inspection-tool', '=' , '0'),
            ),
            array(
                'id'       => 'ampforwp-robots-archive-tag-pages',
@@ -1835,7 +1846,8 @@ Redux::setArgs( "redux_builder_amp", $args );
                'tooltip-subtitle'  => __("Enable it to set Indexing for Tags",'accelerated-mobile-pages'),
                'default' => 1,
                'on' => 'index',
-               'off' => 'noindex'
+               'off' => 'noindex',
+               'required'  => array('amp-inspection-tool', '=' , '0'),
            ),
 
 
@@ -2510,6 +2522,7 @@ function ampforwp_add_sd_fields($fields){
             'indent' => true,
             'layout_type' => 'accordion',
             'accordion-open'=> 1, 
+            'required'  => array('amp-gdpr-compliance-switch', '=' , '0')
                   ),
            
            array(
@@ -2520,6 +2533,7 @@ function ampforwp_add_sd_fields($fields){
                'tooltip-subtitle'  => __('Show notifications on all of your AMP pages for cookie purposes, or anything else.', 'accelerated-mobile-pages'),
                'true'      => 'Enabled',
                'false'     => 'Disabled',
+               'required'  => array('amp-gdpr-compliance-switch', '=' , '0')
            ),
            array(
            'class' => 'child_opt child_opt_arrow',
@@ -2553,28 +2567,7 @@ function ampforwp_add_sd_fields($fields){
                'type'      => 'switch',
                'title'     => __('GDPR Compliancy', 'accelerated-mobile-pages'),
                'default'   => 0,
-           ),
-           array(
-               'class'  => 'child_opt',
-               'id'        =>'audience-for-amp-gdpr-compliance',
-               'type'      => 'select',
-               'title'     => __('GDPR Visibility', 'accelerated-mobile-pages'),
-               'tooltip-subtitle'  => __('Select the option to which you want to display GDPR. ', 'accelerated-mobile-pages'),
-               'options'      => array('1' => 'Globally',
-                                        '2' => 'For European Union',
-                                        '3' => 'Handpicked EU Countries'
-                                        ),
-               'default'    => 2,            
-               'required' => array('amp-gdpr-compliance-switch', '=' , '1'),
-           ),
-            array(
-               'class'  => 'child_opt',
-               'id'        =>'amp-gdpr-compliance-privacy-geo-location',
-               'type'      => 'checkbox',
-               'title'     => __('Select Countries for GDPR', 'accelerated-mobile-pages'),'tooltip-subtitle'  => __('Select the Countries to which you want to display GDPR, If checked None it displayed for all EU countries. ', 'accelerated-mobile-pages'),
-               'default'    => 0,            
-               'options'      => $eu_iso_codes,
-               'required' => array('audience-for-amp-gdpr-compliance', '=' , '3'),
+               'tooltip-subtitle' => 'Currently It is available to only EEA countries. Check <a href="https://github.com/ampproject/amphtml/blob/master/extensions/amp-geo/0.1/amp-geo-presets.js" target="_blank">here</a> for the list of EEA Countries'
            ),
            array(
                     'id'    => 'gdpr-type',

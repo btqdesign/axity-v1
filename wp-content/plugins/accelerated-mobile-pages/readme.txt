@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 4.9.5
-Stable tag: 0.9.96.1
+Stable tag: 0.9.97.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -182,6 +182,11 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 
 == Changelog ==
+
+= 0.9.97.2 (29th June 2018) = 
+* Fixed: GDPR not wroking properly for NON EU countries.
+* Fixed: no-index in robot meta reporting an error in Search Console.
+* Fixed: 2nd page or more blank in Post Pagination.
 
 = 0.9.96.1 (21st June 2018) =
 * Fixed: Pagination on Homepage and Archive pages not working for some cases.
