@@ -1256,14 +1256,18 @@ function end_backup($err=null, $success=null){
     global $WPBackitup,$wp_backup,$backup_logname,$current_job;
 	WPBackItUp_Logger::log_info($backup_logname,__METHOD__,'Begin');
 
+
 	//Cleanup TMP folder on error - will dispatch before changing path below
 	if (! $success) {
+		WPBackItUp_Admin_Bar::backup_error();
 		WPBackItUp_Logger::log_warning($backup_logname,__METHOD__,'Cleanup on backup error.');
 		//cleanup the manifest and sql files from root
 		if (  $wp_backup->cleanup_current_backup_async('txt|sql|db|config')  ) {
 			//Warning - no need to error job
 			WPBackItUp_Logger::log_warning($backup_logname,__METHOD__,'Cleanup on backup error could not be dispatched.');
 		}
+	}else {
+		WPBackItUp_Admin_Bar::backup_success();
 	}
 
 	$wp_backup->set_final_backup_path();

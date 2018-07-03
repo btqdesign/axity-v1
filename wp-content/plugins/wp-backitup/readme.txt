@@ -4,7 +4,7 @@ Tags: backup, backups, back up, backup plugin, database backup, multisite backup
 Requires at least: 3.8.0
 Requires PHP: 5.2.4
 Tested up to: 4.9
-Stable tag: 1.20.0
+Stable tag: 1.22.0
 Author URI: https://www.wpbackitup.com
 Donate link: https://www.wpbackitup.com
 License: GPLv2 or later
@@ -215,6 +215,18 @@ Our online documentation and full list of FAQs can be found at [support.wpbackit
 
 
 == Changelog ==
+= 1.22 =
+*Release Date -  July 2, 2018
+
+* UPDATE: Add Independence Day Promo
+* Fix   : Miscellaneous fixes
+
+= 1.22 =
+*Release Date -  June 29, 2018
+
+* NEW: Add WPBackItUp Toolbar
+* UPDATE: Fix alignment on header in dashboard
+
 = 1.21 =
 *Release Date -  June 5, 2018
 

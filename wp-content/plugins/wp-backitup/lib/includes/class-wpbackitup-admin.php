@@ -526,6 +526,11 @@ class WPBackitup_Admin {
 	    //Settings Class
 	    require_once( WPBACKITUP__PLUGIN_PATH . '/lib/includes/class-settings.php' );
 
+
+	    //Admin Bar
+	    require_once( WPBACKITUP__PLUGIN_PATH . '/lib/includes/class-admin-bar.php' );
+
+
 		$languages_path = dirname(dirname(dirname( plugin_basename( __FILE__ )))) . '/languages/';
 
 	    load_plugin_textdomain(

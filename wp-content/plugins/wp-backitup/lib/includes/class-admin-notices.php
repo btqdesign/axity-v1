@@ -21,11 +21,12 @@ if ( ! class_exists( 'WPBackitup_Admin_Notices' ) ) {
 		//PROMO Constants
 		private $BLACK_FRIDAY_2017_PROMO = 'black-friday-2017';
 		private $SAFE_BETA_PROMO = 'safe-beta-december';
+		private $INDEPENDENCE_DAY_PROMO = 'independence-day-promo';
 
 		public function __construct(){
 
 			$today = date("Y-m-d H:i");
-			//$today = date("Y-m-d H:i", strtotime("01 December 2017 5:00 AM UTC")); //todo: comment for LIVE
+			//$today = date("Y-m-d H:i", strtotime("04 July 2018 5:00 AM UTC")); //todo: comment for LIVE
 			$this->today =$today;
 
 			//IS there a promo to run
@@ -37,6 +38,11 @@ if ( ! class_exists( 'WPBackitup_Admin_Notices' ) ) {
 		 *
 		 */
 		private function get_active_promo() {
+
+			//Is the independence day sale active?
+			if ( false !== $this->get_indepence_day_promo_id()) {
+				return $this->INDEPENDENCE_DAY_PROMO;
+			}
 
 			//Is the safe beta promo active
 //			if ( false !== $this->get_safe_beta_notice_id()) {
@@ -77,8 +83,11 @@ if ( ! class_exists( 'WPBackitup_Admin_Notices' ) ) {
 //						$notice = $this->get_black_friday_notice();
 //						$this->show_notice($promo,$notice);
 //						break;
-
-
+					case $this->INDEPENDENCE_DAY_PROMO:
+						$promo =  sprintf("%s-%s",$this->promo,$this->get_indepence_day_promo_id());
+						$notice = $this->get_independence_day_notice();
+						$this->show_notice($promo,$notice);
+						break;
 					default:
 						$this->wordpress_review();
 				}
@@ -112,24 +121,24 @@ if ( ! class_exists( 'WPBackitup_Admin_Notices' ) ) {
 		 * @param $id
 		 * @param $notice
 		 */
-//		private function show_notice($id, $notice) {
-//
-//			if (is_array($notice)) {
-//				$promo_notice = array(
-//					'id'                => $id,
-//					'days_after'        => $notice['days_after'],
-//					'temp_days_after'   => $notice['temp_days_after'],
-//					'type'              => 'updated',
-//					'message'           => $notice['message'],
-//					'link_1'            => $notice['link_1'],
-//					'link_label_1'      => $notice['link_label_1'],
-//					'link_label_2'      => $notice['link_label_2'],
-//					'link_label_3'      => $notice['link_label_3'],
-//				);
-//
-//				new WPBackitup_Admin_Notice($promo_notice);
-//			}
-//		}
+		private function show_notice($id, $notice) {
+
+			if (is_array($notice)) {
+				$promo_notice = array(
+					'id'                => $id,
+					'days_after'        => $notice['days_after'],
+					'temp_days_after'   => $notice['temp_days_after'],
+					'type'              => 'updated',
+					'message'           => $notice['message'],
+					'link_1'            => $notice['link_1'],
+					'link_label_1'      => $notice['link_label_1'],
+					'link_label_2'      => $notice['link_label_2'],
+					'link_label_3'      => $notice['link_label_3'],
+				);
+
+				new WPBackitup_Admin_Notice($promo_notice);
+			}
+		}
 
 		/**
 		 * Get SAFE promo ID
@@ -152,6 +161,28 @@ if ( ! class_exists( 'WPBackitup_Admin_Notices' ) ) {
 //
 //			return $id;
 //		}
+
+		/**
+		 * Get Independence Day promo ID
+		 *
+		 * @return bool|int false = no promo
+		 *
+		 */
+		private function get_indepence_day_promo_id() {
+			$id = false;
+
+			//12:00 AM EST = 5:00 AM UTC
+			//11:59 PM EST = 4:59 AM UTC
+
+			$promo_start = date( "Y-m-d H:i", strtotime( "02 July 2018 5:00 AM UTC" ) );
+			$promo_end   = date( "Y-m-d H:i", strtotime( "08 July 2018 4:59 AM UTC" ) );
+
+			if ( $this->today >= $promo_start && $this->today <= $promo_end ) {
+				$id = 0;
+			}
+
+			return $id;
+		}
 
 
 		/**
@@ -300,6 +331,49 @@ if ( ! class_exists( 'WPBackitup_Admin_Notices' ) ) {
 //			);
 //
 //		}
+
+
+		/**
+		 * Get Independence day promo
+		 *
+		 * @return array|false false on no notice
+		 */
+		private function get_independence_day_notice() {
+			$message= array();
+			$link_1=array();
+			$link_label_1=array();
+			$link_label_2=array();
+			$link_label_3=array();
+			$days_after=array();
+			$temp_days_after=array();
+
+			$id = $this->get_indepence_day_promo_id();
+			if (false===$id) return false;
+
+			$message[]=sprintf( "%s<p>%s<p>%s",
+				'<h2>' . esc_html__( "Celebrate Independence Day with WPBackItUp and Save 30%!", "wp-backitup") . ' </h2>',
+				__( "WPBackItUp would like to wish a happy Independence Day to all Americans!", "wp-backitup" ),
+				__( "This week only purchases and upgrades of WPBackItUp Premium will automatically receive <b>30%</b> off our regular prices.", "wp-backitup" )
+			);
+			$days_after[]=0;
+			$temp_days_after[]=1;
+			$link_1[] =  "https://www.wpbackitup.com/pricing-purchase/?utm_medium=plugin&utm_source=wp-backitup&utm_campaign=plugin-independence-day-promo";
+			$link_label_1[] =  esc_html__( 'Buy now!', 'wp-backitup' );
+			$link_label_2[] = esc_html__( 'Remind me later', 'wp-backitup' );
+			$link_label_3[] = esc_html__( 'I already purchased', 'wp-backitup' );
+
+
+			return array(
+				'message'=>$message[$id],
+				'days_after'=>$days_after[$id],
+				'temp_days_after'=>$temp_days_after[$id],
+				'link_1'=>$link_1[$id],
+				'link_label_1'=>$link_label_1[$id],
+				'link_label_2'=>$link_label_2[$id],
+				'link_label_3'=>$link_label_3[$id],
+			);
+
+		}
 
 	}
 }
