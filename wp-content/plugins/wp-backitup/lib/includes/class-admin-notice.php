@@ -251,6 +251,7 @@ if ( ! class_exists( 'WPBackitup_Admin_Notice' ) ) {
 						$notice['class'],
 					);
 
+					WPBackItUp_Admin_Bar::set_notices_on();
 					printf( '<div id="%3$s" class="%1$s"><p>%2$s</p></div>', trim( implode( ' ', $class ) ), $notice['content'], "wpbackitup-$id" );
 
 				}
@@ -478,6 +479,9 @@ if ( ! class_exists( 'WPBackitup_Admin_Notice' ) ) {
 		 * @return void
 		 */
 		public function dismiss_notice_ajax() {
+
+			//anytime dismiss is fired just set to 0 - IF any are visible it will get reset to 1
+			WPBackItUp_Admin_Bar::set_notices_off();
 
 			if ( ! isset( $_POST['id'] ) || !isset( $_POST['temp_dismiss'] ) || !isset( $_POST['updated_at'])) {
 				echo 0;

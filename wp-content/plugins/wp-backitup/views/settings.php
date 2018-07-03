@@ -135,6 +135,18 @@
                     <p><?php _e('* These settings should only be modified by advanced users or when when working with WPBackItUp support.', 'wp-backitup') ?></p>
                 </div>
 
+	            <div class="widget">
+		            <h3 class="promo"><i class="fa fa-heartbeat"></i> <?php _e('Help us make WPBackItUp better!', 'wp-backitup')  ?></h3>
+		            <p><input type="checkbox" v-model="allow_usage_tracking" checked="allow_usage_tracking === true">
+			            <label for="wpbackitup_allow_tracking"><?php _e('Allow WPBackItUp to anonymously track how this plugin is used so we can make it better.', 'wp-backitup') ?></label></p>
+		            <p><?php _e('Only data needed to help support and improve this plugin will ever be collected. No sensitive data is tracked and we\'ll never share this data with anyone.', 'wp-backitup') ?></p>
+		            <div class="submit">
+			            <button class="button-primary" v-on:click="setSettings()"><?php _e("Save", 'wp-backitup') ?></button>
+		            </div>
+
+		            <p class="error" v-if="errorMessages['notification_email'] !== '' ">{{ errorMessages['notification_email'] }}</p>
+	            </div>
+
             </v-tab>
 
 
@@ -256,7 +268,6 @@
                     </div>
                 </div>
 
-
                 <div class="widget">
                     <h3 class="promo"><i class="fa fa-trash-o"></i> <?php _e('Remove Data on Uninstall?', 'wp-backitup') ?></h3>
                     <p>
@@ -267,6 +278,7 @@
                         <button class="button-primary" v-on:click="setSettings()"><?php _e("Save", 'wp-backitup') ?></button>
                     </div>
                 </div>
+
             </v-tab>
         </vue-tabs>
     </div>

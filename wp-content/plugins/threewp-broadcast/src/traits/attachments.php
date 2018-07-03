@@ -351,6 +351,11 @@ trait attachments
 				}
 			}
 
+			// Modify the captions.
+			$content = str_replace( '[caption id="attachment_' . $a->old->ID . '"', '[caption id="attachment_' . $a->new->ID . '"', $content, $count );
+			if ( $count > 0 )
+				$this->debug( 'Modified caption ID: %s times', $count );
+
 			foreach( $guids as $old_guid => $new_guid )
 			{
 				$count = 0;

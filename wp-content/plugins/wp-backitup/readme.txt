@@ -1,10 +1,10 @@
-=== Backup and Restore WordPress - WPBackItUp Backup Plugin ===
+=== Backup and Restore WordPress - Backup Plugin ===
 Contributors: wpbackitup, cssimmon, alaminopu, imranshuvo
 Tags: backup, backups, back up, backup plugin, database backup, multisite backup, full backup, database, restore, migrate, clone, malware
 Requires at least: 3.8.0
 Requires PHP: 5.2.4
 Tested up to: 4.9
-Stable tag: 1.15.6
+Stable tag: 1.22.0
 Author URI: https://www.wpbackitup.com
 Donate link: https://www.wpbackitup.com
 License: GPLv2 or later
@@ -64,6 +64,7 @@ Here are just a few of our incredible features.
 * Migrate your site to different host, domain or table prefix
 * **Clone** your site for development, staging or testing
 * **Priority** support gets you right to the front of the line
+* Save your backups to **DropBox** with WPBackItUp Safe
 
 = Don't Risk Losing Your Website =
 Does the thought of losing your website keep you up at night? All that time, effort and money you've invested could be gone in an instant.
@@ -214,6 +215,53 @@ Our online documentation and full list of FAQs can be found at [support.wpbackit
 
 
 == Changelog ==
+= 1.22 =
+*Release Date -  July 2, 2018
+
+* UPDATE: Add Independence Day Promo
+* Fix   : Miscellaneous fixes
+
+= 1.22 =
+*Release Date -  June 29, 2018
+
+* NEW: Add WPBackItUp Toolbar
+* UPDATE: Fix alignment on header in dashboard
+
+= 1.21 =
+*Release Date -  June 5, 2018
+
+* UPDATE: Update available backup list to show last 10 backups
+* UPDATE: Update backup notification email to use domain instead of blog name
+* UPDATE: Add settings class & add site id to ut
+* UPDATE: Migrate premium code to separate repo
+
+= 1.20 =
+*Release Date -  June 1, 2018
+
+* FIX: Fix broken links on support tab for multi-site
+* UPDATE: Minor updates to ut actions
+
+= 1.19 =
+*Release Date -  May 25, 2018
+
+* UPDATE: Minor updates to ut actions
+
+= 1.18 =
+*Release Date -  May 22, 2018
+
+* UPDATE: Minor updates to UI scripts
+
+= 1.17 =
+*Release Date -  May 19, 2018
+
+* UPDATE: Fix issue with ut-API
+
+= 1.16 =
+*Release Date -  May 18, 2018
+
+* UPDATE: Updates for WordPress version 4.9.6
+* UPDATE: Updates to usage tracking
+
 = 1.15.7 =
 *Release Date -  May 4, 2018
 

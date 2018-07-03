@@ -1,39 +1,24 @@
 <?php
-/*
-Plugin Name: NS Cloner - Site Copier
-Plugin URI: http://neversettle.it
-Description: The amazing NS Cloner creates a new site as an exact clone / duplicate / copy of an existing site with theme and all plugins and settings intact in just a few steps. Check out the add-ons for additional powerful features!
-Author: Never Settle
-Version: 3.0.8
-Network: true
-Text Domain: ns-cloner
-Author URI: http://neversettle.it
-License: GPLv2 or later
-*/
-/*
-Copyright 2012-2017 Never Settle (email : dev@neversettle.it)
-
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation; either version 2
-of the License, or (at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-*/
-
-/*
-This plugin uses code from db_backup (Alain Wolf, Zurich - Switzerland, GPLv2)
-rewritten by Andrew Lundquist (neversettle.it) to take the database backup
-script generation and automate the cloning process from scripts into queries
-Original db_backup website: http://restkultur.ch/personal/wolf/scripts/db_backup/
-*/
+/**
+ * Plugin Name: NS Cloner - Site Copier
+ * Plugin URI: https://neversettle.it
+ * Description: The amazing NS Cloner creates a new site as an exact clone / duplicate / copy of an existing site with theme and all plugins and settings intact in just a few steps. Check out NS Cloner Pro for additional powerful add-ons and features!
+ * Version: 3.0.9
+ * Network: true
+ * Author: Never Settle
+ * Author URI: https://neversettle.it
+ * Requires at least: 3.5
+ * Tested up to: 4.9.6
+ *
+ * Text Domain: ns-cloner
+ * Domain Path: /languages/
+ *
+ * @package   NeverSettle\NS-Cloner
+ * @author    Never Settle
+ * @copyright Copyright (c) 2012-2018, Never Settle (dev@neversettle.it)
+ * @license   http://www.gnu.org/licenses/gpl-3.0.html GNU General Public License v3.0
+ *
+ */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
@@ -75,7 +60,7 @@ class ns_cloner {
 	/**
 	 * Class Globals
 	 */
-	var $version = '3.0.8';
+	var $version = '3.0.9';
 	var $menu_slug = 'ns-cloner';
 	var $capability = 'manage_network_options';
 	var $global_tables = array(
@@ -87,7 +72,7 @@ class ns_cloner {
 		'sitecategories',
 		'sitemeta',
 		'usermeta',
-	'users', 	//user tables (user copying handled elsewhere),
+		'users', 	//user tables (user copying handled elsewhere),
 		'domain_mapping.*',     //domain mapping tables,
 		'3wp_broadcast_.*',		//3wp broadcast tables,
 		'bp_.*', 				//buddypress tables
@@ -135,6 +120,7 @@ class ns_cloner {
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_assets' ) );
 		// add admin menus
 		add_action( 'network_admin_menu', array( $this, 'admin_menu_pages' ) );
+		add_action( 'admin_menu', array( $this, 'admin_menu_pages' ) );
 		// add quick-clone link
 		add_action( 'manage_sites_action_links', array( $this, 'admin_quick_clone_link' ), 10, 3 );
 		// allow additional mode registration
@@ -473,7 +459,7 @@ class ns_cloner {
 						$current_pos = array_search( $source_table, $tables );
 						$completed_tables = array_slice( $tables, 0, $current_pos );
 						if ( ! in_array( $referenced_table, $completed_tables ) ) {
-							unset( $tables[ $currrent_pos ] );
+							unset( $tables[ $current_pos ] );
 							array_push( $tables, $source_table );
 							$this->dlog( "Moving table <b>$source_table</b> to end of cloning queue due to dependent constraint" );
 							continue 2;

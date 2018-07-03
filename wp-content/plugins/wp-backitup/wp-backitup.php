@@ -6,7 +6,7 @@
  * Description: Backup your content, settings, themes, plugins and media in just a few simple clicks.
  * Author: WPBackItUp
  * Author URI: https://www.wpbackitup.com
- * Version: 1.15.7
+ * Version: 1.23.0
  * Text Domain: wp-backitup
  *
  * License: GPL3
@@ -32,8 +32,8 @@ define( 'WPBACKITUP__NAMESPACE', 'wp-backitup' );
 define( 'WPBACKITUP__CLASSNAMESPACE', 'WPBackItUp' );
 
 define( 'WPBACKITUP__MAJOR_VERSION', 1);
-define( 'WPBACKITUP__MINOR_VERSION', 15);
-define( 'WPBACKITUP__MAINTENANCE_VERSION', 7); //Dont forget to update version in header on WP release
+define( 'WPBACKITUP__MINOR_VERSION', 23);
+define( 'WPBACKITUP__MAINTENANCE_VERSION', 0); //Dont forget to update version in header on WP release
 define( 'WPBACKITUP__BUILD_VERSION', 0); //Used for hotfix releases
 
 define( 'WPBACKITUP__VERSION',sprintf("%d.%d.%d.%d", WPBACKITUP__MAJOR_VERSION, WPBACKITUP__MINOR_VERSION,WPBACKITUP__MAINTENANCE_VERSION,WPBACKITUP__BUILD_VERSION));
@@ -99,24 +99,6 @@ define( 'WPBACKITUP__SQL_BATCH_SIZE', 10000);
 //activation hooks
 register_activation_hook( __FILE__, array( 'WPBackitup_Admin', 'activate' ) );
 register_deactivation_hook( __FILE__, array( 'WPBackitup_Admin', 'deactivate' ) );
-
-function wpbackitup_modify_cron_schedules($schedules) {
-    $schedules['every4hours'] = array('interval' => 14400, 'display' => sprintf(__('Every %s hours', 'wp-backitup'), 4));
-    $schedules['every8hours'] = array('interval' => 28800, 'display' => sprintf(__('Every %s hours', 'wp-backitup'), 8));
-	$schedules['every_1_minutes'] = array('interval' => 60, 'display'  => sprintf(__('WPBUP - Every %s minutes', 'wp-backitup'), 1));
-	$schedules['every_3_minutes'] = array('interval' => 180, 'display'  => sprintf(__('WPBUP - Every %s minutes', 'wp-backitup'), 3));
-	$schedules['every_5_minutes'] = array('interval' => 300, 'display'  => sprintf(__('WPBUP - Every %s minutes', 'wp-backitup'), 5));
-	$schedules['every_10_minutes'] = array('interval' => 600, 'display'  => sprintf(__('WPBUP - Every %s minutes', 'wp-backitup'), 10));
-	$schedules['every_30_minutes'] = array('interval' => 1800, 'display'  => sprintf(__('WPBUP - Every %s minutes', 'wp-backitup'), 30));
-
-	$schedules['weekly'] = array('interval' => 604800, 'display' => __('WPBUP - Once Weekly', 'wp-backitup'));
-    $schedules['monthly'] = array('interval' => 2592000, 'display' => __('WPBUP - Once Monthly', 'wp-backitup'));
-    $schedules['every4hours'] = array('interval' => 14400, 'display' => sprintf(__('WPBUP - Every %s hours', 'wp-backitup'), 4));
-    $schedules['every8hours'] = array('interval' => 28800, 'display' => sprintf(__('WPBUP - Every %s hours', 'wp-backitup'), 8));
-    return $schedules;
-}
-
-add_filter('cron_schedules', 'wpbackitup_modify_cron_schedules', 30);
 
 function wpbackitup_register_post_types() {
 

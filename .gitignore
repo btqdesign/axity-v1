@@ -4,8 +4,6 @@
 *_log
 .htaccess
 .htpasswd
-sitemap.xml
-sitemap.xml.gz
 wp-content/uploads/*
 wp-config.php
 wp-content/advanced-cache.php

@@ -461,7 +461,7 @@ trait broadcasting
 
 			if ( $bcd->taxonomies )
 			{
-				$this->debug( 'Taxonomies: Starting.' );
+				$this->debug( 'Taxonomies: Starting sync of %s', implode( ', ', array_keys( $bcd->parent_post_taxonomies ) ) );
 				foreach( $bcd->parent_post_taxonomies as $parent_post_taxonomy => $parent_post_terms )
 				{
 					$this->debug( 'Taxonomies: Handling taxonomy %s', $parent_post_taxonomy );
@@ -806,17 +806,13 @@ trait broadcasting
 
 		// If there were any image attachments copied...
 		if ( count( $action->broadcasting_data->copied_attachments() ) > 0 )
-		{
-			$this->debug( '%s attachments were copied.', count( $action->broadcasting_data->copied_attachments() ) );
 			// Update the URLs in the post to point to the new images.
 			$action->content = $this->update_attachment_ids( $action->broadcasting_data, $action->content );
-		}
-		else
-			$this->debug( 'No attachments were copied.' );
 
 		// Manipulate the galleries.
 		$galleries = $bcd->galleries->collection( $action->id );
-		$this->debug( '%s galleries are to be handled for content ID %s.', count( $galleries ), $action->id );
+		if ( count( $galleries ) > 0 )
+			$this->debug( '%s galleries are to be handled for content ID %s.', count( $galleries ), $action->id );
 		foreach( $galleries as $gallery )
 		{
 			// Work on a copy.
@@ -959,7 +955,8 @@ trait broadcasting
 		$galleries = $bcd->galleries->collection( $action->id );
 
 		$matches = $this->find_shortcodes( $action->content, 'gallery' );
-		$this->debug( 'Found %s gallery shortcodes for content ID %s', count( $matches[ 2 ] ), $action->id );
+		if ( count( $matches[ 2 ] ) > 0 )
+			$this->debug( 'Found %s gallery shortcodes for content ID %s', count( $matches[ 2 ] ), $action->id );
 
 		// [2] contains only the shortcode command / key. No options.
 		foreach( $matches[ 2 ] as $index => $key )

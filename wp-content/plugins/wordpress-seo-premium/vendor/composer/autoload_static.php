@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit2da8b349e48f284e1686feb817face0d
+class ComposerStaticInit26c508c178a4ac01471fede90bc67747
 {
     public static $files = array (
         '995b589e693a50f54393aa31ee1c3763' => __DIR__ . '/..' . '/yoast/whip/src/facades/wordpress.php',
@@ -131,6 +131,7 @@ class ComposerStaticInit2da8b349e48f284e1686feb817face0d
         'WPSEO_Admin_Asset_Location' => __DIR__ . '/../..' . '/admin/class-admin-asset-location.php',
         'WPSEO_Admin_Asset_Manager' => __DIR__ . '/../..' . '/admin/class-admin-asset-manager.php',
         'WPSEO_Admin_Asset_SEO_Location' => __DIR__ . '/../..' . '/admin/class-admin-asset-seo-location.php',
+        'WPSEO_Admin_Asset_Yoast_Components_l10n' => __DIR__ . '/../..' . '/admin/class-admin-asset-yoast-components-l10n.php',
         'WPSEO_Admin_Banner' => __DIR__ . '/../..' . '/admin/banner/class-admin-banner.php',
         'WPSEO_Admin_Banner_Renderer' => __DIR__ . '/../..' . '/admin/banner/class-admin-banner-renderer.php',
         'WPSEO_Admin_Banner_Sidebar' => __DIR__ . '/../..' . '/admin/banner/class-admin-banner-sidebar.php',
@@ -139,8 +140,10 @@ class ComposerStaticInit2da8b349e48f284e1686feb817face0d
         'WPSEO_Admin_Banner_Spot_Renderer' => __DIR__ . '/../..' . '/admin/banner/class-admin-banner-spot-renderer.php',
         'WPSEO_Admin_Help_Panel' => __DIR__ . '/../..' . '/admin/class-admin-help-panel.php',
         'WPSEO_Admin_Init' => __DIR__ . '/../..' . '/admin/class-admin-init.php',
+        'WPSEO_Admin_Media_Purge_Notification' => __DIR__ . '/../..' . '/admin/class-admin-media-purge-notification.php',
         'WPSEO_Admin_Menu' => __DIR__ . '/../..' . '/admin/menu/class-admin-menu.php',
         'WPSEO_Admin_Pages' => __DIR__ . '/../..' . '/admin/class-config.php',
+        'WPSEO_Admin_Recommended_Replace_Vars' => __DIR__ . '/../..' . '/admin/class-admin-recommended-replace-vars.php',
         'WPSEO_Admin_User_Profile' => __DIR__ . '/../..' . '/admin/class-admin-user-profile.php',
         'WPSEO_Admin_Utils' => __DIR__ . '/../..' . '/admin/class-admin-utils.php',
         'WPSEO_Advanced_Settings' => __DIR__ . '/../..' . '/deprecated/class-wpseo-advanced-settings.php',
@@ -149,6 +152,17 @@ class ComposerStaticInit2da8b349e48f284e1686feb817face0d
         'WPSEO_Bulk_Description_List_Table' => __DIR__ . '/../..' . '/admin/class-bulk-description-editor-list-table.php',
         'WPSEO_Bulk_List_Table' => __DIR__ . '/../..' . '/admin/class-bulk-editor-list-table.php',
         'WPSEO_Bulk_Title_Editor_List_Table' => __DIR__ . '/../..' . '/admin/class-bulk-title-editor-list-table.php',
+        'WPSEO_CLI_Premium_Requirement' => __DIR__ . '/../..' . '/premium/cli/class-cli-premium-requirement.php',
+        'WPSEO_CLI_Redirect_Base_Command' => __DIR__ . '/../..' . '/premium/cli/class-cli-redirect-base-command.php',
+        'WPSEO_CLI_Redirect_Command_Namespace' => __DIR__ . '/../..' . '/premium/cli/class-cli-redirect-command-namespace.php',
+        'WPSEO_CLI_Redirect_Create_Command' => __DIR__ . '/../..' . '/premium/cli/class-cli-redirect-create-command.php',
+        'WPSEO_CLI_Redirect_Delete_Command' => __DIR__ . '/../..' . '/premium/cli/class-cli-redirect-delete-command.php',
+        'WPSEO_CLI_Redirect_Follow_Command' => __DIR__ . '/../..' . '/premium/cli/class-cli-redirect-follow-command.php',
+        'WPSEO_CLI_Redirect_Has_Command' => __DIR__ . '/../..' . '/premium/cli/class-cli-redirect-has-command.php',
+        'WPSEO_CLI_Redirect_List_Command' => __DIR__ . '/../..' . '/premium/cli/class-cli-redirect-list-command.php',
+        'WPSEO_CLI_Redirect_Update_Command' => __DIR__ . '/../..' . '/premium/cli/class-cli-redirect-update-command.php',
+        'WPSEO_CLI_Redirect_Upsell_Command_Namespace' => __DIR__ . '/../..' . '/cli/class-cli-redirect-upsell-command-namespace.php',
+        'WPSEO_CLI_Yoast_Command_Namespace' => __DIR__ . '/../..' . '/cli/class-cli-yoast-command-namespace.php',
         'WPSEO_Capability_Manager' => __DIR__ . '/../..' . '/admin/capabilities/class-capability-manager.php',
         'WPSEO_Capability_Manager_Factory' => __DIR__ . '/../..' . '/admin/capabilities/class-capability-manager-factory.php',
         'WPSEO_Capability_Manager_Integration' => __DIR__ . '/../..' . '/admin/capabilities/class-capability-manager-integration.php',
@@ -210,8 +224,10 @@ class ComposerStaticInit2da8b349e48f284e1686feb817face0d
         'WPSEO_Customizer' => __DIR__ . '/../..' . '/admin/class-customizer.php',
         'WPSEO_Database_Proxy' => __DIR__ . '/../..' . '/admin/class-database-proxy.php',
         'WPSEO_Endpoint' => __DIR__ . '/../..' . '/admin/endpoints/class-endpoint.php',
+        'WPSEO_Endpoint_Indexable' => __DIR__ . '/../..' . '/admin/endpoints/class-endpoint-indexable.php',
         'WPSEO_Endpoint_Ryte' => __DIR__ . '/../..' . '/admin/endpoints/class-endpoint-ryte.php',
         'WPSEO_Endpoint_Statistics' => __DIR__ . '/../..' . '/admin/endpoints/class-endpoint-statistics.php',
+        'WPSEO_Endpoint_Storable' => __DIR__ . '/../..' . '/admin/endpoints/interface-endpoint-storable.php',
         'WPSEO_Export' => __DIR__ . '/../..' . '/admin/class-export.php',
         'WPSEO_Extension' => __DIR__ . '/../..' . '/admin/class-extension.php',
         'WPSEO_Extension_Manager' => __DIR__ . '/../..' . '/admin/class-extension-manager.php',
@@ -237,6 +253,7 @@ class ComposerStaticInit2da8b349e48f284e1686feb817face0d
         'WPSEO_GSC_Table' => __DIR__ . '/../..' . '/admin/google_search_console/class-gsc-table.php',
         'WPSEO_Help_Center' => __DIR__ . '/../..' . '/admin/class-help-center.php',
         'WPSEO_Help_Center_Item' => __DIR__ . '/../..' . '/admin/class-help-center-item.php',
+        'WPSEO_Help_Center_Template_Variables_Tab' => __DIR__ . '/../..' . '/admin/help_center/class-template-variables-tab.php',
         'WPSEO_Image_Utils' => __DIR__ . '/../..' . '/inc/class-wpseo-image-utils.php',
         'WPSEO_Import_AIOSEO' => __DIR__ . '/../..' . '/admin/import/plugins/class-import-aioseo.php',
         'WPSEO_Import_Greg_SEO' => __DIR__ . '/../..' . '/admin/import/plugins/class-import-greg-high-performance-seo.php',
@@ -256,6 +273,10 @@ class ComposerStaticInit2da8b349e48f284e1686feb817face0d
         'WPSEO_Import_WPSEO' => __DIR__ . '/../..' . '/admin/import/plugins/class-import-wpseo.php',
         'WPSEO_Import_WP_Meta_SEO' => __DIR__ . '/../..' . '/admin/import/plugins/class-import-wp-meta-seo.php',
         'WPSEO_Import_WooThemes_SEO' => __DIR__ . '/../..' . '/admin/import/plugins/class-import-woothemes-seo.php',
+        'WPSEO_Indexable_Service' => __DIR__ . '/../..' . '/admin/services/class-indexable.php',
+        'WPSEO_Indexable_Service_Post_Provider' => __DIR__ . '/../..' . '/admin/services/class-indexable-post-provider.php',
+        'WPSEO_Indexable_Service_Provider' => __DIR__ . '/../..' . '/admin/services/interface-indexable-provider.php',
+        'WPSEO_Indexable_Service_Term_Provider' => __DIR__ . '/../..' . '/admin/services/class-indexable-term-provider.php',
         'WPSEO_Installable' => __DIR__ . '/../..' . '/admin/interface-installable.php',
         'WPSEO_Installation' => __DIR__ . '/../..' . '/inc/class-wpseo-installation.php',
         'WPSEO_JSON_LD' => __DIR__ . '/../..' . '/frontend/class-json-ld.php',
@@ -347,6 +368,9 @@ class ComposerStaticInit2da8b349e48f284e1686feb817face0d
         'WPSEO_Remote_Request' => __DIR__ . '/../..' . '/admin/class-remote-request.php',
         'WPSEO_Remove_Reply_To_Com' => __DIR__ . '/../..' . '/frontend/class-remove-reply-to-com.php',
         'WPSEO_Replace_Vars' => __DIR__ . '/../..' . '/inc/class-wpseo-replace-vars.php',
+        'WPSEO_Replacement_Variable' => __DIR__ . '/../..' . '/inc/class-wpseo-replacement-variable.php',
+        'WPSEO_Replacevar_Editor' => __DIR__ . '/../..' . '/admin/menu/class-replacevar-editor.php',
+        'WPSEO_Replacevar_Field' => __DIR__ . '/../..' . '/admin/menu/class-replacevar-field.php',
         'WPSEO_Rewrite' => __DIR__ . '/../..' . '/inc/class-rewrite.php',
         'WPSEO_Role_Manager' => __DIR__ . '/../..' . '/admin/roles/class-role-manager.php',
         'WPSEO_Role_Manager_Factory' => __DIR__ . '/../..' . '/admin/roles/class-role-manager-factory.php',
@@ -458,10 +482,10 @@ class ComposerStaticInit2da8b349e48f284e1686feb817face0d
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit2da8b349e48f284e1686feb817face0d::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit2da8b349e48f284e1686feb817face0d::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit2da8b349e48f284e1686feb817face0d::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit2da8b349e48f284e1686feb817face0d::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit26c508c178a4ac01471fede90bc67747::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit26c508c178a4ac01471fede90bc67747::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit26c508c178a4ac01471fede90bc67747::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit26c508c178a4ac01471fede90bc67747::$classMap;
 
         }, null, ClassLoader::class);
     }

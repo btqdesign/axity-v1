@@ -133,6 +133,7 @@ class WPBackitup_Admin {
         }
 
 	    // Route requests for form processing
+	    add_action( 'admin_init', array( &$this, 'maybe_update' ) );
 	    add_action( 'admin_init', array( &$this, 'route' ) );
 
         // Add a settings link next to the "Deactivate" link on the plugin listing page
@@ -514,10 +515,21 @@ class WPBackitup_Admin {
 	    require_once( WPBACKITUP__PLUGIN_PATH . '/lib/includes/class-license.php' );
         require_once( WPBACKITUP__PLUGIN_PATH . '/lib/includes/class-cleanup.php' );
 
+	    require_once( WPBACKITUP__PLUGIN_PATH . '/lib/includes/class-cron.php' );
+	    require_once( WPBACKITUP__PLUGIN_PATH . '/lib/includes/class-usage.php' );
+	    require_once( WPBACKITUP__PLUGIN_PATH . '/lib/includes/admin-actions.php' );
 
         // This class is used for showing a review nag
         require_once( WPBACKITUP__PLUGIN_PATH . '/lib/includes/class-admin-notice.php' );
 	    require_once( WPBACKITUP__PLUGIN_PATH . '/lib/includes/class-admin-notices.php' );
+
+	    //Settings Class
+	    require_once( WPBACKITUP__PLUGIN_PATH . '/lib/includes/class-settings.php' );
+
+
+	    //Admin Bar
+	    require_once( WPBACKITUP__PLUGIN_PATH . '/lib/includes/class-admin-bar.php' );
+
 
 		$languages_path = dirname(dirname(dirname( plugin_basename( __FILE__ )))) . '/languages/';
 
@@ -526,9 +538,6 @@ class WPBackitup_Admin {
 		    false,
 		    $languages_path
 	    );
-
-	    //admin activation hook does NOT get called on plugin update to this needs to stay here
-        $this->maybe_update(); //Check version and update database if needed
 
 	    //display any active notices
 	    $notices = new WPBackitup_Admin_Notices();
@@ -1251,6 +1260,10 @@ class WPBackitup_Admin {
      * Get all settings value
      */
     public function ajax_backup_get_settings(){
+
+    	$ut = new WPBackItUp_Usage();
+    	$tracking_allowed = $ut->is_tracking_allowed();
+
         $settings = array(
             'logging' => $this->get_option('logging'),
             'notification_email' => $this->get_option('notification_email'),
@@ -1277,6 +1290,7 @@ class WPBackitup_Admin {
             'single_file_backupset'=> $this->get_option('single_file_backupset'),
             'single_file_db'=> $this->get_option('single_file_db'),
             'remove_supporting_zip_files'=> $this->get_option('remove_supporting_zip_files'),
+            'allow_usage_tracking'=> $tracking_allowed,
         );
 
         wp_send_json_success($settings);
@@ -1453,6 +1467,11 @@ class WPBackitup_Admin {
 
         //** Safe Sync ON/OFF **//
         $data['safe_sync'] = $data['safe_sync'] === 'true' ? 1: 0;
+
+	    //** Usage Tracking ON/OFF **//
+	    $ut = new WPBackItUp_Usage();
+	    $ut->set_tracking_allowed($data['allow_usage_tracking'] === 'true' ? true: false);
+	    unset($data['allow_usage_tracking']);//pop off array
 
         // Update the options value with the data submitted
         foreach( $data as $key => $val ) {

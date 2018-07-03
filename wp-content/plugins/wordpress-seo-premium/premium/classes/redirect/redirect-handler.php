@@ -161,17 +161,38 @@ class WPSEO_Redirect_Handler {
 		$redirects       = $this->get_redirects( $this->normal_option_name );
 		$this->redirects = $this->normalize_redirects( $redirects );
 
-		// Trim the slashes, to match the variants of a request URL (Like: url, /url, /url/, url/).
-		if ( $request_url !== '/' ) {
-			$request_url = trim( $request_url, '/' );
-		}
+		$request_url = $this->normalize_url( $request_url );
 
 		// Get the URL and doing the redirect.
 		$redirect_url = $this->find_url( $request_url );
-		if ( ! empty( $redirect_url ) ) {
-			$this->is_redirected = true;
-			$this->do_redirect( $redirect_url['url'], $redirect_url['type'] );
+
+		if ( empty( $redirect_url ) ) {
+			return;
 		}
+
+		if ( $this->normalize_url( $redirect_url['url'] ) === $request_url  ) {
+			return;
+		}
+
+		$this->is_redirected = true;
+		$this->do_redirect( $redirect_url['url'], $redirect_url['type'] );
+	}
+
+	/**
+	 * Normalizes the url by trimming the slashes. If the given URL is a slash only,
+	 * it will do nothing. By normalizing the URL there is a basis for matching multiple
+	 * variants (Like: url, /url, /url/, url/).
+	 *
+	 * @param string $url The URL to normalize.
+	 *
+	 * @return string The modified url.
+	 */
+	protected function normalize_url( $url ) {
+		if ( $url === '/' ) {
+			return $url;
+		}
+
+		return trim( $url, '/' );
 	}
 
 	/**
@@ -249,6 +270,13 @@ class WPSEO_Redirect_Handler {
 	 * @return void
 	 */
 	protected function do_redirect( $redirect_url, $redirect_type ) {
+		$redirect_url = $this->parse_target_url( $redirect_url );
+
+		// Prevents redirecting to itself.
+		if ( $this->home_url( $this->request_url ) === $redirect_url ) {
+			return;
+		}
+
 		$redirect_types_without_target = array( 410, 451 );
 		if ( in_array( $redirect_type, $redirect_types_without_target, true ) ) {
 			$this->handle_redirect_without_target( $redirect_type );
@@ -258,7 +286,7 @@ class WPSEO_Redirect_Handler {
 
 		$this->add_redirect_by_header();
 
-		$this->redirect( $this->parse_target_url( $redirect_url ), $redirect_type );
+		$this->redirect( $redirect_url, $redirect_type );
 	}
 
 	/**
@@ -315,6 +343,8 @@ class WPSEO_Redirect_Handler {
 		if ( empty( $request_uri ) && isset( $_SERVER['REQUEST_URI'] ) ) {
 			$request_uri = filter_var( $_SERVER['REQUEST_URI'], FILTER_SANITIZE_URL, $options );
 		}
+
+		$request_uri = $this->strip_subdirectory( $request_uri );
 
 		return rawurldecode( $request_uri );
 	}
@@ -413,9 +443,7 @@ class WPSEO_Redirect_Handler {
 	 * @return string The parsed url.
 	 */
 	protected function parse_target_url( $target_url ) {
-		$scheme = wp_parse_url( $target_url, PHP_URL_SCHEME );
-
-		if ( ! empty( $scheme ) ) {
+		if ( $this->has_url_scheme( $target_url ) ) {
 			return $target_url;
 		}
 
@@ -423,6 +451,19 @@ class WPSEO_Redirect_Handler {
 		$target_url = $this->format_for_multisite( $target_url );
 
 		return $this->home_url( $target_url );
+	}
+
+	/**
+	 * Checks if given url has a scheme.
+	 *
+	 * @param string $url The url to check.
+	 *
+	 * @return bool True when url has scheme.
+	 */
+	protected function has_url_scheme( $url ) {
+		$scheme = wp_parse_url( $url, PHP_URL_SCHEME );
+
+		return ! empty( $scheme );
 	}
 
 	/**
@@ -472,7 +513,29 @@ class WPSEO_Redirect_Handler {
 	 * @return string The redirect url.
 	 */
 	protected function home_url( $redirect_url ) {
+		$redirect_url = $this->strip_subdirectory( $redirect_url );
+
 		return home_url( $redirect_url );
+	}
+
+	/**
+	 * Strips the subdirectory from the given url.
+	 *
+	 * @param string $url The url to strip the subdirectory from.
+	 *
+	 * @return string The url with the stripped subdirectory.
+	 */
+	protected function strip_subdirectory( $url ) {
+		return WPSEO_Redirect_Util::strip_base_url_path_from_url( $this->get_home_url(), $url );
+	}
+
+	/**
+	 * Returns the URL PATH from the home url.
+	 *
+	 * @return string|null The url path or null if there isn't one.
+	 */
+	protected function get_home_url() {
+		return home_url();
 	}
 
 	/**

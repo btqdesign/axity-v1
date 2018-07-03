@@ -45,8 +45,6 @@ class WPSEO_OpenGraph_Image {
 		'max_width'  => 2000,
 		'min_height' => 200,
 		'max_height' => 2000,
-		'min_ratio'  => 0.333,
-		'max_ratio'  => 3,
 	);
 
 	/**
@@ -92,6 +90,8 @@ class WPSEO_OpenGraph_Image {
 
 	/**
 	 * Outputs the images.
+	 *
+	 * @return void
 	 */
 	public function show() {
 		foreach ( $this->get_images() as $image => $image_meta ) {
@@ -134,7 +134,7 @@ class WPSEO_OpenGraph_Image {
 	/**
 	 * Return the images array.
 	 *
-	 * @return array
+	 * @return array The images.
 	 */
 	public function get_images() {
 		return $this->images;
@@ -152,14 +152,18 @@ class WPSEO_OpenGraph_Image {
 	/**
 	 * Display an OpenGraph image tag.
 	 *
-	 * @param array $attachment Attachment array.
+	 * @param string|array $attachment Attachment array.
 	 *
 	 * @return void
 	 */
 	public function add_image( $attachment ) {
-		 // In the past `add_image` accepted an image url, so leave this for backwards compatibility.
+		// In the past `add_image` accepted an image url, so leave this for backwards compatibility.
 		if ( is_string( $attachment ) ) {
 			$attachment = array( 'url' => $attachment );
+		}
+
+		if ( ! is_array( $attachment ) || empty( $attachment['url'] ) ) {
+			return;
 		}
 
 		// If the URL ends in `.svg`, we need to return.
@@ -229,20 +233,24 @@ class WPSEO_OpenGraph_Image {
 		}
 
 		$this->set_image_post_meta( $post_id );
+
 		if ( $this->has_images() ) {
 			return;
 		}
 
 		$this->set_featured_image( $post_id );
+
 		if ( $this->has_images() ) {
 			return;
 		}
 
-		$this->add_content_images( get_post( $post_id ) );
+		$this->add_first_usable_content_image( get_post( $post_id ) );
 	}
 
 	/**
 	 * Get default image and call add_image.
+	 *
+	 * @return void
 	 */
 	private function maybe_set_default_image() {
 		if ( ! $this->has_images() && WPSEO_Options::get( 'og_default_image', '' ) !== '' ) {
@@ -254,6 +262,8 @@ class WPSEO_OpenGraph_Image {
 	 * If opengraph-image is set, call add_image and return true.
 	 *
 	 * @param int $post_id Optional post ID to use.
+	 *
+	 * @return void
 	 */
 	private function set_image_post_meta( $post_id = 0 ) {
 		$image_url = WPSEO_Meta::get_value( 'opengraph-image', $post_id );
@@ -262,6 +272,8 @@ class WPSEO_OpenGraph_Image {
 
 	/**
 	 * Check if taxonomy has an image and add this image.
+	 *
+	 * @return void
 	 */
 	private function set_taxonomy_image() {
 		$image_url = WPSEO_Taxonomy_Meta::get_meta_without_term( 'opengraph-image' );
@@ -295,13 +307,13 @@ class WPSEO_OpenGraph_Image {
 	}
 
 	/**
-	 * Retrieve images from the post content.
+	 * Adds the first usable attachment image from the post content.
 	 *
 	 * @param object $post The post object.
 	 *
 	 * @return void
 	 */
-	private function add_content_images( $post ) {
+	private function add_first_usable_content_image( $post ) {
 		$image_finder = new WPSEO_Content_Images();
 		$images       = $image_finder->get_images( $post->ID, $post );
 
@@ -309,13 +321,20 @@ class WPSEO_OpenGraph_Image {
 			return;
 		}
 
-		foreach ( $images as $image_url => $attachment_id ) {
-			if ( $attachment_id !== 0 ) {
-				$this->add_image_by_id( $attachment_id );
+		foreach ( $images as $image_url ) {
+			$attachment_id = WPSEO_Image_Utils::get_attachment_by_url( $image_url );
+
+			// If image is hosted externally, skip it and continue to the next image.
+			if ( $attachment_id === 0 ) {
+				continue;
 			}
 
-			if ( $attachment_id === 0 ) {
-				$this->add_image_by_url( $image_url );
+			// If locally hosted image meets the requirements, add it as OG image.
+			$this->add_image_by_id( $attachment_id );
+
+			// If an image has been added, we're done.
+			if ( $this->has_images() ) {
+				return;
 			}
 		}
 	}
@@ -425,6 +444,8 @@ class WPSEO_OpenGraph_Image {
 
 	/**
 	 * Sets the images based on the page type.
+	 *
+	 * @return void
 	 */
 	private function set_images() {
 		/**
@@ -534,7 +555,7 @@ class WPSEO_OpenGraph_Image {
 	 */
 	protected function get_extension_from_url( $url ) {
 		$extension = '';
-		$path = $this->get_image_url_path( $url );
+		$path      = $this->get_image_url_path( $url );
 
 		if ( $path === '' ) {
 			return $extension;

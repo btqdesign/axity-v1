@@ -1,0 +1,5 @@
+@media only screen and (min-width:990px) {
+	.cs-post-panel h2 {
+		line-height: 5 !important;
+	}
+}

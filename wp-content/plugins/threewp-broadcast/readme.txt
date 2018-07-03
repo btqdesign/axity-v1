@@ -4,9 +4,9 @@ Donate link: https://broadcast.plainviewplugins.com
 License: GPLv3
 Requires at least: 4.6
 Requires PHP: 5.4
-Stable tag: 43.4
+Stable tag: 43.6
 Tags: multipost, sharing, duplicate, franchise, syndication, marketing, news, hub
-Tested up to: 4.9.4
+Tested up to: 4.9.6
 
 Network content syndication made easy! Automatically share content by multiposting between multisite blogs.
 
@@ -68,6 +68,7 @@ The following add-ons add support for the plugin after which they are named.
 * <a href="https://broadcast.plainviewplugins.com/addon/bbpress/">bbPress</a>
 * <a href="https://broadcast.plainviewplugins.com/addon/beaver-builder/">Beaver Builder</a>
 * <a href="https://broadcast.plainviewplugins.com/addon/calendarize-it/">Calendarize It</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/cm-tooltip-glossary/">CM Tooltip Glossary</a>
 * <a href="https://broadcast.plainviewplugins.com/addon/contact-form-7/">Contact Form 7</a>
 * <a href="https://broadcast.plainviewplugins.com/addon/divi-builder/">Divi Builder</a>
 * <a href="https://broadcast.plainviewplugins.com/addon/download-monitor/">Download Monitor</a>
@@ -169,6 +170,7 @@ These add-ons do things semi-related to broadcasting, but are good to have none-
 
 * <a href="https://broadcast.plainviewplugins.com/addon/bulk-cloner/">Bulk Cloner</a> creates clones of existing blogs on the network.
 * <a href="https://broadcast.plainviewplugins.com/addon/cdn-workaround/">CDN Workaround</a> works around faulty CDNs that do not report the correct URL for attachments.
+* <a href="https://broadcast.plainviewplugins.com/addon/copy-options/">Copy options</a> copies blog options / settings between blogs.
 * <a href="https://broadcast.plainviewplugins.com/addon/lock-post/">Lock Post</a> allows users to lock editing of posts / pages to only themselves and super admins.
 * <a href="https://broadcast.plainviewplugins.com/addon/media-cleanup/">Media Cleanup</a>: cleans up unused media by looking for unused items in the database and on disk.
 * <a href="https://broadcast.plainviewplugins.com/addon/menus/">Menus</a> copies menus between blogs (overwrite / update), with support for equivalent child posts on the child blogs and equivalent taxonomies.
@@ -311,6 +313,20 @@ This will broadcast all normal product settings: SKU, price, etc.
 If your products have variations, a product image gallery, you want to sync stock, you want to sync orders, need the attribute taxonomies to be synced, you'll be wanting the <a href="https://broadcast.plainviewplugins.com/addon/woocommerce/">WooCommerce add-on</a>.
 
 == Changelog ==
+
+= 43.6 20180625 =
+
+* Fix: Hide broadcast box when user does not have correct role.
+* Fix: Workaround added for plugins that misbehave, hiding the Broadcast meta box when editing pages, even though the user has Broadcast access.
+* Fix: Even better modifying of image caption shortcodes.
+* SDK update to fix static calls on object stores.
+
+= 43.5 20180530 =
+
+* Fix: Better replacement of attachment ID in caption shortcodes.
+* Fix: Plugin list link to Broadcast settings.
+New add-on: <a href="https://broadcast.plainviewplugins.com/addon/cm-tooltip-glossary/">CM Tooltip Glossary</a>: Adds support for the <a href="https://wordpress.org/plugins/enhanced-tooltipglossary/">CM Tooltip Glossary</a> plugin.
+New add-on: <a href="https://broadcast.plainviewplugins.com/addon/copy-options/">Copy options</a>: Copies blog options / settings between blogs.
 
 = 43.4 20180505 =
 

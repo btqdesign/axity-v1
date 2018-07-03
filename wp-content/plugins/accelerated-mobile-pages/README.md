@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 4.9.5
-Stable tag: 0.9.86.2
+Stable tag: 0.9.97.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,6 +31,7 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 
 = Features: =
 
+* NEW - GDPR Compliance
 * NEW - Introducing Page Builder 3.0 for AMP! [Learn More & Video](https://ampforwp.com/tutorials/article/amp-page-builder-installation/)
 * NEW Default Theme for AMP called Swift
 * NEW - 3 Pre-built AMP Layouts for Business websites and landing pages 
@@ -107,7 +108,6 @@ Bug reports for AMP for WP are [welcomed on GitHub](https://github.com/ahmedkalu
 **[JOIN CHAT GROUP COMMUNITY](https://ampforwp.com/community/)**: Purpose of this group is to get proper suggestions and feedback from plugin users and the community so that we can make the plugin even better.
 
 = Getting Started: =
-
 **[1. User Documentation:](https://ampforwp.com/help/)** The AMP for WordPress plugin is easy to setup but we have some tutorials and guides prepared for you which will help you dive deep with the plugin.
 
 **[2. Developer Docs:](https://ampforwp.com/help/#extend)** We have created special documentations for developers and semi technical users who are willing to modify the plugin according to their own needs.
@@ -182,6 +182,21 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 
 == Changelog ==
+
+= 0.9.97.2 (29th June 2018) = 
+* Fixed: GDPR not wroking properly for NON EU countries.
+* Fixed: no-index in robot meta reporting an error in Search Console.
+* Fixed: 2nd page or more blank in Post Pagination.
+
+= 0.9.96.1 (21st June 2018) =
+* Fixed: Pagination on Homepage and Archive pages not working for some cases.
+
+= 0.9.96 (2nd June 2018) =
+* Added: Fully GDPR Compliance
+* Fixed: GTM not working
+
+= 0.9.86.1 (8th May 2018) =
+* A bug causing validation issues has been resolved.
 
 = 0.9.86 (3rd May 2018) =
 * For more detials check out [this blog post](https://ampforwp.com/0-9-86-released-getting-ready-for-future-87th-update/)

@@ -1256,14 +1256,18 @@ function end_backup($err=null, $success=null){
     global $WPBackitup,$wp_backup,$backup_logname,$current_job;
 	WPBackItUp_Logger::log_info($backup_logname,__METHOD__,'Begin');
 
+
 	//Cleanup TMP folder on error - will dispatch before changing path below
 	if (! $success) {
+		WPBackItUp_Admin_Bar::backup_error();
 		WPBackItUp_Logger::log_warning($backup_logname,__METHOD__,'Cleanup on backup error.');
 		//cleanup the manifest and sql files from root
 		if (  $wp_backup->cleanup_current_backup_async('txt|sql|db|config')  ) {
 			//Warning - no need to error job
 			WPBackItUp_Logger::log_warning($backup_logname,__METHOD__,'Cleanup on backup error could not be dispatched.');
 		}
+	}else {
+		WPBackItUp_Admin_Bar::backup_success();
 	}
 
 	$wp_backup->set_final_backup_path();
@@ -1339,9 +1343,15 @@ function send_backup_notification_email($err, $success,$logs=array()) {
 
     $processing_minutes = round($seconds / 60);
     $processing_seconds = $seconds % 60;
-    
+
+	$site_id = WPBackitup_Settings::get_site_id();
+	$footer = sprintf('<img src="https://www.google-analytics.com/collect?v=1&t=event&tid=UA-41130863-2&cid=%s',$site_id);
+	$footer .='&ec=email&ea=open&el=backup_notification&dp=%2Femail%2Fplugin&dt=backup%20notification" />' ;
+
     $message="";
 	$message.="<p><img alt='WPBackItUp Logo' src='http://cdn.wpbackitup.com/images/wpbackitup_logo.png' />&nbsp; &nbsp;<strong style='color:#005d8b; font-family:cambria,georgia,serif; font-size:14px; font-style:normal; font-weight:bold'>The Simplest Way to Backup Your WordPress Site</strong></p><br><br>";
+	$domain = parse_url( get_home_url(), PHP_URL_HOST );
+
 	if($success)
 	{
 		//Don't send logs on success unless debug is on.
@@ -1349,11 +1359,11 @@ function send_backup_notification_email($err, $success,$logs=array()) {
 			$logs=array();
 		}
 
-        $subject = sprintf(__('%s - Backup completed successfully.', 'wp-backitup'), get_bloginfo());
+        $subject = sprintf(__('%s - Backup completed successfully.', 'wp-backitup'), $domain);
         $message .= '<b>' . __('Your backup completed successfully.', 'wp-backitup') . '</b><br/><br/>';
 
     } else  {
-        $subject = sprintf(__('%s - Backup did not complete successfully.', 'wp-backitup'), get_bloginfo());
+        $subject = sprintf(__('%s - Backup did not complete successfully.', 'wp-backitup'),$domain);
         $message .= '<b>' . __('Your backup did not complete successfully.', 'wp-backitup') . '</b><br/><br/>';
     }
 
@@ -1361,7 +1371,7 @@ function send_backup_notification_email($err, $success,$logs=array()) {
 	$local_start_datetime = get_date_from_gmt(date( 'Y-m-d H:i:s',$start_timestamp));
 	$local_end_datetime = get_date_from_gmt(date( 'Y-m-d H:i:s',$end_timestamp));
 
-	$message .= sprintf(__('WordPress Site: <a href="%s" target="_blank"> %s </a><br/>', 'wp-backitup'), home_url(), home_url());
+	$message .= sprintf(__('WordPress Site: <a href="%s" target="_blank"> %s </a><br/>', 'wp-backitup'), home_url(), $domain);
     $message .= __('Backup date:', 'wp-backitup') . ' ' . $local_start_datetime . '<br/>';
 	$message .= __('Number of backups completed with WPBackItUp:', 'wp-backitup') . ' ' . $WPBackitup->backup_count() . '<br/>';
 
@@ -1380,6 +1390,8 @@ function send_backup_notification_email($err, $success,$logs=array()) {
     if(!$success)$term='error';
       $message .='<br/><br/>' . sprintf(__('Checkout %s for info about WPBackItUp and our other products.', 'wp-backitup'), WPBackItUp_Utility::get_anchor_with_utm('www.wpbackitup.com', '', 'notification+email', $term) ) . '<br/>';
 
+
+	$message.=$footer;
 
 	$notification_email = $WPBackitup->get_option('notification_email');
 	if($notification_email)
