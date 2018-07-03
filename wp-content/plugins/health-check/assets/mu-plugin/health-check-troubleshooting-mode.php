@@ -2,7 +2,7 @@
 /*
 	Plugin Name: Health Check Troubleshooting Mode
 	Description: Conditionally disabled themes or plugins on your site for a given session, used to rule out conflicts during troubleshooting.
-	Version: 1.4
+	Version: 1.4.1
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -14,6 +14,8 @@ class Health_Check_Troubleshooting_MU {
 	private $default_theme   = true;
 	private $active_plugins  = array();
 	private $current_theme;
+	private $current_theme_details;
+	private $self_fetching_theme = false;
 
 	private $available_query_args = array(
 		'health-check-disable-plugins',
@@ -172,8 +174,10 @@ class Health_Check_Troubleshooting_MU {
 		}
 
 		printf(
-			'<div class="notice notice-warning"><p>%s</p></div>',
-			esc_html__( 'Plugin actions are not available while in Troubleshooting Mode.', 'health-check' )
+			'<div class="notice notice-warning"><p>%s</p><p>%s</p><p>%s</p></div>',
+			esc_html__( 'Plugin actions are not available while in Troubleshooting Mode.', 'health-check' ),
+			esc_html__( 'By enabling the Troubleshooting Mode, all plugins will appear inactive and your site will switch to the default theme only for you. All other users will see your site as usual.', 'health-check' ),
+			esc_html__( 'A Troubleshooting Mode menu is added to your admin bar, which will allow you to enable plugins individually, switch back to your current theme, and disable Troubleshooting Mode.', 'health-check' )
 		);
 	}
 
@@ -375,9 +379,27 @@ class Health_Check_Troubleshooting_MU {
 	 * @return string Theme slug to be perceived as the active theme.
 	 */
 	function health_check_troubleshoot_theme( $theme ) {
+		// Check if this is us fetching theme details, we then want to just return things as usual.
+		if ( $this->self_fetching_theme ) {
+			return $theme;
+		}
+
 		// Check if overrides are triggered if not break out.
 		if ( ! $this->override_theme() ) {
 			return $theme;
+		}
+
+		if ( empty( $this->current_theme_details ) ) {
+			$this->self_fetching_theme   = true;
+			$this->current_theme_details = wp_get_theme( $this->current_theme );
+			$this->self_fetching_theme   = false;
+		}
+
+		// Check if this is a parent theme request, if so return it as usual.
+		if ( $this->current_theme_details->parent() ) {
+			if ( $this->current_theme_details->get_template() === $theme ) {
+				return $theme;
+			}
 		}
 
 		// Check if a default theme exists, and if so use it as a default.
@@ -491,6 +513,11 @@ class Health_Check_Troubleshooting_MU {
 			return;
 		}
 
+		// We need some admin functions to make this a better user experience, so include that file.
+		if ( ! is_admin() ) {
+			require_once( trailingslashit( ABSPATH ) . 'wp-admin/includes/plugin.php' );
+		}
+
 		// Ensure the theme functions are available to us on every page.
 		include_once( trailingslashit( ABSPATH ) . 'wp-admin/includes/theme.php' );
 
@@ -503,7 +530,7 @@ class Health_Check_Troubleshooting_MU {
 		$allowed_plugins = get_option( 'health-check-allowed-plugins', array() );
 
 		// Add a link to manage plugins if there are more than 20 set to be active.
-		if ( count( $allowed_plugins ) > 20 ) {
+		if ( count( $this->active_plugins ) > 20 ) {
 			$wp_menu->add_node( array(
 				'id'     => 'health-check-plugins',
 				'title'  => esc_html__( 'Manage active plugins', 'health-check' ),

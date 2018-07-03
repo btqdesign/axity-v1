@@ -214,9 +214,9 @@ body.dashboard_page_health-check #health-check-diff-modal-close-ref {
 /* Modal styles */
 .health-check-modal {
 	display: none;
-	position: fixed;
+	position: absolute;
 	z-index: 1000;
-	padding-top: 100px;
+	padding-top: 50px;
 	left: 0;
 	top: 0;
 	width: 100%;
@@ -224,6 +224,12 @@ body.dashboard_page_health-check #health-check-diff-modal-close-ref {
 	overflow: auto;
 	background-color: black;
 	background-color: rgba(0, 0, 0, 0.4);
+}
+
+@media all and (min-width: 1024px) {
+	.health-check-modal {
+		padding-top: 100px;
+	}
 }
 
 .health-check-modal.show {
@@ -235,7 +241,13 @@ body.dashboard_page_health-check #health-check-diff-modal-close-ref {
 	margin: auto;
 	padding: 20px;
 	border: 1px solid #888;
-	width: 30%;
+	width: 90%;
+}
+
+@media all and (min-width: 1024px) {
+	.health-check-modal .modal-content {
+		width: 30%;
+	}
 }
 
 .health-check-modal .modal-content .modal-close {
