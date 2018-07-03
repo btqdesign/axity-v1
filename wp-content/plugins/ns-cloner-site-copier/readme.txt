@@ -2,8 +2,8 @@
 Contributors: neversettle
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=53JXD4ENC8MM2&rm=2
 Tags: automate, duplicate, copy, copy site, copier, clone, clone site, cloner, multisite, network, subdomain, subdirectory, subfolder, template
-Requires at least: 3.0.1
-Tested up to: 4.9.1
+Requires at least: 3.5
+Tested up to: 4.9.6
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -25,7 +25,7 @@ The NS Cloner will take any existing site on your WordPress multisite network an
 * All new hook-rich cloning pipeline for developers to extend
 * All new dynamic, responsive admin interface
 
-If you want even more functionality, [check out our Add-ons and Bundles](http://neversettle.it/ns-cloner-add-ons-features)!
+If you want even more functionality, [check out NS Cloner Pro!](https://neversettle.it/buy/wordpress-plugins/ns-cloner-pro/)!
 
 = Standard Precautions and Notes =
 * Unlike other similar tools, the NS Cloner supports cloning the main root site at ID=1! But please be especially careful with this feature. Multisite plugins like BuddyPress add tables at the main (wp_) level of the database. There are also several global tables that apply to the network and NOT to the core site. The Cloner automatically excludes these global tables out of the gate so that they don't get cloned to all your new sites which will have wp_ID_ as a prefix instead of wp_. But tables for other network level plugins that don't apply to the clone could still get copied by the Cloner due to its automation and inability to be aware of the table structure of every plugin out there. Our Table Manager add-on is perfect for unique scenarios where you need total table-level cloning control.
@@ -55,14 +55,13 @@ Yes, it really is that easy.
 1. Copies ALL theme and plugin settings
 1. Copies ALL content and custom post types
 1. Copies ALL media files from original site
-1. ** Advanced validation and preemptive issue detection
-1. ** Robust system configuration and action logging
-1. ** Custom Add-on Architecture
-1. ** All new hook-rich cloning pipeline
-1. ** All new dynamic, responsive interface
+1. Advanced validation and preemptive issue detection
+1. Robust system configuration and action logging
+1. Custom Add-on Architecture
+1. All new hook-rich cloning pipeline
+1. All new dynamic, responsive interface
 
-(** New functionality in V3)
-If you want even more functionality, [check out our Add-ons and Bundles](http://neversettle.it/ns-cloner-add-ons-features)!
+If you want even more fIf you want even more functionality, [check out NS Cloner Pro!](https://neversettle.it/buy/wordpress-plugins/ns-cloner-pro/)!
 
 == Installation ==
 
@@ -91,6 +90,9 @@ Usually this means that the clone operation did not complete successfully. The m
 2. All new Add-on manager
 
 == Changelog ==
+
+= 3.0.9 =
+* Fixed small spelling bug
 
 = 3.0.8 =
 * Added Japanese translation files provided by @cheesyuk 
