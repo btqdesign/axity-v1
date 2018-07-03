@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitceafc745a2d637c51fa202610a1341da
+class ComposerStaticInit3428b161a271f8b37f1c2b9efd2d66fc
 {
     public static $files = array (
         'b45b351e6b6f7487d819961fef2fda77' => __DIR__ . '/..' . '/jakeasmith/http_build_url/src/http_build_url.php',
@@ -467,9 +467,13 @@ class ComposerStaticInitceafc745a2d637c51fa202610a1341da
         'WPML_Custom_XML' => __DIR__ . '/../..' . '/classes/xml-config/class-wpml-custom-xml.php',
         'WPML_DB_Chunk' => __DIR__ . '/../..' . '/classes/class-wpml-db-chunk.php',
         'WPML_Data_Encryptor' => __DIR__ . '/../..' . '/inc/utilities/wpml-data-encryptor.class.php',
+        'WPML_Deactivate_Old_Media' => __DIR__ . '/../..' . '/classes/utilities/class-wpml-deactivate-old-media.php',
+        'WPML_Deactivate_Old_Media_Factory' => __DIR__ . '/../..' . '/classes/utilities/class-wpml-deactivate-old-media-factory.php',
         'WPML_Debug_BackTrace' => __DIR__ . '/../..' . '/classes/utilities/class-wpml-debug-backtrace.php',
         'WPML_Debug_Information' => __DIR__ . '/../..' . '/classes/troubleshoot/class-wpml-debug-information.php',
         'WPML_Dependencies' => __DIR__ . '/..' . '/wpml-shared/wpml-lib-dependencies/src/dependencies/class-wpml-dependencies.php',
+        'WPML_Display_As_Translated_Attachments_Query' => __DIR__ . '/../..' . '/classes/query-filtering/class-wpml-display-as-translated-attachments-query.php',
+        'WPML_Display_As_Translated_Attachments_Query_Factory' => __DIR__ . '/../..' . '/classes/query-filtering/class-wpml-display-as-translated-attachments-query-factory.php',
         'WPML_Display_As_Translated_Default_Lang_Messages' => __DIR__ . '/../..' . '/classes/display-as-translated/class-wpml-display-as-translated-default-lang-messages.php',
         'WPML_Display_As_Translated_Default_Lang_Messages_Factory' => __DIR__ . '/../..' . '/classes/display-as-translated/class-wpml-display-as-translated-default-lang-messages-factory.php',
         'WPML_Display_As_Translated_Default_Lang_Messages_View' => __DIR__ . '/../..' . '/classes/display-as-translated/class-wpml-display-as-translated-default-lang-messages-view.php',
@@ -482,10 +486,6 @@ class ComposerStaticInitceafc745a2d637c51fa202610a1341da
         'WPML_Display_As_Translated_Tax_Query' => __DIR__ . '/../..' . '/classes/query-filtering/class-wpml-display-as-translated-tax-query.php',
         'WPML_Display_As_Translated_Tax_Query_Factory' => __DIR__ . '/../..' . '/classes/query-filtering/class-wpml-display-as-translated-tax-query-factory.php',
         'WPML_Display_As_Translated_Taxonomy_Query' => __DIR__ . '/../..' . '/classes/query-filtering/class-wpml-display-as-translated-taxonomy-query.php',
-        'WPML_Display_Featured_Image_As_Translated' => __DIR__ . '/../..' . '/classes/display-as-translated/class-wpml-display-featured-image-as-translated.php',
-        'WPML_Display_Featured_Image_As_Translated_Factory' => __DIR__ . '/../..' . '/classes/display-as-translated/class-wpml-display-featured-image-as-translated-factory.php',
-        'WPML_Display_Gallery_As_Translated' => __DIR__ . '/../..' . '/classes/display-as-translated/class-wpml-display-gallery-as-translated.php',
-        'WPML_Display_Gallery_As_Translated_Factory' => __DIR__ . '/../..' . '/classes/display-as-translated/class-wpml-display-gallery-as-translated-factory.php',
         'WPML_Download_Localization' => __DIR__ . '/../..' . '/classes/localization/class-wpml-download-localization.php',
         'WPML_Duplicable_Element' => __DIR__ . '/../..' . '/classes/translations/interface-wpml-duplicable-element.php',
         'WPML_Element_Sync_Settings' => __DIR__ . '/../..' . '/classes/settings/class-wpml-element-sync-settings.php',
@@ -561,6 +561,7 @@ class ComposerStaticInitceafc745a2d637c51fa202610a1341da
         'WPML_ICL_Client' => __DIR__ . '/../..' . '/classes/icl/class-wpml-icl-client.php',
         'WPML_ICL_Languages' => __DIR__ . '/../..' . '/classes/records/class-wpml-icl-languages.php',
         'WPML_Include_Url' => __DIR__ . '/../..' . '/classes/url-handling/class-wpml-include-url.php',
+        'WPML_Initialize_Language_For_Post_Type' => __DIR__ . '/../..' . '/classes/records/class-wpml-initialize-language-for-post-type.php',
         'WPML_Installation' => __DIR__ . '/../..' . '/inc/setup/wpml-installation.class.php',
         'WPML_Installer_Gateway' => __DIR__ . '/../..' . '/classes/Installer/class-wpml-installer-gateway.php',
         'WPML_Integrations' => __DIR__ . '/../..' . '/classes/requirements/class-wpml-integrations.php',
@@ -615,8 +616,12 @@ class ComposerStaticInitceafc745a2d637c51fa202610a1341da
         'WPML_Log' => __DIR__ . '/../..' . '/classes/logs/interface-wpml-log.php',
         'WPML_MO_File_Search' => __DIR__ . '/../..' . '/classes/class-wpml-mo-file-search.php',
         'WPML_Main_Admin_Menu' => __DIR__ . '/../..' . '/classes/admin-menu/configurations/class-wpml-main-admin-menu.php',
-        'WPML_Media_Without_TM_Notice' => __DIR__ . '/../..' . '/classes/media/class-wpml-media-without-tm-notice.php',
-        'WPML_Media_Without_TM_Notice_Factory' => __DIR__ . '/../..' . '/classes/media/class-wpml-media-without-tm-notice-factory.php',
+        'WPML_Media_Attachments_Duplication' => __DIR__ . '/../..' . '/classes/media/duplication/class-wpml-media-attachments-duplication.php',
+        'WPML_Media_Attachments_Duplication_Factory' => __DIR__ . '/../..' . '/classes/media/duplication/class-wpml-media-attachments-duplication-factory.php',
+        'WPML_Media_Duplication_Setup' => __DIR__ . '/../..' . '/inc/setup/wpml-media-duplication-setup.php',
+        'WPML_Media_Exception' => __DIR__ . '/../..' . '/classes/media/class-wpml-media-exception.php',
+        'WPML_Media_Settings' => __DIR__ . '/../..' . '/classes/media/settings/class-wpml-media-settings.php',
+        'WPML_Media_Settings_Factory' => __DIR__ . '/../..' . '/classes/media/settings/class-wpml-media-settings-factory.php',
         'WPML_Menu_Element' => __DIR__ . '/../..' . '/classes/translations/class-wpml-menu-element.php',
         'WPML_Menu_Item_Sync' => __DIR__ . '/../..' . '/inc/wp-nav-menus/menu-item-sync.class.php',
         'WPML_Menu_Sync_Display' => __DIR__ . '/../..' . '/menu/menu-sync/wpml-menu-sync-display.class.php',
@@ -625,6 +630,7 @@ class ComposerStaticInitceafc745a2d637c51fa202610a1341da
         'WPML_Meta_Boxes_Post_Edit_Ajax_Factory' => __DIR__ . '/../..' . '/menu/post-menus/post-edit-screen/class-wpml-meta-boxes-post-edit-ajax-factory.php',
         'WPML_Meta_Boxes_Post_Edit_HTML' => __DIR__ . '/../..' . '/menu/post-menus/post-edit-screen/wpml-meta-boxes-post-edit-html.class.php',
         'WPML_Mobile_Detect' => __DIR__ . '/../..' . '/lib/mobile-detect.php',
+        'WPML_Model_Attachments' => __DIR__ . '/../..' . '/classes/media/class-wpml-model-attachments.php',
         'WPML_Multilingual_Options' => __DIR__ . '/../..' . '/classes/options/class-wpml-multilingual-options.php',
         'WPML_Multilingual_Options_Array_Helper' => __DIR__ . '/../..' . '/classes/options/class-wpml-multilingual-options-array-helper.php',
         'WPML_Multilingual_Options_Utils' => __DIR__ . '/../..' . '/classes/options/class-wpml-multilingual-options-utils.php',
@@ -716,6 +722,8 @@ class ComposerStaticInitceafc745a2d637c51fa202610a1341da
         'WPML_ST_PB_Plugin' => __DIR__ . '/..' . '/wpml/page-builders/src/st/class-wpml-st-pb-plugin.php',
         'WPML_Save_Themes_Plugins_Localization_Options' => __DIR__ . '/../..' . '/classes/theme-plugin-localization/class-wpml-save-themes-plugins-localization-options.php',
         'WPML_Score_Hierarchy' => __DIR__ . '/../..' . '/classes/url-handling/class-wpml-score-hierarchy.php',
+        'WPML_Set_Attachments_Language' => __DIR__ . '/../..' . '/classes/media/class-wpml-set-attachments-language.php',
+        'WPML_Set_Attachments_Language_Factory' => __DIR__ . '/../..' . '/classes/media/class-wpml-set-attachments-language-factory.php',
         'WPML_Set_Language' => __DIR__ . '/../..' . '/classes/core-abstract-classes/class-wpml-set-language.php',
         'WPML_Settings_Filters' => __DIR__ . '/../..' . '/classes/settings/class-wpml-settings-filters.php',
         'WPML_Settings_Helper' => __DIR__ . '/../..' . '/inc/setup/wpml-settings-helper.class.php',
@@ -898,8 +906,10 @@ class ComposerStaticInitceafc745a2d637c51fa202610a1341da
         'WPML_Upgrade_Loader' => __DIR__ . '/../..' . '/classes/upgrade/class-wpml-upgrade-loader.php',
         'WPML_Upgrade_Loader_Factory' => __DIR__ . '/../..' . '/classes/upgrade/class-wpml-upgrade-loader-factory.php',
         'WPML_Upgrade_Localization_Files' => __DIR__ . '/../..' . '/classes/upgrade/class-wpml-upgrade-localizations-files.php',
-        'WPML_Upgrade_Media_Settings_To_Core' => __DIR__ . '/../..' . '/classes/upgrade/commands/class-wpml-upgrade-media-settings-to-core.php',
+        'WPML_Upgrade_Media_Duplication_In_Core' => __DIR__ . '/../..' . '/classes/upgrade/commands/class-wpml-upgrade-media-duplication-in-core.php',
+        'WPML_Upgrade_Media_Without_Language' => __DIR__ . '/../..' . '/classes/upgrade/commands/class-wpml-upgrade-media-without-language.php',
         'WPML_Upgrade_Remove_Translation_Services_Transient' => __DIR__ . '/../..' . '/classes/upgrade/commands/class-wpml-upgrade-remove-translation-services-transient.php',
+        'WPML_Upgrade_Run_All' => __DIR__ . '/../..' . '/classes/upgrade/class-wpml-upgrade-run-all.php',
         'WPML_Upgrade_Schema' => __DIR__ . '/../..' . '/classes/upgrade/class-wpml-upgrade-schema.php',
         'WPML_Upgrade_Table_Translate_Job_For_3_9_0' => __DIR__ . '/../..' . '/classes/upgrade/commands/class-wpml-upgrade-table-translate-job-for-3-9-0.php',
         'WPML_User' => __DIR__ . '/../..' . '/classes/utilities/user/class-wpml-user.php',
@@ -986,10 +996,10 @@ class ComposerStaticInitceafc745a2d637c51fa202610a1341da
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitceafc745a2d637c51fa202610a1341da::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitceafc745a2d637c51fa202610a1341da::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitceafc745a2d637c51fa202610a1341da::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitceafc745a2d637c51fa202610a1341da::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit3428b161a271f8b37f1c2b9efd2d66fc::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit3428b161a271f8b37f1c2b9efd2d66fc::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit3428b161a271f8b37f1c2b9efd2d66fc::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit3428b161a271f8b37f1c2b9efd2d66fc::$classMap;
 
         }, null, ClassLoader::class);
     }

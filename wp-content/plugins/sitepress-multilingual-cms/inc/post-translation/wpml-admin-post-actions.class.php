@@ -8,7 +8,10 @@
  */
 class WPML_Admin_Post_Actions extends WPML_Post_Translation {
 
-	const DISPLAY_FEATURED_IMAGE_AS_TRANSLATED_META_KEY = '_wpml_featured_image_as_translated';
+	const DUPLICATE_MEDIA_META_KEY = '_wpml_media_duplicate';
+	const DUPLICATE_FEATURED_META_KEY = '_wpml_media_featured';
+	const DUPLICATE_MEDIA_GLOBAL_KEY = 'duplicate_media';
+	const DUPLICATE_FEATURED_GLOBAL_KEY = 'duplicate_media';
 
 	private $http_referer;
 
@@ -108,15 +111,72 @@ class WPML_Admin_Post_Actions extends WPML_Post_Translation {
 		}
 		$save_filter_action_state = new WPML_WP_Filter_State( 'save_post' );
 		$this->after_save_post( $trid, $post_vars, $language_code, $source_language );
-		$this->save_media_options( $post_id );
+		$this->save_media_options( $post_id, $source_language );
 		$save_filter_action_state->restore();
 	}
 
-	private function save_media_options( $post_id ) {
-		$featured_as_translated = isset( $_POST['wpml_featured_as_translated'] )
-			? filter_var( $_POST['wpml_featured_as_translated'], FILTER_SANITIZE_NUMBER_INT ) : false;
+	/**
+	 * @param int         $post_id
+	 * @param string|null $source_language
+	 */
+	private function save_media_options( $post_id, $source_language  ) {
 
-		update_post_meta( $post_id, self::DISPLAY_FEATURED_IMAGE_AS_TRANSLATED_META_KEY, (int) $featured_as_translated );
+		if ( $this->has_post_media_options_metabox() ) {
+			$original_post_id = isset( $_POST['icl_translation_of'] )
+				? filter_var( $_POST['icl_translation_of'], FILTER_SANITIZE_NUMBER_INT ) : $post_id;
+			$duplicate_media = isset( $_POST['wpml_duplicate_media'] )
+				? filter_var( $_POST['wpml_duplicate_media'], FILTER_SANITIZE_NUMBER_INT ) : false;
+			$duplicate_featured = isset( $_POST['wpml_duplicate_featured'] )
+				? filter_var( $_POST['wpml_duplicate_featured'], FILTER_SANITIZE_NUMBER_INT ) : false;
+
+			update_post_meta( $original_post_id, self::DUPLICATE_MEDIA_META_KEY, (int) $duplicate_media );
+			update_post_meta( $original_post_id, self::DUPLICATE_FEATURED_META_KEY, (int) $duplicate_featured );
+		} else {
+			$this->sync_media_options_with_original_or_global_settings( $post_id, $source_language );
+		}
+	}
+
+	private function has_post_media_options_metabox() {
+		return array_key_exists( WPML_Meta_Boxes_Post_Edit_HTML::FLAG_HAS_MEDIA_OPTIONS, $_POST );
+	}
+
+	/**
+	 * @param int         $post_id
+	 * @param string|null $source_language
+	 */
+	private function sync_media_options_with_original_or_global_settings( $post_id, $source_language ) {
+		global $sitepress;
+
+		$source_post_id = $sitepress->get_object_id( $post_id, get_post_type( $post_id ), false, $source_language );
+		$is_translation = $source_post_id && $source_post_id !== $post_id;
+
+		foreach (
+			array(
+				self::DUPLICATE_FEATURED_META_KEY => self::DUPLICATE_FEATURED_GLOBAL_KEY,
+				self::DUPLICATE_MEDIA_META_KEY    => self::DUPLICATE_MEDIA_GLOBAL_KEY,
+			) as $meta_key => $global_key
+		) {
+
+			$source_value = get_post_meta( $source_post_id, $meta_key, true );
+
+			if ( '' === $source_value ) {
+				// fallback to global setting
+				$media_options = get_option( '_wpml_media', array() );
+
+				if ( isset( $media_options['new_content_settings'][ $global_key ] ) ) {
+					$source_value = (int) $media_options['new_content_settings'][ $global_key ];
+
+					if ( $source_post_id ) {
+						update_post_meta( $source_post_id, $meta_key, $source_value );
+					}
+				}
+			}
+
+			if ( '' !== $source_value && $is_translation ) {
+				update_post_meta( $post_id, $meta_key, $source_value );
+			}
+		}
+
 	}
 
 	private function has_invalid_language_details_on_heartbeat() {

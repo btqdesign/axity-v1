@@ -2,10 +2,10 @@
 /*
 Plugin Name: WPML Multilingual CMS
 Plugin URI: https://wpml.org/
-Description: WPML Multilingual CMS | <a href="https://wpml.org">Documentation</a> | <a href="https://wpml.org/version/wpml-4-0-3/">WPML 4.0.3 release notes</a>
+Description: WPML Multilingual CMS | <a href="https://wpml.org">Documentation</a> | <a href="https://wpml.org/version/wpml-4-0-4/">WPML 4.0.4 release notes</a>
 Author: OnTheGoSystems
 Author URI: http://www.onthegosystems.com/
-Version: 4.0.3
+Version: 4.0.4
 Plugin Slug: sitepress-multilingual-cms
 */
 
@@ -18,7 +18,7 @@ if ( defined( 'ICL_SITEPRESS_VERSION' ) || ( (bool) get_option( '_wpml_inactive'
 	return;
 }
 
-define( 'ICL_SITEPRESS_VERSION', '4.0.3' );
+define( 'ICL_SITEPRESS_VERSION', '4.0.4' );
 
 // Do not uncomment the following line!
 // If you need to use this constant, use it in the wp-config.php file
@@ -177,10 +177,12 @@ if ( $sitepress->is_setup_complete() ) {
 		'WPML_Meta_Boxes_Post_Edit_Ajax_Factory',
 		'WPML_Wizard_Fetch_Content_Factory',
 		'WPML_Privacy_Content_Factory',
-		'WPML_Display_Gallery_As_Translated_Factory',
-		'WPML_Media_Without_TM_Notice_Factory',
-		'WPML_Display_Featured_Image_As_Translated_Factory',
 		'WPML_Attachment_Action_Factory',
+		'WPML_Media_Attachments_Duplication_Factory',
+		'WPML_Deactivate_Old_Media_Factory',
+		'WPML_Set_Attachments_Language_Factory',
+		'WPML_Display_As_Translated_Attachments_Query_Factory',
+		'WPML_Media_Settings_Factory'
 	);
 	$action_filter_loader->load( $actions );
 }

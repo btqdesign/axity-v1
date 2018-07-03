@@ -61,6 +61,6 @@
         </key>
     </language-switcher-settings>
     <custom-types>
-        <custom-type translate="1" display-as-translated="1" >attachment</custom-type>
+        <custom-type translate="1">attachment</custom-type>
     </custom-types>
 </wpml-config>

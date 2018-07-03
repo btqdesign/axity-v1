@@ -385,6 +385,8 @@ function icl_sitepress_activate() {
 	icl_enable_capabilities();
 	repair_el_type_collate();
 
+	WPML_Media_Duplication_Setup::initialize_settings();
+
 	do_action('wpml_activated');
 }
 

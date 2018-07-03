@@ -248,7 +248,7 @@ $theme_wpml_config_file = WPML_Config::get_theme_wpml_config_file();
 										<label for="wpml-language-<?php echo $lang['code'] ?>">
 											<input type="checkbox" id="wpml-language-<?php echo esc_attr( $lang['code'] ) ?>"
                                                    value="<?php echo esc_attr( $lang['code'] ) ?>" <?php echo $checked . ' ' . $disabled; ?>/>
-											<img src="<?php echo $sitepress->get_flag_url( $lang['code'] ) ?>" width=18" height="12">
+											<img src="<?php echo $sitepress->get_flag_url( $lang['code'] ) ?>" width="18" height="12">
 											<?php echo esc_html( $lang['display_name'] ) ?>
 										</label>
 									</li>

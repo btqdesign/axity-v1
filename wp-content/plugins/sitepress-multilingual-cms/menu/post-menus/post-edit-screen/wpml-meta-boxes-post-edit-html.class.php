@@ -5,6 +5,8 @@
  */
 class WPML_Meta_Boxes_Post_Edit_HTML {
 
+	const FLAG_HAS_MEDIA_OPTIONS = 'wpml_has_media_options';
+
 	/** @var SitePress $sitepress */
 	private $sitepress;
 	/** @var WPML_Post_Translation $post_translation */
@@ -566,31 +568,34 @@ class WPML_Meta_Boxes_Post_Edit_HTML {
 	}
 
 	private function media_options( $post ) {
-		echo '<br /><br /><strong>' . esc_html__( 'Media options', 'sitepress' ) . '</strong>';
+		echo '<br /><br /><strong>' . esc_html__( 'Media attachments', 'sitepress' ) . '</strong>';
 
-		$default_lang_code = $this->sitepress->get_default_language();
+		$original_post_id = (int) $this->post_translation->get_original_post_ID( $this->trid );
 
-		$featured_as_translated = get_post_meta( $post->ID, WPML_Admin_Post_Actions::DISPLAY_FEATURED_IMAGE_AS_TRANSLATED_META_KEY, true );
-		if ( '' === $featured_as_translated ) {
-			$original_post_id = $this->post_translation->get_original_post_ID( $this->trid );
-			if ( null == $original_post_id ) {
-				$featured_as_translated = $this->sitepress->get_setting( 'display_featured_image_as_translated' );
-			} else {
-				$featured_as_translated = get_post_meta( $original_post_id, WPML_Admin_Post_Actions::DISPLAY_FEATURED_IMAGE_AS_TRANSLATED_META_KEY, true );
-			}
+		if( ! $original_post_id ){
+			$settings = get_option( '_wpml_media' );
+			$content_defaults = $settings['new_content_settings'];
+			$duplicate_media = $content_defaults['duplicate_media'];
+			$duplicate_featured  = $content_defaults['duplicate_featured'];
+		} else{
+			$duplicate_media = get_post_meta( $original_post_id, WPML_Admin_Post_Actions::DUPLICATE_MEDIA_META_KEY, true );
+			$duplicate_featured  = get_post_meta( $original_post_id, WPML_Admin_Post_Actions::DUPLICATE_FEATURED_META_KEY, true );
 		}
-		if ( $this->selected_language === $default_lang_code ) {
-			$featured_as_translated_label = esc_html__( 'Show the same featured image in translations', 'sitepress' );
+
+		if( ! $original_post_id || (int) $post->ID === $original_post_id ){
+			$duplicate_media_label =  esc_html__('Duplicate uploaded media to translations', 'sitepress');
+			$duplicate_featured_label =  esc_html__('Duplicate featured image to translations', 'sitepress');
 		} else {
-			$admin_lang_code    = $this->sitepress->get_admin_language();
-			$default_lang       = $this->sitepress->get_languages( $admin_lang_code );
-			$default_lang_label = $default_lang[ $default_lang_code ]['display_name'];
-
-			$featured_as_translated_label = sprintf( esc_html__( 'Use featured image from original post (%s)', 'sitepress' ), $default_lang_label );
+			$duplicate_media_label =  esc_html__('Duplicate uploaded media from original', 'sitepress');
+			$duplicate_featured_label =  esc_html__('Duplicate featured image from original', 'sitepress');
 		}
 
-		echo '<br /><label><input name="wpml_featured_as_translated" type="checkbox" value="1" ' .
-		     checked( $featured_as_translated, true, false ) . '/>&nbsp;' . $featured_as_translated_label . '</label>';
+		echo '<br /><input name="' . self::FLAG_HAS_MEDIA_OPTIONS . '" type="hidden" value="1"/>';
+		echo '<br /><label><input name="wpml_duplicate_media" type="checkbox" value="1" ' .
+		     checked( $duplicate_media, true, false ) . '/>&nbsp;' . $duplicate_media_label . '</label>';
+		echo '<br /><label><input name="wpml_duplicate_featured" type="checkbox" value="1" ' .
+		     checked( $duplicate_featured, true, false ) . '/>&nbsp;' . $duplicate_featured_label . '</label>';
+
 	}
 
 	/**

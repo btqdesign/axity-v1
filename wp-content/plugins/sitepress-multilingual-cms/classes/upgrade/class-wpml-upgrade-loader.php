@@ -51,10 +51,17 @@ class WPML_Upgrade_Loader implements IWPML_Action {
 			$this->factory->create_command_definition( 'WPML_Add_UUID_Column_To_Translation_Status', array( $this->upgrade_schema ), array( 'admin', 'ajax', 'front-end' ) ),
 			$this->factory->create_command_definition( 'WPML_Upgrade_Element_Type_Length_And_Collation', array( $this->upgrade_schema ), array( 'admin', 'ajax', 'front-end' ) ),
 			$this->factory->create_command_definition( 'WPML_Upgrade_Add_Word_Count_Column_To_Strings', array( $this->upgrade_schema ), array( 'admin', 'ajax', 'front-end' ) ),
-			$this->factory->create_command_definition( 'WPML_Upgrade_Media_Settings_To_Core', array( $this->sitepress, $this->upgrade_schema ), array( 'admin' ) ),
+			$this->factory->create_command_definition( 'WPML_Upgrade_Media_Without_Language', array( $this->upgrade_schema->get_wpdb(), $this->sitepress->get_default_language() ), array( 'admin', 'ajax' ) ),
 		);
 
 		$upgrade = new WPML_Upgrade( $commands, $this->sitepress, $this->factory );
+
+		$deferred_commands = array(
+			$this->factory->create_command_definition( 'WPML_Upgrade_Media_Duplication_In_Core', array( $this->sitepress, $this->upgrade_schema, $upgrade ), array( 'admin' ) ),
+		);
+
+
+		$upgrade->add_commands( $deferred_commands );
 		$upgrade->run();
 	}
 }

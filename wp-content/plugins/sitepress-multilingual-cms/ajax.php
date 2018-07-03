@@ -80,7 +80,6 @@ switch($request){
         $iclsettings['sync_delete_tax'] = @intval($_POST['icl_sync_delete_tax']);
         $iclsettings['sync_post_taxonomies'] = @intval($_POST['icl_sync_post_taxonomies']);
         $iclsettings['sync_post_date'] = @intval($_POST['icl_sync_post_date']);
-        $iclsettings['display_featured_image_as_translated'] = @intval($_POST['display_featured_image_as_translated']);
         $iclsettings['sync_comments_on_duplicates'] = @intval($_POST['icl_sync_comments_on_duplicates']);
         $this->save_settings($iclsettings);
         echo 1;

@@ -14,55 +14,17 @@ class WPML_Attachment_Action implements IWPML_Action {
 	}
 
 	public function add_hooks() {
-		// do not run this when user is importing posts in Tools > Import
-		if ( ! isset( $_GET['import'] ) || $_GET['import'] !== 'wordpress' ) {
-			add_action( 'add_attachment', array( $this, 'save_attachment_actions' ) );
-		}
 		if ( $this->is_admin_or_xmlrpc() && ! $this->is_uploading_plugin_or_theme() ) {
 
 			$active_languages = $this->sitepress->get_active_languages();
 
 			if ( count( $active_languages ) > 1 ) {
-				add_action( 'edit_attachment', array( $this, 'save_attachment_actions' ) );
-
 				add_filter( 'views_upload', array( $this, 'views_upload_actions' ) );
 			}
 		}
 
 		add_filter( 'attachment_link', array( $this->sitepress, 'convert_url' ), 10, 1 );
 		add_filter( 'wp_delete_file', array( $this, 'delete_file_actions' ) );
-	}
-
-	function save_attachment_actions( $post_id ) {
-		if ( $this->is_uploading_plugin_or_theme() && get_post_type( $post_id ) == 'attachment' ) {
-			return;
-		}
-
-		$media_language = $this->sitepress->get_language_for_element( $post_id, 'post_attachment' );
-		$trid           = false;
-		if ( ! empty( $media_language ) ) {
-			$trid = $this->sitepress->get_element_trid( $post_id, 'post_attachment' );
-		}
-		if ( empty( $media_language ) ) {
-			$parent_post_sql      = "SELECT p2.ID, p2.post_type FROM {$this->wpdb->posts} p1 JOIN {$this->wpdb->posts} p2 ON p1.post_parent = p2.ID WHERE p1.ID=%d";
-			$parent_post_prepared = $this->wpdb->prepare( $parent_post_sql, array( $post_id ) );
-			$parent_post          = $this->wpdb->get_row( $parent_post_prepared );
-
-			if ( $parent_post ) {
-				$media_language = $this->sitepress->get_language_for_element( $parent_post->ID, 'post_' . $parent_post->post_type );
-			}
-
-			if ( empty( $media_language ) ) {
-				$media_language = $this->sitepress->get_admin_language_cookie();
-			}
-			if ( empty( $media_language ) ) {
-				$media_language = $this->sitepress->get_default_language();
-			}
-
-		}
-		if ( ! empty( $media_language ) ) {
-			$this->sitepress->set_element_language_details( $post_id, 'post_attachment', $trid, $media_language );
-		}
 	}
 
 	private function is_admin_or_xmlrpc() {
@@ -78,7 +40,6 @@ class WPML_Attachment_Action implements IWPML_Action {
 		return ( isset( $action ) && ( $action == 'upload-plugin' || $action == 'upload-theme' ) );
 	}
 
-	//check if the image is not duplicated to another post before deleting it physically
 	public function views_upload_actions( $views ) {
 		global $pagenow;
 
@@ -149,7 +110,7 @@ class WPML_Attachment_Action implements IWPML_Action {
 		return $views;
 	}
 
-
+	//check if the image is not duplicated to another post before deleting it physically
 	public function delete_file_actions( $file ) {
 		if ( $file ) {
 			$file_name = $this->get_file_name_without_size_from_full_name( $file );
