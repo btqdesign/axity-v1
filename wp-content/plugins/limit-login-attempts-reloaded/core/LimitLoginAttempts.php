@@ -1037,10 +1037,10 @@ class Limit_Login_Attempts
 	*/
 	public function get_address() {
 
-		if ( !empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) )
+		if ( !empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) && filter_var( $_SERVER['HTTP_X_FORWARDED_FOR'], FILTER_VALIDATE_IP ) )
 			$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
 
-		elseif ( !empty( $_SERVER['HTTP_X_SUCURI_CLIENTIP'] ) )
+		elseif ( !empty( $_SERVER['HTTP_X_SUCURI_CLIENTIP'] ) && filter_var( $_SERVER['HTTP_X_SUCURI_CLIENTIP'], FILTER_VALIDATE_IP ) )
 			$ip = $_SERVER['HTTP_X_SUCURI_CLIENTIP'];
 
 		elseif ( isset( $_SERVER['REMOTE_ADDR'] ) )
@@ -1050,6 +1050,7 @@ class Limit_Login_Attempts
 			$ip = '';
 
 		$ip = preg_replace('/^(\d+\.\d+\.\d+\.\d+):\d+$/', '\1', $ip);
+
 		return $ip;
 	}
 
