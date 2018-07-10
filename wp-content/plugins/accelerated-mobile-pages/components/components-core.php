@@ -106,7 +106,7 @@ function amp_logo(){
 function amp_title(){
 	global $redux_builder_amp, $post;
 	$ID = '';
-if( is_home() && ampforwp_get_frontpage_id() ){
+	if( ampforwp_is_front_page() && ampforwp_get_frontpage_id() ){
 		if( $redux_builder_amp['ampforwp-title-on-front-page'] ) {
 			$ID = ampforwp_get_frontpage_id();
 		}
@@ -324,6 +324,9 @@ function amp_header_core(){
 		    		wp_head();
 
 		    	}else{
+		    		if(is_search()){?>
+		    			<meta name="robots" content="noindex,nofollow"/>
+		    		<?php }
 		    		do_action( 'amp_post_template_head', $thisTemplate );
 		    	} ?>		
 			<style amp-custom>
@@ -433,7 +436,7 @@ $thisTemplate = new AMP_Post_Template($post_id); ?>
 			$ampforwp_the_content = $thisTemplate->get( 'ampforwp_amp_content' );
 		} 
 	// Muffin Builder Compatibility #1455 #1893
-	if ( function_exists('mfn_builder_print') ) {
+	if ( function_exists('mfn_builder_print') && ! $amp_custom_content_enable ) {
 		ob_start();
 	  	mfn_builder_print( $thisTemplate->get( 'post_id' ) );
 		$content = ob_get_contents();
@@ -452,7 +455,15 @@ $thisTemplate = new AMP_Post_Template($post_id); ?>
 								) 
 							) 
 						);
-	 	$ampforwp_the_content =  $sanitizer_obj->get_amp_content();		
+	 	if ( ! get_post_meta( $post_id, 'mfn-post-hide-content', true ) && ampforwp_is_front_page() ) {
+	 		$ampforwp_custom_amp_editor_content = '';
+			$ampforwp_custom_amp_editor_content = $ampforwp_the_content;
+	 		$ampforwp_the_content =  $sanitizer_obj->get_amp_content();
+	 		$ampforwp_the_content .=  $ampforwp_custom_amp_editor_content;		      
+		}
+		else{
+			$ampforwp_the_content =  $sanitizer_obj->get_amp_content();
+		}		
 	}
 	$ampforwp_the_content = apply_filters('ampforwp_modify_the_content',$ampforwp_the_content);
 	echo $ampforwp_the_content;
@@ -545,7 +556,7 @@ function amp_author_meta( $args ) {
  	if ( $avatar && true == ampforwp_gravatar_checker($post_author->user_email) ) {
 		$author_avatar_url = get_avatar_url( $post_author->ID, array( 'size' => $avatar_size ) );
             ?>
-        <amp-img data-block-on-consent src="<?php echo esc_url($author_avatar_url); ?>" width="<?php echo $avatar_size; ?>" height="<?php echo $avatar_size; ?>" layout="fixed"></amp-img> 
+        <amp-img <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> src="<?php echo esc_url($author_avatar_url); ?>" width="<?php echo $avatar_size; ?>" height="<?php echo $avatar_size; ?>" layout="fixed"></amp-img> 
     <?php }
     elseif ( $avatar && false == ampforwp_gravatar_checker($post_author->user_email ) ) {
     	$avatar_img = get_avatar( $post_author->user_email, $avatar_size );
