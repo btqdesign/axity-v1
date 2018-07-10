@@ -27,7 +27,7 @@ class WPSEO_Premium {
 	const OPTION_CURRENT_VERSION = 'wpseo_current_version';
 
 	/** @var string */
-	const PLUGIN_VERSION_NAME = '7.7.3';
+	const PLUGIN_VERSION_NAME = '7.8';
 
 	/** @var string */
 	const PLUGIN_VERSION_CODE = '16';
@@ -298,6 +298,12 @@ class WPSEO_Premium {
 		new WPSEO_Premium_Autoloader( 'WPSEO_Redirect', 'redirect/', 'WPSEO_' );
 
 		$this->redirects = new WPSEO_Redirect_Page();
+
+		// Adds integration that filters redirected entries from the sitemap.
+		$this->integrations['redirect-sitemap-filter'] = new WPSEO_Redirect_Sitemap_Filter(
+			home_url(),
+			new WPSEO_Redirect_Option()
+		);
 	}
 
 	/**

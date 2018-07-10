@@ -7,6 +7,10 @@
 		<div class="cntr">
 			<div class="f-w">
 				<?php 
+				if ( is_active_widget(false,false,'search', true) || is_active_widget(false,false,'text', true) ) {
+					add_filter('amp_blacklisted_tags','ampforwp_sidebar_blacklist_tags');
+					add_filter('ampforwp_modify_sidebars_content','ampforwp_modified_search_sidebar');
+				}
 				ob_start();
 				dynamic_sidebar('swift-footer-widget-area');
 				$swift_footer_widget = ob_get_contents();
@@ -27,6 +31,7 @@
 									) 
 								);
 				 $sanitized_footer_widget =  $sanitizer_obj->get_amp_content();
+				 $sanitized_footer_widget = apply_filters('ampforwp_modify_sidebars_content',$sanitized_footer_widget); 
 	              echo $sanitized_footer_widget;
 				?>
 			</div>
@@ -35,7 +40,7 @@
 	<?php endif; ?>
 	<div class="f-w-f2">
 		<div class="cntr">
-			<?php if ( has_nav_menu( 'amp-footer-menu' ) ) { ?>
+			<?php if(isset($redux_builder_amp['swift-menu']) && $redux_builder_amp['swift-menu'] == true ){ if ( has_nav_menu( 'amp-footer-menu' ) ) { ?>
 			<div class="f-menu">
 				<nav itemscope="" itemtype="https://schema.org/SiteNavigationElement">
 	              <?php
@@ -51,7 +56,7 @@
 	              echo $sanitized_menu; ?>
 	           </nav>
 			</div>
-			<?php } ?>
+			<?php } }?>
 			<div class="rr">
 				<?php amp_non_amp_link(); ?>
             <?php do_action('amp_footer_link'); ?>
@@ -59,9 +64,9 @@
 		</div>
 	</div>
 </footer>
-<?php } ?>
-<?php if(is_single()){ ?>
-<?php if($redux_builder_amp['enable-single-social-icons']){?>
+<?php }
+
+if( (is_single() && $redux_builder_amp['enable-single-social-icons']) || (is_page() && true == $redux_builder_amp['ampforwp-page-sticky-social']) ){ ?>
 <div class="s_stk ss-ic">
 	<ul>
 		<?php if($redux_builder_amp['enable-single-facebook-share']){?>
@@ -154,9 +159,19 @@
 			<a class="s_ym" target="_blank" href="http://www.yummly.com/urb/verify?url=<?php the_permalink(); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>&yumtype=button"></a>
 		</li>
 		<?php } ?>
+		<?php if ( isset($redux_builder_amp['enable-single-hatena-bookmarks']) && $redux_builder_amp['enable-single-hatena-bookmarks']){?>
+		<li>
+			<a class="s_hb" target="_blank" href="http://b.hatena.ne.jp/entry/<?php the_permalink(); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
+		</li>
+		<?php } ?>
+		<?php if ( isset($redux_builder_amp['enable-single-pocket-share']) && $redux_builder_amp['enable-single-pocket-share']){?>
+		<li>
+			<a class="s_pk" target="_blank" href="https://getpocket.com/save?url=<?php the_permalink(); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
+		</li>
+		<?php } ?>
 	</ul>
 </div>
-<?php } }
+<?php } 
 do_action("ampforwp_advance_footer_options");
 ?>
 <?php amp_footer_core(); ?>

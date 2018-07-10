@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit26c508c178a4ac01471fede90bc67747
+class ComposerStaticInite1a727fa551a0ab4a048c2ee3c4c1c2d
 {
     public static $files = array (
         '995b589e693a50f54393aa31ee1c3763' => __DIR__ . '/..' . '/yoast/whip/src/facades/wordpress.php',
@@ -132,12 +132,6 @@ class ComposerStaticInit26c508c178a4ac01471fede90bc67747
         'WPSEO_Admin_Asset_Manager' => __DIR__ . '/../..' . '/admin/class-admin-asset-manager.php',
         'WPSEO_Admin_Asset_SEO_Location' => __DIR__ . '/../..' . '/admin/class-admin-asset-seo-location.php',
         'WPSEO_Admin_Asset_Yoast_Components_l10n' => __DIR__ . '/../..' . '/admin/class-admin-asset-yoast-components-l10n.php',
-        'WPSEO_Admin_Banner' => __DIR__ . '/../..' . '/admin/banner/class-admin-banner.php',
-        'WPSEO_Admin_Banner_Renderer' => __DIR__ . '/../..' . '/admin/banner/class-admin-banner-renderer.php',
-        'WPSEO_Admin_Banner_Sidebar' => __DIR__ . '/../..' . '/admin/banner/class-admin-banner-sidebar.php',
-        'WPSEO_Admin_Banner_Sidebar_Renderer' => __DIR__ . '/../..' . '/admin/banner/class-admin-banner-sidebar-renderer.php',
-        'WPSEO_Admin_Banner_Spot' => __DIR__ . '/../..' . '/admin/banner/class-admin-banner-spot.php',
-        'WPSEO_Admin_Banner_Spot_Renderer' => __DIR__ . '/../..' . '/admin/banner/class-admin-banner-spot-renderer.php',
         'WPSEO_Admin_Help_Panel' => __DIR__ . '/../..' . '/admin/class-admin-help-panel.php',
         'WPSEO_Admin_Init' => __DIR__ . '/../..' . '/admin/class-admin-init.php',
         'WPSEO_Admin_Media_Purge_Notification' => __DIR__ . '/../..' . '/admin/class-admin-media-purge-notification.php',
@@ -280,6 +274,7 @@ class ComposerStaticInit26c508c178a4ac01471fede90bc67747
         'WPSEO_Installable' => __DIR__ . '/../..' . '/admin/interface-installable.php',
         'WPSEO_Installation' => __DIR__ . '/../..' . '/inc/class-wpseo-installation.php',
         'WPSEO_JSON_LD' => __DIR__ . '/../..' . '/frontend/class-json-ld.php',
+        'WPSEO_Keyword_Synonyms_Modal' => __DIR__ . '/../..' . '/admin/class-keyword-synonyms-modal.php',
         'WPSEO_Language_Utils' => __DIR__ . '/../..' . '/inc/language-utils.php',
         'WPSEO_License_Page_Manager' => __DIR__ . '/../..' . '/admin/class-license-page-manager.php',
         'WPSEO_Link' => __DIR__ . '/../..' . '/admin/links/class-link.php',
@@ -321,6 +316,7 @@ class ComposerStaticInit26c508c178a4ac01471fede90bc67747
         'WPSEO_Metabox_Form_Tab' => __DIR__ . '/../..' . '/admin/metabox/class-metabox-form-tab.php',
         'WPSEO_Metabox_Formatter' => __DIR__ . '/../..' . '/admin/formatter/class-metabox-formatter.php',
         'WPSEO_Metabox_Formatter_Interface' => __DIR__ . '/../..' . '/admin/formatter/interface-metabox-formatter.php',
+        'WPSEO_Metabox_Keyword_Synonyms_Button' => __DIR__ . '/../..' . '/admin/metabox/class-metabox-keyword-synonyms-button.php',
         'WPSEO_Metabox_Null_Tab' => __DIR__ . '/../..' . '/admin/metabox/class-metabox-null-tab.php',
         'WPSEO_Metabox_Section' => __DIR__ . '/../..' . '/admin/metabox/interface-metabox-section.php',
         'WPSEO_Metabox_Tab' => __DIR__ . '/../..' . '/admin/metabox/interface-metabox-tab.php',
@@ -351,6 +347,7 @@ class ComposerStaticInit26c508c178a4ac01471fede90bc67747
         'WPSEO_Post_Metabox_Formatter' => __DIR__ . '/../..' . '/admin/formatter/class-post-metabox-formatter.php',
         'WPSEO_Post_Type' => __DIR__ . '/../..' . '/inc/class-post-type.php',
         'WPSEO_Post_Type_Sitemap_Provider' => __DIR__ . '/../..' . '/inc/sitemaps/class-post-type-sitemap-provider.php',
+        'WPSEO_Premium_Benefits_For_Synonyms_List' => __DIR__ . '/../..' . '/admin/class-premium-benefits-for-synonyms-list.php',
         'WPSEO_Premium_Benefits_List' => __DIR__ . '/../..' . '/admin/class-premium-benefits-list.php',
         'WPSEO_Premium_Popup' => __DIR__ . '/../..' . '/admin/class-premium-popup.php',
         'WPSEO_Premium_Upsell_Admin_Block' => __DIR__ . '/../..' . '/admin/class-premium-upsell-admin-block.php',
@@ -482,10 +479,10 @@ class ComposerStaticInit26c508c178a4ac01471fede90bc67747
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit26c508c178a4ac01471fede90bc67747::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit26c508c178a4ac01471fede90bc67747::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit26c508c178a4ac01471fede90bc67747::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit26c508c178a4ac01471fede90bc67747::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInite1a727fa551a0ab4a048c2ee3c4c1c2d::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInite1a727fa551a0ab4a048c2ee3c4c1c2d::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInite1a727fa551a0ab4a048c2ee3c4c1c2d::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInite1a727fa551a0ab4a048c2ee3c4c1c2d::$classMap;
 
         }, null, ClassLoader::class);
     }
