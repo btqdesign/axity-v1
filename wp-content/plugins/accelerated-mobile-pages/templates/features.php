@@ -256,25 +256,25 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 			}//tags area closed
 
 
-			$selected_cats = array();
-			$categories = get_the_category();
-			if ( $categories ) {	
-				$category_id = $categories[0]->cat_ID;
-				$get_categories_from_checkbox =  $redux_builder_amp['hide-amp-categories']; 
-				// Check if $get_categories_from_checkbox has some cats then only show
-				if ( $get_categories_from_checkbox ) {
-					$get_selected_cats = array_filter($get_categories_from_checkbox);
-					foreach ($get_selected_cats as $key => $value) {
-						$selected_cats[] = $key;
-					}  
-					if($selected_cats && $category_id){
-						if(in_array($category_id, $selected_cats)){
-							return;
-						}
-					}
-				} 
-			}
-		}	
+			$selected_cats = $current_cats_ids = array();
+			$get_categories_from_checkbox =  $redux_builder_amp['hide-amp-categories']; 
+			// Check if $get_categories_from_checkbox has some cats then only show
+			if ( $get_categories_from_checkbox ) {
+				$get_selected_cats = array_filter($get_categories_from_checkbox);
+				foreach ($get_selected_cats as $key => $value) {
+					$selected_cats[] = $key;
+				}
+				$current_cats = get_the_category(get_the_ID());
+				if ( $current_cats ) {
+					foreach ($current_cats as $key => $cats) {
+	 					$current_cats_ids[] =$cats->cat_ID;
+	 				}
+	 				if( count(array_intersect($selected_cats,$current_cats_ids))>0 ){
+	 		      		return;
+	 		    	} 
+	 		    } 
+			} 
+		}
       	if ( is_page() && ! $redux_builder_amp['amp-on-off-for-all-pages'] && ! is_home() && ! is_front_page() ) {
 			return;
 		}
@@ -1113,6 +1113,7 @@ function ampforwp_new_dir( $dir ) {
 
 			// 10.1 Analytics Support added for Google Analytics
 				global $redux_builder_amp;
+			if( false == $redux_builder_amp['amp-use-gtm-option'] ) {
 				if ( true == $redux_builder_amp['ampforwp-ga-switch'] ){
 					$ga_fields = array();
 					$ampforwp_ga_fields = array();
@@ -1134,15 +1135,15 @@ function ampforwp_new_dir( $dir ) {
 						$ga_fields['vars']['anonymizeIP'] = 'true';
 					}
 					$ampforwp_ga_fields = json_encode( $ga_fields);
-					$ampforwp_ga_fields = apply_filters('ampforwp_advance_google_analytics', $ampforwp_ga_fields );
-				 ?>
+					$ampforwp_ga_fields = apply_filters('ampforwp_advance_google_analytics', $ampforwp_ga_fields ); ?>
 						<amp-analytics <?php if(ampforwp_get_data_consent()){?>data-block-on-consent <?php } ?> type="googleanalytics" id="analytics1">
 							<script type="application/json">
 								<?php echo $ampforwp_ga_fields; ?>
 							</script>
 						</amp-analytics>
 						<?php
-					}//code ends for supporting Google Analytics
+				}
+			}//code ends for supporting Google Analytics
 
 			// 10.2 Analytics Support added for segment.com
 				if ( true == $redux_builder_amp['ampforwp-Segment-switch'] ) { ?>
@@ -1468,6 +1469,9 @@ function ampforwp_new_dir( $dir ) {
 		// 12. Add Logo URL in the structured metadata
 	    add_filter( 'amp_post_template_metadata', 'ampforwp_update_metadata', 10, 2 );
 	    function ampforwp_update_metadata( $metadata, $post ) {
+	    	if ( !is_array($metadata) ) {
+	    		return $metadata;
+	    	}
 	        global $redux_builder_amp;
 	        $structured_data_logo = '';
 	        $structured_data_main_logo = '';
@@ -1486,14 +1490,13 @@ function ampforwp_new_dir( $dir ) {
 	        } else {
 	          $structured_data_logo = $structured_data_main_logo;
 	        }
-	        if(isset($metadata['publisher']) && $metadata['publisher']){
-		        $metadata['publisher']['logo'] = array(
-		          '@type'   => 'ImageObject',
-		          'url'     =>  $structured_data_logo ,
-		          'height'  => $ampforwp_sd_height,
-		          'width'   => $ampforwp_sd_width,
-		        );
-		    }
+
+	        $metadata['publisher']['logo'] = array(
+	          '@type'   => 'ImageObject',
+	          'url'     =>  $structured_data_logo ,
+	          'height'  => $ampforwp_sd_height,
+	          'width'   => $ampforwp_sd_width,
+	        );
 
 	        //code for adding 'description' meta from Yoast SEO
 
@@ -1528,6 +1531,9 @@ function ampforwp_new_dir( $dir ) {
 	// if there is no image in the post, then use this image to validate Structured Data.
 	add_filter( 'amp_post_template_metadata', 'ampforwp_update_metadata_featured_image', 10, 2 );
 	function ampforwp_update_metadata_featured_image( $metadata, $post ) {
+			if ( !is_array($metadata) ) {
+	    		return $metadata;
+	    	}
 			global $redux_builder_amp;
 			global $post;
 			$post_id = get_the_ID() ;
@@ -1544,14 +1550,13 @@ function ampforwp_new_dir( $dir ) {
 					$structured_data_image = $structured_data_image_url;
 					$structured_data_height = intval($redux_builder_amp['amp-structured-data-placeholder-image-height']);
 					$structured_data_width = intval($redux_builder_amp['amp-structured-data-placeholder-image-width']);
-					if(isset($metadata['image']) && $metadata['image'] ){	
-						$metadata['image'] = array(
-							'@type' 	=> 'ImageObject',
-							'url' 		=> $structured_data_image ,
-							'height' 	=> $structured_data_height,
-							'width' 	=> $structured_data_width,
-						);
-					}
+					$metadata['image'] = array(
+						'@type' 	=> 'ImageObject',
+						'url' 		=> $structured_data_image ,
+						'height' 	=> $structured_data_height,
+						'width' 	=> $structured_data_width,
+					);
+					
 			}
 			// Custom Structured Data information for Archive, Categories and tag pages.
 			if ( is_archive() ) {
@@ -1565,15 +1570,14 @@ function ampforwp_new_dir( $dir ) {
 								$structured_data_author 		= $structured_data_author->display_name ;
 							} else {
 								$structured_data_author 		= "admin";
-							}
-					if(isset($metadata['image']) && $metadata['image'] ){
-						$metadata['image'] = array(
-							'@type' 	=> 'ImageObject',
-							'url' 		=> $structured_data_image ,
-							'height' 	=> $structured_data_height,
-							'width' 	=> $structured_data_width,
-						);
-					}
+							} 
+					$metadata['image'] = array(
+						'@type' 	=> 'ImageObject',
+						'url' 		=> $structured_data_image ,
+						'height' 	=> $structured_data_height,
+						'width' 	=> $structured_data_width,
+					);
+					
 					$metadata['author'] = array(
 						'@type' 	=> 'Person',
 						'name' 		=> $structured_data_author ,
@@ -1583,26 +1587,23 @@ function ampforwp_new_dir( $dir ) {
 
 			// Get Image metadata from the Custom Field
 			if(ampforwp_is_custom_field_featured_image() && ampforwp_cf_featured_image_src()){
-				if(isset($metadata['image']) && $metadata['image'] ){
-					$metadata['image'] = array(
-							'@type' 	=> 'ImageObject',
-							'url' 		=> ampforwp_cf_featured_image_src('url') ,
-							'width' 	=> ampforwp_cf_featured_image_src('width'),
-							'height' 	=> ampforwp_cf_featured_image_src('height'),
-					);
-				}
+				$metadata['image'] = array(
+						'@type' 	=> 'ImageObject',
+						'url' 		=> ampforwp_cf_featured_image_src('url') ,
+						'width' 	=> ampforwp_cf_featured_image_src('width'),
+						'height' 	=> ampforwp_cf_featured_image_src('height'),
+				);
+				
 			}
 
 			// Get image metadata from The Content
 			if( true == $redux_builder_amp['ampforwp-featured-image-from-content'] && ampforwp_get_featured_image_from_content() ){
-				if(isset($metadata['image']) && $metadata['image'] ){
-					$metadata['image'] = array(
-							'@type' 	=> 'ImageObject',
-							'url' 		=> ampforwp_get_featured_image_from_content('url') ,
-							'width' 	=> ampforwp_get_featured_image_from_content('width'),
-							'height' 	=> ampforwp_get_featured_image_from_content('height'),
-					);
-				}
+				$metadata['image'] = array(
+						'@type' 	=> 'ImageObject',
+						'url' 		=> ampforwp_get_featured_image_from_content('url') ,
+						'width' 	=> ampforwp_get_featured_image_from_content('width'),
+						'height' 	=> ampforwp_get_featured_image_from_content('height'),
+				);
 			}
 
 			if( in_array( "image" , $metadata )  ) {
@@ -1717,12 +1718,8 @@ function ampforwp_title_callback( $post ) {
 		}
 		$list_of_posts = ampforwp_posts_to_remove();
 		if ( $list_of_posts && $post->post_type == 'post' ) {
-			$skip_this_post = in_array($post->ID, $list_of_posts);
-		}
-		if ( $skip_this_post ) {
 			$ampforwp_stored_meta['ampforwp-amp-on-off'][0] = 'hide-amp';
-		}
-        ?>
+		} ?>
     <p>
         <div class="prfx-row-content">
             <label class="meta-radio-two" for="ampforwp-on-off-meta-radio-one">
@@ -2676,14 +2673,20 @@ add_action('init', 'amp_gtm_remove_analytics_code');
 function amp_gtm_remove_analytics_code() {
   global $redux_builder_amp;
   if( isset($redux_builder_amp['amp-use-gtm-option']) && $redux_builder_amp['amp-use-gtm-option'] ) {
-    remove_action('amp_post_template_footer','ampforwp_analytics',11);
-  	remove_action('amp_post_template_head','ampforwp_register_analytics_script', 20);
+
+	  ///////////////////////////////////////////////////////////////////////////
+  	// will add the scripts and analytics codes since #2340 version 0.9.97.5 //
+	  ///////////////////////////////////////////////////////////////////////////
+
+   //  remove_action('amp_post_template_footer','ampforwp_analytics',11);
+  	// remove_action('amp_post_template_head','ampforwp_register_analytics_script', 20);
+  	
   	//Add GTM Analytics code right after the body tag
   	add_action('ampforwp_body_beginning','amp_post_template_add_analytics_data',10);
   } else {
     remove_filter( 'amp_post_template_analytics', 'amp_gtm_add_gtm_support' );
-
   }
+
 }
 //Remove other analytics if GTM is enable
 add_action('amp_post_template_footer','ampforwp_gtm_support', 9);
@@ -2820,7 +2823,7 @@ function ampforwp_facebook_comments_markup() {
 	    if(ampforwp_get_data_consent()){		
 	    	$facebook_comments_markup .= ' data-block-on-consent ';
 	    }
-		$facebook_comments_markup .= 'data-href=" ' . get_permalink() . ' "';
+		$facebook_comments_markup .= 'data-href=" ' . get_permalink() . '"';
 	    $facebook_comments_markup .= '></amp-facebook-comments> </section>';
 
 		return $facebook_comments_markup;
@@ -3404,6 +3407,9 @@ function ampforwp_auto_add_amp_in_menu_link( $atts, $item, $args ) {
 // 45. searchpage, frontpage, homepage structured data
 add_filter( 'amp_post_template_metadata', 'ampforwp_search_or_homepage_or_staticpage_metadata', 10, 2 );
 function ampforwp_search_or_homepage_or_staticpage_metadata( $metadata, $post ) {
+		if ( !is_array($metadata) ) {
+    		return $metadata;
+    	}
 		global $redux_builder_amp,$wp;
 		$desc = '';
 		if( is_search() || is_home() || ( is_home() && $redux_builder_amp['amp-frontpage-select-option'] ) ) {
@@ -3469,15 +3475,14 @@ function ampforwp_search_or_homepage_or_staticpage_metadata( $metadata, $post ) 
 						// time difference is 2 minute between published and modified date
 						$dateModified = date( 'Y-m-d H:i:s', current_time( 'timestamp', 0 ) );
 					}
-				}
-			if(isset($metadata['image']) && $metadata['image'] ){
-				$metadata['image'] = array(
-					'@type' 	=> 'ImageObject',
-					'url' 		=> $structured_data_image ,
-					'height' 	=> $structured_data_height,
-					'width' 	=> $structured_data_width,
-				);
-			}
+				} 
+			$metadata['image'] = array(
+				'@type' 	=> 'ImageObject',
+				'url' 		=> $structured_data_image ,
+				'height' 	=> $structured_data_height,
+				'width' 	=> $structured_data_width,
+			);
+			
 			$metadata['datePublished'] = $datePublished; // proper published date added
 			$metadata['dateModified'] = $dateModified; // proper modified date
 			$remove 	= '/'. AMPFORWP_AMP_QUERY_VAR;
@@ -4008,20 +4013,24 @@ function ampforwp_frontpage_comments() {
 add_action('pre_amp_render_post','ampforwp_apply_layout_builder_on_pages',20);
 function ampforwp_apply_layout_builder_on_pages($post_id) {
 	global $redux_builder_amp;
-
+	$sidebar_check = null;
 	if ( ampforwp_is_front_page() ) {
 		$post_id = ampforwp_get_frontpage_id();
 	}
-	$sidebar_check = get_post_meta( $post_id,'ampforwp_custom_sidebar_select',true); 
 
 	if ( $redux_builder_amp['ampforwp-content-builder'] ) {
+		if ( is_page() ) {
+			$sidebar_check = get_post_meta( $post_id,'ampforwp_custom_sidebar_select',true); 
+		}
 		// Add Styling Builder Elements
 		add_action('amp_post_template_css', 'ampforwp_pagebuilder_styling', 20);
 
-		// Removed Titles for Pagebuilder elements
-		remove_filter( 'ampforwp_design_elements', 'ampforwp_add_element_the_title' );
-		remove_action('ampforwp_design_2_frontpage_title','ampforwp_design_2_frontpage_title');
-		remove_action('ampforwp_design_2_frontpage_title','ampforwp_design_2_frontpage_title');
+		if ( 'layout-builder' == $sidebar_check ) {
+			// Removed Titles for Pagebuilder elements
+			remove_filter( 'ampforwp_design_elements', 'ampforwp_add_element_the_title' );
+			remove_action('ampforwp_design_2_frontpage_title','ampforwp_design_2_frontpage_title');
+			remove_action('ampforwp_design_2_frontpage_title','ampforwp_design_2_frontpage_title');
+		}
 	}	
 }
 
@@ -4524,10 +4533,11 @@ add_action('ampforwp_after_post_content','ampforwp_post_pagination');
 
 function ampforwp_posts_to_remove () {
 	global $redux_builder_amp;
-	$get_categories_from_checkbox 	= '';
+	$get_categories_from_checkbox 	= $current_cats = '';
 	$get_selected_cats 				= array();
 	$selected_cats 					= array();
 	$post_id_array 					= array();
+	$current_cats_ids 				= array();
 	if(isset($redux_builder_amp['hide-amp-categories'])){
 		$get_categories_from_checkbox =  $redux_builder_amp['hide-amp-categories'];  
 	}
@@ -4537,14 +4547,23 @@ function ampforwp_posts_to_remove () {
 			$selected_cats[] = $key;
 		}  
 	}
-	$new_selected_cats = implode(',' , $selected_cats);
+
+	$current_cats = get_the_category(get_the_ID());
+	foreach ($current_cats as $key => $cats) {
+		$current_cats_ids[] =$cats->cat_ID;
+	}
+	if( count(array_intersect($selected_cats,$current_cats_ids))>0 ){
+      return true;
+    }
+    return false;
+
+	/* $new_selected_cats = implode(',' , $selected_cats);
 	if(!empty($get_selected_cats)){
 		$the_query = new WP_Query( 
 			array( 
 				'ignore_sticky_posts' => 1,
 				'posts_per_page' 	  => -1,
 				'cat'				  => $new_selected_cats ,
-				'fields'			  => 'ids',
 				'post_type'           => 'post',
 				'post_status'         => 'publish', 
 			) 
@@ -4558,24 +4577,19 @@ function ampforwp_posts_to_remove () {
 		} 
 	}
  	wp_reset_postdata();
-	return $post_id_array;
+	return $post_id_array;*/
 }
 
 add_filter( 'amp_skip_post', 'ampforwp_cat_specific_skip_amp_post', 10, 3 );
 function ampforwp_cat_specific_skip_amp_post( $skip, $post_id, $post ) {
-	$list_of_posts = '';
 	$skip_this_post = '';
-
-	$list_of_posts = ampforwp_posts_to_remove();
-	if ( $list_of_posts ) {
-		$skip_this_post = in_array($post_id, $list_of_posts);
-	}	
-	if( $skip_this_post ) {
+	$skip_this_post = ampforwp_posts_to_remove();
+	if ( $skip_this_post ) {
 	  $skip = true;
 	  remove_action( 'wp_head', 'ampforwp_home_archive_rel_canonical', 1 );
 	  // #999 Disable mobile redirection
 	  remove_action( 'template_redirect', 'ampforwp_page_template_redirect', 30 );
-	}
+	}	
 	return $skip;
 }
 
@@ -4781,9 +4795,10 @@ global $redux_builder_amp;
 	return $supported_types;
 }
 
+
 function is_category_amp_disabled(){
 	global $redux_builder_amp;
-
+	$current_cats_ids = array();
 	if(is_archive() && $redux_builder_amp['ampforwp-archive-support']==1){
 		if(is_tag() && is_array($redux_builder_amp['hide-amp-tags-bulk-option']))	{
 			$all_tags = get_the_tags();
@@ -4800,22 +4815,22 @@ function is_category_amp_disabled(){
 				return false;
 			}
 		}//tags check area closed
-
 		$categories = get_the_category();
-		$selected_cats = array();
 		if ( $categories) {
-			$category_id = $categories[0]->cat_ID;
 			$get_categories_from_checkbox =  $redux_builder_amp['hide-amp-categories']; 
 			// Check if $get_categories_from_checkbox has some cats then only show
 			if ( $get_categories_from_checkbox ) {
 				$get_selected_cats = array_filter($get_categories_from_checkbox);
 				foreach ($get_selected_cats as $key => $value) {
 					$selected_cats[] = $key;
+				}
+				foreach ($categories as $key => $cats) {
+					$current_cats_ids[] =$cats->cat_ID;
 				}  
-				if($selected_cats && $category_id){
-					if(in_array($category_id, $selected_cats)){
-						return true;
-					}
+				if($selected_cats && $current_cats_ids){
+					if( count(array_intersect($selected_cats,$current_cats_ids))>0 ){
+				    	return true;
+				    }
 					else
 						return false;
 				}
@@ -7382,4 +7397,17 @@ function ampforwp_spotim_vuukle_styling(){
 			display: block;text-align: center;background: #1f87e5;color: #fff;border-radius: 4px;
 		} <?php 
 	}
+}
+
+
+function ampforwp_check_excerpt(){
+	global $redux_builder_amp;
+ 
+	$value = '';
+	$value =  ( isset( $redux_builder_amp['excerpt-option'] ) &&  $redux_builder_amp['excerpt-option'] ) ;
+	if ( null == $value ) {
+		$value = '1';
+	}
+ 
+	return $value;
 }
