@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Yoast SEO - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2018-07-10 10:16:04+0000\n"
+"PO-Revision-Date: 2018-07-13 14:46:24+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -423,7 +423,7 @@ msgstr "Descartar este aviso"
 
 #: languages/yoast-components.php:184
 msgid "Learn more about the Snippet Preview."
-msgstr "Aprende más sobre la vista previa del snippet"
+msgstr "Aprende más sobre la vista previa del snippet."
 
 #: languages/yoast-components.php:181
 msgid "This is a rendering of what this post might look like in Google's search results. "
@@ -1164,7 +1164,7 @@ msgstr "El análisis de legibilidad ofrece sugerencias para mejorar la estructur
 
 #: admin/views/tabs/dashboard/features.php:36
 msgid "Discover why readability is important for SEO."
-msgstr "Descubre porqué la legibilidad es importante para el SEO."
+msgstr "Descubre por qué la legibilidad es importante para el SEO."
 
 #: admin/views/tabs/dashboard/features.php:43
 msgid "The cornerstone content feature lets you to mark and filter cornerstone content on your website."
@@ -1172,11 +1172,11 @@ msgstr "La característica de contenido esencial te permite marcar y filtrar con
 
 #: admin/views/tabs/dashboard/features.php:44
 msgid "Find out how cornerstone content can help you improve your site structure."
-msgstr "Descubre como el contenido esencial puede ayudarte a mejorar la estructura de tu sitio."
+msgstr "Descubre cómo el contenido esencial puede ayudarte a mejorar la estructura de tu sitio."
 
 #: admin/views/tabs/dashboard/features.php:52
 msgid "Find out how the text link counter can enhance your SEO."
-msgstr "Descubre como el contador de enlaces de texto puede mejorar tu SEO."
+msgstr "Descubre cómo el contador de enlaces de texto puede mejorar tu SEO."
 
 #. translators: %s expands to Ryte.
 #: admin/views/tabs/dashboard/features.php:68
@@ -4168,7 +4168,7 @@ msgstr "Editor masivo"
 
 #: admin/views/tabs/social/google.php:25
 msgid "Google Publisher Page"
-msgstr "Pagina de Google Publisher"
+msgstr "Página de Google Publisher"
 
 #: admin/views/tabs/social/google.php:22
 msgid "If you have a Google+ page for your business, add that URL here and link it on your Google+ page's about page."
@@ -4193,7 +4193,7 @@ msgstr "Añade meta datos de tarjeta de Twitter"
 
 #: admin/views/tabs/social/facebook.php:79
 msgid "This image is used if the post/page being shared does not contain any images."
-msgstr "Esta imagen se usa si la entrada/pagina compartida no contiene ninguna imagen."
+msgstr "Esta imagen se usa si la entrada/página compartida no contiene ninguna imagen."
 
 #: admin/views/tabs/social/facebook.php:73
 msgid "Default settings"
@@ -5027,7 +5027,7 @@ msgstr "El slug para esta página es un poco largo, plantéate reducirlo."
 #. anchor end tag
 #: languages/yoast-seo-js.php:354
 msgid "The focus keyword does not appear in the %1$sURL%2$s for this page. If you decide to rename the URL be sure to check the old URL 301 redirects to the new one!"
-msgstr "La palabra clave objetivo no aparece en la %1$sURL%2$s de esta página. Si decides renombrar la URL ¡asegúrate de comprobar que la antigua URL redirecciona con un 301 a la nueva!"
+msgstr "La palabra clave objetivo no aparece en la %1$sURL%2$s de esta página. ¡Si decides renombrar la URL asegúrate de comprobar que la antigua URL redirecciona con un 301 a la nueva!"
 
 #: languages/yoast-seo-js.php:376
 msgid "You've never used this focus keyword before, very good."
@@ -5037,7 +5037,7 @@ msgstr "Nunca has usado esta palabra clave objetivo antes, muy bien."
 #. end tag
 #: languages/yoast-seo-js.php:157
 msgid "No %1$sfocus keyword%2$s was set for this page. If you do not set a focus keyword, no score can be calculated."
-msgstr "No se ha establecido una %1$spalabra clave objetivo%2$s para esta pagina. Si no estableces una palabra clave objetivo no se podrá calcular ninguna puntuación."
+msgstr "No se ha establecido una %1$spalabra clave objetivo%2$s para esta página. Si no estableces una palabra clave objetivo no se podrá calcular ninguna puntuación."
 
 #: admin/class-meta-columns.php:132 admin/class-meta-columns.php:616
 msgid "Focus keyword not set."
