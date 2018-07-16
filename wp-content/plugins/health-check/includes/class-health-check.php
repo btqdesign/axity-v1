@@ -8,7 +8,7 @@
 /**
  * Class HealthCheck
  */
-class HealthCheck {
+class Health_Check {
 
 	/**
 	 * Notices to show at the head of the admin screen.
@@ -22,7 +22,7 @@ class HealthCheck {
 	/**
 	 * HealthCheck constructor.
 	 *
-	 * @uses HealthCheck::init()
+	 * @uses Health_Check::init()
 	 *
 	 * @return void
 	 */
@@ -60,6 +60,7 @@ class HealthCheck {
 
 		add_action( 'wp_ajax_health-check-loopback-no-plugins', array( 'Health_Check_Loopback', 'loopback_no_plugins' ) );
 		add_action( 'wp_ajax_health-check-loopback-individual-plugins', array( 'Health_Check_Loopback', 'loopback_test_individual_plugins' ) );
+		add_action( 'wp_ajax_health-check-loopback-default-theme', array( 'Health_Check_Loopback', 'loopback_test_default_theme' ) );
 		add_action( 'wp_ajax_health-check-files-integrity-check', array( 'Health_Check_Files_Integrity', 'run_files_integrity_check' ) );
 		add_action( 'wp_ajax_health-check-view-file-diff', array( 'Health_Check_Files_Integrity', 'view_file_diff' ) );
 		add_action( 'wp_ajax_health-check-mail-check', array( 'Health_Check_Mail_Check', 'run_mail_check' ) );
@@ -111,7 +112,7 @@ class HealthCheck {
 	 * @uses current_user_can()
 	 * @uses ob_start()
 	 * @uses Health_Check_Troubleshoot::mu_plugin_exists()
-	 * @uses HealthCheck::get_filesystem_credentials()
+	 * @uses Health_Check::get_filesystem_credentials()
 	 * @uses Health_Check_Troubleshoot::setup_must_use_plugin()
 	 * @uses Health_Check_Troubleshoot::maybe_update_must_use_plugin()
 	 * @uses ob_get_clean()
@@ -131,7 +132,7 @@ class HealthCheck {
 		$needs_credentials = false;
 
 		if ( ! Health_Check_Troubleshoot::mu_plugin_exists() ) {
-			if ( ! HealthCheck::get_filesystem_credentials() ) {
+			if ( ! Health_Check::get_filesystem_credentials() ) {
 				$needs_credentials = true;
 			} else {
 				$check_output = Health_Check_Troubleshoot::setup_must_use_plugin( false );
@@ -210,8 +211,9 @@ class HealthCheck {
 
 		wp_localize_script( 'health-check', 'HealthCheck', array(
 			'string'  => array(
-				'please_wait' => esc_html__( 'Please wait...', 'health-check' ),
-				'copied'      => esc_html__( 'Copied', 'health-check' ),
+				'please_wait'   => esc_html__( 'Please wait...', 'health-check' ),
+				'copied'        => esc_html__( 'Copied', 'health-check' ),
+				'running_tests' => esc_html__( 'Currently being tested...', 'health-check' ),
 			),
 			'warning' => array(
 				'seen_backup' => Health_Check_Troubleshoot::has_seen_warning(),
@@ -309,14 +311,14 @@ class HealthCheck {
 
 			<?php
 			$tabs = array(
-				'health-check' => esc_html_x( 'Health Check', 'Menu, Section and Page Title', 'health-check' ),
+				'site-status'  => esc_html__( 'Site Status', 'health-check' ),
 				'debug'        => esc_html__( 'Debug Information', 'health-check' ),
 				'troubleshoot' => esc_html__( 'Troubleshooting', 'health-check' ),
 				'phpinfo'      => esc_html__( 'PHP Information', 'health-check' ),
 				'tools'        => esc_html__( 'Tools', 'health-check' ),
 			);
 
-			$current_tab = ( isset( $_GET['tab'] ) ? $_GET['tab'] : 'health-check' );
+			$current_tab = ( isset( $_GET['tab'] ) ? $_GET['tab'] : 'site-status' );
 			?>
 
 			<h2 class="nav-tab-wrapper wp-clearfix">
@@ -350,9 +352,9 @@ class HealthCheck {
 				case 'tools':
 					include_once( HEALTH_CHECK_PLUGIN_DIRECTORY . '/pages/tools.php' );
 					break;
-				case 'health-check':
+				case 'site-status':
 				default:
-					include_once( HEALTH_CHECK_PLUGIN_DIRECTORY . '/pages/health-check.php' );
+					include_once( HEALTH_CHECK_PLUGIN_DIRECTORY . '/pages/site-status.php' );
 			}
 			?>
 		</div>
