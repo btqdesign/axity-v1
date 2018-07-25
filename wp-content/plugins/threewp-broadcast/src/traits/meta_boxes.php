@@ -257,6 +257,7 @@ trait meta_boxes
 			$option = $blogs_input->input( $input_name );
 			$option->get_label()->content = htmlspecialchars( $label );
 			$option->css_class( 'blog ' . $blog->id );
+			$option->title( 'ID: %s', $blog->id );
 			if ( $blog->is_disabled() )
 				$option->disabled()->css_class( 'disabled' );
 			if ( $blog->is_linked() )

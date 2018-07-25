@@ -23,7 +23,6 @@ class Copied_Attachments
 	public function __construct( $broadcasting_data )
 	{
 		$this->broadcasting_data = $broadcasting_data;
-		$this->items = & $this->broadcasting_data->copied_attachments;
 	}
 
 	/**
@@ -36,8 +35,18 @@ class Copied_Attachments
 		$pair->new = $new_attachment;
 		$pair->new->id = $pair->new->ID;		// Lowercase is expected.
 		$pair->old = $old_attachment;
-		$this->set( $old_attachment->ID, $pair );
+		$items = $this->data()->collection( get_current_blog_id() );
+		$items->set( $old_attachment->ID, $pair );
 		return $this;
+	}
+
+	/**
+		@brief		Return the BCD object where our data is stored.
+		@since		2018-07-04 13:59:28
+	**/
+	public function data()
+	{
+		return $this->broadcasting_data->copied_attachments;
 	}
 
 	/**
@@ -46,9 +55,10 @@ class Copied_Attachments
 	**/
 	public function get( $old_attachment_id, $default = null )
 	{
-		if ( ! $this->has( $old_attachment_id ) )
+		$items = $this->data()->collection( get_current_blog_id() );
+		if ( ! $items->has( $old_attachment_id ) )
 			return false;
-		return $this->get_attachment( $old_attachment_id )->ID;
+		return $items->get( $old_attachment_id )->new->ID;
 	}
 
 	/**
@@ -57,8 +67,9 @@ class Copied_Attachments
 	**/
 	public function get_attachment( $old_attachment_id )
 	{
-		if ( ! $this->has( $old_attachment_id ) )
+		$items = $this->data()->collection( get_current_blog_id() );
+		if ( ! $items->has( $old_attachment_id ) )
 			return false;
-		return $this->items[ $old_attachment_id ]->new;
+		return $items->get( $old_attachment_id )->new;
 	}
 }

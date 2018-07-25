@@ -310,7 +310,7 @@ trait edd
 		// Redhat / CentOS uses a broken version of OpenSSL. Work around it.
 		$workaround = $this->edd_enable_ssl_workaround();
 		$workaround |= @ file_exists( '/etc/redhat-release' );
-		if ( $workaround && count( $this->edd_get_ssl_workaround_urls() > 0 ) )
+		if ( $workaround && ( count( $this->edd_get_ssl_workaround_urls() ) > 0 ) )
 			$this->add_filter( 'http_api_transports', 'edd_http_api_transports', 10, 3 );
 
 		$status = $this->edd_get_cached_license_status();
