@@ -34,7 +34,7 @@
         $safe_sync_on = $this->get_option('safe_sync');
 
         $wpbackitup_license = new WPBackItUp_License();
-        $is_lite_registered = $wpbackitup_license->is_lite_registered();
+        $is_ce_registered   = $wpbackitup_license->is_ce_registered();
 
 
         //Make sure backup folder exists - should this be in activation?
@@ -488,11 +488,11 @@ if (!$backup_folder_exists) {
           if( has_action('wpbackitup_render_license_registration_form')) {
               do_action('wpbackitup_render_license_registration_form');
        } else {
-          if (false===$is_lite_registered) { ?>
+          if ( false === $is_ce_registered) { ?>
               <div class="widget">
                   <h3 class="promo"><span><?php _e('Register WPBackItUp', 'wp-backitup'); ?></span></h3>
                   <form action="" method="post" id="<?php echo $namespace; ?>-form">
-                      <?php wp_nonce_field($namespace . "-register"); ?>
+                      <?php wp_nonce_field($namespace . "-register-ce"); ?>
                       <p><?php _e('Enter your name and email address below to receive <b>special offers</b> and access to our world class <b>support</b> team.  <br />', 'wp-backitup'); ?></p>
                       <input type="text" name="license_name" id="license_name" placeholder="<?php _e('name','wp-backitup')?>" /><br/>
                       <input type="text" name="license_email" id="license_email" placeholder="<?php _e('email address','wp-backitup')?>" /><br/>

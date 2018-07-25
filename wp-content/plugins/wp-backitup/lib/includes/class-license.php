@@ -26,19 +26,25 @@ class WPBackItUp_License {
 	private $customer_name=null;
 	private $license_expires_date=null;
 	private $license_last_check_date=null;
+	private $license_product_id=null;
+
+	const   PREMIUM_PRODUCT_ID  =679;
+	const   LITE_PRODUCT_ID     =448151;
+	const   SAFE_PRODUCT_ID     =436624;
 
 	//Default license property values
 	private static $defaults = array(
-		'license_key' => "lite",
+		'license_key' => "",
 		'license_last_check_date'=> "1970-01-01 00:00:00",
 		'license_status' => "",
 		'license_status_message'=> "",
-		'license_type' => "0",
+		'license_type' => "-1",
 		'license_expires'=> "1970-01-01 00:00:00",
 		'license_limit'=> "1",
 		'license_sitecount'=> "",
 		'license_customer_name' => "",
-		'license_customer_email' => ""
+		'license_customer_email' => "",
+		'license_product_id' => "ce",
 	);
 
 	function __construct() {
@@ -57,8 +63,8 @@ class WPBackItUp_License {
 
 	/**
 	 * Is license active
-	 * - license key will be empty for unregistered lite customers
-	 * - license key will contain free for lite user license status
+	 * - license key will be empty for unregistered ce customers
+	 * - license key will contain free for ce user license status
 	 *
 	 */
 	public function is_license_active(){
@@ -168,7 +174,7 @@ class WPBackItUp_License {
 	/**
 	 * Getter: Get license type or default
 	 *
-	 * @return string default 0
+	 * @return string default -1
 	 */
 	public function get_license_type() {
 
@@ -180,14 +186,29 @@ class WPBackItUp_License {
 
 	}
 
+	/**
+	 * Getter: Get license product id
+	 *
+	 * @return string
+	 */
+	public function get_license_product_id() {
+
+		if ( is_null($this->license_product_id)){
+			$this->license_product_id = WPBackItUp_Utility::get_option( 'license_product_id',self::$defaults['license_product_id'] );
+		}
+
+		return $this->license_product_id;
+
+	}
+
 
 	/**
-	 * Getter - Is lite license registered
+	 * Getter - Is ce license registered
 	 *
 	 * @return bool
 	 */
-	function is_lite_registered(){
-		if (0 == $this->get_license_type() && $this->get_customer_email()) {
+	function is_ce_registered(){
+		if (-1 == $this->get_license_type() && $this->get_customer_email()) {
 			return true;
 		} else {
 			return false;
@@ -204,6 +225,9 @@ class WPBackItUp_License {
 		if (is_null($this->license_type_description)) {
 
 			switch ($this->get_license_type()) {
+				case -1:
+					$this->license_type_description = 'community edition';
+					break;
 				case 0:
 					$this->license_type_description = 'lite';
 					break;
@@ -272,48 +296,19 @@ class WPBackItUp_License {
 	 *
 	 * @param $license
 	 *
-	 * @param $item_name
+	 * @param $item_nid
 	 *
 	 * @return bool|mixed
 	 */
-	public function activate_license($license, $item_name){
+	public function activate_license($license, $item_id){
 
 		$request_data = array(
-			'license' 		=> $license,
-			'item_name' 	=> urlencode( $item_name ),
-			'url'           => home_url()
+			'license' 	=> $license,
+			'item_id' 	=> $item_id,
+			'url'       => home_url()
 		);
 
-		$license_data =  $this->edd_license_api_request(WPBACKITUP__API_URL, 'activate_license', $request_data);
-
-		//if false try using site directly
-		if ( false === $license_data) {
-			WPBackItUp_Logger::log_error($this->log_name,__METHOD__, 'Unable to activate using Gateway  - attemtping direct');
-			$license_data= $this->edd_license_api_request(WPBACKITUP__SECURESITE_URL,'activate_license', $request_data);
-		}
-
-		return $license_data;
-
-	}
-
-	/**
-	 * Check WPBackItUp License
-	 *
-	 * @param $license
-	 *
-	 * @param $item_name
-	 *
-	 * @return bool|mixed
-	 */
-	public function check_license($license, $item_name){
-
-		$request_data = array(
-			'license' 		=> $license,
-			'item_name' 	=> urlencode( $item_name ),
-			'url'           => home_url()
-		);
-
-		$license_data =  $this->edd_license_api_request(WPBACKITUP__API_URL, 'check_license', $request_data);
+		$license_data =  $this->edd_license_api_request(WPBACKITUP__API_URL_V2, 'activate_license', $request_data);
 
 		//if false try using site directly
 		if ( false === $license_data) {
@@ -325,24 +320,88 @@ class WPBackItUp_License {
 
 	}
 
+//	/**
+//	 * Check WPBackItUp License - dont think this is being used anywhere
+//	 *
+//	 * @param $license
+//	 *
+//	 * @param $item_id
+//	 *
+//	 * @return bool|mixed
+//	 */
+//	public function check_license($license, $item_id){
+//
+//		$request_data = array(
+//			'license' 	=> $license,
+//			'item_id' 	=> $item_id ,
+//			'url'       => home_url()
+//		);
+//
+//		$license_data =  $this->edd_license_api_request(WPBACKITUP__API_URL_V2, 'check_license', $request_data);
+//
+//		//if false try using site directly
+//		if ( false === $license_data) {
+//			WPBackItUp_Logger::log_error($this->log_name,__METHOD__, 'Unable to activate using Gateway  - attempting direct');
+//			$license_data= $this->edd_license_api_request(WPBACKITUP__SECURESITE_URL,'activate_license', $request_data);
+//		}
+//
+//		return $license_data;
+//
+//	}
+
+	/**
+	 * Acion: Validate License Info
+	 *  - This is only used for PREMIUM and LITE plugins - not used in CE
+	 *
+	 * @since    1.24
+	 *
+	 */
+	public function check_license($force_check=false){
+
+		//Get License Info
+		$license_key=$this->get_license_key();
+		$license_product_id=$this->get_license_product_id();
+		$license_type=$this->get_license_type();
+
+		//If there is no product id but the license type is premium then default product id
+//		error_log(var_export($license_key,true));
+//		error_log(var_export($license_product_id,true));
+//		error_log(var_export($license_type,true));
+
+		$license_last_check_date=$this->get_license_last_check_date();
+		//error_log('Last License Check:' . $license_last_check_date->format('Y-m-d H:i:s'));
+
+		$now = new DateTime('now');//Get NOW
+		$yesterday = $now->modify('-1 day');//subtract a day
+		//error_log('Yesterday:' .$yesterday->format('Y-m-d H:i:s'));
+
+		//Validate License
+		//error_log('Check:' . ($license_last_check_date<$yesterday || $force_check?'true' :'false') );
+		if ($license_last_check_date<$yesterday || $force_check)
+		{
+			//error_log('Checking license...');
+			$this->update_license_options($license_key,$license_product_id);
+		}
+	}
+
 	/**
 	 * Deactivate WPBackItUp License for site identified in home_url value
 	 *
 	 * @param $license
 	 *
-	 * @param $item_name
+	 * @param $item_id
 	 *
 	 * @return bool|mixed
 	 */
-	public function deactivate_license($license, $item_name){
+	public function deactivate_license($license, $item_id){
 
 		$request_data = array(
-			'license' 		=> $license,
-			'item_name' 	=> urlencode( $item_name ),
-			'url'           => home_url()
+			'license' 	=> $license,
+			'item_id' 	=> $item_id,
+			'url'       => home_url()
 		);
 
-		$license_data =  $this->edd_license_api_request(WPBACKITUP__API_URL, 'deactivate_license', $request_data);
+		$license_data =  $this->edd_license_api_request(WPBACKITUP__API_URL_V2, 'deactivate_license', $request_data);
 
 		//if false try using site directly
 		if ( false === $license_data) {
@@ -390,11 +449,44 @@ class WPBackItUp_License {
 	}
 
 	/**
-	 * Update ALL the license options
+	 * Customer has lite license
+	 *
+	 * @return bool
 	 */
-	public function update_license_options($license)
-	{
+	public function is_lite_license(){
 
+		if (0==$this->get_license_type()){
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * Customer has CE
+	 *
+	 * @return bool
+	 */
+	public function is_ce_license(){
+
+		if (-1==$this->get_license_type()){
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * Update ALL the license options
+	 * Product ids
+     * 679      -  Premium
+	 * 448151   -  Lite
+	 * 436624   -  Safe
+	 *
+	 *
+	 */
+	public function update_license_options($license,$product_id)
+	{
 		// Clearing any old notices
 		delete_transient( 'wpbackitup_admin_notices' );
 
@@ -418,17 +510,22 @@ class WPBackItUp_License {
 		$data['license_customer_name'] = $this->get_customer_name();
 		$data['license_customer_email'] = $this->get_customer_email();
 
-		//If no value then default to lite
-		if (empty($license) || 'lite'== $license ){
+		$data['license_product_id'] = self::$defaults['license_product_id'];
+
+		//If no value then default to CE
+		if (empty($license)){
+			//error_log('empty_license');
 			$data['license_status'] = 'free';
 			$data['license_expires']= self::$defaults['license_expires'];
 			$data['license_limit']= 1;
 			$data['license_sitecount']= 1;
-			$data['license_type']= 0;
+			$data['license_type']= -1;
 		} else {
 
+			//error_log('activate license');
 			//activate license using SSL
-			$license_data= $this->activate_license($license,WPBACKITUP__ITEM_NAME);
+			$license_data= $this->activate_license($license,$product_id);
+			//error_log('here:' .var_export($license_data,true));
 
 			if ( false === $license_data){
 				//update license last checked date and
@@ -471,6 +568,8 @@ class WPBackItUp_License {
 			$data['license_key'] = $license;
 			$data['license_status'] = $license_data->license;
 
+			$data['license_product_id'] = $license_data->item_id;
+
 			if (property_exists($license_data,'error')) {
 				$data['license_status_message'] = $license_data->error;
 			}
@@ -482,24 +581,31 @@ class WPBackItUp_License {
 			$data['license_customer_name'] = $license_data->customer_name;
 			$data['license_customer_email'] = $license_data->customer_email;
 
-			//This is how we determine the type of license because
-			//there is no difference in EDD
-			if (is_numeric($license_data->license_limit)){
+			$item_id = urldecode($license_data->item_id);
 
-				//Personal
-				if ($license_data->license_limit<5) {
-					$data['license_type'] = 1;
-				}
+			//Which product? - Would be better to use item ID when refactored
+			if (self::PREMIUM_PRODUCT_ID==$item_id) {
 
-				//Business
-				if ($license_data->license_limit>=5  && $license_data->license_limit<20) {
-					$data['license_type'] = 2;
-				}
+				//This is how we determine the type of license because
+				//there is no difference in EDD
+				if ( is_numeric( $license_data->price_id ) ) {
 
-				//Professional
-				if ($license_data->license_limit>=20) {
-					$data['license_type'] = 3;
+					switch ( $license_data->price_id ) {
+						case 0: //personal
+							$data['license_type'] = 1;
+							break;
+						case 1://professional
+							$data['license_type'] = 2;
+							break;
+						case 2://premium
+							$data['license_type'] = 3;
+							break;
+					}
 				}
+			} else if (self::LITE_PRODUCT_ID==$item_id) {
+				$data['license_type'] = 0;
+			} else {
+				$data['license_type'] = -1; //CE
 			}
 
 			// admin notices
@@ -525,7 +631,7 @@ class WPBackItUp_License {
 						)
 					);
 
-					// add scheduler stoped
+					// add scheduler stopped
 					array_push($admin_notices,
 						array(
 							'message_type' => 'warning',
@@ -561,7 +667,7 @@ class WPBackItUp_License {
 		return true;
 	}
 
-	public function register_lite($form_data,$use_ssl=true){
+	public function register_ce($form_data,$use_ssl=true){
 		$registration_logname='debug_registration';
 		$post_url = '/api/wpbackitup/register_lite';
 
@@ -570,8 +676,8 @@ class WPBackItUp_License {
 		} else {
 			$post_url = WPBACKITUP__SITE_URL . $post_url;
 		}
-		WPBackItUp_Logger::log_info($registration_logname,__METHOD__, 'Lite User Registration Post URL: ' . $post_url );
-		WPBackItUp_Logger::log_info($registration_logname,__METHOD__, 'Lite User Registration Post Form Data: ' );
+		WPBackItUp_Logger::log_info($registration_logname,__METHOD__, 'CE User Registration Post URL: ' . $post_url );
+		WPBackItUp_Logger::log_info($registration_logname,__METHOD__, 'CE User Registration Post Form Data: ' );
 		WPBackItUp_Logger::log($registration_logname,$form_data );
 
 		$response = wp_remote_post( $post_url, array(
@@ -586,12 +692,12 @@ class WPBackItUp_License {
 
 		if ( is_wp_error( $response ) ) {
 			$error_message = $response->get_error_message();
-			WPBackItUp_Logger::log_error($registration_logname,__METHOD__, 'Lite User Registration Error: ' . $error_message );
+			WPBackItUp_Logger::log_error($registration_logname,__METHOD__, 'CE User Registration Error: ' . $error_message );
 
 			return false;
 
 		} else {
-			WPBackItUp_Logger::log_info($registration_logname,__METHOD__, 'Lite User Registered Successfully:' );
+			WPBackItUp_Logger::log_info($registration_logname,__METHOD__, 'CE User Registered Successfully:' );
 			WPBackItUp_Logger::log($registration_logname,$response );
 
 			return true;
@@ -615,22 +721,21 @@ class WPBackItUp_License {
 		$api_params = array(
 			'edd_action' 	=> $action,
 			'license' 		=> $request_data['license'],
-			'item_name' 	=> $request_data['item_name'],
+			'item_id' 	    => $request_data['item_id'],
 			'url'           => $request_data['url']
 		);
-
 		WPBackItUp_Logger::log_info($this->log_name,__METHOD__, 'Activate License Request Info:');
 		WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'API URL:' .$activation_url);
 		WPBackItUp_Logger::log($this->log_name,$api_params);
 
-		$response = wp_remote_get(
-			add_query_arg( $api_params, $activation_url ),
-			array( 'timeout' => 25,
-			       'sslverify' => false
-			)
+		// Call the custom API.
+		$response = wp_remote_post( $activation_url,
+			array( 'timeout' => 15,
+	        'sslverify' => false,
+            'body' => $api_params )
 		);
-		WPBackItUp_Logger::log_info($this->log_name,__METHOD__, 'API Response:'. var_export( $response,true ));
 
+		WPBackItUp_Logger::log_info($this->log_name,__METHOD__, 'API Response:'. var_export( $response,true ));
 
 		$response_code = wp_remote_retrieve_response_code($response);
 		WPBackItUp_Logger::log_info($this->log_name,__METHOD__, 'Response Code:'. $response_code);
@@ -654,6 +759,4 @@ class WPBackItUp_License {
 			return false;
 		}
 	}
-
-
 }

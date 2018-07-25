@@ -113,8 +113,14 @@ class WPBackitup_Admin {
 	 */
 	private function load_dependencies() {
 
+		//Scheduler Class
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-job-scheduler.php';
+
 		//API Class
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-api.php';
+
+		//License Class
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-license.php';
 
 	}
 
@@ -193,10 +199,17 @@ class WPBackitup_Admin {
         //Create Daily backup action
         add_action( 'wpbackitup_queue_scheduled_jobs',  array( &$this,'wpbackitup_queue_scheduled_jobs'));
 
+        //add scheduler actions
+	    $job_scheduler = new WPBackItUp_Job_Scheduler();
+	    add_action( 'wpbackitup_jobs_scheduled', array($job_scheduler, 'jobs_scheduled' ));
+	    add_action( 'wpbackitup_save_schedule', array($job_scheduler, 'save_backup_schedule' ));
 
 	    $api = new WPBackItUp_API();
 	    add_action( $ajax_prefix. 'get_available_backups',array($api,'get_available_backups'));
 
+	    //License action
+	    $wpbackitup_license = new WPBackItUp_License();
+	    add_action( 'wpbackitup_check_license', array($wpbackitup_license, 'check_license'));
 
     }
 
@@ -452,13 +465,21 @@ class WPBackitup_Admin {
 
                 if( wp_verify_nonce( $nonce, "{$this->namespace}-update-options" ) ) {
 	                WPBackItUp_Logger::log_info($wpbdebug_logname,__METHOD__,'Update Options Form Post');
-                    $this->_admin_options_update();
+	                //error_log('update options');
+	                $this->_admin_register();
                 }
 
                 if( wp_verify_nonce( $nonce, "{$this->namespace}-register" ) ) {
+	                //error_log('register');
 	                WPBackItUp_Logger::log_info($wpbdebug_logname,__METHOD__,'Register Lite Form Post');
                     $this->_admin_register();
                 }
+
+	            if( wp_verify_nonce( $nonce, "{$this->namespace}-register-ce" ) ) {
+		            //error_log('register-ce');
+		            WPBackItUp_Logger::log_info($wpbdebug_logname,__METHOD__,'Register Lite Form Post');
+		            $this->_admin_register();
+	            }
 
                 if( wp_verify_nonce( $nonce, "{$this->namespace}-update-schedule" ) ) {
 	                WPBackItUp_Logger::log_info($wpbdebug_logname,__METHOD__,'Update Schedule Form Post');
@@ -512,7 +533,7 @@ class WPBackitup_Admin {
 		require_once( WPBACKITUP__PLUGIN_PATH . '/lib/includes/class-job-task.php' );
         require_once( WPBACKITUP__PLUGIN_PATH . '/lib/includes/class-job-item.php' );
 
-	    require_once( WPBACKITUP__PLUGIN_PATH . '/lib/includes/class-license.php' );
+//	    require_once( WPBACKITUP__PLUGIN_PATH . '/lib/includes/class-license.php' );
         require_once( WPBACKITUP__PLUGIN_PATH . '/lib/includes/class-cleanup.php' );
 
 	    require_once( WPBACKITUP__PLUGIN_PATH . '/lib/includes/class-cron.php' );
@@ -529,7 +550,6 @@ class WPBackitup_Admin {
 
 	    //Admin Bar
 	    require_once( WPBACKITUP__PLUGIN_PATH . '/lib/includes/class-admin-bar.php' );
-
 
 		$languages_path = dirname(dirname(dirname( plugin_basename( __FILE__ )))) . '/languages/';
 
@@ -1212,48 +1232,50 @@ class WPBackitup_Admin {
      * Process update page form submissions and validate license key
      * 
      */
-    public  function _admin_options_update() {
-        // Verify submission for processing using wp_nonce
-        if( wp_verify_nonce( $_REQUEST['_wpnonce'], "{$this->namespace}-update-options" ) ) {
-
-            /**
-             * Loop through each POSTed value and sanitize it to protect against malicious code. Please
-             * note that rich text (or full HTML fields) should not be processed by this function and 
-             * dealt with directly.
-             */
-
-	        $debug_logname='wpb_debug';
-	        WPBackItUp_Logger::log_info($debug_logname,__METHOD__, 'Posted Fields');
-	        WPBackItUp_Logger::log($debug_logname, $_POST['data']); //License will not be in this array
-
-	        $wpbackitup_license = new WPBackItUp_License();
-            foreach( $_POST['data'] as $key => $val ) {
-                $posted_value = $this->_sanitize($val);
-                //If license updated then validate
-                if (!empty($key) && $key=='license_key') {
-	                WPBackItUp_Logger::log_info($debug_logname,__METHOD__, 'License Posted:' .$posted_value);
-	                $wpbackitup_license->update_license_options($posted_value);
-                }
-                else {
-                    $data[$key] =$posted_value;
-                }
-            }
-
-            //Could have just been a license update
-            if(!empty($data)) {
-
-                // Update the options value with the data submitted
-                foreach( $data as $key => $val ) {
-                    $this->set_option($key, $val);
-	                WPBackItUp_Logger::log_info($debug_logname,__METHOD__, 'Updated Option: ' .$key .':' .$val);
-                }
-            }
-
-            // Redirect back to the options page with the message flag to show the saved message
-            wp_safe_redirect( $_REQUEST['_wp_http_referer'] . '&update=1' );
-            exit;
-        }
-    }
+//    public  function _admin_options_update() {
+//        // Verify submission for processing using wp_nonce
+//        if( wp_verify_nonce( $_REQUEST['_wpnonce'], "{$this->namespace}-update-options" ) ) {
+//
+//            /**
+//             * Loop through each POSTed value and sanitize it to protect against malicious code. Please
+//             * note that rich text (or full HTML fields) should not be processed by this function and
+//             * dealt with directly.
+//             */
+//
+//	        $debug_logname='wpb_debug';
+//	        WPBackItUp_Logger::log_info($debug_logname,__METHOD__, 'Posted Fields');
+//	        WPBackItUp_Logger::log($debug_logname, $_POST['data']); //License will not be in this array
+//
+//	        $wpbackitup_license = new WPBackItUp_License();
+//            foreach( $_POST['data'] as $key => $val ) {
+//            	error_log('here'. $val);
+//
+//                $posted_value = $this->_sanitize($val);
+//                //If license updated then validate
+//                if (!empty($key) && $key=='license_key') {
+//	                WPBackItUp_Logger::log_info($debug_logname,__METHOD__, 'License Posted:' .$posted_value);
+//	                $wpbackitup_license->update_license_options($posted_value);
+//                }
+//                else {
+//                    $data[$key] =$posted_value;
+//                }
+//            }
+//
+//            //Could have just been a license update
+//            if(!empty($data)) {
+//
+//                // Update the options value with the data submitted
+//                foreach( $data as $key => $val ) {
+//                    $this->set_option($key, $val);
+//	                WPBackItUp_Logger::log_info($debug_logname,__METHOD__, 'Updated Option: ' .$key .':' .$val);
+//                }
+//            }
+//
+//            // Redirect back to the options page with the message flag to show the saved message
+//            wp_safe_redirect( $_REQUEST['_wp_http_referer'] . '&update=1' );
+//            exit;
+//        }
+//    }
 
 
     /***
@@ -1643,71 +1665,66 @@ class WPBackitup_Admin {
      *
      */
     public  function _admin_register() {
-        // Verify submission for processing using wp_nonce
-        if( wp_verify_nonce( $_REQUEST['_wpnonce'], "{$this->namespace}-register" ) ) {
 
-            /**
-             * Loop through each POSTed value and sanitize it to protect against malicious code. Please
-             * note that rich text (or full HTML fields) should not be processed by this function and
-             * dealt with directly.
-             */
+        $registration_logname='debug_registration';
+        WPBackItUp_Logger::log_info($registration_logname,__METHOD__, 'Register WPBackItUp');
+        WPBackItUp_Logger::log($registration_logname,var_export($_POST,true));
 
-	        $registration_logname='debug_registration';
-	        WPBackItUp_Logger::log_info($registration_logname,__METHOD__, 'Register WPBackItUp');
-	        WPBackItUp_Logger::log($registration_logname,$_POST);
+        //First lets check the license
+        $license_key = $_POST['license_key'];
+        $license_key = $this->_sanitize($license_key);
 
-            //First lets check the license
-            $val = $_POST['license_key'];
-            $license_key = $this->_sanitize($val);
+        $product_id = $_POST['product_id'];
+        $product_id = $this->_sanitize($product_id);
 
-	        $wpbackitup_license = new WPBackItUp_License();
+        $wpbackitup_license = new WPBackItUp_License();
 
-            //activate the license if entered
-	        WPBackItUp_Logger::log_info($registration_logname,__METHOD__, 'Activate License');
-	        $wpbackitup_license->update_license_options($license_key);
+        //activate the license if entered
+        WPBackItUp_Logger::log_info($registration_logname,__METHOD__, 'Activate License');
+        $wpbackitup_license->update_license_options($license_key,$product_id);
 
-            //LITE users only
-            if ('0' == $wpbackitup_license->get_license_type()) {
+        //CE users only
+        if ('-1' == $wpbackitup_license->get_license_type()) {
 
-	            WPBackItUp_Logger::log_info($registration_logname,__METHOD__, 'Register WPBackItUp LITE');
+            WPBackItUp_Logger::log_info($registration_logname,__METHOD__, 'Register WPBackItUp LITE');
 
-                $val           = $_POST['license_email'];
-                $license_email = $this->_sanitize( $val );
-                if ( ! empty( $license_email ) && filter_var( $license_email, FILTER_VALIDATE_EMAIL ) ) {
-                    $urlparts = parse_url( site_url() );
-                    $domain   = $urlparts['host'];
+            $val           = $_POST['license_email'];
+            $license_email = $this->_sanitize( $val );
+            if ( ! empty( $license_email ) && filter_var( $license_email, FILTER_VALIDATE_EMAIL ) ) {
+                $urlparts = parse_url( site_url() );
+                $domain   = $urlparts['host'];
 
-                    $license_name = $_POST['license_name'];
+                $license_name = $_POST['license_name'];
 
-                    //save options to DB
-                    $this->set_option( 'license_customer_email', $license_email );
-                    if ( ! empty( $license_name ) ) {
-                        $this->set_option( 'license_customer_name', $license_name );
-                    }
+                //save options to DB
+                $this->set_option( 'license_customer_email', $license_email );
+                if ( ! empty( $license_name ) ) {
+                    $this->set_option( 'license_customer_name', $license_name );
+                }
 
-                    $form_data = array(
-                        'email'     => $license_email,
-                        'site'      => $domain,
-                        'name'      => $license_name,
-                        'time_zone' => get_option( 'timezone_string' ),
-                    );
+                $form_data = array(
+                    'email'     => $license_email,
+                    'site'      => $domain,
+                    'name'      => $license_name,
+                    'time_zone' => get_option( 'timezone_string' ),
+                );
 
 
-                    $registration_response = $wpbackitup_license->register_lite($form_data);
-                    if ( false===$registration_response ) {
-                        WPBackItUp_Logger::log_error($registration_logname,__METHOD__, 'Unable to register using SSL - attempting NONSSL' );
-                        //try without SSL
-                        if ( false===$wpbackitup_license->register_lite($form_data,false) ) {
-                            WPBackItUp_Logger::log_error($registration_logname,__METHOD__, 'Unable to register using SSL' );
-                        }
+                $registration_response = $wpbackitup_license->register_ce($form_data);
+                if ( false===$registration_response ) {
+                    WPBackItUp_Logger::log_error($registration_logname,__METHOD__, 'Unable to register using SSL - attempting NONSSL' );
+                    //try without SSL
+                    if ( false===$wpbackitup_license->register_ce($form_data,false) ) {
+                        WPBackItUp_Logger::log_error($registration_logname,__METHOD__, 'Unable to register using SSL' );
                     }
                 }
             }
-
-            // Redirect back to the options page with the message flag to show the saved message
-            wp_safe_redirect( $_REQUEST['_wp_http_referer'] . '&update=1' );
-            exit;
         }
+
+        // Redirect back to the options page with the message flag to show the saved message
+        wp_safe_redirect( $_REQUEST['_wp_http_referer'] . '&update=1' );
+        exit;
+
     }
 
 
@@ -1820,7 +1837,10 @@ class WPBackitup_Admin {
             	$wpbackitup_license = new WPBackItUp_License();
 
                 switch ($wpbackitup_license->get_license_type()) {
-                    case 0: //Lite
+	                case -1: //CE
+		                $this->backup_retained_number=1;
+		                break;
+                	case 0: //Lite
                         $this->backup_retained_number=1;
                         break;
                     case 1: //Personal
