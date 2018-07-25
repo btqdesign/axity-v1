@@ -1147,6 +1147,7 @@ class SitePress extends WPML_WPDB_User implements
 		                                                       $page_basename );
 
 		$this->scripts_handler->register_styles();
+		$this->scripts_handler->register_scripts();
 
 		if ( is_admin() && ! defined( 'DOING_AJAX' ) ) {
 
