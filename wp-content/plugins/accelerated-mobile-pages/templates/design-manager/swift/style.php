@@ -327,6 +327,11 @@ if(isset($redux_builder_amp['amp_font_selector_content_single']) && $redux_build
 $fontFamily = "font-family: '".$redux_builder_amp['amp_font_selector_content_single']."';"; }  
 echo $fontFamily;?>
 }
+<?php if($redux_builder_amp['single-new-features'] && $redux_builder_amp['ampforwp-underline-content-links']){ ?> 
+.artl-cnt a{
+	text-decoration: underline;
+}
+<?php } // Underline CSS Ends?>
 .tl-exc{font-size: 16px;color: #444;margin-top: 10px;line-height:20px;}
 .amp-category span:nth-child(1) {display: none;}
 .amp-category span a, .amp-category span{color: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;font-size: 12px;font-weight: 500;text-transform: uppercase;}
@@ -362,26 +367,37 @@ echo $fontFamily;?>
 .cntn-wrp{font-size:18px;color:#000;line-height:1.7;}
 .sp-artl h1, h2, h3, h4, h5, h6{margin-bottom:5px;}
 <?php // H1 - H6 Font Sizes 
-if($redux_builder_amp['swift_cnt']){ 
-	if($redux_builder_amp['swift_cnt_h1']){ ?>
+	if($redux_builder_amp['swift_cnt'] && $redux_builder_amp['swift_cnt_h1']){ ?>
 		.cntn-wrp h1{font-size:<?php echo $redux_builder_amp['swift_h1_sz']?>;}
-	<?php } //H1 ends 
-	if($redux_builder_amp['swift_cnt_h2']){ ?>
+	<?php } else { ?>
+		.cntn-wrp h1 {font-size: 32px;}
+	<?php } //H1 ends
+	if($redux_builder_amp['swift_cnt'] && $redux_builder_amp['swift_cnt_h2']){ ?>
 		.cntn-wrp h2{font-size:<?php echo $redux_builder_amp['swift_h2_sz']?>;}
-	<?php } //H2 ends 
-	if($redux_builder_amp['swift_cnt_h3']){ ?>
+	<?php } else { ?>
+		.cntn-wrp h2 {font-size: 27px;}
+	<?php } // H2 Ends
+	if($redux_builder_amp['swift_cnt'] && $redux_builder_amp['swift_cnt_h3']){ ?>
 		.cntn-wrp h3{font-size:<?php echo $redux_builder_amp['swift_h3_sz']?>;}
-	<?php } //H3 ends 
-	if($redux_builder_amp['swift_cnt_h4']){ ?>	
+	<?php } else { ?>
+		.cntn-wrp h3 {font-size: 24px;}
+	<?php } // H3 Ends
+	if($redux_builder_amp['swift_cnt'] && $redux_builder_amp['swift_cnt_h4']){ ?>	
 		.cntn-wrp h4{font-size:<?php echo $redux_builder_amp['swift_h4_sz']?>;}
-	<?php } //H4 ends
-	if($redux_builder_amp['swift_cnt_h5']){ ?>
+	<?php } else { ?>
+		.cntn-wrp h4 {font-size: 20px;}
+	<?php } // H4 Ends
+	if($redux_builder_amp['swift_cnt'] && $redux_builder_amp['swift_cnt_h5']){ ?>
 		.cntn-wrp h5{font-size:<?php echo $redux_builder_amp['swift_h5_sz']?>;}
-	<?php } //H5 ends
-	if($redux_builder_amp['swift_cnt_h6']){ ?>
+	<?php } else { ?>
+		.cntn-wrp h5 {font-size: 17px;}
+	<?php } // H5 Ends
+	if($redux_builder_amp['swift_cnt'] && $redux_builder_amp['swift_cnt_h6']){ ?>
 		.cntn-wrp h6{font-size:<?php echo $redux_builder_amp['swift_h6_sz']?>;}
-	<?php } //H6 ends
-} // swift Content Heading Sizes Ends?>
+	<?php } else { ?>
+		.cntn-wrp h6 {font-size: 15px;}
+	<?php } // H6 Ends
+ // swift Content Heading Sizes Ends?>
 .cntn-wrp p{margin:0px 0px 30px 0px;}
 .sp-rt p strong, .pg p strong{font-weight: 700;}
 .srp .amp-related-posts amp-img{float: left;width: 100%;margin: 0px;height:100%;}
