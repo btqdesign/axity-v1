@@ -4,7 +4,7 @@ Tags: backup, backups, back up, backup plugin, database backup, multisite backup
 Requires at least: 3.8.0
 Requires PHP: 5.2.4
 Tested up to: 4.9
-Stable tag: 1.22.0
+Stable tag: 1.23.0
 Author URI: https://www.wpbackitup.com
 Donate link: https://www.wpbackitup.com
 License: GPLv2 or later
@@ -18,6 +18,8 @@ With the [WPBackItUp Backup Plugin](https://www.wpbackitup.com/?utm_medium=partn
 WPBackItUp generates a compressed backup of your entire website no matter how large a site you have.  Your backup can be quickly and easily downloaded right from your WordPress dashboard.
 
 The WPBackItUp backup plugin has been available to the WordPress community since **2012** and is used to back up more than **30,000** websites every day.  It's one of the most widely **tested**, **reliable**, and **highly rated** backup plugins available!  And with our long history, you can feel confident that we are going to be around for many years to come.
+
+[vimeo https://vimeo.com/278025146]
 
 = The Simplest Way to Safeguard Your WordPress Site! =
 Simply install WPBackItUp and within minutes you will have a complete backup of your entire site.
@@ -215,7 +217,19 @@ Our online documentation and full list of FAQs can be found at [support.wpbackit
 
 
 == Changelog ==
-= 1.22 =
+= 1.25 =
+*Release Date -  July 19, 2018
+
+* Fix   : Fix plugin update to product id
+
+= 1.24 =
+*Release Date -  July 19, 2018
+
+* UPDATE: Remove Independence Day Promo
+* UPDATE: Updates to core to support LITE version of plugin
+* Fix   : Fix JS error when WPBackItUp-Safe not installed
+
+= 1.23 =
 *Release Date -  July 2, 2018
 
 * UPDATE: Add Independence Day Promo

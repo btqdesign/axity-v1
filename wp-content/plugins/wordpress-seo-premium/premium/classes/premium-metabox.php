@@ -67,7 +67,7 @@ class WPSEO_Premium_Metabox implements WPSEO_WordPress_Integration {
 			wp_enqueue_script( WPSEO_Admin_Asset_Manager::PREFIX . 'premium-metabox' );
 			wp_enqueue_style( WPSEO_Admin_Asset_Manager::PREFIX . 'premium-metabox' );
 
-			$localization = new WPSEO_Admin_Asset_Yoast_Components_l10n();
+			$localization = new WPSEO_Admin_Asset_Yoast_Components_L10n();
 			$localization->localize_script( WPSEO_Admin_Asset_Manager::PREFIX . 'premium-metabox' );
 
 			$this->send_data_to_assets();
@@ -95,7 +95,10 @@ class WPSEO_Premium_Metabox implements WPSEO_WordPress_Integration {
 			$insights_enabled = false;
 		}
 
+		$analysis_seo = new WPSEO_Metabox_Analysis_SEO();
+
 		$data = array(
+			'seoAnalysisEnabled'       => $analysis_seo->is_enabled(),
 			'insightsEnabled'          => ( $insights_enabled ) ? 'enabled' : 'disabled',
 			'postID'                   => $this->get_post_ID(),
 			'restApi'                  => array(

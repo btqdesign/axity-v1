@@ -32,7 +32,6 @@ trait attachments
 
 		$this->debug( 'Copying attachments to the child blog.' );
 
-		$bcd->copied_attachments = [];
 		$this->debug( 'Looking through %s attachments.', count( $bcd->attachment_data ) );
 		foreach( $bcd->attachment_data as $key => $attachment )
 		{

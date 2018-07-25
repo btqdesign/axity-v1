@@ -164,25 +164,25 @@ $generated_i18n_strings = array(
 	/* Translators: %1$s expands to the keyword density percentage, %2$d expands to the keyword count,
 	   %3$s expands to the maximum keyword density percentage, %4$s expands to a link to a Yoast.com article
 	   about keyword density, %5$s expands to the anchor end tag. */
-	_n_noop( 'The %4$skeyword density%5$s is %1$s, which is way over the advised %3$s maximum; the focus keyword was found %2$d time.', 'The %4$skeyword density%5$s is %1$s, which is way over the advised %3$s maximum; the focus keyword was found %2$d times.', 'wordpress-seo' ),
+	_n_noop( 'The exact-match %4$skeyword density%5$s is %1$s, which is way over the advised %3$s maximum; the focus keyword was found %2$d time.', 'The exact-match %4$skeyword density%5$s is %1$s, which is way over the advised %3$s maximum; the focus keyword was found %2$d times.', 'wordpress-seo' ),
 
 	// Reference: node_modules/yoastseo/js/assessments/seo/keywordDensityAssessment.js:37
 	/* Translators: %1$s expands to the keyword density percentage, %2$d expands to the keyword count,
 	   %3$s expands to the maximum keyword density percentage, %4$s expands to a link to a Yoast.com article
 	   about keyword density, %5$s expands to the anchor end tag. */
-	_n_noop( 'The %4$skeyword density%5$s is %1$s, which is over the advised %3$s maximum; the focus keyword was found %2$d time.', 'The %4$skeyword density%5$s is %1$s, which is over the advised %3$s maximum; the focus keyword was found %2$d times.', 'wordpress-seo' ),
+	_n_noop( 'The exact-match %4$skeyword density%5$s is %1$s, which is over the advised %3$s maximum; the focus keyword was found %2$d time.', 'The exact-match %4$skeyword density%5$s is %1$s, which is over the advised %3$s maximum; the focus keyword was found %2$d times.', 'wordpress-seo' ),
 
 	// Reference: node_modules/yoastseo/js/assessments/seo/keywordDensityAssessment.js:45
-	_n_noop( 'The %3$skeyword density%4$s is %1$s, which is great; the focus keyword was found %2$d time.', 'The %3$skeyword density%4$s is %1$s, which is great; the focus keyword was found %2$d times.', 'wordpress-seo' ),
+	_n_noop( 'The exact-match %3$skeyword density%4$s is %1$s, which is great; the focus keyword was found %2$d time.', 'The exact-match %3$skeyword density%4$s is %1$s, which is great; the focus keyword was found %2$d times.', 'wordpress-seo' ),
 
 	// Reference: node_modules/yoastseo/js/assessments/seo/keywordDensityAssessment.js:53
-	__( 'The %3$skeyword density%4$s is %1$s, which is too low; the focus keyword was found %2$d times.', 'wordpress-seo' ),
+	__( 'The exact-match %3$skeyword density%4$s is %1$s, which is too low; the focus keyword was found %2$d times.', 'wordpress-seo' ),
 
 	// Reference: node_modules/yoastseo/js/assessments/seo/keywordDensityAssessment.js:61
 	/* Translators: %1$s expands to the keyword density percentage, %2$d expands to the keyword count,
 	   %3$s expands to a link to a Yoast.com article about keyword density,
 	   %4$s expands to the anchor end tag. */
-	_n_noop( 'The %3$skeyword density%4$s is %1$s, which is too low; the focus keyword was found %2$d time.', 'The %3$skeyword density%4$s is %1$s, which is too low; the focus keyword was found %2$d times.', 'wordpress-seo' ),
+	_n_noop( 'The exact-match %3$skeyword density%4$s is %1$s, which is too low; the focus keyword was found %2$d time.', 'The exact-match %3$skeyword density%4$s is %1$s, which is too low; the focus keyword was found %2$d times.', 'wordpress-seo' ),
 
 	// Reference: node_modules/yoastseo/js/assessments/seo/keywordStopWordsAssessment.js:18
 	/* Translators: %1$s opens a link to a Yoast article about stop words, %2$s closes the link */

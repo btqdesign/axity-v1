@@ -25,7 +25,7 @@
 		<div class="cntr">
 			<div class="sp-rl">
 				<div class="sp-rt">
-					<div class="cntn-wrp">
+					<div class="cntn-wrp artl-cnt">
 						<?php amp_content(); ?>
 					</div>
 					<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
@@ -265,7 +265,9 @@ do_action("ampforwp_single_design_type_handle");
 			<div class="sp-artl">
 				<div class="sp-left">
 					<?php if( !checkAMPforPageBuilderStatus(get_the_ID()) ) { ?>
-						<?php amp_breadcrumb();?>
+						<?php if ( true == $redux_builder_amp['ampforwp-bread-crumb'] ) {
+							amp_breadcrumb();
+						}?>
 						<?php amp_categories_list();?>
 						<?php amp_title(); ?>
 						<?php if( true == $redux_builder_amp['enable-excerpt-single'] ){ ?>
@@ -282,7 +284,7 @@ do_action("ampforwp_single_design_type_handle");
 					<div class="sp-cnt">
 						<div class="sp-rl">
 							<div class="sp-rt">
-								<div class="cntn-wrp">
+								<div class="cntn-wrp artl-cnt">
 									<?php amp_content(); ?>
 								</div>
 								<?php if( !checkAMPforPageBuilderStatus(get_the_ID()) ) { ?>

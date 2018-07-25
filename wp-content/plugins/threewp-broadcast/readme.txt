@@ -4,7 +4,7 @@ Donate link: https://broadcast.plainviewplugins.com
 License: GPLv3
 Requires at least: 4.6
 Requires PHP: 5.4
-Stable tag: 43.6
+Stable tag: 43.7
 Tags: multipost, sharing, duplicate, franchise, syndication, marketing, news, hub
 Tested up to: 4.9.6
 
@@ -107,6 +107,7 @@ The following add-ons add support for the plugin after which they are named.
 * <a href="https://broadcast.plainviewplugins.com/addon/tao-schedule-update/">Tao Schedule Update</a>
 * <a href="https://broadcast.plainviewplugins.com/addon/the-events-calendar/">The Events Calendar</a>
 * <a href="https://broadcast.plainviewplugins.com/addon/toolset/">Toolset</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/ubermenu/">UberMenu</a>
 * <a href="https://broadcast.plainviewplugins.com/addon/ultimate-member/">Ultimate Member</a>
 * <a href="https://broadcast.plainviewplugins.com/addon/unyson/">Unyson</a>
 * <a href="https://broadcast.plainviewplugins.com/addon/woocommerce/">WooCommerce</a>
@@ -313,6 +314,12 @@ This will broadcast all normal product settings: SKU, price, etc.
 If your products have variations, a product image gallery, you want to sync stock, you want to sync orders, need the attribute taxonomies to be synced, you'll be wanting the <a href="https://broadcast.plainviewplugins.com/addon/woocommerce/">WooCommerce add-on</a>.
 
 == Changelog ==
+
+= 43.7 20180724 =
+
+* Fix: Store attachment data for each blog separately. This is to prevent attachment ID conflicts when using the Queue add-on.
+* New: Display blog ID in meta box when hovering over the blog's name.
+* New add-on. <a href="https://broadcast.plainviewplugins.com/addon/ubermenu/">UberMenu</a>: Adds support for the <a href="https://wpmegamenu.com/">UberMenu</a> menu plugin.
 
 = 43.6 20180625 =
 

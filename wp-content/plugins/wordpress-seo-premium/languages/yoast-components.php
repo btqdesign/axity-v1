@@ -58,13 +58,13 @@ $generated_i18n_strings = array(
 	// Reference: js/src/components/ConnectGoogleSearchConsole.js:112
 	__( 'There is an error with the request.', 'wordpress-seo' ),
 
-	// Reference: js/src/components/MailchimpSignup.js:239
+	// Reference: js/src/components/MailchimpSignup.js:224
 	__( 'Email', 'wordpress-seo' ),
 
-	// Reference: js/src/components/MailchimpSignup.js:221
+	// Reference: js/src/components/MailchimpSignup.js:206
 	__( 'Sign Up!', 'wordpress-seo' ),
 
-	// Reference: js/src/components/MailchimpSignup.js:114
+	// Reference: js/src/components/MailchimpSignup.js:110
 	__( 'MailChimp signup failed:', 'wordpress-seo' ),
 
 	// Reference: js/src/components/MediaUpload.js:107
