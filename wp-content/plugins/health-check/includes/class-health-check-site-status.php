@@ -134,6 +134,36 @@ class Health_Check_Site_Status {
 		}
 	}
 
+	/**
+	 * Check if the user is currently in Troubleshooting Mode or not.
+	 *
+	 * @return bool
+	 */
+	public function is_troubleshooting() {
+		// Check if a session cookie to disable plugins has been set.
+		if ( isset( $_COOKIE['health-check-disable-plugins'] ) ) {
+			$_GET['health-check-disable-plugin-hash'] = $_COOKIE['health-check-disable-plugins'];
+		}
+
+		// If the disable hash isn't set, no need to interact with things.
+		if ( ! isset( $_GET['health-check-disable-plugin-hash'] ) ) {
+			return false;
+		}
+
+		$disable_hash = get_option( 'health-check-disable-plugin-hash', null );
+
+		if ( empty( $disable_hash ) ) {
+			return false;
+		}
+
+		// If the plugin hash is not valid, we also break out
+		if ( $disable_hash !== $_GET['health-check-disable-plugin-hash'] ) {
+			return false;
+		}
+
+		return true;
+	}
+
 	public function test_plugin_version() {
 		$plugins        = get_plugins();
 		$plugin_updates = get_plugin_updates();
@@ -144,12 +174,8 @@ class Health_Check_Site_Status {
 		$plugins_total        = 0;
 		$plugins_needs_update = 0;
 
-		if ( class_exists( 'Health_Check_Troubleshooting_MU' ) ) {
-			$troubleshooting = new Health_Check_Troubleshooting_MU();
-
-			if ( $troubleshooting->is_troubleshooting() ) {
-				$show_unused_plugins = false;
-			}
+		if ( $this->is_troubleshooting() ) {
+			$show_unused_plugins = false;
 		}
 
 		foreach ( $plugins as $plugin_path => $plugin ) {
@@ -233,12 +259,8 @@ class Health_Check_Site_Status {
 		$has_unused_themes  = false;
 		$show_unused_themes = true;
 
-		if ( class_exists( 'Health_Check_Troubleshooting_MU' ) ) {
-			$troubleshooting = new Health_Check_Troubleshooting_MU();
-
-			if ( $troubleshooting->is_troubleshooting() ) {
-				$show_unused_themes = false;
-			}
+		if ( $this->is_troubleshooting() ) {
+			$show_unused_themes = false;
 		}
 
 		// Populate a list of all themes available in the install.
@@ -314,7 +336,7 @@ class Health_Check_Site_Status {
 						// translators: %1$d: The amount of inactive themes. %2$s: The default theme for WordPress. %3$s: The currently active theme. %4$s: The active themes parent theme.
 						esc_html( _n(
 							'Your site has %1$d inactive theme. To enhance your sites security it is recommended to remove any unused themes. You should keep %2$s, the default WordPress theme, %3$s, your current theme and %4$s, the parent theme.',
-							'Your site has %1$d inactive themes. To enhance your sites security it is recommended to remove any unused themes. You should keep %2$s, the default WordPress theme, %3$s, your current theme and %4$s, the parent theme. ',
+							'Your site has %1$d inactive themes. To enhance your sites security it is recommended to remove any unused themes. You should keep %2$s, the default WordPress theme, %3$s, your current theme and %4$s, the parent theme.',
 							$themes_inactive,
 							'health-check'
 						) ),
