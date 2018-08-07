@@ -140,10 +140,18 @@ class WPBackItUp_Usage {
 
 			/** Plugin Data Points  **/
 			$data['wpbackitup_version'] = WPBACKITUP__VERSION;
-			$data['wpbackitup_license_key'] = 'lite';
+
+			//Get license info if exists
+			$wpb_license = new WPBackItUp_License();
+			$data['wpbackitup_license_key']     =$wpb_license->get_license_key();
+			$data['wpbackitup_license_type']    =$wpb_license->get_license_type();
+			$data['wpbackitup_license_expires'] =$wpb_license->get_license_expires_date();
+			$data['wpbackitup_license_status']  =$wpb_license->get_license_status();
+
 			$data['wpbackitup_backup_count'] = WPBackItUp_Utility::get_option( 'successful_backup_count' );
 			$data['wpbackitup_backup_last_run_date'] = date("Y-m-d",WPBackItUp_Utility::get_option( 'backup_lastrun_date' ));
 
+			//get additional data if exists
 			$this->data =  apply_filters('wpbackitup_ut_data',$data);
 
 		} catch (Exception $e) {

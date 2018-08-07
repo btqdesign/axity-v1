@@ -6,7 +6,7 @@
  * Description: Backup your content, settings, themes, plugins and media in just a few simple clicks.
  * Author: WPBackItUp
  * Author URI: https://www.wpbackitup.com
- * Version: 1.23.0
+ * Version: 1.25.0
  * Text Domain: wp-backitup
  *
  * License: GPL3
@@ -32,7 +32,7 @@ define( 'WPBACKITUP__NAMESPACE', 'wp-backitup' );
 define( 'WPBACKITUP__CLASSNAMESPACE', 'WPBackItUp' );
 
 define( 'WPBACKITUP__MAJOR_VERSION', 1);
-define( 'WPBACKITUP__MINOR_VERSION', 23);
+define( 'WPBACKITUP__MINOR_VERSION', 25);
 define( 'WPBACKITUP__MAINTENANCE_VERSION', 0); //Dont forget to update version in header on WP release
 define( 'WPBACKITUP__BUILD_VERSION', 0); //Used for hotfix releases
 
@@ -43,14 +43,15 @@ define( 'WPBACKITUP__DEBUG', false );
 
 //define( 'WPBACKITUP__TEST_RUN_HOURLY', true );
 define( 'WPBACKITUP__MINIMUM_WP_VERSION', '3.0' );
-//define( 'WPBACKITUP__ITEM_NAME', 'WP Backitup' );
-define( 'WPBACKITUP__ITEM_NAME', 'WP BackItUp Premium' );
 define( 'WPBACKITUP__FRIENDLY_NAME', 'WPBackItUp' );
 define( 'WPBACKITUP__CONTENT_PATH', WP_CONTENT_DIR  );
 define( 'WPBACKITUP__SITE_URL', 'http://www.wpbackitup.com');
 define( 'WPBACKITUP__SECURESITE_URL', 'https://www.wpbackitup.com' );
 define( 'WPBACKITUP__SUPPORTSITE_URL', 'http://support.wpbackitup.com' );
+
 define( 'WPBACKITUP__API_URL', 'https://7aj6amlu38.execute-api.us-east-1.amazonaws.com/prod/v1' );
+define( 'WPBACKITUP__API_URL_V2', 'https://7aj6amlu38.execute-api.us-east-1.amazonaws.com/prod/v2' );
+
 define( 'WPBACKITUP__PLUGIN_FILE_PATH', __FILE__ );//path to main plugin file
 define( 'WPBACKITUP__PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'WPBACKITUP__PLUGIN_PATH', plugin_dir_path( __FILE__ ) );

@@ -558,6 +558,9 @@ class TranslationManagement {
 				} else {
 					$sitepress->set_setting( 'tm_block_retranslating_terms', '' );
 				}
+				if ( isset( $data[ 'translation_memory' ] ) ) {
+					$sitepress->set_setting( 'translation_memory', $data[ 'translation_memory' ] );
+				}
 				$this->save_settings();
 				echo '1|';
 				break;

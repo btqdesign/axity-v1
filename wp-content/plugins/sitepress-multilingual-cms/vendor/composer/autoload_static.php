@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit3428b161a271f8b37f1c2b9efd2d66fc
+class ComposerStaticInitcb0b74ea9de40af2c43ffea18c3975da
 {
     public static $files = array (
         'b45b351e6b6f7487d819961fef2fda77' => __DIR__ . '/..' . '/jakeasmith/http_build_url/src/http_build_url.php',
@@ -505,8 +505,13 @@ class ComposerStaticInit3428b161a271f8b37f1c2b9efd2d66fc
         'WPML_Elementor_Register_Strings' => __DIR__ . '/..' . '/wpml/page-builders-elementor/src/class-wpml-elementor-register-strings.php',
         'WPML_Elementor_Slides' => __DIR__ . '/..' . '/wpml/page-builders-elementor/src/modules/class-wpml-elementor-slides.php',
         'WPML_Elementor_Tabs' => __DIR__ . '/..' . '/wpml/page-builders-elementor/src/modules/class-wpml-elementor-tabs.php',
+        'WPML_Elementor_Testimonial_Carousel' => __DIR__ . '/..' . '/wpml/page-builders-elementor/src/modules/class-wpml-elementor-testimonial-carousel.php',
         'WPML_Elementor_Toggle' => __DIR__ . '/..' . '/wpml/page-builders-elementor/src/modules/class-wpml-elementor-toggle.php',
         'WPML_Elementor_Translatable_Nodes' => __DIR__ . '/..' . '/wpml/page-builders-elementor/src/class-wpml-elementor-translatable-nodes.php',
+        'WPML_Elementor_Translate_IDs' => __DIR__ . '/..' . '/wpml/page-builders-elementor/src/class-wpml-elementor-translate-ids.php',
+        'WPML_Elementor_Translate_IDs_Factory' => __DIR__ . '/..' . '/wpml/page-builders-elementor/src/class-wpml-elementor-translate-ids-factory.php',
+        'WPML_Elementor_URLs' => __DIR__ . '/..' . '/wpml/page-builders-elementor/src/class-wpml-elementor-urls.php',
+        'WPML_Elementor_URLs_Factory' => __DIR__ . '/..' . '/wpml/page-builders-elementor/src/class-wpml-elementor-urls-factory.php',
         'WPML_Elementor_Update_Translation' => __DIR__ . '/..' . '/wpml/page-builders-elementor/src/class-wpml-elementor-update-translation.php',
         'WPML_Encoding_Validation' => __DIR__ . '/../..' . '/classes/utilities/class-wpml-encoding-validation.php',
         'WPML_End_User_Account_Creation_Disabled' => __DIR__ . '/../..' . '/classes/end-user/disabling/class-wpml-end-user-account-creation-disabled.php',
@@ -603,6 +608,7 @@ class ComposerStaticInit3428b161a271f8b37f1c2b9efd2d66fc
         'WPML_Language_Code' => __DIR__ . '/../..' . '/classes/user-language/class-wpml-language-code.php',
         'WPML_Language_Collection' => __DIR__ . '/../..' . '/classes/languages/class-wpml-language-collection.php',
         'WPML_Language_Domain_Validation' => __DIR__ . '/../..' . '/classes/request-handling/class-wpml-language-domain-validation.php',
+        'WPML_Language_Domains' => __DIR__ . '/../..' . '/classes/url-handling/class-wpml-language-domains.php',
         'WPML_Language_Filter_Bar' => __DIR__ . '/../..' . '/menu/wpml-language-filter-bar.class.php',
         'WPML_Language_Per_Domain_SSO' => __DIR__ . '/../..' . '/classes/request-handling/class-wpml-language-per-domain-sso.php',
         'WPML_Language_Records' => __DIR__ . '/../..' . '/classes/languages/class-wpml-langauge-records.php',
@@ -996,10 +1002,10 @@ class ComposerStaticInit3428b161a271f8b37f1c2b9efd2d66fc
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit3428b161a271f8b37f1c2b9efd2d66fc::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit3428b161a271f8b37f1c2b9efd2d66fc::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit3428b161a271f8b37f1c2b9efd2d66fc::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit3428b161a271f8b37f1c2b9efd2d66fc::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitcb0b74ea9de40af2c43ffea18c3975da::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitcb0b74ea9de40af2c43ffea18c3975da::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitcb0b74ea9de40af2c43ffea18c3975da::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitcb0b74ea9de40af2c43ffea18c3975da::$classMap;
 
         }, null, ClassLoader::class);
     }

@@ -202,10 +202,14 @@ class WPML_Media_Attachments_Duplication {
 		}
 	}
 
-	private function translate_attachments( $attachment_id, $source_language ) {
+	private function translate_attachments( $attachment_id, $source_language, $override_always_translate_media = false ) {
+		if ( ! $source_language ) {
+			return;
+		}
+
 		$settings = get_option( '_wpml_media' );
 		$content_defaults = $settings['new_content_settings'];
-		if ( ! empty( $source_language ) && $content_defaults['always_translate_media'] ) {
+		if ( $override_always_translate_media || $content_defaults['always_translate_media'] ) {
 
 			global $sitepress;
 
@@ -912,7 +916,7 @@ class WPML_Media_Attachments_Duplication {
 		if ( $attachments ) {
 			foreach ( $attachments as $attachment ) {
 				$lang = $this->sitepress->get_element_language_details( $attachment->ID, 'post_attachment' );
-				$this->translate_attachments( $attachment->ID, $lang->language_code );
+				$this->translate_attachments( $attachment->ID, $lang->language_code, true );
 			}
 		}
 

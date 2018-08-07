@@ -174,4 +174,47 @@ function wpbackitup_update_plugin_minor_routine_1_12($log_name){
 	WPBackItUp_Logger::log_info($log_name,__METHOD__, 'End upgrade plugin to V1.12' );
 }
 
+///**
+// *  Minor Version update 1.14
+// */
+//function wpbackitup_update_plugin_minor_routine_1_24($log_name){
+//	WPBackItUp_Logger::log_info($log_name,__METHOD__, 'Begin upgrade plugin to V1.24' );
+//
+//	if (false===WPBackItUp_Utility::get_option( 'license_product_id') ||
+//		empty(WPBackItUp_Utility::get_option( 'license_product_id'))&&
+//	    WPBackItUp_Utility::get_option( 'license_type',-1)>0
+//	){
+//		WPBackItUp_Utility::set_option( 'license_product_id','679');
+//		WPBackItUp_Logger::log_info($log_name,__METHOD__, 'Product Id added to license.' );
+//	} else {
+//		WPBackItUp_Logger::log_info($log_name,__METHOD__, 'Product Id NOT added to license.' );
+//	}
+//
+//
+//	WPBackItUp_Logger::log_info($log_name,__METHOD__, 'End upgrade plugin to V1.24' );
+//}
+
+/**
+ *  Minor Version update 1.25
+ */
+function wpbackitup_update_plugin_minor_routine_1_25($log_name){
+	WPBackItUp_Logger::log_info($log_name,__METHOD__, 'Begin upgrade plugin to V1.24' );
+
+	$product_id = get_option( 'wp-backitup_license_product_id',false );
+	WPBackItUp_Logger::log_info($log_name,__METHOD__, 'Product Id:' .$product_id);
+	$license_type = get_option( 'wp-backitup_license_type',-1);
+	WPBackItUp_Logger::log_info($log_name,__METHOD__, 'License Type:' .$license_type);
+
+	//If no product ID and license type is premium
+	if ( (false===$product_id || empty($product_id)) && $license_type>0)	{
+		update_option('wp-backitup_license_product_id','679');
+		WPBackItUp_Logger::log_info($log_name,__METHOD__, 'Product Id added to license.' );
+	} else {
+		WPBackItUp_Logger::log_info($log_name,__METHOD__, 'Product Id NOT added to license.' );
+	}
+
+
+	WPBackItUp_Logger::log_info($log_name,__METHOD__, 'End upgrade plugin to V1.24' );
+}
+
 

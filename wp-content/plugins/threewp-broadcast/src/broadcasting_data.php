@@ -59,6 +59,13 @@ class broadcasting_data
 	public $broadcast_data;
 
 	/**
+		@brief		A collection of copied attachments to each blog.
+		@see		copied_attachments()
+		@since		2018-07-04 13:39:49
+	**/
+	public $copied_attachments;
+
+	/**
 		@brief		A collection of blog_id => true, showing to which blogs the attachments have been copied.
 		@since		2016-09-18 19:12:26
 	**/
@@ -276,6 +283,7 @@ class broadcasting_data
 			if ( is_object( $this->custom_fields ) )
 				$this->custom_fields = clone( $options[ 'custom_fields' ] );
 
+		$this->copied_attachments = ThreeWP_Broadcast()->collection();
 		$this->copied_attachments_to_blog = ThreeWP_Broadcast()->collection();
 
 		if ( ! $this->parent_post_id )

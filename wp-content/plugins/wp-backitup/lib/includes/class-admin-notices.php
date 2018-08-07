@@ -40,9 +40,9 @@ if ( ! class_exists( 'WPBackitup_Admin_Notices' ) ) {
 		private function get_active_promo() {
 
 			//Is the independence day sale active?
-			if ( false !== $this->get_indepence_day_promo_id()) {
-				return $this->INDEPENDENCE_DAY_PROMO;
-			}
+//			if ( false !== $this->get_indepence_day_promo_id()) {
+//				return $this->INDEPENDENCE_DAY_PROMO;
+//			}
 
 			//Is the safe beta promo active
 //			if ( false !== $this->get_safe_beta_notice_id()) {

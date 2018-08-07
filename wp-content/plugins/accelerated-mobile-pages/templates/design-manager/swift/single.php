@@ -25,7 +25,7 @@
 		<div class="cntr">
 			<div class="sp-rl">
 				<div class="sp-rt">
-					<div class="cntn-wrp">
+					<div class="cntn-wrp artl-cnt">
 						<?php amp_content(); ?>
 					</div>
 					<?php if(!checkAMPforPageBuilderStatus(get_the_ID())){ ?>
@@ -136,6 +136,16 @@
 							<?php if ( isset($redux_builder_amp['enable-single-yummly-share']) && $redux_builder_amp['enable-single-yummly-share']){?>
 							<li>
 								<a class="s_ym" target="_blank" href="http://www.yummly.com/urb/verify?url=<?php the_permalink(); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>&yumtype=button"></a>
+							</li>
+							<?php } ?>
+							<?php if ( isset($redux_builder_amp['enable-single-hatena-bookmarks']) && $redux_builder_amp['enable-single-hatena-bookmarks']){?>
+							<li>
+								<a class="s_hb" target="_blank" href="http://b.hatena.ne.jp/entry/<?php the_permalink(); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
+							</li>
+							<?php } ?>
+							<?php if ( isset($redux_builder_amp['enable-single-pocket-share']) && $redux_builder_amp['enable-single-pocket-share']){?>
+							<li>
+								<a class="s_pk" target="_blank" href="https://getpocket.com/save?url=<?php the_permalink(); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
 							</li>
 							<?php } ?>
 							<?php if($redux_builder_amp['ampforwp-facebook-like-button']){?>
@@ -255,7 +265,9 @@ do_action("ampforwp_single_design_type_handle");
 			<div class="sp-artl">
 				<div class="sp-left">
 					<?php if( !checkAMPforPageBuilderStatus(get_the_ID()) ) { ?>
-						<?php amp_breadcrumb();?>
+						<?php if ( true == $redux_builder_amp['ampforwp-bread-crumb'] ) {
+							amp_breadcrumb();
+						}?>
 						<?php amp_categories_list();?>
 						<?php amp_title(); ?>
 						<?php if( true == $redux_builder_amp['enable-excerpt-single'] ){ ?>
@@ -272,7 +284,7 @@ do_action("ampforwp_single_design_type_handle");
 					<div class="sp-cnt">
 						<div class="sp-rl">
 							<div class="sp-rt">
-								<div class="cntn-wrp">
+								<div class="cntn-wrp artl-cnt">
 									<?php amp_content(); ?>
 								</div>
 								<?php if( !checkAMPforPageBuilderStatus(get_the_ID()) ) { ?>
@@ -364,6 +376,16 @@ do_action("ampforwp_single_design_type_handle");
 											<a class="s_vb" target="_blank" href="viber://forward?text=<?php the_permalink(); ?>"></a>
 										</li>
 										<?php } ?>
+										<?php if ( isset($redux_builder_amp['enable-single-hatena-bookmarks']) && $redux_builder_amp['enable-single-hatena-bookmarks']){?>
+							<li>
+								<a class="s_hb" target="_blank" href="http://b.hatena.ne.jp/entry/<?php the_permalink(); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
+							</li>
+							<?php } ?>
+							<?php if ( isset($redux_builder_amp['enable-single-pocket-share']) && $redux_builder_amp['enable-single-pocket-share']){?>
+							<li>
+								<a class="s_pk" target="_blank" href="https://getpocket.com/save?url=<?php the_permalink(); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>"></a>
+							</li>
+							<?php } ?>
 										<?php if ( isset($redux_builder_amp['enable-single-yummly-share']) && $redux_builder_amp['enable-single-yummly-share']){?>
 										<li>
 											<a class="s_ym" target="_blank" href="http://www.yummly.com/urb/verify?url=<?php the_permalink(); ?>&title=<?php echo esc_attr(htmlspecialchars(get_the_title())); ?>&yumtype=button"></a>

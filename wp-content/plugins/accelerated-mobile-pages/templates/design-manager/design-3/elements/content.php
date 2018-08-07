@@ -16,7 +16,7 @@
 				$ampforwp_the_content = $this->get( 'ampforwp_amp_content' );
 			}
 			// Muffin Builder Compatibility #1455 #1893
-			if ( function_exists('mfn_builder_print') ) {
+			if ( function_exists('mfn_builder_print') && ! $amp_custom_content_enable ) {
 				ob_start();
 			  	mfn_builder_print( get_the_ID() );
 				$content = ob_get_contents();
@@ -34,10 +34,9 @@
 											 ),
 										) 
 									) 
-								);
-			 	$ampforwp_the_content =  $sanitizer_obj->get_amp_content();			
+								);			
+				$ampforwp_the_content =  $sanitizer_obj->get_amp_content();
 			}
-
 			
 			//Filter to modify the Content
 			$ampforwp_the_content = apply_filters('ampforwp_modify_the_content', $ampforwp_the_content);

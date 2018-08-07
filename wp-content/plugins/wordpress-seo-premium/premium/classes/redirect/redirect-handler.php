@@ -88,7 +88,12 @@ class WPSEO_Redirect_Handler {
 	 * @return void
 	 */
 	public function do_410() {
-		$this->set_404();
+		$is_include_hook_set = $this->set_template_include_hook( '410' );
+
+		if ( ! $is_include_hook_set ) {
+			$this->set_404();
+		}
+
 		$this->status_header( 410 );
 	}
 
@@ -170,7 +175,7 @@ class WPSEO_Redirect_Handler {
 			return;
 		}
 
-		if ( $this->normalize_url( $redirect_url['url'] ) === $request_url  ) {
+		if ( $this->normalize_url( $redirect_url['url'] ) === $request_url ) {
 			return;
 		}
 
