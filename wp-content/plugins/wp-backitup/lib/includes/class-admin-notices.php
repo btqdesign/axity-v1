@@ -22,6 +22,7 @@ if ( ! class_exists( 'WPBackitup_Admin_Notices' ) ) {
 		private $BLACK_FRIDAY_2017_PROMO = 'black-friday-2017';
 		private $SAFE_BETA_PROMO = 'safe-beta-december';
 		private $INDEPENDENCE_DAY_PROMO = 'independence-day-promo';
+		private $LABOR_DAY_PROMO = 'labor-day-promo';
 
 		public function __construct(){
 
@@ -43,6 +44,13 @@ if ( ! class_exists( 'WPBackitup_Admin_Notices' ) ) {
 //			if ( false !== $this->get_indepence_day_promo_id()) {
 //				return $this->INDEPENDENCE_DAY_PROMO;
 //			}
+
+			if ( false !== $this->get_labor_day_promo_id()) {
+				$wpbacktiup_license = new WPBackItUp_License();
+				if (! $wpbacktiup_license->is_premium_license() || ! $wpbacktiup_license->is_license_active() ) {
+					return  $this->LABOR_DAY_PROMO;
+				}
+			}
 
 			//Is the safe beta promo active
 //			if ( false !== $this->get_safe_beta_notice_id()) {
@@ -83,9 +91,14 @@ if ( ! class_exists( 'WPBackitup_Admin_Notices' ) ) {
 //						$notice = $this->get_black_friday_notice();
 //						$this->show_notice($promo,$notice);
 //						break;
-					case $this->INDEPENDENCE_DAY_PROMO:
-						$promo =  sprintf("%s-%s",$this->promo,$this->get_indepence_day_promo_id());
-						$notice = $this->get_independence_day_notice();
+//					case $this->INDEPENDENCE_DAY_PROMO:
+//						$promo =  sprintf("%s-%s",$this->promo,$this->get_indepence_day_promo_id());
+//						$notice = $this->get_independence_day_notice();
+//						$this->show_notice($promo,$notice);
+//						break;
+					case $this->LABOR_DAY_PROMO:
+						$promo =  sprintf("%s-%s",$this->promo,$this->get_labor_day_promo_id());
+						$notice = $this->get_labor_day_notice();
 						$this->show_notice($promo,$notice);
 						break;
 					default:
@@ -176,6 +189,28 @@ if ( ! class_exists( 'WPBackitup_Admin_Notices' ) ) {
 
 			$promo_start = date( "Y-m-d H:i", strtotime( "02 July 2018 5:00 AM UTC" ) );
 			$promo_end   = date( "Y-m-d H:i", strtotime( "08 July 2018 4:59 AM UTC" ) );
+
+			if ( $this->today >= $promo_start && $this->today <= $promo_end ) {
+				$id = 0;
+			}
+
+			return $id;
+		}
+
+		/**
+		 * Get Labor Day promo ID
+		 *
+		 * @return bool|int false = no promo
+		 *
+		 */
+		private function get_labor_day_promo_id() {
+			$id = false;
+
+			//12:00 AM EST = 5:00 AM UTC
+			//11:59 PM EST = 4:59 AM UTC
+
+			$promo_start = date( "Y-m-d H:i", strtotime( "29 August 2018 5:00 AM UTC" ) );
+			$promo_end   = date( "Y-m-d H:i", strtotime( "04 September 2018 4:59 AM UTC" ) );
 
 			if ( $this->today >= $promo_start && $this->today <= $promo_end ) {
 				$id = 0;
@@ -375,5 +410,45 @@ if ( ! class_exists( 'WPBackitup_Admin_Notices' ) ) {
 
 		}
 
+		/**
+		 * Get Labor day promo
+		 *
+		 * @return array|false false on no notice
+		 */
+		private function get_labor_day_notice() {
+			$message= array();
+			$link_1=array();
+			$link_label_1=array();
+			$link_label_2=array();
+			$link_label_3=array();
+			$days_after=array();
+			$temp_days_after=array();
+
+			$id = $this->get_labor_day_promo_id();
+			if (false===$id) return false;
+
+			$message[]=sprintf( "%s<p>%s<p>%s",
+				'<h2>' . esc_html__( "Celebrate Labor Day with WPBackItUp and Save 30%!", "wp-backitup") . ' </h2>',
+				__( "WPBackItUp would like to wish a Happy Labor Day to all Americans!", "wp-backitup" ),
+				__( "From now until September 4th use the discount code: <b>LaborDay2018</b> at checkout and receive <b>30%</b> off WPBackItUp Premium.", "wp-backitup" )
+			);
+			$days_after[]=0;
+			$temp_days_after[]=1;
+			$link_1[] =  "https://www.wpbackitup.com/pricing-purchase/?utm_medium=plugin&utm_source=wp-backitup&utm_campaign=plugin-labor-day-promo";
+			$link_label_1[] =  esc_html__( 'Buy now!', 'wp-backitup' );
+			$link_label_2[] = esc_html__( 'Remind me later', 'wp-backitup' );
+			$link_label_3[] = esc_html__( 'I already purchased', 'wp-backitup' );
+
+
+			return array(
+				'message'=>$message[$id],
+				'days_after'=>$days_after[$id],
+				'temp_days_after'=>$temp_days_after[$id],
+				'link_1'=>$link_1[$id],
+				'link_label_1'=>$link_label_1[$id],
+				'link_label_2'=>$link_label_2[$id],
+				'link_label_3'=>$link_label_3[$id],
+			);
+		}
 	}
 }

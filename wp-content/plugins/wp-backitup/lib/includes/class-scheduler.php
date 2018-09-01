@@ -61,6 +61,20 @@ class WPBackItUp_Scheduler {
         return false;
     }
 
+	/**
+	 * Check job schedule to make sure job is running ever 5 minutes
+	 *
+	 */
+	public function check_queue_jobs_schedule(){
+		$schedule = wp_get_schedule( 'wpbackitup_queue_scheduled_jobs');
+		WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Queue Scheduled Job runs every:'. var_export($schedule,true));;
+
+		if ('every_5_minutes'!=$schedule){
+			wp_clear_scheduled_hook( 'wpbackitup_queue_scheduled_jobs');
+			wp_schedule_event( time()+300, 'every_5_minutes', 'wpbackitup_queue_scheduled_jobs');
+			WPBackItUp_Logger::log_info($this->log_name,__METHOD__,'Scheduled updated to every 5 minutes.');
+		}
+	}
 
     /**
      * Check the cleanup schedule to determine if the task should be run today.

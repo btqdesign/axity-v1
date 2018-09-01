@@ -6,7 +6,7 @@
  * Description: Backup your content, settings, themes, plugins and media in just a few simple clicks.
  * Author: WPBackItUp
  * Author URI: https://www.wpbackitup.com
- * Version: 1.25.0
+ * Version: 1.29.0
  * Text Domain: wp-backitup
  *
  * License: GPL3
@@ -32,7 +32,7 @@ define( 'WPBACKITUP__NAMESPACE', 'wp-backitup' );
 define( 'WPBACKITUP__CLASSNAMESPACE', 'WPBackItUp' );
 
 define( 'WPBACKITUP__MAJOR_VERSION', 1);
-define( 'WPBACKITUP__MINOR_VERSION', 25);
+define( 'WPBACKITUP__MINOR_VERSION', 29);
 define( 'WPBACKITUP__MAINTENANCE_VERSION', 0); //Dont forget to update version in header on WP release
 define( 'WPBACKITUP__BUILD_VERSION', 0); //Used for hotfix releases
 
@@ -100,6 +100,15 @@ define( 'WPBACKITUP__SQL_BATCH_SIZE', 10000);
 //activation hooks
 register_activation_hook( __FILE__, array( 'WPBackitup_Admin', 'activate' ) );
 register_deactivation_hook( __FILE__, array( 'WPBackitup_Admin', 'deactivate' ) );
+
+function wpbackitup_modify_cron_schedules($schedules) {
+	$schedules['every_5_minutes'] = array('interval' => 300, 'display'  => sprintf(__('WPBUP - Every %s minutes', 'wp-backitup'), 5));
+	$schedules['every_10_minutes'] = array('interval' => 600, 'display'  => sprintf(__('WPBUP - Every %s minutes', 'wp-backitup'), 10));
+	$schedules['every_30_minutes'] = array('interval' => 1800, 'display'  => sprintf(__('WPBUP - Every %s minutes', 'wp-backitup'), 30));
+	return $schedules;
+}
+
+add_filter('cron_schedules', 'wpbackitup_modify_cron_schedules', 30);
 
 function wpbackitup_register_post_types() {
 
