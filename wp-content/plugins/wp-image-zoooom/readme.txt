@@ -5,9 +5,10 @@ Email: diana@burduja.eu
 Tags: e-commerce, featured image, hover over image zoom, image, image zoom, image zoom plugin, image magnification, image magnifier, jquery picture zoom, magnifier, magnify image, magnifying glass, mouse over image zoom, panorama, picture zoom, product image, product zoom, product magnification, product magnifier, responsive, woocommerce product zoom, woocommerce zoom, woocommerce  magnifying glass, zoom, zoom image, zoom plugin, woocommerce image zoom, woocommerce product image zoom, woocommerce zoom magnifier
 Requires at least: 3.0.1
 Tested up to: 4.9
-Stable tag: 1.25
+Stable tag: 1.26
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
+Requires PHP: 5.2.4
 
 Awesome image zoom plugin for images in posts/pages and for WooCommerce products.
 
@@ -143,6 +144,14 @@ Alternatively you can upgrade to the Pro version, as there the zoom lens is buil
 8. Apply the zoom from Page Builder by SiteOrigin, the Image Widget
 
 == Changelog ==
+
+= 1.26 =
+* 11/08/2018
+* Fix: add back prettyPhoto for the Sovereign theme
+* Fix: WooCommerce 3.0+ gallery with one image and with a flex gallery on the same page was not working
+* Fix: Flatsome theme with the default WooCommerce gallery, don't remove the gallery-slider support 
+* Tweak: update the list of themes that add a whole page wrapper with the z-index higher than the zoom  
+* Tweak: change the detectmobilebrowser library from jQuery to pure JS
 
 = 1.25 =
 * 31/03/2018

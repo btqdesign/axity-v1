@@ -23,8 +23,10 @@ class WPML_Frontend_Post_Actions extends WPML_Post_Translation {
 
 		wp_defer_term_counting( true );
 		$post = isset( $post ) ? $post : get_post( $pidd );
+
+		$http_referer = new WPML_URL_HTTP_Referer( new WPML_Rest( new WP_Http() ) );
 		// exceptions
-		if ( ! $this->has_save_post_action( $post ) ) {
+		if ( ! $this->has_save_post_action( $post ) || $http_referer->is_rest_request_called_from_post_edit_page() ) {
 			wp_defer_term_counting( false );
 
 			return;

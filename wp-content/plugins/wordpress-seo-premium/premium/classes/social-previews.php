@@ -115,6 +115,7 @@ class WPSEO_Social_Previews {
 		wp_register_script( 'yoast-social-preview', plugin_dir_url( WPSEO_PREMIUM_FILE ) . 'assets/js/dist/yoast-premium-social-preview-' . $version . WPSEO_CSSJS_SUFFIX . '.js', array(
 			'jquery',
 			'jquery-ui-core',
+			'yoast-seo-premium-commons',
 		), WPSEO_VERSION );
 
 		wp_localize_script( 'yoast-social-preview', 'yoastSocialPreview', $this->localize() );
@@ -205,7 +206,7 @@ class WPSEO_Social_Previews {
 	 * @return array
 	 */
 	private function get_translations() {
-		$file = plugin_dir_path( WPSEO_FILE ) . 'premium/languages/wordpress-seo-premium-' . WPSEO_Utils::get_user_locale() . '.json';
+		$file = plugin_dir_path( WPSEO_FILE ) . 'premium/languages/yoast-social-previews-' . WPSEO_Utils::get_user_locale() . '.json';
 		if ( file_exists( $file ) ) {
 			$file = file_get_contents( $file );
 			if ( $file !== false ) {

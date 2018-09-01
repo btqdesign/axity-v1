@@ -46,6 +46,12 @@ class WPSEO_Premium_Metabox implements WPSEO_WordPress_Integration {
 		$version       = $asset_manager->flatten_version( WPSEO_VERSION );
 
 		wp_register_script(
+			'yoast-seo-premium-commons',
+			plugin_dir_url( WPSEO_PREMIUM_FILE ) . 'assets/js/dist/commons-premium-' . $version . WPSEO_CSSJS_SUFFIX . '.js',
+			array(),
+			WPSEO_VERSION
+		);
+		wp_register_script(
 			WPSEO_Admin_Asset_Manager::PREFIX . 'premium-metabox',
 			plugin_dir_url( WPSEO_PREMIUM_FILE ) . 'assets/js/dist/wp-seo-premium-metabox-' . $version . WPSEO_CSSJS_SUFFIX . '.js',
 			array(
@@ -53,6 +59,8 @@ class WPSEO_Premium_Metabox implements WPSEO_WordPress_Integration {
 				'wp-util',
 				'underscore',
 				WPSEO_Admin_Asset_Manager::PREFIX . 'wp-globals-backport',
+				'yoast-seo-premium-commons',
+				WPSEO_Admin_Asset_Manager::PREFIX . 'analysis',
 			),
 			WPSEO_VERSION
 		);
@@ -70,6 +78,9 @@ class WPSEO_Premium_Metabox implements WPSEO_WordPress_Integration {
 			$localization = new WPSEO_Admin_Asset_Yoast_Components_L10n();
 			$localization->localize_script( WPSEO_Admin_Asset_Manager::PREFIX . 'premium-metabox' );
 
+			$premium_localization = new WPSEO_Premium_Asset_JS_L10n();
+			$premium_localization->localize_script( WPSEO_Admin_Asset_Manager::PREFIX . 'premium-metabox' );
+
 			$this->send_data_to_assets();
 		}
 	}
@@ -85,11 +96,6 @@ class WPSEO_Premium_Metabox implements WPSEO_WordPress_Integration {
 
 		if ( ! $language_support->is_language_supported( WPSEO_Utils::get_language( get_locale() ) ) ) {
 			$insights_enabled         = false;
-			$link_suggestions_enabled = false;
-		}
-
-		// Don't initialize the internal linking meta box in the Gutenberg pages.
-		if ( ! $this->link_suggestions->show_internal_linking_in_gutenberg_sidebar() ) {
 			$link_suggestions_enabled = false;
 		}
 

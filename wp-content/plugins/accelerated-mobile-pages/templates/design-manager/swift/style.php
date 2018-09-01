@@ -229,7 +229,7 @@ if( is_home() || is_archive() || is_search() || (function_exists('is_shop') && i
 .loop-category li{display: inline-block;list-style-type: none;margin-right: 10px;font-size: 10px;font-weight: 600;letter-spacing: 1.5px;}
 .loop-category li a{color:#555;text-transform: uppercase;}
 .loop-category li:hover a{color:#005be2;}
-.fbp-cnt p, .fsp-cnt p{color:#444;font-size:13px;line-height:1.5;letter-spacing: 0.10px;}
+.fbp-cnt p, .fsp-cnt p{color:#444;font-size:13px;line-height:1.5;letter-spacing: 0.10px;word-break: break-word;}
 .fbp:hover h2 a, .fsp:hover h2 a{color: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;}
 .fsp h2 a{color:#191919;}  
 .fsp{margin: 15px;flex-basis: calc(33.33% - 30px);}
@@ -311,11 +311,40 @@ if( is_page() || ampforwp_is_front_page() || ampforwp_polylang_front_page() ){?>
         #breadcrumbs a:hover {color: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;}
         .amp-post-title{font-size: 48px;line-height: 58px;color: #333;margin: 0;padding-top: 15px;}
         .cntn-wrp{font-size: 18px;color: #000;line-height: 1.7;}
-        .cntn-wrp p{margin:0px 0px 30px 0px;}
+        .cntn-wrp p, .cntn-wrp ul, .cntn-wrp ol{margin:0px 0px 30px 0px;word-break: break-word;}
     <?php } else{ ?>
         .cntn-wrp{font-size: 18px;color: #000;line-height: 1.7;}
         .sp {width: 100%;margin-top: 20px;display: inline-block;}
     <?php } ?>
+    blockquote{margin-bottom:20px;}
+	blockquote p {font-size: 34px; line-height: 1.4; font-weight: 700; position: relative; padding: 30px 0 0 0; }
+	blockquote p:before {content: "";border-top: 8px solid #000;width: 115px;line-height: 40px;display: inline-block;position: absolute;top: 0;}
+	.amp-comment-button{background-color: <?php echo $redux_builder_amp['swift-color-scheme']['color'] ?>;font-size: 15px;float: none;margin: 30px auto 0px auto;text-align: center;border-radius: 3px;font-weight: 600;width:250px;}
+	.amp-comment-button .nocomments{color: #fff;display: block;padding: 7px 0px 8px 0px;}
+	.cmts{width:100%;display:inline-block;clear:both;margin-top:40px;}
+	.amp-comment-button{background-color: <?php echo $redux_builder_amp['swift-color-scheme']['color'] ?>;font-size: 15px;float: none;margin: 30px auto 0px auto;text-align: center;border-radius: 3px;font-weight: 600;width:250px;}
+	.form-submit #submit{background-color: #005be2;font-size: 14px;text-align: center;border-radius: 3px;font-weight: 500;color: #fff;cursor: pointer;margin: 0;border: 0;padding: 11px 21px;}
+	#respond p {margin: 12px 0;}
+	.amp-comment-button a{color: #fff;display: block;padding: 7px 0px 8px 0px;}
+	.comment-form-comment #comment {border-color: #ccc;width: 100%;padding: 20px;}
+	.cmts h3{margin: 0;font-size: 12px;padding-bottom: 6px;border-bottom: 1px solid #eee;font-weight: 400;letter-spacing: 0.5px;text-transform: uppercase;color: #444;}
+	.cmts h3:after{content: "";display: block;width: 115px;border-bottom: 1px solid #005be2;position: relative;top: 7px;}
+	.cmts ul{margin-top:16px;}
+	.cmts ul li{list-style: none;margin-bottom: 20px;padding-bottom: 20px;border-bottom: 1px solid #eee;}
+	.cmts .amp-comments-wrapper ul .children{margin-left:30px; }
+	.cmts .comment-author.vcard .says{display:none;}
+	.cmts .comment-author.vcard .fn{font-size: 12px;font-weight: 500;color: #333;}
+	.cmts .comment-metadata{font-size: 11px;margin-top: 8px;}
+	.amp-comments-wrapper ul li:hover .comment-meta .comment-metadata a{color:<?php echo $redux_builder_amp['swift-color-scheme']['color'] ?>;;}
+	.cmts .comment-metadata a{color: #999;}
+	.comment-content{margin-top:6px;width:100%;display:inline-block;}
+	.comment-content p{font-size: 14px;color: #333;line-height: 22px;font-weight: 400;margin: 0;}
+	.comment-meta amp-img{float:left;margin-right:10px;border-radius:50%;width:40px;}
+
+
+	@media (max-width: 480px){
+		blockquote p {font-size:20px;}
+	}
 <?php } ?>
 <?php if($redux_builder_amp['single-design-type'] == '1' || $redux_builder_amp['single-design-type'] == '4'){?>
 <?php // Single
@@ -345,7 +374,7 @@ echo $fontFamily;?>
 .sf-img .wp-caption-text:before{content:"\e412";font-family: 'icomoon';position: relative;top: 4px;opacity: 0.4;font-size:24pxmargin-right: 5px;}
 .sp-cnt{margin-top: 40px;clear: both;width: 100%;display: inline-block; }
 .sp-rl{display:inline-flex;width:100%;}
-.sp-lt{display: flex;flex-direction: column;flex: 1 0 20%;order: 0;}
+.sp-lt{display: flex;flex-direction: column;flex: 1 0 20%;order: 0;max-width:336px;}
 .sp-rt{width: 72%;margin-left: 60px;flex-direction: column;justify-content: space-around;order: 1;}
 .ss-ic, .sp-athr, .amp-tags, .post-date{padding-bottom:20px;border-bottom:1px dotted #ccc;}
 .shr-txt, .athr-tx, .amp-tags > span:nth-child(1), .amp-related-posts-title, .related-title, .r-pf h3{margin-bottom: 12px;}
@@ -364,7 +393,7 @@ echo $fontFamily;?>
 
 
 
-.cntn-wrp{font-size:18px;color:#000;line-height:1.7;}
+.cntn-wrp{font-size:18px;color:#000;line-height:1.7;word-break: break-word;}
 .sp-artl h1, h2, h3, h4, h5, h6{margin-bottom:5px;}
 <?php // H1 - H6 Font Sizes 
 	if($redux_builder_amp['swift_cnt'] && $redux_builder_amp['swift_cnt_h1']){ ?>
@@ -398,7 +427,7 @@ echo $fontFamily;?>
 		.cntn-wrp h6 {font-size: 15px;}
 	<?php } // H6 Ends
  // swift Content Heading Sizes Ends?>
-.cntn-wrp p{margin:0px 0px 30px 0px;}
+.cntn-wrp p, .cntn-wrp ul, .cntn-wrp ol{margin:0px 0px 30px 0px;word-break: break-word;}
 .sp-rt p strong, .pg p strong{font-weight: 700;}
 .srp .amp-related-posts amp-img{float: left;width: 100%;margin: 0px;height:100%;}
 .srp ul li{display: inline-block;line-height: 1.3;margin-bottom: 24px;list-style-type:none;width:100%;}
@@ -407,6 +436,7 @@ echo $fontFamily;?>
 .has_thumbnail:hover .related_link a{color: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;}
 .related_link{margin-top:10px;}
 .related_link a{color:#333;}
+.related_link p{word-break: break-word;}
 .amp-related-posts ul{list-style-type:none;}
 .r-pf{margin-top: 40px;display: inline-block;width: 100%;}
 <?php if( 1 == $redux_builder_amp['ampforwp-inline-related-posts'] && is_single() ){ ?>
@@ -430,7 +460,8 @@ echo $fontFamily;?>
     margin: 0;
 }
 .related_posts .has_related_thumbnail{display: inline-flex;width: 29%;flex-direction: column;margin:0px 30px 30px 0px;justify-content: space-evenly;padding:0;}
-.related_posts .related_link p{color: #444;font-size: 13px;line-height: 20px;letter-spacing: 0.10px;}
+.related_link p{word-break: break-word;color: #444;font-size: 13px;line-height: 20px;
+letter-spacing: 0.10px;margin-top: 5px;font-weight: 400;}
 <?php } ?>
 <?php if(is_single() && $redux_builder_amp['enable-single-social-icons'] ){?>
 	.body.single-post{
@@ -493,7 +524,7 @@ border-bottom: 1px solid #eee;
 .loop-category li{display: inline-block;list-style-type: none;margin-right: 10px;font-size: 10px;font-weight: 600;letter-spacing: 1.5px;}
 .loop-category li a{color:#555;text-transform: uppercase;}
 .loop-category li:hover a{color:#005be2;}
-.fsp-cnt p{color:#444;font-size:13px;line-height:20px;letter-spacing: 0.10px;}
+.fsp-cnt p{color:#444;font-size:13px;line-height:20px;letter-spacing: 0.10px;word-break: break-word;}
 .fsp:hover h2 a{color: <?php echo $redux_builder_amp['swift-color-scheme']['color']; ?>;}
 .fsp h2 a{color:#191919;}  
 .fsp{margin: 15px;flex-basis: calc(33.33% - 30px);}
@@ -528,7 +559,7 @@ if ( isset($redux_builder_amp['ampforwp-disqus-comments-support']) && $redux_bui
     .tl-exc {font-size: 14px;margin-top: 3px;line-height: 22px;}
     .sp-rl {display: inline-block;width: 100%;}
     .srp .related_link{font-size:20px;line-height:1.4;font-weight:600;}
-    .sp-lt {width: 100%;margin-top: 20px;}
+    .sp-lt {width: 100%;margin-top: 20px;max-width:100%;}
     .sp-cnt{margin-top: 15px;}
     .rlp-image{width:200px;float:left;margin-right:15px;display: flex;flex-direction: column;}
     .rlp-cnt{display: flex;}
@@ -694,6 +725,9 @@ if( isset($redux_builder_amp['amp-swift-menu-cprt']) && $redux_builder_amp['amp-
 .cp-rgt .view-non-amp{
 	display:none;
 }
+a.btt:hover {
+    cursor: pointer;
+}
 <?php } //Menu Copy Right CSS Ends
 if($redux_builder_amp['single-design-type'] == '4'){
 if(is_single() ) { ?>
@@ -757,7 +791,7 @@ if (isset($redux_builder_amp['swift-sidebar']) && $redux_builder_amp['swift-side
 <?php } // sidebar CSS ends
 } // single design 4 ends?>
 <?php // Header and Archive Sidebar
-if (isset($redux_builder_amp['gbl-sidebar']) && $redux_builder_amp['gbl-sidebar']) { ?>
+if ( ampforwp_get_setting('gbl-sidebar') && ampforwp_get_setting('gnrl-sidebar') ) { ?>
 .b-w, .arch-dsgn{
 	display: flex;
 }
@@ -779,11 +813,35 @@ if (isset($redux_builder_amp['gbl-sidebar']) && $redux_builder_amp['gbl-sidebar'
 .b-w .sdbr-right{
 	margin-top:30px;
 }
-@media(max-width:768px){
-.fbp-cnt{
-	width:100%;
+/** Custom Frontpage PB CSS **/
+.cntr.pgb{
+	max-width:1400px;
 }
-
+.pgb {
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+}
+.pg-lft{
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    padding-right: 30px;
+}
+.pgb .sdbr-right{
+	width:auto;
+}
+@media(max-width:768px){
+	.fbp-cnt{
+		width:100%;
+	}
+	.pg-lft{
+		width:100%;
+		padding:0;
+	}
+	.pgb {
+	    display: inline-block;
+	}
 }
 <?php }
 if ( (isset($redux_builder_amp['gbl-sidebar']) && $redux_builder_amp['gbl-sidebar'] ) || (isset($redux_builder_amp['swift-sidebar']) && $redux_builder_amp['swift-sidebar'] ) ) { ?>
@@ -1114,9 +1172,12 @@ if( isset($redux_builder_amp['enable-amp-ads-4'] ) && $redux_builder_amp['enable
 if( isset($redux_builder_amp['enable-amp-ads-5'] ) && $redux_builder_amp['enable-amp-ads-5'] ) { ?>.amp_ad_5{margin: 10px 0px -17px 0px;}<?php }
 if( isset($redux_builder_amp['enable-amp-ads-6'] ) && $redux_builder_amp['enable-amp-ads-6'] ) { ?>.amp-ad-6{ margin: 0px 0px 20px 0px;}<?php } ?>
 .amp-ad-wrapper {margin-top: 10px; margin-bottom: 10px}
-#amp-user-notification1{padding: 5px;text-align: center;background: #fff;border-top: 1px solid #005be2;}
-#amp-user-notification1 p {display: inline-block;margin: 20px 0px;}
-amp-user-notification button {padding: 8px 10px;background: #005be2;color: #fff;margin-left: 5px;border: 0;}
+<?php if( true == ampforwp_get_setting('amp-enable-notifications') ) {?>
+	#amp-user-notification1{padding: 5px;text-align: center;background: #fff;border-top: 1px solid #005be2;}
+	#amp-user-notification1 p {display: inline-block;margin: 20px 0px;}
+	amp-user-notification button {padding: 8px 10px;background: #005be2;color: #fff;margin-left: 5px;border: 0;}
+<?php } // Notice bar CSS Ends?>
+
 <?php 
 
 //RTL Styles 

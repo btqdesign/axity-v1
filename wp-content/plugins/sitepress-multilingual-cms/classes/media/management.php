@@ -15,7 +15,7 @@
 	<div class="wpml-section-content">
 		<?php if ( $orphan_attachments ): ?>
 
-			<p><?php esc_html_e("The Media Translation plugin needs to add languages to your site's media. Without this language information, existing media files will not be displayed in the WordPress admin.", 'wpml-media') ?></p>
+			<p><?php esc_html_e("The Media Translation plugin needs to add languages to your site's media. Without this language information, existing media files will not be displayed in the WordPress admin.", 'sitepress') ?></p>
 
 		<?php else: ?>
 
@@ -107,7 +107,7 @@
 			</table>
 
 			<div id="wpml_media_all_done" class="hidden updated">
-				<p><?php esc_html_e("You're all done. From now on, all new media files that you upload to content will receive a language. You can automatically duplicate them to translations from the post-edit screen.", 'wpml-media') ?></p>
+				<p><?php esc_html_e("You're all done. From now on, all new media files that you upload to content will receive a language. You can automatically duplicate them to translations from the post-edit screen.", 'sitepress') ?></p>
 			</div>
 
 		</form>

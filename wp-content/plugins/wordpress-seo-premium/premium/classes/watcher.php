@@ -48,7 +48,6 @@ abstract class WPSEO_Watcher {
 
 		// Output the hidden field.
 		return '<input type="hidden" name="' . esc_attr( 'wpseo_old_' . $type . '_url' ) . '" value="' . esc_attr( $url ) . '"/>';
-
 	}
 
 	/**
@@ -93,7 +92,6 @@ abstract class WPSEO_Watcher {
 
 			Yoast_Notification_Center::get()->add_notification( new Yoast_Notification( $message, $arguments ) );
 		}
-
 	}
 
 	/**

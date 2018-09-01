@@ -4,7 +4,7 @@ Tags: backup, backups, back up, backup plugin, database backup, multisite backup
 Requires at least: 3.8.0
 Requires PHP: 5.2.4
 Tested up to: 4.9
-Stable tag: 1.23.0
+Stable tag: 1.28.0
 Author URI: https://www.wpbackitup.com
 Donate link: https://www.wpbackitup.com
 License: GPLv2 or later
@@ -217,6 +217,28 @@ Our online documentation and full list of FAQs can be found at [support.wpbackit
 
 
 == Changelog ==
+= 1.29 =
+*Release Date -  August 29, 2018
+
+* UPDATE : Update Admin Notices and add Labor Day Promo
+
+= 1.28 =
+*Release Date -  August 13, 2018
+
+* FIX : Correct additional issue with php 7.0 array initialization in API
+
+= 1.27 =
+*Release Date -  August 10, 2018
+
+* FIX : Correct php 7.0 issue with array initialization in API
+
+= 1.26 =
+*Release Date -  August 9, 2018
+
+* UPDATE : Update to check scheduler job frequency
+* UPDATE : Update UI to show new cancel button
+* UPDATE : Add support for advanced scheduler
+
 = 1.25 =
 *Release Date -  July 19, 2018
 

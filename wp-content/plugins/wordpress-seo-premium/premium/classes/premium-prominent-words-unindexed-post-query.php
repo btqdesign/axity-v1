@@ -253,5 +253,4 @@ class WPSEO_Premium_Prominent_Words_Unindexed_Post_Query {
 
 		return '"' . esc_sql( $post_type ) . '"';
 	}
-
 }

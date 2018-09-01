@@ -2,7 +2,7 @@
 global $redux_builder_amp;
 $loadComponent = array();
 $scriptComponent = array();
-$supportComponent = array('AMP-search','AMP-menu','AMP-logo','AMP-social-icons','AMP-sidebar','AMP-featured-image','AMP-author-box','AMP-loop','AMP-categories-tags','AMP-comments','AMP-post-navigation','AMP-related-posts','AMP-post-pagination','AMP-call-now', 'AMP-breadcrumb');
+$supportComponent = array('AMP-search','AMP-menu','AMP-logo','AMP-social-icons','AMP-sidebar','AMP-featured-image','AMP-author-box','AMP-loop','AMP-categories-tags','AMP-comments','AMP-post-navigation','AMP-related-posts','AMP-post-pagination','AMP-call-now', 'AMP-breadcrumb','AMP-gdpr');
 //$removeScriptComponent = array('amp-carousel');'
 add_filter( 'amp_post_template_data', 'ampforwp_framework_add_and_form_scripts',20);
 function ampforwp_framework_add_and_form_scripts($data) {
@@ -266,6 +266,14 @@ function amp_breadcrumb(){
 	}
 }
 
+// GDPR component 
+function amp_gdpr(){
+	global $loadComponent;
+	if ( isset($loadComponent['AMP-gdpr']) && true == $loadComponent['AMP-gdpr'] ) {
+		echo amp_gdpr_output();
+	}
+}
+
 //Get Core of AMP HTML
 function amp_header_core(){
 	$post_id = get_queried_object_id();
@@ -397,7 +405,7 @@ function amp_non_amp_link(){
 function amp_back_to_top_link(){
 	 global $redux_builder_amp;
     if( '1' == $redux_builder_amp['ampforwp-footer-top'] ) { ?>
-        <a href="#top"><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-top-text'], 'Top'); ?> </a> 
+        <a title="back to top" on="tap:backtotop.scrollTo(duration=500)" class="btt" ><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-top-text'], 'Top'); ?></a> 
       <?php }
 }
 

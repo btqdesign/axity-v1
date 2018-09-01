@@ -879,6 +879,10 @@ trait broadcasting
 		$bcd->taxonomies = $form->checkbox( 'taxonomies' )->get_post_value()
 			&& ( is_super_admin() || static::user_has_roles( $this->get_site_option( 'role_taxonomies' ) ) );
 
+		$keep_attachments = $this->get_site_option( 'keep_attachments' );
+		if ( $keep_attachments )
+			$bcd->delete_attachments = false;
+
 		// Handle the unchecking of the linked children.
 		// We could do this earlier, when foreaching the blogs_input, but it makes the code look uglier. Therefore we keep it separate.
 		$unchecked_child_blogs_action = $form->checkbox( 'unchecked_child_blogs' )->get_post_value();

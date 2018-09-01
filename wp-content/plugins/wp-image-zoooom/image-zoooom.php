@@ -3,7 +3,7 @@
  * Plugin Name: WP Image Zoom
  * Plugin URI: https://wordpress.org/plugins/wp-image-zoooom/
  * Description: Add zoom effect over the an image, whether it is an image in a post/page or the featured image of a product in a WooCommerce shop 
- * Version: 1.25
+ * Version: 1.26
  * Author: SilkyPress 
  * Author URI: https://www.silkypress.com
  * License: GPL2
@@ -50,14 +50,14 @@ final class ImageZoooom {
       * Cloning is forbidden.
       */
     public function __clone() {
-         _doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'wp-image-zoooom' ), '1.0' );
+        _doing_it_wrong( __FUNCTION__, __( 'An error has occurred. Please reload the page and try again.' ), '1.0' );
     }
 
     /**
      * Unserializing instances of this class is forbidden.
      */
     public function __wakeup() {
-        _doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'wp-image-zoooom' ), '1.0' );
+        _doing_it_wrong( __FUNCTION__, __( 'An error has occurred. Please reload the page and try again.' ), '1.0' );
     }
 
     /**
@@ -101,7 +101,7 @@ final class ImageZoooom {
             //remove_theme_support( 'wc-product-gallery-lightbox' );
             add_theme_support( 'wc-product-gallery-slider' );
 
-            if ($this->theme('kiddy') || $this->theme('flatsome')) {
+            if ($this->theme('kiddy') || ($this->theme('flatsome') && get_theme_mod('product_gallery_woocommerce'))) {
                 remove_theme_support( 'wc-product-gallery-slider' );
             }
         }
@@ -263,7 +263,7 @@ final class ImageZoooom {
         $wrapper_themes = array(
             array(
                 'rule' => '.wrapper { z-index: 40 !important; }',
-                'themes' => array('bridge', 'nouveau', 'stockholm', 'tactile', 'vigor', 'homa', 'hudsonwp', ),
+                'themes' => array('bridge', 'nouveau', 'stockholm', 'tactile', 'vigor', 'homa', 'hudsonwp', 'borderland', 'moose'),
             ),
             array(
                 'rule' => '.qodef-wrapper { z-index: 200 !important; }',
@@ -285,7 +285,16 @@ final class ImageZoooom {
                 'rule' => '.sidebar-menu-push { z-index: 40 !important; }',
                 'themes' => array('artcore'),
             ),
+            array(
+                'rule' => '.eltdf-wrapper { z-index: 40 !important; }',
+                'themes' => array('readanddigest', 'tomasdaisy', 'virtuoso', 'blu', 'superfood', 'ambient', 'koto', 'azaleawp', 'all4home', 'mrseo', 'vibez', 'sweettooth', 'halogen', 'vino', 'ion', 'satine', 'nightshade', 'esmarts', 'makoto', 'mane', 'imogen', 'yvette', 'gourmand', 'sceon', 'calla', 'corretto', 'allston'),
+            ),
+            array(
+                'rule' => '.eltd-wrapper { z-index: 40 !important; }',
+                'themes' => array('woly', 'averly', 'search-and-go', 'flow', 'kreate', 'allure', 'chandelier', 'malmo', 'minnesota', 'newsroom', 'kendall', 'savory', 'creator', 'awake', 'diorama', 'medipoint', 'audrey', 'findme', 'april', 'bizfinder', 'bjorn', 'trackstore', 'albergo', 'vakker', 'tamashi', 'bonvoyage')
+            ),
         );
+
         foreach( $wrapper_themes as $_v ) {
             if ( in_array($theme, $_v['themes'] ) ) { 
                 echo '<style type="text/css">' . $_v['rule'] . '</style>'. PHP_EOL;
@@ -321,6 +330,11 @@ final class ImageZoooom {
         if ( $this->woocommerce_is_active() && function_exists('is_product') && is_product() ) {
             wp_dequeue_script( 'prettyPhoto' );
             wp_dequeue_script( 'prettyPhoto-init' );
+        }
+
+        if ( $this->theme('sovereign') ) {
+            wp_enqueue_script( 'prettyPhoto' );
+            wp_enqueue_script( 'prettyPhoto-init' );
         }
     }
 

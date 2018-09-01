@@ -4,7 +4,7 @@ Donate link: https://broadcast.plainviewplugins.com
 License: GPLv3
 Requires at least: 4.6
 Requires PHP: 5.4
-Stable tag: 43.7
+Stable tag: 43.8
 Tags: multipost, sharing, duplicate, franchise, syndication, marketing, news, hub
 Tested up to: 4.9.6
 
@@ -110,6 +110,7 @@ The following add-ons add support for the plugin after which they are named.
 * <a href="https://broadcast.plainviewplugins.com/addon/ubermenu/">UberMenu</a>
 * <a href="https://broadcast.plainviewplugins.com/addon/ultimate-member/">Ultimate Member</a>
 * <a href="https://broadcast.plainviewplugins.com/addon/unyson/">Unyson</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/user-access-manager/">User Access Manager</a>
 * <a href="https://broadcast.plainviewplugins.com/addon/woocommerce/">WooCommerce</a>
 * <a href="https://broadcast.plainviewplugins.com/addon/wp-all-import/">WP All Import</a>
 * <a href="https://broadcast.plainviewplugins.com/addon/wpcustom-category-image/">WPCustom Category Image</a>
@@ -314,6 +315,12 @@ This will broadcast all normal product settings: SKU, price, etc.
 If your products have variations, a product image gallery, you want to sync stock, you want to sync orders, need the attribute taxonomies to be synced, you'll be wanting the <a href="https://broadcast.plainviewplugins.com/addon/woocommerce/">WooCommerce add-on</a>.
 
 == Changelog ==
+
+= 43.8 20180821 =
+
+* New: "Keep Attachments" option added. This prevents the automatic housekeeping Broadcast does when broadcasting: normally all the attachments of a child post are deleted and then the new attachments are recopied. This prevents the automatic deletion.
+* Dev: override_child_permalink action now has $child_post property.
+* New add-on. <a href="https://broadcast.plainviewplugins.com/addon/user-access-manager/">User Access Manager</a>: Adds support for the <a href="https://wordpress.org/plugins/user-access-manager/">User Access Manager</a> plugin.
 
 = 43.7 20180724 =
 
