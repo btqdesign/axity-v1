@@ -493,6 +493,7 @@ trait misc
 			'debug_ips' => '',									// List of IP addresses that can see debug information, when debug is enabled.
 			'debug_to_browser' => false,						// Display debug info in the browser?
 			'debug_to_file' => false,							// Save debug info to a file.
+			'keep_attachments' => false,						// Stop attachments from being deleted.
 			'save_post_decoys' => 1,							// How many nop() hooks to insert into the save_post action before Broadcast itself.
 			'save_post_priority' => 640,						// Priority of save_post action. Higher = lets other plugins do their stuff first
 			'override_child_permalinks' => false,				// Make the child's permalinks link back to the parent item?

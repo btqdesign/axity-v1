@@ -242,6 +242,15 @@ implements
 		return implode( $glue, $this->lists( $value ) );
 	}
 
+	/**
+		@brief		Import this array.
+		@since		2018-07-08 09:49:39
+	**/
+	public function import_array( $array )
+	{
+		$this->items = $array;
+	}
+
 	public function insert_after( $key, $item )
 	{
 		$args = array_merge( [ 'after' ], func_get_args() );
@@ -606,7 +615,15 @@ implements
 	 */
 	public function toArray()
 	{
-		return $this->items;
+		$items = $this->items;
+		foreach( $items as $index => $item )
+		{
+			if ( ! is_object( $item ) )
+				continue;
+			if ( get_class( $item ) == get_class( $this ) )
+				$items[ $index ] = $item->to_array();
+		}
+		return $items;
 	}
 
 	/**

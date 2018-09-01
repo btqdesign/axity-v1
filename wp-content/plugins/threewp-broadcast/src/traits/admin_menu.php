@@ -195,6 +195,12 @@ trait admin_menu
 			->label( __( 'Include all networks', 'threewp-broadcast' ) )
 			->checked( $this->get_site_option( 'all_networks' ) );
 
+		$keep_attachments = $fs->checkbox( 'keep_attachments' )
+			->description( __( 'Normally Broadcast will delete all existing attachments from an existing child post before copying the attachments anew. This option will prevent the deletion / housekeeping during broadcasting.', 'threewp-broadcast' ) )
+			// Input label.
+			->label( __( 'Keep attachments', 'threewp-broadcast' ) )
+			->checked( $this->get_site_option( 'keep_attachments' ) );
+
 		$save_post_decoys = $fs->number( 'save_post_decoys' )
 			->description( __( "How many save_post hook decoys to insert before the real Broadcast save_post hook. This value should be raised if you notice that Broadcast isn't doing anything. This is due to a bug in Wordpress when other plugins call remove_action on the save_post hook.", 'threewp-broadcast' ) )
 			// Input label.
@@ -404,6 +410,7 @@ trait admin_menu
 
 			$this->update_site_option( 'all_networks', $all_networks->is_checked() );
 			$this->update_site_option( 'clear_post', $clear_post->is_checked() );
+			$this->update_site_option( 'keep_attachments', $keep_attachments->is_checked() );
 			$this->update_site_option( 'save_post_priority', $save_post_priority->get_post_value() );
 			$this->update_site_option( 'save_post_decoys', $save_post_decoys->get_post_value() );
 			$this->update_site_option( 'blogs_to_hide', $blogs_to_hide->get_post_value() );
