@@ -25,5 +25,4 @@ interface WPSEO_Redirect_Exporter {
 	 * @return mixed
 	 */
 	public function format( WPSEO_Redirect $redirect );
-
 }

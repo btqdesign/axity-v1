@@ -66,7 +66,6 @@ class WPSEO_Redirect_Upgrade {
 		}
 	}
 
-
 	/**
 	 * Upgrade routine to merge plain and regex redirects in a single option.
 	 */

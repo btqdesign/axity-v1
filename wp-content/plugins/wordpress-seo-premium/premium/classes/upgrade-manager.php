@@ -73,7 +73,6 @@ class WPSEO_Upgrade_Manager {
 			add_action( 'wp', array( 'WPSEO_Premium_Prominent_Words_Versioning', 'upgrade_4_8' ), 12 );
 			add_action( 'admin_head', array( 'WPSEO_Premium_Prominent_Words_Versioning', 'upgrade_4_8' ), 12 );
 		}
-
 	}
 
 	/**
@@ -117,7 +116,6 @@ class WPSEO_Upgrade_Manager {
 				add_action( 'admin_head', array( 'WPSEO_Redirect_Upgrade', 'upgrade_3_1' ), 12 );
 			}
 		}
-
 	}
 
 	/**
@@ -154,7 +152,6 @@ class WPSEO_Upgrade_Manager {
 			add_action( 'wp', array( 'WPSEO_Redirect_Upgrade', 'upgrade_1_2_0' ), 10 );
 			add_action( 'admin_head', array( 'WPSEO_Redirect_Upgrade', 'upgrade_1_2_0' ), 10 );
 		}
-
 	}
 
 	/**

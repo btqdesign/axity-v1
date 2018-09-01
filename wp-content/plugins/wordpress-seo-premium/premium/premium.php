@@ -27,7 +27,7 @@ class WPSEO_Premium {
 	const OPTION_CURRENT_VERSION = 'wpseo_current_version';
 
 	/** @var string */
-	const PLUGIN_VERSION_NAME = '7.9.1';
+	const PLUGIN_VERSION_NAME = '8.1';
 
 	/** @var string */
 	const PLUGIN_VERSION_CODE = '16';
@@ -62,7 +62,7 @@ class WPSEO_Premium {
 		// Create the upload directory.
 		WPSEO_Redirect_File_Util::create_upload_dir();
 
-		WPSEO_Premium::activate_license();
+		self::activate_license();
 
 		// Make sure the notice will be given at install.
 		require_once WPSEO_PREMIUM_PATH . 'classes/premium-prominent-words-recalculation-notifier.php';
@@ -111,6 +111,7 @@ class WPSEO_Premium {
 			'orphaned-post-filter'                   => new WPSEO_Premium_Orphaned_Post_Filter(),
 			'orphaned-post-notifier'                 => new WPSEO_Premium_Orphaned_Post_Notifier( array( 'post', 'page' ), Yoast_Notification_Center::get() ),
 			'request-free-translations'              => new WPSEO_Premium_Free_Translations(),
+			'expose-javascript-shortlinks'           => new WPSEO_Premium_Expose_Shortlinks(),
 		);
 
 		$this->setup();
@@ -155,7 +156,7 @@ class WPSEO_Premium {
 	 */
 	private function setup() {
 
-		WPSEO_Premium::autoloader();
+		self::autoloader();
 
 		$this->load_textdomain();
 
@@ -203,7 +204,7 @@ class WPSEO_Premium {
 			add_action( 'admin_init', array( $this, 'register_settings' ) );
 
 			// Licensing part.
-			$license_manager = WPSEO_Premium::get_license_manager();
+			$license_manager = self::get_license_manager();
 
 			// Setup constant name.
 			$license_manager->set_license_constant_name( 'WPSEO_LICENSE' );
@@ -300,10 +301,7 @@ class WPSEO_Premium {
 		$this->redirects = new WPSEO_Redirect_Page();
 
 		// Adds integration that filters redirected entries from the sitemap.
-		$this->integrations['redirect-sitemap-filter'] = new WPSEO_Redirect_Sitemap_Filter(
-			home_url(),
-			new WPSEO_Redirect_Option()
-		);
+		$this->integrations['redirect-sitemap-filter'] = new WPSEO_Redirect_Sitemap_Filter( home_url() );
 	}
 
 	/**
@@ -583,7 +581,7 @@ class WPSEO_Premium {
 		$asset_manager = new WPSEO_Admin_Asset_Manager();
 		$version       = $asset_manager->flatten_version( WPSEO_VERSION );
 
-		wp_enqueue_script( 'yoast-contact-support', plugin_dir_url( WPSEO_PREMIUM_FILE ) . 'assets/js/dist/wpseo-premium-contact-support-' . $version . WPSEO_CSSJS_SUFFIX . '.js', array( 'jquery' ), WPSEO_VERSION );
+		wp_enqueue_script( 'yoast-contact-support', plugin_dir_url( WPSEO_PREMIUM_FILE ) . 'assets/js/dist/wpseo-premium-contact-support-' . $version . WPSEO_CSSJS_SUFFIX . '.js', array( 'jquery', 'yoast-seo-premium-commons' ), WPSEO_VERSION );
 	}
 
 	/**

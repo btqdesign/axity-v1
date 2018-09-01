@@ -10,6 +10,7 @@
  * are present.
  */
 class WPSEO_Premium_Free_Translations implements WPSEO_WordPress_Integration {
+
 	/**
 	 * Registers all hooks to WordPress.
 	 */

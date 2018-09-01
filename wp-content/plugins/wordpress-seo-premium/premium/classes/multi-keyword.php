@@ -9,6 +9,7 @@
  * Implements multi keyword int he admin.
  */
 class WPSEO_Multi_Keyword {
+
 	/**
 	 * Constructor. Adds WordPress hooks.
 	 */

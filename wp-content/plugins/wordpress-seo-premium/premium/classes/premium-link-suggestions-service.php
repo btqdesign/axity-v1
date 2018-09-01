@@ -66,7 +66,7 @@ class WPSEO_Premium_Link_Suggestions_Service {
 		$suggestion_ids = wp_list_pluck( $suggestions, 'id' );
 
 		$replacements   = $suggestion_ids;
-		$replacements[] = WPSEO_Cornerstone::META_NAME;
+		$replacements[] = '_yoast_wpseo_is_cornerstone';
 
 		// Find all posts in the list that are cornerstone items.
 		$results = $wpdb->get_results(

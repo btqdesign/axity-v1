@@ -295,6 +295,7 @@ class WPSEO_Redirect_Table extends WP_List_Table {
 				return $item[ $column_name ];
 		}
 	}
+
 	/**
 	 * Returns the available bulk actions.
 	 *
