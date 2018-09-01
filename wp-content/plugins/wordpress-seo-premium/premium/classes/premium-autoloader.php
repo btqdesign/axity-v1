@@ -102,7 +102,6 @@ class WPSEO_Premium_Autoloader {
 		}
 
 		return false;
-
 	}
 
 	/**

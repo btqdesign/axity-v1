@@ -260,6 +260,19 @@ $extension_listing_array = array(
                             'is_activated'=>(is_plugin_active('amp-custom-post-type/amp-custom-post-type.php')? 1 : 2),
                             'settingUrl'=>'{ampforwp-cpt-subsection}',
                         ), 
+
+                        array(
+                            'name'=>'AMP Stories',
+                            'desc'=>'A Revolutionary new way to share your stories',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/cache-icon.png',
+                            'price'=>'$79',
+                            'url_link'=>'http://ampforwp.com/amp-stories/#utm_source=options-panel&utm_medium=extension-tab_stories&utm_campaign=AMP%20Plugin',
+                            'plugin_active_path'=> 'amp-stories/ampforwp-stories.php',
+                            'item_name'=>'AMP Stories',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('amp-stories/ampforwp-stories.php')? 1 : 2),
+                            'settingUrl'=>admin_url( 'edit.php?post_type=ampforwp_story' ),
+                        ),
                         array(
                             'name'=>'Structured Data for WP',
                             'desc'=>'Structured Data for your site and for AMP',
@@ -1882,21 +1895,21 @@ Redux::setArgs( "redux_builder_amp", $args );
                'default'  => 0,
                'required'  => array('ampforwp-seo-selection', '=' , '2'),
            ),
-           array(
-                  'id' => 'ampforwp-seo-index-noindex-sub-section',
-                  'type' => 'section',
-                  'title' => __('Advanced Indexing', 'accelerated-mobile-pages'),
-                  'indent' => true,
-                  'layout_type' => 'accordion',
-                   'accordion-open'=> 1,
-              ),
-           array(
+            array(
+                'id' => 'ampforwp-seo-index-noindex-sub-section',
+                'type' => 'section',
+                'title' => __('Advanced Indexing', 'accelerated-mobile-pages'),
+                'indent' => true,
+                'layout_type' => 'accordion',
+                'accordion-open'=> 1,
+            ),
+            array(
                'id'       => 'amp-inspection-tool',
                'type'     => 'switch',
                'title'    => __('URL Inspection Tool Compatibility', 'accelerated-mobile-pages'),
                'tooltip-subtitle'  => __("You can read about it <a target='_blank' href='https://webmasters.googleblog.com/2018/06/new-url-inspection-tool-more-in-search.html'>here</a>",'accelerated-mobile-pages'),
                'default' => 1,
-           ),
+            ),
            array(
                'id'       => 'ampforwp-robots-archive-sub-pages-sitewide',
                'type'     => 'switch',
@@ -1906,6 +1919,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                'on' => 'index',
                'off' => 'noindex',
                'required'  => array('amp-inspection-tool', '=' , '0'),
+               'switch-text' => true,
            ),
            array(
                'id'       => 'ampforwp-robots-archive-author-pages',
@@ -1916,6 +1930,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                'on' => 'index',
                'off' => 'noindex',
                'required'  => array('amp-inspection-tool', '=' , '0'),
+               'switch-text' => true,
            ),
            array(
                'id'       => 'ampforwp-robots-archive-date-pages',
@@ -1926,6 +1941,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                'on' => 'index',
                'off' => 'noindex',
                'required'  => array('amp-inspection-tool', '=' , '0'),
+               'switch-text' => true,
            ),
            array(
                'id'       => 'ampforwp-robots-archive-category-pages',
@@ -1936,6 +1952,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                'on' => 'index',
                'off' => 'noindex',
                'required'  => array('amp-inspection-tool', '=' , '0'),
+               'switch-text' => true,
            ),
            array(
                'id'       => 'ampforwp-robots-archive-tag-pages',
@@ -1946,6 +1963,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                'on' => 'index',
                'off' => 'noindex',
                'required'  => array('amp-inspection-tool', '=' , '0'),
+               'switch-text' => true,
            ),
 
 
@@ -3522,7 +3540,81 @@ Redux::setSection( $opt_name, array(
 
 ) );
 
-
+// WooCommerce Compatibility
+$e_commerce_support[] =  array(
+            'id' => 'ampforwp-woocommerce',
+            'type' => 'section',
+            'title' => __('WooCommerce Compatibility', 'accelerated-mobile-pages'),
+            'indent' => true,
+            'layout_type' => 'accordion',
+            'accordion-open'=> 1, 
+          );
+$e_commerce_support[] =  array(
+               'id'        =>'amp-enable-woocommerce',
+               'type'      => 'switch',
+               'title'     => __('WooCommerce Support', 'accelerated-mobile-pages'),
+               'default'   => '',
+               'true'      => 'Enabled',
+               'false'     => 'Disabled',
+           );
+     if(!is_plugin_active( 'amp-woocommerce/amp-woocommerce.php' ) && !is_plugin_active( 'amp-woocommerce-pro/amp-woocommerce.php' ) ){
+        $e_commerce_support[]= array(
+            'id'   => 'info_normal_woocommerce',
+            'type' => 'info',
+            'required' => array('amp-enable-woocommerce', '=' , '1'),
+             'desc' => '<div style="    background: #FFF9C4;padding: 12px;line-height: 1.6;margin:-45px -14px -18px -17px;"><b>ONE LAST STEP REQUIRED:</b> This feature requires a free extension <a href="https://wordpress.org/plugins/amp-woocommerce/" target="_blank">AMP WooCommerce</a>.<br /> <div style="margin-top:4px;">(<a href="https://wordpress.org/plugins/amp-woocommerce/" target="_blank">'.__('Click here for more info','accelerated-mobile-pages').'</a>)</div></div>',               
+               );
+    }
+    elseif ( is_plugin_active( 'amp-woocommerce/amp-woocommerce.php' ) && !is_plugin_active( 'amp-woocommerce-pro/amp-woocommerce.php' ) ) {
+        $e_commerce_support[]= array(
+            'id'   => 'info_normal_woocommerce_pro',
+            'type' => 'info',
+            'required' => array('amp-enable-woocommerce', '=' , '1'),
+            'desc' => '<div style="    background: #FFF9C4;padding: 12px;line-height: 1.6;margin:-45px -14px -18px -17px;"><b>Pro Version:</b> Everything in Free, and Archives, Gallery, Cart, Variants & Attributes, Rating & Reviews Support.<a href="https://ampforwp.com/woocommerce/" target="_blank"></a><br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/woocommerce/" target="_blank">'.__('Click here for more info','accelerated-mobile-pages').'</a>)</div></div>',                
+        );
+    }
+    elseif ( is_plugin_active( 'amp-woocommerce-pro/amp-woocommerce.php' ) ) {
+        $e_commerce_support[]= array(
+            'id'   => 'info_woocommerce_pro',
+            'type' => 'info',
+            'style' => 'success',
+            'required' => array('amp-enable-woocommerce', '=' , '1'),
+            'desc'     => __(' AMP WooCommerce is activated', 'accelerated-mobile-pages'),           
+        );
+    }
+ // EDD Compatibility
+$e_commerce_support[] =  array(
+            'id' => 'ampforwp-edd-compatibility',
+            'type' => 'section',
+            'title' => __('Easy Digital Downloads Compatibility', 'accelerated-mobile-pages'),
+            'indent' => true,
+            'layout_type' => 'accordion',
+            'accordion-open'=> 1, 
+          );
+$e_commerce_support[] = array(
+               'id'        =>'amp-edd-support',
+               'type'      => 'switch',
+               'title'     => __('Easy Digital Downloads Support', 'accelerated-mobile-pages'),
+               'default'   => '',
+               'true'      => 'Enabled',
+               'false'     => 'Disabled',
+           );
+    if(!is_plugin_active( 'edd-for-amp/edd-for-amp.php' ) ){
+        $e_commerce_support[]= array(
+                        'id'   => 'info_normal_edd',
+                        'type' => 'info',
+                        'required' => array('amp-edd-support', '=' , '1'),
+                        'desc' => '<div style="    background: #FFF9C4;padding: 12px;line-height: 1.6;margin:-45px -14px -18px -17px;"><b>ONE LAST STEP REQUIRED:</b> This feature requires <a href="https://ampforwp.com/edd-for-amp/" target="_blank">EDD for AMP extension</a>.<br /> <div style="margin-top:4px;">(<a href="https://ampforwp.com/edd-for-amp/" target="_blank">'.__('Click here for more info','accelerated-mobile-pages').'</a>)</div></div>',              
+           );}
+ 
+   // E Commerce SECTION
+   Redux::setSection( $opt_name, array(
+       'title'      => __( 'E-Commerce', 'accelerated-mobile-pages' ),
+       'id'         => 'amp-e-commerce',
+       'subsection' => true,
+       'fields'     => $e_commerce_support
+    ) );
+   
    // Translation Panel
            Redux::setSection( $opt_name, array(
                'title'      => __( 'Translation Panel', 'accelerated-mobile-pages' ),
@@ -4226,13 +4318,74 @@ Redux::setSection( $opt_name, array(
                 )
             ),
 
-
-
-
-
-
-
-
+          array(
+                   'id' => 'general_sdbar',
+                   'type' => 'section',
+                   'title' => __('General', 'accelerated-mobile-pages'),
+                   'indent' => true,
+                   'layout_type' => 'accordion',
+                    'accordion-open'=> 1,
+                    'required' => array( array('amp-design-selector', '=' , '4') ),
+            ),
+          array(
+                    'id'    => 'gnrl-sidebar',
+                    'type'  => 'switch',
+                    'title' => __('Sidebar', 'accelerated-mobile-pages'),
+                    'default'   => 0,
+                    'required' => array( array('amp-design-selector', '=' , '4') ),
+            ),
+          array(
+                    'id'    => 'gbl-sidebar',
+                    'class' => 'child_opt child_opt_arrow',
+                    'type'  => 'switch',
+                    'title' => __('Homepage Sidebar', 'accelerated-mobile-pages'),
+                    'default'   => 0,
+                    'required' => array( array('gnrl-sidebar', '=' , '1') ),
+            ),
+            array(
+                    'id'        => 'sidebar-bgcolor',
+                    'class' => 'child_opt child_opt_arrow',
+                    'type'      => 'color_rgba',
+                    'title'     => __('Sidebar Background','accelerated-mobile-pages'),
+                    'default'   => array(
+                        'color'     => '#f7f7f7',
+                    ),
+                    'required' => array( array('gbl-sidebar', '=',1) )
+            ),
+            array(
+                    'id'       => 'sbr-heading-color',
+                    'type'     => 'color_rgba',
+                    'class' => 'child_opt',
+                    'title'    => __('Heading', 'accelerated-mobile-pages'),
+                    'default'  => array(
+                        'color'     => '#333',
+                    ),
+                    'required' => array(
+                      array('gbl-sidebar','=',1)
+                    )           
+            ),
+            array(
+                    'id'       => 'sbr-text-color',
+                    'type'     => 'color_rgba',
+                    'class' => 'child_opt',
+                    'title'    => __('Text', 'accelerated-mobile-pages'),
+                    'default'  => array(
+                        'color'     => '#333',
+                    ),
+                    'required' => array(
+                      array('gbl-sidebar','=',1)
+                    )           
+            ),
+            array(
+                    'id'    => 'swift-sidebar',
+                    'class' => 'child_opt child_opt_arrow',
+                    'type'  => 'switch',
+                    'title' => __('Single Sidebar', 'accelerated-mobile-pages'),
+                    'default'   => 1,
+                    'required' => array( array('single-design-type', '=' , '4'), 
+                                            array('gnrl-sidebar', '=' , '1'), 
+                                ),
+            ),
             
            array(
                        'id' => 'design-advanced',
@@ -5129,49 +5282,6 @@ Redux::setSection( $opt_name, array(
                         )
                 ),
                 array(
-                    'id'    => 'gbl-sidebar',
-                    'type'  => 'switch',
-                    'title' => __('Sidebar', 'accelerated-mobile-pages'),
-                    'default'   => 0,
-                    'required' => array( array('amp-design-selector', '=' , '4') ),
-            ),
-            array(
-                    'id'        => 'sidebar-bgcolor',
-                    'class' => 'child_opt child_opt_arrow',
-                    'type'      => 'color_rgba',
-                    'title'     => __('Sidebar Background','accelerated-mobile-pages'),
-                    'default'   => array(
-                        'color'     => '#f7f7f7',
-                    ),
-                    'required' => array(
-                      array('gbl-sidebar', '=',1)
-                    )
-            ),
-            array(
-                    'id'       => 'sbr-heading-color',
-                    'type'     => 'color_rgba',
-                    'class' => 'child_opt',
-                    'title'    => __('Heading', 'accelerated-mobile-pages'),
-                    'default'  => array(
-                        'color'     => '#333',
-                    ),
-                    'required' => array(
-                      array('gbl-sidebar','=',1)
-                    )           
-            ),
-            array(
-                    'id'       => 'sbr-text-color',
-                    'type'     => 'color_rgba',
-                    'class' => 'child_opt',
-                    'title'    => __('Text', 'accelerated-mobile-pages'),
-                    'default'  => array(
-                        'color'     => '#333',
-                    ),
-                    'required' => array(
-                      array('gbl-sidebar','=',1)
-                    )           
-            ),
-                array(
                        'id' => 'ampforwp-homepage-section-loop',
                        'type' => 'section',
                        'title' => __('Loop Display Controls', 'accelerated-mobile-pages'),
@@ -5233,13 +5343,6 @@ Redux::setSection( $opt_name, array(
 //                   'max-width' => 200,
 //                   'max-height'=> 60,
                    'required' => array( array('amp-design-selector', '=' , '4') ),
-            ),
-            array(
-                    'id'    => 'swift-sidebar',
-                    'type'  => 'switch',
-                    'title' => __('Sidebar', 'accelerated-mobile-pages'),
-                    'default'   => 1,
-                    'required' => array( array('single-design-type', '=' , '4') ),
             ),
             array(
                        'id' => 'ampforwp-single_section_2',

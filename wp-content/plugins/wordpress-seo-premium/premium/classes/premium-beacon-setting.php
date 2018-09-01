@@ -9,6 +9,7 @@
  * Implements the suggestions for Yoast SEO Premium
  */
 class WPSEO_Premium_Beacon_Setting implements Yoast_HelpScout_Beacon_Setting {
+
 	/**
 	 * Returns a list of helpscout hashes to show the user for a certain page.
 	 *
@@ -106,7 +107,6 @@ class WPSEO_Premium_Beacon_Setting implements Yoast_HelpScout_Beacon_Setting {
 
 		return array();
 	}
-
 
 	/**
 	 * Returns a list of config values for a a certain admin page.

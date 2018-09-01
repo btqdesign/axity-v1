@@ -180,6 +180,7 @@ class WPSEO_Export_Keywords_Post_Presenter implements WPSEO_Export_Keywords_Pres
 
 		return is_string( $result['primary_keyword'] ) && ! empty( $result['primary_keyword'] );
 	}
+
 	/**
 	 * Parses then keywords JSON string in the result object for the specified key.
 	 *

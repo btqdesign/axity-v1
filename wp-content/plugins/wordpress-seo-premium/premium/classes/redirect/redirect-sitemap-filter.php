@@ -13,18 +13,13 @@ class WPSEO_Redirect_Sitemap_Filter implements WPSEO_WordPress_Integration {
 	/** @var string The home url. */
 	protected $home_url;
 
-	/** @var WPSEO_Redirect_Option The redirect option. */
-	protected $option;
-
 	/**
 	 * Constructs the object.
 	 *
-	 * @param string                $home_url The home url.
-	 * @param WPSEO_Redirect_Option $option   The redirects option.
+	 * @param string $home_url The home url.
 	 */
-	public function __construct( $home_url, WPSEO_Redirect_Option $option ) {
+	public function __construct( $home_url ) {
 		$this->home_url = $home_url;
-		$this->option   = $option;
 	}
 
 	/**
@@ -51,7 +46,7 @@ class WPSEO_Redirect_Sitemap_Filter implements WPSEO_WordPress_Integration {
 
 		$entry_location = str_replace( $this->home_url, '', $url['loc'] );
 
-		if ( $this->option->search( $entry_location ) !== false ) {
+		if ( $this->is_redirect( $entry_location ) !== false ) {
 			return false;
 		}
 
@@ -65,5 +60,22 @@ class WPSEO_Redirect_Sitemap_Filter implements WPSEO_WordPress_Integration {
 	 */
 	public function clear_sitemap_cache() {
 		WPSEO_Sitemaps_Cache::clear();
+	}
+
+	/**
+	 * Checks if the given entry location already exists as a redirect.
+	 *
+	 * @param string $entry_location The entry location.
+	 *
+	 * @return bool Whether the entry location exists as a redirect.
+	 */
+	protected function is_redirect( $entry_location ) {
+		static $redirects = null;
+
+		if ( $redirects === null ) {
+			$redirects = new WPSEO_Redirect_Option();
+		}
+
+		return $redirects->search( $entry_location ) !== false;
 	}
 }

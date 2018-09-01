@@ -65,7 +65,6 @@ class WPSEO_Premium_Orphaned_Post_Notifier implements WPSEO_WordPress_Integratio
 		array_walk( $post_types, array( $this, 'notify_for_post_type' ) );
 	}
 
-
 	/**
 	 * Returns the post types to which this filter should be added.
 	 *

@@ -21,7 +21,13 @@ class override_child_permalink
 	public $child_permalink;
 
 	/**
-		@brief		IN: The post in question.
+		@brief		IN: The child post.
+		@since		2018-07-25 22:40:26
+	**/
+	public $child_post;
+
+	/**
+		@brief		IN: The parent post in question.
 		@since		2017-06-01 12:53:01
 	**/
 	public $post;

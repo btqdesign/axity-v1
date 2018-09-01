@@ -196,5 +196,4 @@ class WPSEO_Export_Keywords_Post_Query implements WPSEO_Export_Keywords_Query {
 
 		return $escaped;
 	}
-
 }

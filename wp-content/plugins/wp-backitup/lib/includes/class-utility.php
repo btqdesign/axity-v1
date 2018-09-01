@@ -355,5 +355,15 @@ class WPBackItUp_Utility {
 		}
 	}
 
+	/**
+	 * is string valid json
+	 *
+	 * @param $string
+	 *
+	 * @return bool
+	 */
+	public static function isJSON($string){
+		return is_string($string) && is_array(json_decode($string, true)) ? true : false;
+	}
 }
 

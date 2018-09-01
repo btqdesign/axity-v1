@@ -24,7 +24,6 @@ class WPSEO_Redirect_Form_Presenter {
 		$this->view_vars = $view_vars;
 
 		$this->view_vars['redirect_types'] = $this->get_redirect_types();
-
 	}
 
 	/**

@@ -10,6 +10,7 @@ class WPML_Cookie {
 	 * @param        $domain
 	 */
 	public function set_cookie( $name, $value, $expires, $path, $domain ) {
+		$this->handle_cache_plugins( $name );
 		setcookie( $name, $value, $expires, $path, $domain );
 	}
 
@@ -32,5 +33,12 @@ class WPML_Cookie {
 	 */
 	public function headers_sent() {
 		return headers_sent();
+	}
+
+	/**
+	 * @param $name
+	 */
+	private function handle_cache_plugins( $name ) {
+		do_action( 'wpsc_add_cookie', $name );
 	}
 }

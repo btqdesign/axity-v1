@@ -347,6 +347,8 @@ class ThreeWP_Broadcast
 		if ( ! is_object( $post ) )
 			$post = get_post( $post );
 
+		$child_post = $post;
+
 		// Have we already checked this post ID for a link?
 		$key = 'b' . $blog_id . '_p' . $post->ID;
 		if ( property_exists( $this->permalink_cache, $key ) )
@@ -375,6 +377,7 @@ class ThreeWP_Broadcast
 
 		$action = new actions\override_child_permalink();
 		$action->child_permalink = $link;
+		$action->child_post = $child_post;
 		$action->parent_permalink = $parent_permalink;
 		$action->post = $post;
 		$action->returned_permalink = $parent_permalink;

@@ -167,7 +167,6 @@ class WPSEO_Redirect implements ArrayAccess {
 	 * @return void
 	 */
 	public function offsetUnset( $offset ) {
-
 	}
 
 	/**
@@ -271,5 +270,4 @@ class WPSEO_Redirect implements ArrayAccess {
 	private function match_home_url( $home_url_pieces, $url_pieces ) {
 		return ( isset( $url_pieces['scheme'], $url_pieces['host'] ) && $url_pieces['host'] === $home_url_pieces['host'] );
 	}
-
 }

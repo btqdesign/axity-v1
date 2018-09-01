@@ -88,7 +88,7 @@ include_once( 'premium-tooltips.php' );
         <?php
             $iz_forms_helper->label_class = 'col-sm-6 control-label';
 
-            $fields = array('enable_woocommerce', 'exchange_thumbnails', 'woo_cat', 'woo_variations', 'enable_mobile', 'remove_lightbox_thumbnails', 'remove_lightbox', 'force_attachments', 'custom_class', 'flexslider', 'owl', 'flickity', 'huge_it_gallery', 'enable_lightbox_zoom' );
+            $fields = array('enable_woocommerce', 'exchange_thumbnails', 'woo_cat', 'woo_variations', 'enable_mobile', 'remove_lightbox_thumbnails', 'remove_lightbox', 'force_attachments', 'custom_class', 'flexslider', 'owl', 'flickity', 'slick', 'huge_it_gallery', 'enable_lightbox_zoom' );
 
             if ( class_exists('woocommerce') && version_compare( WC_VERSION, '3.0', '>') ) {
                 unset($fields[array_search('exchange_thumbnails', $fields)]);

@@ -46,5 +46,4 @@ abstract class WPSEO_Redirect_Tab_Presenter {
 	 * @return array
 	 */
 	abstract protected function get_view_vars();
-
 }

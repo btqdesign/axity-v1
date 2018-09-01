@@ -45,16 +45,17 @@
 
 	    $exclude_ids = get_option('ampforwp_exclude_post');
 
-		$q = new WP_Query( array(
+		$q = new WP_Query( apply_filters('ampforwp_query_args', array(
 			's' 				  => get_search_query() ,
 			'ignore_sticky_posts' => 1,
 			'paged'               => esc_attr($paged),
 			'post__not_in' 		  => $exclude_ids,
 			'has_password' 		  => false ,
 			'post_status'		  => 'publish'
-		) ); ?>
-
-
+		) ) );
+		if ( function_exists( 'relevanssi_do_query' ) ) {
+			relevanssi_do_query( $q );
+		}; ?>
 
      <?php global $redux_builder_amp; ?>
  		<h1 class="amp-wp-content page-title archive-heading"><?php echo ampforwp_translation( $redux_builder_amp['amp-translator-search-text'], 'You searched for:') . '  ' . get_search_query();?></h1>

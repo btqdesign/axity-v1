@@ -208,12 +208,12 @@ function scan_import_backups($backup_dir){
     <img height="60" src="<?php echo WPBACKITUP__PLUGIN_URL . "images/wpbackitup-logo-small.png";?>">
     </a>
     <h2>WPBackItUp Backup &amp; Restore </h2>
-    <?php // Show the review button only when user has more than two successfull backup or restore 
+    <?php // Show the review button only when user has more than two successfull backup or restore
     /*
         if( $this->successful_backup_count() > 2 || $this->successful_restore_count() > 2 ) {
     ?>
             <a target="_blank" href="https://wordpress.org/support/plugin/wp-backitup/reviews/?filter=5" class="button button-hero button-primary wpbiu-button">Review Plugin</a>
-    <?php  } 
+    <?php  }
     */
     ?>
 </div>
@@ -283,7 +283,8 @@ if (!$backup_folder_exists) {
       <p>
           <?php if ($backup_folder_exists) :?>
             <input type="submit" id="backup-button" class="backup-button button-primary" value="<?php _e("Backup", 'wp-backitup') ?>"/>
-            <input type="submit" id="cancel-button" class="cancel-button button-secondary cancel-hidden" value="<?php _e("Cancel", 'wp-backitup') ?>"/>
+            <input type="submit" id="cancel-button" class="button-red cancel-button button-secondary button-hidden" value="<?php _e("Cancel", 'wp-backitup') ?>"/>
+	        <?php do_action('wpbackitup_render_advanced_scheduler'); ?>
             <img class="backup-icon status-icon" src="<?php echo WPBACKITUP__PLUGIN_URL . "/images/loader.gif"; ?>" height="16" width="16" />
           <?php endif; ?>
       </p>
@@ -301,7 +302,6 @@ if (!$backup_folder_exists) {
         }
         ?>
     </div>
-
 
    <?php do_action('wpbackitup_render_scheduler'); ?>
 
@@ -369,7 +369,7 @@ if (!$backup_folder_exists) {
 
                       //Dont display active backups at this time
                       continue 2;
-                      
+
                       break;
                   default:
                     $status = __("Error", 'wp-backitup');
@@ -403,7 +403,7 @@ if (!$backup_folder_exists) {
         }
         ?>
           </tbody>
-      </table>  
+      </table>
 
       <?php
           echo apply_filters( 'wpbackitup_show_active',
@@ -411,7 +411,7 @@ if (!$backup_folder_exists) {
               ,false
           );
       ?>
-    </div>		
+    </div>
 
     <div id="status" class="widget">
       <h3><i class="fa fa-check-square-o"></i> <?php _e('Status', 'wp-backitup'); ?></h3>
@@ -451,7 +451,7 @@ if (!$backup_folder_exists) {
         <ul class="backup-warning">
   	      <!--Warning PlaceHolder-->
   	  </ul>
-        
+
         <!--cancelled messages-->
         <ul class="backup-cancelled">
           <li class='isa_cancelled'><?php _e('Backup Cancelled', 'wp-backitup'); ?>.</li>
@@ -525,7 +525,6 @@ if (!$backup_folder_exists) {
 
           </ul>
     </div>
-
   </div><!--Sidebar-->
 
 </div> <!--wrap-->
@@ -536,6 +535,171 @@ if (!$backup_folder_exists) {
 </span>
 
 
+<!-- Vue Js component from schedule modal -->
+<script type="text/x-template" id="schedule-modal-template">
+	<div class="schedule-component" style="display:inline">
+			<input @click="openModal('schedule')" type="submit" id="schedule-button" class="schedule-button button-secondary" value="<?php _e("Schedule", 'wp-backitup') ?>"/>
+
+			<!-- Schedule modals -->
+			<div class="page__schedule">
+					<ui-modal ref="schedule" title="Backup Schedule">
+							<div class="schedule-alert">
+								<ui-alert @dismiss="scheduleAlert = false" type="success" v-show="scheduleAlert">
+										<?php _e( 'Successfully Saved!', 'wp-backitup' ); ?>
+								</ui-alert>
+								<ui-alert @dismiss="scheduleErrorAlert = false" type="error" v-show="scheduleErrorAlert">
+										<?php _e( 'Failed to Saved!', 'wp-backitup' ); ?>
+								</ui-alert>
+							</div>
+
+							<div class="schedule-form">
+								 <div class="sform-element">
+										<p><?php _e('Name (Optional)','wp-backitup') ?></p>
+										<el-input placeholder="Please input" v-model="name"></el-input>
+								 </div>
+
+								 <div class="sform-element">
+										<p><?php _e('Start Date','wp-backitup') ?></p>
+										<ui-datepicker
+												 placeholder="Select a date"
+												 v-model="startDate"
+										 ></ui-datepicker>
+								 </div>
+
+								 <div class="sform-element">
+										<p><?php _e('Backup Every','wp-backitup') ?></p>
+										 <el-select v-model="frequency" placeholder="Select">
+										    <el-option
+										      v-for="item in frequencyStrings"
+										      :key="item.value"
+										      :label="item.label"
+										      :value="item.value">
+										    </el-option>
+										  </el-select>
+								 </div>
+
+								 <!-- show if daily option selected  -->
+ 								<div class="daily-option" v-if="frequency=='day'">
+ 										<div class="sform-element">
+ 											 <p><?php _e('After','wp-backitup') ?></p>
+ 												 <el-time-select
+ 													 v-model="timePicker"
+ 													 :picker-options="{
+ 														 start: '00:00',
+ 														 step: '00:15',
+ 														 end: '23:45'
+ 													 }"
+ 													 placeholder="Select time">
+ 											 </el-time-select>
+ 										</div>
+ 								</div>
+
+								 <!-- Show if weekly option selected -->
+								<div class="weekly-option" v-if="frequency=='week'">
+									 <div class="sform-element">
+											<p><?php _e('Repeat On','wp-backitup') ?></p>
+
+											<div id="pretty-scale">
+													<p-check v-model="days[0]" class="p-round p-fill p-icon" color="primary" off-color="primary-o" toggle>
+											        <i class="icon mdi" slot="extra"><span>S</span></i>
+											        <i class="icon mdi" slot="off-extra"><span>S</span></i>
+											        <label slot="off-label"></label>
+											    </p-check>
+
+													<p-check v-model="days[1]" class="p-round p-fill p-icon" color="primary" off-color="primary-o" toggle>
+											        <i class="icon mdi" slot="extra"><span>M</span></i>
+											        <i class="icon mdi" slot="off-extra"><span>M</span></i>
+											        <label slot="off-label"></label>
+											    </p-check>
+
+													<p-check v-model="days[2]" class="p-round p-fill p-icon" color="primary" off-color="primary-o" toggle>
+											        <i class="icon mdi" slot="extra"><span>T</span></i>
+											        <i class="icon mdi" slot="off-extra"><span>T</span></i>
+											        <label slot="off-label"></label>
+											    </p-check>
+
+													<p-check v-model="days[3]" class="p-round p-fill p-icon" color="primary" off-color="primary-o" toggle>
+											        <i class="icon mdi" slot="extra"><span>W</span></i>
+											        <i class="icon mdi" slot="off-extra"><span>W</span></i>
+											        <label slot="off-label"></label>
+											    </p-check>
+
+													<p-check v-model="days[4]" class="p-round p-fill p-icon" color="primary" off-color="primary-o" toggle>
+											        <i class="icon mdi" slot="extra"><span>T</span></i>
+											        <i class="icon mdi" slot="off-extra"><span>T</span></i>
+											        <label slot="off-label"></label>
+											    </p-check>
+
+													<p-check v-model="days[5]" class="p-round p-fill p-icon" color="primary" off-color="primary-o" toggle>
+											        <i class="icon mdi" slot="extra"><span>F</span></i>
+											        <i class="icon mdi" slot="off-extra"><span>F</span></i>
+											        <label slot="off-label"></label>
+											    </p-check>
+
+													<p-check v-model="days[6]" class="p-round p-fill p-icon" color="primary" off-color="primary-o" toggle>
+											        <i class="icon mdi" slot="extra"><span>S</span></i>
+											        <i class="icon mdi" slot="off-extra"><span>S</span></i>
+											        <label slot="off-label"></label>
+											    </p-check>
+
+									    </div>
+									 </div>
+
+									 <div class="sform-element">
+											<p><?php _e('After','wp-backitup') ?></p>
+												<el-time-select
+												  v-model="timePicker"
+												  :picker-options="{
+												    start: '00:00',
+												    step: '00:30',
+												    end: '23:30'
+												  }"
+												  placeholder="Select time">
+											</el-time-select>
+									 </div>
+								 </div>
+
+								 <!-- Show if monthly option selected  -->
+								 <div class="monthly-option" v-if="frequency=='month'">
+										 <div class="sform-element">
+											 <p><?php _e('Repeat On','wp-backitup') ?></p>
+											 <el-select v-model="monthlyValue" placeholder="Select">
+												 <el-option
+													 v-for="item in monthlyStrings"
+													 :key="item.value"
+													 :label="item.label"
+													 :value="item.value">
+												 </el-option>
+											 </el-select>
+										</div>
+
+										<div class="sform-element">
+ 											 <p><?php _e('After','wp-backitup') ?></p>
+ 												 <el-time-select
+ 													 v-model="timePicker"
+ 													 :picker-options="{
+ 														 start: '00:00',
+ 														 step: '00:15',
+ 														 end: '23:45'
+ 													 }"
+ 													 placeholder="Select time">
+ 											 </el-time-select>
+ 										</div>
+								 </div>
+							</div>
+
+							<div class="has-switch-right sform-element">
+                	<ui-switch v-model="enabled" switch-position="right">Enabled</ui-switch>
+            	</div>
+
+							<div slot="footer">
+                  <ui-button @click="closeModal('schedule')">Cancel</ui-button>
+									<ui-button @click="setBackupSchedules()" color="primary">Save</ui-button>
+              </div>
+					</ui-modal>
+			</div>
+  </div>
+</script>
 
 <!--Vue JS component for backup row-->
 <script type="text/x-template" id="backup-row-template">
