@@ -6,7 +6,7 @@ function wp_image_zoooom_settings($type) {
     $l = 'wp-image-zoooom';
 
     $plugin = array(
-        'version'           => '1.25',
+        'version'           => '1.26',
         'plugin_name'       => 'WP Image Zoom',
         'plugin_file'       => str_replace('includes/settings.php', 'image-zoooom.php', __FILE__),
         'plugin_server'     => 'https://www.silkypress.com',
@@ -69,7 +69,7 @@ function wp_image_zoooom_settings($type) {
             'label' => __('Fade Time', $l ),
             'post_input' => 'sec',
             'value' => 0.5,
-            'description' => __('The amount of time it takes for the Lens to slowly appear or dissapear', $l),
+            'description' => __('The amount of time it takes for the Lens to slowly appear or disappear', $l),
             'input_form' => 'input_text',
         ),
         'tint' => array(
@@ -224,8 +224,13 @@ function wp_image_zoooom_settings($type) {
             'pro' => true,
             'description' => __('If the images are in a Flickity Carousel gallery, then type in here the class of the div containing the Flickity Carousel gallery', $l ),
         ),
-
-
+        'slick' => array(
+            'label' => __('<a href="https://kenwheeler.github.io/slick/" target="_blank">Slick carousel</a> container class', $l),
+            'value' => '',
+            'input_form' => 'input_text',
+            'description' => __('If the images are in a Slick carousel gallery, then type in here the class of the div containing the Slick carousel gallery', $l ),
+            'pro' => true,
+        ),
 
 
         /*
