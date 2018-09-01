@@ -37,6 +37,12 @@ function wpml_plugins_integration_setup() {
 	if ( defined( 'WPB_VC_VERSION' ) ) {
 		$wpml_visual_composer = new WPML_Compatibility_Plugin_Visual_Composer( new WPML_Debug_BackTrace( PHP_VERSION, 12 ) );
 		$wpml_visual_composer->add_hooks();
+
+		$wpml_visual_composer_grid = new WPML_Compatibility_Plugin_Visual_Composer_Grid_Hooks(
+			$sitepress,
+			new WPML_Translation_Element_Factory( $sitepress )
+		);
+		$wpml_visual_composer_grid->add_hooks();
 	}
 
 	if ( class_exists( 'GoogleSitemapGeneratorLoader' ) ) {

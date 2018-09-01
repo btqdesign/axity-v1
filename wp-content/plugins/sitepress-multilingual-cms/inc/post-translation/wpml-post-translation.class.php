@@ -66,13 +66,15 @@ abstract class WPML_Post_Translation extends WPML_Element_Translation {
 				$unfiltered = $posts;
 				foreach ( $posts as $index => $sticky_post_id ) {
 					$posts[ $index ] = $this->element_id_in(
-							$sticky_post_id,
-							$current_lang
+						$sticky_post_id,
+						$current_lang,
+						true
 					);
 				}
-				if ( $unfiltered != $posts ) {
+				if ( $unfiltered !== $posts ) {
 					update_option( 'sticky_posts',
-					               array_values( array_unique( array_filter( array_merge( $posts, $unfiltered ) ) ) ) );
+						array_values( array_unique( array_filter( array_merge( $posts, $unfiltered ) ) ) )
+					);
 				}
 			} else {
 				foreach ( $posts as $index => $sticky_post_id ) {
