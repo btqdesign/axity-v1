@@ -760,7 +760,8 @@ position: fixed;
 }
 .modal-footer{
     padding: 10px 0px;
-    position: sticky;
+    position: absolute;
+    bottom: 0;
     width: 100%;
     bottom: 0px;
     background: #f1f1f1;
@@ -1232,6 +1233,10 @@ Layout css
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+/* icons not loading in AMP page builder when WooCommerce Product Slider plugin is Installed */
+[class*=" icon-"]:before {
+font-family: 'icomoon'!important; 
 }
 .amppb_accordion__panel {
   padding: 1rem;

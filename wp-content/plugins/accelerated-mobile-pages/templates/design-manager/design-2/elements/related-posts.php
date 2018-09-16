@@ -2,7 +2,7 @@
 global $post, $redux_builder_amp;
 do_action('ampforwp_above_related_post',$this); //Above Related Posts
 $string_number_of_related_posts = $redux_builder_amp['ampforwp-number-of-related-posts'];		
-$int_number_of_related_posts = round(abs(floatval($string_number_of_related_posts)));
+$int_number_of_related_posts = (int)$string_number_of_related_posts;
 
 // declaring this variable here to prevent debug errors
 $args = null;

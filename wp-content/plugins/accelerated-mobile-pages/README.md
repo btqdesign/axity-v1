@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, amp project, google amp, amp wp, go
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 4.9.8
-Stable tag: 0.9.97.13
+Stable tag: 0.9.97.15
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -183,12 +183,57 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
-= 0.9.97.13 (27th August 2018) =
+= 0.9.97.15 (13th September 2018) = 
+* Fixed: Pagination is not working on date archive #2289
+* Added: Options to show Social Icons in different places in Swift #1722 
+* Fixed: Localization string for "% days ago" not working for non-Latin languages #1491
+* Added: Social Share by Supsystic Compatibility #1509
+* Fixed: Duplicate h1 tags in Design One #1522
+* Added: 3 Appearance option for Related Posts in Swift theme #1545
+* Fixed: RTL not working with Footer properly #1655
+* Fixed: Proper implementation of the property of all in one SEO pro to avoid fatal error #2500
+* Fixed: Notice: Undefined index: extension in thirdparty-compatibility.php on line 401 - 406 #2496
+* Fixed: Wrong url in Non-Amp Version link on blog posts page and category archives #2424
+* Fixed: The Consent.php path is getting index in Webmaster tool #2518
+* Added: Option to add custom things in Instant Articles #1089
+* Added: Show/hide Instant Article on specific posts #1297
+* Added: Facebook Instant Articles (FBIA) Crawler Ingestion (ia:markup_url) tag #1474
+* Added: Facebook Instant Articles Meta Tag #1486
+* Added: Related posts for instant articles #1634
+* Added: Option to remove Author info from Instant Articles  #1483
+* Added: Facebook Instant Articles in each Catagory #1524
+* Added: Custom Facebook Instant Articles Ad option #1475
+* Fixed: Pagination not working after changing the pagination base #1485
+* Added: Breadcrumb with tag #1305 
+* Fixed: Enabled WordPress Comments by default #1501
+
+= 0.9.97.14 (4th September 2018) =
+* Added: Adobe Analytics Support #887
+* Fixed: Same Icons loading for some extensions #2172
+* Fixed: Removed extra spacing from "Back to top" text #2349
+* Fixed: Retina featured images support for Homepage and archive loop images #2334
+* Fixed: When WooCommerce Product Slider is Installed, the Picture of Icons are not loading #2325
+* Added: Customizr Theme Lazy Loading compatibility #2322
+* Fixed: "Save Module" button of AMP page Builder not displaying in OSX and in Safari #1943
+* Fixed: Sort Related Posts Randomly Not Working in Swift theme #2308
+* Added: Need to create a tutorial of How to Enter your Audience Network Placement ID of advertisement in the Instant Article #1723 
+* Fixed: Retina Images option Improvement-II #2296
+* Fixed: Disable the look or check of redux framework #2293
+* Fixed: With Redux core plugin, AMP option panel design not loading #2258
+* Fixed: Issues with pagination #2253
+* Added: Thrive Architect Compatible #1575
+* Fixed: Notice Undefined variable categories_array #2486
+* Fixed: Need to add upscale parameter in-line related posts #2488
+* Fixed: Getting the warnings in error log due to global variable, not present #2395
+* Fixed: Google Analytic issue while setting up Run Installation wizard #2491
+* Added: Read more button AKA Content Sneak Peek feature for post #2246
+* Added: Showing related items/post in after nth paragraph #2246
+
+= 0.9.97.13 (28th August 2018) =
 * Fixed: Fatal error in `ampforwp_related_post_loop_query()`
 
 = 0.9.97.12 (27th August 2018) =
 * Fixed: Quote runs only in block post not on pages #2399
-
 * Added: Create a Sidebar option that can be used as global Sidebar #2388
 * Fixed: words are breaking and not readable #2441
 * Fixed: Text is breaking into next line while there is no space between the text in custom AMP Editor #2270
