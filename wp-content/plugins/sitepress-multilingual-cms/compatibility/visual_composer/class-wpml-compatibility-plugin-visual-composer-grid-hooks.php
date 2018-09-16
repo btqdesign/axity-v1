@@ -52,16 +52,21 @@ class WPML_Compatibility_Plugin_Visual_Composer_Grid_Hooks implements IWPML_Acti
 	 * @return string
 	 */
 	private function replace_grid_id( array $matches ) {
-		$before      = $matches[1];
-		$grid_id     = (int) $matches[2];
-		$after       = $matches[3];
-		$element     = $this->element_factory->create( $grid_id, 'post' );
-		$translation = $element->get_translation( $this->current_language->get_current_language() );
+		$grid_id = (int) $matches[2];
 
-		if ( $translation ) {
-			$grid_id = $translation->get_element_id();
+		if ( $grid_id > 0 ) {
+			$before      = $matches[1];
+			$after       = $matches[3];
+			$element     = $this->element_factory->create( $grid_id, 'post' );
+			$translation = $element->get_translation( $this->current_language->get_current_language() );
+
+			if ( $translation ) {
+				$grid_id = $translation->get_element_id();
+			}
+
+			return $before . $grid_id . $after;
 		}
 
-		return $before . $grid_id . $after;
+		return $matches[0];
 	}
 }

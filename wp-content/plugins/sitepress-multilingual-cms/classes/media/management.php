@@ -1,12 +1,20 @@
 <?php
 // @use WPML_Media::menu_content
-?>
-<script type="text/javascript">
-	var wpml_media_ajxloaderimg_src = '<?php echo ICL_PLUGIN_URL ?>/res/img/ajax-loader.gif';
-	var wpml_media_ajxloaderimg = '<img src="' + wpml_media_ajxloaderimg_src + '" alt="loading" width="16" height="16" />';
-</script>
+$orphan_attachments_sql = "
+		SELECT COUNT(*)
+		FROM {$this->wpdb->posts}
+		WHERE post_type = 'attachment'
+			AND ID NOT IN (
+				SELECT element_id
+				FROM {$this->wpdb->prefix}icl_translations
+				WHERE element_type='post_attachment'
+			)
+		";
 
-<div class="wpml-section" id="ml-content-setup-sec-media">
+$orphan_attachments = $this->wpdb->get_var( $orphan_attachments_sql );
+
+?>
+<div class="wpml-section" id="<?php echo esc_attr( WPML_Media_Settings::ID ); ?>">
 
 	<div class="wpml-section-header">
 		<h3><?php esc_html_e('Media Translation', 'sitepress'); ?></h3>
@@ -51,7 +59,7 @@
 				<tr>
 					<td colspan="2">
 						<img class="progress" src="<?php echo ICL_PLUGIN_URL ?>/res/img/ajax-loader.gif" width="16" height="16" alt="loading" style="display: none;"/>
-						&nbsp;<span class="status"></span>
+						&nbsp;<span class="status"> </span>
 					</td>
 				</tr>
             </table>
@@ -100,7 +108,7 @@
 				<tr>
 					<td colspan="2">
 						<img class="content_default_progress" src="<?php echo ICL_PLUGIN_URL ?>/res/img/ajax-loader.gif" width="16" height="16" alt="loading" style="display: none;"/>
-						&nbsp;<span class="content_default_status"></span>
+						&nbsp;<span class="content_default_status"> </span>
 					</td>
 				</tr>
 

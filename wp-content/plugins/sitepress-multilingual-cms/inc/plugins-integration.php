@@ -56,6 +56,15 @@ function wpml_plugins_integration_setup() {
 		);
 		$elastic_press_integration->register_feature();
 	}
+
+	$factories_to_load = array();
+
+	if ( defined( 'FUSION_BUILDER_VERSION' ) ) {
+		$factories_to_load[] = 'WPML_Compatibility_Plugin_Fusion_Hooks_Factory';
+	}
+
+	$action_filter_loader = new WPML_Action_Filter_Loader();
+	$action_filter_loader->load( $factories_to_load );
 }
 
 add_action( 'after_setup_theme', 'wpml_themes_integration_setup' );

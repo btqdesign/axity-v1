@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit18151088c5688b56e6a38f368296c921
+class ComposerStaticInit3dc5ffd5745474345e011827300dfeb5
 {
     public static $files = array (
         'b45b351e6b6f7487d819961fef2fda77' => __DIR__ . '/..' . '/jakeasmith/http_build_url/src/http_build_url.php',
@@ -437,6 +437,7 @@ class ComposerStaticInit18151088c5688b56e6a38f368296c921
         'WPML_Compatibility_Factory' => __DIR__ . '/../..' . '/compatibility/wpml-compatibility-factory.php',
         'WPML_Compatibility_Gutenberg' => __DIR__ . '/../..' . '/compatibility/gutenberg/wpml-compatibility-gutenberg.php',
         'WPML_Compatibility_Plugin_Fusion_Global_Element_Hooks' => __DIR__ . '/../..' . '/compatibility/fusion_builder/wpml-compatibility-plugin-fusion-global-element-hooks.php',
+        'WPML_Compatibility_Plugin_Fusion_Hooks_Factory' => __DIR__ . '/../..' . '/compatibility/fusion_builder/wpml-compatibility-plugin-fusion-hooks-factory.php',
         'WPML_Compatibility_Plugin_Visual_Composer' => __DIR__ . '/../..' . '/compatibility/visual_composer/class-wpml-compatibility-plugin-visual-composer.php',
         'WPML_Compatibility_Plugin_Visual_Composer_Grid_Hooks' => __DIR__ . '/../..' . '/compatibility/visual_composer/class-wpml-compatibility-plugin-visual-composer-grid-hooks.php',
         'WPML_Compatibility_Theme_Enfold' => __DIR__ . '/../..' . '/compatibility/enfold/class-wpml-compatibility-theme-enfold.php',
@@ -1009,10 +1010,10 @@ class ComposerStaticInit18151088c5688b56e6a38f368296c921
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit18151088c5688b56e6a38f368296c921::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit18151088c5688b56e6a38f368296c921::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit18151088c5688b56e6a38f368296c921::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit18151088c5688b56e6a38f368296c921::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit3dc5ffd5745474345e011827300dfeb5::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit3dc5ffd5745474345e011827300dfeb5::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit3dc5ffd5745474345e011827300dfeb5::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit3dc5ffd5745474345e011827300dfeb5::$classMap;
 
         }, null, ClassLoader::class);
     }

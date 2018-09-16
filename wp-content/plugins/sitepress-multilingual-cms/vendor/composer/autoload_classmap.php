@@ -400,6 +400,7 @@ return array(
     'WPML_Compatibility_Factory' => $baseDir . '/compatibility/wpml-compatibility-factory.php',
     'WPML_Compatibility_Gutenberg' => $baseDir . '/compatibility/gutenberg/wpml-compatibility-gutenberg.php',
     'WPML_Compatibility_Plugin_Fusion_Global_Element_Hooks' => $baseDir . '/compatibility/fusion_builder/wpml-compatibility-plugin-fusion-global-element-hooks.php',
+    'WPML_Compatibility_Plugin_Fusion_Hooks_Factory' => $baseDir . '/compatibility/fusion_builder/wpml-compatibility-plugin-fusion-hooks-factory.php',
     'WPML_Compatibility_Plugin_Visual_Composer' => $baseDir . '/compatibility/visual_composer/class-wpml-compatibility-plugin-visual-composer.php',
     'WPML_Compatibility_Plugin_Visual_Composer_Grid_Hooks' => $baseDir . '/compatibility/visual_composer/class-wpml-compatibility-plugin-visual-composer-grid-hooks.php',
     'WPML_Compatibility_Theme_Enfold' => $baseDir . '/compatibility/enfold/class-wpml-compatibility-theme-enfold.php',

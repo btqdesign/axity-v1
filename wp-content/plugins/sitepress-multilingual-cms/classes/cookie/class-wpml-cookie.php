@@ -39,6 +39,7 @@ class WPML_Cookie {
 	 * @param $name
 	 */
 	private function handle_cache_plugins( $name ) {
-		do_action( 'wpsc_add_cookie', $name );
+		// @todo uncomment or delete when #wpmlcore-5796 is resolved
+		//do_action( 'wpsc_add_cookie', $name );
 	}
 }

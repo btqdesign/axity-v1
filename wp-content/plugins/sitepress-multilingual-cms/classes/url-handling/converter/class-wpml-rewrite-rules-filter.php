@@ -52,11 +52,7 @@ class WPML_Rewrite_Rules_Filter {
 	 * @return bool
 	 */
 	private function is_permalink_page() {
-		if ( get_current_screen() ) {
-			return 'options-permalink' === get_current_screen()->id;
-		}
-
-		return false;
+		return $this->is_admin_screen( 'options-permalink' );
 	}
 
 	/**
@@ -65,16 +61,17 @@ class WPML_Rewrite_Rules_Filter {
 	 * @return bool
 	 */
 	private function is_shop_page() {
-		if ( get_current_screen() ) {
-			if (
-				'page' === get_current_screen()->id &&
-				// @codingStandardsIgnoreLine.
-				get_option( 'woocommerce_shop_page_id' ) === intval( $_GET['post'] )
-			) {
-				return true;
-			}
-		}
+		return $this->is_admin_screen( 'page' ) && get_option( 'woocommerce_shop_page_id' ) === intval( $_GET['post'] );
+	}
 
-		return false;
+	/**
+	 * Check if it as a certain screen on admin page.
+	 *
+	 * @param string $screen_id
+	 *
+	 * @return bool
+	 */
+	private function is_admin_screen( $screen_id ) {
+		return is_admin() && get_current_screen() && get_current_screen()->id === $screen_id;
 	}
 }

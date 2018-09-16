@@ -431,6 +431,7 @@ class SitePress extends WPML_WPDB_User implements
 
 			if ( !$this->get_setting( 'setup_wizard_step' )
 			     && strpos( filter_input( INPUT_GET, 'page', FILTER_SANITIZE_URL ), 'menu/languages.php' ) === false
+				 && current_user_can( 'manage_options' )
 			) {
 				add_action( 'admin_notices', array( $this, 'help_admin_notice' ) );
 			}
@@ -927,7 +928,7 @@ class SitePress extends WPML_WPDB_User implements
 	function order_languages( $languages ) {
 
 		$ordered_languages = array();
-		if ( is_array( $this->settings[ 'languages_order' ] ) ) {
+		if ( isset( $this->settings[ 'languages_order' ] ) && is_array( $this->settings[ 'languages_order' ] ) ) {
 			foreach ( $this->settings[ 'languages_order' ] as $code ) {
 				if ( isset( $languages[ $code ] ) ) {
 					$ordered_languages[ $code ] = $languages[ $code ];
