@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function()
+{
+    $('#list1 li').bind("click", function(e)
+    {
+        e = e || window.event;
+        var ul = $(this).parent();
+        var index = ul.children().index(this);
+        alert(index);
+    });
+});
+</script>
+</head>
+<body>
+<ul id="list1">
+<li><img src="images/justify_left.png" alt="left" /><span>Justify Left</span></li>
+<li><img src="images/justify_center.png" alt="center" /><span>Justify Left</span></li>
+<li><img src="images/justify_right.png" alt="right" /><span>Justify Left</span></li>
+</ul>
+</body>
+</html>
