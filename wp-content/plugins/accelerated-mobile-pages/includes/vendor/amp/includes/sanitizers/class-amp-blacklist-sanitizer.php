@@ -88,6 +88,7 @@ class AMP_Blacklist_Sanitizer extends AMP_Base_Sanitizer {
 
 			for ( $i = $length - 1; $i >= 0; $i-- ) {
 				$element = $elements->item( $i );
+				if( is_null( $element ) ) continue; //Null check added.
 				// Allow script with application/ld+json #1958
 				if ( $element->hasAttributes() ) {
 					$attr = $element->getAttribute('type');
@@ -163,6 +164,11 @@ class AMP_Blacklist_Sanitizer extends AMP_Base_Sanitizer {
 		$special_protocols = array( 'tel', 'sms' ); // these ones don't valid with `filter_var+FILTER_VALIDATE_URL`
 		$protocol = strtok( $href, ':' );
 
+		/* Convert space into %20 and esc url so it can work with the correct 
+		urls that have spaces */
+		if ( strpos($href, ' ') ){
+			$href = esc_url($href);
+		}
 		if ( false === filter_var( $href, FILTER_VALIDATE_URL )
 			&& ! in_array( $protocol, $special_protocols, true ) ) {
 			return false;

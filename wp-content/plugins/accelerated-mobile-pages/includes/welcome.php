@@ -17,27 +17,25 @@ function ampforwp_welcome_screen_do_activation_redirect() {
   wp_safe_redirect( add_query_arg( array( 'page' => 'ampforwp-welcome-page' ), admin_url( 'admin.php' ) ) );
 }
 
-// add_action( 'admin_init', 'ampforwp_welcome_screen_do_activation_redirect_parent' );
-function ampforwp_welcome_screen_do_activation_redirect_parent() {
-	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-	$amp_plugin_activation_check = is_plugin_active( 'amp/amp.php' );
-
-	// Bail if option is already set or plugin is deactivated
-	if ( get_option( 'ampforwp_parent_plugin_check' ) || $amp_plugin_activation_check == false ) {
-		return;
-	}
-
-	// Bail if activating from network, or bulk
-	if ( is_network_admin() || isset( $_GET['activate-multi'] ) ) {
-		return;
-	}
-
-	// Redirect to welcome page
-	wp_safe_redirect( add_query_arg( array( 'page' => 'ampforwp-welcome-page' ), admin_url( 'admin.php' ) ) );
-
- 	update_option( 'ampforwp_parent_plugin_check', true );
-}
-
+// add_action( 'admin_init', 'ampforwp_welcome_screen_do_activation_redirect_parent' );		
+function ampforwp_welcome_screen_do_activation_redirect_parent() {		
+	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );		
+		$amp_plugin_activation_check = is_plugin_active( 'amp/amp.php' );		
+			
+		// Bail if option is already set or plugin is deactivated		
+		if ( get_option( 'ampforwp_parent_plugin_check' ) || $amp_plugin_activation_check == false ) {		
+		return;		
+		}					
+		// Bail if activating from network, or bulk		
+		if ( is_network_admin() || isset( $_GET['activate-multi'] ) ) {		
+			return;		
+		}		
+			
+		// Redirect to welcome page		
+		wp_safe_redirect( add_query_arg( array( 'page' => 'ampforwp-welcome-page' ), admin_url( 'admin.php' ) ) );		
+			
+	 	update_option( 'ampforwp_parent_plugin_check', true );		
+}			
 
 add_filter('ampforwp_add_admin_subpages', 'ampforwp_add_welcome_pages');
 function ampforwp_add_welcome_pages($sections){
@@ -67,6 +65,7 @@ function ampforwp_welcome_screen_content() {
 		    <h1 class="amp_installed_heading"><?php echo __('AMP is now Installed!','accelerated-mobile-pages') ?></h1>
 			<div class="amp_installed_text"><p><?php echo __('Thank you so much for installing the AMPforWP plugin!','accelerated-mobile-pages') ?></p>
 			<p><?php echo __('Our team works really hard to deliver good user experience to you.','accelerated-mobile-pages') ?></p></div>
+			<div class="getstarted_wrapper">
             <div class="amp_user_onboarding">
             <div class="amp_new_user amp_user_onboarding_choose">
                 <div class="amp_user_avatar"></div>
@@ -80,17 +79,25 @@ function ampforwp_welcome_screen_content() {
                 <p>We have many settings in Options Panel to help you setup the AMP perfectly to according to your taste & needs.</p>
                 <a href="<?php echo admin_url('admin.php?tabid=opt-text-subsection&page=amp_options');?>">AMP Options Panel</a>                    
             </div>
+			
             <div class="clear"></div>
             </div>
- 
+ 			</div>
+ 			<div style="float:right; height: 640px;overflow:auto;">
+ 				<div class="amp_expert_user amp_user_onboarding_choose">
+	                <!--<div class="amp_user_avatar"></div>-->
+	                <!--<h3>Change log</h3>-->
+	                <?php require AMPFORWP_PLUGIN_DIR.'/includes/change-log.php';?>
+            	</div>
+ 			</div>
 
-
-		    <h1 style="color: #008606;font-weight: 300;margin-top: 35px;">
+		    
+		    
+            <div class="getstarted_wrapper nh-b">
+            <h1 style="color: #008606;font-weight: 300;margin-top: 35px;">
 		    	<i class="dashicons dashicons-editor-help" style="font-size: 34px;margin-right: 18px;margin-top: -1px;"></i><?php echo __('Need Help?','accelerated-mobile-pages') ?>
 		    </h1>
 			<div class="amp_installed_text"><p><?php echo __('We\'re bunch of passionate people that are dedicated towards helping our users. We will be happy to help you!','accelerated-mobile-pages') ?></p></div>
-		    
-            <div class="getstarted_wrapper">
             <div class="getstarted_options">
             <p><b>Getting Started</b></p>
 				<ul class="getstarted_ul">
@@ -347,6 +354,7 @@ function ampforwp_add_welcome_styling(){
 	?>
     <style>
     .getstarted_wrapper{ display: inline-block; margin: 0px 0px 5px 0px; }
+    .nh-b{display:block;}
     .getstarted_options{float: left; margin-right: 15px;
     background: #fff; border: 1px solid #ddd; padding: 5px 25px 10px 23px; border-radius: 2px;}
     .getstarted_links{float: right; background: #fff; border: 1px solid #ddd; padding: 10px 30px 10px 30px; border-radius: 2px; }
@@ -463,6 +471,14 @@ function ampforwp_add_welcome_styling(){
 		    box-shadow: 1px 1px 5px rgba(221, 221, 221, 0.75);
 		    transition: 0.25s all;
 		} 
+		.amp_user_onboarding_choose ul{
+			border-bottom: 1px solid #eee;
+    		padding-bottom: 10px;
+		}
+		.amp_user_onboarding_choose ul li{
+			text-align:left;
+			margin-bottom: 10px;
+		}
 		.amp_user_onboarding_choose:hover{            
 		    box-shadow: 1px 1px 10px rgba(212, 212, 212, 1);
 		}

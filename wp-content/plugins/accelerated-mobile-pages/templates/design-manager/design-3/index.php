@@ -55,7 +55,7 @@ if ( get_query_var( 'paged' ) ) {
 		      echo $delay; ?> >
 		<?php
 		  global $redux_builder_amp;
-		  if( isset($redux_builder_amp['amp-design-3-category-selector']) && $redux_builder_amp['amp-design-3-category-selector'] ){
+		  if( ( isset($redux_builder_amp['amp-design-3-featured-content']) && $redux_builder_amp['amp-design-3-featured-content'] == '1' ) && (isset($redux_builder_amp['amp-design-3-category-selector']) && $redux_builder_amp['amp-design-3-category-selector'] ) ){
 		    $args = array(
 		                   'cat' => $redux_builder_amp['amp-design-3-category-selector'],
 		                   'posts_per_page' => $num_posts,
@@ -65,6 +65,14 @@ if ( get_query_var( 'paged' ) ) {
 		  } else {
 		    //if user does not give a category
 		    $args = array(
+		                   'posts_per_page' => $num_posts,
+		                   'has_password' => false ,
+		                   'post_status'=> 'publish'
+		                 );
+		    }
+		  if( ( isset($redux_builder_amp['amp-design-3-featured-content']) && $redux_builder_amp['amp-design-3-featured-content'] == '2') && ( isset($redux_builder_amp['amp-design-3-tag-selector']) && $redux_builder_amp['amp-design-3-tag-selector'] ) ){
+		  	$args = array(
+		                   'tag__in' => $redux_builder_amp['amp-design-3-tag-selector'],
 		                   'posts_per_page' => $num_posts,
 		                   'has_password' => false ,
 		                   'post_status'=> 'publish'
@@ -158,32 +166,14 @@ if ( get_query_var( 'paged' ) ) {
 					} ?>
                 </ul>
 				<h2 class="amp-wp-title"><a href="<?php echo ampforwp_url_controller( get_the_permalink() ); ?>"> <?php the_title(); ?></a></h2>
-
-
-				<?php
-				if( ampforwp_check_excerpt() ) {
+				<?php if( ampforwp_check_excerpt() ) {
 					$class = 'large-screen-excerpt-design-3';
 					if ( true == $redux_builder_amp['excerpt-option-design-3'] ) {
 						$class = 'small-screen-excerpt-design-3';
 					}
-					if(has_excerpt()){
-						$content = get_the_excerpt();
-					}else{
-						$content = get_the_content();
-					}
-					?>
-			        <p class="<?php echo $class; ?>">
-					<?php 
-						$excerpt_length		='';
-						$excerpt_length 	= $redux_builder_amp['amp-design-3-excerpt'];
-						$final_content  = apply_filters('ampforwp_modify_index_content', $content,  $excerpt_length );
-
-						if ( false === has_filter('ampforwp_modify_index_content' ) ) {
-							$final_content = wp_trim_words( strip_shortcodes( $content ) ,  $excerpt_length );
-						}
-						echo $final_content;
-				}
-
+					amp_loop_excerpt( ampforwp_get_setting('amp-design-3-excerpt'), 'p', $class );
+				} ?>
+				<?php
               	if($redux_builder_amp['amp-design-selector'] == '3' && $redux_builder_amp['amp-design-3-featured-time'] == '1'){
                   		?>
                 <div class="featured_time"><?php 
@@ -204,10 +194,8 @@ if ( get_query_var( 'paged' ) ) {
 	<div class="amp-wp-content pagination-holder">
 
 		<div id="pagination">
-			<div class="next"><?php next_posts_link( ampforwp_translation( $redux_builder_amp['amp-translator-show-more-posts-text'], 'Show more Posts') . ' &raquo;' , 0 ) ?></div>
-					<?php if ( $paged > 1 ) { ?>
-						<div class="prev"><?php previous_posts_link( '&laquo; '.ampforwp_translation($redux_builder_amp['amp-translator-show-previous-posts-text'], 'Show previous Posts') ); ?></div>
-					<?php } ?>
+        	<?php if ( get_next_posts_link('next', $q->max_num_pages) ){ ?><div class="next"><?php next_posts_link( ampforwp_translation($redux_builder_amp['amp-translator-show-more-posts-text'] , 'Next') . ' &raquo;', $q->max_num_pages ) ?></div><?php }?>
+        	<?php if ( get_previous_posts_link() ){ ?><div class="prev"><?php previous_posts_link( '&laquo; '. ampforwp_translation($redux_builder_amp['amp-translator-show-previous-posts-text'], 'Previous' ) ); ?></div><?php }?>
 			<div class="clearfix"></div>
 		</div>
 	</div>

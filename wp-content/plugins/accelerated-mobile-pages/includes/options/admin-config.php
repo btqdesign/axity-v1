@@ -34,7 +34,7 @@ $extension_listing_array = array(
                             'name'=>'ADS for WP',
                             'desc'=>'A Revolutionary way of adding ADS in your WordPress',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/click.png',
-                            'price'=>'$29',
+                            'price'=>'Free',
                             'url_link'=>'http://ampforwp.com/ads-for-wp/#utm_source=options-panel&utm_medium=extension-tab_advanced-amp-ads&utm_campaign=AMP%20Plugin',
                             'plugin_active_path'=> 'ads-for-wp/ads-for-wp.php',
                             'item_name'=>'ADS for WP',
@@ -148,6 +148,17 @@ $extension_listing_array = array(
                             'store_url'=>'https://accounts.ampforwp.com',
                             'is_activated'=>(is_plugin_active('pwa-for-wordpress/amp-pwa.php')? 1 : 2),
                             'settingUrl'=>admin_url( 'admin.php?page=ampforwp-pwa' ),
+                        ), 
+                        array(
+                            'name'=>'AMP Popup',
+                            'desc'=>'Pop-Up Functionality for AMP in WordPress. Most easiest and the best way to include Pop-Up in AMP.',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/pwa-icon.png',
+                            'price'=>'$39',
+                            'url_link'=>'#',
+                            'plugin_active_path'=> 'amp-popup/amp-popup.php',
+                            'item_name'=>'AMP Popup',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('amp-popup/amp-popup.php')? 1 : 2),
                         ),
                         array(
                             'name'=>'Call To Action (CTA)',
@@ -274,6 +285,17 @@ $extension_listing_array = array(
                             'settingUrl'=>admin_url( 'edit.php?post_type=ampforwp_story' ),
                         ),
                         array(
+                            'name'=>'Shortcode Ultimate',
+                            'desc'=>'This is an extension of Shortcode Ultimate plugin for AMP Compatibility',
+                            'img_src'=>AMPFORWP_IMAGE_DIR . '/cache-icon.png',
+                            'price'=>'$19',
+                            'url_link'=>'https://ampforwp.com/shortcodes-ultimate/#utm_source=options-panel&utm_medium=extension-tab_shortcodes_ultimate&utm_campaign=AMP%20Plugin',
+                            'plugin_active_path'=> 'shortcodes-ultimate-for-amp/shortcode-ultimate-for-amp.php',
+                            'item_name'=>'Shortcode Ultimate',
+                            'store_url'=>'https://accounts.ampforwp.com',
+                            'is_activated'=>(is_plugin_active('shortcodes-ultimate-for-amp/shortcode-ultimate-for-amp.php')? 1 : 2),
+                        ),
+                        array(
                             'name'=>'Structured Data for WP',
                             'desc'=>'Structured Data for your site and for AMP',
                             'img_src'=>AMPFORWP_IMAGE_DIR . '/sd-icon.png',
@@ -393,10 +415,12 @@ foreach ($extension_listing_array as $key => $extension) {
         }
 
         $pluginReview = '<input id="redux_builder_amp_amp-license_'.$pathExploded.'_license" type="text" value="'. str_replace(substr($amplicense, 0, strlen($amplicense)-4), '**', $amplicense).'"  onclick="return false;">  
-            <input name="redux_builder_amp[amp-license]['.$pathExploded.'][license]" type="hidden" value="'. $amplicense.'">
-            <input name="redux_builder_amp[amp-license]['.$pathExploded.'][item_name]" type="hidden" value="'.$extension['item_name'].'"> 
-            <input name="redux_builder_amp[amp-license]['.$pathExploded.'][store_url]" type="hidden" value="'.$extension['store_url'].'"> 
-             <input name="redux_builder_amp[amp-license]['.$pathExploded.'][plugin_active_path]" type="hidden" value="'.$extension['plugin_active_path'].'">
+           <input name="redux_builder_amp[amp-license]['.$pathExploded.'][license]" type="hidden" value="'. $amplicense.'">
+           <input name="redux_builder_amp[amp-license]['.$pathExploded.'][item_name]" type="hidden" value="'.$extension['item_name'].'">';
+            if (isset($extension['store_url'])){
+            $pluginReview .= '<input name="redux_builder_amp[amp-license]['.$pathExploded.'][store_url]" type="hidden" value="'.$extension['store_url'].'">'; 
+            }
+             $pluginReview .= '<input name="redux_builder_amp[amp-license]['.$pathExploded.'][plugin_active_path]" type="hidden" value="'.$extension['plugin_active_path'].'">
             <input name="redux_builder_amp[amp-license]['.$pathExploded.'][name]" type="hidden" value="'.$extension['name'].'">
             <input name="redux_builder_amp[amp-license]['.$pathExploded.'][status]" type="hidden" value="'.$selectedOption['amp-license'][$pathExploded]['status'].'">';
              $pluginReview .= '<input name="redux_builder_amp[amp-license]['.$pathExploded.'][all_data][success]" type="hidden" value="'.$allResponseData['success'].'">
@@ -1020,7 +1044,7 @@ Redux::setArgs( "redux_builder_amp", $args );
     Redux::setHelpTab( $opt_name, $tabs );
 
     // Set the help sidebar
-    $content = __( '<p>This is the sidebar content, HTML is allowed.</p>', 'admin_folder' );
+    $content = __( '<p>This is the sidebar content, HTML is allowed.</p>', 'accelerated-mobile-pages' );
     Redux::setHelpSidebar( $opt_name, $content );
 
 
@@ -1056,7 +1080,7 @@ Redux::setArgs( "redux_builder_amp", $args );
 
                       sprintf( __( '  <h2 style="width: 150px;float: right;
     padding: 8px 11px;background: #4CAF50;
-    font-size: 13px;margin: -24px 0 0 10px;
+    font-size: 13px;margin: -40px 0 0 10px;
     border-radius: 5px;line-height: 22px;position:relative;top:30px"><a style="color: #fff;text-decoration: none;" href="https://wordpress.org/support/view/plugin-reviews/accelerated-mobile-pages?rate=5#postform">Like this plugin? <br /> Leave a 5 Star Rating</a></h2>We are actively working on updating the plugin. We have built user friendly options which allows you to make changes on your AMP version.', 'accelerated-mobile-pages' ), 'accelerated-mobile-pages' )                      
 			               . '<div style="width:100%;margin:20px 0px 10px 0px" class="getstarted_wrapper">
             <div class="getstarted_options">
@@ -1076,6 +1100,12 @@ Redux::setArgs( "redux_builder_amp", $args );
 					<li><a href="https://ampforwp.com/amp-theme-framework/" target="_blank">Create a Custom Theme for AMP</a></li>
 					<li><a href="https://ampforwp.com/tutorials/article-categories/how-to/" target="_blank">General How To\'s</a></li>
 				</ul>  
+            </div>
+            <div class="getstarted_options" style="padding-bottom: 33px;width: 16%;" >
+            <p><b>Get Stable Updates</b></p>
+                <ul class="getstarted_ul">
+                    <li style="list-style:none;"><a href="https://ampforwp.com/beta-test/" target="_blank">Become a Beta Tester and Help us Push Stable Updates</a></li>
+                </ul>  
             </div>
             <div class="clear"></div>
             </div>'
@@ -1975,6 +2005,41 @@ Redux::setArgs( "redux_builder_amp", $args );
 
   // Performance SECTION
   Redux::setSection( $opt_name, array(
+        'title'      => __( 'PWA', 'accelerated-mobile-pages' ),
+        'id'         => 'pwa-for-wp',
+        'desc'      => '',
+        'subsection' => true,
+        'class'      => 'ampforwp_new_features ',
+        'fields'     => array(
+            array(
+                  'id' => 'ampforwp-pwa-for-wp',
+                  'type' => 'section',
+                  'title' => __('Progressive Web App (PWA)', 'accelerated-mobile-pages'),
+                  'indent' => true,
+                  'layout_type' => 'accordion',
+                    'accordion-open'=> 1,
+              ),
+
+           array(
+               'id'       => 'ampforwp_pwa_module',
+               'type'     => 'raw',
+               'title'     => __('PWA Support', 'accelerated-mobile-pages'),
+               'content'  => (!is_plugin_active('pwa-for-wp/pwa-for-wp.php')? 
+                                '<div class="ampforwp-recommendation-btn update-message ampforwp-modules ampforwp-activation-call-module-upgrade " id="ampforwp-pwa-activation-call"> <p>Activate this Module</p></div>'
+                            : '<div class="col-wrapper">
+                                   <a href="'.admin_url('admin.php?page=pwaforwp&reference=ampforwp').'"> <div class="ampforwp-recommendation-btn updated-message"><p>Go to PWA Settings</p></div> </a> 
+                                </div>
+                            ').'<a class="amp_recommend_learnmore" href="https://ampforwp.com/tutorials/article/what-is-pwa-for-wp-and-why-its-included-in-the-amp/" target="_blank">Learn more</a>'
+           ),
+
+       )
+
+  )
+
+  );
+
+   // Performance SECTION
+  Redux::setSection( $opt_name, array(
         'title'      => __( 'Performance', 'accelerated-mobile-pages' ),
         'id'         => 'amp-performance',
         'desc' => $cache_desc,
@@ -2517,7 +2582,50 @@ function ampforwp_add_sd_fields($fields){
            return $fields;
     }
     else {
-          $fields[] =         array(
+        
+             $fields[] =    array(
+                                'id' => 'ampforwp-sd_modules_section',
+                                'type' => 'section',
+                                'title' => __('Structured Data has been Improved!', 'accelerated-mobile-pages'),
+                                'indent' => true,
+                                'layout_type' => 'accordion',
+                                'accordion-open'=> 1, 
+                            );
+                $fields[] =   array(
+                          'id'       => 'ampforwp-sd-module',
+                          'type'     => 'raw',
+                          'content'  => '<div class="ampforwp-st-data-update">
+                                                '.(!is_plugin_active('schema-and-structured-data-for-wp/structured-data-for-wp.php')? 'New Update available for Structured data:': 'Thank you for upgrading the Structured data').'
+                                                <div class="row">
+                                                    
+                                                        '.(!is_plugin_active('schema-and-structured-data-for-wp/structured-data-for-wp.php')? '
+                                                        <div class="col-3"><ul>
+                                                            <li>Add Unlimited Schemas</li>
+                                                            <li>New Schema Types</li>
+                                                            <li>Advanced Structured data options</li>
+                                                        </ul> </div>' : '')
+                                                    .'
+                                                    <div class="col-1">
+                                                        '.(!is_plugin_active('schema-and-structured-data-for-wp/structured-data-for-wp.php')? 
+                                                            '
+												        <div class="ampforwp-recommendation-btn update-message ampforwp-modules ampforwp-activation-call-module-upgrade " id="ampforwp-structure-data-activation-call">
+												            <p>Upgrade for Free</p>
+												        </div>' :
+                                                            '<a href="'.admin_url('admin.php?page=structured_data_options&tab=general&reference=ampforwp').'"><div class="ampforwp-recommendation-btn updated-message"><p>Go to Structure Data settings</p></div></a>'
+                                                        )
+                                                        .'
+                                                         &nbsp;<a href="https://ampforwp.com/tutorials/article/what-is-the-structured-data-update-all-about/" class="amp_recommend_learnmore" target="_blank">Learn more</a>
+                                                    </div>
+                                            </div>' 
+                                            
+                );
+
+
+
+
+
+        if( !is_plugin_active('schema-and-structured-data-for-wp/structured-data-for-wp.php') ) {
+                $fields[] =         array(
                       'id' => 'ampforwp-sd_1',
                       'type' => 'section',
                       'title' => __('Schema & Structured Data', 'accelerated-mobile-pages'),
@@ -2525,94 +2633,102 @@ function ampforwp_add_sd_fields($fields){
                       'layout_type' => 'accordion',
                         'accordion-open'=> 1, 
                   );
-    $fields[] =   array(
-                      'id'       => 'ampforwp-sd-type-posts',
-                      'type'     => 'select',
-                      'title'    => __('Posts', 'accelerated-mobile-pages'),
-                      'tooltip-subtitle' => __('Select the Structured Data Type for Posts', 'accelerated-mobile-pages'),
-                      'options'  => ampforwp_get_sd_types(),
-                      'default'  => 'BlogPosting',
-            );
-    $fields[] =   array(
-                      'id'       => 'ampforwp-sd-type-pages',
-                      'type'     => 'select',
-                      'title'    => __('Pages', 'accelerated-mobile-pages'),
-                      'tooltip-subtitle' => __('Select the Structured Data Type for Pages', 'accelerated-mobile-pages'),
-                      'options'  =>  ampforwp_get_sd_types(),
-                      'default'  => 'BlogPosting',
-            );
-          $fields[] = array(
-                      'id' => 'ampforwp-sd_2',
-                      'type' => 'section',
-                      'title' => __('Default Values Setup', 'accelerated-mobile-pages'),
-                      'indent' => true,
-                      'layout_type' => 'accordion',
-                        'accordion-open'=> 1, 
-                  );
+                $fields[] =   array(
+                              'id'       => 'ampforwp-sd-type-posts',
+                              'type'     => 'select',
+                              'title'    => __('Posts', 'accelerated-mobile-pages'),
+                              'tooltip-subtitle' => __('Select the Structured Data Type for Posts', 'accelerated-mobile-pages'),
+                              'options'  => ampforwp_get_sd_types(),
+                              'default'  => 'BlogPosting',
+                    );
+                $fields[] =   array(
+                              'id'       => 'ampforwp-sd-type-pages',
+                              'type'     => 'select',
+                              'title'    => __('Pages', 'accelerated-mobile-pages'),
+                              'tooltip-subtitle' => __('Select the Structured Data Type for Pages', 'accelerated-mobile-pages'),
+                              'options'  =>  ampforwp_get_sd_types(),
+                              'default'  => 'BlogPosting',
+                    );
+                  $fields[] = array(
+                              'id' => 'ampforwp-sd_2',
+                              'type' => 'section',
+                              'title' => __('Default Values Setup', 'accelerated-mobile-pages'),
+                              'indent' => true,
+                              'layout_type' => 'accordion',
+                                'accordion-open'=> 1, 
+                          );
 
-        $fields[] =   array(
-                      'id'       => 'amp-structured-data-logo',
-                      'type'     => 'media',
-                      'url'      => true,
-                      'title'    => __('Default Structured Data Logo', 'accelerated-mobile-pages'),
-                      'tooltip-subtitle' => __('Upload the logo you want to show in Google Structured Data. ', 'accelerated-mobile-pages'),
-            );
-    $fields[] =   array(
-                      'id'       => 'ampforwp-sd-logo-dimensions',
-                      'title'    => __('Custom Logo Size', 'accelerated-mobile-pages'),
-                      'type'     => 'switch',
-                      'default'  => 0,
-            );
-    $fields[] =   array(
-                    'class'=>'child_opt child_opt_arrow',
-                      'id'       => 'ampforwp-sd-logo-width',
-                      'type'     => 'text',
-                      'title'    => __('Logo Width', 'accelerated-mobile-pages'),
-                      'tooltip-subtitle'    => __('Default width is 600 pixels', 'accelerated-mobile-pages'),
-                      'default' => '600',
-                      'required'=>array('ampforwp-sd-logo-dimensions','=','1'),
-            );
-    $fields[] =   array(
-                    'class'=>'child_opt',
-                    'id'       => 'ampforwp-sd-logo-height',
-                    'type'     => 'text',
-                    'title'    => __('Logo Height', 'accelerated-mobile-pages'),
-                    'tooltip-subtitle'    => __('Default height is 60 pixels', 'accelerated-mobile-pages'),
-                    'default' => '60',
-                    'required'=>array('ampforwp-sd-logo-dimensions','=','1'),
-            );
-    $fields[] =   array(
-                      'id'      => 'amp-structured-data-placeholder-image',
-                      'type'    => 'media',
-                      'url'     => true,
-                      'title'   => __('Default Post Image', 'accelerated-mobile-pages'),
-                      'tooltip-subtitle'    => __('Upload the Image you want to show as Placeholder Image.', 'accelerated-mobile-pages'),
-                      'placeholder'  => __('when there is no featured image set in the post','accelerated-mobile-pages'),
-            );
-    $fields[] =   array(
-                      'id'       => 'amp-structured-data-placeholder-image-width',
-                      'title'    => __('Default Post Image Width', 'accelerated-mobile-pages'),
-                      'type'     => 'text',
-                      'placeholder' => '550',
-                      'tooltip-subtitle' => __('Please don\'t add "PX" in the image size.','accelerated-mobile-pages'),
-                      'default'  => '700'
-            );
-    $fields[] =   array(
-                      'id'       => 'amp-structured-data-placeholder-image-height',
-                      'title'    => __('Default Post Image Height', 'accelerated-mobile-pages'),
-                      'type'     => 'text',
-                      'placeholder' => '350',
-                      'tooltip-subtitle' => __('Please don\'t add "PX" in the image size.','accelerated-mobile-pages'),
-                      'default'  => '550'
-             );
-    $fields[] =   array(
-                      'id'      => 'amporwp-structured-data-video-thumb-url',
-                      'type'    => 'media',
-                      'url'     => true,
-                      'title'   => __('Default Thumbnail for VideoObject', 'accelerated-mobile-pages'),
-                      'tooltip-subtitle'    => __('Upload the Thumbnail you want to show as Video Thumbnail.', 'accelerated-mobile-pages'),
-                      'placeholder'  => __('When there is no thumbnail set for the video','accelerated-mobile-pages'),
-            );
+                $fields[] =   array(
+                              'id'       => 'amp-structured-data-logo',
+                              'type'     => 'media',
+                              'url'      => true,
+                              'title'    => __('Default Structured Data Logo', 'accelerated-mobile-pages'),
+                              'tooltip-subtitle' => __('Upload the logo you want to show in Google Structured Data. ', 'accelerated-mobile-pages'),
+                    );
+                $fields[] =   array(
+                              'id'       => 'ampforwp-sd-logo-dimensions',
+                              'title'    => __('Custom Logo Size', 'accelerated-mobile-pages'),
+                              'type'     => 'switch',
+                              'default'  => 0,
+                    );
+                $fields[] =   array(
+                            'class'=>'child_opt child_opt_arrow',
+                              'id'       => 'ampforwp-sd-logo-width',
+                              'type'     => 'text',
+                              'title'    => __('Logo Width', 'accelerated-mobile-pages'),
+                              'tooltip-subtitle'    => __('Default width is 600 pixels', 'accelerated-mobile-pages'),
+                              'default' => '600',
+                              'required'=>array('ampforwp-sd-logo-dimensions','=','1'),
+                    );
+                $fields[] =   array(
+                            'class'=>'child_opt',
+                            'id'       => 'ampforwp-sd-logo-height',
+                            'type'     => 'text',
+                            'title'    => __('Logo Height', 'accelerated-mobile-pages'),
+                            'tooltip-subtitle'    => __('Default height is 60 pixels', 'accelerated-mobile-pages'),
+                            'default' => '60',
+                            'required'=>array('ampforwp-sd-logo-dimensions','=','1'),
+                    );
+                $fields[] =   array(
+                              'id'      => 'amp-structured-data-placeholder-image',
+                              'type'    => 'media',
+                              'url'     => true,
+                              'title'   => __('Default Post Image', 'accelerated-mobile-pages'),
+                              'tooltip-subtitle'    => __('Upload the Image you want to show as Placeholder Image.', 'accelerated-mobile-pages'),
+                              'placeholder'  => __('when there is no featured image set in the post','accelerated-mobile-pages'),
+                    );
+                $fields[] =   array(
+                              'id'       => 'amp-structured-data-placeholder-image-width',
+                              'title'    => __('Default Post Image Width', 'accelerated-mobile-pages'),
+                              'type'     => 'text',
+                              'placeholder' => '550',
+                              'tooltip-subtitle' => __('Please don\'t add "PX" in the image size.','accelerated-mobile-pages'),
+                              'default'  => '700'
+                    );
+                $fields[] =   array(
+                              'id'       => 'amp-structured-data-placeholder-image-height',
+                              'title'    => __('Default Post Image Height', 'accelerated-mobile-pages'),
+                              'type'     => 'text',
+                              'placeholder' => '350',
+                              'tooltip-subtitle' => __('Please don\'t add "PX" in the image size.','accelerated-mobile-pages'),
+                              'default'  => '550'
+                     );
+                $fields[] =   array(
+                              'id'      => 'amporwp-structured-data-video-thumb-url',
+                              'type'    => 'media',
+                              'url'     => true,
+                              'title'   => __('Default Thumbnail for VideoObject', 'accelerated-mobile-pages'),
+                              'tooltip-subtitle'    => __('Upload the Thumbnail you want to show as Video Thumbnail.', 'accelerated-mobile-pages'),
+                              'placeholder'  => __('When there is no thumbnail set for the video','accelerated-mobile-pages'),
+                    );
+        }// is_plugin_active('schema-and-structured-data-for-wp/structured-data-for-wp.php') Closed
+
+
+
+
+
+
+          
     return $fields;
     }
 }
@@ -2620,17 +2736,18 @@ function ampforwp_add_sd_fields($fields){
     Redux::setSection( $opt_name, array(
         'title'      => __( 'Structured Data', 'accelerated-mobile-pages' ),
         'id'         => 'opt-structured-data',
+        'class'      => 'ampforwp_new_features ',
         'subsection' => true,
         'fields'     => apply_filters('ampforwp_sd_custom_fields', $fields = array()
         ),
     ) );
+
 
     // Notifications SECTION
    Redux::setSection( $opt_name, array(
        'title'      => __( 'Notice Bar & GDPR', 'accelerated-mobile-pages' ),
           'desc'       => $cta_desc ,
        'id'         => 'amp-notifications',
-       'class'      => 'ampforwp_new_features ',
        'subsection' => true,
        'fields'     => array(
            array(
@@ -2775,7 +2892,22 @@ function ampforwp_add_sd_fields($fields){
                'default'   => 'Click Here',
                'required' => array('amp-gdpr-compliance-switch', '=' , '1'),
            ),
-       ),
+
+            array(
+            'id' => 'ampforwp-notice_popup',
+            'type' => 'section',
+            'title' => __('PopUp for AMP', 'accelerated-mobile-pages'),
+            'indent' => true,
+            'layout_type' => 'accordion',
+            'accordion-open'=> 1,
+                  ),
+           array(
+           'class' => 'child_opt child_opt_arrow',
+           'id'   => 'info_normal_amp_popup',
+           'type'     => 'info',
+            'desc' => '<a href="https://ampforwp.com/amp-popup/"  target="_blank"><img class="ampforwp-ad-img-banner" src="'.AMPFORWP_IMAGE_DIR . '/popup_ext.png" width="560" height="85" /></a>',   
+           ),               
+       ),  
 
    ) );
 
@@ -4024,6 +4156,14 @@ $e_commerce_support[] = array(
                        'required' => array( 'amp-use-pot', '=' , 0 )
                    ),
                     array(
+                       'id'       => 'amp-translator-read-more',
+                       'type'     => 'text',
+                       'title'    => __('Read More', 'accelerated-mobile-pages'),
+                       'default'  => __('Read More','accelerated-mobile-pages'),
+                       'placeholder'=>__('write here','accelerated-mobile-pages'),
+                       'required' => array( 'amp-use-pot', '=' , 0 )
+                    ),
+                    array(
                        'id'       => 'amp-translator-via-text',
                        'type'     => 'text',
                        'title'    => __('via', 'accelerated-mobile-pages'),
@@ -4760,7 +4900,7 @@ Redux::setSection( $opt_name, array(
             ),
             array(
                     'id'    => 'border-type',
-                   'title'  => __('Border Type', 'amptechtheme'),
+                   'title'  => __('Border Type', 'accelerated-mobile-pages'),
                    'type'   => 'select',
                    'options'=> array(
                         '1' =>  'Square',
@@ -5160,11 +5300,12 @@ Redux::setSection( $opt_name, array(
       );
 
 
-  //code for fetching ctegories to show as a list in redux settings
+  //code for fetching categories to show as a list in redux settings
     if(get_categories()){
        $categories = get_categories( array(
                                           'orderby' => 'name',
-                                          'order'   => 'ASC'
+                                          'order'   => 'ASC',
+                                          'number'  => 500
                                           ) );
       $categories_array = '';
       $categories_array = array();
@@ -5172,12 +5313,31 @@ Redux::setSection( $opt_name, array(
             foreach ($categories as $cat ) {
                     $cat_id = $cat->cat_ID;
                     $key = "".$cat_id;
-                    //building assosiative array of ID-cat_name
+                    //building associative array of ID-cat_name
                     $categories_array[ $key ] = $cat->name;
             }
         endif;
     }
-    //End of code for fetching ctegories to show as a list in redux settings
+    //End of code for fetching categories to show as a list in redux settings
+
+    // code for fetching tags to show as a list in the redux settings
+    if(get_tags()){
+        $tags = get_tags( array(
+                                'orderby' => 'name',
+                                'order'   => 'ASC',
+                                'number'  => 500
+                                ) );
+        $tags_array = array();
+        if( $tags ) :
+            foreach( $tags as $tag ){
+                $tag_id = $tag->term_id;
+                $key = "".$tag_id;
+                // building associative array of ID-tag_name
+                $tags_array[ $key ] = $tag->name;
+            }
+        endif;
+    }
+    // End of code for fetching tags to show as a list in redux settings
     $ampforwp_home_loop = array();
     $ampforwp_home_loop = get_option('ampforwp_custom_post_types');
     $ampforwp_home_loop['post'] = 'Posts';
@@ -5205,6 +5365,20 @@ Redux::setSection( $opt_name, array(
                            array('amp-design-selector', '=' , '3')
                         ),
                         'default'  => '1'
+                      ),
+                array(
+                        'id'       => 'amp-design-3-featured-content',
+                        'type'     => 'select',
+                        'title'    => __( 'Featured Slider Content', 'accelerated-mobile-pages' ),
+                        'required' => array(
+                           array('amp-design-3-featured-slider', '=' , '1')
+                        ),
+                        'options'   => array(
+                            '0'     => 'Recent Posts',
+                            '1'     => 'Categories',
+                            '2'     => 'Tags'
+                        ),
+                        'default'  => '1'  
                 ),
                  array(
                         'id'       => 'amp-design-3-category-selector',
@@ -5214,8 +5388,21 @@ Redux::setSection( $opt_name, array(
                         'options'  => $categories_array,
                         'required' => array(
                           array('amp-design-selector', '=' , '3'),
-                          array('amp-design-3-featured-slider', '=' , '1')
+                          array('amp-design-3-featured-slider', '=' , '1'),
+                          array('amp-design-3-featured-content', '=', '1'),
                         ),
+                  ),
+                 array(
+                    'id'       => 'amp-design-3-tag-selector',
+                    'type'     => 'select',
+                        'class'    => 'child_opt',
+                    'title'    => __( 'Featured Slider from Tags', 'accelerated-mobile-pages' ),
+                    'options'  => $tags_array,
+                    'required' => array(
+                    array('amp-design-selector', '=' , '3'),
+                    array('amp-design-3-featured-slider', '=' , '1'),
+                    array('amp-design-3-featured-content', '=' , '2'),
+                        ),       
                 ),
                  array(
                         'id'        =>'ampforwp-featur-slider-num-posts',
@@ -5423,6 +5610,12 @@ Redux::setSection( $opt_name, array(
                         'title'    => __( 'Exclude Categories', 'accelerated-mobile-pages' ),
                         'data'  => 'categories',
                         'multi'    => true
+                ),
+                array(
+                    'id'    => 'ampforwp-homepage-loop-readmore-link',
+                    'type'  => 'switch',
+                    'title' => __('Read More Link', 'accelerated-mobile-pages'),
+                    'default'   => 0,
                 ),
 
 
@@ -5945,6 +6138,41 @@ $single_page_options = array(
                               array('swift_cnt' , '=' , '1')
             ),
             array(
+                       'id' => 'ampforwp-single_section_5',
+                       'type' => 'section',
+                       'title' => __('WordPress Content Gallery', 'accelerated-mobile-pages'),
+                       'indent' => true,
+                       'layout_type' => 'accordion',
+                        'accordion-open'=> 1,
+                ),
+            array(
+                   'id'    => 'ampforwp-gallery-design-type',
+                   'title'  => __('Select Gallery Designs', 'accelerated-mobile-pages'),
+                   'class' => 'child_opt child_opt_arrow',
+                   'type'   => 'image_select',
+                   'options'=> array(
+                        '1' => array(
+                                'alt'=>' Single Design 1 ',
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/g-1.png'
+                                ),
+                        '2' => array(
+                                'alt'=>' Single Design With Sidebar ',
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/g-2.png'
+                                ),
+                        '3' => array(
+                                'alt'=>' Single Design With Sidebar ',
+                                'img' =>AMPFORWP_PLUGIN_DIR_URI.'/images/g-3.png'
+                                ),
+                        
+                    ),
+                   'default'=> '1',
+//                   'max-width' => 200,
+//                   'max-height'=> 60,
+                   'required' => array( array('amp-design-selector', '=' , '4'),
+                                 
+                                ),
+            ),
+            array(
                'id' => 'single-sneakp-section', 
                'type' => 'section',
                'title' => __('Content Sneak Peek', 'accelerated-mobile-pages'),
@@ -6449,6 +6677,13 @@ $single_page_options = array(
                 'default'  => 'default',
                 'required' => array(array('amp-design-selector', '=', '4') )
             ), 
+        // Social Share links to AMP
+          array(
+              'id'        =>  'ampforwp-social-share-amp',
+              'type'      =>  'switch',
+              'title'     =>  __('Social Share links to AMP', 'accelerated-mobile-pages'),
+              'default'   =>  0,
+          ), 
           // Facebook Like 
           array(
               'id'        =>  'ampforwp-facebook-like-button',
@@ -6468,11 +6703,14 @@ $single_page_options = array(
           array(
                'id'       => 'amp-facebook-app-id',
                'title'    => __('Facebook App ID', 'accelerated-mobile-pages'),
-               'tooltip-subtitle' => __('In order to use Facebook share you need to register an app ID, you can register one here: https://developers.facebook.com/apps.', 'accelerated-mobile-pages'),
+               'tooltip-subtitle' => __('In order to use Facebook share you need to register an app ID, <a href="https://developers.facebook.com/apps" target="_blank" style="color:#93FCFF;" >You can register one here: https://developers.facebook.com/apps.', 'accelerated-mobile-pages'),
                'type'     => 'text',
                'required'  => array('enable-single-facebook-share', '=' , '1'),
                'placeholder'  => __('Enter your facebook app id','accelerated-mobile-pages'),
-               'default'  => ''
+               'default'  => '',
+               'required' => array(
+                    array('amp-design-selector', '!=' , '4')
+                ),
           ),
           // Twitter ON/OFF
           array(

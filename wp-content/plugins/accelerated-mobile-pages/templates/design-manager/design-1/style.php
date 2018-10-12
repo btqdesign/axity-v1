@@ -44,7 +44,7 @@
   font-weight: 700;
     src:  local('Merriweather Bold Italic'), local('Merriweather-BoldItalic'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Merriweather-BoldItalic.ttf');
 }
-.cb{clear:both}
+.clearfix, .cb{clear:both}
 .alignright{ float: right; }
 .alignleft{ float: left; }
 .aligncenter{ display: block; margin-left: auto; margin-right: auto; max-width: 100% }
@@ -81,6 +81,9 @@ blockquote {color: <?php echo sanitize_hex_color( $text_color ); ?>;background: 
 .ampforwp-ad-above-related-post{padding-top:15px;}
 .single-post .amp_author_area amp-img{ margin: 0; float: left; margin-right: 12px; border-radius: 60px; }
 .single-post .amp_author_area .amp_author_area_wrapper{ display: inline-block; width: 100%; line-height: 1.4; margin-top: 22px; font-size: 13px; color:#333; font-family: sans-serif; }
+.wp-block-image.aligncenter amp-img {
+ margin: 0 auto;
+ }
 /* Footer */
 .footer_menu ul{ list-style-type: none; padding: 0; text-align: center; margin: 0px 20px 25px 20px; line-height: 27px; font-size: 13px }
 .footer_menu ul li{ display:inline; margin:0 10px; }
@@ -210,8 +213,9 @@ if( !is_home() && $redux_builder_amp['ampforwp-bread-crumb'] == 1 ) { ?>
 .amp-menu li{position:relative}
 .amp-menu li.menu-item-has-children ul{display:none;margin:0;background:#222}
 .amp-menu li.menu-item-has-children ul ul{background:#444}
-.amp-menu li.menu-item-has-children:hover > ul{display:block}
-.amp-menu li.menu-item-has-children:after{content:'\25be';position:absolute;padding: 10px 15px 10px 30px;right:0;font-size:18px;color:#ccc;top:0;z-index:10000;line-height:1}
+.amp-menu input{display:none;}
+.amp-menu [id^=drop]:checked + label + ul{ display: block;}
+.amp-menu .toggle:after{content:'\25be';position:absolute;padding: 10px 15px 10px 30px;right:0;font-size:18px;color:#ccc;top:5px;z-index:10000;line-height:1}
 .amp-ad-wrapper span { display: inherit; font-size: 12px; line-height: 1;}
 <?php // Ads (sitewide)
 if( ( isset($redux_builder_amp['enable-amp-ads-1'] ) && $redux_builder_amp['enable-amp-ads-1'] ) || ( isset($redux_builder_amp['enable-amp-ads-2'] ) && $redux_builder_amp['enable-amp-ads-2'] ) ){ ?> .amp-ad-wrapper {text-align: center} .amp-ad-wrapper.amp_ad_1{padding-top:20px} .amp-ad-wrapper,.amp-wp-article amp-ad{ direction: ltr; } <?php }
