@@ -216,13 +216,13 @@ $generated_i18n_strings = array(
 	// Reference: node_modules/yoast-components/composites/Plugin/SnippetEditor/components/SnippetEditorFields.js:223
 	__( 'Meta description', 'wordpress-seo' ),
 
-	// Reference: node_modules/yoast-components/composites/Plugin/SnippetEditor/components/SnippetEditor.js:254
+	// Reference: node_modules/yoast-components/composites/Plugin/SnippetEditor/components/SnippetEditor.js:258
 	__( 'Modify your meta description by editing it right here', 'wordpress-seo' ),
 
-	// Reference: node_modules/yoast-components/composites/Plugin/SnippetEditor/components/SnippetEditor.js:274
+	// Reference: node_modules/yoast-components/composites/Plugin/SnippetEditor/components/SnippetEditor.js:278
 	__( 'Close snippet editor', 'wordpress-seo' ),
 
-	// Reference: node_modules/yoast-components/composites/Plugin/SnippetEditor/components/SnippetEditor.js:552
+	// Reference: node_modules/yoast-components/composites/Plugin/SnippetEditor/components/SnippetEditor.js:556
 	__( 'Edit snippet', 'wordpress-seo' ),
 
 	// Reference: node_modules/yoast-components/composites/Plugin/SnippetEditor/components/SnippetEditorFields.js:200

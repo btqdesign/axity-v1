@@ -116,6 +116,7 @@ class WPSEO_Social_Previews {
 			'jquery',
 			'jquery-ui-core',
 			'yoast-seo-premium-commons',
+			WPSEO_Admin_Asset_Manager::PREFIX . 'analysis',
 		), WPSEO_VERSION );
 
 		wp_localize_script( 'yoast-social-preview', 'yoastSocialPreview', $this->localize() );

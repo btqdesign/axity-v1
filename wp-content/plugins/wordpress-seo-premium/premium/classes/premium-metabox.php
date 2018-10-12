@@ -71,7 +71,7 @@ class WPSEO_Premium_Metabox implements WPSEO_WordPress_Integration {
 	 * Enqueues assets when relevant.
 	 */
 	public function enqueue_assets() {
-		if ( WPSEO_Metabox::is_post_edit( $GLOBALS['pagenow'] ) ) {
+		if ( WPSEO_Metabox::is_post_edit( $GLOBALS['pagenow'] ) || WPSEO_Taxonomy::is_term_edit( $GLOBALS['pagenow'] ) ) {
 			wp_enqueue_script( WPSEO_Admin_Asset_Manager::PREFIX . 'premium-metabox' );
 			wp_enqueue_style( WPSEO_Admin_Asset_Manager::PREFIX . 'premium-metabox' );
 
@@ -89,6 +89,29 @@ class WPSEO_Premium_Metabox implements WPSEO_WordPress_Integration {
 	 * Send data to assets by using wp_localize_script.
 	 */
 	public function send_data_to_assets() {
+		$analysis_seo = new WPSEO_Metabox_Analysis_SEO();
+		$data         = array(
+			'restApi'            => $this->get_rest_api_config(),
+			'seoAnalysisEnabled' => $analysis_seo->is_enabled(),
+		);
+
+		if ( WPSEO_Metabox::is_post_edit( $GLOBALS['pagenow'] ) ) {
+			$data = array_merge( $data, $this->get_post_metabox_config() );
+		}
+		elseif ( WPSEO_Taxonomy::is_term_edit( $GLOBALS['pagenow'] ) ) {
+			$data = array_merge( $data, $this->get_term_metabox_config() );
+		}
+
+		// Use an extra level in the array to preserve booleans. WordPress sanitizes scalar values in the first level of the array.
+		wp_localize_script( WPSEO_Admin_Asset_Manager::PREFIX . 'premium-metabox', 'wpseoPremiumMetaboxData', array( 'data' => $data ) );
+	}
+
+	/**
+	 * Retrieves the metabox config for a post.
+	 *
+	 * @return array The config.
+	 */
+	protected function get_post_metabox_config() {
 		$insights_enabled         = WPSEO_Options::get( 'enable_metabox_insights', false );
 		$link_suggestions_enabled = WPSEO_Options::get( 'enable_link_suggestions', false );
 
@@ -106,26 +129,43 @@ class WPSEO_Premium_Metabox implements WPSEO_WordPress_Integration {
 			$insights_enabled = false;
 		}
 
-		$analysis_seo = new WPSEO_Metabox_Analysis_SEO();
-
-		$data = array(
-			'seoAnalysisEnabled'       => $analysis_seo->is_enabled(),
+		return array(
 			'insightsEnabled'          => ( $insights_enabled ) ? 'enabled' : 'disabled',
 			'postID'                   => $this->get_post_ID(),
-			'restApi'                  => array(
-				'available'                 => WPSEO_Utils::is_api_available(),
-				'contentEndpointsAvailable' => WPSEO_Utils::are_content_endpoints_available(),
-				'root'                      => esc_url_raw( rest_url() ),
-				'nonce'                     => wp_create_nonce( 'wp_rest' ),
-			),
 			'linkSuggestionsEnabled'   => ( $link_suggestions_enabled ) ? 'enabled' : 'disabled',
 			'linkSuggestionsAvailable' => $this->link_suggestions->is_available( $post->post_type ),
 			'linkSuggestionsUnindexed' => $this->link_suggestions->is_site_unindexed() && WPSEO_Capability_Utils::current_user_can( 'wpseo_manage_options' ),
 			'linkSuggestions'          => $this->link_suggestions->get_js_data(),
 		);
+	}
 
-		// Use an extra level in the array to preserve booleans. WordPress sanitizes scalar values in the first level of the array.
-		wp_localize_script( WPSEO_Admin_Asset_Manager::PREFIX . 'premium-metabox', 'wpseoPremiumMetaboxData', array( 'data' => $data ) );
+	/**
+	 * Retrieves the metabox config for a term.
+	 *
+	 * @return array The config.
+	 */
+	protected function get_term_metabox_config() {
+		return array(
+			'insightsEnabled'          => 'disabled',
+			'linkSuggestionsEnabled'   => 'disabled',
+			'linkSuggestionsAvailable' => false,
+			'linkSuggestionsUnindexed' => false,
+			'linkSuggestions'          => false,
+		);
+	}
+
+	/**
+	 * Retrieves the REST API configuration.
+	 *
+	 * @return array The configuration.
+	 */
+	protected function get_rest_api_config() {
+		return array(
+			'available'                 => WPSEO_Utils::is_api_available(),
+			'contentEndpointsAvailable' => WPSEO_Utils::are_content_endpoints_available(),
+			'root'                      => esc_url_raw( rest_url() ),
+			'nonce'                     => wp_create_nonce( 'wp_rest' ),
+		);
 	}
 
 	/**

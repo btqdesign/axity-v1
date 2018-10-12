@@ -28,11 +28,21 @@ $generated_i18n_strings = array(
 	// Reference: js/src/components/SnippetPreviewModal.js:38
 	__( 'Snippet preview', 'wordpress-seo' ),
 
-	// Reference: js/src/components/SnippetPreviewModal.js:43
+	// Reference: js/src/components/SnippetPreviewModal.js:42
 	__( 'Close', 'wordpress-seo' ),
 
-	// Reference: js/src/components/contentAnalysis/ReadabilityAnalysis.js:42
-	__( 'Readability', 'wordpress-seo' ),
+	// Reference: js/src/components/contentAnalysis/ReadabilityAnalysis.js:46
+	__( 'Readability Analysis', 'wordpress-seo' ),
+
+	// Reference: js/src/components/contentAnalysis/ReadabilityAnalysis.js:52
+	// Reference: js/src/components/contentAnalysis/SeoAnalysis.js:237
+	__( 'Analysis results', 'wordpress-seo' ),
+
+	// Reference: js/src/components/contentAnalysis/ReadabilityAnalysis.js:54
+	__( 'This analysis checks your writing for grammar and writing style so your content is as clear as it can be.', 'wordpress-seo' ),
+
+	// Reference: js/src/components/contentAnalysis/ReadabilityAnalysis.js:57
+	__( 'Learn more about Readability Analysis.', 'wordpress-seo' ),
 
 	// Reference: js/src/components/contentAnalysis/SeoAnalysis.js:105
 	__( 'Would you like to add keyword synonyms?', 'wordpress-seo' ),
@@ -63,9 +73,6 @@ $generated_i18n_strings = array(
 
 	// Reference: js/src/components/contentAnalysis/SeoAnalysis.js:225
 	__( 'Learn more about the Keyword Analysis.', 'wordpress-seo' ),
-
-	// Reference: js/src/components/contentAnalysis/SeoAnalysis.js:237
-	__( 'Analysis results:', 'wordpress-seo' ),
 
 	// Reference: js/src/components/contentAnalysis/SeoAnalysis.js:75
 	__( 'Add synonyms', 'wordpress-seo' ),
@@ -131,7 +138,7 @@ $generated_i18n_strings = array(
 	// Reference: js/src/structured-data-blocks/faq/components/Question.js:188
 	__( 'Enter a question', 'wordpress-seo' ),
 
-	// Reference: js/src/structured-data-blocks/faq/components/Question.js:200
+	// Reference: js/src/structured-data-blocks/faq/components/Question.js:201
 	__( 'Enter the answer to the question', 'wordpress-seo' ),
 
 	// Reference: js/src/structured-data-blocks/faq/components/Question.js:43
@@ -150,61 +157,68 @@ $generated_i18n_strings = array(
 	// Reference: js/src/structured-data-blocks/faq/components/Question.js:84
 	__( 'Move question down', 'wordpress-seo' ),
 
-	// Reference: js/src/structured-data-blocks/how-to/block.js:47
+	// Reference: js/src/structured-data-blocks/how-to/block.js:51
 	__( 'Create a How-to guide in an SEO-friendly way. You can only use one How-to block per post.', 'wordpress-seo' ),
 
-	// Reference: js/src/structured-data-blocks/how-to/block.js:51
+	// Reference: js/src/structured-data-blocks/how-to/block.js:55
 	__( 'How-to', 'wordpress-seo' ),
 
-	// Reference: js/src/structured-data-blocks/how-to/block.js:52
+	// Reference: js/src/structured-data-blocks/how-to/block.js:56
 	__( 'How to', 'wordpress-seo' ),
 
-	// Reference: js/src/structured-data-blocks/how-to/components/HowTo.js:331
-	__( 'Add total time', 'wordpress-seo' ),
-
-	// Reference: js/src/structured-data-blocks/how-to/components/HowTo.js:347
-	__( 'days', 'wordpress-seo' ),
-
-	// Reference: js/src/structured-data-blocks/how-to/components/HowTo.js:365
-	__( 'hours', 'wordpress-seo' ),
-
-	// Reference: js/src/structured-data-blocks/how-to/components/HowTo.js:384
-	__( 'minutes', 'wordpress-seo' ),
-
-	// Reference: js/src/structured-data-blocks/how-to/components/HowTo.js:401
-	__( 'Delete total time', 'wordpress-seo' ),
-
-	// Reference: js/src/structured-data-blocks/how-to/components/HowTo.js:449
-	__( 'Time needed:', 'wordpress-seo' ),
-
-	// Reference: js/src/structured-data-blocks/how-to/components/HowTo.js:479
+	// Reference: js/src/structured-data-blocks/how-to/components/HowTo.js:434
 	__( 'Add step', 'wordpress-seo' ),
 
-	// Reference: js/src/structured-data-blocks/how-to/components/HowTo.js:515
+	// Reference: js/src/structured-data-blocks/how-to/components/HowTo.js:470
 	__( 'Showing step items as an unordered list', 'wordpress-seo' ),
 
-	// Reference: js/src/structured-data-blocks/how-to/components/HowTo.js:516
+	// Reference: js/src/structured-data-blocks/how-to/components/HowTo.js:471
 	__( 'Showing step items as an ordered list.', 'wordpress-seo' ),
 
-	// Reference: js/src/structured-data-blocks/how-to/components/HowTo.js:529
+	// Reference: js/src/structured-data-blocks/how-to/components/HowTo.js:490
+	__( 'Add total time', 'wordpress-seo' ),
+
+	// Reference: js/src/structured-data-blocks/how-to/components/HowTo.js:507
+	__( 'days', 'wordpress-seo' ),
+
+	// Reference: js/src/structured-data-blocks/how-to/components/HowTo.js:525
+	__( 'hours', 'wordpress-seo' ),
+
+	// Reference: js/src/structured-data-blocks/how-to/components/HowTo.js:544
+	__( 'minutes', 'wordpress-seo' ),
+
+	// Reference: js/src/structured-data-blocks/how-to/components/HowTo.js:561
+	__( 'Delete total time', 'wordpress-seo' ),
+
+	// Reference: js/src/structured-data-blocks/how-to/components/HowTo.js:584
 	__( 'Settings', 'wordpress-seo' ),
 
-	// Reference: js/src/structured-data-blocks/how-to/components/HowTo.js:531
+	// Reference: js/src/structured-data-blocks/how-to/components/HowTo.js:586
 	__( 'CSS class(es) to apply to the steps', 'wordpress-seo' ),
 
-	// Reference: js/src/structured-data-blocks/how-to/components/HowTo.js:534
+	// Reference: js/src/structured-data-blocks/how-to/components/HowTo.js:589
 	__( 'Optional. This can give you better control over the styling of the steps.', 'wordpress-seo' ),
 
-	// Reference: js/src/structured-data-blocks/how-to/components/HowTo.js:537
+	// Reference: js/src/structured-data-blocks/how-to/components/HowTo.js:592
+	__( 'Describe the duration of the instruction:', 'wordpress-seo' ),
+
+	// Reference: js/src/structured-data-blocks/how-to/components/HowTo.js:595
+	__( 'Optional. Customize how you want to describe the duration of the instruction', 'wordpress-seo' ),
+
+	// Reference: js/src/structured-data-blocks/how-to/components/HowTo.js:599
 	__( 'Unordered list', 'wordpress-seo' ),
 
-	// Reference: js/src/structured-data-blocks/how-to/components/HowTo.js:570
+	// Reference: js/src/structured-data-blocks/how-to/components/HowTo.js:632
 	__( 'Enter a description', 'wordpress-seo' ),
+
+	// Reference: js/src/structured-data-blocks/how-to/components/HowTo.js:72
+	// Reference: js/src/structured-data-blocks/how-to/legacy/8.2.js:148
+	__( 'Time needed:', 'wordpress-seo' ),
 
 	// Reference: js/src/structured-data-blocks/how-to/components/HowToStep.js:208
 	__( 'Enter a step title', 'wordpress-seo' ),
 
-	// Reference: js/src/structured-data-blocks/how-to/components/HowToStep.js:220
+	// Reference: js/src/structured-data-blocks/how-to/components/HowToStep.js:221
 	__( 'Enter a step description', 'wordpress-seo' ),
 
 	// Reference: js/src/structured-data-blocks/how-to/components/HowToStep.js:63
@@ -219,18 +233,23 @@ $generated_i18n_strings = array(
 	// Reference: js/src/structured-data-blocks/how-to/components/HowToStep.js:97
 	__( 'Move step down', 'wordpress-seo' ),
 
+	// Reference: js/src/structured-data-blocks/how-to/legacy/8.2.js:32
 	// Reference: js/src/structured-data-blocks/how-to/utils/buildDurationString.js:31
 	_n_noop( '%d day', '%d days', 'wordpress-seo' ),
 
+	// Reference: js/src/structured-data-blocks/how-to/legacy/8.2.js:35
 	// Reference: js/src/structured-data-blocks/how-to/utils/buildDurationString.js:34
 	_n_noop( '%d hour', '%d hours', 'wordpress-seo' ),
 
+	// Reference: js/src/structured-data-blocks/how-to/legacy/8.2.js:38
 	// Reference: js/src/structured-data-blocks/how-to/utils/buildDurationString.js:37
 	_n_noop( '%d minute', '%d minutes', 'wordpress-seo' ),
 
+	// Reference: js/src/structured-data-blocks/how-to/legacy/8.2.js:66
 	// Reference: js/src/structured-data-blocks/how-to/utils/buildDurationString.js:65
 	__( '%s and %s', 'wordpress-seo' ),
 
+	// Reference: js/src/structured-data-blocks/how-to/legacy/8.2.js:73
 	// Reference: js/src/structured-data-blocks/how-to/utils/buildDurationString.js:72
 	__( '%s, %s and %s', 'wordpress-seo' ),
 

@@ -283,11 +283,21 @@ class WPSEO_Post_Watcher extends WPSEO_Watcher {
 	 * @param integer $post_id      The current post ID.
 	 * @param bool    $should_exist Boolean to determine if the URL should be exist as a redirect.
 	 *
-	 * @return WPSEO_Redirect|string|void
+	 * @return WPSEO_Redirect|string|bool
 	 */
 	protected function check_if_redirect_needed( $post_id, $should_exist = false ) {
+		// If the post type is not public, don't redirect.
+		$post_type = get_post_type_object( get_post_type( $post_id ) );
 
-		// No revisions please.
+		if ( ! $post_type ) {
+			return false;
+		}
+
+		if ( ! in_array( $post_type->name, $this->get_included_automatic_redirection_post_types(), true ) ) {
+			return false;
+		}
+
+		// The post types should be a public one.
 		if ( $this->check_public_post_status( $post_id ) ) {
 			// Get the right URL.
 			$url = $this->get_target_url( $post_id );
@@ -306,6 +316,29 @@ class WPSEO_Post_Watcher extends WPSEO_Watcher {
 				}
 			}
 		}
+		return false;
+	}
+
+	/**
+	 * Retrieves the post types to create automatic redirects for.
+	 *
+	 * @return array Post types to include to create automatic redirects for.
+	 */
+	protected function get_included_automatic_redirection_post_types() {
+		$post_types = WPSEO_Post_Type::get_accessible_post_types();
+
+		/**
+		 * Filter: 'wpseo_premium_include_automatic_redirection_post_types' - Post types to create automatic redirects for.
+		 *
+		 * @api array $included_post_types Array with the post type names to include to automatic redirection.
+		 */
+		$included_post_types = apply_filters( 'wpseo_premium_include_automatic_redirection_post_types', $post_types );
+
+		if ( ! is_array( $included_post_types ) ) {
+			$included_post_types = array();
+		}
+
+		return $included_post_types;
 	}
 
 	/**
@@ -358,7 +391,7 @@ class WPSEO_Post_Watcher extends WPSEO_Watcher {
 		global $pagenow;
 
 		// Only set the hooks for the page where they are needed.
-		if ( ! ( $this->post_redirect_can_be_made( $pagenow ) ) ) {
+		if ( ! $this->is_rest_request() && ! $this->post_redirect_can_be_made( $pagenow ) ) {
 			return;
 		}
 
@@ -379,6 +412,15 @@ class WPSEO_Post_Watcher extends WPSEO_Watcher {
 
 		// Detect a post delete.
 		add_action( 'before_delete_post', array( $this, 'detect_post_delete' ) );
+	}
+
+	/**
+	 * Determines whether we're dealing with a REST request or not.
+	 *
+	 * @return bool Whether or not the current request is a REST request.
+	 */
+	private function is_rest_request() {
+		return defined( 'REST_REQUEST' ) && REST_REQUEST === true;
 	}
 
 	/**
