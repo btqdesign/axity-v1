@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WordPress - 4.9.x - Development - Administration package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2018-08-28 13:36:11+0000\n"
+"PO-Revision-Date: 2018-09-28 18:50:14+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -3787,22 +3787,6 @@ msgstr "d/m/Y H:i:s"
 msgid "To add a custom link, <strong>expand the Custom Links section, enter a URL and link text, and click Add to Menu</strong>"
 msgstr "Para agregar un enlace personalizado, <strong>expande la sección Enlaces Personalizados, ingresa una URL y el texto del enlace, luego clickea Agregar al Menú</strong>"
 
-#: wp-admin/includes/theme.php:639 wp-admin/themes.php:446
-msgid "Close details dialog"
-msgstr "Cerrar el diálogo de detalles"
-
-#: wp-admin/includes/template.php:2197
-msgid "You are currently editing the page that shows your latest posts."
-msgstr "Actualmente estás editando la página que muestra tus últimas entradas."
-
-#: wp-admin/includes/file.php:31 wp-admin/includes/template.php:1774
-msgid "Posts Page"
-msgstr "Página de Entradas"
-
-#: wp-admin/includes/class-wp-screen.php:1146
-msgid "Number of items per page:"
-msgstr "Número de ítems por página:"
-
 #. translators: Do not translate USERNAME, URL_DELETE, SITE_NAME: those are
 #. placeholders.
 #: wp-admin/ms-delete-site.php:48
@@ -3841,6 +3825,22 @@ msgstr ""
 "Gracias por usar el sitio,\n"
 "Webmaster\n"
 "###SITE_NAME###"
+
+#: wp-admin/includes/theme.php:639 wp-admin/themes.php:446
+msgid "Close details dialog"
+msgstr "Cerrar el diálogo de detalles"
+
+#: wp-admin/includes/template.php:2197
+msgid "You are currently editing the page that shows your latest posts."
+msgstr "Actualmente estás editando la página que muestra tus últimas entradas."
+
+#: wp-admin/includes/file.php:31 wp-admin/includes/template.php:1774
+msgid "Posts Page"
+msgstr "Página de Entradas"
+
+#: wp-admin/includes/class-wp-screen.php:1146
+msgid "Number of items per page:"
+msgstr "Número de ítems por página:"
 
 #: wp-admin/includes/ms.php:356
 msgid "Site Upload Space Quota"
@@ -6457,10 +6457,6 @@ msgstr "No se pudo procesar la imagen. Por favor, regrese y vuelva a intentarlo.
 msgid "The %1$s table is not okay. It is reporting the following error: %2$s. WordPress will attempt to repair this table&hellip;"
 msgstr "La tabla %1$s no está correcta. Se informa del siguiente error: %2$s. WordPress intentará reparar esta tabla&hellip;"
 
-#: wp-admin/edit-form-advanced.php:213
-msgid "There is an autosave of this post that is more recent than the version below. <a href=\"%s\">View the autosave</a>"
-msgstr "Hay un guardado automático de esta entrada que es más reciente que la versión de abajo. <a href=\"%s\">Ver el guardado automático</a>"
-
 #: wp-admin/maint/repair.php:162
 msgid "WordPress can automatically look for some common database problems and repair them. Repairing can take a while, so please be patient."
 msgstr "WordPress puede detectar automáticamente algunos problemas comunes en la base de datos y repararlos. La reparación puede tomar algún tiempo, así que por favor sea paciente."
@@ -6484,6 +6480,10 @@ msgstr "Reparación completa. Por favor, elimina la siguiente línea del archivo
 #: wp-admin/options-discussion.php:187
 msgid "An avatar is an image that follows you from weblog to weblog appearing beside your name when you comment on avatar enabled sites. Here you can enable the display of avatars for people who comment on your site."
 msgstr "Un avatar es una imagen que se muestra en los sitios web donde los avatares están permitidos, y aparecen al lado de tu nombre cuando comentes. Aquí puedes permitir la visualización de los avatares de los visitantes que comentan en tu sitio."
+
+#: wp-admin/edit-form-advanced.php:213
+msgid "There is an autosave of this post that is more recent than the version below. <a href=\"%s\">View the autosave</a>"
+msgstr "Hay un guardado automático de esta entrada más reciente que la versión de abajo. <a href=\"%s\">Ver el guardado automático</a>"
 
 #: wp-admin/user-edit.php:301
 msgid "Show Toolbar when viewing site"
@@ -8306,13 +8306,13 @@ msgstr "Esto restaurará la imagen de fondo original. No podrás restaurar ningu
 msgid "WordPress Blog"
 msgstr "Blog de WordPress"
 
-#: wp-admin/user-edit.php:387 wp-admin/user-edit.php:389
-msgid "&mdash; No role for this site &mdash;"
-msgstr "&mdash; No hay funciones en este sitio &mdash;"
-
 #: wp-admin/users.php:362
 msgid "Remove Users from Site"
 msgstr "Quitar usuarios del sitio"
+
+#: wp-admin/user-edit.php:387 wp-admin/user-edit.php:389
+msgid "&mdash; No role for this site &mdash;"
+msgstr "&mdash; Sin rol de usuario en este sitio &mdash;"
 
 #: wp-admin/includes/schema.php:396
 msgid "My Site"

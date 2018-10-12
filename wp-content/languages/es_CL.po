@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WordPress - 4.9.x - Development package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2018-09-06 13:31:53+0000\n"
+"PO-Revision-Date: 2018-09-28 13:35:53+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -35,6 +35,10 @@ msgstr "number_format_thousands_sep"
 #: wp-includes/class-wp-locale.php:220
 msgid "number_format_decimal_point"
 msgstr "number_format_decimal_point"
+
+#: wp-includes/rest-api/endpoints/class-wp-rest-revisions-controller.php:272
+msgid "The offset number requested is larger than or equal to the number of available revisions."
+msgstr "El número de salto solicitado es mayor o igual al número de revisiones disponibles."
 
 #: wp-includes/user.php:3395
 msgid "Unable to send personal data export confirmation email."
@@ -1981,10 +1985,12 @@ msgid "Limit result set to terms with one or more specific slugs."
 msgstr "Limitar el conjunto de resultados a los términos con uno o más slugs específicos."
 
 #: wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php:329
+#: wp-includes/rest-api/endpoints/class-wp-rest-revisions-controller.php:274
 msgid "The page number requested is larger than the number of pages available."
 msgstr "El número de la página solicitado es mayor que el número de páginas disponibles."
 
 #: wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php:157
+#: wp-includes/rest-api/endpoints/class-wp-rest-revisions-controller.php:207
 msgid "You need to define an include parameter to order by include."
 msgstr "necesitas definir un parámetro incluir para ordenar por incluir."
 
@@ -2799,7 +2805,7 @@ msgid "Terms do not support trashing. Set '%s' to delete."
 msgstr "Los términos no se pueden eliminar. Configura ‘%s' para eliminar."
 
 #. translators: %s: force=true
-#: wp-includes/rest-api/endpoints/class-wp-rest-revisions-controller.php:292
+#: wp-includes/rest-api/endpoints/class-wp-rest-revisions-controller.php:400
 msgid "Revisions do not support trashing. Set '%s' to delete."
 msgstr "Las revisiones no se pueden eliminar. Configura ‘%s’ para eliminar."
 
@@ -3077,6 +3083,7 @@ msgstr "Limitar los resultados a elementos con IDs particular de los padres."
 
 #: wp-includes/rest-api/endpoints/class-wp-rest-comments-controller.php:1405
 #: wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php:2331
+#: wp-includes/rest-api/endpoints/class-wp-rest-revisions-controller.php:708
 #: wp-includes/rest-api/endpoints/class-wp-rest-terms-controller.php:924
 #: wp-includes/rest-api/endpoints/class-wp-rest-users-controller.php:1338
 msgid "Offset the result set by a specific number of items."
@@ -3148,7 +3155,7 @@ msgid "The excerpt for the object."
 msgstr "El extracto del objeto."
 
 #: wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php:2025
-#: wp-includes/rest-api/endpoints/class-wp-rest-revisions-controller.php:460
+#: wp-includes/rest-api/endpoints/class-wp-rest-revisions-controller.php:603
 msgid "The ID for the author of the object."
 msgstr "El ID del autor del objeto."
 
@@ -3177,17 +3184,17 @@ msgid "A named status for the object."
 msgstr "Un nombre de estado para el objeto."
 
 #: wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php:1878
-#: wp-includes/rest-api/endpoints/class-wp-rest-revisions-controller.php:504
+#: wp-includes/rest-api/endpoints/class-wp-rest-revisions-controller.php:647
 msgid "An alphanumeric identifier for the object unique to its type."
 msgstr "Un identificador alfanumérico para el objeto único en su tipo."
 
 #: wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php:1871
-#: wp-includes/rest-api/endpoints/class-wp-rest-revisions-controller.php:493
+#: wp-includes/rest-api/endpoints/class-wp-rest-revisions-controller.php:636
 msgid "The date the object was last modified, as GMT."
 msgstr "La fecha en que el objeto fue modificado por última vez, en GMT."
 
 #: wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php:1864
-#: wp-includes/rest-api/endpoints/class-wp-rest-revisions-controller.php:487
+#: wp-includes/rest-api/endpoints/class-wp-rest-revisions-controller.php:630
 msgid "The date the object was last modified, in the site's timezone."
 msgstr "La fecha en la que se modificó el objeto por última vez, en el huso horario del sitio."
 
@@ -3196,7 +3203,7 @@ msgid "GUID for the object, transformed for display."
 msgstr "GUID para el objeto, transformado para su visualización."
 
 #: wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php:1837
-#: wp-includes/rest-api/endpoints/class-wp-rest-revisions-controller.php:477
+#: wp-includes/rest-api/endpoints/class-wp-rest-revisions-controller.php:620
 msgid "GUID for the object, as it exists in the database."
 msgstr "GUID para el objeto, tal como existe en la base de datos."
 
@@ -3206,13 +3213,13 @@ msgstr "El identificador global único para el objeto."
 
 #: wp-includes/rest-api/endpoints/class-wp-rest-comments-controller.php:1270
 #: wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php:1825
-#: wp-includes/rest-api/endpoints/class-wp-rest-revisions-controller.php:471
+#: wp-includes/rest-api/endpoints/class-wp-rest-revisions-controller.php:614
 msgid "The date the object was published, as GMT."
 msgstr "La fecha de publicación del objeto, en GMT."
 
 #: wp-includes/rest-api/endpoints/class-wp-rest-comments-controller.php:1264
 #: wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php:1819
-#: wp-includes/rest-api/endpoints/class-wp-rest-revisions-controller.php:465
+#: wp-includes/rest-api/endpoints/class-wp-rest-revisions-controller.php:608
 msgid "The date the object was published, in the site's timezone."
 msgstr "La fecha de publicación del objeto, en el huso horario del sitio."
 
@@ -3260,6 +3267,7 @@ msgid "Incorrect post password."
 msgstr "Clave de entrada incorrecta."
 
 #: wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php:152
+#: wp-includes/rest-api/endpoints/class-wp-rest-revisions-controller.php:202
 msgid "You need to define a search term to order by relevance."
 msgstr "Necesitas definir un término de búsqueda para ordenar por relevancia."
 
@@ -3362,12 +3370,14 @@ msgstr "Limita el resultado a comentarios con ID superiores específicos."
 
 #: wp-includes/rest-api/endpoints/class-wp-rest-comments-controller.php:1420
 #: wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php:2343
+#: wp-includes/rest-api/endpoints/class-wp-rest-revisions-controller.php:720
 #: wp-includes/rest-api/endpoints/class-wp-rest-users-controller.php:1351
 msgid "Sort collection by object attribute."
 msgstr "Ordenar la colección por atributo de objeto."
 
 #: wp-includes/rest-api/endpoints/class-wp-rest-comments-controller.php:1410
 #: wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php:2336
+#: wp-includes/rest-api/endpoints/class-wp-rest-revisions-controller.php:713
 #: wp-includes/rest-api/endpoints/class-wp-rest-terms-controller.php:930
 #: wp-includes/rest-api/endpoints/class-wp-rest-users-controller.php:1344
 msgid "Order sort attribute ascending or descending."
@@ -3375,6 +3385,7 @@ msgstr "Ordenar atributo de manera ascendente o descendente."
 
 #: wp-includes/rest-api/endpoints/class-wp-rest-comments-controller.php:1396
 #: wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php:2315
+#: wp-includes/rest-api/endpoints/class-wp-rest-revisions-controller.php:699
 #: wp-includes/rest-api/endpoints/class-wp-rest-terms-controller.php:914
 #: wp-includes/rest-api/endpoints/class-wp-rest-users-controller.php:1329
 msgid "Limit result set to specific IDs."
@@ -3382,6 +3393,7 @@ msgstr "Limitar el conjunto de resultados a IDs específicos."
 
 #: wp-includes/rest-api/endpoints/class-wp-rest-comments-controller.php:1387
 #: wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php:2306
+#: wp-includes/rest-api/endpoints/class-wp-rest-revisions-controller.php:690
 #: wp-includes/rest-api/endpoints/class-wp-rest-terms-controller.php:905
 #: wp-includes/rest-api/endpoints/class-wp-rest-users-controller.php:1320
 msgid "Ensure result set excludes specific IDs."
@@ -3433,7 +3445,7 @@ msgstr "El ID del objeto asociado a la publicación."
 #: wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php:1909
 #: wp-includes/rest-api/endpoints/class-wp-rest-revisions-controller.php:71
 #: wp-includes/rest-api/endpoints/class-wp-rest-revisions-controller.php:87
-#: wp-includes/rest-api/endpoints/class-wp-rest-revisions-controller.php:499
+#: wp-includes/rest-api/endpoints/class-wp-rest-revisions-controller.php:642
 msgid "The ID for the parent of the object."
 msgstr "El ID del superior del objeto."
 
@@ -3486,7 +3498,7 @@ msgstr "El ID del objeto del usuario, si el autor era un usuario."
 #: wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php:89
 #: wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php:1851
 #: wp-includes/rest-api/endpoints/class-wp-rest-revisions-controller.php:91
-#: wp-includes/rest-api/endpoints/class-wp-rest-revisions-controller.php:482
+#: wp-includes/rest-api/endpoints/class-wp-rest-revisions-controller.php:625
 msgid "Unique identifier for the object."
 msgstr "Identificador único para el objeto."
 
@@ -8833,7 +8845,7 @@ msgstr "Perdón, no tienes permiso para crear entradas protegidos con claves en 
 #: wp-includes/class-wp-xmlrpc-server.php:1715
 #: wp-includes/class-wp-xmlrpc-server.php:4863
 #: wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php:825
-#: wp-includes/rest-api/endpoints/class-wp-rest-revisions-controller.php:312
+#: wp-includes/rest-api/endpoints/class-wp-rest-revisions-controller.php:420
 msgid "The post cannot be deleted."
 msgstr "La entrada no puede borrarse."
 
@@ -10818,11 +10830,11 @@ msgstr "Clave de activación inválida."
 
 #: wp-includes/ms-functions.php:523
 msgid "That email address has already been used. Please check your inbox for an activation email. It will become available in a couple of days if you do nothing."
-msgstr "Esta dirección de correo electrónico ya se ha utilizado. Por favor, revisa en tu bandeja de entrada un correo electrónico de activación. Si no haces nada estará disponible nuevamente en unos días."
+msgstr "Esta dirección de correo electrónico ya está en uso. Por favor, revisa en tu bandeja de entrada un correo electrónico de activación. Si no haces nada estará disponible nuevamente en unos días."
 
 #: wp-includes/ms-functions.php:513
 msgid "That username is currently reserved but may be available in a couple of days."
-msgstr "Este nombre de usuario actualmente está reservado, pero puede estar disponible en un par de días."
+msgstr "Este nombre de usuario actualmente está reservado, pero podría estar disponible en un par de días."
 
 #: wp-includes/ms-functions.php:501 wp-includes/user.php:1560
 msgid "Sorry, that email address is already used!"
