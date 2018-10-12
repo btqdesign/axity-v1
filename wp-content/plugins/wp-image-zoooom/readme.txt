@@ -5,7 +5,7 @@ Email: diana@burduja.eu
 Tags: e-commerce, featured image, hover over image zoom, image, image zoom, image zoom plugin, image magnification, image magnifier, jquery picture zoom, magnifier, magnify image, magnifying glass, mouse over image zoom, panorama, picture zoom, product image, product zoom, product magnification, product magnifier, responsive, woocommerce product zoom, woocommerce zoom, woocommerce  magnifying glass, zoom, zoom image, zoom plugin, woocommerce image zoom, woocommerce product image zoom, woocommerce zoom magnifier
 Requires at least: 3.0.1
 Tested up to: 4.9
-Stable tag: 1.26
+Stable tag: 1.27
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Requires PHP: 5.2.4
@@ -30,6 +30,16 @@ Your visitors will be able to see the beautiful details of your images. This wil
 * **Extremely configurable** - control zooming lens size, border color, border size, shadow, rounded corner, and others ...
 * **Works with WooCommerce** - easily enable the zoom on all your products' images. Only a checkbox away.
 * **Works in Pages and Posts** - within the post's/page's editor you'll find a button for applying the zooming effect on any image.
+
+= Using the plugin with a page bulider =
+For applying the zoom on an image on a page/post from within a page builder, you need to add the "zoooom" CSS class to the image. Here are screenshots on how to do this with the most popular page builders:
+* Gutenberg - [screenshot](https://www.silkypress.com/wp-content/uploads/2018/10/zoom-gutenberg.png)
+* Visual Composer - [screenshot](https://www.silkypress.com/wp-content/uploads/2017/05/image-zoom-js_composer.png). Please use the "large" or "full" for the Image Size setting
+* Page Builder by SiteOrigin - [screenshot](https://www.silkypress.com/wp-content/uploads/2016/02/zoom-siteorigin.png)
+* Elementor Page Builder - [screenshot](https://www.silkypress.com/wp-content/uploads/2016/09/image-zoom-elementor.png). It works with all the Image Size options, except Custom.
+* Beaver Builder - [screenshot](https://www.silkypress.com/wp-content/uploads/2017/06/image-zoom-beaver-builder.png)
+* Divi Builder - [screenshot](https://www.silkypress.com/wp-content/uploads/2016/09/divi-builder.png)
+The zoom works alright only with Image elements. Unfortunately, trying to apply the zoom on an image gallery will make the zoom work only on the first image of the gallery. With the WP Image Zoom Pro the zoom can also be applied on image galleries. 
 
 = Why should you upgrade to WP Image Zoom Pro? =
 
@@ -79,9 +89,6 @@ OR...
 
 = Does it work with caching plugins ? =
 Yes
-
-= If I have Visual Composer installed, how do I apply the zoom? =
-You can apply the zoom on the Single Image element from Visual Composer. See the following [screenshot](https://ps.w.org/wp-image-zoooom/assets/screenshot-7.jpg).
 
 = The zoom will show up only on the first image on my WooCommerce gallery =
 The zoom should work fine with all the images on the default WooCommerce gallery, but some themes replace entirely the gallery with a [Owl Carousel](https://owlcarousel2.github.io/OwlCarousel2/) or a another gallery/carousel/slider. Note that this plugin doesn't change the gallery, it only tries to add a zoom to the present gallery and we cannot guarantee compatibility with each gallery/carousel/slider implementation out there.
@@ -144,6 +151,10 @@ Alternatively you can upgrade to the Pro version, as there the zoom lens is buil
 8. Apply the zoom from Page Builder by SiteOrigin, the Image Widget
 
 == Changelog ==
+
+= 1.27 =
+* Fix: the zoom is hidden behind a wrapper on the Salient theme
+* Describe how to apply the zoom with different page builders
 
 = 1.26 =
 * 11/08/2018
