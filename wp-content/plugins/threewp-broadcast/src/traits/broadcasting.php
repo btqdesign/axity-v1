@@ -251,11 +251,19 @@ trait broadcasting
 		$this->add_action( 'upload_dir', 'broadcasting_upload_dir' );
 
 		// Inform everyone of content that will be parsed later on.
-		$preparse_content = $this->new_action( 'preparse_content' );
-		$preparse_content->broadcasting_data = $bcd;
-		$preparse_content->content = $bcd->post->post_content;
-		$preparse_content->id = 'post_content';
-		$preparse_content->execute();
+		$post_data_to_parse = [
+			'post_content',
+			'post_excerpt',
+			'post_title',
+		];
+		foreach( $post_data_to_parse as $key )
+		{
+			$preparse_content = $this->new_action( 'preparse_content' );
+			$preparse_content->broadcasting_data = $bcd;
+			$preparse_content->content = $bcd->post->$key;
+			$preparse_content->id = $key;
+			$preparse_content->execute();
+		}
 
 		$action = $this->new_action( 'broadcasting_started' );
 		$action->broadcasting_data = $bcd;
@@ -512,13 +520,16 @@ trait broadcasting
 			$unmodified_post = (object)$bcd->new_post;
 			$modified_post = clone( $unmodified_post );
 
-			// Tell everyone it's time to parse this content.
-			$parse_content = $this->new_action( 'parse_content' );
-			$parse_content->broadcasting_data = $bcd;
-			$parse_content->content = $modified_post->post_content;
-			$parse_content->id = 'post_content';
-			$parse_content->execute();
-			$modified_post->post_content = $parse_content->content;
+			// Tell everyone it's time to parse this post.
+			foreach( $post_data_to_parse as $key )
+			{
+				$parse_content = $this->new_action( 'parse_content' );
+				$parse_content->broadcasting_data = $bcd;
+				$parse_content->content = $modified_post->$key;
+				$parse_content->id = $key;
+				$parse_content->execute();
+				$modified_post->$key = $parse_content->content;
+			}
 
 			$bcd->modified_post = $modified_post;
 			$action = $this->new_action( 'broadcasting_modify_post' );

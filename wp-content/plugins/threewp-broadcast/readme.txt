@@ -4,7 +4,7 @@ Donate link: https://broadcast.plainviewplugins.com
 License: GPLv3
 Requires at least: 4.6
 Requires PHP: 5.4
-Stable tag: 43.8
+Stable tag: 43.9
 Tags: multipost, sharing, duplicate, franchise, syndication, marketing, news, hub
 Tested up to: 4.9.6
 
@@ -77,6 +77,7 @@ The following add-ons add support for the plugin after which they are named.
 * <a href="https://broadcast.plainviewplugins.com/addon/event-organiser/">Event Organiser</a>
 * <a href="https://broadcast.plainviewplugins.com/addon/events-manager/">Events Manager</a>
 * <a href="https://broadcast.plainviewplugins.com/addon/foogallery/">FooGallery</a>
+* <a href="https://broadcast.plainviewplugins.com/addon/formidable-forms/">Formidable Forms</a>
 * <a href="https://broadcast.plainviewplugins.com/addon/geo-my-wp/">GEO my WordPress</a>
 * <a href="https://broadcast.plainviewplugins.com/addon/geodirectory/">Geodirectory</a>
 * <a href="https://broadcast.plainviewplugins.com/addon/global-blocks-for-cornerstone/">Global Blocks For Cornerstone</a>
@@ -130,6 +131,7 @@ These add-ons give you extra control of what you broadcast and how.
 * <a href="https://broadcast.plainviewplugins.com/addon/back-to-parent/">Back To Parent</a> updates the parent post with the new child content.
 * <a href="https://broadcast.plainviewplugins.com/addon/comments/">Comments</a> adds support for broadcasting of comments.
 * <a href="https://broadcast.plainviewplugins.com/addon/custom-field-attachments/">Custom Field Attachments</a> allows post custom field containing attachment IDs to be broadcasted correctly.
+* <a href="https://broadcast.plainviewplugins.com/addon/custom-field-posts/">Custom Field Posts</a> allows post custom field containing post IDs to be broadcasted correctly.
 * <a href="https://broadcast.plainviewplugins.com/addon/delete-before-broadcast/">Delete Before Broadcast</a> deletes duplicate and similar child posts on each blog before broadcasting.
 * <a href="https://broadcast.plainviewplugins.com/addon/hreflang/">Hreflang</a> adds support for <a href="https://en.wikipedia.org/wiki/Hreflang">SEO-friendly hreflang html tags</a>.
 * <a href="https://broadcast.plainviewplugins.com/addon/keep-child-status/">Keep Child Status</a> keeps the status of post children to private, pending, published, draft, no matter the status of the parent.
@@ -146,8 +148,9 @@ These add-ons give you extra control of what you broadcast and how.
 * <a href="https://broadcast.plainviewplugins.com/addon/shortcode-menus/">Shortcode Menus</a> modifies menu IDs found in shortcodes to match their equivalent menus on each blog.
 * <a href="https://broadcast.plainviewplugins.com/addon/shortcode-posts/">Shortcode Posts</a> modifies post IDs found in shortcodes to match their equivalent posts on each blog.
 * <a href="https://broadcast.plainviewplugins.com/addon/shortcode-terms/">Shortcode Terms</a> automatically translates taxonomy term IDs found in shortcodes when broadcasting.
-* <a href="https://broadcast.plainviewplugins.com/addon/update-attachments/">Update Attachments</a> updates existing attachments by copying over the files to the child blogs.
 * <a href="https://broadcast.plainviewplugins.com/addon/thumbnail-sizes/">Thumbnail Sizes</a> allows for different additional thumbnail sizes on a per-blog basis.
+* <a href="https://broadcast.plainviewplugins.com/addon/update-attachments/">Update Attachments</a> updates existing attachments by copying over the files to the child blogs.
+* <a href="https://broadcast.plainviewplugins.com/addon/unlink-on-edit/">Unlink On Edit</a> unlinks child posts when they are modified.
 * <a href="https://broadcast.plainviewplugins.com/addon/user-blog-settings/">User &amp; Blog Settings</a> (UBS) can hide the broadcast meta box and/or menu, modify the meta box to force/prevent broadcast to blogs, with separate settings for users / blogs / roles.
 * <a href="https://broadcast.plainviewplugins.com/addon/user-blog-settings-post/">User &amp; Blog Settings Post</a> uses the modifications from the UBS plugin to broadcast posts with one click.
 
@@ -315,6 +318,16 @@ This will broadcast all normal product settings: SKU, price, etc.
 If your products have variations, a product image gallery, you want to sync stock, you want to sync orders, need the attribute taxonomies to be synced, you'll be wanting the <a href="https://broadcast.plainviewplugins.com/addon/woocommerce/">WooCommerce add-on</a>.
 
 == Changelog ==
+
+= 43.9 20180922 =
+
+* Fix: Existing attachments are to be counted as copied attachments. Improves URL and ID translation of existing images in the post content.
+* New: Also parse post title and excerpt, giving actions and add-ons a change to modify those post fields during broadcasting.
+* New add-on. <a href="https://broadcast.plainviewplugins.com/addon/custom-field-posts/">Custom Field Posts</a>: Allow post custom field containing post IDs to be broadcasted correctly.
+* New add-on. <a href="https://broadcast.plainviewplugins.com/addon/formidable-forms/">Formidable Forms</a>: Adds support for the <a href="https://wordpress.org/plugins/formidable/">Formidable</a> plugin.
+* New add-on. <a href="https://broadcast.plainviewplugins.com/addon/unlink-on-edit/">Unlink On Edit</a>: Unlinks child posts when they are modified.
+* Dev: Add broadcast_override_canonical_url filter.
+* Dev: Add siteurl to broadcast_data blog object.
 
 = 43.8 20180821 =
 

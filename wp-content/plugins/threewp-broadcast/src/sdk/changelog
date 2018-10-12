@@ -1,3 +1,4 @@
+20180911		Wordpress: New EDD updater
 20180708		Collection add import_array()
 20180707		Collection: Deep convert during to_array().
 20180703		Fix Wordpress EDD workaround warning.

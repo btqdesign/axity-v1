@@ -529,6 +529,7 @@ class ThreeWP_Broadcast
 		$override = false;
 		$override |= is_single();
 		$override |= is_page();
+		$override = apply_filters( 'broadcast_override_canonical_url', $override );
 		if ( ! $override )
 			return;
 

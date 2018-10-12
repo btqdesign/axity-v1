@@ -109,6 +109,7 @@ class blog
 			'blogname',
 			'domain',
 			'path',
+			'siteurl',
 		] as $key )
 		{
 			if ( ! property_exists( $data, $key ) )

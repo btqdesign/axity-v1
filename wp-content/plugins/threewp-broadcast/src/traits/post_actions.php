@@ -303,8 +303,16 @@ trait post_actions
 						'post_type' => $post->post_type,
 						'post_status' => $post->post_status,
 					];
-					$this->debug( 'Searching for posts on blog %s: %s', $args, $blog->id );
 					$posts = get_posts( $args );
+					$post_ids = [];
+					foreach( $posts as $post )
+						$post_ids []= $post->ID;
+					$this->debug( 'Found %d posts (%s) on blog %s: %s',
+						count( $post_ids ),
+						implode( ",", $post_ids ),
+						$blog->id,
+						$args
+					);
 
 					// An exact match was found.
 					if ( count( $posts ) == 1 )
@@ -323,8 +331,6 @@ trait post_actions
 								$this->set_post_broadcast_data( $blog->id, $unlinked->ID, $child_broadcast_data );
 							}
 					}
-					else
-						$this->debug( 'Not exactly one match on blog.' );
 
 					restore_current_blog();
 				}

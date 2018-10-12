@@ -68,31 +68,74 @@ class Taxonomies
 	/**
 		@brief		Convenience method to also sync this taxonomy.
 		@details	Used best during broadcasting_started.
+		@deprecated	2018-08-30 13:26:38
 		@since		2017-11-08 12:38:59
 	**/
 	public function also_sync( $post_type, $taxonomy )
 	{
-		ThreeWP_Broadcast()->debug( 'Also syncing taxonomy <em>%s</em> for post type <em>%s</em>.', $taxonomy, $post_type );
+		$this->also_sync_taxonomy( [
+			'post_type' => $post_type,
+			'taxonomy' => $taxonomy,
+		] );
+	}
+
+	/**
+		@brief		Convenience method to also sync another taxonomy, but with more control than also_sync().
+		@see		also_sync()
+		@since		2018-08-30 13:26:38
+	**/
+	public function also_sync_taxonomy( $options )
+	{
+		$options = array_merge( [
+			'broadcasting_data' => null,
+			'blog_id' => 0,
+			'post' => null,
+			'post_id' => 0,
+			'taxonomy' => '',
+		], $options );
+
+		// Objects are easier to reference.
+		$options = (object) $options;
+
+		// Fetch the post.
+		if ( $options->post_id > 0 )
+		{
+			if ( $options->blog_id > 0 )
+				switch_to_blog( $options->blog_id );
+			$options->post = get_post( $options->post_id );
+			if ( $options->blog_id > 0 )
+				restore_current_blog();
+		}
+
+		// Fetch the post type.
+		if ( $options->post !== null )
+			$options->post_type = $options->post->post_type;
+
+		ThreeWP_Broadcast()->debug( 'Also syncing taxonomy <em>%s</em> for post type <em>%s</em>.', $options->taxonomy, $options->post_type );
 
 		// We need to store the taxonomy + terms of the post type.
-		// Fake a post
-		$post = (object)[
-			'ID' => 0,
-			'post_type' => $post_type,
-			'post_status' => 'publish',
-		];
+		if ( $options->post === null )
+			// Fake a post
+			$options->post = (object)[
+				'ID' => 0,
+				'post_type' => $options->post_type,
+				'post_status' => 'publish',
+			];
 
 		// And now collect the taxonomy info for the post type.
 		$post_bcd = new \threewp_broadcast\broadcasting_data( [
 			'parent_post_id' => -1,
-			'post' => $post,
+			'post' => $options->post,
 		] );
 		$post_bcd->add_new_taxonomies = true;
-		unset( $post_bcd->post->ID );		// This is so that collect_post_type_taxonomies returns ALL the terms, not just those from the non-existent post.
+
+		if ( $options->post_id < 1 )
+			unset( $post_bcd->post->ID );		// This is so that collect_post_type_taxonomies returns ALL the terms, not just those from the non-existent post.
+
 		ThreeWP_Broadcast()->collect_post_type_taxonomies( $post_bcd );
 
 		// Copy the collected taxonomy data.
-		$this->broadcasting_data->parent_blog_taxonomies[ $taxonomy ] = $post_bcd->parent_blog_taxonomies[ $taxonomy ];
+		$this->broadcasting_data->parent_blog_taxonomies[ $options->taxonomy ] = $post_bcd->parent_blog_taxonomies[ $options->taxonomy ];
 	}
 
 	/**

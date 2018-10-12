@@ -9,6 +9,7 @@ namespace threewp_broadcast\broadcasting_data;
 **/
 class Copied_Attachments
 	extends \threewp_broadcast\collection
+	implements \IteratorAggregate
 {
 	/**
 		@brief		The broadcasting data object.
@@ -35,9 +36,19 @@ class Copied_Attachments
 		$pair->new = $new_attachment;
 		$pair->new->id = $pair->new->ID;		// Lowercase is expected.
 		$pair->old = $old_attachment;
-		$items = $this->data()->collection( get_current_blog_id() );
+		$items = $this->get_items();
 		$items->set( $old_attachment->ID, $pair );
 		return $this;
+	}
+
+	/**
+		@brief		Count for this blog.
+		@since		2018-09-10 15:01:10
+	**/
+	public function count()
+	{
+		$items = $this->get_items();
+		return $items->count();
 	}
 
 	/**
@@ -71,5 +82,25 @@ class Copied_Attachments
 		if ( ! $items->has( $old_attachment_id ) )
 			return false;
 		return $items->get( $old_attachment_id )->new;
+	}
+
+	/**
+		@brief		Return all of the items on this blog.
+		@since		2018-09-10 15:11:05
+	**/
+	public function get_items()
+	{
+		return $this->data()->collection( get_current_blog_id() );
+	}
+
+	/**
+	 * Get an iterator for the items.
+	 *
+	 * @return ArrayIterator
+	 */
+	public function getIterator()
+	{
+		$items = $this->get_items()->to_array();
+		return new \ArrayIterator( $items );
 	}
 }

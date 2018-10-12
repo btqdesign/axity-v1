@@ -49,6 +49,7 @@ trait attachments
 				$this->debug( 'Resetting post parent for attachment %s.', $o->attachment_data->post->ID );
 				$o->attachment_data->post->post_parent = 0;
 			}
+
 			$this->maybe_copy_attachment( $o );
 
 			try
@@ -61,7 +62,7 @@ trait attachments
 				$attachment->post->attachment_data = $attachment;
 
 				$bcd->copied_attachments()->add( $attachment->post, $copied_attachment );
-				$this->debug( 'Copied attachment %s to %s', $attachment->post->ID, $o->attachment_id );
+				$this->debug( 'Copied attachment %s to %s. %d attachments known.', $attachment->post->ID, $o->attachment_id, $bcd->copied_attachments()->count() );
 			}
 			catch ( Exception $e )
 			{
